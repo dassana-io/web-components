@@ -1,2 +1,2 @@
-# web-profile
-Responsible for web profile service
+# web-components
+Responsible for web components to be shared by microfrontends
