@@ -8,20 +8,20 @@ export default {
 	excludeStories: /.*Data$/
 }
 
-const actionsData = {
+export const actionsData = {
 	onClick: action('onClick')
 }
 
-export const Default = () => <Button {...actionsData} text='Default' />
+export const DefaultButton = () => <Button {...actionsData} text='Default' />
 
-const googleData = {
+export const googleButtonData = {
 	classes: 'google plus',
 	primary: false,
 	text: 'Google'
 }
 
-export const Google = () => (
-	<Button {...actionsData} {...googleData}>
+export const GoogleButton = () => (
+	<Button {...actionsData} {...googleButtonData}>
 		<i className='google icon'></i>
 	</Button>
 )
