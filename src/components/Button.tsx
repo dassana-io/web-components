@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
 
 interface ButtonProps {
-	onClick?: () => void
+	onClick: () => void
 	primary?: boolean
 	disabled?: boolean
 	type?: 'submit' | 'button' | 'reset'
