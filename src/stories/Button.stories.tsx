@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import Button from '../components/Button'
+import Button, { ButtonProps } from '../components/Button'
 
 export default {
 	title: 'Button',
@@ -8,50 +8,41 @@ export default {
 	excludeStories: /.*Data$/
 }
 
-export const actionsData = {
+const actionsData = {
 	onClick: action('onClick')
 }
 
-export const Default = () => <Button {...actionsData}>Default</Button>
-
-export const disabledData = {
-	disabled: true
+export const buttonData: ButtonProps = {
+	onClick: actionsData.onClick,
+	disabled: false,
+	primary: false,
+	type: 'button',
+	classes: []
 }
+
+export const Default = () => <Button {...buttonData}>Default</Button>
 
 export const Disabled = () => (
-	<Button {...actionsData} {...disabledData}>
-		Disabled
-	</Button>
+	<Button {...{ ...buttonData, disabled: true }}>Disabled</Button>
 )
-
-export const primaryData = {
-	primary: true
-}
 
 export const Primary = () => (
-	<Button {...actionsData} {...primaryData}>
-		Primary
-	</Button>
+	<Button {...{ ...buttonData, primary: true }}>Primary</Button>
 )
 
-export const primaryDisabledData = {
-	primary: true,
-	disabled: true
-}
+export const Submit = () => (
+	<Button {...{ ...buttonData, type: 'submit' }}>Submit</Button>
+)
 
 export const PrimaryDisabled = () => (
-	<Button {...actionsData} {...primaryDisabledData}>
+	<Button {...{ ...buttonData, primary: true, disabled: true }}>
 		Primary Disabled
 	</Button>
 )
 
-export const googleData = {
-	classes: ['google'],
-	text: 'Google'
-}
-
 export const Google = () => (
-	<Button {...actionsData} {...googleData}>
+	<Button {...{ ...buttonData, classes: ['red'] }}>
+		<i className='google icon'></i>
 		Google
 	</Button>
 )
