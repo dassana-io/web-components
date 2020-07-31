@@ -46,8 +46,7 @@ export const PrimaryDisabled = () => (
 )
 
 export const googleData = {
-	classes: 'google plus',
-	primary: false,
+	classes: ['google'],
 	text: 'Google'
 }
 

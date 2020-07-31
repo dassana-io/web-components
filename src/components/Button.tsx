@@ -5,7 +5,7 @@ interface ButtonProps {
 	primary?: boolean
 	disabled?: boolean
 	type?: 'submit' | 'button' | 'reset'
-	classes?: string
+	classes?: Array<string>
 }
 
 const Button: FC<ButtonProps> = ({
@@ -14,7 +14,7 @@ const Button: FC<ButtonProps> = ({
 	primary = false,
 	disabled = false,
 	type = 'button',
-	classes = ''
+	classes = []
 }) => {
 	const [isGoogleBtn, setIsGoogleBtn] = useState(false)
 
@@ -23,13 +23,15 @@ const Button: FC<ButtonProps> = ({
 	}, [classes])
 
 	const createButtonClasses = () => {
-		let btnClassArr = ['ui', 'button']
-		if (primary) btnClassArr.push('primary')
-		if (disabled) btnClassArr.push('disabled')
-		if (classes) btnClassArr.push(...classes.split(' '))
-		if (isGoogleBtn) btnClassArr.push('red')
-
-		return btnClassArr.join(' ')
+		const classesArr = [
+			primary && 'primary',
+			disabled && 'disabled',
+			isGoogleBtn && 'red',
+			'ui',
+			'button',
+			...classes
+		]
+		return classesArr.filter(c => !!c).join(' ')
 	}
 
 	return (
