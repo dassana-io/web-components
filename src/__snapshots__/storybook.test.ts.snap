@@ -3,6 +3,7 @@
 exports[`Storyshots Button Default 1`] = `
 <button
   className="ui button"
+  disabled={false}
   onClick={[Function]}
   type="button"
 >
@@ -13,6 +14,7 @@ exports[`Storyshots Button Default 1`] = `
 exports[`Storyshots Button Disabled 1`] = `
 <button
   className="ui button disabled"
+  disabled={true}
   onClick={[Function]}
   type="button"
 >
@@ -23,6 +25,7 @@ exports[`Storyshots Button Disabled 1`] = `
 exports[`Storyshots Button Google 1`] = `
 <button
   className="ui button red"
+  disabled={false}
   onClick={[Function]}
   type="button"
 >
@@ -36,6 +39,7 @@ exports[`Storyshots Button Google 1`] = `
 exports[`Storyshots Button Primary 1`] = `
 <button
   className="ui button primary"
+  disabled={false}
   onClick={[Function]}
   type="button"
 >
@@ -46,6 +50,7 @@ exports[`Storyshots Button Primary 1`] = `
 exports[`Storyshots Button Primary Disabled 1`] = `
 <button
   className="ui button primary disabled"
+  disabled={true}
   onClick={[Function]}
   type="button"
 >
@@ -56,6 +61,7 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 exports[`Storyshots Button Submit 1`] = `
 <button
   className="ui button"
+  disabled={false}
   onClick={[Function]}
   type="submit"
 >
