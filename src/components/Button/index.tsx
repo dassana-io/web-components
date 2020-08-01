@@ -6,7 +6,7 @@ export interface ButtonProps {
 	primary?: boolean
 	disabled?: boolean
 	type?: 'submit' | 'button' | 'reset'
-	classes?: Array<string>
+	classes?: string[]
 }
 
 const Button: FC<ButtonProps> = ({
@@ -17,7 +17,7 @@ const Button: FC<ButtonProps> = ({
 	type = 'button',
 	classes = []
 }) => {
-	const btnClass = classnames(
+	const btnClass: string = classnames(
 		{
 			ui: true,
 			button: true,

@@ -1,9 +1,9 @@
 import React from 'react'
-import Button from './index'
+import Button, { ButtonProps } from './index'
 import { shallow, ShallowWrapper } from 'enzyme'
 
-let wrapper: ShallowWrapper
-let mockClick: jest.Mock<any, any>
+let wrapper: ShallowWrapper<ButtonProps>
+let mockClick: jest.Mock<void>
 
 beforeEach(() => {
 	mockClick = jest.fn()
