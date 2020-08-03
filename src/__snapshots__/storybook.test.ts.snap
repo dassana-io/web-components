@@ -1,70 +1,310 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Button Default 1`] = `
-<button
-  className="ui button"
-  disabled={false}
-  onClick={[Function]}
-  type="button"
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
 >
-  Default
-</button>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Default
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
 `;
 
 exports[`Storyshots Button Disabled 1`] = `
-<button
-  className="ui button disabled"
-  disabled={true}
-  onClick={[Function]}
-  type="button"
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
 >
-  Disabled
-</button>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button disabled"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Disabled
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
 `;
 
 exports[`Storyshots Button Google 1`] = `
-<button
-  className="ui button red"
-  disabled={false}
-  onClick={[Function]}
-  type="button"
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
 >
-  <i
-    className="google icon"
-  />
-  Google
-</button>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button google plus"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="google icon"
+      />
+      Google
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
 `;
 
 exports[`Storyshots Button Primary 1`] = `
-<button
-  className="ui button primary"
-  disabled={false}
-  onClick={[Function]}
-  type="button"
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
 >
-  Primary
-</button>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Primary
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
 `;
 
 exports[`Storyshots Button Primary Disabled 1`] = `
-<button
-  className="ui button primary disabled"
-  disabled={true}
-  onClick={[Function]}
-  type="button"
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
 >
-  Primary Disabled
-</button>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button primary disabled"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Primary Disabled
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
 `;
 
 exports[`Storyshots Button Submit 1`] = `
-<button
-  className="ui button"
-  disabled={false}
-  onClick={[Function]}
-  type="submit"
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
 >
-  Submit
-</button>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button"
+      disabled={false}
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
 `;
