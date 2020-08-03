@@ -1,30 +1,42 @@
 {
-	"name": "web-components",
+	"name": "@dassana-io/web-components",
 	"version": "0.1.0",
-	"private": true,
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/dassana-io"
+	},
+	"repository": {
+		"type": "git",
+		"url": "ssh://git@github.com:dassana-io/web-components",
+		"directory": "@dassana-io/web-components"
+	},
 	"dependencies": {
+		"@rollup/plugin-commonjs": "^14.0.0",
+		"@rollup/plugin-node-resolve": "^8.4.0",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
 		"@testing-library/user-event": "^7.2.1",
 		"@types/jest": "^24.9.1",
 		"@types/node": "^12.12.53",
-		"@types/react": "^16.9.43",
+		"@types/react": "^16.9.44",
 		"@types/react-dom": "^16.9.8",
 		"classnames": "^2.2.6",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-scripts": "3.4.1",
+		"rollup": "^2.23.0",
+		"rollup-plugin-typescript2": "^0.27.1",
 		"semantic-ui-css": "^2.4.1",
-		"typescript": "^3.7.5"
+		"typescript": "^3.9.7"
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
+		"build": "rollup -c rollup.config.ts",
 		"storybook": "start-storybook -p 9009 -s public",
 		"build-storybook": "build-storybook -s public"
 	},
+	"main": "lib/index.cjs.js",
+	"module": "lib/index.esm.js",
+	"types": "lib/types",
 	"eslintConfig": {
 		"extends": "react-app"
 	},
@@ -54,5 +66,9 @@
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
 		"react-test-renderer": "^16.13.1"
+	},
+	"peerDependencies": {
+		"react": ">=16.13",
+		"react-dom": ">=16.13"
 	}
 }
