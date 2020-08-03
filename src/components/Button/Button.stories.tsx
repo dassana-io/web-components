@@ -13,11 +13,7 @@ const actionsData = {
 }
 
 export const buttonData: ButtonProps = {
-	onClick: actionsData.onClick,
-	disabled: false,
-	primary: false,
-	type: 'button',
-	classes: []
+	onClick: actionsData.onClick
 }
 
 export const Default = () => <Button {...buttonData}>Default</Button>
@@ -43,7 +39,7 @@ export const PrimaryDisabled = () => {
 }
 
 export const Google = () => {
-	const props: ButtonProps = { ...buttonData, classes: ['red'] }
+	const props: ButtonProps = { ...buttonData, classes: ['google', 'plus'] }
 	return (
 		<Button {...props}>
 			<i className='google icon'></i>
