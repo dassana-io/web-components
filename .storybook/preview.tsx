@@ -3,15 +3,7 @@ import { withInfo } from '@storybook/addon-info'
 import 'semantic-ui-css/semantic.css'
 import React, { ReactNode } from 'react'
 
-type infoOptionsType = {
-	inline: boolean
-	header: boolean
-	source: boolean
-	propTables: boolean
-}
-
-const infoOptions: infoOptionsType = {
-	inline: true,
+const infoOptions = {
 	header: false,
 	source: true,
 	propTables: false
@@ -22,4 +14,5 @@ const storyWrapper = (story: () => ReactNode) => (
 )
 
 addDecorator(withInfo(infoOptions))
+
 addDecorator(storyWrapper)
