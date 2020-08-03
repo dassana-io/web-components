@@ -29,10 +29,11 @@
 		"typescript": "^3.9.7"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "npm run storybook",
 		"build": "rollup -c rollup.config.ts",
 		"storybook": "start-storybook -p 9009 -s public",
-		"build-storybook": "build-storybook -s public"
+		"build-storybook": "build-storybook -s public",
+		"test": "react-scripts test --watchAll"
 	},
 	"main": "lib/index.cjs.js",
 	"module": "lib/index.esm.js",
