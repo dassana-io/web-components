@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"declaration": true,
+		"declarationDir": "lib/types",
 		"target": "es5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
@@ -17,4 +19,7 @@
 		"baseUrl": "src"
 	},
 	"include": ["src"]
+	// The following is great for publishing packages, but it doesn't play well with Chromatic
+	// "include": ["components/**/*"]
+	// "exclude": ["components/**/*.stories.tsx", "components/**/*.test.tsx"]
 }
