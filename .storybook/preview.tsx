@@ -10,7 +10,7 @@ const infoOptions = {
 }
 
 const storyWrapper = (story: () => ReactNode) => (
-	<div style={{ margin: 35 }}>{story()}</div>
+	<div style={{ padding: 10 }}>{story()}</div>
 )
 
 addDecorator(withInfo(infoOptions))
