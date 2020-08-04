@@ -1,6 +1,9 @@
 {
 	"name": "@dassana-io/web-components",
 	"version": "0.1.2",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/dassana-io"
+	},
 	"repository": {
 		"type": "git",
 		"url": "ssh://git@github.com:dassana-io/web-components",
