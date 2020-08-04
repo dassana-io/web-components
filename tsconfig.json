@@ -19,7 +19,6 @@
 		"baseUrl": "src"
 	},
 	// "include": ["src"]
-	// The following is great for publishing packages, but it doesn't play well with Chromatic
 	"include": ["components/**/*"],
 	"exclude": ["components/**/*.stories.tsx", "components/**/*.test.tsx"]
 }
