@@ -1,10 +1,12 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import Button, { ButtonProps } from './index'
+import Button, { ButtonProps, ButtonType } from './index'
+import { withKnobs, boolean, array, select, text } from '@storybook/addon-knobs'
 
 export default {
 	title: 'Button',
 	component: Button,
+	decorators: [withKnobs],
 	excludeStories: /.*Data$/
 }
 
@@ -44,6 +46,31 @@ export const Google = () => {
 		<Button {...props}>
 			<i className='google icon'></i>
 			Google
+		</Button>
+	)
+}
+
+export const ButtonWithKnobs = () => {
+	const typeOpts: Record<string, ButtonType> = {
+		button: 'button',
+		submit: 'submit',
+		reset: 'reset'
+	}
+
+	const props: ButtonProps = {
+		...buttonData,
+		disabled: boolean('Disabled', false),
+		primary: boolean('Primary', false),
+		classes: array('Classes', ['twitter']),
+		type: select<ButtonType>('Type', typeOpts, 'button')
+	}
+
+	const iconClasses = text('Icon name', 'twitter')
+
+	return (
+		<Button {...props}>
+			{iconClasses && <i className={`${iconClasses} icon`}></i>}
+			{text('Button text', 'Twitter')}
 		</Button>
 	)
 }

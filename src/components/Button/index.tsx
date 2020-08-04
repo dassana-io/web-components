@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
 import classnames from 'classnames'
 
+export type ButtonType = 'submit' | 'button' | 'reset'
+
 export interface ButtonProps {
 	onClick: () => void
 	primary?: boolean
 	disabled?: boolean
-	type?: 'submit' | 'button' | 'reset'
+	type?: ButtonType
 	classes?: string[]
 }
 

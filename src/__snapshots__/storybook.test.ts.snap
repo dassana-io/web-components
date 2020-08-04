@@ -1,5 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Button Button With Knobs 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="ui button twitter"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="twitter icon"
+      />
+      Twitter
+    </button>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
+`;
+
 exports[`Storyshots Button Default 1`] = `
 <div
   style={
