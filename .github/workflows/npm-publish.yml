@@ -42,6 +42,7 @@ jobs:
                   scope: '@dassana-io'
             - name: Publish to GitHub Package Registry
               run: |
+                  npm install
                   npm run build
                   npm publish
               env:
