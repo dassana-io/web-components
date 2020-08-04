@@ -1,5 +1,4 @@
 name: Publish to NPMJS and GPR
-
 on:
     push:
         branches:
