@@ -41,6 +41,9 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
                   scope: '@dassana-io'
             - name: Publish to GitHub Package Registry
-              run: npm publish
+              run: |
+                  npm install
+                  npm run build
+                  npm publish
               env:
                   NODE_AUTH_TOKEN: ${{github.token}}
