@@ -55,7 +55,7 @@
 		]
 	},
 	"devDependencies": {
-		"@dassana-io/prettier-config": "^1.0.1",
+		"@dassana-io/prettier-config": "^1.0.2",
 		"@storybook/addon-actions": "^5.3.19",
 		"@storybook/addon-docs": "^5.3.19",
 		"@storybook/addon-info": "^5.3.19",
