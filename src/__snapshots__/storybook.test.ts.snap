@@ -362,3 +362,110 @@ exports[`Storyshots Button Submit 1`] = `
   </button>
 </div>
 `;
+
+exports[`Storyshots Table Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <table
+      className="ui celled table"
+    >
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Age
+          </th>
+          <th>
+            Married
+          </th>
+          <th>
+            Address
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Dolor Sit
+          </td>
+          <td>
+            30
+          </td>
+          <td>
+            true
+          </td>
+          <td>
+            San Francisco
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Lorem Ipsum
+          </td>
+          <td>
+            20
+          </td>
+          <td>
+            false
+          </td>
+          <td>
+            San Jose
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Consectetur Unde
+          </td>
+          <td>
+            30
+          </td>
+          <td>
+            false
+          </td>
+          <td>
+            Sunnyvale
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button
+    className="info__show-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#027ac5",
+        "border": "none",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    type="button"
+  >
+    Show Info
+  </button>
+</div>
+`;
