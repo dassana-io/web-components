@@ -1,21 +1,3 @@
-import {
-	ColumnType,
-	DataType,
-	TableHeaderProps,
-	TableBodyProps,
-	TableProps,
-	MapCellsFunc,
-	MapRowsFunc
-} from './types'
-
-export type {
-	ColumnType,
-	DataType,
-	TableHeaderProps,
-	TableBodyProps,
-	TableProps,
-	MapCellsFunc,
-	MapRowsFunc
-}
+export * from './types'
 
 export { default as Table } from './Table'
