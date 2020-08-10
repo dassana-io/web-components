@@ -1,62 +1,20 @@
-import React, { FC, ReactNode } from 'react'
-import classnames from 'classnames'
-import {
-	ColumnType,
-	DataType,
-	TableHeaderProps,
-	TableBodyProps,
-	TableProps,
-	MapCellsFunc,
-	MapRowsFunc
-} from './types'
+import React, { FC } from 'react'
+import { Table as AntTable} from 'antd'
+import { ColumnsType } from 'antd/es/table'
+import 'antd/dist/antd.css'
 
-export const TableHeader: FC<TableHeaderProps> = ({
-	columns
-}: TableHeaderProps) => {
-	const mapCells = ({ key, label = '' }: ColumnType): ReactNode => {
-		return <th key={key}>{label}</th>
-	}
+export type { ColumnsType } 
 
-	return (
-		<thead>
-			<tr>{columns.map(mapCells)}</tr>
-		</thead>
-	)
+export type DataType = Record<string, string | number>
+
+export interface TableProps {
+  data: DataType[]
+  columns: ColumnsType<DataType>
+	classes?: string[]
 }
 
-export const TableBody: FC<TableBodyProps> = ({
-	data,
-	columns
-}: TableBodyProps) => {
-	const mapCells: MapCellsFunc = (columns, rowI, row) => {
-		return columns.map((col, colI) => {
-			const reactKey = `row-${rowI}-key-${colI}`
-
-			return <td key={reactKey}>{row[col.key].toString()}</td>
-		})
-	}
-
-	const mapRows: MapRowsFunc = data => {
-		return data.map((row: DataType, rowI: number) => (
-			<tr key={rowI}>{mapCells(columns, rowI, row)}</tr>
-		))
-	}
-
-	return <tbody>{mapRows(data)}</tbody>
-}
-
-const Table: FC<TableProps> = ({ columns, data, classes = [] }: TableProps) => {
-	const tableClasses: string = classnames(
-		{ ui: true, celled: true, table: true },
-		classes
-	)
-
-	return (
-		<table className={tableClasses}>
-			<TableHeader columns={columns} />
-			<TableBody data={data} columns={columns} />
-		</table>
-	)
+const Table: FC<TableProps> = ({ columns, data }: TableProps) => {
+	return <AntTable<DataType> columns={columns} dataSource={data} />
 }
 
 export default Table
