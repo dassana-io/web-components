@@ -17,21 +17,13 @@ module.exports = {
 			modules: true
 		},
 		ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-		sourceType: 'module' // Allows for the use of imports
+		sourceType: 'module', // Allows for the use of imports
+		project: './tsconfig.json'
 	},
 	plugins: ['react', '@typescript-eslint'],
 	rules: {
 		// Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
 		// e.g. "@typescript-eslint/explicit-function-return-type": "off",
-		'@typescript-eslint/ban-ts-comment': [
-			'warn',
-			{
-				'ts-expect-error': 'allow-with-description',
-				'ts-ignore': 'allow-with-description',
-				'ts-nocheck': true,
-				'ts-check': false
-			}
-		],
 		'@typescript-eslint/ban-types': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
