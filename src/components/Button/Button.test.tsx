@@ -32,7 +32,7 @@ describe('Disabled Button', () => {
 
 describe('Submit Button', () => {
 	it('has correct type "submit"', () => {
-		wrapper = shallow(<Button type='submit' onClick={mockClick} />)
+		wrapper = shallow(<Button onClick={mockClick} type='submit' />)
 		expect(wrapper.props().type).toEqual('submit')
 	})
 })

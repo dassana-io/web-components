@@ -1,13 +1,13 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
+import { array, boolean, select, text, withKnobs } from '@storybook/addon-knobs'
 import Button, { ButtonProps, ButtonType } from './index'
-import { withKnobs, boolean, array, select, text } from '@storybook/addon-knobs'
 
 export default {
-	title: 'Button',
 	component: Button,
 	decorators: [withKnobs],
-	excludeStories: /.*Data$/
+	excludeStories: /.*Data$/,
+	title: 'Button'
 }
 
 const actionsData = {
@@ -36,7 +36,7 @@ export const Submit = () => {
 }
 
 export const PrimaryDisabled = () => {
-	const props: ButtonProps = { ...buttonData, primary: true, disabled: true }
+	const props: ButtonProps = { ...buttonData, disabled: true, primary: true }
 	return <Button {...props}>Primary Disabled</Button>
 }
 
@@ -53,15 +53,15 @@ export const Google = () => {
 export const ButtonWithKnobs = () => {
 	const typeOpts: Record<string, ButtonType> = {
 		button: 'button',
-		submit: 'submit',
-		reset: 'reset'
+		reset: 'reset',
+		submit: 'submit'
 	}
 
 	const props: ButtonProps = {
 		...buttonData,
+		classes: array('Classes', ['twitter']),
 		disabled: boolean('Disabled', false),
 		primary: boolean('Primary', false),
-		classes: array('Classes', ['twitter']),
 		type: select<ButtonType>('Type', typeOpts, 'button')
 	}
 
