@@ -34,6 +34,7 @@
 		"storybook": "start-storybook -p 9009 -s public",
 		"build-storybook": "build-storybook -s public",
 		"test": "react-scripts test --watchAll",
+		"test-coverage": "npm test -- --coverage --watchAll=false",
 		"lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\""
 	},
 	"main": "lib/index.cjs.js",
@@ -41,6 +42,11 @@
 	"types": "lib/types",
 	"eslintConfig": {
 		"extends": "react-app"
+	},
+	"jest": {
+		"coveragePathIgnorePatterns": [
+			"src/index.tsx"
+		]
 	},
 	"browserslist": {
 		"production": [
