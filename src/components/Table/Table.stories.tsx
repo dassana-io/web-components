@@ -1,5 +1,5 @@
 import React from 'react'
-import Table, { TableProps, ColumnType } from './Table'
+import Table, { TableProps, ColumnType } from '.'
 
 export default {
 	title: 'Table',
