@@ -8,7 +8,6 @@ export default {
 }
 
 export interface User {
-	key: number
 	firstName: string
 	age: number
 	address: string
@@ -31,19 +30,16 @@ const columns: ColumnType<User>[] = [
 
 const data: User[] = [
 	{
-		key: 0,
 		firstName: 'Dolor Sit',
 		age: 30,
 		address: 'San Francisco'
 	},
 	{
-		key: 1,
 		firstName: 'Lorem Ipsum',
 		age: 20,
 		address: 'San Jose'
 	},
 	{
-		key: 2,
 		firstName: 'Random Person',
 		age: 30,
 		address: 'Sunnyvale'
@@ -55,4 +51,4 @@ export const tableData: TableProps<User> = {
 	columns
 }
 
-export const Default = () => <Table {...tableData}>Default</Table>
+export const Default = () => <Table<User> {...tableData}>Default</Table>
