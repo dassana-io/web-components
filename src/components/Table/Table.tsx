@@ -1,20 +1,23 @@
-import React, { FC } from 'react'
-import { Table as AntTable} from 'antd'
-import { ColumnsType } from 'antd/es/table'
+import React, { ReactElement } from 'react'
+import { Table as AntDTable } from 'antd'
+import { ColumnType as AntDColumnType } from 'antd/es/table'
 import 'antd/dist/antd.css'
 
-export type { ColumnsType } 
-
-export type DataType = Record<string, string | number>
-
-export interface TableProps {
-  data: DataType[]
-  columns: ColumnsType<DataType>
-	classes?: string[]
+export interface ColumnType<T> extends AntDColumnType<T> {
+	dataIndex: string
+	title: string
 }
 
-const Table: FC<TableProps> = ({ columns, data }: TableProps) => {
-	return <AntTable<DataType> columns={columns} dataSource={data} />
+export interface TableProps<T> {
+	data: T[]
+	columns: ColumnType<T>[]
+}
+
+function Table<T extends object>({
+	columns,
+	data
+}: TableProps<T>): ReactElement {
+	return <AntDTable<T> columns={columns} dataSource={data} />
 }
 
 export default Table

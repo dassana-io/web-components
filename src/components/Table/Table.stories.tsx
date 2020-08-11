@@ -1,5 +1,5 @@
 import React from 'react'
-import Table, { TableProps, DataType, ColumnsType } from './Table'
+import Table, { TableProps, ColumnType } from './Table'
 
 export default {
 	title: 'Table',
@@ -7,38 +7,50 @@ export default {
 	excludeStories: /.*Data$/
 }
 
-const columns: ColumnsType<DataType> = [
+export interface User {
+	key: number
+	firstName: string
+	age: number
+	address: string
+}
+
+const columns: ColumnType<User>[] = [
 	{
-		key: 'name',
-		title: 'Name',
-		dataIndex: 'name'
+		title: 'First Name',
+		dataIndex: 'firstName'
 	},
-	{ title: 'Age', key: 'age', dataIndex: 'age' },
-	{ title: 'Address', key: 'address', dataIndex: 'address' }
+	{
+		title: 'Age',
+		dataIndex: 'age'
+	},
+	{
+		title: 'Address',
+		dataIndex: 'address'
+	}
 ]
 
-const data: DataType[] = [
+const data: User[] = [
 	{
 		key: 0,
-		name: 'Dolor Sit',
+		firstName: 'Dolor Sit',
 		age: 30,
 		address: 'San Francisco'
 	},
 	{
 		key: 1,
-		name: 'Lorem Ipsum',
+		firstName: 'Lorem Ipsum',
 		age: 20,
 		address: 'San Jose'
 	},
 	{
 		key: 2,
-		name: 'Consectetur Unde',
+		firstName: 'Random Person',
 		age: 30,
 		address: 'Sunnyvale'
 	}
 ]
 
-export const tableData: TableProps = {
+export const tableData: TableProps<User> = {
 	data,
 	columns
 }
