@@ -1,9 +1,10 @@
-import React, { FC } from 'react'
 import classnames from 'classnames'
+import React, { FC, ReactNode } from 'react'
 
 export type ButtonType = 'submit' | 'button' | 'reset'
 
 export interface ButtonProps {
+	children?: ReactNode
 	onClick: () => void
 	primary?: boolean
 	disabled?: boolean
@@ -18,21 +19,21 @@ const Button: FC<ButtonProps> = ({
 	disabled = false,
 	type = 'button',
 	classes = []
-}) => {
+}: ButtonProps) => {
 	const btnClass: string = classnames(
 		{
-			ui: true,
 			button: true,
+			disabled,
 			primary,
-			disabled
+			ui: true
 		},
 		classes
 	)
 
 	return (
 		<button
-			disabled={disabled}
 			className={btnClass}
+			disabled={disabled}
 			onClick={onClick}
 			type={type}
 		>

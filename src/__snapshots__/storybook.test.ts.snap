@@ -17,7 +17,7 @@ exports[`Storyshots Button Button With Knobs 1`] = `
     }
   >
     <button
-      className="ui button twitter"
+      className="button ui twitter"
       disabled={false}
       onClick={[Function]}
       type="button"
@@ -71,7 +71,7 @@ exports[`Storyshots Button Default 1`] = `
     }
   >
     <button
-      className="ui button"
+      className="button ui"
       disabled={false}
       onClick={[Function]}
       type="button"
@@ -122,7 +122,7 @@ exports[`Storyshots Button Disabled 1`] = `
     }
   >
     <button
-      className="ui button disabled"
+      className="button disabled ui"
       disabled={true}
       onClick={[Function]}
       type="button"
@@ -173,7 +173,7 @@ exports[`Storyshots Button Google 1`] = `
     }
   >
     <button
-      className="ui button google plus"
+      className="button ui google plus"
       disabled={false}
       onClick={[Function]}
       type="button"
@@ -227,7 +227,7 @@ exports[`Storyshots Button Primary 1`] = `
     }
   >
     <button
-      className="ui button primary"
+      className="button primary ui"
       disabled={false}
       onClick={[Function]}
       type="button"
@@ -278,7 +278,7 @@ exports[`Storyshots Button Primary Disabled 1`] = `
     }
   >
     <button
-      className="ui button primary disabled"
+      className="button disabled primary ui"
       disabled={true}
       onClick={[Function]}
       type="button"
@@ -329,7 +329,7 @@ exports[`Storyshots Button Submit 1`] = `
     }
   >
     <button
-      className="ui button"
+      className="button ui"
       disabled={false}
       onClick={[Function]}
       type="submit"
