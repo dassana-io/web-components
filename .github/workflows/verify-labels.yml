@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Pull Request Labels
 on:
     pull_request:
@@ -20,3 +21,23 @@ jobs:
                   mode: minimum
                   count: 1
                   labels: 'fix, bug, bugfix, feature, enhancement, chore'
+=======
+name: Verify Labels
+
+on:
+    pull_request:
+        types: [opened, labeled, unlabeled, synchronize]
+
+jobs:
+    check_pr_labels:
+        runs-on: ubuntu-latest
+        name: Verify that the PR has a valid label
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Verify PR label action
+              uses: jesusvasquez333/verify-pr-label-action@v1.1.0
+              with:
+                  github-token: '${{ secrets.GITHUB_TOKEN }}'
+                  valid-labels: 'fix, bug, bugfix, feature, enhancement, chore'
+>>>>>>> chore #41 - Add verify labels GitHub action (#42)
