@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 name: Pull Request Labels
 on:
     pull_request:
@@ -22,6 +23,8 @@ jobs:
                   count: 1
                   labels: 'fix, bug, bugfix, feature, enhancement, chore'
 =======
+=======
+>>>>>>> chore #41 - Add verify labels GitHub action (#42)
 name: Verify Labels
 
 on:
@@ -40,4 +43,7 @@ jobs:
               with:
                   github-token: '${{ secrets.GITHUB_TOKEN }}'
                   valid-labels: 'fix, bug, bugfix, feature, enhancement, chore'
+<<<<<<< HEAD
+>>>>>>> chore #41 - Add verify labels GitHub action (#42)
+=======
 >>>>>>> chore #41 - Add verify labels GitHub action (#42)
