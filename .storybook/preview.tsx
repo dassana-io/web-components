@@ -1,8 +1,9 @@
 import { addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
-import 'semantic-ui-css/semantic.css'
 import React, { ReactNode } from 'react'
+import 'semantic-ui-css/semantic.css'
+import 'antd/dist/antd.css'
 
 const infoOptions = {
 	header: false,
