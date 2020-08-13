@@ -11,28 +11,23 @@ export interface LinkProps {
 	children?: ReactNode
 	onClick?: () => void
 	target?: LinkTargetType
-	type?: LinkType
-	url: string
-	underline?: boolean
+	href: string
 }
 
-interface AntDProps extends Omit<LinkProps, 'url'> {
-	href: string
+interface AntDProps extends LinkProps {
+	underline: boolean
 }
 
 const Link: FC<LinkProps> = ({
 	children,
 	onClick,
-	type = undefined,
 	target = '_self',
-	url,
-	underline = false
+	href
 }: LinkProps) => {
 	const antDProps: AntDProps = {
-		href: url,
+		href,
 		target,
-		type,
-		underline
+		underline: true
 	}
 
 	if (onClick) antDProps.onClick = onClick

@@ -5,7 +5,7 @@ import { mount, ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 let mockClick: jest.Mock<void>
-const mockProps: LinkProps = { target: '_blank', url: '/test' }
+const mockProps: LinkProps = { href: '/test', target: '_blank' }
 
 beforeEach(() => {
 	mockClick = jest.fn()
@@ -30,7 +30,7 @@ describe('Link', () => {
 
 	it('has the correct href attribute', () => {
 		const link = wrapper.find(Link)
-		expect(link.getDOMNode().getAttribute('href')).toBe(mockProps.url)
+		expect(link.getDOMNode().getAttribute('href')).toBe(mockProps.href)
 	})
 
 	it('has the correct target attribute', () => {
