@@ -15,22 +15,24 @@ const actionsData = {
 }
 
 export const LinkData: LinkProps = {
+	children: 'Default',
 	href: '',
 	onClick: actionsData.onClick
 }
 
-export const Default: FC<LinkProps> = () => <Link {...LinkData}>Default</Link>
+export const Default: FC<LinkProps> = () => <Link {...LinkData} />
 
 export const LinkWithKnobs: FC<LinkProps> = () => {
 	const linkTargetOpts: Record<string, LinkTargetType> = {
-		parent: '_parent',
+		blank: '_blank',
 		self: '_self'
 	}
 
 	const props: LinkProps = {
 		...LinkData,
-		target: select<LinkTargetType>('Target', linkTargetOpts, '_blank')
+		children: text('Link text', 'Link'),
+		target: select<LinkTargetType>('Target', linkTargetOpts, '_self')
 	}
 
-	return <Link {...props}>{text('Link text', 'Link')}</Link>
+	return <Link {...props} />
 }

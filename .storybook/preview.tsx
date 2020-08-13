@@ -2,7 +2,6 @@ import { addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
 import React, { ReactNode } from 'react'
-import 'antd/dist/antd.css'
 
 const infoOptions = {
 	header: false,

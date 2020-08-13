@@ -12,11 +12,14 @@ export default {
 export const Default: FC<TagProps> = () => <Tag>Default</Tag>
 
 export const Colored: FC<TagProps> = () => {
-	const props: TagProps = { color: 'blue' }
-	return <Tag {...props}>Blue</Tag>
+	const props: TagProps = { children: 'Blue', color: 'blue' }
+	return <Tag {...props} />
 }
 
 export const TagWithKnobs: FC<TagProps> = () => {
-	const props: TagProps = { color: text('color', 'magenta') }
-	return <Tag {...props}>{text('Tag text', 'Magenta')}</Tag>
+	const props: TagProps = {
+		children: text('Tag text', 'Magenta'),
+		color: text('color', 'magenta')
+	}
+	return <Tag {...props} />
 }

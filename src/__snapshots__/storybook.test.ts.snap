@@ -441,13 +441,12 @@ exports[`Storyshots Link Link With Knobs 1`] = `
       className="ant-typography"
       href=""
       onClick={[Function]}
-      rel="noopener noreferrer"
       style={
         Object {
           "WebkitLineClamp": null,
         }
       }
-      target="_blank"
+      target="_self"
     >
       <u>
         Link

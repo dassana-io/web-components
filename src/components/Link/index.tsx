@@ -1,17 +1,16 @@
+import 'antd/lib/typography/style/index.css'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
 const AntDLink = Typography.Link
 
-export type LinkType = 'warning' | 'secondary' | 'danger' | undefined
-
-export type LinkTargetType = '_self' | '_blank' | '_parent' | '_top'
+export type LinkTargetType = '_self' | '_blank'
 
 export interface LinkProps {
-	children?: ReactNode
+	children: ReactNode
+	href?: string
 	onClick?: () => void
 	target?: LinkTargetType
-	href: string
 }
 
 interface AntDProps extends LinkProps {
@@ -20,19 +19,20 @@ interface AntDProps extends LinkProps {
 
 const Link: FC<LinkProps> = ({
 	children,
+	href,
 	onClick,
-	target = '_self',
-	href
+	target = '_self'
 }: LinkProps) => {
 	const antDProps: AntDProps = {
-		href,
+		children,
 		target,
 		underline: true
 	}
 
-	if (onClick) antDProps.onClick = onClick
+	if (onClick !== undefined) antDProps.onClick = onClick
+	if (href !== undefined) antDProps.href = href
 
-	return <AntDLink {...antDProps}>{children}</AntDLink>
+	return <AntDLink {...antDProps} />
 }
 
 export default Link
