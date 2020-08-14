@@ -1,26 +1,8 @@
-import { addDecorator, addParameters } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
-import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
-import React, { ReactNode } from 'react'
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
-const infoOptions = {
-	header: false,
-	source: true,
-	propTables: false
-	// inline: true //uncomment for "story source" to be rendered inline
-}
-
-const storyWrapper = (story: () => ReactNode) => (
-	<div style={{ padding: 10 }}>{story()}</div>
-)
-
-addParameters({
-	docs: {
-		container: DocsContainer,
-		page: DocsPage
+export const parameters = {
+	actions: { argTypesRegex: '^on[A-Z].*' },
+	viewport: {
+		viewports: INITIAL_VIEWPORTS
 	}
-})
-
-addDecorator(withInfo(infoOptions))
-
-addDecorator(storyWrapper)
+}
