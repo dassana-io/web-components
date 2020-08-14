@@ -1,5 +1,6 @@
 import React from 'react'
 import Link, { LinkProps } from '.'
+<<<<<<< HEAD
 import { mount, ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper
@@ -60,6 +61,12 @@ describe('Link', () => {
 			mockProps.target
 		)
 =======
+=======
+import { mount, ReactWrapper } from 'enzyme'
+
+let wrapper: ReactWrapper
+let mockClick: jest.Mock<void>
+>>>>>>> Feat #43 - Tag, Link components
 const mockProps: LinkProps = {
 	children: 'Test',
 	href: '/test',
@@ -91,10 +98,13 @@ describe('Link', () => {
 	it('has the correct target attribute', () => {
 		const link = wrapper.find(Link)
 		expect(link.getDOMNode().getAttribute('target')).toBe(mockProps.target)
+<<<<<<< HEAD
 >>>>>>> Feat #43 - Tag, Link components
 	})
 
 	it('throws an error if both onClick and href props are undefined', () => {
 		expect(() => shallow(<Link>Test</Link>)).toThrow()
+=======
+>>>>>>> Feat #43 - Tag, Link components
 	})
 })
