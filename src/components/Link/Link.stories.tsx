@@ -4,7 +4,9 @@ import Link, { LinkProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
-	children: { name: 'Link Text' },
+	argTypes: {
+		children: { name: 'Link Text' }
+	},
 	component: Link,
 	title: 'Link'
 } as Meta

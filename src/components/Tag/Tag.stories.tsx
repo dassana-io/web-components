@@ -4,11 +4,11 @@ import Tag, { TagProps } from './index'
 
 export default {
 	argTypes: {
+		children: { name: 'Tag Text' },
 		color: {
 			control: 'color'
 		}
 	},
-	children: { name: 'Tag Text' },
 	component: Tag,
 	title: 'Tag'
 } as Meta
