@@ -29,8 +29,11 @@ const Link: FC<LinkProps> = ({
 		underline: true
 	}
 
-	if (onClick !== undefined) antDProps.onClick = onClick
-	if (href !== undefined) antDProps.href = href
+	if (!onClick && !href)
+		throw new Error('Either onClick or href is a required prop for Link.')
+
+	if (onClick) antDProps.onClick = onClick
+	if (href) antDProps.href = href
 
 	return <AntDLink {...antDProps} />
 }
