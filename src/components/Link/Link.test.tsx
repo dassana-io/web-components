@@ -4,59 +4,36 @@ import { mount, ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 let mockClick: jest.Mock<void>
-let mockProps: LinkProps
+const mockProps: LinkProps = {
+	children: 'Test',
+	href: '/test',
+	target: '_blank'
+}
 
-describe('Link with href', () => {
-	beforeEach(() => {
-		mockProps = {
-			children: 'Test',
-			href: '/test',
-			target: '_blank'
-		}
-
-		wrapper = mount(<Link {...mockProps} />)
-	})
-
-	it('renders', () => {
-		expect(wrapper).toHaveLength(1)
-	})
-
-	it('has the correct href attribute', () => {
-		expect(wrapper.getDOMNode().getAttribute('href')).toBe(mockProps.href)
-	})
-
-	it('has the correct target attribute', () => {
-		expect(wrapper.getDOMNode().getAttribute('target')).toBe(
-			mockProps.target
-		)
-	})
+beforeEach(() => {
+	mockClick = jest.fn()
+	wrapper = mount(<Link {...mockProps} onClick={mockClick} />)
 })
 
 describe('Link', () => {
-	beforeEach(() => {
-		mockClick = jest.fn()
-
-		mockProps = {
-			children: 'Test',
-			onClick: mockClick,
-			target: '_blank'
-		}
-
-		wrapper = mount(<Link {...mockProps} />)
-	})
-
 	it('renders', () => {
-		expect(wrapper).toHaveLength(1)
+		const link = wrapper.find(Link)
+		expect(link).toHaveLength(1)
 	})
 
 	it('calls onClick function when link is clicked', () => {
-		wrapper.simulate('click')
+		const link = wrapper.find(Link)
+		link.simulate('click')
 		expect(mockClick).toHaveBeenCalledTimes(1)
 	})
 
+	it('has the correct href attribute', () => {
+		const link = wrapper.find(Link)
+		expect(link.getDOMNode().getAttribute('href')).toBe(mockProps.href)
+	})
+
 	it('has the correct target attribute', () => {
-		expect(wrapper.getDOMNode().getAttribute('target')).toBe(
-			mockProps.target
-		)
+		const link = wrapper.find(Link)
+		expect(link.getDOMNode().getAttribute('target')).toBe(mockProps.target)
 	})
 })
