@@ -1,8 +1,3 @@
-import 'normalize.css'
-import 'styles/index.css'
 export { default as Button } from './Button'
-export { default as InputField } from './InputField'
-export { default as Icon } from './Icon'
 export { default as Link } from './Link'
 export { default as Tag } from './Tag'
-export { default as Toggle } from './Toggle'
