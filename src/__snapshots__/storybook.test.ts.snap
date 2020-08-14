@@ -103,6 +103,19 @@ exports[`Storyshots Link Default 1`] = `
 
 exports[`Storyshots Tag Colored 1`] = `
 <span
+  className="ant-tag ant-tag-has-color"
+  style={
+    Object {
+      "backgroundColor": "#108ee9",
+    }
+  }
+>
+  Colored
+</span>
+`;
+
+exports[`Storyshots Tag Colored Preset 1`] = `
+<span
   className="ant-tag ant-tag-blue"
   style={
     Object {

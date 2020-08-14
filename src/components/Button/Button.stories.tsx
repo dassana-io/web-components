@@ -21,31 +21,16 @@ const Template: Story<ButtonProps> = args => (
 )
 
 export const Default = Template.bind({})
-Default.args = {
-	...buttonProps,
-	children: 'Default'
-}
+Default.args = { ...buttonProps, children: 'Default' }
 
 export const Disabled = Template.bind({})
-Disabled.args = {
-	...buttonProps,
-	children: 'Disabled',
-	disabled: true
-}
+Disabled.args = { ...buttonProps, children: 'Disabled', disabled: true }
 
 export const Primary = Template.bind({})
-Primary.args = {
-	...buttonProps,
-	children: 'Primary',
-	primary: true
-}
+Primary.args = { ...buttonProps, children: 'Primary', primary: true }
 
 export const Submit = Template.bind({})
-Submit.args = {
-	...buttonProps,
-	children: 'Submit',
-	type: 'submit'
-}
+Submit.args = { ...buttonProps, children: 'Submit', type: 'submit' }
 
 export const PrimaryDisabled = Template.bind({})
 PrimaryDisabled.args = {
