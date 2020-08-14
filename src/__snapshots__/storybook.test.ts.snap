@@ -381,7 +381,7 @@ exports[`Storyshots Link Default 1`] = `
   >
     <a
       className="ant-typography"
-      href=""
+      href=" "
       onClick={[Function]}
       style={
         Object {
@@ -439,7 +439,7 @@ exports[`Storyshots Link Link With Knobs 1`] = `
   >
     <a
       className="ant-typography"
-      href=""
+      href=" "
       onClick={[Function]}
       style={
         Object {
