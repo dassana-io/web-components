@@ -1,6 +1,6 @@
+import 'semantic-ui-css/semantic.min.css'
 import classnames from 'classnames'
 import React, { FC, ReactNode } from 'react'
-
 export type ButtonType = 'submit' | 'button' | 'reset'
 
 export interface ButtonProps {
