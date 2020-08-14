@@ -40,7 +40,7 @@ const actionsData = {
 
 export const LinkData: LinkProps = {
 	children: 'Default',
-	href: '',
+	href: ' ',
 	onClick: actionsData.onClick
 }
 
