@@ -1,76 +1,83 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { array, boolean, select, text, withKnobs } from '@storybook/addon-knobs'
-import Button, { ButtonProps, ButtonType } from './index'
+import Button, { ButtonProps } from '.'
+import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
+	argTypes: {
+		children: { name: 'Button Text' },
+		classes: { control: 'array' }
+	},
 	component: Button,
-	decorators: [withKnobs],
-	excludeStories: /.*Data$/,
 	title: 'Button'
-}
+} as Meta
 
-const actionsData = {
+const buttonProps: ButtonProps = {
 	onClick: action('onClick')
 }
 
-export const buttonData: ButtonProps = {
-	onClick: actionsData.onClick
+const Template: Story<ButtonProps> = args => (
+	<Button {...args}>{args.children}</Button>
+)
+
+export const Default = Template.bind({})
+Default.args = {
+	...buttonProps,
+	children: 'Default'
 }
 
-export const Default = () => <Button {...buttonData}>Default</Button>
-
-export const Disabled = () => {
-	const props: ButtonProps = { ...buttonData, disabled: true }
-	return <Button {...props}>Disabled</Button>
+export const Disabled = Template.bind({})
+Disabled.args = {
+	...buttonProps,
+	children: 'Disabled',
+	disabled: true
 }
 
-export const Primary = () => {
-	const props: ButtonProps = { ...buttonData, primary: true }
-	return <Button {...props}>Primary</Button>
+export const Primary = Template.bind({})
+Primary.args = {
+	...buttonProps,
+	children: 'Primary',
+	primary: true
 }
 
-export const Submit = () => {
-	const props: ButtonProps = { ...buttonData, type: 'submit' }
-	return <Button {...props}>Submit</Button>
+export const Submit = Template.bind({})
+Submit.args = {
+	...buttonProps,
+	children: 'Submit',
+	type: 'submit'
 }
 
-export const PrimaryDisabled = () => {
-	const props: ButtonProps = { ...buttonData, disabled: true, primary: true }
-	return <Button {...props}>Primary Disabled</Button>
+export const PrimaryDisabled = Template.bind({})
+PrimaryDisabled.args = {
+	...buttonProps,
+	children: 'Primary Disabled',
+	disabled: true,
+	primary: true
 }
 
-export const Google = () => {
-	const props: ButtonProps = { ...buttonData, classes: ['google', 'plus'] }
-	return (
-		<Button {...props}>
-			<i className='google icon'></i>
-			Google
-		</Button>
-	)
+// Buttons with Icon
+interface IconProps extends ButtonProps {
+	icon?: string
+}
+const IconTemplate: Story<IconProps> = ({ icon, ...args }: IconProps) => (
+	<Button {...args}>
+		{icon && <i className={`${icon} icon`} />}
+		{args.children}
+	</Button>
+)
+
+export const Google = IconTemplate.bind({})
+Google.args = {
+	...buttonProps,
+	children: 'Google',
+	classes: ['google', 'plus'],
+	icon: 'google'
 }
 
-export const ButtonWithKnobs = () => {
-	const typeOpts: Record<string, ButtonType> = {
-		button: 'button',
-		reset: 'reset',
-		submit: 'submit'
-	}
-
-	const props: ButtonProps = {
-		...buttonData,
-		classes: array('Classes', ['twitter']),
-		disabled: boolean('Disabled', false),
-		primary: boolean('Primary', false),
-		type: select<ButtonType>('Type', typeOpts, 'button')
-	}
-
-	const iconClasses = text('Icon name', 'twitter')
-
-	return (
-		<Button {...props}>
-			{iconClasses && <i className={`${iconClasses} icon`}></i>}
-			{text('Button text', 'Twitter')}
-		</Button>
-	)
+export const Icon = IconTemplate.bind({})
+Icon.args = {
+	...buttonProps,
+	children: 'Twitter',
+	classes: ['twitter'],
+	icon: 'twitter'
 }
