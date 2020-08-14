@@ -1,639 +1,128 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Button Button With Knobs 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
->
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button ui twitter"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      <i
-        className="twitter icon"
-      />
-      Twitter
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
-`;
-
 exports[`Storyshots Button Default 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
+<button
+  className="button ui"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button ui"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Default
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Default
+</button>
 `;
 
 exports[`Storyshots Button Disabled 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
+<button
+  className="button disabled ui"
+  disabled={true}
+  onClick={[Function]}
+  type="button"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button disabled ui"
-      disabled={true}
-      onClick={[Function]}
-      type="button"
-    >
-      Disabled
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Disabled
+</button>
 `;
 
 exports[`Storyshots Button Google 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
+<button
+  className="button ui google plus"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button ui google plus"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      <i
-        className="google icon"
-      />
-      Google
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  <i
+    className="google icon"
+  />
+  Google
+</button>
+`;
+
+exports[`Storyshots Button Icon 1`] = `
+<button
+  className="button ui twitter"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  <i
+    className="twitter icon"
+  />
+  Twitter
+</button>
 `;
 
 exports[`Storyshots Button Primary 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
+<button
+  className="button primary ui"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button primary ui"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Primary
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Primary
+</button>
 `;
 
 exports[`Storyshots Button Primary Disabled 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
+<button
+  className="button disabled primary ui"
+  disabled={true}
+  onClick={[Function]}
+  type="button"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button disabled primary ui"
-      disabled={true}
-      onClick={[Function]}
-      type="button"
-    >
-      Primary Disabled
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Primary Disabled
+</button>
 `;
 
 exports[`Storyshots Button Submit 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
+<button
+  className="button ui"
+  disabled={false}
+  onClick={[Function]}
+  type="submit"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      className="button ui"
-      disabled={false}
-      onClick={[Function]}
-      type="submit"
-    >
-      Submit
-    </button>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Submit
+</button>
 `;
 
 exports[`Storyshots Link Default 1`] = `
-<div
+<a
+  className="ant-typography"
+  href=" "
+  onClick={[Function]}
   style={
     Object {
-      "padding": 10,
+      "WebkitLineClamp": null,
     }
   }
+  target="_self"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <a
-      className="ant-typography"
-      href=" "
-      onClick={[Function]}
-      style={
-        Object {
-          "WebkitLineClamp": null,
-        }
-      }
-      target="_self"
-    >
-      <u>
-        Default
-      </u>
-    </a>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
-`;
-
-exports[`Storyshots Link Link With Knobs 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
->
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <a
-      className="ant-typography"
-      href=" "
-      onClick={[Function]}
-      style={
-        Object {
-          "WebkitLineClamp": null,
-        }
-      }
-      target="_self"
-    >
-      <u>
-        Link
-      </u>
-    </a>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  <u>
+    Default
+  </u>
+</a>
 `;
 
 exports[`Storyshots Tag Colored 1`] = `
-<div
+<span
+  className="ant-tag ant-tag-blue"
   style={
     Object {
-      "padding": 10,
+      "backgroundColor": undefined,
     }
   }
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <span
-      className="ant-tag ant-tag-blue"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
-    >
-      Blue
-    </span>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Blue
+</span>
 `;
 
 exports[`Storyshots Tag Default 1`] = `
-<div
+<span
+  className="ant-tag"
   style={
     Object {
-      "padding": 10,
+      "backgroundColor": undefined,
     }
   }
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <span
-      className="ant-tag"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
-    >
-      Default
-    </span>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
-`;
-
-exports[`Storyshots Tag Tag With Knobs 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
->
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <span
-      className="ant-tag ant-tag-magenta"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
-    >
-      Magenta
-    </span>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Default
+</span>
 `;

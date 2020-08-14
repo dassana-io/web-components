@@ -4,11 +4,25 @@ import React, { FC, ReactNode } from 'react'
 export type ButtonType = 'submit' | 'button' | 'reset'
 
 export interface ButtonProps {
+	/**
+	 * Button children to render including button text.
+	 */
 	children?: ReactNode
+	/**
+	 * Required click handler.
+	 */
 	onClick: () => void
+	/**
+	 * Whether button is of primary type. **Note**: Setting primary to true will override background color set by classes.
+	 */
 	primary?: boolean
+	/**
+	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events). */
 	disabled?: boolean
 	type?: ButtonType
+	/**
+	 * Array of classes to pass to button.
+	 */
 	classes?: string[]
 }
 
