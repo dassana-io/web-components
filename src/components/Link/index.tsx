@@ -63,6 +63,8 @@ const Link: FC<LinkProps> = ({
 		target,
 		underline: true
 	}
+	if (!onClick && !href)
+		throw new Error('Link requires either an onClick or href prop.')
 
 	return <AntDLink {...antDProps}>{children}</AntDLink>
 }
