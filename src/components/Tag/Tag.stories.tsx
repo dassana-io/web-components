@@ -4,7 +4,7 @@ import Tag, { TagProps } from './index'
 
 export default {
 	argTypes: {
-		children: { name: 'Tag Text' },
+		children: { control: 'text', name: 'Tag Text' },
 		color: {
 			control: 'color'
 		}

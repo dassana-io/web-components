@@ -5,7 +5,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
 	argTypes: {
-		children: { name: 'Button Text' },
+		children: { control: 'text', name: 'Button Text' },
 		classes: { control: 'array' }
 	},
 	component: Button,

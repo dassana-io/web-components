@@ -5,7 +5,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
 	argTypes: {
-		children: { name: 'Link Text' }
+		children: { control: 'text', name: 'Link Text' }
 	},
 	component: Link,
 	title: 'Link'
