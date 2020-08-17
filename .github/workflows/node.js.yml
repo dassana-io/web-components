@@ -21,5 +21,7 @@ jobs:
                   npm run lint
                   npm test
                   npm run build
+                  npx chromatic --project-token exu6cy583e6
+
               env:
                   CI: true
