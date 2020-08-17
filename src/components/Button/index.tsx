@@ -17,7 +17,8 @@ export interface ButtonProps {
 	 */
 	primary?: boolean
 	/**
-	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events). */
+	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
+	 * */
 	disabled?: boolean
 	type?: ButtonType
 	/**

@@ -23,7 +23,7 @@ export interface LinkProps {
 	onClick?: () => void
 	/**
 	 * Where to open the linked url - either in a new tab or the current browsing context.
-	 * */
+	 */
 	target?: LinkTargetType
 }
 
