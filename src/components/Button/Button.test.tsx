@@ -25,14 +25,6 @@ describe('Button', () => {
 describe('Disabled Button', () => {
 	it('has correct prop "disabled" and correct class "disabled"', () => {
 		wrapper = shallow(<Button disabled onClick={mockClick} />)
-		expect(wrapper.props().disabled).toEqual(true)
-		expect(wrapper.find('button').hasClass('disabled')).toBeTruthy()
-	})
-})
-
-describe('Submit Button', () => {
-	it('has correct type "submit"', () => {
-		wrapper = shallow(<Button onClick={mockClick} type='submit' />)
-		expect(wrapper.props().type).toEqual('submit')
+		expect(wrapper.props().disabled).toBeTruthy()
 	})
 })
