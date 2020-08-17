@@ -1,17 +1,19 @@
-import 'semantic-ui-css/semantic.min.css'
+import 'antd/lib/button/style/index.css'
+import { Button as AntDButton } from 'antd'
+import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
+
 import React, { FC, ReactNode } from 'react'
-export type ButtonType = 'submit' | 'button' | 'reset'
 
 export interface ButtonProps {
-	/**
-	 * Button children to render including button text.
-	 */
-	children?: ReactNode
 	/**
 	 * Required click handler.
 	 */
 	onClick: () => void
+	/**
+	 * Button children to render including button text.
+	 */
+	children?: ReactNode
 	/**
 	 * Whether button is of primary type. **Note**: Setting primary to true will override background color set by classes.
 	 */
@@ -20,7 +22,6 @@ export interface ButtonProps {
 	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
 	 * */
 	disabled?: boolean
-	type?: ButtonType
 	/**
 	 * Array of classes to pass to button.
 	 */
@@ -32,29 +33,19 @@ const Button: FC<ButtonProps> = ({
 	onClick,
 	primary = false,
 	disabled = false,
-	type = 'button',
 	classes = []
 }: ButtonProps) => {
-	const btnClass: string = classnames(
-		{
-			button: true,
-			disabled,
-			primary,
-			ui: true
-		},
-		classes
-	)
+	const btnClass: string = classnames(classes)
 
-	return (
-		<button
-			className={btnClass}
-			disabled={disabled}
-			onClick={onClick}
-			type={type}
-		>
-			{children}
-		</button>
-	)
+	const antDProps: AntDButtonProps = {
+		disabled,
+		onClick,
+		type: primary ? 'primary' : 'default'
+	}
+
+	if (btnClass) antDProps.className = btnClass
+
+	return <AntDButton {...antDProps}>{children}</AntDButton>
 }
 
 export default Button

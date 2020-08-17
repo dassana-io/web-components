@@ -1,4 +1,6 @@
 import { action } from '@storybook/addon-actions'
+import { createUseStyles } from 'react-jss'
+import GoogleOutlined from '@ant-design/icons/GoogleOutlined'
 import React from 'react'
 import Button, { ButtonProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
@@ -29,9 +31,6 @@ Disabled.args = { ...buttonProps, children: 'Disabled', disabled: true }
 export const Primary = Template.bind({})
 Primary.args = { ...buttonProps, children: 'Primary', primary: true }
 
-export const Submit = Template.bind({})
-Submit.args = { ...buttonProps, children: 'Submit', type: 'submit' }
-
 export const PrimaryDisabled = Template.bind({})
 PrimaryDisabled.args = {
 	...buttonProps,
@@ -40,29 +39,33 @@ PrimaryDisabled.args = {
 	primary: true
 }
 
-// Buttons with Icon
-interface IconProps extends ButtonProps {
-	icon?: string
-}
-const IconTemplate: Story<IconProps> = ({ icon, ...args }: IconProps) => (
-	<Button {...args}>
-		{icon && <i className={`${icon} icon`} />}
-		{args.children}
-	</Button>
-)
+// Google Icon Button
+const useStyles = createUseStyles({
+	google: {
+		'&:hover': {
+			backgroundColor: '#e36e60',
+			color: 'white'
+		},
+		backgroundColor: '#dd4b39',
+		border: 'none',
+		color: 'white'
+	}
+})
 
-export const Google = IconTemplate.bind({})
+const GoogleTemplate: Story<ButtonProps> = ({ ...args }: ButtonProps) => {
+	const classes = useStyles()
+	args.classes = [classes.google]
+	return (
+		<Button {...args}>
+			<GoogleOutlined />
+			{args.children}
+		</Button>
+	)
+}
+
+export const Google = GoogleTemplate.bind({})
 Google.args = {
 	...buttonProps,
-	children: 'Google',
-	classes: ['google', 'plus'],
-	icon: 'google'
-}
-
-export const Icon = IconTemplate.bind({})
-Icon.args = {
-	...buttonProps,
-	children: 'Twitter',
-	classes: ['twitter'],
-	icon: 'twitter'
+	children: 'Sign in with Google',
+	classes: ['google']
 }
