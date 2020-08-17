@@ -1,4 +1,6 @@
 import 'antd/lib/typography/style/index.css'
+import { createUseStyles } from 'react-jss'
+import { linkColor } from '../../styles/styleguide'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
@@ -29,24 +31,33 @@ interface AntDProps extends LinkProps {
 	underline: boolean
 }
 
+const useStyles = createUseStyles({
+	link: {
+		color: linkColor
+	}
+})
+
 const Link: FC<LinkProps> = ({
 	children,
 	href,
 	onClick,
 	target = '_self'
 }: LinkProps) => {
+	const classes = useStyles()
+
 	const antDProps: AntDProps = {
 		children,
 		target,
 		underline: true
 	}
+
 	if (!onClick && !href)
 		throw new Error('Link requires either an onClick or href prop.')
 
 	if (onClick) antDProps.onClick = onClick
 	if (href) antDProps.href = href
 
-	return <AntDLink {...antDProps} />
+	return <AntDLink className={classes.link} {...antDProps} />
 }
 
 export default Link
