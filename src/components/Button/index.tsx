@@ -35,15 +35,12 @@ const Button: FC<ButtonProps> = ({
 	disabled = false,
 	classes = []
 }: ButtonProps) => {
-	const btnClass: string = classnames(classes)
-
 	const antDProps: AntDButtonProps = {
+		className: classnames(classes),
 		disabled,
 		onClick,
 		type: primary ? 'primary' : 'default'
 	}
-
-	if (btnClass) antDProps.className = btnClass
 
 	return <AntDButton {...antDProps}>{children}</AntDButton>
 }

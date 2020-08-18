@@ -32,8 +32,10 @@ interface AntDProps extends LinkProps {
 }
 
 const useStyles = createUseStyles({
-	link: {
-		color: linkColor
+	'@global': {
+		'a.ant-typography, .ant-typography a': {
+			color: linkColor
+		}
 	}
 })
 
@@ -47,6 +49,8 @@ const Link: FC<LinkProps> = ({
 
 	const antDProps: AntDProps = {
 		children,
+		href,
+		onClick,
 		target,
 		underline: true
 	}
@@ -54,10 +58,7 @@ const Link: FC<LinkProps> = ({
 	if (!onClick && !href)
 		throw new Error('Link requires either an onClick or href prop.')
 
-	if (onClick) antDProps.onClick = onClick
-	if (href) antDProps.href = href
-
-	return <AntDLink className={classes.link} {...antDProps} />
+	return <AntDLink className={classes['@global']} {...antDProps} />
 }
 
 export default Link

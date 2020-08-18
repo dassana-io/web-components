@@ -87,7 +87,7 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 
 exports[`Storyshots Link Default 1`] = `
 <a
-  className="ant-typography link-0-2-2"
+  className="ant-typography"
   href=" "
   onClick={[Function]}
   style={
