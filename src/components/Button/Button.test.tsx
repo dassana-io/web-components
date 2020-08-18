@@ -7,16 +7,15 @@ let mockClick: jest.Mock<void>
 
 beforeEach(() => {
 	mockClick = jest.fn()
+	wrapper = shallow(<Button onClick={mockClick}>Test</Button>)
 })
 
 describe('Button', () => {
 	it('renders', () => {
-		wrapper = shallow(<Button onClick={mockClick} />)
 		expect(wrapper).toHaveLength(1)
 	})
 
 	it('runs onClick function when button is clicked', () => {
-		wrapper = shallow(<Button onClick={mockClick} />)
 		expect(wrapper.simulate('click'))
 		expect(mockClick).toHaveBeenCalledTimes(1)
 	})
@@ -24,15 +23,11 @@ describe('Button', () => {
 
 describe('Disabled Button', () => {
 	it('has correct prop "disabled" and correct class "disabled"', () => {
-		wrapper = shallow(<Button disabled onClick={mockClick} />)
-		expect(wrapper.props().disabled).toEqual(true)
-		expect(wrapper.find('button').hasClass('disabled')).toBeTruthy()
-	})
-})
-
-describe('Submit Button', () => {
-	it('has correct type "submit"', () => {
-		wrapper = shallow(<Button onClick={mockClick} type='submit' />)
-		expect(wrapper.props().type).toEqual('submit')
+		wrapper = shallow(
+			<Button disabled onClick={mockClick}>
+				Test
+			</Button>
+		)
+		expect(wrapper.props().disabled).toBeTruthy()
 	})
 })

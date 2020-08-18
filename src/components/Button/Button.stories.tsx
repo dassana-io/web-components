@@ -1,76 +1,71 @@
 import { action } from '@storybook/addon-actions'
+import { createUseStyles } from 'react-jss'
+import GoogleOutlined from '@ant-design/icons/GoogleOutlined'
 import React from 'react'
-import { array, boolean, select, text, withKnobs } from '@storybook/addon-knobs'
-import Button, { ButtonProps, ButtonType } from './index'
+import Button, { ButtonProps } from '.'
+import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
+	argTypes: {
+		children: { control: 'text' },
+		classes: { control: 'array' }
+	},
 	component: Button,
-	decorators: [withKnobs],
-	excludeStories: /.*Data$/,
 	title: 'Button'
-}
+} as Meta
 
 const actionsData = {
 	onClick: action('onClick')
 }
 
-export const buttonData: ButtonProps = {
-	onClick: actionsData.onClick
+const Template: Story<ButtonProps> = args => (
+	<Button {...args}>{args.children}</Button>
+)
+
+export const Default = Template.bind({})
+Default.args = { ...actionsData, children: 'Default' }
+
+export const Disabled = Template.bind({})
+Disabled.args = { ...actionsData, children: 'Disabled', disabled: true }
+
+export const Primary = Template.bind({})
+Primary.args = { ...actionsData, children: 'Primary', primary: true }
+
+export const PrimaryDisabled = Template.bind({})
+PrimaryDisabled.args = {
+	...actionsData,
+	children: 'Primary Disabled',
+	disabled: true,
+	primary: true
 }
 
-export const Default = () => <Button {...buttonData}>Default</Button>
+// Google Icon Button
+const useStyles = createUseStyles({
+	google: {
+		'&:hover': {
+			backgroundColor: '#e36e60',
+			color: 'white'
+		},
+		backgroundColor: '#dd4b39',
+		border: 'none',
+		color: 'white'
+	}
+})
 
-export const Disabled = () => {
-	const props: ButtonProps = { ...buttonData, disabled: true }
-	return <Button {...props}>Disabled</Button>
-}
-
-export const Primary = () => {
-	const props: ButtonProps = { ...buttonData, primary: true }
-	return <Button {...props}>Primary</Button>
-}
-
-export const Submit = () => {
-	const props: ButtonProps = { ...buttonData, type: 'submit' }
-	return <Button {...props}>Submit</Button>
-}
-
-export const PrimaryDisabled = () => {
-	const props: ButtonProps = { ...buttonData, disabled: true, primary: true }
-	return <Button {...props}>Primary Disabled</Button>
-}
-
-export const Google = () => {
-	const props: ButtonProps = { ...buttonData, classes: ['google', 'plus'] }
+const GoogleTemplate: Story<ButtonProps> = ({ ...args }: ButtonProps) => {
+	const classes = useStyles()
+	args.classes = [classes.google]
 	return (
-		<Button {...props}>
-			<i className='google icon'></i>
-			Google
+		<Button {...args}>
+			<GoogleOutlined />
+			{args.children}
 		</Button>
 	)
 }
 
-export const ButtonWithKnobs = () => {
-	const typeOpts: Record<string, ButtonType> = {
-		button: 'button',
-		reset: 'reset',
-		submit: 'submit'
-	}
-
-	const props: ButtonProps = {
-		...buttonData,
-		classes: array('Classes', ['twitter']),
-		disabled: boolean('Disabled', false),
-		primary: boolean('Primary', false),
-		type: select<ButtonType>('Type', typeOpts, 'button')
-	}
-
-	const iconClasses = text('Icon name', 'twitter')
-
-	return (
-		<Button {...props}>
-			{iconClasses && <i className={`${iconClasses} icon`}></i>}
-			{text('Button text', 'Twitter')}
-		</Button>
-	)
+export const Google = GoogleTemplate.bind({})
+Google.args = {
+	...actionsData,
+	children: 'Sign in with Google',
+	classes: ['google']
 }
