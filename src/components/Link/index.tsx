@@ -27,7 +27,7 @@ export interface LinkProps {
 	target?: LinkTargetType
 }
 
-interface AntDProps extends LinkProps {
+interface AntDProps extends Omit<LinkProps, 'children'> {
 	underline: boolean
 }
 
@@ -45,10 +45,9 @@ const Link: FC<LinkProps> = ({
 	onClick,
 	target = '_self'
 }: LinkProps) => {
-	const classes = useStyles()
+	useStyles()
 
 	const antDProps: AntDProps = {
-		children,
 		href,
 		onClick,
 		target,
@@ -58,7 +57,7 @@ const Link: FC<LinkProps> = ({
 	if (!onClick && !href)
 		throw new Error('Link requires either an onClick or href prop.')
 
-	return <AntDLink className={classes['@global']} {...antDProps} />
+	return <AntDLink {...antDProps}>{children}</AntDLink>
 }
 
 export default Link

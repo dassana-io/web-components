@@ -13,7 +13,7 @@ export interface ButtonProps {
 	/**
 	 * Button children to render including button text.
 	 */
-	children?: ReactNode
+	children: ReactNode
 	/**
 	 * Whether button is of primary type. **Note**: Setting primary to true will override background color set by classes.
 	 */
