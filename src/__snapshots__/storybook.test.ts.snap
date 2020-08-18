@@ -86,172 +86,34 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 `;
 
 exports[`Storyshots Link Default 1`] = `
-<div
+<a
+  className="ant-typography"
+  href=" "
+  onClick={[Function]}
   style={
     Object {
-      "padding": 10,
+      "WebkitLineClamp": null,
     }
   }
+  target="_self"
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <a
-      className="ant-typography"
-      href=""
-      onClick={[Function]}
-      style={
-        Object {
-          "WebkitLineClamp": null,
-        }
-      }
-      target="_self"
-    >
-      <u>
-        Default
-      </u>
-    </a>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
-`;
-
-exports[`Storyshots Link Link With Knobs 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
->
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <a
-      className="ant-typography"
-      href=""
-      onClick={[Function]}
-      style={
-        Object {
-          "WebkitLineClamp": null,
-        }
-      }
-      target="_self"
-    >
-      <u>
-        Link
-      </u>
-    </a>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  <u>
+    Default
+  </u>
+</a>
 `;
 
 exports[`Storyshots Tag Colored 1`] = `
-<div
+<span
+  className="ant-tag ant-tag-has-color"
   style={
     Object {
-      "padding": 10,
+      "backgroundColor": "#108ee9",
     }
   }
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <span
-      className="ant-tag ant-tag-blue"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
-    >
-      Blue
-    </span>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Colored
+</span>
 `;
 
 exports[`Storyshots Tag Colored Preset 1`] = `
@@ -268,107 +130,14 @@ exports[`Storyshots Tag Colored Preset 1`] = `
 `;
 
 exports[`Storyshots Tag Default 1`] = `
-<div
+<span
+  className="ant-tag"
   style={
     Object {
-      "padding": 10,
+      "backgroundColor": undefined,
     }
   }
 >
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <span
-      className="ant-tag"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
-    >
-      Default
-    </span>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
-`;
-
-exports[`Storyshots Tag Tag With Knobs 1`] = `
-<div
-  style={
-    Object {
-      "padding": 10,
-    }
-  }
->
-  <div
-    style={
-      Object {
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <span
-      className="ant-tag ant-tag-magenta"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
-    >
-      Magenta
-    </span>
-  </div>
-  <button
-    className="info__show-button"
-    onClick={[Function]}
-    style={
-      Object {
-        "background": "#027ac5",
-        "border": "none",
-        "borderRadius": "0 0 0 5px",
-        "color": "#fff",
-        "cursor": "pointer",
-        "display": "block",
-        "fontFamily": "sans-serif",
-        "fontSize": 12,
-        "padding": "5px 15px",
-        "position": "fixed",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    type="button"
-  >
-    Show Info
-  </button>
-</div>
+  Default
+</span>
 `;
