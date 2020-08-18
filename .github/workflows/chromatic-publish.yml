@@ -12,6 +12,6 @@ jobs:
             - name: Deploy to chromatic
               run: |
                   npm install
-                  npx chromatic --project-token $CHROMATIC_TOKEN
+                  npx chromatic --project-token $CHROMATIC_TOKEN --exit-zero-on-changes
               env:
                   CHROMATIC_TOKEN: ${{ secrets.CHROMATIC }}
