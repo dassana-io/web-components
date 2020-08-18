@@ -12,7 +12,11 @@ jobs:
         # the list of steps that the action will go through
         steps:
             - uses: actions/checkout@v1
-            - run: yarn
+            - name: Run npm install + delete rollup file
+              run: |
+                  rm -rf tsconfig.rollup.json
+                  npm install
+
             - uses: chromaui/action@v1
               # options required to the GitHub chromatic action
               with:
