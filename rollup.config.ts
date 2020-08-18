@@ -26,7 +26,7 @@ export default {
 		commonjs(),
 		styles(),
 		typescript({
-			tsconfig: 'tsconfig.rollup.json',
+			tsconfig: 'typescript.rollup.json',
 			useTsconfigDeclarationDir: true
 		})
 	]
