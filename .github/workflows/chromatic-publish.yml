@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Chromatic Deployment --exit-zero-on-changes
 
 on: pull_request
 
