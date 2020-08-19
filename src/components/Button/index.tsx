@@ -20,7 +20,7 @@ export interface ButtonProps {
 	primary?: boolean
 	/**
 	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
-	 * */
+	 */
 	disabled?: boolean
 	/**
 	 * Array of classes to pass to button.

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Tag, { TagProps } from './index'
+import Tag, { TagProps } from '.'
 
 export default {
 	argTypes: {

@@ -141,3 +141,59 @@ exports[`Storyshots Tag Default 1`] = `
   Default
 </span>
 `;
+
+exports[`Storyshots Toggle Checked Disabled 1`] = `
+<button
+  aria-checked={true}
+  className="ant-switch ant-switch-checked ant-switch-disabled"
+  disabled={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
+`;
+
+exports[`Storyshots Toggle Default 1`] = `
+<button
+  aria-checked={true}
+  className="ant-switch ant-switch-checked"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
+`;
+
+exports[`Storyshots Toggle Disabled 1`] = `
+<button
+  aria-checked={false}
+  className="ant-switch ant-switch-disabled"
+  disabled={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
+`;

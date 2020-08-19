@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, ShallowWrapper } from 'enzyme'
-import Tag, { TagProps } from './index'
+import Tag, { TagProps } from '.'
 
 let wrapper: ShallowWrapper<TagProps>
 
