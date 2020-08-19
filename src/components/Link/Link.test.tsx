@@ -17,24 +17,22 @@ beforeEach(() => {
 
 describe('Link', () => {
 	it('renders', () => {
-		const link = wrapper.find(Link)
-		expect(link).toHaveLength(1)
+		expect(wrapper).toHaveLength(1)
 	})
 
 	it('calls onClick function when link is clicked', () => {
-		const link = wrapper.find(Link)
-		link.simulate('click')
+		wrapper.simulate('click')
 		expect(mockClick).toHaveBeenCalledTimes(1)
 	})
 
 	it('has the correct href attribute', () => {
-		const link = wrapper.find(Link)
-		expect(link.getDOMNode().getAttribute('href')).toBe(mockProps.href)
+		expect(wrapper.getDOMNode().getAttribute('href')).toBe(mockProps.href)
 	})
 
 	it('has the correct target attribute', () => {
-		const link = wrapper.find(Link)
-		expect(link.getDOMNode().getAttribute('target')).toBe(mockProps.target)
+		expect(wrapper.getDOMNode().getAttribute('target')).toBe(
+			mockProps.target
+		)
 	})
 
 	it('throws an error if both onClick and href props are undefined', () => {
