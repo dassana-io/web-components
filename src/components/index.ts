@@ -1,5 +1,5 @@
 import 'normalize.css'
-import '../styles/index.css'
+import 'styles/index.css'
 export { default as Button } from './Button'
 export { default as InputField } from './InputField'
 export { default as Link } from './Link'
