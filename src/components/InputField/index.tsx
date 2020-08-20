@@ -56,8 +56,6 @@ const InputFieldSkeleton: FC<InputFieldProps> = (props: InputFieldProps) => {
 	)
 }
 
-export type InputType = 'text' | 'password'
-
 export interface InputFieldProps {
 	/**
 	 * Array of classes to pass to button.
@@ -106,7 +104,7 @@ export interface InputFieldProps {
 	 * Type of input (ex: text, password)
 	 * @default text
 	 */
-	type?: InputType
+	type?: 'text' | 'password'
 	/**
 	 * Input content value for controlled inputs. Requires an onChange to be passed
 	 */
