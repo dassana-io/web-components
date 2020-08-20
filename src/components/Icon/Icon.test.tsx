@@ -1,10 +1,10 @@
 import React from 'react'
 import Icon, { IconProps } from '.'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper
 const mockProps: IconProps = {
-	icon: 'dassana-blue',
+	iconKey: 'dassana-blue',
 	size: 64
 }
 
@@ -30,5 +30,9 @@ describe('Icon', () => {
 	it('has the correct size', () => {
 		expect(wrapper.getDOMNode().getAttribute('height')).toBe('64')
 		expect(wrapper.getDOMNode().getAttribute('width')).toBe('64')
+	})
+
+	it('throws an error if both icon and iconType props are undefined', () => {
+		expect(() => shallow(<Icon />)).toThrow()
 	})
 })

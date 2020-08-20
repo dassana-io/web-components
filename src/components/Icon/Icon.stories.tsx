@@ -11,17 +11,17 @@ const Template: Story<IconProps> = args => <Icon {...args} />
 
 export const DassanaBlue = Template.bind({})
 DassanaBlue.args = {
-	icon: 'dassana-blue',
+	iconKey: 'dassana-blue',
 	size: 64
 }
 
 export const DassanaOrange = Template.bind({})
 DassanaOrange.args = {
-	icon: 'dassana-orange'
+	iconKey: 'dassana-orange'
 }
 
 export const AWS = Template.bind({})
 AWS.args = {
-	icon: 'aws-logo',
+	iconKey: 'aws-logo',
 	size: 64
 }
