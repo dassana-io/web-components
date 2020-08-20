@@ -61,17 +61,55 @@ export type InputType = 'text' | 'password'
 export interface InputFieldProps {
 	/**
 	 * Array of classes to pass to button.
+	 * @default []
 	 */
 	classes?: string[]
+	/**
+	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
+	 * @default false
+	 */
 	disabled?: boolean
+	/**
+	 * Whether or not to show error state and animation
+	 * @default false
+	 */
 	error?: boolean
+	/**
+	 * Adds a label above the input
+	 */
 	fieldLabel?: string
+	/**
+	 * Whether or not input spans the full width of the parent container. Defaults to false.
+	 * @default false
+	 */
 	fullWidth?: boolean
+	/**
+	 * Whether or not to show skeleton loader
+	 * @default false
+	 */
 	loading?: boolean
+	/**
+	 * Callback that runs when input is updated
+	 * @default () => {}
+	 */
 	onChange?: () => void
+	/**
+	 * Describes expected value of input
+	 */
 	placeholder?: string
+	/**
+	 * Adds an asterisk to the label that indicates field is required
+	 * @default false
+	 */
 	required?: boolean
+	/**
+	 * Type of input (ex: text, password)
+	 * @default text
+	 */
 	type?: InputType
+	/**
+	 * Input content value for controlled inputs. Requires an onChange to be passed
+	 */
 	value?: string
 }
 
