@@ -90,7 +90,6 @@ exports[`Storyshots Icon AWS 1`] = `
   alt="aws-logo"
   height={64}
   src="aws.svg"
-  width={64}
 />
 `;
 
@@ -99,7 +98,6 @@ exports[`Storyshots Icon Dassana Blue 1`] = `
   alt="dassana-blue"
   height={64}
   src="dassana-blue.png"
-  width={64}
 />
 `;
 
@@ -108,7 +106,6 @@ exports[`Storyshots Icon Dassana Orange 1`] = `
   alt="dassana-orange"
   height={32}
   src="dassana-orange.png"
-  width={32}
 />
 `;
 
