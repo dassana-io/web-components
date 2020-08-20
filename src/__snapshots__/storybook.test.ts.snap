@@ -85,6 +85,33 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </button>
 `;
 
+exports[`Storyshots Icon AWS 1`] = `
+<img
+  alt="aws-logo"
+  height={64}
+  src="aws.svg"
+  width={64}
+/>
+`;
+
+exports[`Storyshots Icon Dassana Blue 1`] = `
+<img
+  alt="dassana-blue"
+  height={64}
+  src="dassana-blue.png"
+  width={64}
+/>
+`;
+
+exports[`Storyshots Icon Dassana Orange 1`] = `
+<img
+  alt="dassana-orange"
+  height={32}
+  src="dassana-orange.png"
+  width={32}
+/>
+`;
+
 exports[`Storyshots InputField Default 1`] = `
 <div
   className="container-0-2-3 container-d0-0-2-8"
