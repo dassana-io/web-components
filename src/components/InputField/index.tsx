@@ -77,7 +77,7 @@ export interface InputFieldProps {
 	 */
 	fieldLabel?: string
 	/**
-	 * Whether or not input spans the full width of the parent container. Defaults to false.
+	 * Whether or not input spans the full width of the parent container
 	 * @default false
 	 */
 	fullWidth?: boolean
