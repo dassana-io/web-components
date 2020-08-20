@@ -4,6 +4,10 @@ import React, { FC } from 'react'
 
 export interface ToggleProps {
 	/**
+	 * Required change handler.
+	 */
+	onChange: () => void
+	/**
 	 * Whether switch will be checked or "on" by default.
 	 */
 	defaultChecked?: boolean
@@ -11,10 +15,6 @@ export interface ToggleProps {
 	 * Whether switch will be disabled.
 	 */
 	disabled?: boolean
-	/**
-	 * Optional change handler.
-	 */
-	onChange?: () => void
 	/**
 	 * The size of the toggle.
 	 */

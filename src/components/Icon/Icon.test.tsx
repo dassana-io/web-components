@@ -4,8 +4,8 @@ import { mount, ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper
 const mockProps: IconProps = {
-	iconKey: 'dassana-blue',
-	size: 64
+	height: 64,
+	iconKey: 'dassana-blue'
 }
 
 beforeEach(() => {
@@ -27,9 +27,8 @@ describe('Icon', () => {
 		expect(wrapper.getDOMNode().getAttribute('alt')).toBe('dassana-blue')
 	})
 
-	it('has the correct size', () => {
+	it('has the correct height', () => {
 		expect(wrapper.getDOMNode().getAttribute('height')).toBe('64')
-		expect(wrapper.getDOMNode().getAttribute('width')).toBe('64')
 	})
 
 	it('throws an error if both icon and iconType props are undefined', () => {
