@@ -85,6 +85,110 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </button>
 `;
 
+exports[`Storyshots InputField Default 1`] = `
+<div
+  className="container-0-2-3 container-d0-0-2-8"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Full Width 1`] = `
+<div
+  className="container-0-2-3 container-d3-0-2-11"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Label 1`] = `
+<div
+  className="container-0-2-3 container-d1-0-2-9"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="label-0-2-6"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Loading 1`] = `
+<div
+  className="container-0-2-3 container-d2-0-2-10"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="label-0-2-6"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
 exports[`Storyshots Link Default 1`] = `
 <a
   className="ant-typography"
