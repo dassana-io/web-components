@@ -1,6 +1,6 @@
-import AWS from 'assets/icons/aws.svg'
-import DASSANA_BLUE from 'assets/icons/dassana-blue.png'
-import DASSANA_ORANGE from 'assets/icons/dassana-orange.png'
+import AWS from '../assets/icons/aws.svg'
+import DASSANA_BLUE from '../assets/icons/dassana-blue.png'
+import DASSANA_ORANGE from '../assets/icons/dassana-orange.png'
 
 const Icons = {
 	'aws-logo': AWS,
