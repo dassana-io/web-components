@@ -13,7 +13,6 @@ interface SharedIconProps {
 interface IconPath extends SharedIconProps {
 	/**
 	 * The url of the icon if rendering a custom icon.
-	 *
 	 */
 	icon: string
 	/**
