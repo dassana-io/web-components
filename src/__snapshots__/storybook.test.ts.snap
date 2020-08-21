@@ -85,6 +85,114 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </button>
 `;
 
+exports[`Storyshots InputField Default 1`] = `
+<div
+  className="container-0-2-3 container-d0-0-2-8"
+>
+  <div
+    className="label-0-2-6"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Error 1`] = `
+<div
+  className="container-0-2-3 container-d4-0-2-12"
+>
+  <div
+    className="label-0-2-6"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input error-0-2-4"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Full Width 1`] = `
+<div
+  className="container-0-2-3 container-d3-0-2-11"
+>
+  <div
+    className="label-0-2-6"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Loading 1`] = `
+<div
+  className="container-0-2-3 container-d2-0-2-10"
+>
+  <div
+    className="label-0-2-6"
+  >
+    <span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "width": 100,
+          }
+        }
+      >
+        ‌
+      </span>
+    </span>
+  </div>
+  <div
+    className="input-0-2-5"
+  >
+    <span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 13,
+          }
+        }
+      >
+        ‌
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Link Default 1`] = `
 <a
   className="ant-typography"
