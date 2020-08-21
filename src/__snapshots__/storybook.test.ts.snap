@@ -90,6 +90,15 @@ exports[`Storyshots Icon AWS 1`] = `
   alt="aws-logo"
   height={64}
   src="aws.svg"
+  width={64}
+/>
+`;
+
+exports[`Storyshots Icon Custom 1`] = `
+<img
+  alt="https://dummyimage.com/600x400/000/fff&text=Dassana"
+  height={64}
+  src="https://dummyimage.com/600x400/000/fff&text=Dassana"
 />
 `;
 
@@ -98,6 +107,7 @@ exports[`Storyshots Icon Dassana Blue 1`] = `
   alt="dassana-blue"
   height={64}
   src="dassana-blue.png"
+  width={64}
 />
 `;
 
@@ -105,6 +115,15 @@ exports[`Storyshots Icon Dassana Orange 1`] = `
 <img
   alt="dassana-orange"
   height={32}
+  src="dassana-orange.png"
+  width={32}
+/>
+`;
+
+exports[`Storyshots Icon Predefined 1`] = `
+<img
+  alt="dassana-orange"
+  height={64}
   src="dassana-orange.png"
 />
 `;
@@ -217,6 +236,23 @@ exports[`Storyshots InputField Loading 1`] = `
 </div>
 `;
 
+exports[`Storyshots Link Click 1`] = `
+<a
+  className="ant-typography"
+  onClick={[Function]}
+  style={
+    Object {
+      "WebkitLineClamp": null,
+    }
+  }
+  target="_self"
+>
+  <u>
+    Click
+  </u>
+</a>
+`;
+
 exports[`Storyshots Link Default 1`] = `
 <a
   className="ant-typography"
@@ -231,6 +267,23 @@ exports[`Storyshots Link Default 1`] = `
 >
   <u>
     Default
+  </u>
+</a>
+`;
+
+exports[`Storyshots Link Href 1`] = `
+<a
+  className="ant-typography"
+  href=" "
+  style={
+    Object {
+      "WebkitLineClamp": null,
+    }
+  }
+  target="_self"
+>
+  <u>
+    Href
   </u>
 </a>
 `;

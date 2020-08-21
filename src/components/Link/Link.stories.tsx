@@ -11,13 +11,26 @@ export default {
 	title: 'Link'
 } as Meta
 
-const linkProps: LinkProps = {
-	children: 'Default',
-	href: ' ',
-	onClick: action('onClick')
-}
-
 const Template: Story<LinkProps> = args => <Link {...args} />
 
-export const Default = Template.bind({})
-Default.args = linkProps
+export const Href = Template.bind({})
+Href.argTypes = {
+	onClick: {
+		control: { disable: true }
+	}
+}
+Href.args = {
+	children: 'Href',
+	href: ' '
+}
+
+export const Click = Template.bind({})
+Click.argTypes = {
+	href: {
+		control: { disable: true }
+	}
+}
+Click.args = {
+	children: 'Click',
+	onClick: action('onClick')
+}
