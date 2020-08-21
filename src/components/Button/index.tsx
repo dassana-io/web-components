@@ -2,7 +2,6 @@ import 'antd/lib/button/style/index.css'
 import { Button as AntDButton } from 'antd'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
-
 import React, { FC, ReactNode } from 'react'
 
 export interface ButtonProps {
@@ -20,7 +19,7 @@ export interface ButtonProps {
 	primary?: boolean
 	/**
 	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
-	 * */
+	 */
 	disabled?: boolean
 	/**
 	 * Array of classes to pass to button.

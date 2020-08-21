@@ -1,5 +1,5 @@
 import React from 'react'
-import Button, { ButtonProps } from './index'
+import Button, { ButtonProps } from '.'
 import { shallow, ShallowWrapper } from 'enzyme'
 
 let wrapper: ShallowWrapper<ButtonProps>

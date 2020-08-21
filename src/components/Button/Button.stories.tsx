@@ -8,32 +8,28 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 export default {
 	argTypes: {
 		children: { control: 'text' },
-		classes: { control: 'array' }
+		classes: { control: 'array' },
+		onClick: { defaultValue: action('onClick') }
 	},
 	component: Button,
 	title: 'Button'
 } as Meta
-
-const actionsData = {
-	onClick: action('onClick')
-}
 
 const Template: Story<ButtonProps> = args => (
 	<Button {...args}>{args.children}</Button>
 )
 
 export const Default = Template.bind({})
-Default.args = { ...actionsData, children: 'Default' }
+Default.args = { children: 'Default' }
 
 export const Disabled = Template.bind({})
-Disabled.args = { ...actionsData, children: 'Disabled', disabled: true }
+Disabled.args = { children: 'Disabled', disabled: true }
 
 export const Primary = Template.bind({})
-Primary.args = { ...actionsData, children: 'Primary', primary: true }
+Primary.args = { children: 'Primary', primary: true }
 
 export const PrimaryDisabled = Template.bind({})
 PrimaryDisabled.args = {
-	...actionsData,
 	children: 'Primary Disabled',
 	disabled: true,
 	primary: true
@@ -65,7 +61,6 @@ const GoogleTemplate: Story<ButtonProps> = ({ ...args }: ButtonProps) => {
 
 export const Google = GoogleTemplate.bind({})
 Google.args = {
-	...actionsData,
 	children: 'Sign in with Google',
 	classes: ['google']
 }
