@@ -3,24 +3,35 @@ import React, { FC } from 'react'
 
 export type { IconName }
 
-export interface IconProps {
-	/**
-	 * The url of the icon if you want Icon to render a custom icon.
-	 */
-	icon?: string
-	/**
-	 * The name of the icon if using icons provided by Dassana.
-	 */
-	iconKey?: IconName
+interface SharedIconProps {
 	/**
 	 * The height of the icon, in pixels. Width will be calculated by default.
 	 */
 	height?: number
 }
 
-const Icon: FC<IconProps> = ({ icon, iconKey, height = 32 }: IconProps) => {
-	if (!icon && !iconKey)
-		throw new Error('Icon requires either an iconKey or icon prop.')
+interface IconPath extends SharedIconProps {
+	/**
+	 * The url of the icon if rendering a custom icon.
+	 *
+	 */
+	icon: string
+	/**
+	 * The name of the icon if using icons provided by Dassana. **Note**: Either an `icon` or `iconKey` is required.
+	 */
+	iconKey?: never
+}
+
+interface IconKey extends SharedIconProps {
+	iconKey: IconName
+	icon?: never
+}
+
+export type IconProps = IconKey | IconPath
+
+const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
+	const { icon } = props as IconPath
+	const { iconKey } = props as IconKey
 
 	const imgSrc = iconKey ? Icons[iconKey] : icon
 	const imgAlt = iconKey ? iconKey : icon

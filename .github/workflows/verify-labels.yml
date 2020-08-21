@@ -1,18 +1,22 @@
-name: Verify Labels
-
+name: Pull Request Labels
 on:
     pull_request:
         types: [opened, labeled, unlabeled, synchronize]
-
 jobs:
     check_pr_labels:
+        name: Verify that the PR has the appropriate label(s)
         runs-on: ubuntu-latest
-        name: Verify that the PR has a valid label
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-            - name: Verify PR label action
-              uses: jesusvasquez333/verify-pr-label-action@v1.1.0
+            - name: Check for version label
+              if: ${{ github.base_ref == 'master' }}
+              uses: mheap/github-action-required-labels@v1
               with:
-                  github-token: '${{ secrets.GITHUB_TOKEN }}'
-                  valid-labels: 'fix, bug, bugfix, feature, enhancement, chore'
+                  mode: exactly
+                  count: 1
+                  labels: 'patch, minor, major'
+            - name: Check for issue type label
+              uses: mheap/github-action-required-labels@v1
+              with:
+                  mode: minimum
+                  count: 1
+                  labels: 'fix, bug, bugfix, feature, enhancement, chore'

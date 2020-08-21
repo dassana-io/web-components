@@ -3,25 +3,31 @@ import Icon, { IconProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
+	argTypes: {
+		height: { defaultValue: 64 }
+	},
 	component: Icon,
 	title: 'Icon'
 } as Meta
 
 const Template: Story<IconProps> = args => <Icon {...args} />
 
-export const DassanaBlue = Template.bind({})
-DassanaBlue.args = {
-	height: 64,
-	iconKey: 'dassana-blue'
+export const Predefined = Template.bind({})
+Predefined.argTypes = {
+	icon: {
+		control: { disable: true }
+	}
 }
-
-export const DassanaOrange = Template.bind({})
-DassanaOrange.args = {
+Predefined.args = {
 	iconKey: 'dassana-orange'
 }
 
-export const AWS = Template.bind({})
-AWS.args = {
-	height: 64,
-	iconKey: 'aws-logo'
+export const Custom = Template.bind({})
+Custom.argTypes = {
+	iconKey: {
+		control: { disable: true }
+	}
+}
+Custom.args = {
+	icon: 'https://dummyimage.com/600x400/000/fff&text=Dassana'
 }
