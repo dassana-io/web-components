@@ -85,6 +85,22 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </button>
 `;
 
+exports[`Storyshots Icon Custom 1`] = `
+<img
+  alt="https://dummyimage.com/600x400/000/fff&text=Dassana"
+  height={64}
+  src="https://dummyimage.com/600x400/000/fff&text=Dassana"
+/>
+`;
+
+exports[`Storyshots Icon Predefined 1`] = `
+<img
+  alt="dassana-orange"
+  height={64}
+  src="dassana-orange.png"
+/>
+`;
+
 exports[`Storyshots InputField Default 1`] = `
 <div
   className="container-0-2-3 container-d0-0-2-8"
@@ -193,10 +209,9 @@ exports[`Storyshots InputField Loading 1`] = `
 </div>
 `;
 
-exports[`Storyshots Link Default 1`] = `
+exports[`Storyshots Link Click 1`] = `
 <a
   className="ant-typography"
-  href=" "
   onClick={[Function]}
   style={
     Object {
@@ -206,7 +221,24 @@ exports[`Storyshots Link Default 1`] = `
   target="_self"
 >
   <u>
-    Default
+    Click
+  </u>
+</a>
+`;
+
+exports[`Storyshots Link Href 1`] = `
+<a
+  className="ant-typography"
+  href=" "
+  style={
+    Object {
+      "WebkitLineClamp": null,
+    }
+  }
+  target="_self"
+>
+  <u>
+    Href
   </u>
 </a>
 `;
@@ -248,4 +280,60 @@ exports[`Storyshots Tag Default 1`] = `
 >
   Default
 </span>
+`;
+
+exports[`Storyshots Toggle Checked Disabled 1`] = `
+<button
+  aria-checked={true}
+  className="ant-switch ant-switch-checked ant-switch-disabled"
+  disabled={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
+`;
+
+exports[`Storyshots Toggle Default 1`] = `
+<button
+  aria-checked={true}
+  className="ant-switch ant-switch-checked"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
+`;
+
+exports[`Storyshots Toggle Disabled 1`] = `
+<button
+  aria-checked={false}
+  className="ant-switch ant-switch-disabled"
+  disabled={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
 `;
