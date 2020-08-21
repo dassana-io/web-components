@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -10,8 +10,6 @@
 		"directory": "@dassana-io/web-components"
 	},
 	"dependencies": {
-		"@rollup/plugin-commonjs": "^14.0.0",
-		"@rollup/plugin-node-resolve": "^8.4.0",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
 		"@testing-library/user-event": "^7.2.1",
@@ -21,14 +19,11 @@
 		"@types/react-dom": "^16.9.8",
 		"antd": "^4.5.4",
 		"classnames": "^2.2.6",
-		"normalize.css": "^8.0.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-jss": "^10.4.0",
 		"react-loading-skeleton": "^2.1.1",
 		"react-scripts": "^3.4.3",
-		"rollup": "^2.23.0",
-		"rollup-plugin-typescript2": "^0.27.1",
 		"typescript": "^3.9.7"
 	},
 	"scripts": {
@@ -60,6 +55,9 @@
 		]
 	},
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^14.0.0",
+		"@rollup/plugin-image": "^2.0.5",
+		"@rollup/plugin-node-resolve": "^8.4.0",
 		"@storybook/addon-actions": "^6.0.16",
 		"@storybook/addon-essentials": "^6.0.16",
 		"@storybook/addon-links": "^6.0.16",
@@ -76,8 +74,11 @@
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
 		"eslint-plugin-react": "^7.20.5",
+		"normalize.css": "^8.0.1",
 		"react-test-renderer": "^16.13.1",
-		"rollup-plugin-styles": "^3.10.0"
+		"rollup": "^2.26.4",
+		"rollup-plugin-styles": "^3.10.0",
+		"rollup-plugin-typescript2": "^0.27.2"
 	},
 	"peerDependencies": {
 		"react": ">=16.13",

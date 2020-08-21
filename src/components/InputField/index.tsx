@@ -6,10 +6,12 @@ import Skeleton from 'react-loading-skeleton'
 import React, { FC } from 'react'
 
 const useStyles = createUseStyles({
-	'@keyframes shake': {
-		'0%, 100%': { left: '0rem' },
-		'20%, 60%': { left: '0.5rem' },
-		'40%, 80%': { left: '-0.5rem' }
+	'@global': {
+		'@keyframes shake': {
+			'0%, 100%': { left: '0rem' },
+			'20%, 60%': { left: '0.5rem' },
+			'40%, 80%': { left: '-0.5rem' }
+		}
 	},
 	container: {
 		display: 'flex',

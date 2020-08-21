@@ -103,10 +103,10 @@ exports[`Storyshots Icon Predefined 1`] = `
 
 exports[`Storyshots InputField Default 1`] = `
 <div
-  className="container-0-2-3 container-d0-0-2-8"
+  className="container-0-2-2 container-d0-0-2-7"
 >
   <div
-    className="label-0-2-6"
+    className="label-0-2-5"
   >
     Field Label
   </div>
@@ -126,15 +126,15 @@ exports[`Storyshots InputField Default 1`] = `
 
 exports[`Storyshots InputField Error 1`] = `
 <div
-  className="container-0-2-3 container-d4-0-2-12"
+  className="container-0-2-2 container-d4-0-2-11"
 >
   <div
-    className="label-0-2-6"
+    className="label-0-2-5"
   >
     Field Label
   </div>
   <input
-    className="ant-input error-0-2-4"
+    className="ant-input error-0-2-3"
     disabled={false}
     onBlur={[Function]}
     onChange={[Function]}
@@ -149,10 +149,10 @@ exports[`Storyshots InputField Error 1`] = `
 
 exports[`Storyshots InputField Full Width 1`] = `
 <div
-  className="container-0-2-3 container-d3-0-2-11"
+  className="container-0-2-2 container-d3-0-2-10"
 >
   <div
-    className="label-0-2-6"
+    className="label-0-2-5"
   >
     Field Label
   </div>
@@ -172,10 +172,10 @@ exports[`Storyshots InputField Full Width 1`] = `
 
 exports[`Storyshots InputField Loading 1`] = `
 <div
-  className="container-0-2-3 container-d2-0-2-10"
+  className="container-0-2-2 container-d2-0-2-9"
 >
   <div
-    className="label-0-2-6"
+    className="label-0-2-5"
   >
     <span>
       <span
@@ -191,7 +191,7 @@ exports[`Storyshots InputField Loading 1`] = `
     </span>
   </div>
   <div
-    className="input-0-2-5"
+    className="input-0-2-4"
   >
     <span>
       <span

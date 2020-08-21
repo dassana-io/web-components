@@ -1,6 +1,6 @@
 import 'antd/lib/typography/style/index.css'
 import { createUseStyles } from 'react-jss'
-import { linkColor } from 'styles/styleguide'
+import { linkColor } from '../assets/styleguide'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
