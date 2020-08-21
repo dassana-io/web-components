@@ -26,6 +26,7 @@ const useStyles = createUseStyles({
 		padding: '8.5px 14px'
 	},
 	label: {
+		fontSize: '14px',
 		paddingBottom: '5px'
 	},
 	required: {

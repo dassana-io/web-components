@@ -2,7 +2,7 @@ import { Input } from 'antd'
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import InputField, { InputFieldProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper
 
@@ -28,7 +28,15 @@ describe('InputField', () => {
 	})
 
 	it('throws an error if value is passed without an onClick', () => {
-		expect(() => mount(<InputField value='abc' />)).toThrow()
+		expect(() => shallow(<InputField value='abc' />)).toThrow()
+	})
+
+	it('should pass onChange and value to the input component if the props exist', () => {
+		const mockOnChange = jest.fn()
+		wrapper = mount(<InputField onChange={mockOnChange} value='abc' />)
+
+		expect(wrapper.find(Input).props().onChange).toEqual(mockOnChange)
+		expect(wrapper.find(Input).props().value).toEqual('abc')
 	})
 
 	it('correctly passes the disabled prop', () => {
@@ -71,7 +79,7 @@ describe('InputField', () => {
 
 	describe('fullWidth', () => {
 		beforeEach(() => {
-			// Avoid `attachTo: document.body` Warning
+			// Mounting to document.body throws a React error, so create a temporary container div for the tests to mount the element to
 			const div = document.createElement('div')
 			div.setAttribute('id', 'container')
 			document.body.appendChild(div)
