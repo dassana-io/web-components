@@ -591,7 +591,31 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    Address
+                    Label
+                  </th>
+                  <th
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    Linkedin
+                  </th>
+                  <th
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    Toggle
+                  </th>
+                  <th
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    Icon
                   </th>
                 </tr>
               </thead>
@@ -626,7 +650,72 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    San Francisco
+                    <span
+                      className="ant-tag ant-tag-magenta"
+                      style={
+                        Object {
+                          "backgroundColor": undefined,
+                        }
+                      }
+                    >
+                      developer
+                    </span>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <a
+                      className="ant-typography"
+                      href="/"
+                      rel="noopener noreferrer"
+                      style={
+                        Object {
+                          "WebkitLineClamp": null,
+                        }
+                      }
+                      target="_blank"
+                    >
+                      <u>
+                        /in/dolor-sit
+                      </u>
+                    </a>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <button
+                      aria-checked={true}
+                      className="ant-switch ant-switch-small ant-switch-checked"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="switch"
+                      type="button"
+                    >
+                      <div
+                        className="ant-switch-handle"
+                      />
+                      <span
+                        className="ant-switch-inner"
+                      />
+                    </button>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <img
+                      alt="dassana-blue"
+                      height={32}
+                      src="dassana-blue.png"
+                    />
                   </td>
                 </tr>
                 <tr
@@ -657,7 +746,72 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    San Jose
+                    <span
+                      className="ant-tag ant-tag-blue"
+                      style={
+                        Object {
+                          "backgroundColor": undefined,
+                        }
+                      }
+                    >
+                      CEO
+                    </span>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <a
+                      className="ant-typography"
+                      href="/"
+                      rel="noopener noreferrer"
+                      style={
+                        Object {
+                          "WebkitLineClamp": null,
+                        }
+                      }
+                      target="_blank"
+                    >
+                      <u>
+                        /in/lorem-i
+                      </u>
+                    </a>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <button
+                      aria-checked={false}
+                      className="ant-switch ant-switch-small"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="switch"
+                      type="button"
+                    >
+                      <div
+                        className="ant-switch-handle"
+                      />
+                      <span
+                        className="ant-switch-inner"
+                      />
+                    </button>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <img
+                      alt="aws-logo"
+                      height={32}
+                      src="aws.svg"
+                    />
                   </td>
                 </tr>
                 <tr
@@ -688,7 +842,73 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    Sunnyvale
+                    <span
+                      className="ant-tag ant-tag-green"
+                      style={
+                        Object {
+                          "backgroundColor": undefined,
+                        }
+                      }
+                    >
+                      designer
+                    </span>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <a
+                      className="ant-typography"
+                      href="/"
+                      rel="noopener noreferrer"
+                      style={
+                        Object {
+                          "WebkitLineClamp": null,
+                        }
+                      }
+                      target="_blank"
+                    >
+                      <u>
+                        /in/amet-c
+                      </u>
+                    </a>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <button
+                      aria-checked={true}
+                      className="ant-switch ant-switch-small ant-switch-checked ant-switch-disabled"
+                      disabled={true}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="switch"
+                      type="button"
+                    >
+                      <div
+                        className="ant-switch-handle"
+                      />
+                      <span
+                        className="ant-switch-inner"
+                      />
+                    </button>
+                  </td>
+                  <td
+                    className="ant-table-cell"
+                    colSpan={null}
+                    rowSpan={null}
+                    style={Object {}}
+                  >
+                    <img
+                      alt="dassana-orange"
+                      height={32}
+                      src="dassana-orange.png"
+                    />
                   </td>
                 </tr>
               </tbody>

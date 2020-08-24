@@ -1,4 +1,6 @@
+import { LinkProps } from '../Link'
 import React from 'react'
+import { IconProps, TagProps, ToggleProps } from './types'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Table, { ColumnType, TableProps } from '.'
 
@@ -11,7 +13,10 @@ export default {
 export interface User {
 	firstName: string
 	age: number
-	address: string
+	label: TagProps
+	linkedin: LinkProps
+	toggle: ToggleProps
+	icon: IconProps
 }
 
 const columns: ColumnType[] = [
@@ -26,28 +31,98 @@ const columns: ColumnType[] = [
 		type: 'number'
 	},
 	{
-		dataIndex: 'address',
+		dataIndex: 'label',
+		format: 'tag',
 		sort: false,
-		title: 'Address',
-		type: 'string'
+		title: 'Label',
+		type: 'component'
+	},
+	{
+		dataIndex: 'linkedin',
+		format: 'link',
+		sort: false,
+		title: 'Linkedin',
+		type: 'component'
+	},
+	{
+		dataIndex: 'toggle',
+		format: 'toggle',
+		title: 'Toggle',
+		type: 'component'
+	},
+	{
+		dataIndex: 'icon',
+		format: 'icon',
+		title: 'Icon',
+		type: 'component'
 	}
 ]
 
+const iconProps: IconProps = {
+	iconKey: 'dassana-blue'
+}
+
+const linkProps: LinkProps = {
+	children: 'link',
+	href: '/',
+	target: '_blank'
+}
+
+const toggleProps: ToggleProps = {
+	onChange: () => {
+		console.log('toggled')
+	},
+	size: 'small'
+}
+
 const data: User[] = [
 	{
-		address: 'San Francisco',
 		age: 30,
-		firstName: 'Dolor Sit'
+		firstName: 'Dolor Sit',
+		icon: {
+			iconKey: 'dassana-blue'
+		},
+		label: { children: 'developer', color: 'magenta' },
+		linkedin: {
+			...linkProps,
+			children: '/in/dolor-sit'
+		},
+		toggle: {
+			...toggleProps,
+			defaultChecked: true
+		}
 	},
 	{
-		address: 'San Jose',
 		age: 20,
-		firstName: 'Lorem Ipsum'
+		firstName: 'Lorem Ipsum',
+		icon: {
+			iconKey: 'aws-logo'
+		},
+		label: { children: 'CEO', color: 'blue' },
+		linkedin: {
+			...linkProps,
+			children: '/in/lorem-i'
+		},
+		toggle: {
+			...toggleProps
+		}
 	},
 	{
-		address: 'Sunnyvale',
 		age: 35,
-		firstName: 'Amet Consectetur'
+		firstName: 'Amet Consectetur',
+		label: { children: 'designer', color: 'green' },
+		linkedin: {
+			...linkProps,
+			children: '/in/amet-c'
+		},
+		toggle: {
+			...toggleProps,
+			defaultChecked: true,
+			disabled: true
+		},
+		icon: {
+			iconKey: 'dassana-orange'
+		}
 	}
 ]
 
