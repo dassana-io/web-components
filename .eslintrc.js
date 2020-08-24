@@ -1,5 +1,6 @@
 module.exports = {
 	extends: [
+		'react-app',
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended' // Uses the recommended rules from the @typescript-eslint/eslint-plugin
@@ -10,6 +11,7 @@ module.exports = {
 		module: true,
 		window: true
 	},
+	// ignorePatterns: ['src/api/*/'], // web-components doesn't have a src/api
 	parser: '@typescript-eslint/parser', // Specifies the ESLint parser
 	parserOptions: {
 		ecmaFeatures: {
@@ -17,19 +19,22 @@ module.exports = {
 			modules: true
 		},
 		ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-		sourceType: 'module', // Allows for the use of imports
-		project: './tsconfig.json'
+		sourceType: 'module' // Allows for the use of imports
 	},
 	plugins: ['react', '@typescript-eslint'],
 	rules: {
 		// Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
 		// e.g. "@typescript-eslint/explicit-function-return-type": "off",
+		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/ban-types': 'off',
+		'@typescript-eslint/camelcase': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
+		'@typescript-eslint/member-delimiter-style': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/no-extra-semi': 'off',
 		'@typescript-eslint/no-non-null-assertion': 'off',
+		'@typescript-eslint/no-unused-expressions': 'off',
 		'@typescript-eslint/no-unused-vars': 'off',
 		'@typescript-eslint/no-unused-vars-experimental': 'warn',
 		'comma-dangle': ['warn', 'never'],
