@@ -1,5 +1,6 @@
 import { Button as AntDButton } from 'antd'
 import React from 'react'
+import Skeleton from '../Skeleton'
 import Button, { ButtonProps } from '.'
 import { shallow, ShallowWrapper } from 'enzyme'
 
@@ -35,6 +36,18 @@ describe('Button', () => {
 	})
 })
 
+describe('rendering', () => {
+	it('renders a skeleton', () => {
+		wrapper = shallow(
+			<Button onClick={mockClick} rendering>
+				Test
+			</Button>
+		)
+
+		expect(wrapper.find(Skeleton)).toHaveLength(1)
+	})
+})
+
 describe('Disabled Button', () => {
 	it('has correct prop "disabled" and correct class "disabled"', () => {
 		wrapper = shallow(
@@ -43,5 +56,16 @@ describe('Disabled Button', () => {
 			</Button>
 		)
 		expect(wrapper.props().disabled).toBeTruthy()
+	})
+})
+
+describe('Loading Button', () => {
+	it('has correct prop "loading"', () => {
+		wrapper = shallow(
+			<Button loading onClick={mockClick}>
+				Test
+			</Button>
+		)
+		expect(wrapper.props().loading).toBeTruthy()
 	})
 })

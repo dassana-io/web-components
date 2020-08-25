@@ -2,6 +2,7 @@ import 'antd/lib/button/style/index.css'
 import { Button as AntDButton } from 'antd'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
+import Skeleton from '../Skeleton'
 import React, { FC, ReactNode } from 'react'
 
 export interface ButtonProps {
@@ -22,6 +23,14 @@ export interface ButtonProps {
 	 */
 	disabled?: boolean
 	/**
+	 * Renders an animated loading icon next to the children.
+	 */
+	loading?: boolean
+	/**
+	 * Renders a skeleton for the button
+	 */
+	rendering?: boolean
+	/**
 	 * Array of classes to pass to button.
 	 */
 	classes?: string[]
@@ -29,19 +38,26 @@ export interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({
 	children,
-	onClick,
-	primary = false,
+	classes = [],
 	disabled = false,
-	classes = []
+	loading = false,
+	onClick,
+	rendering = false,
+	primary = false
 }: ButtonProps) => {
 	const antDProps: AntDButtonProps = {
 		className: classnames(classes),
 		disabled,
+		loading,
 		onClick,
 		type: primary ? 'primary' : 'default'
 	}
 
-	return <AntDButton {...antDProps}>{children}</AntDButton>
+	return rendering ? (
+		<Skeleton height={32} width={75} />
+	) : (
+		<AntDButton {...antDProps}>{children}</AntDButton>
+	)
 }
 
 export default Button

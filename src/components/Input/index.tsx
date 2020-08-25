@@ -14,8 +14,6 @@ const useStyles = createUseStyles({
 		}
 	},
 	container: {
-		display: 'flex',
-		flexDirection: 'column',
 		width: props => (props.fullWidth ? '100%' : '300px')
 	},
 	error: {
@@ -25,41 +23,23 @@ const useStyles = createUseStyles({
 	input: {
 		border: '1px solid #DEDEDF',
 		borderRadius: '4px',
-		padding: '8.5px 14px'
-	},
-	label: {
-		fontSize: '14px',
-		paddingBottom: '5px'
-	},
-	required: {
-		'&::after': {
-			color: 'red',
-			// eslint-disable-next-line quotes
-			content: "'*'",
-			paddingLeft: '5px'
-		}
+		padding: '6px 14px'
 	}
 })
 
-const InputFieldSkeleton: FC<InputFieldProps> = (props: InputFieldProps) => {
-	const { fieldLabel } = props
+const InputFieldSkeleton: FC<InputProps> = (props: InputProps) => {
 	const classes = useStyles(props)
 
 	return (
 		<div className={classes.container}>
-			{fieldLabel && (
-				<div className={classes.label}>
-					<Skeleton width={100} />
-				</div>
-			)}
 			<div className={classes.input}>
-				<Skeleton height={13} />
+				<Skeleton height={16} />
 			</div>
 		</div>
 	)
 }
 
-export interface InputFieldProps {
+export interface InputProps {
 	/**
 	 * Array of classes to pass to input
 	 * @default []
@@ -75,10 +55,6 @@ export interface InputFieldProps {
 	 * @default false
 	 */
 	error?: boolean
-	/**
-	 * Adds a label above the input
-	 */
-	fieldLabel?: string
 	/**
 	 * Whether or not input spans the full width of the parent container
 	 * @default false
@@ -99,11 +75,6 @@ export interface InputFieldProps {
 	 */
 	placeholder?: string
 	/**
-	 * Adds an asterisk to the label that indicates field is required
-	 * @default false
-	 */
-	required?: boolean
-	/**
 	 * Type of input (ex: text, password)
 	 * @default text
 	 */
@@ -114,16 +85,14 @@ export interface InputFieldProps {
 	value?: string
 }
 
-const InputField: FC<InputFieldProps> = (props: InputFieldProps) => {
+const InputField: FC<InputProps> = (props: InputProps) => {
 	const {
 		classes = [],
 		disabled = false,
 		onChange,
 		error = false,
-		fieldLabel = '',
 		loading = false,
 		placeholder = '',
-		required = false,
 		type = 'text',
 		value
 	} = props
@@ -154,16 +123,6 @@ const InputField: FC<InputFieldProps> = (props: InputFieldProps) => {
 		<InputFieldSkeleton {...props} />
 	) : (
 		<div className={componentClasses.container}>
-			{fieldLabel && (
-				<div
-					className={cn({
-						[componentClasses.label]: true,
-						[componentClasses.required]: required
-					})}
-				>
-					{fieldLabel}
-				</div>
-			)}
 			<Input
 				className={inputClasses}
 				disabled={disabled}
