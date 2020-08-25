@@ -2,7 +2,7 @@ import 'antd/lib/input/style/index.css'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Input } from 'antd'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from '../Skeleton'
 import React, { FC } from 'react'
 
 const useStyles = createUseStyles({
@@ -61,12 +61,12 @@ const InputFieldSkeleton: FC<InputFieldProps> = (props: InputFieldProps) => {
 
 export interface InputFieldProps {
 	/**
-	 * Array of classes to pass to button.
+	 * Array of classes to pass to input
 	 * @default []
 	 */
 	classes?: string[]
 	/**
-	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
+	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events)
 	 * @default false
 	 */
 	disabled?: boolean

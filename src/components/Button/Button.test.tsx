@@ -1,3 +1,4 @@
+import { Button as AntDButton } from 'antd'
 import React from 'react'
 import Button, { ButtonProps } from '.'
 import { shallow, ShallowWrapper } from 'enzyme'
@@ -18,6 +19,19 @@ describe('Button', () => {
 	it('runs onClick function when button is clicked', () => {
 		expect(wrapper.simulate('click'))
 		expect(mockClick).toHaveBeenCalledTimes(1)
+	})
+
+	it('should pass type primary if primary is passed as true', () => {
+		wrapper = shallow(
+			<Button onClick={mockClick} primary>
+				Test
+			</Button>
+		)
+		expect(wrapper.find(AntDButton).props().type).toEqual('primary')
+	})
+
+	it('should have a type default by default', () => {
+		expect(wrapper.find(AntDButton).props().type).toEqual('default')
 	})
 })
 

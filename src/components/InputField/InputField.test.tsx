@@ -1,6 +1,6 @@
 import { Input } from 'antd'
 import React from 'react'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from '../Skeleton'
 import InputField, { InputFieldProps } from './index'
 import { mount, ReactWrapper, shallow } from 'enzyme'
 
@@ -98,10 +98,7 @@ describe('InputField', () => {
 				attachTo: document.getElementById('container')
 			})
 
-			const element = document.getElementsByClassName(
-				wrapper.getDOMNode().className
-			)[0]
-			const style = window.getComputedStyle(element)
+			const style = window.getComputedStyle(wrapper.getDOMNode())
 
 			expect(style.width).toEqual('100%')
 		})
@@ -111,10 +108,7 @@ describe('InputField', () => {
 				attachTo: document.getElementById('container')
 			})
 
-			const element = document.getElementsByClassName(
-				wrapper.getDOMNode().className
-			)[0]
-			const style = window.getComputedStyle(element)
+			const style = window.getComputedStyle(wrapper.getDOMNode())
 
 			expect(style.width).not.toEqual('100%')
 		})
