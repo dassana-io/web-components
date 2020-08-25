@@ -89,7 +89,7 @@ describe('Skeleton', () => {
 				expect(style.width).toEqual('100%')
 			})
 
-			it('apply width prop if passed in', () => {
+			it('should apply width prop if passed in', () => {
 				const mockWidth = 250
 				const skeleton = mount(<Skeleton width={mockWidth} />, {
 					attachTo: document.getElementById('container')
@@ -110,7 +110,7 @@ describe('Skeleton', () => {
 				expect(style.height).toEqual('100%')
 			})
 
-			it('apply height prop if passed in', () => {
+			it('should apply height prop if passed in', () => {
 				const mockHeight = 250
 				const skeleton = mount(<Skeleton height={mockHeight} />, {
 					attachTo: document.getElementById('container')

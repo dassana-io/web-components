@@ -44,11 +44,11 @@ interface DefaultSkeletonProps {
 	 */
 	duration?: number
 	/**
-	 * Skeleton height
+	 * Skeleton height. If undefined, skeleton will span the height of parent container or 16px - whichever is greater. **Note:** height is a required prop for a circle skeleton.
 	 */
 	height?: number
 	/**
-	 * Width of skeleton. If undefined, skeleton will span the width of parent container
+	 * Skeleton width. If undefined, skeleton will span the width of parent container. **Note**: width is a required prop for a circle skeleton.
 	 */
 	width?: number
 }
