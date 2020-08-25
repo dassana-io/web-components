@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: '200px 100%',
 		borderRadius: props => (props.circle ? '50%' : '4px'),
-		display: 'block',
+		display: props => (props.count > 1 ? 'block' : 'inline-block'),
 		height: props => (props.height ? props.height : '100%'),
 		lineHeight: 1,
 		marginBottom: props => (props.count > 1 ? 5 : 0),

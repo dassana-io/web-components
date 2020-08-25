@@ -41,6 +41,21 @@ describe('Skeleton', () => {
 			}
 		})
 
+		describe('circle or ellipse', () => {
+			it('should have rounded edges', () => {
+				const skeleton = mount(
+					<Skeleton circle height={100} width={80} />,
+					{
+						attachTo: document.getElementById('container')
+					}
+				)
+
+				const style = window.getComputedStyle(skeleton.getDOMNode())
+
+				expect(style.borderRadius).toEqual('50%')
+			})
+		})
+
 		describe('duration', () => {
 			it('should default to 1.2 seconds if no duration is passed', () => {
 				const skeleton = mount(<Skeleton />, {
