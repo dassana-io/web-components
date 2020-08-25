@@ -14,9 +14,6 @@ export default {
 const Template: Story<ToggleProps> = args => <Toggle {...args} />
 
 export const Default = Template.bind({})
-Default.args = {
-	defaultChecked: true
-}
 
 export const Disabled = Template.bind({})
 Disabled.args = {
@@ -27,4 +24,10 @@ export const CheckedDisabled = Template.bind({})
 CheckedDisabled.args = {
 	defaultChecked: true,
 	disabled: true
+}
+
+export const CheckedSmall = Template.bind({})
+CheckedSmall.args = {
+	defaultChecked: true,
+	size: 'small'
 }

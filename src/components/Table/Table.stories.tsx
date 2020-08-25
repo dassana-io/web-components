@@ -1,6 +1,8 @@
+import { IconProps } from '../Icon'
 import { LinkProps } from '../Link'
 import React from 'react'
-import { IconProps, TagProps, ToggleProps } from './types'
+import { TagProps } from '../Tag'
+import { ToggleProps } from '../Toggle'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Table, { ColumnType, TableProps } from '.'
 
@@ -11,7 +13,7 @@ export default {
 } as Meta
 
 export interface User {
-	firstName: string
+	name: string
 	age: number
 	label: TagProps
 	linkedin: LinkProps
@@ -21,8 +23,8 @@ export interface User {
 
 const columns: ColumnType[] = [
 	{
-		dataIndex: 'firstName',
-		title: 'First Name',
+		dataIndex: 'name',
+		title: 'Name',
 		type: 'string'
 	},
 	{
@@ -58,10 +60,6 @@ const columns: ColumnType[] = [
 	}
 ]
 
-const iconProps: IconProps = {
-	iconKey: 'dassana-blue'
-}
-
 const linkProps: LinkProps = {
 	children: 'link',
 	href: '/',
@@ -78,7 +76,6 @@ const toggleProps: ToggleProps = {
 const data: User[] = [
 	{
 		age: 30,
-		firstName: 'Dolor Sit',
 		icon: {
 			iconKey: 'dassana-blue'
 		},
@@ -87,6 +84,7 @@ const data: User[] = [
 			...linkProps,
 			children: '/in/dolor-sit'
 		},
+		name: 'Dolor Sit',
 		toggle: {
 			...toggleProps,
 			defaultChecked: true
@@ -94,7 +92,6 @@ const data: User[] = [
 	},
 	{
 		age: 20,
-		firstName: 'Lorem Ipsum',
 		icon: {
 			iconKey: 'aws-logo'
 		},
@@ -103,25 +100,26 @@ const data: User[] = [
 			...linkProps,
 			children: '/in/lorem-i'
 		},
+		name: 'Lorem Ipsum',
 		toggle: {
 			...toggleProps
 		}
 	},
 	{
 		age: 35,
-		firstName: 'Amet Consectetur',
+		icon: {
+			iconKey: 'dassana-orange'
+		},
 		label: { children: 'designer', color: 'green' },
 		linkedin: {
 			...linkProps,
 			children: '/in/amet-c'
 		},
+		name: 'Amet Consectetur',
 		toggle: {
 			...toggleProps,
 			defaultChecked: true,
 			disabled: true
-		},
-		icon: {
-			iconKey: 'dassana-orange'
 		}
 	}
 ]

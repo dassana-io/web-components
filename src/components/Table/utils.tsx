@@ -1,16 +1,10 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
-import {
-	ColumnType,
-	Icon,
-	IconProps,
-	Link,
-	LinkProps,
-	Tag,
-	TagProps,
-	Toggle,
-	ToggleProps
-} from './types'
+import { ColumnType } from './types'
+import Icon, { IconProps } from '../Icon'
+import Link, { LinkProps } from '../Link'
 import React, { Key } from 'react'
+import Tag, { TagProps } from '../Tag'
+import Toggle, { ToggleProps } from '../Toggle'
 
 function sortStringCompare(column: ColumnType) {
 	return (a: any, b: any) =>
@@ -21,23 +15,7 @@ function sortNumberCompare(column: ColumnType) {
 	return (a: any, b: any) => a[column.dataIndex] - b[column.dataIndex]
 }
 
-function mapColTypeFormat(columns: ColumnType[]) {
-	const mapped: Record<string, {}> = {}
-	for (const col of columns) {
-		mapped[col.dataIndex] = { format: col.format, type: col.type }
-	}
-
-	return mapped
-}
-
-export function processData<DataType>(data: DataType[], columns: ColumnType[]) {
-	const mappedColTypeFormat = mapColTypeFormat(columns)
-	/*
-  TODO: Throw error if data type doesn't match column type and format?
-  TYPESCRIPT CHECK?
-  */
-	console.log(mappedColTypeFormat)
-
+export function processData<DataType>(data: DataType[]) {
 	const processedData: DataType[] = []
 
 	let i: Key = 0

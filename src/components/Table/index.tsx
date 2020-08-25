@@ -9,7 +9,7 @@ function Table<DataType extends object>({
 	columns,
 	data
 }: TableProps<DataType>): ReactElement {
-	const processedData = processData<DataType>(data, columns)
+	const processedData = processData<DataType>(data)
 	const processedColumns = processColumns<DataType>(columns)
 
 	return (
@@ -22,4 +22,4 @@ function Table<DataType extends object>({
 
 export default Table
 export type { TableProps }
-export type { ColumnType } from './types'
+export type { ColumnType, StringType, NumberType, ComponentType } from './types'
