@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
-import FormButton from './FormButton'
+import FormButton, { FormButtonProps } from './FormButton'
 import FormInput, { FormInputProps } from './FormInput'
 import { FormProvider, useForm } from 'react-hook-form'
 import React, { FC, ReactNode, useEffect } from 'react'
@@ -21,7 +21,7 @@ export interface FormProps {
 }
 
 interface FormSubComponents {
-	Button: FC
+	Button: FC<FormButtonProps>
 	Input: FC<FormInputProps>
 }
 
@@ -38,7 +38,7 @@ const Form: FC<FormProps> & FormSubComponents = ({
 
 	useEffect(() => {
 		reset(initialValues)
-	}, [initialValues])
+	}, [initialValues, reset])
 
 	return (
 		<FormProvider {...methods}>

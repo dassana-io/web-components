@@ -1,7 +1,7 @@
 import 'antd/lib/input/style/index.css'
+import { Input as AntDInput } from 'antd'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { Input } from 'antd'
 import Skeleton from '../Skeleton'
 import React, { FC } from 'react'
 
@@ -85,7 +85,7 @@ export interface InputProps {
 	value?: string
 }
 
-const InputField: FC<InputProps> = (props: InputProps) => {
+const Input: FC<InputProps> = (props: InputProps) => {
 	const {
 		classes = [],
 		disabled = false,
@@ -123,7 +123,7 @@ const InputField: FC<InputProps> = (props: InputProps) => {
 		<InputFieldSkeleton {...props} />
 	) : (
 		<div className={componentClasses.container}>
-			<Input
+			<AntDInput
 				className={inputClasses}
 				disabled={disabled}
 				placeholder={placeholder}
@@ -134,4 +134,4 @@ const InputField: FC<InputProps> = (props: InputProps) => {
 	)
 }
 
-export default InputField
+export default Input
