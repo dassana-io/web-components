@@ -1,6 +1,6 @@
-import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { Controller, useFormContext, ValidationRules } from 'react-hook-form'
+import FieldContext, { FieldContextProps } from '../FieldContext'
 import Input, { InputProps } from '../../Input'
 import React, { FC, useContext } from 'react'
 
@@ -21,11 +21,15 @@ const FormInput: FC<FormInputProps> = ({
 	...rest
 }: FormInputProps) => {
 	const { control, errors } = useFormContext()
-	const { loading } = useContext(FieldContext)
+	const { initialValues, loading } = useContext<FieldContextProps>(
+		FieldContext
+	)
 
 	if (required) {
 		rules.required = true
 	}
+
+	const defaultValue = (initialValues[name] as string) || ''
 
 	return (
 		<div>
@@ -38,7 +42,7 @@ const FormInput: FC<FormInputProps> = ({
 			)}
 			<Controller
 				control={control}
-				defaultValue=''
+				defaultValue={defaultValue}
 				name={name}
 				render={({ onChange, value }) => (
 					<Input

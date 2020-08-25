@@ -1,6 +1,7 @@
 import { createContext } from 'react'
 
-interface FieldContextProps {
+export interface FieldContextProps {
+	initialValues: Record<string, any>
 	loading: boolean
 	onSubmit: (data: any) => void
 }
