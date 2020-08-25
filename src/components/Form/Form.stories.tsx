@@ -4,6 +4,12 @@ import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
+	argTypes: {
+		initialValues: {
+			control: 'object',
+			defaultValue: { firstName: 'First Name' }
+		}
+	},
 	component: Form,
 	title: 'Form'
 } as Meta
