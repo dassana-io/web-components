@@ -35,14 +35,12 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'label',
 		format: 'tag',
-		sort: false,
 		title: 'Label',
 		type: 'component'
 	},
 	{
 		dataIndex: 'linkedin',
 		format: 'link',
-		sort: false,
 		title: 'Linkedin',
 		type: 'component'
 	},

@@ -15,6 +15,13 @@ function sortNumberCompare(column: ColumnType) {
 	return (a: any, b: any) => a[column.dataIndex] - b[column.dataIndex]
 }
 
+function sortChildrenCompare(column: ColumnType) {
+	return (a: any, b: any) =>
+		a[column.dataIndex]['children'].localeCompare(
+			b[column.dataIndex]['children']
+		)
+}
+
 export function processData<DataType>(data: DataType[]) {
 	const processedData: DataType[] = []
 
@@ -60,6 +67,10 @@ export function processColumns<DataType>(columns: ColumnType[]) {
 		}
 
 		if (sort === undefined || sort) {
+			if (format === 'link')
+				antDColumn.sorter = sortChildrenCompare(column)
+			if (format === 'tag')
+				antDColumn.sorter = sortChildrenCompare(column)
 			if (type === 'string') antDColumn.sorter = sortStringCompare(column)
 			if (type === 'number') antDColumn.sorter = sortNumberCompare(column)
 		}
