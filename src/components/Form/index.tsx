@@ -4,7 +4,7 @@ import { FieldValues } from 'react-hook-form/dist/types/form'
 import FormButton from './FormButton'
 import FormInput from './FormInput'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 
 const useStyles = createUseStyles({
 	container: {
@@ -30,7 +30,11 @@ function Form<Model>({
 	const classes = useStyles()
 	const methods = useForm()
 
-	const { handleSubmit } = methods
+	const { handleSubmit, reset } = methods
+
+	useEffect(() => {
+		reset(initialValues)
+	}, [initialValues, reset])
 
 	return (
 		<FormProvider {...methods}>

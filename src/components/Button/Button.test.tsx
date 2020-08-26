@@ -1,4 +1,4 @@
-import { Button as AntDButton } from 'antd'
+import { Button as AntDButton, Spin } from 'antd'
 import React from 'react'
 import Skeleton from '../Skeleton'
 import Button, { ButtonProps } from '.'
@@ -66,6 +66,6 @@ describe('Loading Button', () => {
 				Test
 			</Button>
 		)
-		expect(wrapper.props().loading).toBeTruthy()
+		expect(wrapper.find(Spin)).toHaveLength(1)
 	})
 })

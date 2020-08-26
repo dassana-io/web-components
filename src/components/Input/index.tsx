@@ -27,7 +27,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-const InputFieldSkeleton: FC<InputProps> = (props: InputProps) => {
+const InputSkeleton: FC<InputProps> = (props: InputProps) => {
 	const classes = useStyles(props)
 
 	return (
@@ -120,7 +120,7 @@ const Input: FC<InputProps> = (props: InputProps) => {
 	}
 
 	return loading ? (
-		<InputFieldSkeleton {...props} />
+		<InputSkeleton {...props} />
 	) : (
 		<div className={componentClasses.container}>
 			<AntDInput

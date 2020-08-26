@@ -1,8 +1,10 @@
 import 'antd/lib/button/style/index.css'
-import { Button as AntDButton } from 'antd'
+import 'antd/lib/spin/style/index.css'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
+import { LoadingOutlined } from '@ant-design/icons'
 import Skeleton from '../Skeleton'
+import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
 export interface ButtonProps {
@@ -48,7 +50,6 @@ const Button: FC<ButtonProps> = ({
 	const antDProps: AntDButtonProps = {
 		className: classnames(classes),
 		disabled,
-		loading,
 		onClick,
 		type: primary ? 'primary' : 'default'
 	}
@@ -56,7 +57,18 @@ const Button: FC<ButtonProps> = ({
 	return rendering ? (
 		<Skeleton height={32} width={75} />
 	) : (
-		<AntDButton {...antDProps}>{children}</AntDButton>
+		<AntDButton {...antDProps}>
+			{loading && (
+				<span style={{ paddingRight: 8 }}>
+					<Spin
+						indicator={
+							<LoadingOutlined spin style={{ fontSize: 16 }} />
+						}
+					/>
+				</span>
+			)}
+			{children}
+		</AntDButton>
 	)
 }
 
