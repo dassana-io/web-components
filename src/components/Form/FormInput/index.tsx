@@ -11,7 +11,9 @@ interface BaseFieldProps {
 	rules?: ValidationRules
 }
 
-export interface FormInputProps extends BaseFieldProps, InputProps {}
+export interface FormInputProps
+	extends BaseFieldProps,
+		Omit<InputProps, 'onChange' | 'value'> {}
 
 const FormInput: FC<FormInputProps> = ({
 	label,

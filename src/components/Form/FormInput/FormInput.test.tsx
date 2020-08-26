@@ -9,7 +9,7 @@ jest.mock('react-hook-form', () => ({
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),
-		handleSubmit: (onSubmit: Function) => onSubmit()
+		errors: () => ({ foo: true })
 	})
 }))
 
@@ -20,7 +20,11 @@ const mockOnSubmit = jest.fn()
 beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
-			value={{ loading: true, onSubmit: mockOnSubmit }}
+			value={{
+				initialValues: { foo: 'bar' },
+				loading: true,
+				onSubmit: mockOnSubmit
+			}}
 		>
 			<FormInput name='foo' />
 		</FieldContext.Provider>
@@ -36,10 +40,18 @@ describe('FormInput', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
+	it('correctly passes a default value from initial values if it exists', () => {
+		expect(wrapper.find(Controller).props().defaultValue).toEqual('bar')
+	})
+
 	it('correctly passes validation rules if required', () => {
 		wrapper = mount(
 			<FieldContext.Provider
-				value={{ loading: true, onSubmit: mockOnSubmit }}
+				value={{
+					initialValues: {},
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
 			>
 				<FormInput name='foo' required />
 			</FieldContext.Provider>

@@ -7,19 +7,24 @@ import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
 jest.mock('react-hook-form', () => ({
 	...jest.requireActual('react-hook-form'),
 	useForm: () => ({
-		handleSubmit: jest.fn(),
-		reset: mockReset
+		handleSubmit: jest.fn()
 	})
 }))
 
-let wrapper: ReactWrapper<FormProps> | ShallowWrapper<FormProps>
+interface MockForm {
+	foo: string
+}
 
+let wrapper:
+	| ReactWrapper<FormProps<MockForm>>
+	| ShallowWrapper<FormProps<MockForm>>
+
+const mockInitialValues = { foo: 'bar' }
 const mockOnSubmit = jest.fn()
-const mockReset = jest.fn()
 
 beforeEach(() => {
 	wrapper = shallow(
-		<Form onSubmit={mockOnSubmit}>
+		<Form initialValues={mockInitialValues} onSubmit={mockOnSubmit}>
 			<FormButton />
 		</Form>
 	)
@@ -37,21 +42,22 @@ describe('Form', () => {
 	it('passes the correct props to FieldContext provider', () => {
 		expect(wrapper.find(FieldContext.Provider).props().value).toMatchObject(
 			{
+				initialValues: mockInitialValues,
 				loading: false,
 				onSubmit: mockOnSubmit
 			}
 		)
 	})
 
-	it('sets initial values into the form', () => {
-		const mockInitialValues = { foo: 'bar' }
-		wrapper = mount(
-			<Form initialValues={mockInitialValues} onSubmit={mockOnSubmit}>
+	it('correctly defaults initial values if there are none', () => {
+		wrapper = shallow(
+			<Form onSubmit={mockOnSubmit}>
 				<FormButton />
 			</Form>
 		)
 
-		expect(mockReset).toHaveBeenCalledTimes(1)
-		expect(mockReset).toHaveBeenCalledWith(mockInitialValues)
+		expect(
+			wrapper.find(FieldContext.Provider).props().value
+		).toMatchObject({ initialValues: {} })
 	})
 })
