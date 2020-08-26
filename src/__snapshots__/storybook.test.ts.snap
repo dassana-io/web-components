@@ -59,10 +59,10 @@ exports[`Storyshots Button Google 1`] = `
 </button>
 `;
 
-exports[`Storyshots Button Loading 1`] = `
+exports[`Storyshots Button Pending 1`] = `
 <button
   className="ant-btn ant-btn-default"
-  disabled={false}
+  disabled={true}
   onClick={[Function]}
   type="button"
 >
@@ -104,7 +104,7 @@ exports[`Storyshots Button Loading 1`] = `
     </div>
   </span>
   <span>
-    Loading
+    Pending
   </span>
 </button>
 `;

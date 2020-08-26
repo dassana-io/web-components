@@ -5,7 +5,7 @@ import React, { FC, useContext } from 'react'
 
 export type FormButtonProps = Omit<
 	ButtonProps,
-	'rendering' | 'onClick' | 'children'
+	'loading' | 'onClick' | 'children'
 >
 
 const FormButton: FC<FormButtonProps> = (props: FormButtonProps) => {
@@ -13,7 +13,7 @@ const FormButton: FC<FormButtonProps> = (props: FormButtonProps) => {
 	const { loading, onSubmit } = useContext(FieldContext)
 
 	return (
-		<Button onClick={handleSubmit(onSubmit)} rendering={loading} {...props}>
+		<Button loading={loading} onClick={handleSubmit(onSubmit)} {...props}>
 			Submit
 		</Button>
 	)

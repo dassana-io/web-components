@@ -2,7 +2,7 @@ import FieldContext from './FieldContext'
 import FormButton from './FormButton'
 import React from 'react'
 import Form, { FormProps } from './index'
-import { ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
+import { shallow, ShallowWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
 	...jest.requireActual('react-hook-form'),
@@ -15,9 +15,7 @@ interface MockForm {
 	foo: string
 }
 
-let wrapper:
-	| ReactWrapper<FormProps<MockForm>>
-	| ShallowWrapper<FormProps<MockForm>>
+let wrapper: ShallowWrapper<FormProps<MockForm>>
 
 const mockInitialValues = { foo: 'bar' }
 const mockOnSubmit = jest.fn()
@@ -49,7 +47,7 @@ describe('Form', () => {
 		)
 	})
 
-	it('correctly defaults initial values if there are none', () => {
+	it('correctly defaults initial values to empty object if none is passed in', () => {
 		wrapper = shallow(
 			<Form onSubmit={mockOnSubmit}>
 				<FormButton />

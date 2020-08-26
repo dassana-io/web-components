@@ -36,10 +36,10 @@ describe('Button', () => {
 	})
 })
 
-describe('rendering', () => {
+describe('loading', () => {
 	it('renders a skeleton', () => {
 		wrapper = shallow(
-			<Button onClick={mockClick} rendering>
+			<Button loading onClick={mockClick}>
 				Test
 			</Button>
 		)
@@ -59,13 +59,20 @@ describe('Disabled Button', () => {
 	})
 })
 
-describe('Loading Button', () => {
-	it('has correct prop "loading"', () => {
+describe('Pending Button', () => {
+	beforeEach(() => {
 		wrapper = shallow(
-			<Button loading onClick={mockClick}>
+			<Button onClick={mockClick} pending>
 				Test
 			</Button>
 		)
+	})
+
+	it('renders a Spin component', () => {
 		expect(wrapper.find(Spin)).toHaveLength(1)
+	})
+
+	it('automatically disables the button', () => {
+		expect(wrapper.find(AntDButton).props().disabled).toBeTruthy()
 	})
 })

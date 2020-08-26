@@ -25,13 +25,13 @@ export interface ButtonProps {
 	 */
 	disabled?: boolean
 	/**
-	 * Renders an animated loading icon next to the children.
+	 * Renders a skeleton for the button
 	 */
 	loading?: boolean
 	/**
-	 * Renders a skeleton for the button
+	 * Renders an animated loading icon next to the children.
 	 */
-	rendering?: boolean
+	pending?: boolean
 	/**
 	 * Array of classes to pass to button.
 	 */
@@ -44,21 +44,21 @@ const Button: FC<ButtonProps> = ({
 	disabled = false,
 	loading = false,
 	onClick,
-	rendering = false,
+	pending = false,
 	primary = false
 }: ButtonProps) => {
 	const antDProps: AntDButtonProps = {
 		className: classnames(classes),
-		disabled,
+		disabled: pending || disabled,
 		onClick,
 		type: primary ? 'primary' : 'default'
 	}
 
-	return rendering ? (
+	return loading ? (
 		<Skeleton height={32} width={75} />
 	) : (
 		<AntDButton {...antDProps}>
-			{loading && (
+			{pending && (
 				<span style={{ paddingRight: 8 }}>
 					<Spin
 						indicator={

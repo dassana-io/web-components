@@ -18,7 +18,7 @@ const mockOnSubmit = jest.fn()
 beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
-			value={{ loading: true, onSubmit: mockOnSubmit }}
+			value={{ initialValues: {}, loading: true, onSubmit: mockOnSubmit }}
 		>
 			<FormButton />
 		</FieldContext.Provider>
@@ -41,6 +41,6 @@ describe('FormButton', () => {
 	})
 
 	it('correctly passes loading from field context', () => {
-		expect(wrapper.find(Button).props().rendering).toBe(true)
+		expect(wrapper.find(Button).props().loading).toBe(true)
 	})
 })
