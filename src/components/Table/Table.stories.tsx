@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import { IconProps } from '../Icon'
 import { LinkProps } from '../Link'
 import React from 'react'
@@ -13,23 +14,26 @@ export default {
 } as Meta
 
 export interface User {
-	name: string
-	age: number
+	date: number
+	data: number
 	label: TagProps
-	linkedin: LinkProps
+	link: LinkProps
 	toggle: ToggleProps
 	icon: IconProps
 }
 
 const columns: ColumnType[] = [
 	{
-		dataIndex: 'name',
-		title: 'Name',
-		type: 'string'
+		dataIndex: 'date',
+		displayFormat: 'MM/DD/YYYY',
+		format: 'date',
+		title: 'Date',
+		type: 'number'
 	},
 	{
-		dataIndex: 'age',
-		title: 'Age',
+		dataIndex: 'data',
+		format: 'byte',
+		title: 'Data',
 		type: 'number'
 	},
 	{
@@ -39,9 +43,9 @@ const columns: ColumnType[] = [
 		type: 'component'
 	},
 	{
-		dataIndex: 'linkedin',
+		dataIndex: 'link',
 		format: 'link',
-		title: 'Linkedin',
+		title: 'Link',
 		type: 'component'
 	},
 	{
@@ -65,55 +69,53 @@ const linkProps: LinkProps = {
 }
 
 const toggleProps: ToggleProps = {
-	onChange: () => {
-		console.log('toggled')
-	},
+	onChange: action('onChange'),
 	size: 'small'
 }
 
 const data: User[] = [
 	{
-		age: 30,
+		data: 1024,
+		date: 1598400668681,
 		icon: {
 			iconKey: 'dassana-blue'
 		},
 		label: { children: 'developer', color: 'magenta' },
-		linkedin: {
+		link: {
 			...linkProps,
-			children: '/in/dolor-sit'
+			children: 'dolor-sit'
 		},
-		name: 'Dolor Sit',
 		toggle: {
 			...toggleProps,
 			defaultChecked: true
 		}
 	},
 	{
-		age: 20,
+		data: 100,
+		date: 1570504402657,
 		icon: {
 			iconKey: 'aws-logo'
 		},
 		label: { children: 'CEO', color: 'blue' },
-		linkedin: {
+		link: {
 			...linkProps,
-			children: '/in/lorem-i'
+			children: 'lorem-i'
 		},
-		name: 'Lorem Ipsum',
 		toggle: {
 			...toggleProps
 		}
 	},
 	{
-		age: 35,
+		data: 1048576,
+		date: 1581033743000,
 		icon: {
 			iconKey: 'dassana-orange'
 		},
 		label: { children: 'designer', color: 'green' },
-		linkedin: {
+		link: {
 			...linkProps,
-			children: '/in/amet-c'
+			children: 'amet-c'
 		},
-		name: 'Amet Consectetur',
 		toggle: {
 			...toggleProps,
 			defaultChecked: true,

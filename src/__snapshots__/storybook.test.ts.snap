@@ -470,7 +470,7 @@ exports[`Storyshots Table Default 1`] = `
                       className="ant-table-column-sorters"
                     >
                       <span>
-                        Name
+                        Date
                       </span>
                       <span
                         className="ant-table-column-sorter ant-table-column-sorter-full"
@@ -533,7 +533,7 @@ exports[`Storyshots Table Default 1`] = `
                       className="ant-table-column-sorters"
                     >
                       <span>
-                        Age
+                        Data
                       </span>
                       <span
                         className="ant-table-column-sorter ant-table-column-sorter-full"
@@ -659,7 +659,7 @@ exports[`Storyshots Table Default 1`] = `
                       className="ant-table-column-sorters"
                     >
                       <span>
-                        Linkedin
+                        Link
                       </span>
                       <span
                         className="ant-table-column-sorter ant-table-column-sorter-full"
@@ -744,7 +744,7 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    Dolor Sit
+                    08/25/2020
                   </td>
                   <td
                     className="ant-table-cell"
@@ -752,7 +752,7 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    30
+                    1KB
                   </td>
                   <td
                     className="ant-table-cell"
@@ -789,7 +789,7 @@ exports[`Storyshots Table Default 1`] = `
                       target="_blank"
                     >
                       <u>
-                        /in/dolor-sit
+                        dolor-sit
                       </u>
                     </a>
                   </td>
@@ -840,7 +840,7 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    Lorem Ipsum
+                    10/07/2019
                   </td>
                   <td
                     className="ant-table-cell"
@@ -848,7 +848,7 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    20
+                    100B
                   </td>
                   <td
                     className="ant-table-cell"
@@ -885,7 +885,7 @@ exports[`Storyshots Table Default 1`] = `
                       target="_blank"
                     >
                       <u>
-                        /in/lorem-i
+                        lorem-i
                       </u>
                     </a>
                   </td>
@@ -936,7 +936,7 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    Amet Consectetur
+                    02/06/2020
                   </td>
                   <td
                     className="ant-table-cell"
@@ -944,7 +944,7 @@ exports[`Storyshots Table Default 1`] = `
                     rowSpan={null}
                     style={Object {}}
                   >
-                    35
+                    1MB
                   </td>
                   <td
                     className="ant-table-cell"
@@ -981,7 +981,7 @@ exports[`Storyshots Table Default 1`] = `
                       target="_blank"
                     >
                       <u>
-                        /in/amet-c
+                        amet-c
                       </u>
                     </a>
                   </td>

@@ -4,14 +4,25 @@ interface ColumnPartialType {
 	sort?: boolean
 }
 
-export interface StringType extends ColumnPartialType {
-	type: 'string'
+interface DefaultNumberType extends ColumnPartialType {
+	type: 'number'
 	format?: 'none'
 }
 
-export interface NumberType extends ColumnPartialType {
-	type: 'number'
-	format?: 'none' | 'date' | 'byte'
+interface NumberDataType extends Omit<DefaultNumberType, 'format'> {
+	format?: 'byte'
+}
+
+interface NumberDateType extends Omit<DefaultNumberType, 'format'> {
+	format?: 'date'
+	displayFormat?: string
+}
+
+export type NumberType = DefaultNumberType | NumberDataType | NumberDateType
+
+export interface StringType extends ColumnPartialType {
+	type: 'string'
+	format?: 'none'
 }
 
 export interface ComponentType extends ColumnPartialType {

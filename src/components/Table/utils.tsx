@@ -1,5 +1,7 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
+import bytes from 'bytes'
 import { ColumnType } from './types'
+import moment from 'moment'
 import Icon, { IconProps } from '../Icon'
 import Link, { LinkProps } from '../Link'
 import React, { Key } from 'react'
@@ -47,6 +49,21 @@ export function processColumns<DataType>(columns: ColumnType[]) {
 			dataIndex,
 			showSorterTooltip: false,
 			title
+		}
+
+		if (type === 'number') {
+			if (format === 'byte') {
+				antDColumn.render = number => bytes(number)
+			}
+			if (format === 'date') {
+				let displayFormat: string | undefined = ''
+
+				if ('displayFormat' in column)
+					displayFormat = column.displayFormat
+
+				antDColumn.render = number =>
+					moment(number).format(displayFormat)
+			}
 		}
 
 		if (type === 'component') {
