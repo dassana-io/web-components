@@ -2,7 +2,7 @@ import FieldContext from './FieldContext'
 import FormButton from './FormButton'
 import React from 'react'
 import Form, { FormProps } from './index'
-import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
+import { ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
 	...jest.requireActual('react-hook-form'),

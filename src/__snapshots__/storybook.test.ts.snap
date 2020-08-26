@@ -66,7 +66,13 @@ exports[`Storyshots Button Loading 1`] = `
   onClick={[Function]}
   type="button"
 >
-  <span>
+  <span
+    style={
+      Object {
+        "paddingRight": 8,
+      }
+    }
+  >
     <div
       className="ant-spin ant-spin-spinning"
     >
@@ -77,7 +83,6 @@ exports[`Storyshots Button Loading 1`] = `
         style={
           Object {
             "fontSize": 16,
-            "paddingRight": 8,
           }
         }
       >
@@ -281,6 +286,100 @@ exports[`Storyshots Input Loading 1`] = `
 </div>
 `;
 
+exports[`Storyshots InputField Default 1`] = `
+<div
+  className="container-0-2-2 container-d0-0-2-7"
+>
+  <div
+    className="label-0-2-5"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Error 1`] = `
+<div
+  className="container-0-2-2 container-d4-0-2-14"
+>
+  <div
+    className="label-0-2-5"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input error-0-2-3"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Full Width 1`] = `
+<div
+  className="container-0-2-2 container-d3-0-2-13"
+>
+  <div
+    className="label-0-2-5"
+  >
+    Field Label
+  </div>
+  <input
+    className="ant-input"
+    disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots InputField Loading 1`] = `
+<div
+  className="container-0-2-2 container-d2-0-2-9"
+>
+  <div
+    className="label-0-2-5"
+  >
+    <span
+      className="container-0-2-10 container-d0-0-2-11"
+    >
+       
+    </span>
+  </div>
+  <div
+    className="input-0-2-4"
+  >
+    <span
+      className="container-0-2-10 container-d1-0-2-12"
+    >
+       
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Link Click 1`] = `
 <a
   className="ant-typography"
@@ -317,7 +416,7 @@ exports[`Storyshots Link Href 1`] = `
 
 exports[`Storyshots Skeleton Circle 1`] = `
 <span
-  className="container-0-2-13 container-d2-0-2-18"
+  className="container-0-2-10 container-d3-0-2-16"
 >
    
 </span>
@@ -326,27 +425,27 @@ exports[`Storyshots Skeleton Circle 1`] = `
 exports[`Storyshots Skeleton Count 1`] = `
 Array [
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-10 container-d4-0-2-17"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-10 container-d4-0-2-17"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-10 container-d4-0-2-17"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-10 container-d4-0-2-17"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-10 container-d4-0-2-17"
   >
      
   </span>,
@@ -355,7 +454,7 @@ Array [
 
 exports[`Storyshots Skeleton Default 1`] = `
 <span
-  className="container-0-2-13 container-d1-0-2-17"
+  className="container-0-2-10 container-d2-0-2-15"
 >
    
 </span>
