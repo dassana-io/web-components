@@ -1,9 +1,10 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
-import FormButton, { FormButtonProps } from './FormButton'
-import FormInput, { FormInputProps } from './FormInput'
-import { FormProvider, useForm } from 'react-hook-form'
-import React, { FC, ReactNode } from 'react'
+import { FieldValues } from 'react-hook-form/dist/types/form'
+import FormButton from './FormButton'
+import FormInput from './FormInput'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import React, { ReactNode } from 'react'
 
 const useStyles = createUseStyles({
 	container: {
@@ -13,24 +14,19 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface FormProps {
+export interface FormProps<Model> {
 	children: ReactNode
-	initialValues?: Record<string, any>
+	initialValues?: Model
 	loading?: boolean
-	onSubmit: (data: any) => void
+	onSubmit: SubmitHandler<FieldValues>
 }
 
-interface FormSubComponents {
-	Button: FC<FormButtonProps>
-	Input: FC<FormInputProps>
-}
-
-const Form: FC<FormProps> & FormSubComponents = ({
+function Form<Model>({
 	children,
-	initialValues = {},
+	initialValues = {} as Model,
 	loading = false,
 	onSubmit
-}: FormProps) => {
+}: FormProps<Model>) {
 	const classes = useStyles()
 	const methods = useForm()
 
