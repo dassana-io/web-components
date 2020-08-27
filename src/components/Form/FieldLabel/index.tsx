@@ -1,11 +1,12 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { fontSizeRegular } from '../../assets/styleguide'
 import Skeleton from '../../Skeleton'
 import React, { FC } from 'react'
 
 const useStyles = createUseStyles({
 	container: {
-		fontSize: '14px',
+		fontSize: fontSizeRegular,
 		paddingBottom: 5
 	},
 	required: {
@@ -22,12 +23,14 @@ export interface FieldLabelProps {
 	label: string
 	loading?: boolean
 	required?: boolean
+	skeletonWidth?: number
 }
 
 const FieldLabel: FC<FieldLabelProps> = ({
 	label,
 	loading = false,
-	required = false
+	required = false,
+	skeletonWidth = 100
 }: FieldLabelProps) => {
 	const classes = useStyles()
 
@@ -38,7 +41,7 @@ const FieldLabel: FC<FieldLabelProps> = ({
 				[classes.required]: required
 			})}
 		>
-			{loading ? <Skeleton width={100} /> : label}
+			{loading ? <Skeleton width={skeletonWidth} /> : label}
 		</div>
 	)
 }

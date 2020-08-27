@@ -36,7 +36,7 @@ describe('Button', () => {
 	})
 })
 
-describe('loading', () => {
+describe('Loading Button', () => {
 	it('renders a skeleton', () => {
 		wrapper = shallow(
 			<Button loading onClick={mockClick}>

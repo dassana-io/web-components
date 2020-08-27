@@ -6,6 +6,7 @@ import React, { FC, useContext } from 'react'
 
 interface BaseFieldProps {
 	label?: string
+	labelSkeletonWidth?: number
 	name: string
 	required?: boolean
 	rules?: ValidationRules
@@ -17,6 +18,7 @@ export interface FormInputProps
 
 const FormInput: FC<FormInputProps> = ({
 	label,
+	labelSkeletonWidth,
 	name,
 	required,
 	rules = {},
@@ -40,6 +42,7 @@ const FormInput: FC<FormInputProps> = ({
 					label={label}
 					loading={loading}
 					required={required}
+					skeletonWidth={labelSkeletonWidth}
 				/>
 			)}
 			<Controller

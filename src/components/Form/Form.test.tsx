@@ -2,12 +2,13 @@ import FieldContext from './FieldContext'
 import FormButton from './FormButton'
 import React from 'react'
 import Form, { FormProps } from './index'
-import { shallow, ShallowWrapper } from 'enzyme'
+import { mount, shallow, ShallowWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
 	...jest.requireActual('react-hook-form'),
 	useForm: () => ({
-		handleSubmit: jest.fn()
+		handleSubmit: jest.fn(),
+		reset: mockReset
 	})
 }))
 
@@ -19,6 +20,7 @@ let wrapper: ShallowWrapper<FormProps<MockForm>>
 
 const mockInitialValues = { foo: 'bar' }
 const mockOnSubmit = jest.fn()
+const mockReset = jest.fn()
 
 beforeEach(() => {
 	wrapper = shallow(
@@ -57,5 +59,17 @@ describe('Form', () => {
 		expect(
 			wrapper.find(FieldContext.Provider).props().value
 		).toMatchObject({ initialValues: {} })
+	})
+
+	it('correctly updates initial values', () => {
+		const form = mount(
+			<Form onSubmit={mockOnSubmit}>
+				<FormButton />
+			</Form>
+		)
+
+		form.setProps({ initialValues: mockInitialValues })
+
+		expect(mockReset).toHaveBeenCalledWith(mockInitialValues)
 	})
 })

@@ -28,7 +28,7 @@ exports[`Storyshots Button Disabled 1`] = `
 
 exports[`Storyshots Button Google 1`] = `
 <button
-  className="ant-btn google-0-2-1 ant-btn-default"
+  className="ant-btn google-0-2-3 ant-btn-default"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -57,6 +57,14 @@ exports[`Storyshots Button Google 1`] = `
     Sign in with Google
   </span>
 </button>
+`;
+
+exports[`Storyshots Button Loading 1`] = `
+<span
+  className="container-0-2-1 container-d0-0-2-2"
+>
+   
+</span>
 `;
 
 exports[`Storyshots Button Pending 1`] = `
@@ -140,16 +148,16 @@ exports[`Storyshots Form Default 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="container-0-2-2"
+    className="container-0-2-4"
   >
     <div>
       <div
-        className="container-0-2-3 required-0-2-4"
+        className="container-0-2-5 required-0-2-6"
       >
         First Name
       </div>
       <div
-        className="container-0-2-5 container-d0-0-2-8"
+        className="container-0-2-7 container-d0-0-2-10"
       >
         <input
           className="ant-input"
@@ -166,12 +174,12 @@ exports[`Storyshots Form Default 1`] = `
     </div>
     <div>
       <div
-        className="container-0-2-3"
+        className="container-0-2-5"
       >
         Last Name
       </div>
       <div
-        className="container-0-2-5 container-d1-0-2-9"
+        className="container-0-2-7 container-d1-0-2-11"
       >
         <input
           className="ant-input"
@@ -218,7 +226,7 @@ exports[`Storyshots Icon Predefined 1`] = `
 
 exports[`Storyshots Input Default 1`] = `
 <div
-  className="container-0-2-5 container-d2-0-2-10"
+  className="container-0-2-7 container-d2-0-2-12"
 >
   <input
     className="ant-input"
@@ -236,10 +244,10 @@ exports[`Storyshots Input Default 1`] = `
 
 exports[`Storyshots Input Error 1`] = `
 <div
-  className="container-0-2-5 container-d6-0-2-16"
+  className="container-0-2-7 container-d6-0-2-17"
 >
   <input
-    className="ant-input error-0-2-6"
+    className="ant-input error-0-2-8"
     disabled={false}
     onBlur={[Function]}
     onChange={[Function]}
@@ -254,7 +262,7 @@ exports[`Storyshots Input Error 1`] = `
 
 exports[`Storyshots Input Full Width 1`] = `
 <div
-  className="container-0-2-5 container-d5-0-2-15"
+  className="container-0-2-7 container-d5-0-2-16"
 >
   <input
     className="ant-input"
@@ -272,13 +280,13 @@ exports[`Storyshots Input Full Width 1`] = `
 
 exports[`Storyshots Input Loading 1`] = `
 <div
-  className="container-0-2-5 container-d4-0-2-12"
+  className="container-0-2-7 container-d4-0-2-14"
 >
   <div
-    className="input-0-2-7"
+    className="input-0-2-9"
   >
     <span
-      className="container-0-2-13 container-d0-0-2-14"
+      className="container-0-2-1 container-d1-0-2-15"
     >
        
     </span>
@@ -322,7 +330,7 @@ exports[`Storyshots Link Href 1`] = `
 
 exports[`Storyshots Skeleton Circle 1`] = `
 <span
-  className="container-0-2-13 container-d2-0-2-18"
+  className="container-0-2-1 container-d3-0-2-19"
 >
    
 </span>
@@ -331,27 +339,27 @@ exports[`Storyshots Skeleton Circle 1`] = `
 exports[`Storyshots Skeleton Count 1`] = `
 Array [
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-1 container-d4-0-2-20"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-1 container-d4-0-2-20"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-1 container-d4-0-2-20"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-1 container-d4-0-2-20"
   >
      
   </span>,
   <span
-    className="container-0-2-13 container-d3-0-2-19"
+    className="container-0-2-1 container-d4-0-2-20"
   >
      
   </span>,
@@ -360,7 +368,7 @@ Array [
 
 exports[`Storyshots Skeleton Default 1`] = `
 <span
-  className="container-0-2-13 container-d1-0-2-17"
+  className="container-0-2-1 container-d2-0-2-18"
 >
    
 </span>

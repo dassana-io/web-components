@@ -25,13 +25,21 @@ export interface ButtonProps {
 	 */
 	disabled?: boolean
 	/**
-	 * Renders a skeleton for the button
+	 * Renders a skeleton for the button.
 	 */
 	loading?: boolean
 	/**
 	 * Renders an animated loading icon next to the children.
 	 */
 	pending?: boolean
+	/**
+	 * Skeleton loader height.
+	 */
+	skeletonHeight?: number
+	/**
+	 * Skeleton loader width.
+	 */
+	skeletonWidth?: number
 	/**
 	 * Array of classes to pass to button.
 	 */
@@ -45,7 +53,9 @@ const Button: FC<ButtonProps> = ({
 	loading = false,
 	onClick,
 	pending = false,
-	primary = false
+	primary = false,
+	skeletonHeight = 32,
+	skeletonWidth = 75
 }: ButtonProps) => {
 	const antDProps: AntDButtonProps = {
 		className: classnames(classes),
@@ -55,7 +65,7 @@ const Button: FC<ButtonProps> = ({
 	}
 
 	return loading ? (
-		<Skeleton height={32} width={75} />
+		<Skeleton height={skeletonHeight} width={skeletonWidth} />
 	) : (
 		<AntDButton {...antDProps}>
 			{pending && (
