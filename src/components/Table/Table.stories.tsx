@@ -14,6 +14,7 @@ export default {
 } as Meta
 
 export interface User {
+	name: string
 	date: number
 	data: number
 	label: TagProps
@@ -23,6 +24,11 @@ export interface User {
 }
 
 const columns: ColumnType[] = [
+	{
+		dataIndex: 'name',
+		title: 'Name',
+		type: 'string'
+	},
 	{
 		dataIndex: 'date',
 		displayFormat: 'MM/DD/YYYY',
@@ -85,6 +91,7 @@ const data: User[] = [
 			...linkProps,
 			children: 'dolor-sit'
 		},
+		name: 'Lorem',
 		toggle: {
 			...toggleProps,
 			defaultChecked: true
@@ -101,6 +108,7 @@ const data: User[] = [
 			...linkProps,
 			children: 'lorem-i'
 		},
+		name: 'Ipsum',
 		toggle: {
 			...toggleProps
 		}
@@ -109,13 +117,14 @@ const data: User[] = [
 		data: 1048576,
 		date: 1581033743000,
 		icon: {
-			iconKey: 'dassana-orange'
+			icon: 'https://dummyimage.com/600x400/000/fff&text=Test'
 		},
 		label: { children: 'designer', color: 'green' },
 		link: {
 			...linkProps,
 			children: 'amet-c'
 		},
+		name: 'Dolor',
 		toggle: {
 			...toggleProps,
 			defaultChecked: true,
