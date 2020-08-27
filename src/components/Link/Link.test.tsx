@@ -65,4 +65,10 @@ describe('Link', () => {
 			mockProps.target
 		)
 	})
+
+	it('has a default target of _self if none is passed in', () => {
+		wrapper = mount(<Link onClick={mockClick}>Test</Link>)
+
+		expect(wrapper.getDOMNode().getAttribute('target')).toBe('_self')
+	})
 })

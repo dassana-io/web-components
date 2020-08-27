@@ -1,7 +1,10 @@
 import 'antd/lib/button/style/index.css'
-import { Button as AntDButton } from 'antd'
+import 'antd/lib/spin/style/index.css'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
+import { LoadingOutlined } from '@ant-design/icons'
+import Skeleton from '../Skeleton'
+import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
 export interface ButtonProps {
@@ -22,6 +25,22 @@ export interface ButtonProps {
 	 */
 	disabled?: boolean
 	/**
+	 * Renders a skeleton for the button.
+	 */
+	loading?: boolean
+	/**
+	 * Renders an animated loading icon next to the children.
+	 */
+	pending?: boolean
+	/**
+	 * Skeleton loader height.
+	 */
+	skeletonHeight?: number
+	/**
+	 * Skeleton loader width.
+	 */
+	skeletonWidth?: number
+	/**
 	 * Array of classes to pass to button.
 	 */
 	classes?: string[]
@@ -29,19 +48,38 @@ export interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({
 	children,
-	onClick,
-	primary = false,
+	classes = [],
 	disabled = false,
-	classes = []
+	loading = false,
+	onClick,
+	pending = false,
+	primary = false,
+	skeletonHeight = 32,
+	skeletonWidth = 75
 }: ButtonProps) => {
 	const antDProps: AntDButtonProps = {
 		className: classnames(classes),
-		disabled,
+		disabled: pending || disabled,
 		onClick,
 		type: primary ? 'primary' : 'default'
 	}
 
-	return <AntDButton {...antDProps}>{children}</AntDButton>
+	return loading ? (
+		<Skeleton height={skeletonHeight} width={skeletonWidth} />
+	) : (
+		<AntDButton {...antDProps}>
+			{pending && (
+				<span style={{ paddingRight: 8 }}>
+					<Spin
+						indicator={
+							<LoadingOutlined spin style={{ fontSize: 16 }} />
+						}
+					/>
+				</span>
+			)}
+			{children}
+		</AntDButton>
+	)
 }
 
 export default Button

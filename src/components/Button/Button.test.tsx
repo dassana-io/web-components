@@ -1,5 +1,6 @@
-import { Button as AntDButton } from 'antd'
 import React from 'react'
+import Skeleton from '../Skeleton'
+import { Button as AntDButton, Spin } from 'antd'
 import Button, { ButtonProps } from '.'
 import { shallow, ShallowWrapper } from 'enzyme'
 
@@ -35,6 +36,40 @@ describe('Button', () => {
 	})
 })
 
+describe('Loading Button', () => {
+	beforeEach(() => {
+		wrapper = shallow(
+			<Button loading onClick={mockClick}>
+				Test
+			</Button>
+		)
+	})
+	it('renders a skeleton', () => {
+		expect(wrapper.find(Skeleton)).toHaveLength(1)
+	})
+
+	it('renders a skeleton with a default width of 75 and height of 32', () => {
+		expect(wrapper.find(Skeleton).props().height).toBe(32)
+		expect(wrapper.find(Skeleton).props().width).toBe(75)
+	})
+
+	it('renders a skeleton with the correct custom dimensions', () => {
+		wrapper = shallow(
+			<Button
+				loading
+				onClick={mockClick}
+				skeletonHeight={50}
+				skeletonWidth={200}
+			>
+				Test
+			</Button>
+		)
+
+		expect(wrapper.find(Skeleton).props().height).toBe(50)
+		expect(wrapper.find(Skeleton).props().width).toBe(200)
+	})
+})
+
 describe('Disabled Button', () => {
 	it('has correct prop "disabled" and correct class "disabled"', () => {
 		wrapper = shallow(
@@ -43,5 +78,23 @@ describe('Disabled Button', () => {
 			</Button>
 		)
 		expect(wrapper.props().disabled).toBeTruthy()
+	})
+})
+
+describe('Pending Button', () => {
+	beforeEach(() => {
+		wrapper = shallow(
+			<Button onClick={mockClick} pending>
+				Test
+			</Button>
+		)
+	})
+
+	it('renders a Spin component', () => {
+		expect(wrapper.find(Spin)).toHaveLength(1)
+	})
+
+	it('automatically disables the button', () => {
+		expect(wrapper.find(AntDButton).props().disabled).toBeTruthy()
 	})
 })

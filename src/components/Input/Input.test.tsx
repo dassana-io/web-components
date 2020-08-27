@@ -1,79 +1,63 @@
-import { Input } from 'antd'
+import { Input as AntDInput } from 'antd'
+import Input from './index'
 import React from 'react'
 import Skeleton from '../Skeleton'
-import InputField, { InputFieldProps } from './index'
 import { mount, ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper
 
-const mockProps: InputFieldProps = {
-	fieldLabel: 'Field Label'
-}
-
 beforeEach(() => {
-	wrapper = mount(<InputField {...mockProps} />)
+	wrapper = mount(<Input />)
 })
 
-describe('InputField', () => {
+describe('Input', () => {
 	it('renders', () => {
-		const inputField = wrapper.find(InputField)
+		const input = wrapper.find(Input)
 
-		expect(inputField).toHaveLength(1)
-	})
-
-	it('renders a label if one exists', () => {
-		const inputField = wrapper.find(InputField)
-
-		expect(inputField.text()).toContain('Field Label')
+		expect(input).toHaveLength(1)
 	})
 
 	it('throws an error if value is passed without an onClick', () => {
-		expect(() => shallow(<InputField value='abc' />)).toThrow()
+		expect(() => shallow(<Input value='abc' />)).toThrow()
 	})
 
 	it('should pass onChange and value to the input component if the props exist', () => {
 		const mockOnChange = jest.fn()
-		wrapper = mount(<InputField onChange={mockOnChange} value='abc' />)
+		wrapper = mount(<Input onChange={mockOnChange} value='abc' />)
 
-		expect(wrapper.find(Input).props().onChange).toEqual(mockOnChange)
-		expect(wrapper.find(Input).props().value).toEqual('abc')
+		expect(wrapper.find(AntDInput).props().onChange).toEqual(mockOnChange)
+		expect(wrapper.find(AntDInput).props().value).toEqual('abc')
 	})
 
 	it('correctly passes the disabled prop', () => {
-		wrapper = mount(<InputField disabled />)
+		wrapper = mount(<Input disabled />)
 
-		expect(wrapper.find(Input).props().disabled).toBeTruthy()
+		expect(wrapper.find(AntDInput).props().disabled).toBeTruthy()
 	})
 
 	it('correctly passes the placeholder prop', () => {
-		wrapper = mount(<InputField placeholder='Testing' />)
+		wrapper = mount(<Input placeholder='Testing' />)
 
-		expect(wrapper.find(Input).props().placeholder).toEqual('Testing')
+		expect(wrapper.find(AntDInput).props().placeholder).toEqual('Testing')
 	})
 
 	describe('type', () => {
 		it('defaults to type text if no type is specified', () => {
-			expect(wrapper.find(Input).props().type).toEqual('text')
+			expect(wrapper.find(AntDInput).props().type).toEqual('text')
 		})
 
 		it('correctly passes the input type prop', () => {
-			wrapper = mount(<InputField type='password' />)
+			wrapper = mount(<Input type='password' />)
 
-			expect(wrapper.find(Input).props().type).toEqual('password')
+			expect(wrapper.find(AntDInput).props().type).toEqual('password')
 		})
 	})
 
 	describe('loading', () => {
 		it('renders a loading skeleton', () => {
-			wrapper = mount(<InputField loading />)
+			wrapper = mount(<Input loading />)
 
 			expect(wrapper.find(Skeleton)).toHaveLength(1)
-		})
-
-		it('renders a loading skeleton for the label if there is one', () => {
-			wrapper = mount(<InputField fieldLabel='test' loading />)
-
-			expect(wrapper.find(Skeleton)).toHaveLength(2)
 		})
 	})
 
@@ -94,7 +78,7 @@ describe('InputField', () => {
 		})
 
 		it('renders a container that will span the width of its parent container if set to true', () => {
-			wrapper = mount(<InputField fullWidth />, {
+			wrapper = mount(<Input fullWidth />, {
 				attachTo: document.getElementById('container')
 			})
 
@@ -104,7 +88,7 @@ describe('InputField', () => {
 		})
 
 		it('does not render a container that will span the width of its parent container by default', () => {
-			wrapper = mount(<InputField />, {
+			wrapper = mount(<Input />, {
 				attachTo: document.getElementById('container')
 			})
 
@@ -114,21 +98,11 @@ describe('InputField', () => {
 		})
 	})
 
-	describe('required', () => {
-		it('passes the correct required class to field label container', () => {
-			wrapper = mount(<InputField fieldLabel='Field Label' required />)
-
-			expect(wrapper.getDOMNode().children[0].className).toContain(
-				'required'
-			)
-		})
-	})
-
 	describe('error', () => {
 		it('passes the correct error class to input', () => {
-			wrapper = mount(<InputField error />)
+			wrapper = mount(<Input error />)
 
-			expect(wrapper.find(Input).hasClass(/error-*/)).toBeTruthy()
+			expect(wrapper.find(AntDInput).hasClass(/error-*/)).toBeTruthy()
 		})
 	})
 })
