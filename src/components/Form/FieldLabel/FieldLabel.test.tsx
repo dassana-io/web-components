@@ -33,10 +33,24 @@ describe('Field Label', () => {
 	})
 
 	describe('loading', () => {
-		it('renders a skeleton if loading prop is passed as true', () => {
+		beforeEach(() => {
 			wrapper = shallow(<FieldLabel {...baseMockProps} loading />)
+		})
 
+		it('renders a skeleton if loading prop is passed as true', () => {
 			expect(wrapper.find(Skeleton)).toHaveLength(1)
+		})
+
+		it('passes a default skeleton width of 100', () => {
+			expect(wrapper.find(Skeleton).props().width).toBe(100)
+		})
+
+		it('passes the correct width to Skeleton if one is provided', () => {
+			wrapper = shallow(
+				<FieldLabel {...baseMockProps} loading skeletonWidth={300} />
+			)
+
+			expect(wrapper.find(Skeleton).props().width).toBe(300)
 		})
 	})
 })

@@ -37,14 +37,36 @@ describe('Button', () => {
 })
 
 describe('Loading Button', () => {
-	it('renders a skeleton', () => {
+	beforeEach(() => {
 		wrapper = shallow(
 			<Button loading onClick={mockClick}>
 				Test
 			</Button>
 		)
-
+	})
+	it('renders a skeleton', () => {
 		expect(wrapper.find(Skeleton)).toHaveLength(1)
+	})
+
+	it('renders a skeleton with a default width of 75 and height of 32', () => {
+		expect(wrapper.find(Skeleton).props().height).toBe(32)
+		expect(wrapper.find(Skeleton).props().width).toBe(75)
+	})
+
+	it('renders a skeleton with the correct custom dimensions', () => {
+		wrapper = shallow(
+			<Button
+				loading
+				onClick={mockClick}
+				skeletonHeight={50}
+				skeletonWidth={200}
+			>
+				Test
+			</Button>
+		)
+
+		expect(wrapper.find(Skeleton).props().height).toBe(50)
+		expect(wrapper.find(Skeleton).props().width).toBe(200)
 	})
 })
 
