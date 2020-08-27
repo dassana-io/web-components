@@ -1,5 +1,5 @@
 import React from 'react'
-import InputField, { InputFieldProps } from './index'
+import Input, { InputProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
@@ -8,11 +8,11 @@ export default {
 		fieldLabel: { defaultValue: 'Field Label' },
 		value: { control: { disable: true } }
 	},
-	component: InputField,
-	title: 'InputField'
+	component: Input,
+	title: 'Input'
 } as Meta
 
-const Template: Story<InputFieldProps> = args => <InputField {...args} />
+const Template: Story<InputProps> = args => <Input {...args} />
 
 export const Default = Template.bind({})
 

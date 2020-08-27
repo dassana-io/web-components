@@ -31,6 +31,12 @@ describe('Predefined Icon', () => {
 	it('has the correct height', () => {
 		expect(wrapper.getDOMNode().getAttribute('height')).toBe('64')
 	})
+
+	it('renders with a default height of 32', () => {
+		wrapper = mount(<Icon iconKey='dassana-blue' />)
+
+		expect(wrapper.getDOMNode().getAttribute('height')).toBe('32')
+	})
 })
 
 describe('Custom Icon', () => {

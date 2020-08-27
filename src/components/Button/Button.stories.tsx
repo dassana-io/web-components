@@ -25,6 +25,12 @@ Default.args = { children: 'Default' }
 export const Disabled = Template.bind({})
 Disabled.args = { children: 'Disabled', disabled: true }
 
+export const Loading = Template.bind({})
+Loading.args = { children: 'Loading', loading: true }
+
+export const Pending = Template.bind({})
+Pending.args = { children: 'Pending', pending: true }
+
 export const Primary = Template.bind({})
 Primary.args = { children: 'Primary', primary: true }
 
