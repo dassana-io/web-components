@@ -48,9 +48,10 @@ export interface TableProps<DataType> {
 
 function Table<DataType extends object>({
 	columns,
-	data
+	data,
+	search = true
 }: TableProps<DataType>): ReactElement {
-	const [search, setSearch] = useState<string>('')
+	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataType[]>([])
 
 	const processedColumns = processColumns<DataType>(columns)
@@ -63,7 +64,7 @@ function Table<DataType extends object>({
 	const fuse = new Fuse(processedData, fuseOptions)
 
 	const searchTable = (e: ChangeEvent<HTMLInputElement>) => {
-		setSearch(e.target.value)
+		setSearchTerm(e.target.value)
 		const filteredData = fuse
 			.search(e.target.value)
 			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
@@ -72,24 +73,26 @@ function Table<DataType extends object>({
 
 	return (
 		<div>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'flex-end',
-					marginBottom: 16
-				}}
-			>
-				<Input
-					onChange={searchTable}
-					placeholder='Search table...'
-					prefix={<SearchOutlined />}
-					style={{ width: '35%' }}
-				/>
-			</div>
+			{search && (
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+						marginBottom: 16
+					}}
+				>
+					<Input
+						onChange={searchTable}
+						placeholder='Search table...'
+						prefix={<SearchOutlined />}
+						style={{ width: '35%' }}
+					/>
+				</div>
+			)}
 
 			<AntDTable<DataType>
 				columns={processedColumns}
-				dataSource={search ? filteredData : processedData}
+				dataSource={searchTerm ? filteredData : processedData}
 			/>
 		</div>
 	)
