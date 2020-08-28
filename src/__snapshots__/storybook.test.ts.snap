@@ -427,696 +427,895 @@ exports[`Storyshots Skeleton Default 1`] = `
 `;
 
 exports[`Storyshots Table Default 1`] = `
-<div
-  className="ant-table-wrapper"
->
+<div>
   <div
-    className="ant-spin-nested-loading"
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "flex-end",
+        "marginBottom": 16,
+      }
+    }
+  >
+    <span
+      className="ant-input-affix-wrapper"
+      onMouseUp={[Function]}
+      style={
+        Object {
+          "width": "35%",
+        }
+      }
+    >
+      <span
+        className="ant-input-prefix"
+      >
+        <span
+          aria-label="search"
+          className="anticon anticon-search"
+          role="img"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="search"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+            />
+          </svg>
+        </span>
+      </span>
+      <input
+        className="ant-input"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Search table..."
+        style={null}
+        type="text"
+        value=""
+      />
+    </span>
+  </div>
+  <div
+    className="ant-table-wrapper"
   >
     <div
-      className="ant-spin-container"
+      className="ant-spin-nested-loading"
     >
       <div
-        className="ant-table"
+        className="ant-spin-container"
       >
         <div
-          className="ant-table-container"
+          className="ant-table"
         >
           <div
-            className="ant-table-content"
-            onScroll={[Function]}
-            style={Object {}}
+            className="ant-table-container"
           >
-            <table
-              style={
-                Object {
-                  "tableLayout": "auto",
-                }
-              }
+            <div
+              className="ant-table-content"
+              onScroll={[Function]}
+              style={Object {}}
             >
-              <colgroup />
-              <thead
-                className="ant-table-thead"
+              <table
+                style={
+                  Object {
+                    "tableLayout": "auto",
+                  }
+                }
               >
-                <tr>
-                  <th
-                    className="ant-table-cell ant-table-column-has-sorters"
-                    colSpan={null}
-                    onClick={[Function]}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <div
-                      className="ant-table-column-sorters"
-                    >
-                      <span>
-                        Date
-                      </span>
-                      <span
-                        className="ant-table-column-sorter ant-table-column-sorter-full"
-                      >
-                        <span
-                          className="ant-table-column-sorter-inner"
-                        >
-                          <span
-                            aria-label="caret-up"
-                            className="anticon anticon-caret-up ant-table-column-sorter-up"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-up"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                          <span
-                            aria-label="caret-down"
-                            className="anticon anticon-caret-down ant-table-column-sorter-down"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-down"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </span>
-                    </div>
-                  </th>
-                  <th
-                    className="ant-table-cell ant-table-column-has-sorters"
-                    colSpan={null}
-                    onClick={[Function]}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <div
-                      className="ant-table-column-sorters"
-                    >
-                      <span>
-                        Data
-                      </span>
-                      <span
-                        className="ant-table-column-sorter ant-table-column-sorter-full"
-                      >
-                        <span
-                          className="ant-table-column-sorter-inner"
-                        >
-                          <span
-                            aria-label="caret-up"
-                            className="anticon anticon-caret-up ant-table-column-sorter-up"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-up"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                          <span
-                            aria-label="caret-down"
-                            className="anticon anticon-caret-down ant-table-column-sorter-down"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-down"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </span>
-                    </div>
-                  </th>
-                  <th
-                    className="ant-table-cell ant-table-column-has-sorters"
-                    colSpan={null}
-                    onClick={[Function]}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <div
-                      className="ant-table-column-sorters"
-                    >
-                      <span>
-                        Label
-                      </span>
-                      <span
-                        className="ant-table-column-sorter ant-table-column-sorter-full"
-                      >
-                        <span
-                          className="ant-table-column-sorter-inner"
-                        >
-                          <span
-                            aria-label="caret-up"
-                            className="anticon anticon-caret-up ant-table-column-sorter-up"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-up"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                          <span
-                            aria-label="caret-down"
-                            className="anticon anticon-caret-down ant-table-column-sorter-down"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-down"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </span>
-                    </div>
-                  </th>
-                  <th
-                    className="ant-table-cell ant-table-column-has-sorters"
-                    colSpan={null}
-                    onClick={[Function]}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <div
-                      className="ant-table-column-sorters"
-                    >
-                      <span>
-                        Link
-                      </span>
-                      <span
-                        className="ant-table-column-sorter ant-table-column-sorter-full"
-                      >
-                        <span
-                          className="ant-table-column-sorter-inner"
-                        >
-                          <span
-                            aria-label="caret-up"
-                            className="anticon anticon-caret-up ant-table-column-sorter-up"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-up"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                          <span
-                            aria-label="caret-down"
-                            className="anticon anticon-caret-down ant-table-column-sorter-down"
-                            role="img"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              className=""
-                              data-icon="caret-down"
-                              fill="currentColor"
-                              focusable="false"
-                              height="1em"
-                              viewBox="0 0 1024 1024"
-                              width="1em"
-                            >
-                              <path
-                                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </span>
-                    </div>
-                  </th>
-                  <th
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    Toggle
-                  </th>
-                  <th
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    Icon
-                  </th>
-                </tr>
-              </thead>
-              <tbody
-                className="ant-table-tbody"
-              >
-                <tr
-                  className="ant-table-row ant-table-row-level-0"
-                  data-row-key={0}
-                  onClick={[Function]}
-                  style={Object {}}
+                <colgroup />
+                <thead
+                  className="ant-table-thead"
                 >
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    08/25/2020
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    1KB
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <span
-                      className="ant-tag ant-tag-magenta"
-                      style={
-                        Object {
-                          "backgroundColor": undefined,
-                        }
-                      }
-                    >
-                      developer
-                    </span>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <a
-                      className="ant-typography"
-                      href="/"
-                      rel="noopener noreferrer"
-                      style={
-                        Object {
-                          "WebkitLineClamp": null,
-                        }
-                      }
-                      target="_blank"
-                    >
-                      <u>
-                        dolor-sit
-                      </u>
-                    </a>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <button
-                      aria-checked={true}
-                      className="ant-switch ant-switch-small ant-switch-checked"
+                  <tr>
+                    <th
+                      className="ant-table-cell ant-table-column-has-sorters"
+                      colSpan={null}
                       onClick={[Function]}
-                      onKeyDown={[Function]}
-                      role="switch"
-                      type="button"
+                      rowSpan={null}
+                      style={Object {}}
                     >
                       <div
-                        className="ant-switch-handle"
-                      />
-                      <span
-                        className="ant-switch-inner"
-                      />
-                    </button>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <img
-                      alt="dassana-blue"
-                      height={32}
-                      src="dassana-blue.png"
-                    />
-                  </td>
-                </tr>
-                <tr
-                  className="ant-table-row ant-table-row-level-0"
-                  data-row-key={1}
-                  onClick={[Function]}
-                  style={Object {}}
-                >
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    10/07/2019
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    100B
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <span
-                      className="ant-tag ant-tag-blue"
-                      style={
-                        Object {
-                          "backgroundColor": undefined,
-                        }
-                      }
-                    >
-                      CEO
-                    </span>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <a
-                      className="ant-typography"
-                      href="/"
-                      rel="noopener noreferrer"
-                      style={
-                        Object {
-                          "WebkitLineClamp": null,
-                        }
-                      }
-                      target="_blank"
-                    >
-                      <u>
-                        lorem-i
-                      </u>
-                    </a>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <button
-                      aria-checked={false}
-                      className="ant-switch ant-switch-small"
+                        className="ant-table-column-sorters"
+                      >
+                        <span>
+                          Name
+                        </span>
+                        <span
+                          className="ant-table-column-sorter ant-table-column-sorter-full"
+                        >
+                          <span
+                            className="ant-table-column-sorter-inner"
+                          >
+                            <span
+                              aria-label="caret-up"
+                              className="anticon anticon-caret-up ant-table-column-sorter-up"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-up"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              aria-label="caret-down"
+                              className="anticon anticon-caret-down ant-table-column-sorter-down"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-down"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </th>
+                    <th
+                      className="ant-table-cell ant-table-column-has-sorters"
+                      colSpan={null}
                       onClick={[Function]}
-                      onKeyDown={[Function]}
-                      role="switch"
-                      type="button"
+                      rowSpan={null}
+                      style={Object {}}
                     >
                       <div
-                        className="ant-switch-handle"
-                      />
-                      <span
-                        className="ant-switch-inner"
-                      />
-                    </button>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <img
-                      alt="aws-logo"
-                      height={32}
-                      src="aws.svg"
-                    />
-                  </td>
-                </tr>
-                <tr
-                  className="ant-table-row ant-table-row-level-0"
-                  data-row-key={2}
-                  onClick={[Function]}
-                  style={Object {}}
-                >
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    02/06/2020
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    1MB
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <span
-                      className="ant-tag ant-tag-green"
-                      style={
-                        Object {
-                          "backgroundColor": undefined,
-                        }
-                      }
-                    >
-                      designer
-                    </span>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <a
-                      className="ant-typography"
-                      href="/"
-                      rel="noopener noreferrer"
-                      style={
-                        Object {
-                          "WebkitLineClamp": null,
-                        }
-                      }
-                      target="_blank"
-                    >
-                      <u>
-                        amet-c
-                      </u>
-                    </a>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
-                    style={Object {}}
-                  >
-                    <button
-                      aria-checked={true}
-                      className="ant-switch ant-switch-small ant-switch-checked ant-switch-disabled"
-                      disabled={true}
+                        className="ant-table-column-sorters"
+                      >
+                        <span>
+                          Date
+                        </span>
+                        <span
+                          className="ant-table-column-sorter ant-table-column-sorter-full"
+                        >
+                          <span
+                            className="ant-table-column-sorter-inner"
+                          >
+                            <span
+                              aria-label="caret-up"
+                              className="anticon anticon-caret-up ant-table-column-sorter-up"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-up"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              aria-label="caret-down"
+                              className="anticon anticon-caret-down ant-table-column-sorter-down"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-down"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </th>
+                    <th
+                      className="ant-table-cell ant-table-column-has-sorters"
+                      colSpan={null}
                       onClick={[Function]}
-                      onKeyDown={[Function]}
-                      role="switch"
-                      type="button"
+                      rowSpan={null}
+                      style={Object {}}
                     >
                       <div
-                        className="ant-switch-handle"
-                      />
-                      <span
-                        className="ant-switch-inner"
-                      />
-                    </button>
-                  </td>
-                  <td
-                    className="ant-table-cell"
-                    colSpan={null}
-                    rowSpan={null}
+                        className="ant-table-column-sorters"
+                      >
+                        <span>
+                          Data
+                        </span>
+                        <span
+                          className="ant-table-column-sorter ant-table-column-sorter-full"
+                        >
+                          <span
+                            className="ant-table-column-sorter-inner"
+                          >
+                            <span
+                              aria-label="caret-up"
+                              className="anticon anticon-caret-up ant-table-column-sorter-up"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-up"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              aria-label="caret-down"
+                              className="anticon anticon-caret-down ant-table-column-sorter-down"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-down"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </th>
+                    <th
+                      className="ant-table-cell ant-table-column-has-sorters"
+                      colSpan={null}
+                      onClick={[Function]}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-table-column-sorters"
+                      >
+                        <span>
+                          Label
+                        </span>
+                        <span
+                          className="ant-table-column-sorter ant-table-column-sorter-full"
+                        >
+                          <span
+                            className="ant-table-column-sorter-inner"
+                          >
+                            <span
+                              aria-label="caret-up"
+                              className="anticon anticon-caret-up ant-table-column-sorter-up"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-up"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              aria-label="caret-down"
+                              className="anticon anticon-caret-down ant-table-column-sorter-down"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-down"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </th>
+                    <th
+                      className="ant-table-cell ant-table-column-has-sorters"
+                      colSpan={null}
+                      onClick={[Function]}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-table-column-sorters"
+                      >
+                        <span>
+                          Link
+                        </span>
+                        <span
+                          className="ant-table-column-sorter ant-table-column-sorter-full"
+                        >
+                          <span
+                            className="ant-table-column-sorter-inner"
+                          >
+                            <span
+                              aria-label="caret-up"
+                              className="anticon anticon-caret-up ant-table-column-sorter-up"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-up"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              aria-label="caret-down"
+                              className="anticon anticon-caret-down ant-table-column-sorter-down"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-down"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </th>
+                    <th
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Toggle
+                    </th>
+                    <th
+                      className="ant-table-cell ant-table-column-has-sorters"
+                      colSpan={null}
+                      onClick={[Function]}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-table-column-sorters"
+                      >
+                        <span>
+                          Icon
+                        </span>
+                        <span
+                          className="ant-table-column-sorter ant-table-column-sorter-full"
+                        >
+                          <span
+                            className="ant-table-column-sorter-inner"
+                          >
+                            <span
+                              aria-label="caret-up"
+                              className="anticon anticon-caret-up ant-table-column-sorter-up"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-up"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              aria-label="caret-down"
+                              className="anticon anticon-caret-down ant-table-column-sorter-down"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="caret-down"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="0 0 1024 1024"
+                                width="1em"
+                              >
+                                <path
+                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key={0}
+                    onClick={[Function]}
                     style={Object {}}
                   >
-                    <img
-                      alt="dassana-orange"
-                      height={32}
-                      src="dassana-orange.png"
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Lorem
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      08/25/2020
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      1KB
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <span
+                        className="ant-tag ant-tag-magenta"
+                        style={
+                          Object {
+                            "backgroundColor": undefined,
+                          }
+                        }
+                      >
+                        developer
+                      </span>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <a
+                        className="ant-typography"
+                        href="/"
+                        rel="noopener noreferrer"
+                        style={
+                          Object {
+                            "WebkitLineClamp": null,
+                          }
+                        }
+                        target="_blank"
+                      >
+                        <u>
+                          consectetur
+                        </u>
+                      </a>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <button
+                        aria-checked={true}
+                        className="ant-switch ant-switch-small ant-switch-checked"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          className="ant-switch-handle"
+                        />
+                        <span
+                          className="ant-switch-inner"
+                        />
+                      </button>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <img
+                        alt="dassana-blue"
+                        height={32}
+                        src="dassana-blue.png"
+                      />
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key={1}
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Ipsum
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      10/07/2019
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      100B
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <span
+                        className="ant-tag ant-tag-blue"
+                        style={
+                          Object {
+                            "backgroundColor": undefined,
+                          }
+                        }
+                      >
+                        CEO
+                      </span>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <a
+                        className="ant-typography"
+                        href="/"
+                        rel="noopener noreferrer"
+                        style={
+                          Object {
+                            "WebkitLineClamp": null,
+                          }
+                        }
+                        target="_blank"
+                      >
+                        <u>
+                          amet
+                        </u>
+                      </a>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <button
+                        aria-checked={false}
+                        className="ant-switch ant-switch-small"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          className="ant-switch-handle"
+                        />
+                        <span
+                          className="ant-switch-inner"
+                        />
+                      </button>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <img
+                        alt="aws-logo"
+                        height={32}
+                        src="aws.svg"
+                      />
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key={2}
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Dolor
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      02/06/2020
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      1MB
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <span
+                        className="ant-tag ant-tag-green"
+                        style={
+                          Object {
+                            "backgroundColor": undefined,
+                          }
+                        }
+                      >
+                        designer
+                      </span>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <a
+                        className="ant-typography"
+                        href="/"
+                        rel="noopener noreferrer"
+                        style={
+                          Object {
+                            "WebkitLineClamp": null,
+                          }
+                        }
+                        target="_blank"
+                      >
+                        <u>
+                          sit
+                        </u>
+                      </a>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <button
+                        aria-checked={true}
+                        className="ant-switch ant-switch-small ant-switch-checked ant-switch-disabled"
+                        disabled={true}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          className="ant-switch-handle"
+                        />
+                        <span
+                          className="ant-switch-inner"
+                        />
+                      </button>
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      <img
+                        alt="https://dummyimage.com/600x400/000/fff&text=Test"
+                        height={32}
+                        src="https://dummyimage.com/600x400/000/fff&text=Test"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <ul
+          className="ant-pagination ant-table-pagination ant-table-pagination-right"
+          style={Object {}}
+          unselectable="unselectable"
+        >
+          <li
+            aria-disabled={true}
+            className="ant-pagination-prev ant-pagination-disabled"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            tabIndex={null}
+            title="Previous Page"
+          >
+            <button
+              className="ant-pagination-item-link"
+              disabled={true}
+              tabIndex={-1}
+              type="button"
+            >
+              <span
+                aria-label="left"
+                className="anticon anticon-left"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="left"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </li>
+          <li
+            className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            tabIndex="0"
+            title={1}
+          >
+            <a
+              rel="nofollow"
+            >
+              1
+            </a>
+          </li>
+          <li
+            aria-disabled={true}
+            className="ant-pagination-next ant-pagination-disabled"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            tabIndex={null}
+            title="Next Page"
+          >
+            <button
+              className="ant-pagination-item-link"
+              disabled={true}
+              tabIndex={-1}
+              type="button"
+            >
+              <span
+                aria-label="right"
+                className="anticon anticon-right"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="right"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </li>
+        </ul>
       </div>
-      <ul
-        className="ant-pagination ant-table-pagination ant-table-pagination-right"
-        style={Object {}}
-        unselectable="unselectable"
-      >
-        <li
-          aria-disabled={true}
-          className="ant-pagination-prev ant-pagination-disabled"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          tabIndex={null}
-          title="Previous Page"
-        >
-          <button
-            className="ant-pagination-item-link"
-            disabled={true}
-            tabIndex={-1}
-            type="button"
-          >
-            <span
-              aria-label="left"
-              className="anticon anticon-left"
-              role="img"
-            >
-              <svg
-                aria-hidden="true"
-                className=""
-                data-icon="left"
-                fill="currentColor"
-                focusable="false"
-                height="1em"
-                viewBox="64 64 896 896"
-                width="1em"
-              >
-                <path
-                  d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
-                />
-              </svg>
-            </span>
-          </button>
-        </li>
-        <li
-          className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          tabIndex="0"
-          title={1}
-        >
-          <a
-            rel="nofollow"
-          >
-            1
-          </a>
-        </li>
-        <li
-          aria-disabled={true}
-          className="ant-pagination-next ant-pagination-disabled"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          tabIndex={null}
-          title="Next Page"
-        >
-          <button
-            className="ant-pagination-item-link"
-            disabled={true}
-            tabIndex={-1}
-            type="button"
-          >
-            <span
-              aria-label="right"
-              className="anticon anticon-right"
-              role="img"
-            >
-              <svg
-                aria-hidden="true"
-                className=""
-                data-icon="right"
-                fill="currentColor"
-                focusable="false"
-                height="1em"
-                viewBox="64 64 896 896"
-                width="1em"
-              >
-                <path
-                  d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
-                />
-              </svg>
-            </span>
-          </button>
-        </li>
-      </ul>
     </div>
   </div>
 </div>

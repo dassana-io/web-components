@@ -1,8 +1,9 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
+import Fuse from 'fuse.js'
 import { SearchOutlined } from '@ant-design/icons'
 import { Table as AntDTable, Input } from 'antd'
-import { processColumns, processData } from './utils'
+import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useState } from 'react'
 
 interface ColumnPartialType {
@@ -49,33 +50,23 @@ function Table<DataType extends object>({
 	columns,
 	data
 }: TableProps<DataType>): ReactElement {
-	const [filteredData, setFilteredData] = useState<DataType[] | null>(null)
+	const [search, setSearch] = useState<string>('')
+	const [filteredData, setFilteredData] = useState<DataType[]>([])
 
-	const processedData = processData<DataType>(data)
 	const processedColumns = processColumns<DataType>(columns)
+	const processedData = processData<DataType>(data, columns)
+	const fuseOptions = {
+		isCaseSensitive: false,
+		keys: mapFilterKeys(columns),
+		threshold: 0.1
+	}
+	const fuse = new Fuse(processedData, fuseOptions)
 
 	const searchTable = (e: ChangeEvent<HTMLInputElement>) => {
-		const filteredData = processedData.filter((o: DataType) => {
-			return Object.values(o).some(val => {
-				if (typeof val === 'object') {
-					const arr = []
-					if (val.iconKey) {
-						arr.push(val.iconKey)
-					} else if (val.children) {
-						arr.push(val.children)
-					}
-
-					return arr
-						.toString()
-						.toLowerCase()
-						.includes(e.target.value.toLowerCase())
-				} else
-					return val
-						.toString()
-						.toLowerCase()
-						.includes(e.target.value.toLowerCase())
-			})
-		})
+		setSearch(e.target.value)
+		const filteredData = fuse
+			.search(e.target.value)
+			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
 		setFilteredData(filteredData)
 	}
 
@@ -98,7 +89,7 @@ function Table<DataType extends object>({
 
 			<AntDTable<DataType>
 				columns={processedColumns}
-				dataSource={filteredData ? filteredData : processedData}
+				dataSource={search ? filteredData : processedData}
 			/>
 		</div>
 	)

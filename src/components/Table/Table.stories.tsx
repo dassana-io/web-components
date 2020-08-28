@@ -89,7 +89,7 @@ const data: User[] = [
 		label: { children: 'developer', color: 'magenta' },
 		link: {
 			...linkProps,
-			children: 'dolor-sit'
+			children: 'consectetur'
 		},
 		name: 'Lorem',
 		toggle: {
@@ -106,7 +106,7 @@ const data: User[] = [
 		label: { children: 'CEO', color: 'blue' },
 		link: {
 			...linkProps,
-			children: 'lorem-i'
+			children: 'amet'
 		},
 		name: 'Ipsum',
 		toggle: {
@@ -122,7 +122,7 @@ const data: User[] = [
 		label: { children: 'designer', color: 'green' },
 		link: {
 			...linkProps,
-			children: 'amet-c'
+			children: 'sit'
 		},
 		name: 'Dolor',
 		toggle: {
