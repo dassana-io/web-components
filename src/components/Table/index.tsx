@@ -1,8 +1,8 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
+import { Table as AntDTable } from 'antd'
 import Fuse from 'fuse.js'
-import { SearchOutlined } from '@ant-design/icons'
-import { Table as AntDTable, Input } from 'antd'
+import Input from '../Input'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useState } from 'react'
 
@@ -41,8 +41,17 @@ export interface ComponentType extends ColumnPartialType {
 export type ColumnType = StringType | NumberType | ComponentType
 
 export interface TableProps<DataType> {
+	/**
+	 * Array of data objects
+	 */
 	data: DataType[]
+	/**
+	 * Array of column objects
+	 */
 	columns: ColumnType[]
+	/**
+	 * Optional prop to enable/disable table search.
+	 */
 	search?: boolean
 }
 
@@ -84,8 +93,6 @@ function Table<DataType extends object>({
 					<Input
 						onChange={searchTable}
 						placeholder='Search table...'
-						prefix={<SearchOutlined />}
-						style={{ width: '35%' }}
 					/>
 				</div>
 			)}
