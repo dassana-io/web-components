@@ -1,146 +1,30 @@
-import { action } from '@storybook/addon-actions'
-import { IconProps } from '../Icon'
-import { LinkProps } from '../Link'
 import React from 'react'
-import { TagProps } from '../Tag'
-import { ToggleProps } from '../Toggle'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import Table, { ColumnType, TableProps } from '.'
+import { Story } from '@storybook/react/types-6-0'
+import Table, { TableProps } from '.'
+import tableData0, { Person } from './fixtures/0_sample_data'
+import tableData1, { File } from './fixtures/1_sample_data'
+import tableData2, { Client } from './fixtures/2_sample_data'
 
-export default {
-	component: Table,
-	excludeStories: /.*Data$/,
-	title: 'Table'
-} as Meta
-
-export interface User {
-	name: string
-	date: number
-	data: number
-	label: TagProps
-	link: LinkProps
-	toggle: ToggleProps
-	icon: IconProps
+const SimpleTemplate: Story<TableProps<Person>> = args => (
+	<Table<Person> {...args} />
+)
+export const Simple = SimpleTemplate.bind({})
+Simple.args = {
+	...tableData0
 }
 
-const columns: ColumnType[] = [
-	{
-		dataIndex: 'name',
-		title: 'Name',
-		type: 'string'
-	},
-	{
-		dataIndex: 'date',
-		displayFormat: 'MM/DD/YYYY',
-		format: 'date',
-		title: 'Date',
-		type: 'number'
-	},
-	{
-		dataIndex: 'data',
-		format: 'byte',
-		title: 'Data',
-		type: 'number'
-	},
-	{
-		dataIndex: 'label',
-		format: 'tag',
-		title: 'Label',
-		type: 'component'
-	},
-	{
-		dataIndex: 'link',
-		format: 'link',
-		title: 'Link',
-		type: 'component'
-	},
-	{
-		dataIndex: 'toggle',
-		format: 'toggle',
-		title: 'Toggle',
-		type: 'component'
-	},
-	{
-		dataIndex: 'icon',
-		format: 'icon',
-		title: 'Icon',
-		type: 'component'
-	}
-]
-
-const linkProps: LinkProps = {
-	children: 'link',
-	href: '/',
-	target: '_blank'
+const NumberTemplate: Story<TableProps<File>> = args => (
+	<Table<File> {...args} />
+)
+export const Number = NumberTemplate.bind({})
+Number.args = {
+	...tableData1
 }
 
-const toggleProps: ToggleProps = {
-	onChange: action('onChange'),
-	size: 'small'
-}
-
-const data: User[] = [
-	{
-		data: 1024,
-		date: 1598400668681,
-		icon: {
-			iconKey: 'dassana-blue'
-		},
-		label: { children: 'developer', color: 'magenta' },
-		link: {
-			...linkProps,
-			children: 'consectetur'
-		},
-		name: 'Lorem',
-		toggle: {
-			...toggleProps,
-			defaultChecked: true
-		}
-	},
-	{
-		data: 100,
-		date: 1570504402657,
-		icon: {
-			iconKey: 'aws-logo'
-		},
-		label: { children: 'CEO', color: 'blue' },
-		link: {
-			...linkProps,
-			children: 'amet'
-		},
-		name: 'Ipsum',
-		toggle: {
-			...toggleProps
-		}
-	},
-	{
-		data: 1048576,
-		date: 1581033743000,
-		icon: {
-			icon: 'https://dummyimage.com/600x400/000/fff&text=Test'
-		},
-		label: { children: 'designer', color: 'green' },
-		link: {
-			...linkProps,
-			children: 'sit'
-		},
-		name: 'Dolor',
-		toggle: {
-			...toggleProps,
-			defaultChecked: true,
-			disabled: true
-		}
-	}
-]
-
-export const tableData: TableProps<User> = {
-	columns,
-	data
-}
-
-const Template: Story<TableProps<User>> = args => <Table {...args} />
-
-export const Default = Template.bind({})
+const DefaultTemplate: Story<TableProps<Client>> = args => (
+	<Table<Client> {...args} />
+)
+export const Default = DefaultTemplate.bind({})
 Default.args = {
-	...tableData
+	...tableData2
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import Table from '.'
-import { tableData } from './Table.stories'
+import tableData0 from './fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 
-const mockData = tableData
+const mockData = tableData0
 let wrapper: ReactWrapper
 
 beforeEach(() => {

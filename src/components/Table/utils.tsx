@@ -193,7 +193,7 @@ function applyRender<DataTypeType, DataFormatType, DataType>(
 	if (typeStr === 'number') {
 		switch (formatStr) {
 			case 'byte':
-				antDColumn.render = number => bytes(number)
+				antDColumn.render = createByteFormatter()
 				break
 
 			case 'date': {
@@ -254,7 +254,7 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 		if (type === 'number') {
 			switch (format) {
 				case 'byte':
-					mapped[dataIndex] = (num: number) => bytes(num)
+					mapped[dataIndex] = createByteFormatter()
 					break
 
 				case 'date': {
@@ -276,8 +276,14 @@ function createDateFormatter(column: ColumnType): FormatterFnType {
 
 	if ('displayFormat' in column) displayFormat = column.displayFormat
 
-	return (num: number) => moment(num).format(displayFormat)
+	return (num: number) =>
+		num === undefined ? null : moment(num).format(displayFormat)
+}
+
+/* Returns a byte formatter function (using bytes). */
+function createByteFormatter(): FormatterFnType {
+	return (num: number) => (num === undefined ? null : bytes(num))
 }
 
 /* ------- Extracted Types ------- */
-type FormatterFnType = (num: number) => string
+type FormatterFnType = (num: number) => string | null
