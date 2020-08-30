@@ -2,9 +2,9 @@ import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
 import { ColumnType } from '.'
 import moment from 'moment'
+import React from 'react'
 import Icon, { IconProps } from '../Icon'
 import Link, { LinkProps } from '../Link'
-import React, { Key } from 'react'
 import Tag, { TagProps } from '../Tag'
 import Toggle, { ToggleProps } from '../Toggle'
 
@@ -13,39 +13,22 @@ import Toggle, { ToggleProps } from '../Toggle'
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
 export function processColumns<DataType>(columns: ColumnType[]) {
-	const processedColumns: AntDColumnType<DataType>[] = []
-
-	for (const column of columns) {
-		const { dataIndex, format, title, sort, type } = column
+	return columns.map(column => {
+		const { dataIndex, title, sort = true } = column
 		const antDColumn: AntDColumnType<DataType> = {
 			dataIndex,
 			showSorterTooltip: false,
 			title
 		}
 
-		type DataFormatType = typeof format
-		type DataTypeType = typeof type
+		applyRender<DataType>(column, antDColumn)
 
-		applyRender<DataTypeType, DataFormatType, DataType>(
-			type,
-			format,
-			column,
-			antDColumn
-		)
-
-		if (sort !== false) {
-			applySort<DataTypeType, DataFormatType, DataType>(
-				type,
-				format,
-				column,
-				antDColumn
-			)
+		if (sort) {
+			applySort<DataType>(column, antDColumn)
 		}
 
-		processedColumns.push(antDColumn)
-	}
-
-	return processedColumns
+		return antDColumn
+	})
 }
 
 /*
@@ -55,23 +38,13 @@ Takes data prop passed to Table and returns data:
     (this makes rows searchable by formatted data).
   */
 export function processData<DataType>(data: DataType[], columns: ColumnType[]) {
-	const processedData: DataType[] = []
 	const mappedFormat = mapDataIndexToFormatter(columns)
-	let i: Key = 0
 
-	for (const item of data) {
-		const _FORMATTED_DATA = createFormattedData(mappedFormat, item)
-
-		const row = {
-			...item,
-			_FORMATTED_DATA,
-			key: i++
-		}
-
-		processedData.push(row)
-	}
-
-	return processedData
+	return data.map((item, i) => ({
+		...item,
+		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
+		key: i
+	}))
 }
 
 /*
@@ -179,12 +152,11 @@ function compareIcons(column: ColumnType) {
 /* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x */
 
 /* Sets andD column sorter prop as appropriate compare function. */
-function applySort<DataTypeType, DataFormatType, DataType>(
-	type: DataTypeType,
-	format: DataFormatType,
+function applySort<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
+	const { format, type } = column
 	// for typescript error
 	const typeStr = String(type),
 		formatStr = String(format)
@@ -214,12 +186,11 @@ depending on data type and format. Render function takes
 data value as input and returns a custom formatted value(
 can be a string or React Element).
 */
-function applyRender<DataTypeType, DataFormatType, DataType>(
-	type: DataTypeType,
-	format: DataFormatType,
+function applyRender<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
+	const { format, type } = column
 	const typeStr = String(type),
 		formatStr = String(format)
 
@@ -269,15 +240,8 @@ function createFormattedData<DataType>(
 	mappedFormat: Record<string, FormatterFnType>,
 	item: DataType
 ) {
-	const _FORMATTED_DATA = []
-
-	for (const key of Object.keys(item)) {
-		if (key in mappedFormat)
-			// @ts-ignore
-			_FORMATTED_DATA.push(mappedFormat[key](item[key]))
-	}
-
-	return _FORMATTED_DATA
+	// @ts-ignore
+	return Object.keys(mappedFormat).map(key => mappedFormat[key](item[key]))
 }
 
 /* Maps dataIndex to formatter function. E.g. { dateOfBirth: DATE_FORMATTER_FN } */

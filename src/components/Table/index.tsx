@@ -1,6 +1,7 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
+import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import Input from '../Input'
 import { mapFilterKeys, processColumns, processData } from './utils'
@@ -80,6 +81,18 @@ function Table<DataType extends object>({
 		setFilteredData(filteredData)
 	}
 
+	const debouncedSearch = (
+		searchFn: (e: ChangeEvent<HTMLInputElement>) => void,
+		time: number
+	) => {
+		const debounced = debounce(searchFn, time)
+
+		return function (e: ChangeEvent<HTMLInputElement>) {
+			e.persist()
+			return debounced(e)
+		}
+	}
+
 	return (
 		<div>
 			{search && (
@@ -91,7 +104,7 @@ function Table<DataType extends object>({
 					}}
 				>
 					<Input
-						onChange={searchTable}
+						onChange={debouncedSearch(searchTable, 250)}
 						placeholder='Search table...'
 					/>
 				</div>
