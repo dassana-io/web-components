@@ -116,29 +116,62 @@ export function mapFilterKeys(columns: ColumnType[]) {
   based on data type and format.
  */
 function compareStrings(column: ColumnType) {
-	return (a: any, b: any) =>
-		a[column.dataIndex].localeCompare(b[column.dataIndex])
+	return (a: any, b: any) => {
+		const compareValA: string =
+			a[column.dataIndex] === undefined ? '' : a[column.dataIndex]
+		const compareValB: string =
+			b[column.dataIndex] === undefined ? '' : b[column.dataIndex]
+
+		return compareValA.localeCompare(compareValB)
+	}
 }
 
 function compareNumbers(column: ColumnType) {
-	return (a: any, b: any) => a[column.dataIndex] - b[column.dataIndex]
+	return (a: any, b: any) => {
+		const compareValA: number =
+			a[column.dataIndex] === undefined ? -Infinity : a[column.dataIndex]
+		const compareValB: number =
+			b[column.dataIndex] === undefined ? -Infinity : b[column.dataIndex]
+
+		return compareValA - compareValB
+	}
 }
 
 function compareChildren(column: ColumnType) {
-	return (a: any, b: any) =>
-		a[column.dataIndex]['children'].localeCompare(
-			b[column.dataIndex]['children']
-		)
+	return (a: any, b: any) => {
+		const compareValA: string =
+			a[column.dataIndex] === undefined
+				? ''
+				: a[column.dataIndex]['children']
+		const compareValB: string =
+			b[column.dataIndex] === undefined
+				? ''
+				: b[column.dataIndex]['children']
+
+		return compareValA.localeCompare(compareValB)
+	}
 }
 
 function compareIcons(column: ColumnType) {
 	return (a: any, b: any) => {
-		const compareValA: string = a[column.dataIndex].iconKey
-			? a[column.dataIndex].iconKey
-			: a[column.dataIndex].icon
-		const compareValB: string = b[column.dataIndex].iconKey
-			? b[column.dataIndex].iconKey
-			: b[column.dataIndex].icon
+		let compareValA: string
+		let compareValB: string
+
+		if (a[column.dataIndex] === undefined) {
+			compareValA = ''
+		} else {
+			compareValA = a[column.dataIndex].iconKey
+				? a[column.dataIndex].iconKey
+				: a[column.dataIndex].icon
+		}
+
+		if (b[column.dataIndex] === undefined) {
+			compareValB = ''
+		} else {
+			compareValB = b[column.dataIndex].iconKey
+				? b[column.dataIndex].iconKey
+				: b[column.dataIndex].icon
+		}
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -204,21 +237,23 @@ function applyRender<DataTypeType, DataFormatType, DataType>(
 	} else if (typeStr === 'component') {
 		switch (formatStr) {
 			case 'icon':
-				antDColumn.render = (props: IconProps) => <Icon {...props} />
+				antDColumn.render = (props: IconProps) =>
+					props && <Icon {...props} />
 				break
 
 			case 'link':
-				antDColumn.render = (props: LinkProps) => <Link {...props} />
+				antDColumn.render = (props: LinkProps) =>
+					props && <Link {...props} />
 				break
 
 			case 'tag':
-				antDColumn.render = (props: TagProps) => <Tag {...props} />
+				antDColumn.render = (props: TagProps) =>
+					props && <Tag {...props} />
 				break
 
 			case 'toggle':
-				antDColumn.render = (props: ToggleProps) => (
-					<Toggle {...props} />
-				)
+				antDColumn.render = (props: ToggleProps) =>
+					props && <Toggle {...props} />
 				break
 		}
 	}
