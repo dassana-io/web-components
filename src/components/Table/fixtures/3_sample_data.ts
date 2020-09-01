@@ -1,14 +1,11 @@
-import { IconProps } from '../../Icon'
-import { LinkProps } from '../../Link'
-import { TagProps } from '../../Tag'
 import { ColumnType, TableProps } from '..'
 
 export interface Client {
-	start_date?: number
 	name?: string
-	company?: IconProps
-	role?: TagProps
-	linked_in?: LinkProps
+	start_date?: number
+	role?: { name: string; color: string }
+	linked_in?: string
+	company?: string
 }
 
 const columns: ColumnType[] = [
@@ -19,8 +16,10 @@ const columns: ColumnType[] = [
 	},
 	{
 		dataIndex: 'start_date',
-		displayFormat: 'MM/DD/YYYY',
 		format: 'date',
+		renderProps: {
+			displayFormat: 'MM/DD/YYYY'
+		},
 		title: 'Client Since',
 		type: 'number'
 	},
@@ -33,51 +32,46 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'linked_in',
 		format: 'link',
+		renderProps: {
+			buildHref: (): string => '/'
+		},
+		target: '_blank',
 		title: 'LinkedIn',
 		type: 'component'
 	},
 	{
 		dataIndex: 'company',
 		format: 'icon',
+		renderProps: {
+			type: 'iconKey'
+		},
 		title: 'Company',
 		type: 'component'
 	}
 ]
 
-const linkProps: LinkProps = {
-	children: 'link',
-	href: '/',
-	target: '_blank'
-}
-
 const data: Client[] = [
 	{
-		company: {
-			iconKey: 'dassana-blue'
-		},
+		company: 'dassana',
 		name: 'Lorem Ipsum',
-		role: { children: 'CEO', color: 'blue' },
+		role: { color: 'blue', name: 'CEO' },
 		start_date: 1519782342212
 	},
 	{
-		linked_in: { ...linkProps, children: '/in/dolor-s' },
-		role: { children: 'Software Engineer', color: 'magenta' }
+		linked_in: '/in/dolor-s',
+		role: { color: 'magenta', name: 'Software Engineer' }
 	},
 	{
-		company: {
-			iconKey: 'dassana-orange'
-		},
-		linked_in: { ...linkProps, children: '/in/amet-c' },
+		company: 'dassana',
+		linked_in: '/in/amet-c',
 		name: 'Amet Consectetur',
 		start_date: 1553932342212
 	},
 	{
-		company: {
-			icon: 'https://dummyimage.com/200x200/000/fff&text=C'
-		},
-		linked_in: { ...linkProps, children: '/in/duis-irure' },
+		company: 'dassana',
+		linked_in: '/in/duis-irure',
 		name: 'Duis Irure',
-		role: { children: 'Business Development', color: 'purple' },
+		role: { color: 'purple', name: 'Business Development' },
 		start_date: 1531932342212
 	}
 ]

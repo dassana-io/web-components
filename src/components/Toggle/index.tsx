@@ -2,6 +2,8 @@ import 'antd/lib/switch/style/index.css'
 import { Switch } from 'antd'
 import React, { FC } from 'react'
 
+export type ToggleSizeType = 'default' | 'small'
+
 export interface ToggleProps {
 	/**
 	 * Required change handler.
@@ -18,7 +20,7 @@ export interface ToggleProps {
 	/**
 	 * The size of the toggle.
 	 */
-	size?: 'default' | 'small'
+	size?: ToggleSizeType
 }
 
 const Toggle: FC<ToggleProps> = ({

@@ -8,7 +8,7 @@ const AntDLink = Typography.Link
 
 export type LinkTargetType = '_self' | '_blank'
 
-interface SharedLinkProps {
+export interface SharedLinkProps {
 	/**
 	 * Link children to render including link text.
 	 */

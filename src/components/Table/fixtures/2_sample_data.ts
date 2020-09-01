@@ -1,17 +1,12 @@
-import { action } from '@storybook/addon-actions'
-import { IconProps } from '../../Icon'
-import { LinkProps } from '../../Link'
-import { TagProps } from '../../Tag'
-import { ToggleProps } from '../../Toggle'
 import { ColumnType, TableProps } from '..'
 
 export interface Client {
 	name: string
 	start_date: number
-	role: TagProps
-	linked_in: LinkProps
-	admin_access: ToggleProps
-	company: IconProps
+	role: { name: string; color: string }
+	linked_in: string
+	admin_access: boolean
+	company: string
 }
 
 const columns: ColumnType[] = [
@@ -22,8 +17,10 @@ const columns: ColumnType[] = [
 	},
 	{
 		dataIndex: 'start_date',
-		displayFormat: 'MM/DD/YYYY',
 		format: 'date',
+		renderProps: {
+			displayFormat: 'MM/DD/YYYY'
+		},
 		title: 'Client Since',
 		type: 'number'
 	},
@@ -36,73 +33,62 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'linked_in',
 		format: 'link',
+		renderProps: {
+			buildHref: (): string => '/'
+		},
+		target: '_blank',
 		title: 'LinkedIn',
 		type: 'component'
 	},
 	{
 		dataIndex: 'admin_access',
 		format: 'toggle',
+		size: 'small',
 		title: 'Has Admin Access',
 		type: 'component'
 	},
 	{
 		dataIndex: 'company',
 		format: 'icon',
+		renderProps: {
+			type: 'iconKey'
+		},
 		title: 'Company',
 		type: 'component'
 	}
 ]
 
-const toggleProps: ToggleProps = {
-	onChange: action('onChange'),
-	size: 'small'
-}
-
-const linkProps: LinkProps = {
-	children: 'link',
-	href: '/',
-	target: '_blank'
-}
-
 const data: Client[] = [
 	{
-		admin_access: { ...toggleProps, defaultChecked: true },
-		company: {
-			iconKey: 'dassana-blue'
-		},
-		linked_in: { ...linkProps, children: '/in/lorem-i' },
+		admin_access: true,
+		company: 'dassana',
+		linked_in: '/in/lorem-i',
 		name: 'Lorem Ipsum',
-		role: { children: 'CEO', color: 'blue' },
+		role: { color: 'blue', name: 'CEO' },
 		start_date: 1519782342212
 	},
 	{
-		admin_access: { ...toggleProps, defaultChecked: false, disabled: true },
-		company: {
-			iconKey: 'aws-logo'
-		},
-		linked_in: { ...linkProps, children: '/in/dolor-s' },
+		admin_access: false,
+		company: 'aws',
+		linked_in: '/in/dolor-s',
 		name: 'Dolor Sit',
-		role: { children: 'Software Engineer', color: 'magenta' },
+		role: { color: 'magenta', name: 'Software Engineer' },
 		start_date: 1593682342212
 	},
 	{
-		admin_access: { ...toggleProps },
-		company: {
-			iconKey: 'dassana-orange'
-		},
-		linked_in: { ...linkProps, children: '/in/amet-c' },
+		admin_access: true,
+		company: 'dassana',
+		linked_in: '/in/amet-c',
 		name: 'Amet Consectetur',
-		role: { children: 'Designer', color: 'green' },
+		role: { color: 'green', name: 'Designer' },
 		start_date: 1553932342212
 	},
 	{
-		admin_access: { ...toggleProps, defaultChecked: true },
-		company: {
-			icon: 'https://dummyimage.com/200x200/000/fff&text=C'
-		},
-		linked_in: { ...linkProps, children: '/in/duis-irure' },
+		admin_access: false,
+		company: 'dassana',
+		linked_in: '/in/duis-irure',
 		name: 'Duis Irure',
-		role: { children: 'Business Development', color: 'purple' },
+		role: { color: 'purple', name: 'Business Development' },
 		start_date: 1531932342212
 	}
 ]

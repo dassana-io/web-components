@@ -19,7 +19,7 @@ Predefined.argTypes = {
 	}
 }
 Predefined.args = {
-	iconKey: 'dassana-orange'
+	iconKey: 'dassana'
 }
 
 export const Custom = Template.bind({})

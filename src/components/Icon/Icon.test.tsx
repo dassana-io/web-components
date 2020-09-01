@@ -7,7 +7,7 @@ let wrapper: ReactWrapper
 describe('Predefined Icon', () => {
 	const mockProps: IconProps = {
 		height: 64,
-		iconKey: 'dassana-blue'
+		iconKey: 'dassana'
 	}
 
 	beforeEach(() => {
@@ -19,13 +19,11 @@ describe('Predefined Icon', () => {
 	})
 
 	it('renders with correct src url', () => {
-		expect(wrapper.getDOMNode().getAttribute('src')).toContain(
-			'dassana-blue'
-		)
+		expect(wrapper.getDOMNode().getAttribute('src')).toContain('dassana')
 	})
 
 	it('has the correct alt attribute', () => {
-		expect(wrapper.getDOMNode().getAttribute('alt')).toBe('dassana-blue')
+		expect(wrapper.getDOMNode().getAttribute('alt')).toBe('dassana')
 	})
 
 	it('has the correct height', () => {
@@ -33,7 +31,7 @@ describe('Predefined Icon', () => {
 	})
 
 	it('renders with a default height of 32', () => {
-		wrapper = mount(<Icon iconKey='dassana-blue' />)
+		wrapper = mount(<Icon iconKey='dassana' />)
 
 		expect(wrapper.getDOMNode().getAttribute('height')).toBe('32')
 	})

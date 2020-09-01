@@ -21,15 +21,15 @@ const columns: ColumnType[] = [
 	},
 	{
 		dataIndex: 'created_at',
-		displayFormat: 'MMM D, YYYY h:mm A', // moment.js display format
 		format: 'date',
+		renderProps: { displayFormat: 'MMM D, YYYY h:mm A' }, // moment.js display format
 		title: 'Uploaded Time',
 		type: 'number'
 	},
 	{
 		dataIndex: 'updated_at',
-		displayFormat: 'lll', //moment.js format shortcuts also work
 		format: 'date',
+		renderProps: { displayFormat: 'lll' }, //moment.js format shortcuts also work
 		title: 'Last Updated Time',
 		type: 'number'
 	}
