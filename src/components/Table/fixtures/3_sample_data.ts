@@ -5,6 +5,7 @@ export interface Client1 {
 	start_date?: number
 	role?: { name: string; color: string }
 	linked_in?: string
+	admin_access?: boolean
 	company?: string
 }
 
@@ -40,12 +41,17 @@ const columns: ColumnType[] = [
 		type: 'component'
 	},
 	{
+		dataIndex: 'admin_access',
+		format: 'toggle',
+		title: 'Has Admin Access',
+		type: 'component'
+	},
+	{
 		dataIndex: 'company',
 		format: 'icon',
 		renderProps: {
 			iconMap: {
 				azure: 'https://dummyimage.com/600x400/0072c6/fff&text=A',
-				dassana: 'https://dummyimage.com/600x400/000/fff&text=D',
 				'google-cloud':
 					'https://dummyimage.com/600x400/EA4335/fff&text=G'
 			},
@@ -58,6 +64,7 @@ const columns: ColumnType[] = [
 
 const data: Client1[] = [
 	{
+		admin_access: false,
 		company: 'dassana',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
@@ -74,6 +81,7 @@ const data: Client1[] = [
 		start_date: 1553932342212
 	},
 	{
+		admin_access: true,
 		company: 'azure',
 		linked_in: '/in/duis-irure',
 		name: 'Duis Irure',

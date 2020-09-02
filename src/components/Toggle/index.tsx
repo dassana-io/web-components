@@ -6,7 +6,7 @@ export interface ToggleProps {
 	/**
 	 * Required change handler
 	 */
-	onChange: () => void
+	onChange: (checked: boolean) => void
 	/**
 	 * Determines whether the Switch is checked
 	 */

@@ -2,7 +2,7 @@ import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
 import moment from 'moment'
 import React from 'react'
-import { ColumnType, IconType, LinkType, RenderPropsIcon } from '.'
+import { ColumnType, NumberDateType, ParentDataType } from '.'
 import Icon, { IconName, IconProps } from '../Icon'
 import Link, { LinkProps } from '../Link'
 import Tag, { TagProps } from '../Tag'
@@ -56,10 +56,10 @@ export function mapFilterKeys(columns: ColumnType[]) {
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
 	for (const column of columns) {
-		const { dataIndex, format, type } = column
+		const { dataIndex } = column
 
-		if (type === 'component') {
-			switch (format) {
+		if (column.type === 'component') {
+			switch (column.format) {
 				case 'tag':
 					keysArr.push([dataIndex, 'name'])
 					break
@@ -72,9 +72,9 @@ export function mapFilterKeys(columns: ColumnType[]) {
 					keysArr.push(dataIndex)
 					break
 			}
-		} else if (type === 'string') {
+		} else if (column.type === 'string') {
 			keysArr.push(dataIndex)
-		} else if (type === 'number') {
+		} else if (column.type === 'number') {
 			keysArr.push(dataIndex)
 		}
 	}
@@ -88,7 +88,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
   based on data type and format.
  */
 function compareStrings(column: ColumnType) {
-	return (a: any, b: any) => {
+	return (a: ParentDataType, b: ParentDataType) => {
 		const compareValA: string =
 			a[column.dataIndex] === undefined ? '' : a[column.dataIndex]
 		const compareValB: string =
@@ -99,7 +99,7 @@ function compareStrings(column: ColumnType) {
 }
 
 function compareNumbers(column: ColumnType) {
-	return (a: any, b: any) => {
+	return (a: ParentDataType, b: ParentDataType) => {
 		const compareValA: number =
 			a[column.dataIndex] === undefined ? -Infinity : a[column.dataIndex]
 		const compareValB: number =
@@ -110,7 +110,7 @@ function compareNumbers(column: ColumnType) {
 }
 
 function compareTags(column: ColumnType) {
-	return (a: any, b: any) => {
+	return (a: ParentDataType, b: ParentDataType) => {
 		const compareValA: string =
 			a[column.dataIndex] === undefined ? '' : a[column.dataIndex]['name']
 		const compareValB: string =
@@ -120,6 +120,15 @@ function compareTags(column: ColumnType) {
 	}
 }
 
+function compareBooleans(column: ColumnType) {
+	return (a: ParentDataType, b: ParentDataType) => {
+		const compareValA: number =
+			a[column.dataIndex] === undefined ? -1 : +a[column.dataIndex]
+		const compareValB: number =
+			b[column.dataIndex] === undefined ? -1 : +b[column.dataIndex]
+		return compareValA - compareValB
+	}
+}
 /* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x */
 
 /* Sets andD column sorter prop as appropriate compare function. */
@@ -127,13 +136,8 @@ function applySort<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
-	const { format, type } = column
-	// for typescript error
-	const typeStr = String(type),
-		formatStr = String(format)
-
-	if (typeStr === 'component') {
-		switch (formatStr) {
+	if (column.type === 'component') {
+		switch (column.format) {
 			case 'link':
 				antDColumn.sorter = compareStrings(column)
 				break
@@ -143,10 +147,13 @@ function applySort<DataType>(
 			case 'icon':
 				antDColumn.sorter = compareStrings(column)
 				break
+			case 'toggle':
+				antDColumn.sorter = compareBooleans(column)
+				break
 		}
-	} else if (typeStr === 'string') {
+	} else if (column.type === 'string') {
 		antDColumn.sorter = compareStrings(column)
-	} else if (typeStr === 'number') {
+	} else if (column.type === 'number') {
 		antDColumn.sorter = compareNumbers(column)
 	}
 }
@@ -161,12 +168,8 @@ function applyRender<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
-	const { format, type } = column
-	const typeStr = String(type),
-		formatStr = String(format)
-
-	if (typeStr === 'number') {
-		switch (formatStr) {
+	if (column.type === 'number') {
+		switch (column.format) {
 			case 'byte':
 				antDColumn.render = createByteFormatter()
 				break
@@ -176,34 +179,33 @@ function applyRender<DataType>(
 				break
 			}
 		}
-	} else if (typeStr === 'component') {
-		switch (formatStr) {
+	} else if (column.type === 'component') {
+		switch (column.format) {
 			case 'icon': {
 				antDColumn.render = (record: IconName | string) => {
 					if (record === undefined) return ''
 
-					const iconColumn = column as IconType
-
-					const { height = 25, type } = iconColumn.renderProps
-
-					const renderProps = iconColumn.renderProps as RenderPropsIcon
+					const iconColumn = column
+					const renderProps = iconColumn.renderProps
+					const { height = 25 } = renderProps
 
 					const iconProps: IconProps =
-						type === 'icon'
+						renderProps.type === 'icon'
 							? { icon: renderProps.iconMap[record] }
 							: { iconKey: record as IconName }
 
+					if (renderProps.type === 'icon' && !iconProps.icon)
+						return record
 					return <Icon {...iconProps} height={height} />
 				}
+
 				break
 			}
-
 			case 'link': {
 				antDColumn.render = (record: string) => {
 					if (record === undefined) return ''
 
-					const linkColumn = column as LinkType
-
+					const linkColumn = column
 					const { target = '_blank', buildHref = (r: string) => r } =
 						linkColumn.renderProps || {}
 
@@ -215,6 +217,7 @@ function applyRender<DataType>(
 
 					return <Link {...linkProps} />
 				}
+
 				break
 			}
 
@@ -226,7 +229,6 @@ function applyRender<DataType>(
 					if (record === undefined) return ''
 
 					const { color = '' } = record
-
 					const tagProps: TagProps = {
 						children: record.name,
 						color
@@ -234,6 +236,7 @@ function applyRender<DataType>(
 
 					return <Tag {...tagProps} />
 				}
+
 				break
 			}
 
@@ -242,14 +245,17 @@ function applyRender<DataType>(
 					if (record === undefined) return ''
 
 					const checked = record
-					// @ts-ignore
 					const toggleProps: ToggleProps = {
 						checked,
+						onChange: checked => {
+							console.log(`switch to ${checked}`)
+						},
 						size: 'small'
 					}
 
 					return <Toggle {...toggleProps} />
 				}
+
 				break
 			}
 		}
@@ -275,9 +281,10 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 	const mapped: Record<string, NumFormatterFunction> = {}
 
 	for (const column of columns) {
-		const { dataIndex, type, format } = column
-		if (type === 'number') {
-			switch (format) {
+		const { dataIndex } = column
+
+		if (column.type === 'number') {
+			switch (column.format) {
 				case 'byte':
 					mapped[dataIndex] = createByteFormatter()
 					break
@@ -296,16 +303,12 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 /* ------- Common Helper functions ------- */
 
 /* Returns a date formatter function (using moment.js). */
-function createDateFormatter(column: ColumnType): NumFormatterFunction {
+function createDateFormatter(column: NumberDateType): NumFormatterFunction {
 	let displayFormat: string | undefined = ''
+	const { renderProps } = column
 
-	if (
-		column.format === 'date' &&
-		'renderProps' in column &&
-		column.renderProps !== undefined &&
-		'displayFormat' in column.renderProps
-	)
-		displayFormat = column.renderProps.displayFormat
+	if (renderProps && renderProps.displayFormat)
+		displayFormat = renderProps.displayFormat
 
 	return (num: number) =>
 		num === undefined ? null : moment(num).format(displayFormat)

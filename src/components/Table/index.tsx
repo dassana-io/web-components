@@ -1,11 +1,10 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
-import { ColumnType } from './types'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import Input from '../Input'
-
+import { ColumnType, ParentDataType } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useState } from 'react'
 
@@ -24,7 +23,7 @@ export interface TableProps<DataType> {
 	search?: boolean
 }
 
-function Table<DataType extends object>({
+function Table<DataType extends ParentDataType>({
 	columns,
 	data,
 	search = true
@@ -78,7 +77,7 @@ function Table<DataType extends object>({
 				</div>
 			)}
 
-			<AntDTable<DataType>
+			<AntDTable
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
 			/>

@@ -70,3 +70,5 @@ export interface ToggleType extends PartialComponentType {
 type ComponentType = IconType | LinkType | TagType | ToggleType
 
 export type ColumnType = StringType | NumberType | ComponentType
+
+export type ParentDataType = Record<string, any>
