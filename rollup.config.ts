@@ -21,7 +21,7 @@ export default {
 			assetFileNames
 		}
 	],
-	external: ['react'],
+	external: ['antd', 'react'],
 	plugins: [
 		resolve(),
 		commonjs(),
