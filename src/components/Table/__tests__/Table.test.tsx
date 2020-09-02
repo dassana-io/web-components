@@ -1,5 +1,4 @@
 import mockData0 from '../fixtures/0_sample_data'
-import mockData3 from '../fixtures/3_sample_data'
 import React from 'react'
 import Table from '..'
 import { mount, ReactWrapper } from 'enzyme'
@@ -73,20 +72,6 @@ describe('Table', () => {
 			const table = wrapper.find(Table)
 			const searchBar = table.find('input')
 			expect(searchBar).toHaveLength(0)
-		})
-	})
-
-	describe('Table column sort', () => {
-		// todo: allow sort for type - component, format - toggle
-		it('allows for column sort for each column type by default', () => {
-			wrapper = mount(
-				<div>
-					<Table {...mockData3} />
-				</div>
-			)
-			const table = wrapper.find(Table)
-			const sortableCols = table.find('.ant-table-column-has-sorters')
-			expect(sortableCols).toHaveLength(5)
 		})
 	})
 })

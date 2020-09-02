@@ -44,10 +44,9 @@ describe('mapFilterKeys', () => {
 			'_FORMATTED_DATA',
 			'name',
 			'start_date',
-			['role', 'children'],
-			['linked_in', 'children'],
-			['company', 'icon'],
-			['company', 'iconKey']
+			['role', 'name'],
+			'linked_in',
+			'company'
 		]
 		expect(mapFilterKeys(mockData0.columns)).toMatchObject(
 			mockFilteredKeys0

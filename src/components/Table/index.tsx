@@ -1,75 +1,13 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
+import { ColumnType } from './types'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import Input from '../Input'
-import { SharedIconProps } from '../Icon'
-import { SharedLinkProps } from '../Link'
-import { ToggleProps } from '../Toggle'
+
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useState } from 'react'
-
-interface PartialColumnType {
-	dataIndex: string
-	title: string // we need to pass a key instead of strings for i18n
-	sort?: boolean
-}
-
-interface DefaultNumberType extends PartialColumnType {
-	type: 'number'
-	format?: 'none'
-}
-
-interface NumberByteType extends Omit<DefaultNumberType, 'format'> {
-	format: 'byte'
-}
-
-interface NumberDateType extends Omit<DefaultNumberType, 'format'> {
-	format: 'date'
-	renderProps?: {
-		displayFormat?: string
-	}
-}
-
-export type NumberType = DefaultNumberType | NumberByteType | NumberDateType
-
-export interface StringType extends PartialColumnType {
-	type: 'string'
-	format?: 'none'
-}
-
-interface PartialComponentType extends PartialColumnType {
-	type: 'component'
-}
-
-interface IconType extends PartialComponentType, SharedIconProps {
-	format: 'icon'
-	renderProps: {
-		type: 'icon' | 'iconKey'
-	}
-}
-
-interface LinkType
-	extends PartialComponentType,
-		Pick<SharedLinkProps, 'target'> {
-	format: 'link'
-	renderProps?: {
-		buildHref: (record: string) => string
-	}
-}
-
-interface TagType extends PartialComponentType {
-	format: 'tag'
-}
-
-interface ToggleType extends PartialComponentType, Pick<ToggleProps, 'size'> {
-	format: 'toggle'
-}
-
-type ComponentType = IconType | LinkType | TagType | ToggleType
-
-export type ColumnType = StringType | NumberType | ComponentType
 
 export interface TableProps<DataType> {
 	/**
@@ -148,4 +86,5 @@ function Table<DataType extends object>({
 	)
 }
 
+export * from './types'
 export default Table

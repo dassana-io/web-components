@@ -4,6 +4,7 @@ import Table, { TableProps } from '.'
 import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'
+import tableData3, { Client1 } from './fixtures/3_sample_data'
 
 const SimpleTemplate: Story<TableProps<Person>> = args => (
 	<Table<Person> {...args} />
@@ -127,4 +128,12 @@ Mixed.argTypes = {
 			}
 		}
 	}
+}
+
+const MissingCellsTemplate: Story<TableProps<Client1>> = args => (
+	<Table<Client1> {...args} />
+)
+export const MissingCells = MissingCellsTemplate.bind({})
+MissingCells.args = {
+	...tableData3
 }

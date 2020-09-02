@@ -218,9 +218,9 @@ exports[`Storyshots Icon Custom 1`] = `
 
 exports[`Storyshots Icon Predefined 1`] = `
 <img
-  alt="dassana-orange"
+  alt="dassana"
   height={64}
-  src="dassana-orange.png"
+  src="dassana-blue.png"
 />
 `;
 

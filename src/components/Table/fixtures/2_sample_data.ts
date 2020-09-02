@@ -1,3 +1,4 @@
+import { IconName } from '../../Icon'
 import { ColumnType, TableProps } from '..'
 
 export interface Client {
@@ -6,7 +7,7 @@ export interface Client {
 	role: { name: string; color: string }
 	linked_in: string
 	admin_access: boolean
-	company: string
+	company: IconName
 }
 
 const columns: ColumnType[] = [
@@ -34,16 +35,15 @@ const columns: ColumnType[] = [
 		dataIndex: 'linked_in',
 		format: 'link',
 		renderProps: {
-			buildHref: (): string => '/'
+			buildHref: (): string => '/',
+			target: '_blank'
 		},
-		target: '_blank',
 		title: 'LinkedIn',
 		type: 'component'
 	},
 	{
 		dataIndex: 'admin_access',
 		format: 'toggle',
-		size: 'small',
 		title: 'Has Admin Access',
 		type: 'component'
 	},
@@ -61,7 +61,7 @@ const columns: ColumnType[] = [
 const data: Client[] = [
 	{
 		admin_access: true,
-		company: 'dassana',
+		company: 'azure',
 		linked_in: '/in/lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
@@ -85,7 +85,7 @@ const data: Client[] = [
 	},
 	{
 		admin_access: false,
-		company: 'dassana',
+		company: 'google-cloud',
 		linked_in: '/in/duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },

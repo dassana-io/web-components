@@ -1,6 +1,6 @@
 import { ColumnType, TableProps } from '..'
 
-export interface Client {
+export interface Client1 {
 	name?: string
 	start_date?: number
 	role?: { name: string; color: string }
@@ -33,9 +33,9 @@ const columns: ColumnType[] = [
 		dataIndex: 'linked_in',
 		format: 'link',
 		renderProps: {
-			buildHref: (): string => '/'
+			buildHref: (): string => '/',
+			target: '_blank'
 		},
-		target: '_blank',
 		title: 'LinkedIn',
 		type: 'component'
 	},
@@ -43,14 +43,20 @@ const columns: ColumnType[] = [
 		dataIndex: 'company',
 		format: 'icon',
 		renderProps: {
-			type: 'iconKey'
+			iconMap: {
+				azure: 'https://dummyimage.com/600x400/0072c6/fff&text=A',
+				dassana: 'https://dummyimage.com/600x400/000/fff&text=D',
+				'google-cloud':
+					'https://dummyimage.com/600x400/EA4335/fff&text=G'
+			},
+			type: 'icon'
 		},
 		title: 'Company',
 		type: 'component'
 	}
 ]
 
-const data: Client[] = [
+const data: Client1[] = [
 	{
 		company: 'dassana',
 		name: 'Lorem Ipsum',
@@ -62,13 +68,13 @@ const data: Client[] = [
 		role: { color: 'magenta', name: 'Software Engineer' }
 	},
 	{
-		company: 'dassana',
+		company: 'google-cloud',
 		linked_in: '/in/amet-c',
 		name: 'Amet Consectetur',
 		start_date: 1553932342212
 	},
 	{
-		company: 'dassana',
+		company: 'azure',
 		linked_in: '/in/duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },
@@ -76,6 +82,6 @@ const data: Client[] = [
 	}
 ]
 
-const tableData2: TableProps<Client> = { columns, data }
+const tableData2: TableProps<Client1> = { columns, data }
 
 export default tableData2

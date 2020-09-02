@@ -1,12 +1,12 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
-import { ColumnType } from '.'
 import moment from 'moment'
 import React from 'react'
+import { ColumnType, IconType, LinkType, RenderPropsIcon } from '.'
 import Icon, { IconName, IconProps } from '../Icon'
 import Link, { LinkProps } from '../Link'
 import Tag, { TagProps } from '../Tag'
-import Toggle, { ToggleProps, ToggleSizeType } from '../Toggle'
+import Toggle, { ToggleProps } from '../Toggle'
 
 /* ------- Exported Functions ------- */
 
@@ -78,7 +78,6 @@ export function mapFilterKeys(columns: ColumnType[]) {
 			keysArr.push(dataIndex)
 		}
 	}
-	console.log(keysArr)
 	return keysArr
 }
 
@@ -180,35 +179,40 @@ function applyRender<DataType>(
 	} else if (typeStr === 'component') {
 		switch (formatStr) {
 			case 'icon': {
-				antDColumn.render = (record: string) => {
-					// @ts-ignore
-					const iconProps: IconProps = {}
+				antDColumn.render = (record: IconName | string) => {
+					if (record === undefined) return ''
 
-					if ('height' in column) iconProps.height = column.height
+					const iconColumn = column as IconType
 
-					if (
-						column.format === 'icon' &&
-						'renderProps' in column &&
-						column.renderProps &&
-						column.renderProps.type
-					) {
-						column.renderProps.type === 'icon'
-							? (iconProps.icon = record)
-							: (iconProps.iconKey = record as IconName)
-					}
-					return <Icon {...iconProps} />
+					const { height = 25, type } = iconColumn.renderProps
+
+					const renderProps = iconColumn.renderProps as RenderPropsIcon
+
+					const iconProps: IconProps =
+						type === 'icon'
+							? { icon: renderProps.iconMap[record] }
+							: { iconKey: record as IconName }
+
+					return <Icon {...iconProps} height={height} />
 				}
 				break
 			}
 
 			case 'link': {
 				antDColumn.render = (record: string) => {
+					if (record === undefined) return ''
+
+					const linkColumn = column as LinkType
+
+					const { target = '_blank', buildHref = (r: string) => r } =
+						linkColumn.renderProps || {}
+
 					const linkProps: LinkProps = {
 						children: record,
-						href: createLinkFormatter(column)(record)
+						href: buildHref(record),
+						target
 					}
 
-					if ('target' in column) linkProps.target = column.target
 					return <Link {...linkProps} />
 				}
 				break
@@ -217,11 +221,16 @@ function applyRender<DataType>(
 			case 'tag': {
 				antDColumn.render = (record: {
 					name: string
-					color: string
+					color?: string
 				}) => {
-					const tagProps: TagProps = { children: record.name }
-					if ('color' in record && record.color)
-						tagProps.color = record.color
+					if (record === undefined) return ''
+
+					const { color = '' } = record
+
+					const tagProps: TagProps = {
+						children: record.name,
+						color
+					}
 
 					return <Tag {...tagProps} />
 				}
@@ -230,18 +239,15 @@ function applyRender<DataType>(
 
 			case 'toggle': {
 				antDColumn.render = (record: boolean) => {
-					// @ts-ignore
-					const toggleProps: ToggleProps = {}
-					toggleProps.size = 'small'
+					if (record === undefined) return ''
 
-					if (column.format === 'toggle') {
-						toggleProps.size = column.size
-							? (column.size as ToggleSizeType)
-							: 'small'
+					const checked = record
+					// @ts-ignore
+					const toggleProps: ToggleProps = {
+						checked,
+						size: 'small'
 					}
-					if (record !== undefined) {
-						toggleProps.defaultChecked = record
-					}
+
 					return <Toggle {...toggleProps} />
 				}
 				break
@@ -310,20 +316,5 @@ function createByteFormatter(): NumFormatterFunction {
 	return (num: number) => (num === undefined ? null : bytes(num))
 }
 
-function createLinkFormatter(column: ColumnType): StrFormatterFunction {
-	let buildHref: (record: string) => string
-	if (
-		column.format === 'link' &&
-		'renderProps' in column &&
-		column.renderProps &&
-		column.renderProps.buildHref
-	) {
-		buildHref = column.renderProps.buildHref
-	}
-	return (record: string) =>
-		typeof buildHref === 'function' ? buildHref(record) : record
-}
-
 /* ------- Extracted Types ------- */
 type NumFormatterFunction = (num: number) => string | null
-type StrFormatterFunction = (record: string) => string
