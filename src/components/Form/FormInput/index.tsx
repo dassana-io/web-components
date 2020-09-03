@@ -31,6 +31,7 @@ const FormInput: FC<FormInputProps> = ({
 
 	if (required) {
 		rules.required = true
+		console.log('Random text')
 	}
 
 	const defaultValue = (initialValues[name] as string) || ''
