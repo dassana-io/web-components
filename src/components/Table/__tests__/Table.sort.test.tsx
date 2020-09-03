@@ -172,7 +172,7 @@ describe('Table sort: Column type - "number', () => {
 	})
 })
 
-describe('Table sort: Column type - "tag', () => {
+describe('Table sort: Column type - "component", format - "tag', () => {
 	let wrapper: ReactWrapper
 
 	beforeEach(() => {
@@ -255,7 +255,7 @@ describe('Table sort: Column type - "tag', () => {
 	})
 })
 
-describe('Table sort: Column type - "link', () => {
+describe('Table sort: Column type - "component", format - "link', () => {
 	let wrapper: ReactWrapper
 
 	beforeEach(() => {
@@ -329,7 +329,7 @@ describe('Table sort: Column type - "link', () => {
 	})
 })
 
-describe('Table sort: Column type - "toggle', () => {
+describe('Table sort: Column type - "component", format - "toggle', () => {
 	let wrapper: ReactWrapper
 
 	beforeEach(() => {
@@ -403,7 +403,7 @@ describe('Table sort: Column type - "toggle', () => {
 	})
 })
 
-describe('Table sort: Column type - "icon', () => {
+describe('Table sort: Column type - "component", format - "icon', () => {
 	let wrapper: ReactWrapper
 
 	beforeEach(() => {

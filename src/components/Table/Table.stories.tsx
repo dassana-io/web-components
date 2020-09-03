@@ -21,10 +21,10 @@ Simple.argTypes = {
 			type: {
 				detail: `
         interface PartialColumnType {
-dataIndex: string
-title: string
-type: 'string' | 'number'
-sort?: boolean
+  dataIndex: string
+  title: string
+  type: 'string' | 'number'
+  sort?: boolean
 }`
 			}
 		}
@@ -36,8 +36,8 @@ sort?: boolean
 			type: {
 				detail: `
           interface Person {
-name: string
-age: number
+  name: string
+  age: number
 }`
 			}
 		}
@@ -54,18 +54,39 @@ Number.args = {
 Number.argTypes = {
 	columns: {
 		description:
-			'Array of column objects. Click to view a partial ColumnType interface used for this table (string type is not shown).',
+			/* eslint-disable quotes */
+			"Array of column objects. Click to view a partial ColumnType interface (`'number'` type):",
 		table: {
 			type: {
 				detail: `
-        interface NumberPartialColumnType {
+        interface NumberDefaultType {
   dataIndex: string
   title: string
-  type:  'number'
-  format?: 'none' | 'date' | 'byte'
-  displayFormat?: string // custom date format string
+  type: 'number'
+  format?: 'none'
   sort?: boolean
-}`
+}
+        
+interface NumberDateType {
+  dataIndex: string
+  title: string
+  type: 'number'
+  format?: 'date'
+  sort?: boolean
+  renderProps?: {
+    displayFormat?: string
+  }
+}
+
+interface NumberByteType {
+  dataIndex: string
+  title: string
+  type: 'number'
+  format?: 'byte'
+  sort?: boolean
+}
+
+type NumberType = NumberDefaultType | NumberDateType | NumberByteType`
 			}
 		}
 	},
@@ -79,7 +100,7 @@ Number.argTypes = {
   file_name: string
   data_size: number
   created_at: number
-  updated_at?: number // optional keys won't be rendered
+  updated_at?: number
 }`
 			}
 		}
@@ -95,20 +116,7 @@ Mixed.args = {
 Mixed.argTypes = {
 	columns: {
 		control: { disable: true },
-		description:
-			'Array of column objects. Click to view a partial ColumnType interface used for this table (string & number types are not shown).',
-		table: {
-			type: {
-				detail: `
-          interface NumberPartialColumnType {
-    dataIndex: string
-    title: string
-    type:  'component'
-    format: 'icon' | 'link' | 'tag' | 'toggle' // format is required for component type
-    sort?: boolean
-  }`
-			}
-		}
+		description: `Array of column objects. [Click to view a partial ColumnType interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)`
 	},
 	data: {
 		control: { disable: true },
@@ -120,10 +128,10 @@ Mixed.argTypes = {
         interface Client {
   name: string
   start_date: number
-  role: TagProps
-  linked_in: LinkProps
-  admin_access: ToggleProps
-  company: IconProps
+  role: { name: string; color: string }
+  linked_in: string
+  admin_access: boolean
+  company: IconName
 }`
 			}
 		}
@@ -136,4 +144,28 @@ const MissingCellsTemplate: Story<TableProps<Client1>> = args => (
 export const MissingCells = MissingCellsTemplate.bind({})
 MissingCells.args = {
 	...tableData3
+}
+MissingCells.argTypes = {
+	columns: {
+		control: { disable: true },
+		description: `Array of column objects. [Click to view a partial ColumnType interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)`
+	},
+	data: {
+		control: { disable: true },
+		description:
+			'Make sure to declare keys as optional in the typescript interface if there will be missing data.',
+		table: {
+			type: {
+				detail: `
+        interface Client {
+  name?: string
+  start_date?: number
+  role?: { name: string; color: string }
+  linked_in?: string
+  admin_access?: boolean
+  company?: string
+}`
+			}
+		}
+	}
 }

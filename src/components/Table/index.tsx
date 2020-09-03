@@ -6,7 +6,7 @@ import Fuse from 'fuse.js'
 import Input from '../Input'
 import { ColumnType, ParentDataType } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
-import React, { ChangeEvent, ReactElement, useState } from 'react'
+import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 
 export interface TableProps<DataType> {
 	/**
@@ -30,6 +30,10 @@ function Table<DataType extends ParentDataType>({
 }: TableProps<DataType>): ReactElement {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataType[]>([])
+	const delayedSearch = useCallback(
+		debounce(q => searchTable(q), 250),
+		[]
+	)
 
 	const processedColumns = processColumns<DataType>(columns)
 	const processedData = processData<DataType>(data, columns)
@@ -40,24 +44,18 @@ function Table<DataType extends ParentDataType>({
 	}
 	const fuse = new Fuse(processedData, fuseOptions)
 
-	const searchTable = (e: ChangeEvent<HTMLInputElement>) => {
-		setSearchTerm(e.target.value)
+	const searchTable = (value: string) => {
+		setSearchTerm(value)
+
 		const filteredData = fuse
-			.search(e.target.value)
+			.search(value)
 			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
+
 		setFilteredData(filteredData)
 	}
 
-	const debouncedSearch = (
-		searchFn: (e: ChangeEvent<HTMLInputElement>) => void,
-		time: number
-	) => {
-		const debounced = debounce(searchFn, time)
-
-		return function (e: ChangeEvent<HTMLInputElement>) {
-			e.persist()
-			return debounced(e)
-		}
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		delayedSearch(e.target.value)
 	}
 
 	return (
@@ -71,7 +69,7 @@ function Table<DataType extends ParentDataType>({
 					}}
 				>
 					<Input
-						onChange={debouncedSearch(searchTable, 250)}
+						onChange={handleChange}
 						placeholder='Search table...'
 					/>
 				</div>

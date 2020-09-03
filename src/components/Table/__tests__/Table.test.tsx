@@ -46,23 +46,23 @@ describe('Table', () => {
 			expect(node.find(`tr[data-row-key=${i}]`)).toHaveLength(1)
 		})
 	})
+})
 
-	describe('Table props', () => {
-		it('passes required props data and columns', () => {
-			const table = wrapper.find(Table)
-			expect(table.props().data).not.toBeFalsy()
-			expect(table.props().columns).not.toBeFalsy()
-		})
+describe('Table props', () => {
+	it('passes required props data and columns', () => {
+		const table = wrapper.find(Table)
+		expect(table.props().data).not.toBeFalsy()
+		expect(table.props().columns).not.toBeFalsy()
+	})
 
-		it('passes correct data prop and correct columns prop', () => {
-			const table = wrapper.find(Table)
-			expect(table.props().data).toEqual(
-				expect.arrayContaining(mockData0.data)
-			)
-			expect(table.props().columns).toEqual(
-				expect.arrayContaining(mockData0.columns)
-			)
-		})
+	it('passes correct data prop and correct columns prop', () => {
+		const table = wrapper.find(Table)
+		expect(table.props().data).toEqual(
+			expect.arrayContaining(mockData0.data)
+		)
+		expect(table.props().columns).toEqual(
+			expect.arrayContaining(mockData0.columns)
+		)
 	})
 })
 

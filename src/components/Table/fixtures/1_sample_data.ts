@@ -4,7 +4,7 @@ export interface File {
 	file_name: string
 	data_size: number
 	created_at: number
-	updated_at?: number
+	updated_at?: number // Pass an optional type if there will be missing data
 }
 
 const columns: ColumnType[] = [

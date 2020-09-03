@@ -83,7 +83,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 
 /* -*-*-*-*-*- Helpers for parsing columns -*-*-*-*-*- */
 
-/* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+/* 
   Compare functions used by applySort to pass a custom sorter
   based on data type and format.
  */
@@ -129,7 +129,6 @@ function compareBooleans(column: ColumnType) {
 		return compareValA - compareValB
 	}
 }
-/* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x */
 
 /* Sets andD column sorter prop as appropriate compare function. */
 function applySort<DataType>(
@@ -247,6 +246,7 @@ function applyRender<DataType>(
 					const checked = record
 					const toggleProps: ToggleProps = {
 						checked,
+						// TODO: Extract out onChange to be passed in data
 						onChange: checked => {
 							console.log(`switch to ${checked}`)
 						},
@@ -321,3 +321,5 @@ function createByteFormatter(): NumFormatterFunction {
 
 /* ------- Extracted Types ------- */
 type NumFormatterFunction = (num: number) => string | null
+
+/* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x */
