@@ -29,7 +29,9 @@ describe('processData', () => {
 	it('returns correctly formatted data', () => {
 		const mockProcessedData = [
 			{ _FORMATTED_DATA: [], age: 36, key: 0, name: 'Lorem' },
-			{ _FORMATTED_DATA: [], age: 32, key: 1, name: 'Ipsum' }
+			{ _FORMATTED_DATA: [], age: 32, key: 1, name: 'Ipsum' },
+			{ _FORMATTED_DATA: [], age: 45, key: 2, name: 'Amet' },
+			{ _FORMATTED_DATA: [], age: 22, key: 3, name: 'Dolor' }
 		]
 
 		const { data, columns } = mockData0

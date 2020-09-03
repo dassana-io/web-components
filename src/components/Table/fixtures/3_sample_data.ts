@@ -66,19 +66,19 @@ const data: Client1[] = [
 	{
 		admin_access: false,
 		company: 'dassana',
+		linked_in: '/in/lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
 		start_date: 1519782342212
 	},
 	{
-		linked_in: '/in/dolor-s',
-		role: { color: 'magenta', name: 'Software Engineer' }
+		role: { color: 'magenta', name: 'Software Engineer' },
+		start_date: 1553932342212
 	},
 	{
 		company: 'google-cloud',
 		linked_in: '/in/amet-c',
-		name: 'Amet Consectetur',
-		start_date: 1553932342212
+		name: 'Amet Consectetur'
 	},
 	{
 		admin_access: true,

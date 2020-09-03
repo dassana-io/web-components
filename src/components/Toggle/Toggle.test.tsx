@@ -9,7 +9,6 @@ beforeEach(() => {
 	mockChange = jest.fn()
 
 	const mockProps: ToggleProps = {
-		checked: false,
 		onChange: mockChange
 	}
 

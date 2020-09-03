@@ -10,11 +10,7 @@ export interface ToggleProps {
 	/**
 	 * Determines whether the Switch is checked
 	 */
-	checked: boolean
-	/**
-	 * Whether switch will be checked or "on" by default
-	 */
-	defaultChecked?: boolean
+	checked?: boolean
 	/**
 	 * Whether switch will be disabled
 	 */
@@ -28,13 +24,11 @@ export interface ToggleProps {
 const Toggle: FC<ToggleProps> = ({
 	checked,
 	onChange,
-	defaultChecked = false,
 	disabled = false,
 	size = 'default'
 }: ToggleProps) => {
 	const antDProps = {
 		checked,
-		defaultChecked,
 		disabled,
 		onChange,
 		size

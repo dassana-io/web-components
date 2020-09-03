@@ -1,16 +1,24 @@
-import mockData0 from '../fixtures/0_sample_data'
 import React from 'react'
-import Table from '..'
+import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
+import Table, { TableProps } from '..'
+
+function createTable<DataType>(tableProps: TableProps<DataType>) {
+	return (
+		<div>
+			<Table<DataType> {...tableProps} />
+		</div>
+	)
+}
 
 let wrapper: ReactWrapper
 
 beforeEach(() => {
-	wrapper = mount(
-		<div>
-			<Table {...mockData0} />
-		</div>
-	)
+	wrapper = mount(createTable<Person>(mockData0))
+})
+
+afterEach(() => {
+	wrapper.unmount()
 })
 
 describe('Table', () => {
@@ -32,7 +40,7 @@ describe('Table', () => {
 		const table = wrapper.find(Table),
 			tableBody = table.find('tbody')
 
-		expect(tableBody.find('tr')).toHaveLength(2)
+		expect(tableBody.find('tr')).toHaveLength(4)
 
 		tableBody.find('tr').forEach((node, i) => {
 			expect(node.find(`tr[data-row-key=${i}]`)).toHaveLength(1)
@@ -56,22 +64,22 @@ describe('Table', () => {
 			)
 		})
 	})
+})
 
-	describe('Table search', () => {
-		it('renders by default', () => {
-			const table = wrapper.find(Table)
-			const searchBar = table.find('input')
-			expect(searchBar).toHaveLength(1)
-		})
-		it('does not renders if search prop is set to false', () => {
-			wrapper = mount(
-				<div>
-					<Table {...mockData0} search={false} />
-				</div>
-			)
-			const table = wrapper.find(Table)
-			const searchBar = table.find('input')
-			expect(searchBar).toHaveLength(0)
-		})
+describe('Table search', () => {
+	it('renders by default', () => {
+		const table = wrapper.find(Table)
+		const searchBar = table.find('input')
+		expect(searchBar).toHaveLength(1)
+	})
+	it('does not renders if search prop is set to false', () => {
+		wrapper = mount(
+			<div>
+				<Table {...mockData0} search={false} />
+			</div>
+		)
+		const table = wrapper.find(Table)
+		const searchBar = table.find('input')
+		expect(searchBar).toHaveLength(0)
 	})
 })

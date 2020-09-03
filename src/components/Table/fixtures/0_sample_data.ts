@@ -13,6 +13,14 @@ const data: Person[] = [
 	{
 		age: 32,
 		name: 'Ipsum'
+	},
+	{
+		age: 45,
+		name: 'Amet'
+	},
+	{
+		age: 22,
+		name: 'Dolor'
 	}
 ]
 
