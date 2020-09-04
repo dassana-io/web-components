@@ -1,5 +1,8 @@
 import { IconName } from '../../Icon'
-import { ColumnType, TableProps } from '..'
+import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+
+const { component, number, string } = ColumnTypes
+const { date, icon, link, toggle, tag } = ColumnFormats
 
 export interface Client {
 	name: string
@@ -14,47 +17,47 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
 		title: 'Name',
-		type: 'string'
+		type: string
 	},
 	{
 		dataIndex: 'start_date',
-		format: 'date',
+		format: date,
 		renderProps: {
 			displayFormat: 'MM/DD/YYYY'
 		},
 		title: 'Client Since',
-		type: 'number'
+		type: number
 	},
 	{
 		dataIndex: 'role',
-		format: 'tag',
+		format: tag,
 		title: 'Role',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'linked_in',
-		format: 'link',
+		format: link,
 		renderProps: {
 			buildHref: (): string => '/',
 			target: '_blank'
 		},
 		title: 'LinkedIn',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'admin_access',
-		format: 'toggle',
+		format: toggle,
 		title: 'Has Admin Access',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'company',
-		format: 'icon',
+		format: icon,
 		renderProps: {
 			type: 'iconKey'
 		},
 		title: 'Company',
-		type: 'component'
+		type: component
 	}
 ]
 

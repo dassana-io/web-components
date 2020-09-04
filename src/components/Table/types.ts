@@ -1,22 +1,38 @@
 import { SharedIconProps } from '../Icon'
 import { SharedLinkProps } from '../Link'
 
+export enum ColumnTypes {
+	string = 'string',
+	number = 'number',
+	component = 'component'
+}
+
+export enum ColumnFormats {
+	none = 'none',
+	date = 'date',
+	byte = 'byte',
+	icon = 'icon',
+	link = 'link',
+	tag = 'tag',
+	toggle = 'toggle'
+}
+
 interface StringType extends PartialColumnType {
-	type: 'string'
-	format?: 'none'
+	type: ColumnTypes.string
+	format?: ColumnFormats.none
 }
 
 interface NumberDefaultType extends PartialColumnType {
-	type: 'number'
-	format?: 'none'
+	type: ColumnTypes.number
+	format?: ColumnFormats.none
 }
 
 interface NumberByteType extends Omit<NumberDefaultType, 'format'> {
-	format: 'byte'
+	format: ColumnFormats.byte
 }
 
 export interface NumberDateType extends Omit<NumberDefaultType, 'format'> {
-	format: 'date'
+	format: ColumnFormats.date
 	renderProps?: {
 		displayFormat?: string
 	}
@@ -31,7 +47,7 @@ interface PartialColumnType {
 }
 
 interface PartialComponentType extends PartialColumnType {
-	type: 'component'
+	type: ColumnTypes.component
 }
 
 interface RenderPropsIcon extends SharedIconProps {
@@ -46,7 +62,7 @@ interface RenderPropsIconKey extends SharedIconProps {
 }
 
 interface ComponentIconType extends PartialComponentType {
-	format: 'icon'
+	format: ColumnFormats.icon
 	renderProps: RenderPropsIcon | RenderPropsIconKey
 }
 
@@ -55,16 +71,16 @@ interface RenderPropsLink extends Pick<SharedLinkProps, 'target'> {
 }
 
 interface ComponentLinkType extends PartialComponentType {
-	format: 'link'
+	format: ColumnFormats.link
 	renderProps?: RenderPropsLink
 }
 
 interface ComponentTagType extends PartialComponentType {
-	format: 'tag'
+	format: ColumnFormats.tag
 }
 
 interface ComponentToggleType extends PartialComponentType {
-	format: 'toggle'
+	format: ColumnFormats.toggle
 }
 
 type ComponentType =

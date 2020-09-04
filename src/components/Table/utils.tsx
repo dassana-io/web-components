@@ -2,7 +2,13 @@ import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
 import moment from 'moment'
 import React from 'react'
-import { ColumnType, NumberDateType, ParentDataType } from '.'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	NumberDateType,
+	ParentDataType
+} from '.'
 import Icon, { IconName, IconProps } from '../Icon'
 import Link, { LinkProps } from '../Link'
 import Tag, { TagProps } from '../Tag'
@@ -53,33 +59,36 @@ This will be used for "global" search using fuse.
 More info --> https://fusejs.io/examples.html#nested-search
  */
 export function mapFilterKeys(columns: ColumnType[]) {
+	const { component, number, string } = ColumnTypes
+	const { icon, link, tag } = ColumnFormats
+
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
 	for (const column of columns) {
 		const { dataIndex } = column
 
 		switch (column.type) {
-			case 'component':
+			case component:
 				switch (column.format) {
-					case 'tag':
+					case icon:
+						keysArr.push(dataIndex)
+						break
+
+					case link:
+						keysArr.push(dataIndex)
+						break
+
+					case tag:
 						keysArr.push([dataIndex, 'name'])
-						break
-
-					case 'link':
-						keysArr.push(dataIndex)
-						break
-
-					case 'icon':
-						keysArr.push(dataIndex)
 						break
 				}
 				break
 
-			case 'string':
+			case number:
 				keysArr.push(dataIndex)
 				break
 
-			case 'number':
+			case string:
 				keysArr.push(dataIndex)
 				break
 		}
@@ -141,33 +150,36 @@ function applySort<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
+	const { component, number, string } = ColumnTypes
+	const { icon, link, tag, toggle } = ColumnFormats
+
 	switch (column.type) {
-		case 'component':
+		case component:
 			switch (column.format) {
-				case 'link':
+				case icon:
 					antDColumn.sorter = compareStrings(column)
 					break
 
-				case 'tag':
+				case link:
+					antDColumn.sorter = compareStrings(column)
+					break
+
+				case tag:
 					antDColumn.sorter = compareTags(column)
 					break
 
-				case 'icon':
-					antDColumn.sorter = compareStrings(column)
-					break
-
-				case 'toggle':
+				case toggle:
 					antDColumn.sorter = compareBooleans(column)
 					break
 			}
 			break
 
-		case 'string':
-			antDColumn.sorter = compareStrings(column)
+		case number:
+			antDColumn.sorter = compareNumbers(column)
 			break
 
-		case 'number':
-			antDColumn.sorter = compareNumbers(column)
+		case string:
+			antDColumn.sorter = compareStrings(column)
 			break
 	}
 }
@@ -182,23 +194,13 @@ function applyRender<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
+	const { component, number } = ColumnTypes
+	const { byte, date, icon, link, tag, toggle } = ColumnFormats
+
 	switch (column.type) {
-		case 'number':
+		case component:
 			switch (column.format) {
-				case 'byte':
-					antDColumn.render = createByteFormatter()
-					break
-
-				case 'date': {
-					antDColumn.render = createDateFormatter(column)
-					break
-				}
-			}
-			break
-
-		case 'component':
-			switch (column.format) {
-				case 'icon': {
+				case icon: {
 					antDColumn.render = (record: IconName | string) => {
 						if (record === undefined) return ''
 
@@ -218,7 +220,7 @@ function applyRender<DataType>(
 					break
 				}
 
-				case 'link': {
+				case link: {
 					antDColumn.render = (record: string) => {
 						if (record === undefined) return ''
 
@@ -239,7 +241,7 @@ function applyRender<DataType>(
 					break
 				}
 
-				case 'tag': {
+				case tag: {
 					antDColumn.render = (record: {
 						name: string
 						color?: string
@@ -257,7 +259,7 @@ function applyRender<DataType>(
 					break
 				}
 
-				case 'toggle': {
+				case toggle: {
 					antDColumn.render = (record: boolean) => {
 						if (record === undefined) return ''
 
@@ -273,6 +275,19 @@ function applyRender<DataType>(
 
 						return <Toggle {...toggleProps} />
 					}
+					break
+				}
+			}
+			break
+
+		case number:
+			switch (column.format) {
+				case byte:
+					antDColumn.render = createByteFormatter()
+					break
+
+				case date: {
+					antDColumn.render = createDateFormatter(column)
 					break
 				}
 			}
@@ -296,19 +311,22 @@ function createFormattedData<DataType>(
 
 /* Maps dataIndex to formatter function. E.g. { dateOfBirth: DATE_FORMATTER_FN } */
 function mapDataIndexToFormatter(columns: ColumnType[]) {
+	const { number } = ColumnTypes
+	const { byte, date } = ColumnFormats
+
 	const mapped: Record<string, NumFormatterFunction> = {}
 
 	for (const column of columns) {
 		const { dataIndex } = column
 
 		switch (column.type) {
-			case 'number':
+			case number:
 				switch (column.format) {
-					case 'byte':
+					case byte:
 						mapped[dataIndex] = createByteFormatter()
 						break
 
-					case 'date': {
+					case date: {
 						mapped[dataIndex] = createDateFormatter(column)
 						break
 					}

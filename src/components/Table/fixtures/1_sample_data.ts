@@ -1,4 +1,4 @@
-import { ColumnType, TableProps } from '../.'
+import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
 
 export interface File {
 	file_name: string
@@ -7,31 +7,34 @@ export interface File {
 	updated_at?: number // Pass an optional type if there will be missing data
 }
 
+const { number, string } = ColumnTypes
+const { byte, date } = ColumnFormats
+
 const columns: ColumnType[] = [
 	{
 		dataIndex: 'file_name',
 		title: 'File Name',
-		type: 'string'
+		type: string
 	},
 	{
 		dataIndex: 'data_size',
-		format: 'byte',
+		format: byte,
 		title: 'Size',
-		type: 'number'
+		type: number
 	},
 	{
 		dataIndex: 'created_at',
-		format: 'date',
+		format: date,
 		renderProps: { displayFormat: 'MMM D, YYYY h:mm A' }, // moment.js display format
 		title: 'Uploaded Time',
-		type: 'number'
+		type: number
 	},
 	{
 		dataIndex: 'updated_at',
-		format: 'date',
+		format: date,
 		renderProps: { displayFormat: 'lll' }, // moment.js format shortcuts also work
 		title: 'Last Updated Time',
-		type: 'number'
+		type: number
 	}
 ]
 

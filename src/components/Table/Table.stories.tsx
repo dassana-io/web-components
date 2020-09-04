@@ -23,7 +23,7 @@ Simple.argTypes = {
         interface PartialColumnType {
   dataIndex: string
   title: string
-  type: 'string' | 'number'
+  type: ColumnTypes.string | ColumnTypes.number
   sort?: boolean
 }`
 			}
@@ -62,16 +62,16 @@ Number.argTypes = {
         interface NumberDefaultType {
   dataIndex: string
   title: string
-  type: 'number'
-  format?: 'none'
+  type: ColumnTypes.number
+  format?: ColumnFormats.none
   sort?: boolean
 }
-        
+
 interface NumberDateType {
   dataIndex: string
   title: string
-  type: 'number'
-  format?: 'date'
+  type: ColumnTypes.number
+  format?: ColumnFormats.date
   sort?: boolean
   renderProps?: {
     displayFormat?: string
@@ -81,8 +81,8 @@ interface NumberDateType {
 interface NumberByteType {
   dataIndex: string
   title: string
-  type: 'number'
-  format?: 'byte'
+  type: ColumnTypes.number
+  format?: ColumnFormats.byte
   sort?: boolean
 }
 

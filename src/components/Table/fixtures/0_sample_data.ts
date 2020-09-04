@@ -1,9 +1,11 @@
-import { ColumnType, TableProps } from '../.'
+import { ColumnType, ColumnTypes, TableProps } from '../.'
 
 export interface Person {
 	name: string
 	age: number
 }
+
+const { number, string } = ColumnTypes
 
 const data: Person[] = [
 	{
@@ -32,12 +34,12 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
 		title: 'Name',
-		type: 'string'
+		type: string
 	},
 	{
 		dataIndex: 'age',
 		title: 'Age',
-		type: 'number'
+		type: number
 	}
 ]
 

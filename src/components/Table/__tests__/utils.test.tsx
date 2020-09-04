@@ -1,7 +1,7 @@
-import { ColumnType } from '..'
 import mockData0 from '../fixtures/0_sample_data'
 import mockData1 from '../fixtures/1_sample_data'
 import mockData2 from '../fixtures/2_sample_data'
+import { ColumnFormats, ColumnType, ColumnTypes } from '..'
 import {
 	createByteFormatter,
 	createDateFormatter,
@@ -112,12 +112,12 @@ describe('mapFilterKeys', () => {
 describe('createByteFormatter', () => {
 	const dateColumn: ColumnType = {
 		dataIndex: 'date',
-		format: 'date',
+		format: ColumnFormats.date,
 		renderProps: {
 			displayFormat: 'MM/DD/YY'
 		},
 		title: 'Date',
-		type: 'number'
+		type: ColumnTypes.number
 	}
 
 	it('returns function that properly formats number into string date if input column provides valid format pattern', () => {
