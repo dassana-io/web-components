@@ -1,5 +1,6 @@
 import { act } from 'react-dom/test-utils'
 import React from 'react'
+import mockData, { DataType } from '../../../__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 import Table, { TableProps } from '..'
@@ -55,11 +56,30 @@ describe('Table', () => {
 		const table = wrapper.find(Table),
 			tableBody = table.find('tbody')
 
-		expect(tableBody.find('tr')).toHaveLength(4)
+		expect(tableBody.find('tr')).toHaveLength(5)
 
 		tableBody.find('tr').forEach((node, i) => {
 			expect(node.find(`tr[data-row-key=${i}]`)).toHaveLength(1)
 		})
+	})
+
+	it('renders all types and formats of data', () => {
+		wrapper = mount(createTable<DataType>(mockData))
+		const expected = {
+			_FORMATTED_DATA: ['09/03/2020', '1KB'],
+			byte: 1024,
+			date: 1599193037581,
+			icon: 'test',
+			icon_key: 'dassana',
+			key: 0,
+			link: 'test',
+			number: 0,
+			string: 'Dassana',
+			tag: 'typescript',
+			toggle: false
+		}
+
+		expect(expected).toMatchObject(renderedData(wrapper)[0])
 	})
 })
 
@@ -107,7 +127,6 @@ describe('Table search', () => {
 		const searchBar = table.find('input')
 
 		searchBar.simulate('change', { target: { value: 'lo' } })
-
 		await act(() => new Promise(r => setTimeout(r, 250)))
 		wrapper.update()
 

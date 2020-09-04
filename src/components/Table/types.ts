@@ -51,7 +51,7 @@ interface ComponentIconType extends PartialComponentType {
 }
 
 interface RenderPropsLink extends Pick<SharedLinkProps, 'target'> {
-	buildHref: (record: string) => string
+	buildHref: (record?: string) => string
 }
 
 interface ComponentLinkType extends PartialComponentType {

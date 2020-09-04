@@ -323,23 +323,25 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 /* ------- Common Helper functions ------- */
 
 /* Returns a date formatter function (using moment.js). */
-function createDateFormatter(column: NumberDateType): NumFormatterFunction {
-	let displayFormat: string | undefined = ''
+export function createDateFormatter(
+	column: NumberDateType
+): NumFormatterFunction {
+	let displayFormat = ''
 	const { renderProps } = column
 
 	if (renderProps && renderProps.displayFormat)
 		displayFormat = renderProps.displayFormat
 
-	return (num: number) =>
+	return (num?: number) =>
 		num === undefined ? null : moment(num).format(displayFormat)
 }
 
 /* Returns a byte formatter function (using bytes). */
-function createByteFormatter(): NumFormatterFunction {
-	return (num: number) => (num === undefined ? null : bytes(num))
+export function createByteFormatter(): NumFormatterFunction {
+	return (num?: number) => (num === undefined ? null : bytes(num))
 }
 
 /* ------- Extracted Types ------- */
-type NumFormatterFunction = (num: number) => string | null
+type NumFormatterFunction = (num?: number) => string | null
 
 /* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x */

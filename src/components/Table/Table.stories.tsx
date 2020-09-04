@@ -98,8 +98,8 @@ type NumberType = NumberDefaultType | NumberDateType | NumberByteType`
 				detail: `
         interface File {
   file_name: string
-  data_size: number
   created_at: number
+  data_size?: number
   updated_at?: number
 }`
 			}

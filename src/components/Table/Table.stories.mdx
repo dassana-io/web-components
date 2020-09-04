@@ -232,7 +232,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'data_size',
 		format: 'byte',
-		title: 'Data',
+		title: 'Size',
 		type: 'number'
 	},
 	{
@@ -245,7 +245,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'updated_at',
 		format: 'date',
-		renderProps: { displayFormat: 'lll' }, //moment.js format shortcuts also work
+		renderProps: { displayFormat: 'lll' }, // moment.js format shortcuts also work
 		title: 'Last Updated Time',
 		type: 'number'
 	}
@@ -267,6 +267,17 @@ const data: File[] = [
 		data_size: 1024,
 		file_name: 'passwords.txt',
 		updated_at: 1582330063211
+	},
+	{
+		created_at: 1511022066861,
+		data_size: 4194599,
+		file_name: 'birthday.mp4'
+	},
+	{
+		created_at: 1515021066861,
+		data_size: 2048,
+		file_name: 'letter.txt',
+		updated_at: 1515121066861
 	}
 ]
 
@@ -329,7 +340,7 @@ interface ComponentLinkType {
 	format: 'link'
 	sort?: boolean
 	renderProps?: {
-		buildHref: (record: string) => string
+		buildHref: (record?: string) => string
 		target?: '_self' | '_blank'
 	}
 }
@@ -570,7 +581,7 @@ interface ComponentLinkType {
 	format: 'link'
 	sort?: boolean
 	renderProps?: {
-		buildHref: (record: string) => string
+		buildHref: (record?: string) => string
 		target?: '_self' | '_blank'
 	}
 }

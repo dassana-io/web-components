@@ -59,6 +59,7 @@ describe('Table sort: Column type - "string', () => {
 		expect(renderedData(wrapper, 'name')).toEqual([
 			'Amet',
 			'Dolor',
+			'Elit',
 			'Ipsum',
 			'Lorem'
 		])
@@ -68,6 +69,7 @@ describe('Table sort: Column type - "string', () => {
 		expect(renderedData(wrapper, 'name')).toEqual([
 			'Lorem',
 			'Ipsum',
+			'Elit',
 			'Dolor',
 			'Amet'
 		])
@@ -134,11 +136,11 @@ describe('Table sort: Column type - "number', () => {
 
 		// ascending order
 		sorter.simulate('click')
-		expect(renderedData(wrapper, 'age')).toEqual([22, 32, 36, 45])
+		expect(renderedData(wrapper, 'age')).toEqual([22, 32, 36, 45, 50])
 
 		// descending order
 		sorter.simulate('click')
-		expect(renderedData(wrapper, 'age')).toEqual([45, 36, 32, 22])
+		expect(renderedData(wrapper, 'age')).toEqual([50, 45, 36, 32, 22])
 	})
 
 	it('sorts columns with missing cells in correct ascending and correct descending order', () => {

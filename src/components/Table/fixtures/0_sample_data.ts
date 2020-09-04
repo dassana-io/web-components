@@ -19,6 +19,10 @@ const data: Person[] = [
 		name: 'Amet'
 	},
 	{
+		age: 50,
+		name: 'Elit'
+	},
+	{
 		age: 22,
 		name: 'Dolor'
 	}
