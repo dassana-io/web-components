@@ -1,23 +1,9 @@
-import React from 'react'
+import { TableProps } from '..'
+import { createTable, renderedData } from './Table.test'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData2, { Client } from '../fixtures/2_sample_data'
 import mockData3, { Client1 } from '../fixtures/3_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
-import Table, { TableProps } from '..'
-
-/* Helper functions */
-function createTable<DataType>(tableProps: TableProps<DataType>) {
-	return (
-		<div>
-			<Table<DataType> {...tableProps} />
-		</div>
-	)
-}
-
-function renderedData(wrapper: ReactWrapper, dataIndex: string) {
-	// @ts-ignore
-	return wrapper.find('BodyRow').map(row => row.props().record[dataIndex])
-}
 
 type ObjectType = object | undefined
 
@@ -45,8 +31,10 @@ describe('Table sort: Column type - "string', () => {
 	afterEach(() => {
 		wrapper.unmount()
 	})
+
 	it('allows sorting by default', () => {
 		const sorter = wrapper.find('thead').find('th').first()
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Name')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(true)
@@ -56,8 +44,8 @@ describe('Table sort: Column type - "string', () => {
 		const mockData = { ...createDataCopy(mockData0) }
 		mockData.columns[0].sort = false
 		wrapper = mount(createTable<Person>(mockData))
-
 		const sorter = wrapper.find('thead').find('th').first()
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Name')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(false)
@@ -65,6 +53,7 @@ describe('Table sort: Column type - "string', () => {
 
 	it('sorts columns in correct ascending and correct descending order', () => {
 		const sorter = wrapper.find('.ant-table-column-has-sorters').first()
+
 		// ascending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'name')).toEqual([
@@ -86,8 +75,8 @@ describe('Table sort: Column type - "string', () => {
 
 	it('sorts columns with missing cells in correct ascending and correct descending order', () => {
 		wrapper = mount(createTable<Client1>(mockData3))
-
 		const sorter = wrapper.find('.ant-table-column-has-sorters').first()
+
 		// ascending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'name')).toEqual([
@@ -118,8 +107,10 @@ describe('Table sort: Column type - "number', () => {
 	afterEach(() => {
 		wrapper.unmount()
 	})
+
 	it('allows sorting by default', () => {
 		const sorter = wrapper.find('thead').find('th').at(1)
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Age')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(true)
@@ -129,8 +120,8 @@ describe('Table sort: Column type - "number', () => {
 		const mockData = { ...createDataCopy(mockData0) }
 		mockData.columns[1].sort = false
 		wrapper = mount(createTable<Person>(mockData))
-
 		const sorter = wrapper.find('thead').find('th').at(1)
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Age')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(false)
@@ -138,7 +129,9 @@ describe('Table sort: Column type - "number', () => {
 
 	it('sorts columns in correct ascending and correct descending order', () => {
 		const sorter = wrapper.find('.ant-table-column-has-sorters').at(1)
+
 		expect(sorter.text()).toEqual('Age')
+
 		// ascending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'age')).toEqual([22, 32, 36, 45])
@@ -151,7 +144,9 @@ describe('Table sort: Column type - "number', () => {
 	it('sorts columns with missing cells in correct ascending and correct descending order', () => {
 		wrapper = mount(createTable<Client1>(mockData3))
 		const sorter = wrapper.find('thead').find('th').at(1)
+
 		expect(sorter.text()).toEqual('Client Since')
+
 		// ascending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'start_date')).toEqual([
@@ -182,8 +177,10 @@ describe('Table sort: Column type - "component", format - "tag', () => {
 	afterEach(() => {
 		wrapper.unmount()
 	})
+
 	it('allows sorting by default', () => {
 		const sorter = wrapper.find('thead').find('th').at(2)
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Role')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(true)
@@ -195,6 +192,7 @@ describe('Table sort: Column type - "component", format - "tag', () => {
 		wrapper = mount(createTable<Person>(mockData))
 
 		const sorter = wrapper.find('thead').find('th').at(2)
+
 		expect(sorter.text()).toEqual('Role')
 		expect(sorter).toHaveLength(1)
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(false)
@@ -229,10 +227,10 @@ describe('Table sort: Column type - "component", format - "tag', () => {
 	it('sorts columns with missing cells in correct ascending and correct descending order', () => {
 		wrapper = mount(createTable<Client1>(mockData3))
 		const sorter = wrapper.find('thead').find('th').at(2)
+
 		// ascending order
 		sorter.simulate('click')
 		const sorted = renderedData(wrapper, 'role')
-
 		const expected = [
 			undefined,
 			{ color: 'purple', name: 'Business Development' },
@@ -250,7 +248,6 @@ describe('Table sort: Column type - "component", format - "tag', () => {
 			{ color: 'purple', name: 'Business Development' },
 			undefined
 		]
-
 		compareArrsOfObjs(sorted1, expected1)
 	})
 })
@@ -265,6 +262,7 @@ describe('Table sort: Column type - "component", format - "link', () => {
 	afterEach(() => {
 		wrapper.unmount()
 	})
+
 	it('allows sorting by default', () => {
 		const sorter = wrapper.find('thead').find('th').at(3)
 		expect(sorter).toHaveLength(1)
@@ -289,19 +287,19 @@ describe('Table sort: Column type - "component", format - "link', () => {
 		// ascending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'linked_in')).toEqual([
-			'/in/amet-c',
-			'/in/dolor-s',
-			'/in/duis-irure',
-			'/in/lorem-i'
+			'amet-c',
+			'dolor-s',
+			'duis-irure',
+			'lorem-i'
 		])
 
 		// descending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'linked_in')).toEqual([
-			'/in/lorem-i',
-			'/in/duis-irure',
-			'/in/dolor-s',
-			'/in/amet-c'
+			'lorem-i',
+			'duis-irure',
+			'dolor-s',
+			'amet-c'
 		])
 	})
 
@@ -313,17 +311,17 @@ describe('Table sort: Column type - "component", format - "link', () => {
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'linked_in')).toEqual([
 			undefined,
-			'/in/amet-c',
-			'/in/duis-irure',
-			'/in/lorem-i'
+			'amet-c',
+			'duis-irure',
+			'lorem-i'
 		])
 
 		// descending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'linked_in')).toEqual([
-			'/in/lorem-i',
-			'/in/duis-irure',
-			'/in/amet-c',
+			'lorem-i',
+			'duis-irure',
+			'amet-c',
 			undefined
 		])
 	})
@@ -339,8 +337,10 @@ describe('Table sort: Column type - "component", format - "toggle', () => {
 	afterEach(() => {
 		wrapper.unmount()
 	})
+
 	it('allows sorting by default', () => {
 		const sorter = wrapper.find('thead').find('th').at(4)
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Has Admin Access')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(true)
@@ -350,8 +350,8 @@ describe('Table sort: Column type - "component", format - "toggle', () => {
 		const mockData = { ...createDataCopy(mockData2) }
 		mockData.columns[4].sort = false
 		wrapper = mount(createTable<Person>(mockData))
-
 		const sorter = wrapper.find('thead').find('th').at(4)
+
 		expect(sorter.text()).toEqual('Has Admin Access')
 		expect(sorter).toHaveLength(1)
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(false)
@@ -413,8 +413,10 @@ describe('Table sort: Column type - "component", format - "icon', () => {
 	afterEach(() => {
 		wrapper.unmount()
 	})
+
 	it('allows sorting by default', () => {
 		const sorter = wrapper.find('thead').find('th').at(5)
+
 		expect(sorter).toHaveLength(1)
 		expect(sorter.text()).toEqual('Company')
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(true)
@@ -424,8 +426,8 @@ describe('Table sort: Column type - "component", format - "icon', () => {
 		const mockData = { ...createDataCopy(mockData2) }
 		mockData.columns[5].sort = false
 		wrapper = mount(createTable<Person>(mockData))
-
 		const sorter = wrapper.find('thead').find('th').at(5)
+
 		expect(sorter.text()).toEqual('Company')
 		expect(sorter).toHaveLength(1)
 		expect(sorter.hasClass('ant-table-column-has-sorters')).toEqual(false)
@@ -436,7 +438,6 @@ describe('Table sort: Column type - "component", format - "icon', () => {
 
 		// ascending order
 		sorter.simulate('click')
-
 		expect(renderedData(wrapper, 'company')).toEqual([
 			'aws',
 			'azure',

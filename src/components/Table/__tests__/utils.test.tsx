@@ -50,6 +50,7 @@ describe('mapFilterKeys', () => {
 			'linked_in',
 			'company'
 		]
+
 		expect(mapFilterKeys(mockData0.columns)).toMatchObject(
 			mockFilteredKeys0
 		)

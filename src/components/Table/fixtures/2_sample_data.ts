@@ -62,7 +62,7 @@ const data: Client[] = [
 	{
 		admin_access: true,
 		company: 'azure',
-		linked_in: '/in/lorem-i',
+		linked_in: 'lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
 		start_date: 1519782342212
@@ -70,7 +70,7 @@ const data: Client[] = [
 	{
 		admin_access: false,
 		company: 'aws',
-		linked_in: '/in/dolor-s',
+		linked_in: 'dolor-s',
 		name: 'Dolor Sit',
 		role: { color: 'magenta', name: 'Software Engineer' },
 		start_date: 1593682342212
@@ -78,7 +78,7 @@ const data: Client[] = [
 	{
 		admin_access: true,
 		company: 'dassana',
-		linked_in: '/in/amet-c',
+		linked_in: 'amet-c',
 		name: 'Amet Consectetur',
 		role: { color: 'green', name: 'Designer' },
 		start_date: 1553932342212
@@ -86,7 +86,7 @@ const data: Client[] = [
 	{
 		admin_access: false,
 		company: 'google-cloud',
-		linked_in: '/in/duis-irure',
+		linked_in: 'duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },
 		start_date: 1531932342212

@@ -10,7 +10,7 @@ export interface ToggleProps {
 	/**
 	 * Determines whether the Switch is checked
 	 */
-	checked?: boolean
+	checked: boolean
 	/**
 	 * Whether switch will be disabled
 	 */

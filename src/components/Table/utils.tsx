@@ -58,24 +58,30 @@ export function mapFilterKeys(columns: ColumnType[]) {
 	for (const column of columns) {
 		const { dataIndex } = column
 
-		if (column.type === 'component') {
-			switch (column.format) {
-				case 'tag':
-					keysArr.push([dataIndex, 'name'])
-					break
+		switch (column.type) {
+			case 'component':
+				switch (column.format) {
+					case 'tag':
+						keysArr.push([dataIndex, 'name'])
+						break
 
-				case 'link':
-					keysArr.push(dataIndex)
-					break
+					case 'link':
+						keysArr.push(dataIndex)
+						break
 
-				case 'icon':
-					keysArr.push(dataIndex)
-					break
-			}
-		} else if (column.type === 'string') {
-			keysArr.push(dataIndex)
-		} else if (column.type === 'number') {
-			keysArr.push(dataIndex)
+					case 'icon':
+						keysArr.push(dataIndex)
+						break
+				}
+				break
+
+			case 'string':
+				keysArr.push(dataIndex)
+				break
+
+			case 'number':
+				keysArr.push(dataIndex)
+				break
 		}
 	}
 	return keysArr
@@ -135,25 +141,34 @@ function applySort<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
-	if (column.type === 'component') {
-		switch (column.format) {
-			case 'link':
-				antDColumn.sorter = compareStrings(column)
-				break
-			case 'tag':
-				antDColumn.sorter = compareTags(column)
-				break
-			case 'icon':
-				antDColumn.sorter = compareStrings(column)
-				break
-			case 'toggle':
-				antDColumn.sorter = compareBooleans(column)
-				break
-		}
-	} else if (column.type === 'string') {
-		antDColumn.sorter = compareStrings(column)
-	} else if (column.type === 'number') {
-		antDColumn.sorter = compareNumbers(column)
+	switch (column.type) {
+		case 'component':
+			switch (column.format) {
+				case 'link':
+					antDColumn.sorter = compareStrings(column)
+					break
+
+				case 'tag':
+					antDColumn.sorter = compareTags(column)
+					break
+
+				case 'icon':
+					antDColumn.sorter = compareStrings(column)
+					break
+
+				case 'toggle':
+					antDColumn.sorter = compareBooleans(column)
+					break
+			}
+			break
+
+		case 'string':
+			antDColumn.sorter = compareStrings(column)
+			break
+
+		case 'number':
+			antDColumn.sorter = compareNumbers(column)
+			break
 	}
 }
 
@@ -167,98 +182,101 @@ function applyRender<DataType>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<DataType>
 ) {
-	if (column.type === 'number') {
-		switch (column.format) {
-			case 'byte':
-				antDColumn.render = createByteFormatter()
-				break
+	switch (column.type) {
+		case 'number':
+			switch (column.format) {
+				case 'byte':
+					antDColumn.render = createByteFormatter()
+					break
 
-			case 'date': {
-				antDColumn.render = createDateFormatter(column)
-				break
-			}
-		}
-	} else if (column.type === 'component') {
-		switch (column.format) {
-			case 'icon': {
-				antDColumn.render = (record: IconName | string) => {
-					if (record === undefined) return ''
-
-					const iconColumn = column
-					const renderProps = iconColumn.renderProps
-					const { height = 25 } = renderProps
-
-					const iconProps: IconProps =
-						renderProps.type === 'icon'
-							? { icon: renderProps.iconMap[record] }
-							: { iconKey: record as IconName }
-
-					if (renderProps.type === 'icon' && !iconProps.icon)
-						return record
-					return <Icon {...iconProps} height={height} />
+				case 'date': {
+					antDColumn.render = createDateFormatter(column)
+					break
 				}
-
-				break
 			}
-			case 'link': {
-				antDColumn.render = (record: string) => {
-					if (record === undefined) return ''
+			break
 
-					const linkColumn = column
-					const { target = '_blank', buildHref = (r: string) => r } =
-						linkColumn.renderProps || {}
+		case 'component':
+			switch (column.format) {
+				case 'icon': {
+					antDColumn.render = (record: IconName | string) => {
+						if (record === undefined) return ''
 
-					const linkProps: LinkProps = {
-						children: record,
-						href: buildHref(record),
-						target
+						const iconColumn = column
+						const renderProps = iconColumn.renderProps
+						const { height = 25 } = renderProps
+
+						const iconProps: IconProps =
+							renderProps.type === 'icon'
+								? { icon: renderProps.iconMap[record] }
+								: { iconKey: record as IconName }
+
+						if (renderProps.type === 'icon' && !iconProps.icon)
+							return record
+						return <Icon {...iconProps} height={height} />
 					}
-
-					return <Link {...linkProps} />
+					break
 				}
 
-				break
-			}
+				case 'link': {
+					antDColumn.render = (record: string) => {
+						if (record === undefined) return ''
 
-			case 'tag': {
-				antDColumn.render = (record: {
-					name: string
-					color?: string
-				}) => {
-					if (record === undefined) return ''
+						const linkColumn = column
+						const {
+							target = '_blank',
+							buildHref = (r: string) => r
+						} = linkColumn.renderProps || {}
 
-					const { color = '' } = record
-					const tagProps: TagProps = {
-						children: record.name,
-						color
+						const linkProps: LinkProps = {
+							children: record,
+							href: buildHref(record),
+							target
+						}
+
+						return <Link {...linkProps} />
 					}
-
-					return <Tag {...tagProps} />
+					break
 				}
 
-				break
-			}
+				case 'tag': {
+					antDColumn.render = (record: {
+						name: string
+						color?: string
+					}) => {
+						if (record === undefined) return ''
 
-			case 'toggle': {
-				antDColumn.render = (record: boolean) => {
-					if (record === undefined) return ''
+						const { color = '' } = record
+						const tagProps: TagProps = {
+							children: record.name,
+							color
+						}
 
-					const checked = record
-					const toggleProps: ToggleProps = {
-						checked,
-						// TODO: Extract out onChange to be passed in data
-						onChange: checked => {
-							console.log(`switch to ${checked}`)
-						},
-						size: 'small'
+						return <Tag {...tagProps} />
 					}
-
-					return <Toggle {...toggleProps} />
+					break
 				}
 
-				break
+				case 'toggle': {
+					antDColumn.render = (record: boolean) => {
+						if (record === undefined) return ''
+
+						const checked = record
+						const toggleProps: ToggleProps = {
+							checked,
+							// TODO: Extract out onChange to be passed in data
+							onChange: checked => {
+								console.log(`switch to ${checked}`)
+							},
+							size: 'small'
+						}
+
+						return <Toggle {...toggleProps} />
+					}
+					break
+				}
 			}
-		}
+			break
 	}
 }
 
@@ -283,17 +301,19 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 	for (const column of columns) {
 		const { dataIndex } = column
 
-		if (column.type === 'number') {
-			switch (column.format) {
-				case 'byte':
-					mapped[dataIndex] = createByteFormatter()
-					break
+		switch (column.type) {
+			case 'number':
+				switch (column.format) {
+					case 'byte':
+						mapped[dataIndex] = createByteFormatter()
+						break
 
-				case 'date': {
-					mapped[dataIndex] = createDateFormatter(column)
-					break
+					case 'date': {
+						mapped[dataIndex] = createDateFormatter(column)
+						break
+					}
 				}
-			}
+				break
 		}
 	}
 

@@ -50,7 +50,6 @@ function Table<DataType extends ParentDataType>({
 		const filteredData = fuse
 			.search(value)
 			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
-
 		setFilteredData(filteredData)
 	}
 
