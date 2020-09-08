@@ -1,4 +1,12 @@
-import { ColumnType, TableProps } from '../components/Table'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	TableProps
+} from '../components/Table'
+
+const { component, number, string } = ColumnTypes
+const { none, byte, date, icon, link, toggle, tag } = ColumnFormats
 
 export interface DataType {
 	string: string
@@ -16,63 +24,63 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'string',
 		title: 'String',
-		type: 'string'
+		type: string
 	},
 	{
 		dataIndex: 'number',
-		format: 'none',
+		format: none,
 		title: 'Number - Default',
-		type: 'number'
+		type: number
 	},
 	{
 		dataIndex: 'date',
-		format: 'date',
+		format: date,
 		renderProps: {
 			displayFormat: 'MM/DD/YYYY'
 		},
 		title: 'Number - Date',
-		type: 'number'
+		type: number
 	},
 	{
 		dataIndex: 'byte',
-		format: 'byte',
+		format: byte,
 		title: 'Number - Byte',
-		type: 'number'
+		type: number
 	},
 	{
 		dataIndex: 'tag',
-		format: 'tag',
+		format: tag,
 		title: 'Component - Tag',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'link',
-		format: 'link',
+		format: link,
 		renderProps: {
 			buildHref: (record): string => `https://dassana.io/${record}`,
 			target: '_blank'
 		},
 		title: 'Component - Link',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'toggle',
-		format: 'toggle',
+		format: toggle,
 		title: 'Component - Toggle',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'icon_key',
-		format: 'icon',
+		format: icon,
 		renderProps: {
 			type: 'iconKey'
 		},
 		title: 'Component - IconKey',
-		type: 'component'
+		type: component
 	},
 	{
 		dataIndex: 'icon',
-		format: 'icon',
+		format: icon,
 		renderProps: {
 			iconMap: {
 				test: '/'
@@ -80,7 +88,7 @@ const columns: ColumnType[] = [
 			type: 'icon'
 		},
 		title: 'Component - Icon',
-		type: 'component'
+		type: component
 	}
 ]
 
