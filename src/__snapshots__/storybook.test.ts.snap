@@ -196,7 +196,7 @@ exports[`Storyshots Form Default 1`] = `
     </div>
     <button
       className="ant-btn ant-btn-default"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       type="button"
     >

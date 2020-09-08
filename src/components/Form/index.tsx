@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
 import { FieldValues } from 'react-hook-form/dist/types/form'
-import FormButton from './FormButton'
 import FormInput from './FormInput'
+import FormSubmitButton from './FormSubmitButton'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import React, { ReactNode, useEffect } from 'react'
 
@@ -49,7 +49,7 @@ function Form<Model>({
 	)
 }
 
-Form.Button = FormButton
+Form.SubmitButton = FormSubmitButton
 Form.Input = FormInput
 
 export default Form
