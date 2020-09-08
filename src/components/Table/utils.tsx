@@ -18,7 +18,9 @@ import Toggle, { ToggleProps } from '../Toggle'
 
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
-export function processColumns<DataType>(columns: ColumnType[]) {
+export function processColumns<DataType extends ParentDataType>(
+	columns: ColumnType[]
+) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
 		const antDColumn: AntDColumnType<DataType> = {
@@ -43,13 +45,16 @@ Takes data prop passed to Table and returns data:
   2. with an added _FORMATTED_DATA key and array of formatted data value
     (this makes rows searchable by formatted data).
   */
-export function processData<DataType>(data: DataType[], columns: ColumnType[]) {
+export function processData<DataType extends ParentDataType>(
+	data: DataType[],
+	columns: ColumnType[]
+) {
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
 	return data.map((item, i) => ({
 		...item,
 		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
-		key: i
+		key: item.ID ? item.ID : i
 	}))
 }
 
@@ -93,6 +98,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 				break
 		}
 	}
+
 	return keysArr
 }
 

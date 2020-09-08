@@ -52,7 +52,7 @@ describe('Table', () => {
 		expect(tableBody).toHaveLength(1)
 	})
 
-	it('renders table rows with react keys', () => {
+	it('renders table rows with react keys if IDs are not provided in data objects', () => {
 		const table = wrapper.find(Table),
 			tableBody = table.find('tbody')
 

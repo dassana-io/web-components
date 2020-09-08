@@ -91,4 +91,6 @@ type ComponentType =
 
 export type ColumnType = StringType | NumberType | ComponentType
 
-export type ParentDataType = Record<string, any>
+export interface ParentDataType extends Record<string, any> {
+	ID?: string | number
+}
