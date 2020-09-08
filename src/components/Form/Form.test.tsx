@@ -1,5 +1,5 @@
 import FieldContext from './FieldContext'
-import FormButton from './FormButton'
+import FormSubmitButton from './FormSubmitButton'
 import React from 'react'
 import Form, { FormProps } from './index'
 import { mount, shallow, ShallowWrapper } from 'enzyme'
@@ -9,6 +9,12 @@ jest.mock('react-hook-form', () => ({
 	useForm: () => ({
 		handleSubmit: jest.fn(),
 		reset: mockReset
+	}),
+	useFormContext: () => ({
+		formState: {
+			isDirty: true
+		},
+		handleSubmit: jest.fn()
 	})
 }))
 
@@ -25,7 +31,7 @@ const mockReset = jest.fn()
 beforeEach(() => {
 	wrapper = shallow(
 		<Form initialValues={mockInitialValues} onSubmit={mockOnSubmit}>
-			<FormButton />
+			<FormSubmitButton>Submit</FormSubmitButton>
 		</Form>
 	)
 })
@@ -36,7 +42,7 @@ describe('Form', () => {
 	})
 
 	it('renders children properly', () => {
-		expect(wrapper.find(FormButton)).toHaveLength(1)
+		expect(wrapper.find(FormSubmitButton)).toHaveLength(1)
 	})
 
 	it('passes the correct props to FieldContext provider', () => {
@@ -52,7 +58,7 @@ describe('Form', () => {
 	it('correctly defaults initial values to empty object if none is passed in', () => {
 		wrapper = shallow(
 			<Form onSubmit={mockOnSubmit}>
-				<FormButton />
+				<FormSubmitButton>Submit</FormSubmitButton>
 			</Form>
 		)
 
@@ -64,7 +70,7 @@ describe('Form', () => {
 	it('correctly updates initial values', () => {
 		const form = mount(
 			<Form onSubmit={mockOnSubmit}>
-				<FormButton />
+				<FormSubmitButton>Submit</FormSubmitButton>
 			</Form>
 		)
 
