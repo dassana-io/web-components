@@ -20,6 +20,8 @@ export interface DataType {
 	icon: string
 }
 
+export const dateFormat = 'MM/DD/YYYY'
+
 const columns: ColumnType[] = [
 	{
 		dataIndex: 'string',
@@ -36,7 +38,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'date',
 		format: date,
 		renderProps: {
-			displayFormat: 'MM/DD/YYYY'
+			displayFormat: dateFormat
 		},
 		title: 'Number - Date',
 		type: number

@@ -1,5 +1,5 @@
+import { formatDate } from './Table.test'
 import mockData0 from '../fixtures/0_sample_data'
-import mockData1 from '../fixtures/1_sample_data'
 import mockData2 from '../fixtures/2_sample_data'
 import { ColumnFormats, ColumnType, ColumnTypes } from '..'
 import {
@@ -9,6 +9,7 @@ import {
 	processColumns,
 	processData
 } from '../utils'
+import mockData1, { dateFormat0, dateFormat1 } from '../fixtures/1_sample_data'
 
 describe('processColumns', () => {
 	it('returns correctly formatted columns', () => {
@@ -37,14 +38,22 @@ describe('processData', () => {
 	it('returns correctly formatted data', () => {
 		const mockProcessedData = [
 			{
-				_FORMATTED_DATA: ['1MB', 'Aug 25, 2020 5:11 PM', null],
+				_FORMATTED_DATA: [
+					'1MB',
+					formatDate(1598400668681, dateFormat0),
+					null
+				],
 				created_at: 1598400668681,
 				data_size: 1048576,
 				file_name: 'IMG_4542.jpeg',
 				key: 0
 			},
 			{
-				_FORMATTED_DATA: ['1.91MB', 'Feb 21, 2020 4:07 PM', null],
+				_FORMATTED_DATA: [
+					'1.91MB',
+					formatDate(1582330066861, dateFormat0),
+					null
+				],
 				created_at: 1582330066861,
 				data_size: 1998576,
 				file_name: 'test_123.png',
@@ -53,8 +62,8 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'1KB',
-					'Mar 21, 2019 7:51 PM',
-					'Feb 21, 2020 4:07 PM'
+					formatDate(1553223066861, dateFormat0),
+					formatDate(1582330063211, dateFormat1)
 				],
 				created_at: 1553223066861,
 				data_size: 1024,
@@ -63,7 +72,11 @@ describe('processData', () => {
 				updated_at: 1582330063211
 			},
 			{
-				_FORMATTED_DATA: ['4MB', 'Nov 18, 2017 8:21 AM', null],
+				_FORMATTED_DATA: [
+					'4MB',
+					formatDate(1511022066861, dateFormat0),
+					null
+				],
 				created_at: 1511022066861,
 				data_size: 4194599,
 				file_name: 'birthday.mp4',
@@ -72,8 +85,8 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'2KB',
-					'Jan 3, 2018 3:11 PM',
-					'Jan 4, 2018 6:57 PM'
+					formatDate(1515021066861, dateFormat0),
+					formatDate(1515121066861, dateFormat1)
 				],
 				created_at: 1515021066861,
 				data_size: 2048,
@@ -123,7 +136,7 @@ describe('createByteFormatter', () => {
 	it('returns function that properly formats number into string date if input column provides valid format pattern', () => {
 		const formattedDate = createDateFormatter(dateColumn)(1599193037581)
 
-		expect(formattedDate).toEqual('09/03/20')
+		expect(formattedDate).toEqual(formatDate(1599193037581, 'MM/DD/YY'))
 	})
 
 	it('returns function that returns null if input number is not provided', () => {

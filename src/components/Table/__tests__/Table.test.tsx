@@ -1,6 +1,10 @@
 import { act } from 'react-dom/test-utils'
+import moment from 'moment'
 import React from 'react'
-import mockData, { DataType } from '../../../__mocks__/table_mock_data'
+import mockData, {
+	DataType,
+	dateFormat
+} from '../../../__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 import Table, { TableProps } from '..'
@@ -24,6 +28,10 @@ export function renderedData(wrapper: ReactWrapper, dataIndex = '') {
 		// @ts-ignore
 		return bodyRow.map(row => row.props().record)
 	}
+}
+
+export function formatDate(unixTS: number, displayFormat: string) {
+	return moment(unixTS).format(displayFormat)
 }
 
 let wrapper: ReactWrapper
@@ -66,7 +74,7 @@ describe('Table', () => {
 	it('renders all types and formats of data', () => {
 		wrapper = mount(createTable<DataType>(mockData))
 		const expected = {
-			_FORMATTED_DATA: ['09/03/2020', '1KB'],
+			_FORMATTED_DATA: [formatDate(1599193037581, dateFormat), '1KB'],
 			byte: 1024,
 			date: 1599193037581,
 			icon: 'test',

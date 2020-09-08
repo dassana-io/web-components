@@ -7,6 +7,9 @@ export interface File {
 	updated_at?: number // Pass an optional type if there will be missing data
 }
 
+export const dateFormat0 = 'MMM D, YYYY h:mm A'
+export const dateFormat1 = 'lll'
+
 const { number, string } = ColumnTypes
 const { byte, date } = ColumnFormats
 
@@ -25,14 +28,14 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'created_at',
 		format: date,
-		renderProps: { displayFormat: 'MMM D, YYYY h:mm A' }, // moment.js display format
+		renderProps: { displayFormat: dateFormat0 }, // moment.js display format
 		title: 'Uploaded Time',
 		type: number
 	},
 	{
 		dataIndex: 'updated_at',
 		format: date,
-		renderProps: { displayFormat: 'lll' }, // moment.js format shortcuts also work
+		renderProps: { displayFormat: dateFormat1 }, // moment.js format shortcuts also work
 		title: 'Last Updated Time',
 		type: number
 	}
