@@ -148,16 +148,16 @@ exports[`Storyshots Form Default 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="container-0-2-1"
+    className="container-0-2-4"
   >
     <div>
       <div
-        className="container-0-2-2 required-0-2-3"
+        className="container-0-2-5 required-0-2-6"
       >
         First Name
       </div>
       <div
-        className="container-0-2-4 container-d0-0-2-7"
+        className="container-0-2-7 container-d0-0-2-10"
       >
         <input
           className="ant-input"
@@ -174,12 +174,12 @@ exports[`Storyshots Form Default 1`] = `
     </div>
     <div>
       <div
-        className="container-0-2-2"
+        className="container-0-2-5"
       >
         Last Name
       </div>
       <div
-        className="container-0-2-4 container-d1-0-2-8"
+        className="container-0-2-7 container-d1-0-2-11"
       >
         <input
           className="ant-input"
