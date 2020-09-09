@@ -105,11 +105,8 @@ export function mapFilterKeys(columns: ColumnType[]) {
  */
 function compareStrings(column: ColumnType) {
 	return (a: ParentDataType, b: ParentDataType) => {
-		const valA = a[column.dataIndex]
-		const valB = b[column.dataIndex]
-
-		const compareValA: string = isUndefined(valA) ? '' : valA
-		const compareValB: string = isUndefined(valB) ? '' : valB
+		const compareValA: string = a[column.dataIndex] || ''
+		const compareValB: string = b[column.dataIndex] || ''
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -128,6 +125,8 @@ function compareNumbers(column: ColumnType) {
 }
 
 function compareTags(column: ColumnType) {
+	/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
+	  this will break. */
 	return (a: ParentDataType, b: ParentDataType) => {
 		const valA = a[column.dataIndex]
 		const valB = b[column.dataIndex]
@@ -163,9 +162,6 @@ function applySort<DataType>(
 		case component:
 			switch (column.format) {
 				case icon:
-					antDColumn.sorter = compareStrings(column)
-					break
-
 				case link:
 					antDColumn.sorter = compareStrings(column)
 					break
@@ -261,6 +257,8 @@ function applyRender<DataType>(
 						if (record === undefined) return ''
 
 						const { color = '' } = record
+						/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
+	          this will break. */
 						const tagProps: TagProps = {
 							children: record.name,
 							color

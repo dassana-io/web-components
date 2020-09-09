@@ -17,6 +17,12 @@ export enum ColumnFormats {
 	toggle = 'toggle'
 }
 
+interface PartialColumnType {
+	dataIndex: string
+	title: string
+	sort?: boolean
+}
+
 interface StringType extends PartialColumnType {
 	type: ColumnTypes.string
 	format?: ColumnFormats.none
@@ -39,12 +45,6 @@ export interface NumberDateType extends Omit<NumberDefaultType, 'format'> {
 }
 
 type NumberType = NumberDefaultType | NumberByteType | NumberDateType
-
-interface PartialColumnType {
-	dataIndex: string
-	title: string // we need to pass a key instead of strings for i18n
-	sort?: boolean
-}
 
 interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
