@@ -1,5 +1,6 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
+import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import React from 'react'
 import {
@@ -54,7 +55,7 @@ export function processData<DataType extends ParentDataType>(
 	return data.map((item, i) => ({
 		...item,
 		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
-		key: item.ID ? item.ID : i
+		key: item.id ? item.id : i
 	}))
 }
 
@@ -76,9 +77,6 @@ export function mapFilterKeys(columns: ColumnType[]) {
 			case component:
 				switch (column.format) {
 					case icon:
-						keysArr.push(dataIndex)
-						break
-
 					case link:
 						keysArr.push(dataIndex)
 						break
@@ -90,9 +88,6 @@ export function mapFilterKeys(columns: ColumnType[]) {
 				break
 
 			case number:
-				keysArr.push(dataIndex)
-				break
-
 			case string:
 				keysArr.push(dataIndex)
 				break
@@ -110,10 +105,11 @@ export function mapFilterKeys(columns: ColumnType[]) {
  */
 function compareStrings(column: ColumnType) {
 	return (a: ParentDataType, b: ParentDataType) => {
-		const compareValA: string =
-			a[column.dataIndex] === undefined ? '' : a[column.dataIndex]
-		const compareValB: string =
-			b[column.dataIndex] === undefined ? '' : b[column.dataIndex]
+		const valA = a[column.dataIndex]
+		const valB = b[column.dataIndex]
+
+		const compareValA: string = isUndefined(valA) ? '' : valA
+		const compareValB: string = isUndefined(valB) ? '' : valB
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -121,10 +117,11 @@ function compareStrings(column: ColumnType) {
 
 function compareNumbers(column: ColumnType) {
 	return (a: ParentDataType, b: ParentDataType) => {
-		const compareValA: number =
-			a[column.dataIndex] === undefined ? -Infinity : a[column.dataIndex]
-		const compareValB: number =
-			b[column.dataIndex] === undefined ? -Infinity : b[column.dataIndex]
+		const valA = a[column.dataIndex]
+		const valB = b[column.dataIndex]
+
+		const compareValA: number = isUndefined(valA) ? -Infinity : valA
+		const compareValB: number = isUndefined(valB) ? -Infinity : valB
 
 		return compareValA - compareValB
 	}
@@ -132,10 +129,11 @@ function compareNumbers(column: ColumnType) {
 
 function compareTags(column: ColumnType) {
 	return (a: ParentDataType, b: ParentDataType) => {
-		const compareValA: string =
-			a[column.dataIndex] === undefined ? '' : a[column.dataIndex]['name']
-		const compareValB: string =
-			b[column.dataIndex] === undefined ? '' : b[column.dataIndex]['name']
+		const valA = a[column.dataIndex]
+		const valB = b[column.dataIndex]
+
+		const compareValA: string = isUndefined(valA) ? '' : valA['name']
+		const compareValB: string = isUndefined(valB) ? '' : valB['name']
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -143,10 +141,12 @@ function compareTags(column: ColumnType) {
 
 function compareBooleans(column: ColumnType) {
 	return (a: ParentDataType, b: ParentDataType) => {
-		const compareValA: number =
-			a[column.dataIndex] === undefined ? -1 : +a[column.dataIndex]
-		const compareValB: number =
-			b[column.dataIndex] === undefined ? -1 : +b[column.dataIndex]
+		const valA = a[column.dataIndex]
+		const valB = b[column.dataIndex]
+
+		const compareValA: number = isUndefined(valA) ? -1 : +valA
+		const compareValB: number = isUndefined(valB) ? -1 : +valB
+
 		return compareValA - compareValB
 	}
 }
@@ -210,8 +210,7 @@ function applyRender<DataType>(
 					antDColumn.render = (record: IconName | string) => {
 						if (record === undefined) return ''
 
-						const iconColumn = column
-						const renderProps = iconColumn.renderProps
+						const renderProps = column.renderProps
 						const { height = 25 } = renderProps
 
 						const iconProps: IconProps =
@@ -238,11 +237,10 @@ function applyRender<DataType>(
 					antDColumn.render = (record: string) => {
 						if (record === undefined) return ''
 
-						const linkColumn = column
 						const {
 							target = '_blank',
 							buildHref = (r: string) => r
-						} = linkColumn.renderProps || {}
+						} = column.renderProps || {}
 
 						const linkProps: LinkProps = {
 							children: record,
@@ -277,9 +275,8 @@ function applyRender<DataType>(
 					antDColumn.render = (record: boolean) => {
 						if (record === undefined) return ''
 
-						const checked = record
 						const toggleProps: ToggleProps = {
-							checked,
+							checked: record,
 							// TODO: Extract out onChange to be passed in data
 							onChange: checked => {
 								console.log(`switch to ${checked}`)

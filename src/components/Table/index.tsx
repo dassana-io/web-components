@@ -54,9 +54,8 @@ function Table<DataType extends ParentDataType>({
 		setFilteredData(filteredData)
 	}
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
 		delayedSearch(e.target.value)
-	}
 
 	return (
 		<div>
