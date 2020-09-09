@@ -6,7 +6,7 @@ import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
 
 The `Table` component creates a table from a provided data source. It allows for column configuration, data configuration, sorting and global table searching.
 
-The following examples start from a basic table and don't show all possible types of data that the table can render. If you'd like to view all possible column types and formats in once place, [click here.](?path=/docs/table--mixed#columntype--all-column-types-and-formats)
+The following examples start from a basic table and don't show all possible types of data that the table can render. If you'd like to view all possible column types and formats in one place, [click here.](?path=/docs/table--mixed#columntype--all-column-types-and-formats)
 
 <Meta title='Table' component={Table} />
 
@@ -17,7 +17,7 @@ Simple usage of the `Table` requires two props — `data` and `columns`.
 1. `data` - Data must be provided as an array of objects with keys that match column key - `dataIndex`.
 2. `columns` - Columns must be provided as an array of objects with — a required `dataIndex` key, a required `title` key which will be the title of the column and a required data `type` key which determines the type of data to be rendered. Array order in columns will determine the column order in the table.
 
-You specify the data object interface and the `ColumnType` will be imported from dassana's library. The `ColumnType` shown here isn't comprehensive, but stripped down to keep things simple:
+You specify the data object interface and the `ColumnType` will be imported from Dassana's library. The `ColumnType` shown here isn't comprehensive, but stripped down to keep things simple:
 
 ```ts
 enum ColumnTypes = {
@@ -110,7 +110,7 @@ const tableProps = TableProps<Person> = { columns, data, search: false }
 
 ## Sorting
 
-Each column is sortable by default. To disable column sort, add the key to the column object that you want to disable sorting for. E.g.
+Each column is sortable by default. To disable sort on a specific column, add `sort: false` to the column configuration object. E.g.
 
 ```ts
 const columns: ColumnType[] = [
@@ -148,12 +148,12 @@ A `number` can have the format: `date | byte`.
     // column object
     {
       dataIndex: 'updated_at',
-      format: ColumnTypes.date,
+      format: ColumnFormats.date,
       renderProps: {
         displayFormat: 'MM/DD/YYYY',
       }
       title: 'Updated Time',
-      type: ColumnFormats.number
+      type: ColumnTypes.number
     }
     // example data object
     {

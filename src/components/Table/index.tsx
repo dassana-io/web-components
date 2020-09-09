@@ -37,12 +37,12 @@ function Table<DataType extends ParentDataType>({
 
 	const processedColumns = processColumns<DataType>(columns)
 	const processedData = processData<DataType>(data, columns)
-	const fuseOptions = {
+
+	const fuse = new Fuse(processedData, {
 		isCaseSensitive: false,
 		keys: mapFilterKeys(columns),
 		threshold: 0.1
-	}
-	const fuse = new Fuse(processedData, fuseOptions)
+	})
 
 	const searchTable = (value: string) => {
 		setSearchTerm(value)
@@ -50,6 +50,7 @@ function Table<DataType extends ParentDataType>({
 		const filteredData = fuse
 			.search(value)
 			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
+
 		setFilteredData(filteredData)
 	}
 
