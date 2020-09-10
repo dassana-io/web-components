@@ -3,7 +3,7 @@ import { Input as AntDInput } from 'antd'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import Skeleton from '../Skeleton'
-import React, { FC } from 'react'
+import React, { ChangeEventHandler, FC } from 'react'
 
 const useStyles = createUseStyles({
 	'@global': {
@@ -69,7 +69,7 @@ export interface InputProps {
 	 * Callback that runs when input is updated
 	 * @default () => {}
 	 */
-	onChange?: () => void
+	onChange?: ChangeEventHandler
 	/**
 	 * Describes expected value of input
 	 */

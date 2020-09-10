@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 
 export type { IconName }
 
-interface SharedIconProps {
+export interface SharedIconProps {
 	/**
 	 * The height of the icon, in pixels. Width will be calculated by default.
 	 */
