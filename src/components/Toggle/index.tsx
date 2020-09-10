@@ -4,31 +4,31 @@ import React, { FC } from 'react'
 
 export interface ToggleProps {
 	/**
-	 * Required change handler.
+	 * Required change handler
 	 */
-	onChange: () => void
+	onChange: (checked: boolean) => void
 	/**
-	 * Whether switch will be checked or "on" by default.
+	 * Determines whether the Switch is checked
 	 */
-	defaultChecked?: boolean
+	checked: boolean
 	/**
-	 * Whether switch will be disabled.
+	 * Whether switch will be disabled
 	 */
 	disabled?: boolean
 	/**
-	 * The size of the toggle.
+	 * The size of the toggle
 	 */
 	size?: 'default' | 'small'
 }
 
 const Toggle: FC<ToggleProps> = ({
+	checked,
 	onChange,
-	defaultChecked = false,
 	disabled = false,
 	size = 'default'
 }: ToggleProps) => {
 	const antDProps = {
-		defaultChecked,
+		checked,
 		disabled,
 		onChange,
 		size

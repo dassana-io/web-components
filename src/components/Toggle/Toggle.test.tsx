@@ -9,6 +9,7 @@ beforeEach(() => {
 	mockChange = jest.fn()
 
 	const mockProps: ToggleProps = {
+		checked: false,
 		onChange: mockChange
 	}
 
@@ -31,10 +32,5 @@ describe('Toggle', () => {
 
 	it('has the correct aria-checked attribute', () => {
 		expect(wrapper.getDOMNode().getAttribute('aria-checked')).toBe('false')
-	})
-
-	it('changes the aria-checked attribute when it is clicked', () => {
-		wrapper.simulate('click')
-		expect(wrapper.getDOMNode().getAttribute('aria-checked')).toBe('true')
 	})
 })

@@ -218,9 +218,9 @@ exports[`Storyshots Icon Custom 1`] = `
 
 exports[`Storyshots Icon Predefined 1`] = `
 <img
-  alt="dassana-orange"
+  alt="dassana"
   height={64}
-  src="dassana-orange.png"
+  src="dassana-blue.png"
 />
 `;
 
@@ -467,8 +467,8 @@ exports[`Storyshots Tag Default 1`] = `
 
 exports[`Storyshots Toggle Checked Disabled 1`] = `
 <button
-  aria-checked={true}
-  className="ant-switch ant-switch-checked ant-switch-disabled"
+  aria-checked={false}
+  className="ant-switch ant-switch-disabled"
   disabled={true}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -486,8 +486,8 @@ exports[`Storyshots Toggle Checked Disabled 1`] = `
 
 exports[`Storyshots Toggle Default 1`] = `
 <button
-  aria-checked={true}
-  className="ant-switch ant-switch-checked"
+  aria-checked={false}
+  className="ant-switch"
   onClick={[Function]}
   onKeyDown={[Function]}
   role="switch"
@@ -507,6 +507,24 @@ exports[`Storyshots Toggle Disabled 1`] = `
   aria-checked={false}
   className="ant-switch ant-switch-disabled"
   disabled={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="switch"
+  type="button"
+>
+  <div
+    className="ant-switch-handle"
+  />
+  <span
+    className="ant-switch-inner"
+  />
+</button>
+`;
+
+exports[`Storyshots Toggle Small 1`] = `
+<button
+  aria-checked={false}
+  className="ant-switch ant-switch-small"
   onClick={[Function]}
   onKeyDown={[Function]}
   role="switch"
