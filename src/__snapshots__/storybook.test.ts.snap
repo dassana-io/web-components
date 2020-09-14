@@ -1311,3 +1311,481 @@ exports[`Storyshots Toggle Small 1`] = `
   />
 </button>
 `;
+
+exports[`Storyshots Tree Default 1`] = `
+<div
+  className="ant-tree ant-tree-icon-hide ant-tree-block-node"
+>
+  <div
+    role="tree"
+  >
+    <input
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      style={
+        Object {
+          "border": 0,
+          "display": "flex",
+          "height": 0,
+          "margin": 0,
+          "opacity": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "width": 0,
+        }
+      }
+      tabIndex={0}
+      value=""
+    />
+  </div>
+  <div
+    className="ant-tree-list"
+    onScroll={[Function]}
+  >
+    <div
+      style={Object {}}
+    >
+      <div
+        className="ant-tree-list-holder-inner"
+        style={
+          Object {
+            "display": "flex",
+            "flexDirection": "column",
+          }
+        }
+      >
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open"
+          onMouseMove={[Function]}
+        >
+          <span
+            className="ant-tree-switcher ant-tree-switcher_open"
+            onClick={[Function]}
+          >
+            <span
+              aria-label="down"
+              className="anticon anticon-down ant-tree-switcher-icon"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-open"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 0"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 0
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last"
+          onMouseMove={[Function]}
+        >
+          <span
+            aria-hidden="true"
+            className="ant-tree-indent"
+          >
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+          </span>
+          <span
+            className="ant-tree-switcher ant-tree-switcher_open"
+            onClick={[Function]}
+          >
+            <span
+              aria-label="down"
+              className="anticon anticon-down ant-tree-switcher-icon"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-open"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 0-0"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 0-0
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open"
+          onMouseMove={[Function]}
+        >
+          <span
+            aria-hidden="true"
+            className="ant-tree-indent"
+          >
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start"
+            />
+          </span>
+          <span
+            className="ant-tree-switcher ant-tree-switcher_open"
+            onClick={[Function]}
+          >
+            <span
+              aria-label="down"
+              className="anticon anticon-down ant-tree-switcher-icon"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-open"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 0-0-0"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 0-0-0
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last"
+          onMouseMove={[Function]}
+        >
+          <span
+            aria-hidden="true"
+            className="ant-tree-indent"
+          >
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+          </span>
+          <span
+            className="ant-tree-switcher ant-tree-switcher_open"
+            onClick={[Function]}
+          >
+            <span
+              aria-label="down"
+              className="anticon anticon-down ant-tree-switcher-icon"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-open"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 0-0-0-0"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 0-0-0-0
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last"
+          onMouseMove={[Function]}
+        >
+          <span
+            aria-hidden="true"
+            className="ant-tree-indent"
+          >
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+          </span>
+          <span
+            className="ant-tree-switcher ant-tree-switcher-noop"
+          />
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-normal"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 0-0-0-0-0"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 0-0-0-0-0
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last"
+          onMouseMove={[Function]}
+        >
+          <span
+            aria-hidden="true"
+            className="ant-tree-indent"
+          >
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end"
+            />
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-end"
+            />
+          </span>
+          <span
+            className="ant-tree-switcher ant-tree-switcher-noop"
+          />
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-normal"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 0-0-1"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 0-0-1
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last"
+          onMouseMove={[Function]}
+        >
+          <span
+            className="ant-tree-switcher ant-tree-switcher_open"
+            onClick={[Function]}
+          >
+            <span
+              aria-label="down"
+              className="anticon anticon-down ant-tree-switcher-icon"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-open"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 1"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 1
+            </span>
+          </span>
+        </div>
+        <div
+          className="ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last"
+          onMouseMove={[Function]}
+        >
+          <span
+            aria-hidden="true"
+            className="ant-tree-indent"
+          >
+            <span
+              className="ant-tree-indent-unit ant-tree-indent-unit-start ant-tree-indent-unit-end ant-tree-indent-unit-end-first-level"
+            />
+          </span>
+          <span
+            className="ant-tree-switcher ant-tree-switcher-noop"
+          />
+          <span
+            className="ant-tree-checkbox"
+            onClick={[Function]}
+          >
+            <span
+              className="ant-tree-checkbox-inner"
+            />
+          </span>
+          <span
+            className="ant-tree-node-content-wrapper ant-tree-node-content-wrapper-normal"
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDoubleClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            title="Level 1-0"
+          >
+            <span
+              className="ant-tree-title"
+            >
+              Level 1-0
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
