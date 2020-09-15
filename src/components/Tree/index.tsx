@@ -1,5 +1,5 @@
 import 'antd/lib/tree/style/index.css'
-import '../assets/AntDBaseStyles.css'
+import '../assets/antdBaseStyles.css'
 import { Tree as AntDTree } from 'antd'
 import { processTreeData } from './utils'
 import React, { FC } from 'react'
@@ -11,6 +11,9 @@ export interface TreeDataType {
 }
 
 export interface TreeProps {
+	/**
+	 * Array of nested objects of type - TreeDataType to be passed to Tree.
+	 */
 	treeData: TreeDataType[]
 }
 

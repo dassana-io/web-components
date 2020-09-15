@@ -4,6 +4,20 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import Tree, { TreeProps } from './index'
 
 export default {
+	argTypes: {
+		treeData: {
+			table: {
+				type: {
+					detail: `interface TreeDataType {
+  id: string | number
+  name: string
+  children?: TreeDataType[]
+}
+         `
+				}
+			}
+		}
+	},
 	component: Tree,
 	title: 'Tree'
 } as Meta
