@@ -204,17 +204,12 @@ exports[`Storyshots Form Default 1`] = `
         className="container-0-2-13 container-d0-0-2-17"
       >
         <div
-          className="ant-select ant-select-single ant-select-show-arrow"
+          className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
           onMouseDown={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
         >
           <div
             className="ant-select-selector"
@@ -498,17 +493,12 @@ exports[`Storyshots Select Default 1`] = `
   className="container-0-2-13 container-d1-0-2-24"
 >
   <div
-    className="ant-select ant-select-single ant-select-show-arrow"
+    className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
   >
     <div
       className="ant-select-selector"
@@ -593,17 +583,12 @@ exports[`Storyshots Select Full Width 1`] = `
   className="container-0-2-13 container-d3-0-2-26"
 >
   <div
-    className="ant-select ant-select-single ant-select-show-arrow"
+    className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
   >
     <div
       className="ant-select-selector"
@@ -693,17 +678,12 @@ exports[`Storyshots Select Icon 1`] = `
   className="container-0-2-13 container-d2-0-2-25"
 >
   <div
-    className="ant-select ant-select-single ant-select-show-arrow"
+    className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
   >
     <div
       className="ant-select-selector"
@@ -802,17 +782,12 @@ exports[`Storyshots Select Search 1`] = `
   className="container-0-2-13 container-d4-0-2-27"
 >
   <div
-    className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
+    className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow ant-select-show-search"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
   >
     <div
       className="ant-select-selector"
