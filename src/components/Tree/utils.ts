@@ -1,25 +1,19 @@
 import { DataNode } from 'antd/es/tree'
 import { TreeDataType } from '.'
 
-function mapTreeNodes(nodes: TreeDataType[] | undefined) {
-	if (!nodes) return null
+export function processTreeData(nodes: TreeDataType[] | undefined) {
+	if (!nodes) return []
 
 	const mappedNodes = []
 
 	for (const node of nodes) {
 		const mappedNode: DataNode = { key: node.id, title: node.name }
-		const mappedChildren = mapTreeNodes(node.children)
+		const mappedChildren = processTreeData(node.children)
 
-		if (mappedChildren) mappedNode.children = mappedChildren
+		if (mappedChildren.length) mappedNode.children = mappedChildren
 
 		mappedNodes.push(mappedNode)
 	}
 
 	return mappedNodes
-}
-
-export function processTreeData(treeData: TreeDataType[]): DataNode[] {
-	const antDTreeData = mapTreeNodes(treeData)
-
-	return antDTreeData ? antDTreeData : []
 }
