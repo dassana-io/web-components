@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react'
 
-export interface BaseFormElementProps {
+export interface BaseFormElementProps extends CommonComponentProps {
 	/**
 	 * Array of classes to pass to element
 	 * @default []
@@ -39,4 +39,8 @@ export interface BaseFormElementProps {
 	 * Element content value for controlled input elements. Requires an onChange to be passed
 	 */
 	value?: string
+}
+
+export interface CommonComponentProps {
+	dataTag?: string
 }

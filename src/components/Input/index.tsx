@@ -3,6 +3,7 @@ import { Input as AntDInput } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
 import { defaultFieldWidth, fieldErrorStyles } from '../assets/styleguide'
 import React, { FC } from 'react'
@@ -42,6 +43,7 @@ export interface InputProps extends BaseFormElementProps {
 const Input: FC<InputProps> = (props: InputProps) => {
 	const {
 		classes = [],
+		dataTag,
 		disabled = false,
 		onChange,
 		error = false,
@@ -83,6 +85,7 @@ const Input: FC<InputProps> = (props: InputProps) => {
 				placeholder={placeholder}
 				type={type}
 				{...controlledCmpProps}
+				{...getDataTestAttributeProp('input', dataTag)}
 			/>
 		</div>
 	)

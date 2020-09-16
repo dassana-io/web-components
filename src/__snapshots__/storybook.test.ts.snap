@@ -3,6 +3,7 @@
 exports[`Storyshots Button Default 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -16,6 +17,7 @@ exports[`Storyshots Button Default 1`] = `
 exports[`Storyshots Button Disabled 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={true}
   onClick={[Function]}
   type="button"
@@ -29,6 +31,7 @@ exports[`Storyshots Button Disabled 1`] = `
 exports[`Storyshots Button Google 1`] = `
 <button
   className="ant-btn ant-btn-default google-0-2-3"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -70,6 +73,7 @@ exports[`Storyshots Button Loading 1`] = `
 exports[`Storyshots Button Pending 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={true}
   onClick={[Function]}
   type="button"
@@ -120,6 +124,7 @@ exports[`Storyshots Button Pending 1`] = `
 exports[`Storyshots Button Primary 1`] = `
 <button
   className="ant-btn ant-btn-primary"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -133,6 +138,7 @@ exports[`Storyshots Button Primary 1`] = `
 exports[`Storyshots Button Primary Disabled 1`] = `
 <button
   className="ant-btn ant-btn-primary"
+  data-test="button"
   disabled={true}
   onClick={[Function]}
   type="button"
@@ -161,6 +167,7 @@ exports[`Storyshots Form Default 1`] = `
       >
         <input
           className="ant-input"
+          data-test="input-field-firstName"
           disabled={false}
           onBlur={[Function]}
           onChange={[Function]}
@@ -183,6 +190,7 @@ exports[`Storyshots Form Default 1`] = `
       >
         <input
           className="ant-input"
+          data-test="input-field-lastName"
           disabled={false}
           onBlur={[Function]}
           onChange={[Function]}
@@ -205,6 +213,7 @@ exports[`Storyshots Form Default 1`] = `
       >
         <div
           className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
+          data-test="select-field-cloudType"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -304,6 +313,7 @@ exports[`Storyshots Form Default 1`] = `
     </div>
     <button
       className="ant-btn ant-btn-default"
+      data-test="button-submit-button"
       disabled={true}
       onClick={[Function]}
       type="button"
@@ -338,6 +348,7 @@ exports[`Storyshots Input Default 1`] = `
 >
   <input
     className="ant-input"
+    data-test="input"
     disabled={false}
     onBlur={[Function]}
     onChange={[Function]}
@@ -356,6 +367,7 @@ exports[`Storyshots Input Error 1`] = `
 >
   <input
     className="ant-input error-0-2-7"
+    data-test="input"
     disabled={false}
     onBlur={[Function]}
     onChange={[Function]}
@@ -374,6 +386,7 @@ exports[`Storyshots Input Full Width 1`] = `
 >
   <input
     className="ant-input"
+    data-test="input"
     disabled={false}
     onBlur={[Function]}
     onChange={[Function]}
@@ -405,6 +418,7 @@ exports[`Storyshots Input Loading 1`] = `
 exports[`Storyshots Link Click 1`] = `
 <a
   className="ant-typography"
+  data-test="link"
   onClick={[Function]}
   style={
     Object {
@@ -422,6 +436,7 @@ exports[`Storyshots Link Click 1`] = `
 exports[`Storyshots Link Href 1`] = `
 <a
   className="ant-typography"
+  data-test="link"
   href=" "
   style={
     Object {
@@ -439,6 +454,7 @@ exports[`Storyshots Link Href 1`] = `
 exports[`Storyshots Notifications Error 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -452,6 +468,7 @@ exports[`Storyshots Notifications Error 1`] = `
 exports[`Storyshots Notifications Info 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -465,6 +482,7 @@ exports[`Storyshots Notifications Info 1`] = `
 exports[`Storyshots Notifications Success 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -478,6 +496,7 @@ exports[`Storyshots Notifications Success 1`] = `
 exports[`Storyshots Notifications Warning 1`] = `
 <button
   className="ant-btn ant-btn-default"
+  data-test="button"
   disabled={false}
   onClick={[Function]}
   type="button"
@@ -494,6 +513,7 @@ exports[`Storyshots Select Default 1`] = `
 >
   <div
     className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
+    data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -584,6 +604,7 @@ exports[`Storyshots Select Full Width 1`] = `
 >
   <div
     className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
+    data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -679,6 +700,7 @@ exports[`Storyshots Select Icon 1`] = `
 >
   <div
     className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow"
+    data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -783,6 +805,7 @@ exports[`Storyshots Select Search 1`] = `
 >
   <div
     className="ant-select dropdown-0-2-14 ant-select-single ant-select-show-arrow ant-select-show-search"
+    data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -956,6 +979,7 @@ exports[`Storyshots Toggle Checked Disabled 1`] = `
 <button
   aria-checked={false}
   className="ant-switch ant-switch-disabled"
+  data-test="toggle"
   disabled={true}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -975,6 +999,7 @@ exports[`Storyshots Toggle Default 1`] = `
 <button
   aria-checked={false}
   className="ant-switch"
+  data-test="toggle"
   onClick={[Function]}
   onKeyDown={[Function]}
   role="switch"
@@ -993,6 +1018,7 @@ exports[`Storyshots Toggle Disabled 1`] = `
 <button
   aria-checked={false}
   className="ant-switch ant-switch-disabled"
+  data-test="toggle"
   disabled={true}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1012,6 +1038,7 @@ exports[`Storyshots Toggle Small 1`] = `
 <button
   aria-checked={false}
   className="ant-switch ant-switch-small"
+  data-test="toggle"
   onClick={[Function]}
   onKeyDown={[Function]}
   role="switch"

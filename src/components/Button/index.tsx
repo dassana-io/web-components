@@ -2,12 +2,14 @@ import 'antd/lib/button/style/index.css'
 import 'antd/lib/spin/style/index.css'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
+import { CommonComponentProps } from '../types'
+import { getDataTestAttributeProp } from '../utils'
 import { LoadingOutlined } from '@ant-design/icons'
 import Skeleton from '../Skeleton'
 import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
-export interface ButtonProps {
+export interface ButtonProps extends CommonComponentProps {
 	/**
 	 * Required click handler.
 	 */
@@ -49,6 +51,7 @@ export interface ButtonProps {
 const Button: FC<ButtonProps> = ({
 	children,
 	classes = [],
+	dataTag,
 	disabled = false,
 	loading = false,
 	onClick,
@@ -67,7 +70,10 @@ const Button: FC<ButtonProps> = ({
 	return loading ? (
 		<Skeleton height={skeletonHeight} width={skeletonWidth} />
 	) : (
-		<AntDButton {...antDProps}>
+		<AntDButton
+			{...antDProps}
+			{...getDataTestAttributeProp('button', dataTag)}
+		>
 			{pending && (
 				<span style={{ paddingRight: 8 }}>
 					<Spin
