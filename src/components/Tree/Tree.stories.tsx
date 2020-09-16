@@ -8,10 +8,10 @@ export default {
 		treeData: {
 			table: {
 				type: {
-					detail: `interface TreeDataType {
+					detail: `interface TreeNodeType {
   id: string | number
   name: string
-  children?: TreeDataType[]
+  children?: TreeNodeType[]
 }
          `
 				}

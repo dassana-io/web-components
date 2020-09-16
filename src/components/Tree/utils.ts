@@ -1,7 +1,7 @@
 import { DataNode } from 'antd/es/tree'
-import { TreeDataType } from '.'
+import { TreeNodeType } from '.'
 
-export function processTreeData(nodes: TreeDataType[] | undefined) {
+export function processTreeData(nodes: TreeNodeType[] | undefined) {
 	if (!nodes) return []
 
 	const mappedNodes = []

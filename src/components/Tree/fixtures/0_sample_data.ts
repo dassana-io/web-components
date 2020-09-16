@@ -1,6 +1,6 @@
-import { TreeDataType } from '../'
+import { TreeNodeType } from '../'
 
-const treeData: TreeDataType[] = [
+const treeData: TreeNodeType[] = [
 	{
 		children: [
 			{

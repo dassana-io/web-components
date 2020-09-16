@@ -5,17 +5,17 @@ import { processTreeData } from './utils'
 import TreeSkeleton from './TreeSkeleton'
 import React, { FC } from 'react'
 
-export interface TreeDataType {
+export interface TreeNodeType {
 	id: string | number
 	name: string
-	children?: TreeDataType[]
+	children?: TreeNodeType[]
 }
 
 export interface TreeProps {
 	/**
-	 * Array of nested objects of type - TreeDataType to be passed to Tree
+	 * Array of nested objects of type - TreeNodeType to be passed to Tree
 	 */
-	treeData: TreeDataType[]
+	treeData: TreeNodeType[]
 	/**
 	 * Whether or not to show skeleton loader
 	 */
