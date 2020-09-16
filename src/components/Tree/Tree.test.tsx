@@ -2,9 +2,10 @@ import { processTreeData } from './utils'
 import React from 'react'
 import Tree from './index'
 import treeData0 from './fixtures/0_sample_data'
-import { mount, ReactWrapper } from 'enzyme'
+import TreeSkeleton from './TreeSkeleton'
+import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
 
-let wrapper: ReactWrapper
+let wrapper: ReactWrapper | ShallowWrapper
 
 beforeEach(() => {
 	wrapper = mount(<Tree treeData={treeData0} />)
@@ -12,9 +13,17 @@ beforeEach(() => {
 
 describe('Tree', () => {
 	it('renders', () => {
-		const input = wrapper.find(Tree)
+		const tree = wrapper.find(Tree)
 
-		expect(input).toHaveLength(1)
+		expect(tree).toHaveLength(1)
+	})
+
+	describe('loading', () => {
+		it('renders a TreeSkeleton if loading prop is passed as true', () => {
+			wrapper = shallow(<Tree loading treeData={[]} />)
+
+			expect(wrapper.find(TreeSkeleton)).toHaveLength(1)
+		})
 	})
 })
 
@@ -51,5 +60,13 @@ describe('utils - processTreeData', () => {
 
 	it('returns an empty array for an empty array argument', () => {
 		expect(processTreeData([])).toMatchObject([])
+	})
+})
+
+describe('TreeSkeleton', () => {
+	it('renders', () => {
+		wrapper = mount(<TreeSkeleton blockCount={3} />)
+
+		expect(wrapper.find(TreeSkeleton)).toHaveLength(1)
 	})
 })
