@@ -102,7 +102,7 @@ describe('Select', () => {
 	})
 
 	describe('icon', () => {
-		it('should render an icon for the option if is passed in', () => {
+		it('should render an icon for the option if it is passed in', () => {
 			const select = mount(<Select options={iconOptions} />)
 
 			select.find('.ant-select-selector').simulate('mousedown')
@@ -151,7 +151,7 @@ describe('Select', () => {
 			wrapper = mount(<Select options={iconOptions} showSearch />)
 		})
 
-		it('should render an input as a search bar is search is enabled', () => {
+		it('should render an input as a search bar if search is enabled', () => {
 			expect(wrapper.find('input')).toHaveLength(1)
 		})
 
