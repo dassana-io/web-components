@@ -5,7 +5,6 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 export default {
 	argTypes: {
 		classes: { control: 'array' },
-		fieldLabel: { defaultValue: 'Field Label' },
 		value: { control: { disable: true } }
 	},
 	component: Input,
