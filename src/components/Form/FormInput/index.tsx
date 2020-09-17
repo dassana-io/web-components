@@ -1,5 +1,6 @@
 import { BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
+import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import Input, { InputProps } from '../../Input'
@@ -44,6 +45,7 @@ const FormInput: FC<FormInputProps> = ({
 				name={name}
 				render={({ onChange, value }) => (
 					<Input
+						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
 						loading={loading}
 						onChange={onChange}

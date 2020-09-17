@@ -4,6 +4,7 @@ import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
 import { defaultFieldWidth, fieldErrorStyles } from '../assets/styleguide'
 import Icon, { IconName, SharedIconProps } from '../Icon'
@@ -78,6 +79,7 @@ export interface SelectProps extends BaseFormElementProps {
 const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
 		classes = [],
+		dataTag,
 		defaultValue = '',
 		disabled = false,
 		error = false,
@@ -145,6 +147,7 @@ const Select: FC<SelectProps> = (props: SelectProps) => {
 				placeholder={placeholder}
 				showSearch={showSearch}
 				{...controlledCmpProps}
+				{...getDataTestAttributeProp('select', dataTag)}
 			>
 				{options.map(({ iconKey, text, value }) => (
 					<Option

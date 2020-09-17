@@ -1,8 +1,10 @@
 import 'antd/lib/switch/style/index.css'
+import { CommonComponentProps } from '../types'
+import { getDataTestAttributeProp } from '../utils'
 import { Switch } from 'antd'
 import React, { FC } from 'react'
 
-export interface ToggleProps {
+export interface ToggleProps extends CommonComponentProps {
 	/**
 	 * Required change handler
 	 */
@@ -23,8 +25,9 @@ export interface ToggleProps {
 
 const Toggle: FC<ToggleProps> = ({
 	checked,
-	onChange,
+	dataTag,
 	disabled = false,
+	onChange,
 	size = 'default'
 }: ToggleProps) => {
 	const antDProps = {
@@ -34,7 +37,12 @@ const Toggle: FC<ToggleProps> = ({
 		size
 	}
 
-	return <Switch {...antDProps} />
+	return (
+		<Switch
+			{...antDProps}
+			{...getDataTestAttributeProp('toggle', dataTag)}
+		/>
+	)
 }
 
 export default Toggle
