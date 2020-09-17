@@ -7,10 +7,14 @@ import React, { ChangeEventHandler, FC } from 'react'
 
 const useStyles = createUseStyles({
 	button: {
-		border: '1px solid #EAEAEA'
+		border: '1px solid #DFDFDF',
+		display: 'flex'
 	},
 	container: {
 		display: 'flex'
+	},
+	skeleton: {
+		borderRadius: 'unset'
 	}
 })
 
@@ -23,7 +27,11 @@ const RadioGroupSkeleton: FC<RadioGroupProps> = ({
 		<div className={classes.container}>
 			{times(options.length, i => (
 				<div className={classes.button} key={i}>
-					<Skeleton height={32} width={75} />
+					<Skeleton
+						classes={[classes.skeleton]}
+						height={32}
+						width={75}
+					/>
 				</div>
 			))}
 		</div>
@@ -67,6 +75,7 @@ export interface RadioGroupProps {
 
 const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 	const {
+		defaultValue,
 		disabled = false,
 		loading = false,
 		onChange,
@@ -88,7 +97,7 @@ const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 	) : (
 		<AntDRadio.Group
 			buttonStyle='solid'
-			defaultValue={options[0].value}
+			defaultValue={defaultValue || options[0].value}
 			disabled={disabled}
 			optionType='button'
 			options={options}

@@ -12,7 +12,7 @@ jest.mock('react-hook-form', () => ({
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),
-		errors: () => ({ foo: true })
+		errors: () => ({})
 	})
 }))
 
