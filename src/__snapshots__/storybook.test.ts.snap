@@ -30,7 +30,7 @@ exports[`Storyshots Button Disabled 1`] = `
 
 exports[`Storyshots Button Google 1`] = `
 <button
-  className="ant-btn ant-btn-default google-0-2-3"
+  className="ant-btn google-0-2-3 ant-btn-default"
   data-test="button"
   disabled={false}
   onClick={[Function]}
@@ -249,7 +249,6 @@ exports[`Storyshots Form Default 1`] = `
                     "opacity": 0,
                   }
                 }
-                type="search"
                 unselectable="on"
                 value=""
               />
@@ -549,7 +548,6 @@ exports[`Storyshots Select Default 1`] = `
               "opacity": 0,
             }
           }
-          type="search"
           unselectable="on"
           value=""
         />
@@ -640,7 +638,6 @@ exports[`Storyshots Select Full Width 1`] = `
               "opacity": 0,
             }
           }
-          type="search"
           unselectable="on"
           value=""
         />
@@ -736,7 +733,6 @@ exports[`Storyshots Select Icon 1`] = `
               "opacity": 0,
             }
           }
-          type="search"
           unselectable="on"
           value=""
         />
@@ -841,7 +837,6 @@ exports[`Storyshots Select Search 1`] = `
               "opacity": 0,
             }
           }
-          type="search"
           unselectable="on"
           value=""
         />
