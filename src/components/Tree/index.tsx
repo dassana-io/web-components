@@ -1,6 +1,8 @@
 import 'antd/lib/tree/style/index.css'
-import '../assets/antdBaseStyles.css'
+import '../assets/styles/antdBaseStyles.css'
 import { Tree as AntDTree } from 'antd'
+import { CommonComponentProps } from '../types'
+import { getDataTestAttributeProp } from '../utils'
 import { processTreeData } from './utils'
 import TreeSkeleton from './TreeSkeleton'
 import React, { FC } from 'react'
@@ -11,22 +13,35 @@ export interface TreeNodeType {
 	children?: TreeNodeType[]
 }
 
-export interface TreeProps {
+interface PartialTreeProps extends CommonComponentProps {
 	/**
 	 * Array of nested objects of type - TreeNodeType to be passed to Tree
 	 */
 	treeData: TreeNodeType[]
-	/**
-	 * Whether or not to show skeleton loader
-	 */
-	loading?: boolean
 	/**
 	 * Number of blocks of skeleton loaders to show if loading is true. Each block will have between 3-5 nodes of variable width
 	 */
 	skeletonBlockCount?: number
 }
 
+interface LoadingTreeProps extends Partial<PartialTreeProps> {
+	/**
+	 * Whether or not to show skeleton loader
+	 */
+	loading: true
+}
+
+interface DataTreeProps extends PartialTreeProps {
+	/**
+	 * Whether or not to show skeleton loader
+	 */
+	loading?: false
+}
+
+export type TreeProps = LoadingTreeProps | DataTreeProps
+
 const Tree: FC<TreeProps> = ({
+	dataTag,
 	treeData,
 	loading = false,
 	skeletonBlockCount = 3
@@ -42,6 +57,7 @@ const Tree: FC<TreeProps> = ({
 			defaultExpandAll
 			selectable={false}
 			treeData={mappedTreeData}
+			{...getDataTestAttributeProp('tree', dataTag)}
 		/>
 	)
 }

@@ -20,7 +20,7 @@ describe('Tree', () => {
 
 	describe('loading', () => {
 		it('renders a TreeSkeleton if loading prop is passed as true', () => {
-			wrapper = shallow(<Tree loading treeData={[]} />)
+			wrapper = shallow(<Tree loading />)
 
 			expect(wrapper.find(TreeSkeleton)).toHaveLength(1)
 		})

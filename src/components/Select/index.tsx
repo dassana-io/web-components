@@ -1,4 +1,4 @@
-import '../assets/antdAnimations.css'
+import '../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
@@ -6,7 +6,10 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
-import { defaultFieldWidth, fieldErrorStyles } from '../assets/styleguide'
+import {
+	defaultFieldWidth,
+	fieldErrorStyles
+} from '../assets/styles/styleguide'
 import Icon, { IconName, SharedIconProps } from '../Icon'
 import React, { FC } from 'react'
 

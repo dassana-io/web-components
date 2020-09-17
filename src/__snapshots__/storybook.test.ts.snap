@@ -1321,6 +1321,7 @@ exports[`Storyshots Tree Default 1`] = `
 <ForwardRef
   blockNode={true}
   checkable={true}
+  data-test="tree"
   defaultExpandAll={true}
   motion={
     Object {
