@@ -41,6 +41,11 @@ export interface BaseFormElementProps extends CommonComponentProps {
 	value?: string
 }
 
+/**
+ * This interface allows devs to pass in a dataTag that will be appended to the end of the data-test attribute.
+ * The data-test attribute is used for QA automation purposes and allows the component to be queried by its identifier.
+ * Each component that a user can interact with should have props that extend this interface
+ */
 export interface CommonComponentProps {
 	dataTag?: string
 }

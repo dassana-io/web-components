@@ -1,4 +1,4 @@
-const TAG = 'data-test'
+export const TAG = 'data-test'
 
 export const getDataTestAttributeProp = (
 	cmpName: string,
