@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
 import { FieldValues } from 'react-hook-form/dist/types/form'
 import FormInput from './FormInput'
+import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -52,6 +53,7 @@ function Form<Model>({
 
 Form.SubmitButton = FormSubmitButton
 Form.Input = FormInput
+Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
 
 export * from './types'
