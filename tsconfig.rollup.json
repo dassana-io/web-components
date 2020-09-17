@@ -1,5 +1,9 @@
 {
 	"extends": "./tsconfig.json",
 	"include": ["components/**/*", "src/custom.d.ts"],
-	"exclude": ["components/**/*.stories.tsx", "components/**/*.test.tsx", "components/**/*fixtures"]
+	"exclude": [
+		"components/**/*.stories.tsx",
+		"components/**/*.test.tsx",
+		"components/**/*fixtures"
+	]
 }
