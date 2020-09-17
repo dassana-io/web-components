@@ -54,4 +54,5 @@ Form.SubmitButton = FormSubmitButton
 Form.Input = FormInput
 Form.Select = FormSelect
 
+export * from './types'
 export default Form
