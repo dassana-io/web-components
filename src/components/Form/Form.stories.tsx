@@ -1,3 +1,4 @@
+import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import Form, { FormProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
@@ -17,9 +18,17 @@ interface UserModel {
 }
 
 const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
-	<Form {...args} initialValues={{ firstName: 'First Name' }}>
+	<Form
+		{...args}
+		initialValues={{ cloudType: 'azure', firstName: 'First Name' }}
+	>
 		<Form.Input label='First Name' name='firstName' required />
 		<Form.Input label='Last Name' name='lastName' />
+		<Form.Select
+			label='Cloud Type'
+			name='cloudType'
+			options={iconOptions}
+		/>
 		<Form.SubmitButton>Submit</Form.SubmitButton>
 	</Form>
 )

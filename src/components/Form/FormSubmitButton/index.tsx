@@ -12,6 +12,7 @@ const FormSubmitButton: FC<FormButtonProps> = (props: FormButtonProps) => {
 
 	return (
 		<Button
+			dataTag='submit-button'
 			disabled={!isDirty}
 			loading={loading}
 			onClick={handleSubmit(onSubmit)}

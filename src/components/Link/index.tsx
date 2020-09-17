@@ -1,5 +1,7 @@
 import 'antd/lib/typography/style/index.css'
+import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
+import { getDataTestAttributeProp } from '../utils'
 import { linkColor } from '../assets/styleguide'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
@@ -8,7 +10,7 @@ const AntDLink = Typography.Link
 
 export type LinkTargetType = '_self' | '_blank'
 
-export interface SharedLinkProps {
+export interface SharedLinkProps extends CommonComponentProps {
 	/**
 	 * Link children to render including link text.
 	 */
@@ -51,6 +53,7 @@ const useStyles = createUseStyles({
 
 const Link: FC<LinkProps> = ({
 	children,
+	dataTag,
 	href,
 	onClick,
 	target = '_self'
@@ -64,7 +67,11 @@ const Link: FC<LinkProps> = ({
 		underline: true
 	}
 
-	return <AntDLink {...antDProps}>{children}</AntDLink>
+	return (
+		<AntDLink {...antDProps} {...getDataTestAttributeProp('link', dataTag)}>
+			{children}
+		</AntDLink>
+	)
 }
 
 export default Link

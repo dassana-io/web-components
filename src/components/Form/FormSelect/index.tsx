@@ -3,29 +3,27 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import Input, { InputProps } from '../../Input'
 import React, { FC, useContext } from 'react'
+import Select, { SelectProps } from '../../Select'
 
-export interface FormInputProps
+export interface FormSelectProps
 	extends BaseFieldProps,
-		Omit<InputProps, 'onChange' | 'value'> {}
+		Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {}
 
-const FormInput: FC<FormInputProps> = ({
+const FormSelect: FC<FormSelectProps> = ({
 	label,
 	labelSkeletonWidth,
 	name,
 	required,
 	rules = {},
 	...rest
-}: FormInputProps) => {
-	const { control, errors } = useFormContext()
+}: FormSelectProps) => {
+	const { control } = useFormContext()
 	const { initialValues, loading } = useContext<FieldContextProps>(
 		FieldContext
 	)
 
-	if (required) {
-		rules.required = true
-	}
+	rules.required = true
 
 	const defaultValue = (initialValues[name] as string) || ''
 
@@ -35,7 +33,7 @@ const FormInput: FC<FormInputProps> = ({
 				<FieldLabel
 					label={label}
 					loading={loading}
-					required={required}
+					required
 					skeletonWidth={labelSkeletonWidth}
 				/>
 			)}
@@ -44,9 +42,9 @@ const FormInput: FC<FormInputProps> = ({
 				defaultValue={defaultValue}
 				name={name}
 				render={({ onChange, value }) => (
-					<Input
+					<Select
 						dataTag={getFormFieldDataTag(name)}
-						error={errors[name]}
+						defaultValue={defaultValue}
 						loading={loading}
 						onChange={onChange}
 						value={value}
@@ -59,4 +57,4 @@ const FormInput: FC<FormInputProps> = ({
 	)
 }
 
-export default FormInput
+export default FormSelect
