@@ -3,8 +3,8 @@ import '../assets/styles/antdBaseStyles.css'
 import { Tree as AntDTree } from 'antd'
 import { CommonComponentProps } from '../types'
 import { getDataTestAttributeProp } from '../utils'
-import { processTreeData } from './utils'
 import TreeSkeleton from './TreeSkeleton'
+import { mapOnCheckArgs, processTreeData } from './utils'
 import React, { FC } from 'react'
 
 export interface TreeNodeType {
@@ -13,16 +13,15 @@ export interface TreeNodeType {
 	children?: TreeNodeType[]
 }
 
-interface CheckedNodesType {
-	checked: (string | number)[]
-	halfChecked: (string | number)[]
+interface OnCheckHandlerParams {
+	checkedNodes: TreeNodeType[]
+	checkedKeys: (string | number)[]
+	checked: boolean
+	checkedNode: TreeNodeType
 }
 
 export interface OnCheckHandler {
-	(
-		checked: CheckedNodesType | (string | number)[],
-		info: Record<string, any>
-	): void
+	(params: OnCheckHandlerParams): void
 }
 
 interface PartialTreeProps extends CommonComponentProps {
@@ -56,6 +55,8 @@ interface DataTreeProps extends PartialTreeProps {
 
 export type TreeProps = LoadingTreeProps | DataTreeProps
 
+export type TreeNodesHash = Record<string | number, TreeNodeType>
+
 const Tree: FC<TreeProps> = ({
 	dataTag,
 	onCheck,
@@ -63,13 +64,18 @@ const Tree: FC<TreeProps> = ({
 	loading = false,
 	skeletonBlockCount = 3
 }: TreeProps) => {
-	const mappedTreeData = processTreeData(treeData)
+	const { mappedTreeData, treeNodeHash } = processTreeData(treeData)
 
 	let controlledCmpProps = {}
 
 	if (onCheck) {
+		const handleOnCheck = (
+			checked: (string | number)[],
+			info: Record<string, any>
+		) => onCheck(mapOnCheckArgs({ checked, info, treeNodeHash }))
+
 		controlledCmpProps = {
-			onCheck,
+			onCheck: handleOnCheck,
 			treeData: mappedTreeData
 		}
 	}

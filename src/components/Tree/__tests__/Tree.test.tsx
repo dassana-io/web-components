@@ -1,4 +1,3 @@
-import { processTreeData } from '../utils'
 import React from 'react'
 import Tree from '../index'
 import treeData0 from '../fixtures/0_sample_data'
@@ -21,13 +20,20 @@ describe('Tree', () => {
 	})
 
 	it('correctly passes treeData props if the props exist', () => {
-		wrapper = mount(
-			<Tree onCheck={mockOnCheck} treeData={[{ id: 0, name: 'test' }]} />
-		)
+		expect(wrapper.find(Tree).props().treeData).toMatchObject(treeData0)
+	})
 
-		expect(wrapper.find(Tree).props().treeData).toMatchObject([
-			{ id: 0, name: 'test' }
-		])
+	it('calls onCheck handler when an item is clicked', () => {
+		const treeItem = wrapper
+			.find('.ant-tree-treenode')
+			.first()
+			.find('.ant-tree-node-content-wrapper')
+
+		expect(treeItem).toHaveLength(1)
+
+		treeItem.simulate('click')
+
+		expect(mockOnCheck).toHaveBeenCalledTimes(1)
 	})
 
 	describe('loading', () => {
@@ -36,41 +42,5 @@ describe('Tree', () => {
 
 			expect(wrapper.find(TreeSkeleton)).toHaveLength(1)
 		})
-	})
-})
-
-describe('utils - processTreeData', () => {
-	it('correctly formats tree data', () => {
-		const processedData = [
-			{
-				children: [
-					{
-						children: [
-							{ key: 3, title: 'Prod Account' },
-							{ key: 4, title: 'Dev Account' }
-						],
-						key: 1,
-						title: 'Security'
-					},
-					{
-						children: [
-							{ key: 5, title: 'Prod Account' },
-							{ key: 6, title: 'Dev Account' },
-							{ key: 7, title: 'Test Account' }
-						],
-						key: 2,
-						title: 'Infrastructure'
-					}
-				],
-				key: 0,
-				title: 'AWS'
-			}
-		]
-
-		expect(processTreeData(treeData0)).toMatchObject(processedData)
-	})
-
-	it('returns an empty array for an empty array argument', () => {
-		expect(processTreeData([])).toMatchObject([])
 	})
 })

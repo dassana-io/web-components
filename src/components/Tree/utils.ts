@@ -1,19 +1,48 @@
 import { DataNode } from 'antd/es/tree'
-import { TreeNodeType } from '.'
+import { TreeNodesHash, TreeNodeType } from '.'
 
-export function processTreeData(nodes: TreeNodeType[] | undefined) {
-	if (!nodes) return []
+/**
+ * Recursive function to process TreeData. It takes an array of nested TreeNodes and returns array of nested DataNodes formatted to satisfy antD requirements.
+ */
+export const processTreeData = (nodes: TreeNodeType[] | undefined) => {
+	const treeNodeHash: TreeNodesHash = {}
 
-	const mappedNodes = []
+	const mapTreeNodes = (nodes: TreeNodeType[] | undefined) => {
+		if (!nodes) return []
 
-	for (const node of nodes) {
-		const mappedNode: DataNode = { key: node.id, title: node.name }
-		const mappedChildren = processTreeData(node.children)
+		const mappedNodes = []
 
-		if (mappedChildren.length) mappedNode.children = mappedChildren
+		for (const node of nodes) {
+			const mappedNode: DataNode = { key: node.id, title: node.name }
 
-		mappedNodes.push(mappedNode)
+			treeNodeHash[node.id] = node
+
+			const mappedChildren = mapTreeNodes(node.children)
+
+			if (mappedChildren.length) mappedNode.children = mappedChildren
+
+			mappedNodes.push(mappedNode)
+		}
+
+		return mappedNodes
 	}
 
-	return mappedNodes
+	return { mappedTreeData: mapTreeNodes(nodes), treeNodeHash }
 }
+
+export interface MapOnCheckArgsParams {
+	checked: (string | number)[]
+	info: Record<string, any>
+	treeNodeHash: TreeNodesHash
+}
+
+export const mapOnCheckArgs = ({
+	checked,
+	info,
+	treeNodeHash
+}: MapOnCheckArgsParams) => ({
+	checked: info.checked,
+	checkedKeys: checked,
+	checkedNode: treeNodeHash[info.node.key],
+	checkedNodes: checked.map(item => treeNodeHash[item])
+})
