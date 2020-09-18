@@ -18,10 +18,12 @@ interface CheckedNodesType {
 	halfChecked: (string | number)[]
 }
 
-type OnCheckHandler = (
-	checked: CheckedNodesType | (string | number)[],
-	info: Record<string, any>
-) => void
+export interface OnCheckHandler {
+	(
+		checked: CheckedNodesType | (string | number)[],
+		info: Record<string, any>
+	): void
+}
 
 interface PartialTreeProps extends CommonComponentProps {
 	/**
