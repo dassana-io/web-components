@@ -6,13 +6,8 @@ import initStoryshots, {
 const componentsToShallowRender = ['Tree']
 
 initStoryshots({
-	test: data => {
-		if (componentsToShallowRender.includes(data.context.kind)) {
-			return shallowSnapshot({
-				...data
-			})
-		}
-
-		return snapshot(data)
-	}
+	test: data =>
+		componentsToShallowRender.includes(data.context.kind)
+			? shallowSnapshot(data)
+			: snapshot(data)
 })

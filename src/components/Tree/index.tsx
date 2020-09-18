@@ -13,11 +13,25 @@ export interface TreeNodeType {
 	children?: TreeNodeType[]
 }
 
+interface CheckedNodesType {
+	checked: (string | number)[]
+	halfChecked: (string | number)[]
+}
+
+type OnCheckHandler = (
+	checked: CheckedNodesType | (string | number)[],
+	info: Record<string, any>
+) => void
+
 interface PartialTreeProps extends CommonComponentProps {
 	/**
 	 * Array of nested objects of type - TreeNodeType to be passed to Tree
 	 */
 	treeData: TreeNodeType[]
+	/**
+	 * Callback that runs when element is checked
+	 */
+	onCheck: OnCheckHandler
 	/**
 	 * Number of blocks of skeleton loaders to show if loading is true. Each block will have between 3-5 nodes of variable width
 	 */
@@ -42,11 +56,21 @@ export type TreeProps = LoadingTreeProps | DataTreeProps
 
 const Tree: FC<TreeProps> = ({
 	dataTag,
+	onCheck,
 	treeData,
 	loading = false,
 	skeletonBlockCount = 3
 }: TreeProps) => {
 	const mappedTreeData = processTreeData(treeData)
+
+	let controlledCmpProps = {}
+
+	if (onCheck) {
+		controlledCmpProps = {
+			onCheck,
+			treeData: mappedTreeData
+		}
+	}
 
 	return loading ? (
 		<TreeSkeleton blockCount={skeletonBlockCount} />
@@ -56,7 +80,7 @@ const Tree: FC<TreeProps> = ({
 			checkable
 			defaultExpandAll
 			selectable={false}
-			treeData={mappedTreeData}
+			{...controlledCmpProps}
 			{...getDataTestAttributeProp('tree', dataTag)}
 		/>
 	)

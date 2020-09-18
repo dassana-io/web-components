@@ -6,14 +6,13 @@ import React, { FC, Fragment, Key } from 'react'
 
 const useStyles = createUseStyles({
 	skeletonLabel: {
-		marginLeft: '5px'
+		marginLeft: 5
 	},
 	skeletonTreeNode: {
 		alignItems: 'center',
 		display: 'flex',
-		marginLeft: props =>
-			props.nestLevel ? `${props.nestLevel * 20}px` : 0,
-		paddingBottom: '10px'
+		marginLeft: props => (props.nestLevel ? props.nestLevel * 20 : 0),
+		paddingBottom: 10
 	}
 })
 
@@ -21,7 +20,7 @@ interface SkeletonTreeNodeProps {
 	nestLevel?: number
 }
 
-const SkeletonTreeNode: FC<SkeletonTreeNodeProps> = (
+export const SkeletonTreeNode: FC<SkeletonTreeNodeProps> = (
 	props: SkeletonTreeNodeProps
 ) => {
 	const classes = useStyles(props)
@@ -38,17 +37,15 @@ const SkeletonTreeNode: FC<SkeletonTreeNodeProps> = (
 	)
 }
 
-const generateTreeBlock = (i: Key) => {
-	return (
-		<Fragment key={i}>
-			<SkeletonTreeNode />
-			<SkeletonTreeNode nestLevel={1} />
-			{times(random(1, 3), (j: number) => (
-				<SkeletonTreeNode key={j} nestLevel={2} />
-			))}
-		</Fragment>
-	)
-}
+const generateTreeBlock = (i: Key) => (
+	<Fragment key={i}>
+		<SkeletonTreeNode />
+		<SkeletonTreeNode nestLevel={1} />
+		{times(random(1, 3), (j: number) => (
+			<SkeletonTreeNode key={j} nestLevel={2} />
+		))}
+	</Fragment>
+)
 
 interface TreeSkeletonProps {
 	blockCount: number
@@ -56,8 +53,8 @@ interface TreeSkeletonProps {
 
 const TreeSkeleton: FC<TreeSkeletonProps> = ({
 	blockCount
-}: TreeSkeletonProps) => {
-	return <div>{times(blockCount, i => generateTreeBlock(i))}</div>
-}
+}: TreeSkeletonProps) => (
+	<div>{times(blockCount, i => generateTreeBlock(i))}</div>
+)
 
 export default TreeSkeleton

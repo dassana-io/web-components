@@ -1,14 +1,16 @@
-import { processTreeData } from './utils'
+import { processTreeData } from '../utils'
 import React from 'react'
-import Tree from './index'
-import treeData0 from './fixtures/0_sample_data'
-import TreeSkeleton from './TreeSkeleton'
+import Tree from '../index'
+import treeData0 from '../fixtures/0_sample_data'
+import TreeSkeleton from '../TreeSkeleton'
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
+
+const mockOnCheck = jest.fn()
 
 let wrapper: ReactWrapper | ShallowWrapper
 
 beforeEach(() => {
-	wrapper = mount(<Tree treeData={treeData0} />)
+	wrapper = mount(<Tree onCheck={mockOnCheck} treeData={treeData0} />)
 })
 
 describe('Tree', () => {
@@ -16,6 +18,16 @@ describe('Tree', () => {
 		const tree = wrapper.find(Tree)
 
 		expect(tree).toHaveLength(1)
+	})
+
+	it('correctly passes treeData props if the props exist', () => {
+		wrapper = mount(
+			<Tree onCheck={mockOnCheck} treeData={[{ id: 0, name: 'test' }]} />
+		)
+
+		expect(wrapper.find(Tree).props().treeData).toMatchObject([
+			{ id: 0, name: 'test' }
+		])
 	})
 
 	describe('loading', () => {
@@ -60,13 +72,5 @@ describe('utils - processTreeData', () => {
 
 	it('returns an empty array for an empty array argument', () => {
 		expect(processTreeData([])).toMatchObject([])
-	})
-})
-
-describe('TreeSkeleton', () => {
-	it('renders', () => {
-		wrapper = mount(<TreeSkeleton blockCount={3} />)
-
-		expect(wrapper.find(TreeSkeleton)).toHaveLength(1)
 	})
 })

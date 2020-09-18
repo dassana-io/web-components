@@ -49,7 +49,10 @@
 	},
 	"jest": {
 		"coveragePathIgnorePatterns": [
-			".stories.tsx"
+			".stories.tsx",
+			"fixtures/*",
+			"types.ts",
+			"components/index.ts"
 		]
 	},
 	"browserslist": {

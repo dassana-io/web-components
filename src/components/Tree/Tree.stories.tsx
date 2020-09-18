@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import React from 'react'
 import treeData0 from './fixtures/0_sample_data'
 import { Meta, Story } from '@storybook/react/types-6-0'
@@ -5,6 +6,7 @@ import Tree, { TreeProps } from './index'
 
 export default {
 	argTypes: {
+		onCheck: { defaultValue: action('onCheck') },
 		treeData: {
 			table: {
 				type: {

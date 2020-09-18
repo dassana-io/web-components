@@ -1339,6 +1339,7 @@ exports[`Storyshots Tree Default 1`] = `
       "onLeaveStart": [Function],
     }
   }
+  onCheck={[Function]}
   selectable={false}
   showIcon={false}
   treeData={
