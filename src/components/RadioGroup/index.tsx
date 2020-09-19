@@ -1,13 +1,16 @@
 import 'antd/lib/radio/style/index.css'
 import { Radio as AntDRadio } from 'antd'
+import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import Skeleton from '../Skeleton'
+import { skeletonButtonBorderColor } from '../assets/styleguide'
 import times from 'lodash/times'
+import { getDataTestAttributeProp, TAG } from '../utils'
 import React, { ChangeEventHandler, FC } from 'react'
 
 const useStyles = createUseStyles({
 	button: {
-		border: '1px solid #DFDFDF',
+		border: `1px solid ${skeletonButtonBorderColor}`,
 		display: 'flex'
 	},
 	container: {
@@ -44,7 +47,7 @@ export interface RadioGroupOptions {
 	value: string
 }
 
-export interface RadioGroupProps {
+export interface RadioGroupProps extends CommonComponentProps {
 	/**
 	 * Default value for radio group. Without this, the first option will be defaulted
 	 */
@@ -76,6 +79,7 @@ export interface RadioGroupProps {
 const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 	const {
 		defaultValue,
+		dataTag,
 		disabled = false,
 		loading = false,
 		onChange,
@@ -99,6 +103,7 @@ const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 			buttonStyle='solid'
 			defaultValue={defaultValue || options[0].value}
 			disabled={disabled}
+			name={getDataTestAttributeProp('radioGroup', dataTag)[TAG]}
 			optionType='button'
 			options={options}
 			{...controlledCmpProps}

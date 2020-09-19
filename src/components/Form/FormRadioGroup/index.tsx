@@ -1,5 +1,6 @@
 import { BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
+import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import RadioGroup, { RadioGroupProps } from '../../RadioGroup'
@@ -43,6 +44,7 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 				name={name}
 				render={({ onChange, value }) => (
 					<RadioGroup
+						dataTag={getFormFieldDataTag(name)}
 						defaultValue={defaultValue}
 						loading={loading}
 						onChange={(
