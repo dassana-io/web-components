@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount, ReactWrapper } from 'enzyme'
-import TreeSkeleton, { SkeletonTreeNode } from '../TreeSkeleton'
+import TreeSkeleton, { TreeNodeSkeleton } from '../TreeSkeleton'
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
@@ -33,7 +33,7 @@ expect.extend({
 let wrapper: ReactWrapper
 
 beforeEach(() => {
-	wrapper = mount(<TreeSkeleton blockCount={3} />)
+	wrapper = mount(<TreeSkeleton blockCount={3} treeNodeCount={3} />)
 })
 
 describe('TreeSkeleton', () => {
@@ -41,7 +41,14 @@ describe('TreeSkeleton', () => {
 		expect(wrapper.find(TreeSkeleton)).toHaveLength(1)
 	})
 
+	it('correctly passes blockCount and treeNodeCount props', () => {
+		const skeletonProps = wrapper.find(TreeSkeleton).props()
+
+		expect(skeletonProps.blockCount).toEqual(3)
+		expect(skeletonProps.treeNodeCount).toEqual(3)
+	})
+
 	it('renders correct number of SkeletonTreeNodes within range', () => {
-		expect(wrapper.find(SkeletonTreeNode).length).toBeWithinRange(9, 15)
+		expect(wrapper.find(TreeNodeSkeleton).length).toBeWithinRange(9, 15)
 	})
 })

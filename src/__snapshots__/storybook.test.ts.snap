@@ -222,7 +222,6 @@ exports[`Storyshots Form Default 1`] = `
         >
           <div
             className="ant-select-selector"
-            onClick={[Function]}
             onMouseDown={[Function]}
           >
             <span
@@ -782,7 +781,6 @@ exports[`Storyshots Select Default 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -874,7 +872,6 @@ exports[`Storyshots Select Full Width 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -971,7 +968,6 @@ exports[`Storyshots Select Icon 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -1077,7 +1073,6 @@ exports[`Storyshots Select Search 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -1321,6 +1316,7 @@ exports[`Storyshots Tree Default 1`] = `
 <ForwardRef
   blockNode={true}
   checkable={true}
+  className=""
   data-test="tree"
   defaultExpandAll={true}
   motion={

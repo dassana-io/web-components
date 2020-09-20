@@ -1,30 +1,26 @@
 import 'antd/lib/tree/style/index.css'
 import '../assets/styles/antdBaseStyles.css'
 import { Tree as AntDTree } from 'antd'
+import cn from 'classnames'
 import { CommonComponentProps } from '../types'
 import { getDataTestAttributeProp } from '../utils'
+import { processTreeData } from './utils'
 import TreeSkeleton from './TreeSkeleton'
-import { mapOnCheckArgs, processTreeData } from './utils'
 import React, { FC } from 'react'
 
+export type TreeId = string | number
+
 export interface TreeNodeType {
-	id: string | number
+	id: TreeId
 	name: string
 	children?: TreeNodeType[]
 }
 
-interface OnCheckHandlerParams {
-	checkedNodes: TreeNodeType[]
-	checkedKeys: (string | number)[]
-	checked: boolean
-	checkedNode: TreeNodeType
+export interface OnChangeHandler {
+	(checkedKeys: TreeId[]): void
 }
 
-export interface OnCheckHandler {
-	(params: OnCheckHandlerParams): void
-}
-
-interface PartialTreeProps extends CommonComponentProps {
+export interface TreeProps extends CommonComponentProps {
 	/**
 	 * Array of nested objects of type - TreeNodeType to be passed to Tree
 	 */
@@ -32,62 +28,71 @@ interface PartialTreeProps extends CommonComponentProps {
 	/**
 	 * Callback that runs when element is checked
 	 */
-	onCheck: OnCheckHandler
+	onChange?: OnChangeHandler
 	/**
-	 * Number of blocks of skeleton loaders to show if loading is true. Each block will have between 3-5 nodes of variable width
+	 * Array of classes to pass to element
+	 */
+	classes?: string[]
+	/**
+	 * Whether or not to show skeleton loader
+	 */
+	loading?: boolean
+	/**
+	 * Number of blocks of skeleton blocks to show if loading is true. Each block will have between 3-5 skeleton tree nodes of variable width
 	 */
 	skeletonBlockCount?: number
-}
-
-interface LoadingTreeProps extends Partial<PartialTreeProps> {
 	/**
-	 * Whether or not to show skeleton loader
+	 * Number of skeleton tree nodes inside a skeleton block to show if loading is true. This also determines how many levels the skeleton tree nodes will be nested
 	 */
-	loading: true
+	skeletonTreeNodeCount?: number
 }
 
-interface DataTreeProps extends PartialTreeProps {
-	/**
-	 * Whether or not to show skeleton loader
-	 */
-	loading?: false
-}
-
-export type TreeProps = LoadingTreeProps | DataTreeProps
-
-export type TreeNodesHash = Record<string | number, TreeNodeType>
+export type TreeNodesHash = Record<TreeId, TreeNodeType>
 
 const Tree: FC<TreeProps> = ({
+	classes = [],
 	dataTag,
-	onCheck,
-	treeData,
 	loading = false,
-	skeletonBlockCount = 3
+	onChange,
+	skeletonBlockCount = 3,
+	skeletonTreeNodeCount = 3,
+	treeData
 }: TreeProps) => {
-	const { mappedTreeData, treeNodeHash } = processTreeData(treeData)
+	const mappedTreeData = processTreeData(treeData)
 
 	let controlledCmpProps = {}
 
-	if (onCheck) {
-		const handleOnCheck = (
-			checked: (string | number)[],
-			info: Record<string, any>
-		) => onCheck(mapOnCheckArgs({ checked, info, treeNodeHash }))
+	const treeClasses = cn(classes)
 
+	if (onChange) {
 		controlledCmpProps = {
-			onCheck: handleOnCheck,
-			treeData: mappedTreeData
+			onCheck: (_: TreeId[], info: Record<string, any>) =>
+				onChange(
+					info.checkedNodes.reduce(
+						(acc: TreeId[], cur: Record<string, any>) => {
+							if (!cur.children) acc.push(cur.key)
+
+							return acc
+						},
+						[]
+					)
+				)
 		}
 	}
 
 	return loading ? (
-		<TreeSkeleton blockCount={skeletonBlockCount} />
+		<TreeSkeleton
+			blockCount={skeletonBlockCount}
+			treeNodeCount={skeletonTreeNodeCount}
+		/>
 	) : (
 		<AntDTree
 			blockNode
 			checkable
+			className={treeClasses}
 			defaultExpandAll
 			selectable={false}
+			treeData={mappedTreeData}
 			{...controlledCmpProps}
 			{...getDataTestAttributeProp('tree', dataTag)}
 		/>

@@ -6,7 +6,7 @@ import Tree, { TreeProps } from './index'
 
 export default {
 	argTypes: {
-		onCheck: { defaultValue: action('onCheck') },
+		onChange: { defaultValue: action('onCheck') },
 		treeData: {
 			table: {
 				type: {

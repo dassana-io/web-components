@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
 	skeletonLabel: {
 		marginLeft: 5
 	},
-	skeletonTreeNode: {
+	treeNodeSkeleton: {
 		alignItems: 'center',
 		display: 'flex',
 		marginLeft: props => (props.nestLevel ? props.nestLevel * 20 : 0),
@@ -16,17 +16,17 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface SkeletonTreeNodeProps {
+interface TreeNodeSkeletonProps {
 	nestLevel?: number
 }
 
-export const SkeletonTreeNode: FC<SkeletonTreeNodeProps> = (
-	props: SkeletonTreeNodeProps
+export const TreeNodeSkeleton: FC<TreeNodeSkeletonProps> = (
+	props: TreeNodeSkeletonProps
 ) => {
 	const classes = useStyles(props)
 
 	return (
-		<div className={classes.skeletonTreeNode}>
+		<div className={classes.treeNodeSkeleton}>
 			<Skeleton height={15} width={15} />
 			<Skeleton
 				classes={[classes.skeletonLabel]}
@@ -37,24 +37,38 @@ export const SkeletonTreeNode: FC<SkeletonTreeNodeProps> = (
 	)
 }
 
-const generateTreeBlock = (i: Key) => (
+const generateTreeNodeSkeletons = (count: number, treeNodeCount?: number) => (
+	<>
+		{times(count, (j: number) => {
+			return (
+				<TreeNodeSkeleton
+					key={j}
+					nestLevel={
+						treeNodeCount === undefined ? j : treeNodeCount - 1
+					}
+				/>
+			)
+		})}
+	</>
+)
+
+const generateTreeBlock = (i: Key, treeNodeCount: number) => (
 	<Fragment key={i}>
-		<SkeletonTreeNode />
-		<SkeletonTreeNode nestLevel={1} />
-		{times(random(1, 3), (j: number) => (
-			<SkeletonTreeNode key={j} nestLevel={2} />
-		))}
+		{generateTreeNodeSkeletons(treeNodeCount - 1)}
+		{generateTreeNodeSkeletons(random(1, 3), treeNodeCount)}
 	</Fragment>
 )
 
 interface TreeSkeletonProps {
 	blockCount: number
+	treeNodeCount: number
 }
 
 const TreeSkeleton: FC<TreeSkeletonProps> = ({
-	blockCount
+	blockCount,
+	treeNodeCount
 }: TreeSkeletonProps) => (
-	<div>{times(blockCount, i => generateTreeBlock(i))}</div>
+	<div>{times(blockCount, i => generateTreeBlock(i, treeNodeCount))}</div>
 )
 
 export default TreeSkeleton
