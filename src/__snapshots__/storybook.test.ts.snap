@@ -311,6 +311,95 @@ exports[`Storyshots Form Default 1`] = `
         </div>
       </div>
     </div>
+    <div>
+      <div
+        className="container-0-2-5 required-0-2-6"
+      >
+        Severity
+      </div>
+      <div
+        className="ant-radio-group ant-radio-group-solid"
+      >
+        <label
+          className="ant-radio-button-wrapper"
+        >
+          <span
+            className="ant-radio-button"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-button-input"
+              disabled={false}
+              name="radioGroup-field-severity"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="high"
+            />
+            <span
+              className="ant-radio-button-inner"
+            />
+          </span>
+          <span>
+            High
+          </span>
+        </label>
+        <label
+          className="ant-radio-button-wrapper"
+        >
+          <span
+            className="ant-radio-button"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-button-input"
+              disabled={false}
+              name="radioGroup-field-severity"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="medium"
+            />
+            <span
+              className="ant-radio-button-inner"
+            />
+          </span>
+          <span>
+            Medium
+          </span>
+        </label>
+        <label
+          className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+        >
+          <span
+            className="ant-radio-button ant-radio-button-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-button-input"
+              disabled={false}
+              name="radioGroup-field-severity"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="low"
+            />
+            <span
+              className="ant-radio-button-inner"
+            />
+          </span>
+          <span>
+            Low
+          </span>
+        </label>
+      </div>
+    </div>
     <button
       className="ant-btn ant-btn-default"
       data-test="button-submit-button"
@@ -505,6 +594,176 @@ exports[`Storyshots Notifications Warning 1`] = `
     Warning
   </span>
 </button>
+`;
+
+exports[`Storyshots Radio Group Default 1`] = `
+<div
+  className="ant-radio-group ant-radio-group-solid"
+>
+  <label
+    className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+  >
+    <span
+      className="ant-radio-button ant-radio-button-checked"
+      style={Object {}}
+    >
+      <input
+        checked={true}
+        className="ant-radio-button-input"
+        disabled={false}
+        name="radioGroup"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="high"
+      />
+      <span
+        className="ant-radio-button-inner"
+      />
+    </span>
+    <span>
+      High
+    </span>
+  </label>
+  <label
+    className="ant-radio-button-wrapper"
+  >
+    <span
+      className="ant-radio-button"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-button-input"
+        disabled={false}
+        name="radioGroup"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="medium"
+      />
+      <span
+        className="ant-radio-button-inner"
+      />
+    </span>
+    <span>
+      Medium
+    </span>
+  </label>
+  <label
+    className="ant-radio-button-wrapper"
+  >
+    <span
+      className="ant-radio-button"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-button-input"
+        disabled={false}
+        name="radioGroup"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="low"
+      />
+      <span
+        className="ant-radio-button-inner"
+      />
+    </span>
+    <span>
+      Low
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Storyshots Radio Group Partially Disabled 1`] = `
+<div
+  className="ant-radio-group ant-radio-group-solid"
+>
+  <label
+    className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+  >
+    <span
+      className="ant-radio-button ant-radio-button-checked"
+      style={Object {}}
+    >
+      <input
+        checked={true}
+        className="ant-radio-button-input"
+        disabled={false}
+        name="radioGroup"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="high"
+      />
+      <span
+        className="ant-radio-button-inner"
+      />
+    </span>
+    <span>
+      High
+    </span>
+  </label>
+  <label
+    className="ant-radio-button-wrapper"
+  >
+    <span
+      className="ant-radio-button"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-button-input"
+        disabled={false}
+        name="radioGroup"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="medium"
+      />
+      <span
+        className="ant-radio-button-inner"
+      />
+    </span>
+    <span>
+      Medium
+    </span>
+  </label>
+  <label
+    className="ant-radio-button-wrapper ant-radio-button-wrapper-disabled"
+  >
+    <span
+      className="ant-radio-button ant-radio-button-disabled"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-button-input"
+        disabled={true}
+        name="radioGroup"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="low"
+      />
+      <span
+        className="ant-radio-button-inner"
+      />
+    </span>
+    <span>
+      Low
+    </span>
+  </label>
+</div>
 `;
 
 exports[`Storyshots Select Default 1`] = `

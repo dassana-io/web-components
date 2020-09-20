@@ -1,3 +1,4 @@
+import { basicOptions } from '../RadioGroup/fixtures/sample_options'
 import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import Form, { FormProps } from './index'
@@ -20,7 +21,10 @@ interface UserModel {
 const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 	<Form
 		{...args}
-		initialValues={{ cloudType: 'azure', firstName: 'First Name' }}
+		initialValues={{
+			cloudType: 'azure',
+			firstName: 'First Name'
+		}}
 	>
 		<Form.Input label='First Name' name='firstName' required />
 		<Form.Input label='Last Name' name='lastName' />
@@ -28,6 +32,12 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Cloud Type'
 			name='cloudType'
 			options={iconOptions}
+		/>
+		<Form.RadioGroup
+			defaultValue='low'
+			label='Severity'
+			name='severity'
+			options={basicOptions}
 		/>
 		<Form.SubmitButton>Submit</Form.SubmitButton>
 	</Form>
