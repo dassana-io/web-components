@@ -5,6 +5,7 @@ import FormInput from './FormInput'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
+import FormTree from './FormTree'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import React, { ReactNode, useEffect } from 'react'
 
@@ -55,6 +56,7 @@ Form.SubmitButton = FormSubmitButton
 Form.Input = FormInput
 Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
+Form.Tree = FormTree
 
 export * from './types'
 export default Form

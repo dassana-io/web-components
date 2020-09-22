@@ -26,17 +26,25 @@ export interface TreeProps extends CommonComponentProps {
 	 */
 	treeData: TreeNodeType[]
 	/**
-	 * Callback that runs when element is checked
-	 */
-	onChange?: OnChangeHandler
-	/**
 	 * Array of classes to pass to element
 	 */
 	classes?: string[]
 	/**
+	 * Array of tree nodes that are initially default checked
+	 */
+	defaultChecked?: TreeId[]
+	/**
+	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events)
+	 */
+	disabled?: boolean
+	/**
 	 * Whether or not to show skeleton loader
 	 */
 	loading?: boolean
+	/**
+	 * Callback that runs when element is checked
+	 */
+	onChange?: OnChangeHandler
 	/**
 	 * Number of blocks of skeleton blocks to show if loading is true. Each block will have between 3-5 skeleton tree nodes of variable width
 	 */
@@ -52,6 +60,8 @@ export type TreeNodesHash = Record<TreeId, TreeNodeType>
 const Tree: FC<TreeProps> = ({
 	classes = [],
 	dataTag,
+	defaultChecked = [],
+	disabled = false,
 	loading = false,
 	onChange,
 	skeletonBlockCount = 3,
@@ -90,7 +100,9 @@ const Tree: FC<TreeProps> = ({
 			blockNode
 			checkable
 			className={treeClasses}
+			defaultCheckedKeys={defaultChecked}
 			defaultExpandAll
+			disabled={disabled}
 			selectable={false}
 			treeData={mappedTreeData}
 			{...controlledCmpProps}
