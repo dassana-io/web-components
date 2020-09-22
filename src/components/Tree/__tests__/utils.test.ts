@@ -32,7 +32,7 @@ describe('processTreeData', () => {
 		expect(processTreeData(treeData0)).toMatchObject(processedData)
 	})
 
-	it('returns an object containing an empty array and empty object for an empty array argument', () => {
+	it('returns an empty array if tree data is empty', () => {
 		expect(processTreeData([])).toMatchObject([])
 	})
 })

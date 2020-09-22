@@ -43,9 +43,7 @@ const generateTreeNodeSkeletons = (count: number, treeNodeCount?: number) => (
 			return (
 				<TreeNodeSkeleton
 					key={j}
-					nestLevel={
-						treeNodeCount === undefined ? j : treeNodeCount - 1
-					}
+					nestLevel={treeNodeCount ? treeNodeCount - 1 : j}
 				/>
 			)
 		})}

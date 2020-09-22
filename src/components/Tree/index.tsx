@@ -4,8 +4,8 @@ import { Tree as AntDTree } from 'antd'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
 import { getDataTestAttributeProp } from '../utils'
-import { processTreeData } from './utils'
 import TreeSkeleton from './TreeSkeleton'
+import { getLeafNodeIds, processTreeData } from './utils'
 import React, { FC } from 'react'
 
 export type TreeId = string | number
@@ -77,18 +77,15 @@ const Tree: FC<TreeProps> = ({
 	if (onChange) {
 		controlledCmpProps = {
 			onCheck: (_: TreeId[], info: Record<string, any>) =>
-				onChange(
-					info.checkedNodes.reduce(
-						(acc: TreeId[], cur: Record<string, any>) => {
-							if (!cur.children) acc.push(cur.key)
-
-							return acc
-						},
-						[]
-					)
-				)
+				getLeafNodeIds(info, onChange)
 		}
 	}
+
+	if (skeletonBlockCount < 1)
+		throw new Error('skeletonBlockCount must be a positive integer')
+
+	if (skeletonTreeNodeCount < 1)
+		throw new Error('skeletonTreeNodeCount must be a positive integer')
 
 	return loading ? (
 		<TreeSkeleton

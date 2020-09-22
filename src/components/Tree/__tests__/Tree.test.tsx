@@ -1,3 +1,4 @@
+import { Tree as AntDTree } from 'antd'
 import React from 'react'
 import Tree from '../index'
 import treeData0 from '../fixtures/0_sample_data'
@@ -28,11 +29,25 @@ describe('Tree', () => {
 		expect(tree).toHaveLength(1)
 	})
 
-	it('correctly passes treeData and onChange props if the props exist', () => {
-		const treeProps = wrapper.find(Tree).props()
+	describe('props', () => {
+		it('correctly passes treeData and onChange props if the props exist', () => {
+			const treeProps = wrapper.find(Tree).props()
 
-		expect(treeProps.treeData).toMatchObject(treeData0)
-		expect(treeProps.onChange).toEqual(mockOnChange)
+			expect(treeProps.treeData).toMatchObject(treeData0)
+			expect(treeProps.onChange).toEqual(mockOnChange)
+		})
+
+		it('throws an error if passed skeletonBlockCount prop is less than 1', () => {
+			expect(() =>
+				shallow(<Tree skeletonBlockCount={0} treeData={treeData0} />)
+			).toThrow()
+		})
+
+		it('throws an error if passed skeletonTreeNodeCount prop is less than 1', () => {
+			expect(() =>
+				shallow(<Tree skeletonTreeNodeCount={0} treeData={treeData0} />)
+			).toThrow()
+		})
 	})
 
 	describe('onChange', () => {
@@ -57,16 +72,13 @@ describe('Tree', () => {
 			expect(mockOnChange).toHaveBeenCalledWith(mockArgs)
 		})
 
-		it('does not call onChange handler if one is not passed as a prop', () => {
+		it('does not pass an onCheck prop if onChange prop does not exist', () => {
 			wrapper = mount(<Tree treeData={treeData0} />)
-			const mockOnChange = jest.fn()
 			const treeNode = getTreeNode(wrapper)
 
 			expect(treeNode).toHaveLength(1)
 
-			treeNode.simulate('click')
-
-			expect(mockOnChange).toBeCalledTimes(0)
+			expect(wrapper.find(AntDTree).props().onCheck).toBeUndefined()
 		})
 	})
 
