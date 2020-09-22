@@ -11,6 +11,10 @@ export default {
 		onSubmit: { control: { disable: true } }
 	},
 	component: Form,
+	parameters: {
+		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
+		storyshots: { disable: true }
+	},
 	title: 'Form'
 } as Meta
 

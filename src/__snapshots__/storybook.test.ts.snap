@@ -149,246 +149,6 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </button>
 `;
 
-exports[`Storyshots Form Default 1`] = `
-<FormProvider
-  clearErrors={[Function]}
-  control={
-    Object {
-      "defaultValuesRef": Object {
-        "current": Object {},
-      },
-      "fieldArrayDefaultValues": Object {
-        "current": Object {},
-      },
-      "fieldArrayNamesRef": Object {
-        "current": Set {},
-      },
-      "fieldsRef": Object {
-        "current": Object {},
-      },
-      "fieldsWithValidationRef": Object {
-        "current": Object {},
-      },
-      "formStateRef": Object {
-        "current": Object {
-          "dirtyFields": Object {},
-          "errors": Object {},
-          "isDirty": false,
-          "isSubmitted": false,
-          "isSubmitting": false,
-          "isValid": false,
-          "submitCount": 0,
-          "touched": Object {},
-        },
-      },
-      "getValues": [Function],
-      "isWatchAllRef": Object {
-        "current": false,
-      },
-      "mode": Object {
-        "isOnAll": false,
-        "isOnBlur": false,
-        "isOnChange": false,
-        "isOnSubmit": true,
-        "isOnTouch": false,
-      },
-      "reValidateMode": Object {
-        "isReValidateOnBlur": false,
-        "isReValidateOnChange": true,
-      },
-      "readFormStateRef": Object {
-        "current": Object {
-          "dirtyFields": false,
-          "errors": false,
-          "isDirty": false,
-          "isSubmitted": true,
-          "isSubmitting": false,
-          "isValid": false,
-          "submitCount": false,
-          "touched": false,
-        },
-      },
-      "register": [Function],
-      "removeFieldEventListener": [Function],
-      "renderWatchedInputs": [Function],
-      "resetFieldArrayFunctionRef": Object {
-        "current": Object {},
-      },
-      "setValue": [Function],
-      "trigger": [Function],
-      "unmountFieldsStateRef": Object {
-        "current": Object {},
-      },
-      "unregister": [Function],
-      "updateFormState": [Function],
-      "validFieldsRef": Object {
-        "current": Object {},
-      },
-      "validateResolver": undefined,
-      "watchFieldsHookRef": Object {
-        "current": Object {},
-      },
-      "watchFieldsHookRenderRef": Object {
-        "current": Object {},
-      },
-      "watchFieldsRef": Object {
-        "current": Set {},
-      },
-      "watchInternal": [Function],
-    }
-  }
-  errors={Object {}}
-  formState={
-    Object {
-      "dirtyFields": Object {},
-      "errors": Object {},
-      "isDirty": false,
-      "isSubmitted": false,
-      "isSubmitting": false,
-      "isValid": false,
-      "submitCount": 0,
-      "touched": Object {},
-    }
-  }
-  getValues={[Function]}
-  handleSubmit={[Function]}
-  register={[Function]}
-  reset={[Function]}
-  setError={[Function]}
-  setValue={[Function]}
-  trigger={[Function]}
-  unregister={[Function]}
-  watch={[Function]}
->
-  <form
-    onSubmit={[Function]}
-  >
-    <Context.Provider
-      value={
-        Object {
-          "initialValues": Object {
-            "cloudType": "azure",
-            "defaultCheckedKeys": Array [
-              5,
-            ],
-            "firstName": "First Name",
-          },
-          "loading": false,
-          "onSubmit": undefined,
-        }
-      }
-    >
-      <div
-        className="container-0-2-4"
-      >
-        <FormInput
-          label="First Name"
-          name="firstName"
-          required={true}
-        />
-        <FormInput
-          label="Last Name"
-          name="lastName"
-        />
-        <FormSelect
-          label="Cloud Type"
-          name="cloudType"
-          options={
-            Array [
-              Object {
-                "iconKey": "aws",
-                "text": "AWS",
-                "value": "aws",
-              },
-              Object {
-                "iconKey": "azure",
-                "text": "Azure",
-                "value": "azure",
-              },
-              Object {
-                "iconKey": "google-cloud",
-                "text": "GCP",
-                "value": "gcp",
-              },
-            ]
-          }
-        />
-        <FormRadioGroup
-          defaultValue="low"
-          label="Severity"
-          name="severity"
-          options={
-            Array [
-              Object {
-                "label": "High",
-                "value": "high",
-              },
-              Object {
-                "label": "Medium",
-                "value": "medium",
-              },
-              Object {
-                "label": "Low",
-                "value": "low",
-              },
-            ]
-          }
-        />
-        <FormTree
-          label="Cloud Accounts"
-          name="defaultCheckedKeys"
-          treeData={
-            Array [
-              Object {
-                "children": Array [
-                  Object {
-                    "children": Array [
-                      Object {
-                        "id": 3,
-                        "name": "Prod Account",
-                      },
-                      Object {
-                        "id": 4,
-                        "name": "Dev Account",
-                      },
-                    ],
-                    "id": 1,
-                    "name": "Security",
-                  },
-                  Object {
-                    "children": Array [
-                      Object {
-                        "id": 5,
-                        "name": "Prod Account",
-                      },
-                      Object {
-                        "id": 6,
-                        "name": "Dev Account",
-                      },
-                      Object {
-                        "id": 7,
-                        "name": "Test Account",
-                      },
-                    ],
-                    "id": 2,
-                    "name": "Infrastructure",
-                  },
-                ],
-                "id": 0,
-                "name": "AWS",
-              },
-            ]
-          }
-        />
-        <FormSubmitButton>
-          Submit
-        </FormSubmitButton>
-      </div>
-    </Context.Provider>
-  </form>
-</FormProvider>
-`;
-
 exports[`Storyshots Icon Custom 1`] = `
 <img
   alt="https://dummyimage.com/600x400/000/fff&text=Dassana"
@@ -407,7 +167,7 @@ exports[`Storyshots Icon Predefined 1`] = `
 
 exports[`Storyshots Input Default 1`] = `
 <div
-  className="container-0-2-6 container-d0-0-2-8"
+  className="container-0-2-5 container-d0-0-2-7"
 >
   <input
     className="ant-input"
@@ -426,10 +186,10 @@ exports[`Storyshots Input Default 1`] = `
 
 exports[`Storyshots Input Error 1`] = `
 <div
-  className="container-0-2-6 container-d4-0-2-13"
+  className="container-0-2-5 container-d4-0-2-12"
 >
   <input
-    className="ant-input error-0-2-5"
+    className="ant-input error-0-2-4"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -445,7 +205,7 @@ exports[`Storyshots Input Error 1`] = `
 
 exports[`Storyshots Input Full Width 1`] = `
 <div
-  className="container-0-2-6 container-d3-0-2-12"
+  className="container-0-2-5 container-d3-0-2-11"
 >
   <input
     className="ant-input"
@@ -464,13 +224,13 @@ exports[`Storyshots Input Full Width 1`] = `
 
 exports[`Storyshots Input Loading 1`] = `
 <div
-  className="container-0-2-6 container-d2-0-2-10"
+  className="container-0-2-5 container-d2-0-2-9"
 >
   <div
-    className="input-0-2-7"
+    className="input-0-2-6"
   >
     <span
-      className="container-0-2-1 container-d1-0-2-11"
+      className="container-0-2-1 container-d1-0-2-10"
     >
        
     </span>
@@ -742,10 +502,10 @@ exports[`Storyshots Radio Group Partially Disabled 1`] = `
 
 exports[`Storyshots Select Default 1`] = `
 <div
-  className="container-0-2-15 container-d0-0-2-19"
+  className="container-0-2-14 container-d0-0-2-18"
 >
   <div
-    className="ant-select dropdown-0-2-16 ant-select-single ant-select-show-arrow"
+    className="ant-select dropdown-0-2-15 ant-select-single ant-select-show-arrow"
     data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -834,10 +594,10 @@ exports[`Storyshots Select Default 1`] = `
 
 exports[`Storyshots Select Full Width 1`] = `
 <div
-  className="container-0-2-15 container-d2-0-2-21"
+  className="container-0-2-14 container-d2-0-2-20"
 >
   <div
-    className="ant-select dropdown-0-2-16 ant-select-single ant-select-show-arrow"
+    className="ant-select dropdown-0-2-15 ant-select-single ant-select-show-arrow"
     data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -884,7 +644,7 @@ exports[`Storyshots Select Full Width 1`] = `
         className="ant-select-selection-item"
       >
         <div
-          className="option-0-2-18"
+          className="option-0-2-17"
         >
           <span>
             Lorem
@@ -931,10 +691,10 @@ exports[`Storyshots Select Full Width 1`] = `
 
 exports[`Storyshots Select Icon 1`] = `
 <div
-  className="container-0-2-15 container-d1-0-2-20"
+  className="container-0-2-14 container-d1-0-2-19"
 >
   <div
-    className="ant-select dropdown-0-2-16 ant-select-single ant-select-show-arrow"
+    className="ant-select dropdown-0-2-15 ant-select-single ant-select-show-arrow"
     data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -981,10 +741,10 @@ exports[`Storyshots Select Icon 1`] = `
         className="ant-select-selection-item"
       >
         <div
-          className="option-0-2-18"
+          className="option-0-2-17"
         >
           <span
-            className="icon-0-2-17"
+            className="icon-0-2-16"
           >
             <img
               alt="aws.svg"
@@ -1037,10 +797,10 @@ exports[`Storyshots Select Icon 1`] = `
 
 exports[`Storyshots Select Search 1`] = `
 <div
-  className="container-0-2-15 container-d3-0-2-22"
+  className="container-0-2-14 container-d3-0-2-21"
 >
   <div
-    className="ant-select dropdown-0-2-16 ant-select-single ant-select-show-arrow ant-select-show-search"
+    className="ant-select dropdown-0-2-15 ant-select-single ant-select-show-arrow ant-select-show-search"
     data-test="select"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -1129,7 +889,7 @@ exports[`Storyshots Select Search 1`] = `
 
 exports[`Storyshots Skeleton Circle 1`] = `
 <span
-  className="container-0-2-1 container-d3-0-2-24"
+  className="container-0-2-1 container-d3-0-2-23"
 >
    
 </span>
@@ -1138,27 +898,27 @@ exports[`Storyshots Skeleton Circle 1`] = `
 exports[`Storyshots Skeleton Count 1`] = `
 Array [
   <span
-    className="container-0-2-1 container-d4-0-2-25"
+    className="container-0-2-1 container-d4-0-2-24"
   >
      
   </span>,
   <span
-    className="container-0-2-1 container-d4-0-2-25"
+    className="container-0-2-1 container-d4-0-2-24"
   >
      
   </span>,
   <span
-    className="container-0-2-1 container-d4-0-2-25"
+    className="container-0-2-1 container-d4-0-2-24"
   >
      
   </span>,
   <span
-    className="container-0-2-1 container-d4-0-2-25"
+    className="container-0-2-1 container-d4-0-2-24"
   >
      
   </span>,
   <span
-    className="container-0-2-1 container-d4-0-2-25"
+    className="container-0-2-1 container-d4-0-2-24"
   >
      
   </span>,
@@ -1167,7 +927,7 @@ Array [
 
 exports[`Storyshots Skeleton Default 1`] = `
 <span
-  className="container-0-2-1 container-d2-0-2-23"
+  className="container-0-2-1 container-d2-0-2-22"
 >
    
 </span>

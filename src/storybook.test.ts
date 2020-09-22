@@ -3,7 +3,7 @@ import initStoryshots, {
 	snapshot
 } from '@storybook/addon-storyshots'
 
-const componentsToShallowRender = ['Form', 'Tree']
+const componentsToShallowRender = ['Tree']
 
 initStoryshots({
 	test: data =>
