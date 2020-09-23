@@ -1,6 +1,7 @@
 import { basicOptions } from '../RadioGroup/fixtures/sample_options'
 import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
+import treeData from '../Tree/fixtures/0_sample_data'
 import Form, { FormProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
@@ -10,6 +11,10 @@ export default {
 		onSubmit: { control: { disable: true } }
 	},
 	component: Form,
+	parameters: {
+		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
+		storyshots: { disable: true }
+	},
 	title: 'Form'
 } as Meta
 
@@ -23,6 +28,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 		{...args}
 		initialValues={{
 			cloudType: 'azure',
+			defaultCheckedKeys: [5],
 			firstName: 'First Name'
 		}}
 	>
@@ -38,6 +44,11 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Severity'
 			name='severity'
 			options={basicOptions}
+		/>
+		<Form.Tree
+			label='Cloud Accounts'
+			name='defaultCheckedKeys'
+			treeData={treeData}
 		/>
 		<Form.SubmitButton>Submit</Form.SubmitButton>
 	</Form>

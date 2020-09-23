@@ -2,7 +2,7 @@ import 'antd/lib/typography/style/index.css'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
-import { linkColor } from '../assets/styleguide'
+import { linkColor } from '../assets/styles/styleguide'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
 

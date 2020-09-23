@@ -5,7 +5,10 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
-import { defaultFieldWidth, fieldErrorStyles } from '../assets/styleguide'
+import {
+	defaultFieldWidth,
+	fieldErrorStyles
+} from '../assets/styles/styleguide'
 import React, { FC } from 'react'
 
 const useStyles = createUseStyles({
