@@ -1,5 +1,551 @@
 @import './antdBaseStyles.css';
 
+.fade-enter,
+.fade-appear {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.fade-leave {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.fade-enter.fade-enter-active,
+.fade-appear.fade-appear-active {
+	-webkit-animation-name: antFadeIn;
+	animation-name: antFadeIn;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+.fade-leave.fade-leave-active {
+	-webkit-animation-name: antFadeOut;
+	animation-name: antFadeOut;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+	pointer-events: none;
+}
+.fade-enter,
+.fade-appear {
+	opacity: 0;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+}
+.fade-leave {
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+}
+@-webkit-keyframes antFadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes antFadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes antFadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes antFadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+.move-up-enter,
+.move-up-appear {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-up-leave {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-up-enter.move-up-enter-active,
+.move-up-appear.move-up-appear-active {
+	-webkit-animation-name: antMoveUpIn;
+	animation-name: antMoveUpIn;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+.move-up-leave.move-up-leave-active {
+	-webkit-animation-name: antMoveUpOut;
+	animation-name: antMoveUpOut;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+	pointer-events: none;
+}
+.move-up-enter,
+.move-up-appear {
+	opacity: 0;
+	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.move-up-leave {
+	-webkit-animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+	animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+}
+.move-down-enter,
+.move-down-appear {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-down-leave {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-down-enter.move-down-enter-active,
+.move-down-appear.move-down-appear-active {
+	-webkit-animation-name: antMoveDownIn;
+	animation-name: antMoveDownIn;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+.move-down-leave.move-down-leave-active {
+	-webkit-animation-name: antMoveDownOut;
+	animation-name: antMoveDownOut;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+	pointer-events: none;
+}
+.move-down-enter,
+.move-down-appear {
+	opacity: 0;
+	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.move-down-leave {
+	-webkit-animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+	animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+}
+.move-left-enter,
+.move-left-appear {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-left-leave {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-left-enter.move-left-enter-active,
+.move-left-appear.move-left-appear-active {
+	-webkit-animation-name: antMoveLeftIn;
+	animation-name: antMoveLeftIn;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+.move-left-leave.move-left-leave-active {
+	-webkit-animation-name: antMoveLeftOut;
+	animation-name: antMoveLeftOut;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+	pointer-events: none;
+}
+.move-left-enter,
+.move-left-appear {
+	opacity: 0;
+	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.move-left-leave {
+	-webkit-animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+	animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+}
+.move-right-enter,
+.move-right-appear {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-right-leave {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+.move-right-enter.move-right-enter-active,
+.move-right-appear.move-right-appear-active {
+	-webkit-animation-name: antMoveRightIn;
+	animation-name: antMoveRightIn;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+.move-right-leave.move-right-leave-active {
+	-webkit-animation-name: antMoveRightOut;
+	animation-name: antMoveRightOut;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+	pointer-events: none;
+}
+.move-right-enter,
+.move-right-appear {
+	opacity: 0;
+	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.move-right-leave {
+	-webkit-animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+	animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+}
+@-webkit-keyframes antMoveDownIn {
+	0% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@keyframes antMoveDownIn {
+	0% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes antMoveDownOut {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@keyframes antMoveDownOut {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@-webkit-keyframes antMoveLeftIn {
+	0% {
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@keyframes antMoveLeftIn {
+	0% {
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes antMoveLeftOut {
+	0% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@keyframes antMoveLeftOut {
+	0% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@-webkit-keyframes antMoveRightIn {
+	0% {
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@keyframes antMoveRightIn {
+	0% {
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes antMoveRightOut {
+	0% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@keyframes antMoveRightOut {
+	0% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@-webkit-keyframes antMoveUpIn {
+	0% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@keyframes antMoveUpIn {
+	0% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes antMoveUpOut {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+@keyframes antMoveUpOut {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		opacity: 0;
+	}
+}
+html {
+	--antd-wave-shadow-color: #1890ff;
+	--scroll-bar: 0;
+}
+[ant-click-animating-without-extra-node='true']::after,
+.ant-click-animating-node {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	border-radius: inherit;
+	-webkit-box-shadow: 0 0 0 0 #1890ff;
+	box-shadow: 0 0 0 0 #1890ff;
+	-webkit-box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);
+	box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);
+	opacity: 0.2;
+	-webkit-animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1),
+		waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
+	animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1),
+		waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	content: '';
+	pointer-events: none;
+}
+@-webkit-keyframes waveEffect {
+	100% {
+		-webkit-box-shadow: 0 0 0 #1890ff;
+		box-shadow: 0 0 0 #1890ff;
+		-webkit-box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
+		box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
+	}
+}
+@keyframes waveEffect {
+	100% {
+		-webkit-box-shadow: 0 0 0 #1890ff;
+		box-shadow: 0 0 0 #1890ff;
+		-webkit-box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
+		box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
+	}
+}
+@-webkit-keyframes fadeEffect {
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes fadeEffect {
+	100% {
+		opacity: 0;
+	}
+}
 .slide-up-enter,
 .slide-up-appear {
 	-webkit-animation-duration: 0.2s;
@@ -420,7 +966,6 @@
 		opacity: 0;
 	}
 }
-
 .zoom-enter,
 .zoom-appear {
 	-webkit-animation-duration: 0.2s;
@@ -459,6 +1004,11 @@
 	opacity: 0;
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-enter-prepare,
+.zoom-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
 }
 .zoom-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -503,6 +1053,11 @@
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 }
+.zoom-big-enter-prepare,
+.zoom-big-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
+}
 .zoom-big-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
 	animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -545,6 +1100,11 @@
 	opacity: 0;
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-big-fast-enter-prepare,
+.zoom-big-fast-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
 }
 .zoom-big-fast-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -589,6 +1149,11 @@
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 }
+.zoom-up-enter-prepare,
+.zoom-up-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
+}
 .zoom-up-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
 	animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -631,6 +1196,11 @@
 	opacity: 0;
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-down-enter-prepare,
+.zoom-down-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
 }
 .zoom-down-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -675,6 +1245,11 @@
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 }
+.zoom-left-enter-prepare,
+.zoom-left-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
+}
 .zoom-left-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
 	animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -717,6 +1292,11 @@
 	opacity: 0;
 	-webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
 	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-right-enter-prepare,
+.zoom-right-appear-prepare {
+	-webkit-transform: none;
+	transform: none;
 }
 .zoom-right-leave {
 	-webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);

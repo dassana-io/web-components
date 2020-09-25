@@ -1,6 +1,5 @@
 import '../assets/styles/antdAnimations.css'
 import 'antd/lib/tooltip/style/index.css'
-// import 'antd/dist/antd.css'
 import { Tooltip as AntDTooltip } from 'antd'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import React, { FC, ReactNode } from 'react'

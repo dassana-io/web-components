@@ -515,6 +515,7 @@ exports[`Storyshots Select Default 1`] = `
   >
     <div
       className="ant-select-selector"
+      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -606,6 +607,7 @@ exports[`Storyshots Select Full Width 1`] = `
   >
     <div
       className="ant-select-selector"
+      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -702,6 +704,7 @@ exports[`Storyshots Select Icon 1`] = `
   >
     <div
       className="ant-select-selector"
+      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -807,6 +810,7 @@ exports[`Storyshots Select Search 1`] = `
   >
     <div
       className="ant-select-selector"
+      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -827,15 +831,15 @@ exports[`Storyshots Select Search 1`] = `
           onKeyDown={[Function]}
           onMouseDown={[Function]}
           onPaste={[Function]}
-          readOnly={true}
+          readOnly={false}
           role="combobox"
           style={
             Object {
-              "opacity": 0,
+              "opacity": null,
             }
           }
           type="search"
-          unselectable="on"
+          unselectable={null}
           value=""
         />
       </span>
