@@ -330,6 +330,48 @@ exports[`Storyshots Notifications Warning 1`] = `
 </button>
 `;
 
+exports[`Storyshots Popover Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": 75,
+    }
+  }
+>
+  <span
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <img
+      alt="dassana"
+      height={32}
+      src="dassana-blue.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`Storyshots Popover Title 1`] = `
+<div
+  style={
+    Object {
+      "padding": 75,
+    }
+  }
+>
+  <span
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <img
+      alt="dassana"
+      height={32}
+      src="dassana-blue.png"
+    />
+  </span>
+</div>
+`;
+
 exports[`Storyshots Radio Group Default 1`] = `
 <div
   className="ant-radio-group ant-radio-group-solid"
