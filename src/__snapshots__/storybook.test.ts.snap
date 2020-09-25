@@ -515,7 +515,6 @@ exports[`Storyshots Select Default 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -607,7 +606,6 @@ exports[`Storyshots Select Full Width 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -704,7 +702,6 @@ exports[`Storyshots Select Icon 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -810,7 +807,6 @@ exports[`Storyshots Select Search 1`] = `
   >
     <div
       className="ant-select-selector"
-      onClick={[Function]}
       onMouseDown={[Function]}
     >
       <span
@@ -1048,6 +1044,27 @@ exports[`Storyshots Toggle Small 1`] = `
     className="ant-switch-inner"
   />
 </button>
+`;
+
+exports[`Storyshots Tooltip Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": 75,
+    }
+  }
+>
+  <span
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <img
+      alt="dassana"
+      height={32}
+      src="dassana-blue.png"
+    />
+  </span>
+</div>
 `;
 
 exports[`Storyshots Tree Default 1`] = `
