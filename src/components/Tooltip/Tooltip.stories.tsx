@@ -1,23 +1,8 @@
 import Icon from '../Icon'
+import { placementOptions } from '../utils'
 import React from 'react'
-import { TooltipPlacement } from 'antd/lib/tooltip'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Tooltip, { TooltipProps } from './index'
-
-const placementOptions: TooltipPlacement[] = [
-	'bottom',
-	'bottomLeft',
-	'bottomRight',
-	'left',
-	'leftBottom',
-	'leftTop',
-	'right',
-	'rightBottom',
-	'rightTop',
-	'top',
-	'topLeft',
-	'topRight'
-]
 
 export default {
 	argTypes: {
@@ -26,9 +11,9 @@ export default {
 			control: {
 				options: placementOptions,
 				type: 'select'
-			},
-			defaultValue: 'right'
-		}
+			}
+		},
+		title: { control: { type: 'text' } }
 	},
 	component: Tooltip,
 	title: 'Tooltip'
