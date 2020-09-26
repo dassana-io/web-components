@@ -339,6 +339,7 @@ exports[`Storyshots Popover Default 1`] = `
   }
 >
   <span
+    data-test="popover-trigger"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -360,6 +361,7 @@ exports[`Storyshots Popover Title 1`] = `
   }
 >
   <span
+    data-test="popover-trigger"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
