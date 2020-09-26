@@ -24,15 +24,20 @@ export default {
 		title: { control: { type: 'text' } }
 	},
 	component: Popover,
+	decorators: [
+		(PopoverStory: Story) => (
+			<div style={{ padding: 75 }}>
+				<PopoverStory />
+			</div>
+		)
+	],
 	title: 'Popover'
 } as Meta
 
 const Template: Story<PopoverProps> = args => (
-	<div style={{ padding: 75 }}>
-		<Popover {...args}>
-			<Icon iconKey='dassana' />
-		</Popover>
-	</div>
+	<Popover {...args}>
+		<Icon iconKey='dassana' />
+	</Popover>
 )
 
 export const Default = Template.bind({})
