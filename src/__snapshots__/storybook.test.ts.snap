@@ -1059,6 +1059,7 @@ exports[`Storyshots Tooltip Default 1`] = `
   }
 >
   <span
+    data-test="tooltip-trigger"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
