@@ -3,6 +3,7 @@ import { Input as AntDInput } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { generateInputCSSVals } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
 import {
@@ -11,8 +12,41 @@ import {
 } from '../assets/styles/styleguide'
 import React, { FC } from 'react'
 
+const {
+	defaultBgColor,
+	defaultBorderColor,
+	defaultColor,
+	defaultFocusBoxShadow,
+	disabledBgColor,
+	focusBorderColor,
+	hoverBorderColor
+} = generateInputCSSVals()
+
+const errorAnimationKeyFrames = fieldErrorStyles['@global']
+
 const useStyles = createUseStyles({
-	...fieldErrorStyles,
+	'@global': {
+		...errorAnimationKeyFrames,
+		'input.ant-input': {
+			'&:hover': {
+				borderColor: hoverBorderColor
+			},
+			backgroundColor: defaultBgColor,
+			borderColor: defaultBorderColor,
+			color: defaultColor
+		},
+		'input.ant-input-disabled, .ant-input[disabled]': {
+			'&:hover': {
+				borderColor: disabledBgColor
+			},
+			backgroundColor: disabledBgColor
+		},
+		'input.ant-input-focused, input.ant-input:focus': {
+			borderColor: focusBorderColor,
+			boxShadow: defaultFocusBoxShadow
+		},
+		'input.ant-input.error': fieldErrorStyles.error
+	},
 	container: {
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
@@ -60,7 +94,7 @@ const Input: FC<InputProps> = (props: InputProps) => {
 
 	const inputClasses: string = cn(
 		{
-			[componentClasses.error]: error
+			error
 		},
 		classes
 	)

@@ -1,4 +1,5 @@
 import { addons } from '@storybook/addons'
+import { themes } from '@storybook/theming'
 
 addons.setConfig({
 	isFullscreen: false,
@@ -11,5 +12,6 @@ addons.setConfig({
 	theme: undefined,
 	selectedPanel: 'Controls',
 	initialActive: 'sidebar',
-	showRoots: false
+	showRoots: false,
+	theme: themes.dark
 })

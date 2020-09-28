@@ -15,3 +15,6 @@ export const fieldErrorStyles = {
 export const fontSizeRegular = '14px'
 export const linkColor = '#1EA7FD'
 export const skeletonButtonBorderColor = '#DFDFDF'
+export const demoGreen = '#00d287'
+export const demoGray = '#676c77'
+export const demoBlue = '#5183f5'
