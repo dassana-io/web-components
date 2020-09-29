@@ -24,25 +24,34 @@ export const placementOptions: TooltipPlacement[] = [
 	'topLeft',
 	'topRight'
 ]
-export const getRgba = ([r, g, b]: number[], a: number) =>
-	`rgba(${r} ,${g} ,${b} ,${a})`
 
-export const darkenColor = (color: string, darkenPercent: number) => {
-	if (darkenPercent < 0 || darkenPercent > 100)
-		throw new Error('please provide a valid percentage')
+export const getRgba = (color: string, a: number) => {
+	const [r, g, b] = Color(color).rgb().array()
 
-	return Color(color)
-		.darken(darkenPercent / 100)
-		.hex()
+	return `rgba(${r} ,${g} ,${b} ,${a})`
 }
 
-export const lightenColor = (color: string, lightenPercent: number) => {
-	if (lightenPercent < 0 || lightenPercent > 100)
+enum LigtenOrDarkenType {
+	light,
+	dark
+}
+
+export const lightenOrDarkenColor = (
+	color: string,
+	percent: number,
+	colorChangeType?: keyof typeof LigtenOrDarkenType
+) => {
+	if (percent < 0 || percent > 100)
 		throw new Error('please provide a valid percentage')
 
-	return Color(color)
-		.lighten(lightenPercent / 100)
-		.hex()
+	const clr = Color(color)
+
+	const changedClr =
+		colorChangeType === 'dark'
+			? clr.darken(percent / 100)
+			: clr.lighten(percent / 100)
+
+	return changedClr.hex()
 }
 
 export const fadeColor = (color: string, fadePercent: number) => {
@@ -51,5 +60,5 @@ export const fadeColor = (color: string, fadePercent: number) => {
 
 	const fadedColor = Color(color).fade(fadePercent / 100)
 
-	return getRgba(fadedColor.rgb().array(), fadedColor.alpha())
+	return getRgba(fadedColor.hex(), fadedColor.alpha())
 }
