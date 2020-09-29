@@ -1,0 +1,22 @@
+[class^='ant-'],
+[class*='ant-'],
+[class^='ant-'] *,
+[class*='ant-'] *,
+[class^='ant-'] *::before,
+[class*='ant-'] *::before,
+[class^='ant-'] *::after,
+[class*='ant-'] *::after {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+img {
+	vertical-align: middle;
+	border-style: none;
+}
