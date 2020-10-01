@@ -536,6 +536,58 @@ exports[`Storyshots Notifications Warning 1`] = `
 </div>
 `;
 
+exports[`Storyshots Popover Default 1`] = `
+<div
+  className=""
+>
+  <div
+    style={
+      Object {
+        "padding": 75,
+      }
+    }
+  >
+    <span
+      data-test="popover-trigger"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <img
+        alt="dassana"
+        height={32}
+        src="dassana-blue.png"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Popover Title 1`] = `
+<div
+  className=""
+>
+  <div
+    style={
+      Object {
+        "padding": 75,
+      }
+    }
+  >
+    <span
+      data-test="popover-trigger"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <img
+        alt="dassana"
+        height={32}
+        src="dassana-blue.png"
+      />
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Radio Group Default 1`] = `
 <div
   className=""
@@ -939,33 +991,6 @@ exports[`Storyshots Select Icon 1`] = `
         onClick={[Function]}
         onMouseDown={[Function]}
       >
-        <input
-          aria-activedescendant="undefined_list_0"
-          aria-autocomplete="list"
-          aria-controls="undefined_list"
-          aria-haspopup="listbox"
-          aria-owns="undefined_list"
-          autoComplete="off"
-          className="ant-select-selection-search-input"
-          disabled={false}
-          onChange={[Function]}
-          onCompositionEnd={[Function]}
-          onCompositionStart={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onPaste={[Function]}
-          readOnly={false}
-          role="combobox"
-          style={
-            Object {
-              "opacity": null,
-            }
-          }
-          type="search"
-          unselectable={null}
-          value=""
-        />
-      </span>
         <span
           className="ant-select-selection-search"
         >
@@ -1395,5 +1420,31 @@ exports[`Storyshots Tree Default 1`] = `
       className="ant-switch-inner"
     />
   </button>
+</div>
+`;
+
+exports[`Storyshots Tooltip Default 1`] = `
+<div
+  className=""
+>
+  <div
+    style={
+      Object {
+        "padding": 75,
+      }
+    }
+  >
+    <span
+      data-test="tooltip-trigger"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <img
+        alt="dassana"
+        height={32}
+        src="dassana-blue.png"
+      />
+    </span>
+  </div>
 </div>
 `;
