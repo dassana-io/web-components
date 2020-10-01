@@ -24,6 +24,10 @@ export default {
 		}
 	},
 	component: Tree,
+	parameters: {
+		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
+		storyshots: { disable: true }
+	},
 	title: 'Tree'
 } as Meta
 
