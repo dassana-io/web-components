@@ -336,7 +336,7 @@ exports[`Storyshots Input Placeholder 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
-      placeholder="Search"
+      placeholder="Search..."
       type="text"
       value=""
     />

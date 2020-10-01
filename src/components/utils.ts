@@ -28,7 +28,7 @@ export const placementOptions: TooltipPlacement[] = [
 export const getRgba = (color: string, a: number) => {
 	const [r, g, b] = Color(color).rgb().array()
 
-	return `rgba(${r} ,${g} ,${b} ,${a})`
+	return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
 enum LigtenOrDarkenType {
