@@ -25,7 +25,7 @@ export default {
 	},
 	component: Tree,
 	parameters: {
-		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
+		// disabled because shallow rendering doesn't work with decorator and hook inside decorator.
 		storyshots: { disable: true }
 	},
 	title: 'Tree'

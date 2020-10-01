@@ -16,7 +16,7 @@ const Template: Story<InputProps> = args => <Input {...args} />
 export const Default = Template.bind({})
 
 export const Placeholder = Template.bind({})
-Placeholder.args = { placeholder: 'Search' }
+Placeholder.args = { placeholder: 'Search...' }
 
 export const Loading = Template.bind({})
 Loading.args = { loading: true }
