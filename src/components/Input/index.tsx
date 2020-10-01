@@ -17,7 +17,7 @@ const errorAnimationKeyFrames = fieldErrorStyles['@global']
 const useStyles = createUseStyles({
 	'@global': {
 		...errorAnimationKeyFrames,
-		// '.dark input': generateInputStyles('dark'),
+		'.dark input': generateInputStyles('dark'),
 		input: generateInputStyles('light')
 	},
 	container: {

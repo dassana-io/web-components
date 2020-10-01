@@ -4,6 +4,7 @@ module.exports = {
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
 		'@storybook/addon-actions',
-		'@storybook/preset-create-react-app'
+		'@storybook/preset-create-react-app',
+		'storybook-dark-mode/register'
 	]
 }

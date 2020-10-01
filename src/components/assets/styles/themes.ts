@@ -22,12 +22,12 @@ export const light: PaletteType = {
 }
 
 export const dark: PaletteType = {
-	background: dassanaWhite,
+	background: dassanaGrays[9],
 	error: dassanaReds[6],
 	primary: dassanaBlue,
 	text: {
-		disabled: dassanaGrays[6],
-		primary: dassanaGrays[8]
+		disabled: dassanaWhite,
+		primary: dassanaWhite
 	}
 }
 
