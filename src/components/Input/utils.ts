@@ -1,5 +1,5 @@
+import { fadeColor } from '../utils'
 import { fieldErrorStyles } from '../assets/styles/styleguide'
-import { getRgba } from '../utils'
 import { dassanaBlues, dassanaGrays } from '../assets/styles/colors'
 import {
 	generateThemeVars,
@@ -29,7 +29,7 @@ export const generateInputCSSVals = ({
 
 	const focus = {
 		...hover,
-		boxShadow: `0px 0px 4px ${getRgba(primary, 50)}`
+		boxShadow: `0px 0px 4px ${fadeColor(primary, 50)}`
 	}
 
 	const placeholder = {

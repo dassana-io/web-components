@@ -25,7 +25,7 @@ export const placementOptions: TooltipPlacement[] = [
 	'topRight'
 ]
 
-export const getRgba = (color: string, a: number) => {
+const getRgba = (color: string, a: number) => {
 	const [r, g, b] = Color(color).rgb().array()
 
 	return `rgba(${r}, ${g}, ${b}, ${a})`
