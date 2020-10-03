@@ -1,17 +1,13 @@
 import { dassanaBlue, dassanaGrays, dassanaReds, dassanaWhite } from './colors'
 
-interface TextColorType {
-	disabled: string
-	primary: string
-}
-export interface PaletteType {
+export interface ThemePalette {
 	background: string
 	primary: string
 	error: string
-	text: TextColorType
+	text: { disabled: string; primary: string }
 }
 
-export const light: PaletteType = {
+export const lightPalette: ThemePalette = {
 	background: dassanaWhite,
 	error: dassanaReds[6],
 	primary: dassanaBlue,
@@ -21,7 +17,7 @@ export const light: PaletteType = {
 	}
 }
 
-export const dark: PaletteType = {
+export const darkPalette: ThemePalette = {
 	background: dassanaGrays[9],
 	error: dassanaReds[6],
 	primary: dassanaBlue,
@@ -31,8 +27,13 @@ export const dark: PaletteType = {
 	}
 }
 
-const themes = { dark, light }
+export enum ThemesType {
+	dark = 'dark',
+	light = 'light'
+}
 
-export type ThemesType = keyof typeof themes
+const { dark, light } = ThemesType
 
-export const generateThemeVars = (theme: ThemesType) => themes[theme]
+const themes = { [dark]: darkPalette, [light]: lightPalette }
+
+export const getThemePalette = (theme: ThemesType) => themes[theme]

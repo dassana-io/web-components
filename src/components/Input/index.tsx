@@ -6,19 +6,20 @@ import { createUseStyles } from 'react-jss'
 import { generateInputStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
+import { ThemesType } from '../assets/styles/themes'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import React, { FC } from 'react'
 
-const errorAnimationKeyFrames = fieldErrorStyles['@global']
+const { dark, light } = ThemesType
 
 const useStyles = createUseStyles({
 	'@global': {
-		...errorAnimationKeyFrames,
-		'.dark input': generateInputStyles('dark'),
-		input: generateInputStyles('light')
+		...fieldErrorStyles['@global'],
+		[`.${dark} input`]: generateInputStyles(dark),
+		input: generateInputStyles(light)
 	},
 	container: {
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)

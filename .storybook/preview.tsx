@@ -6,6 +6,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import isChromatic from 'chromatic/isChromatic'
 import { Story } from '@storybook/react/types-6-0'
 import { StoryContext } from '@storybook/addons'
+import { ThemesType } from '../src/components/assets/styles/themes'
 import { withCssResources } from '@storybook/addon-cssresources'
 import {
 	convert,
@@ -18,6 +19,8 @@ import {
 	useTheme
 } from '@storybook/theming'
 import React, { FC, ReactNode, useEffect } from 'react'
+
+const { dark, light } = ThemesType
 
 const useStyles = createUseStyles({
 	storyContainer: {
@@ -68,6 +71,7 @@ interface StoryWrapperProps {
 	children: ReactNode
 	dark?: boolean
 }
+
 /*
 This wrapper does two things:
   1. Adds padding to the story since it was removed from .sb-show-main in ./index.css
@@ -88,7 +92,7 @@ const StoryWrapper: FC<StoryWrapperProps> = ({
 
 const ThemeWrapper = (
 	ComponentStory: Story,
-	{ globals: { theme = 'light' } }: StoryContext
+	{ globals: { theme = light } }: StoryContext
 ) => {
 	const classes = useStyles()
 
@@ -102,14 +106,16 @@ const ThemeWrapper = (
 					<ThemeProvider theme={convert(themes.light)}>
 						{/* @ts-ignore */}
 						<ThemeBlock side='left'>
-							<StoryWrapper>{<ComponentStory />}</StoryWrapper>
+							<StoryWrapper>
+								<ComponentStory />
+							</StoryWrapper>
 						</ThemeBlock>
 					</ThemeProvider>
 					<ThemeProvider theme={convert(themes.dark)}>
 						{/* @ts-ignore */}
 						<ThemeBlock side='right'>
-							<StoryWrapper dark={true}>
-								{<ComponentStory />}
+							<StoryWrapper dark>
+								<ComponentStory />
 							</StoryWrapper>
 						</ThemeBlock>
 					</ThemeProvider>
@@ -122,8 +128,8 @@ const ThemeWrapper = (
 				<ThemeProvider theme={convert(themes[theme])}>
 					<Global styles={createReset} />
 					<ThemedSetRoot />
-					<StoryWrapper dark={theme === 'dark'}>
-						{<ComponentStory />}
+					<StoryWrapper dark={theme === dark}>
+						<ComponentStory />
 					</StoryWrapper>
 				</ThemeProvider>
 			)
@@ -133,14 +139,15 @@ const ThemeWrapper = (
 
 export const globalTypes = {
 	theme: {
-		defaultValue: isChromatic() ? 'side-by-side' : 'light',
+		/* Setting side-by-side as default for chromatic allows for visual regression testing on both dark and light themed stories. */
+		defaultValue: isChromatic() ? 'side-by-side' : light,
 		description: 'Global theme for components',
 		name: 'Theme',
 		toolbar: {
 			icon: 'circlehollow',
 			items: [
-				{ icon: 'circlehollow', title: 'light', value: 'light' },
-				{ icon: 'circle', title: 'dark', value: 'dark' },
+				{ icon: 'circlehollow', title: light, value: light },
+				{ icon: 'circle', title: dark, value: dark },
 				{
 					icon: 'sidebar',
 					title: 'side by side',

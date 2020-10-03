@@ -31,34 +31,35 @@ const getRgba = (color: string, a: number) => {
 	return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
-enum LigtenOrDarkenType {
-	light,
-	dark
+export enum ColorManipulationTypes {
+	darken = 'darken',
+	fade = 'fade',
+	lighten = 'lighten'
 }
 
-export const lightenOrDarkenColor = (
+export const manipulateColor = (
 	color: string,
 	percent: number,
-	colorChangeType?: keyof typeof LigtenOrDarkenType
+	colorChangeType: ColorManipulationTypes
 ) => {
 	if (percent < 0 || percent > 100)
 		throw new Error('please provide a valid percentage')
 
 	const clr = Color(color)
 
-	const changedClr =
-		colorChangeType === 'dark'
-			? clr.darken(percent / 100)
-			: clr.lighten(percent / 100)
+	const ratio = percent / 100
 
-	return changedClr.hex()
-}
+	switch (colorChangeType) {
+		case ColorManipulationTypes.darken:
+			return clr.darken(ratio).hex()
 
-export const fadeColor = (color: string, fadePercent: number) => {
-	if (fadePercent < 0 || fadePercent > 100)
-		throw new Error('please provide a valid percentage')
+		case ColorManipulationTypes.fade: {
+			const fadedColor = clr.fade(ratio)
 
-	const fadedColor = Color(color).fade(fadePercent / 100)
+			return getRgba(fadedColor.hex(), fadedColor.alpha())
+		}
 
-	return getRgba(fadedColor.hex(), fadedColor.alpha())
+		case ColorManipulationTypes.lighten:
+			return clr.lighten(ratio).hex()
+	}
 }
