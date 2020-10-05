@@ -1,23 +1,17 @@
 import './index.css'
 import cn from 'classnames'
-import { createUseStyles } from 'react-jss'
 import document from 'global/document'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import isChromatic from 'chromatic/isChromatic'
 import { Story } from '@storybook/react/types-6-0'
 import { StoryContext } from '@storybook/addons'
-import { ThemesType } from '../src/components/assets/styles/themes'
-import { withCssResources } from '@storybook/addon-cssresources'
 import {
-	convert,
-	createReset,
-	Global,
-	styled,
-	Theme,
-	ThemeProvider,
 	themes,
-	useTheme
-} from '@storybook/theming'
+	Theme,
+	ThemesType
+} from '../src/components/assets/styles/themes'
+import { createUseStyles, ThemeProvider, useTheme } from 'react-jss'
+import { withCssResources } from '@storybook/addon-cssresources'
 import React, { FC, ReactNode, useEffect } from 'react'
 
 const { dark, light } = ThemesType
@@ -31,45 +25,25 @@ const useStyles = createUseStyles({
 	}
 })
 
-const ThemeBlock = styled.div(
-	{
+const useStylesWithTheme = createUseStyles({
+	themeBlock: {
+		background: ({ theme }: { theme: Theme }) => theme.background,
 		height: '100vh',
-		left: 0,
+		left: props => (props.side === 'left' ? 0 : '50vw'),
 		overflow: 'auto',
-		right: '50vw',
+		right: props => (props.side === 'right' ? '50vw' : 0),
 		width: '50vw'
-	},
-	({ theme }) => ({
-		background: theme.background.app,
-		color: theme.color.defaultText
-	}),
-	// @ts-ignore
-	({ side }) =>
-		side === 'left'
-			? {
-					left: 0,
-					right: '50vw'
-			  }
-			: {
-					left: '50vw',
-					right: 0
-			  }
-)
+	}
+})
 
-const ThemedSetRoot = () => {
+const ThemedCanvasBg = () => {
 	const theme: Theme = useTheme()
 
 	useEffect(() => {
-		document.body.style.background = theme.background.app
-		document.body.style.color = theme.defaultText
+		document.body.style.background = theme.background
 	})
 
 	return null
-}
-
-interface StoryWrapperProps {
-	children: ReactNode
-	dark?: boolean
 }
 
 /*
@@ -90,7 +64,36 @@ const StoryWrapper: FC<StoryWrapperProps> = ({
 	return <div className={wrapperClasses}>{children}</div>
 }
 
-const ThemeWrapper = (
+interface StoryWrapperProps {
+	children: ReactNode
+	dark?: boolean
+}
+
+/* This adds a wrapper to style the left and right blocks for side-by-side viewing of dark and light themes. */
+const ThemedBlock: FC<ThemedBlockProps> = ({
+	children,
+	...props
+}: ThemedBlockProps) => {
+	const theme = useTheme()
+	const classes = useStylesWithTheme({ ...props, theme })
+	const { side } = props
+
+	return (
+		<div className={classes.themeBlock}>
+			<StoryWrapper dark={side === 'left' ? false : true}>
+				{children}
+			</StoryWrapper>
+		</div>
+	)
+}
+
+interface ThemedBlockProps {
+	children: ReactNode
+	side: 'left' | 'right'
+}
+
+/* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
+const ThemeDecorator = (
 	ComponentStory: Story,
 	{ globals: { theme = light } }: StoryContext
 ) => {
@@ -100,24 +103,15 @@ const ThemeWrapper = (
 		case 'side-by-side': {
 			return (
 				<div className={classes.storyContainer}>
-					<ThemeProvider theme={convert(themes.light)}>
-						<Global styles={createReset} />
+					<ThemeProvider theme={themes[light]}>
+						<ThemedBlock side='left'>
+							<ComponentStory />
+						</ThemedBlock>
 					</ThemeProvider>
-					<ThemeProvider theme={convert(themes.light)}>
-						{/* @ts-ignore */}
-						<ThemeBlock side='left'>
-							<StoryWrapper>
-								<ComponentStory />
-							</StoryWrapper>
-						</ThemeBlock>
-					</ThemeProvider>
-					<ThemeProvider theme={convert(themes.dark)}>
-						{/* @ts-ignore */}
-						<ThemeBlock side='right'>
-							<StoryWrapper dark>
-								<ComponentStory />
-							</StoryWrapper>
-						</ThemeBlock>
+					<ThemeProvider theme={themes[dark]}>
+						<ThemedBlock side='right'>
+							<ComponentStory />
+						</ThemedBlock>
 					</ThemeProvider>
 				</div>
 			)
@@ -125,9 +119,8 @@ const ThemeWrapper = (
 
 		default: {
 			return (
-				<ThemeProvider theme={convert(themes[theme])}>
-					<Global styles={createReset} />
-					<ThemedSetRoot />
+				<ThemeProvider theme={themes[theme]}>
+					<ThemedCanvasBg />
 					<StoryWrapper dark={theme === dark}>
 						<ComponentStory />
 					</StoryWrapper>
@@ -161,4 +154,4 @@ export const globalTypes = {
 	}
 }
 
-export const decorators = [withCssResources, ThemeWrapper]
+export const decorators = [withCssResources, ThemeDecorator]

@@ -1,12 +1,8 @@
 import { ColorManipulationTypes, manipulateColor } from '../../utils'
 import { dassanaBlues, dassanaGrays } from './colors'
-import { getThemePalette, ThemePalette, ThemesType } from './themes'
+import { Theme, themes, ThemesType } from './themes'
 
-export const generateBaseStyles = ({
-	background,
-	primary,
-	text
-}: ThemePalette) => {
+export const generateBaseStyles = ({ background, primary, text }: Theme) => {
 	const base = {
 		bgColor: background,
 		borderColor: dassanaGrays[6],
@@ -38,7 +34,9 @@ export const generateBaseStyles = ({
 	return { base, disabled, focus, hover, placeholder }
 }
 
+const { dark, light } = ThemesType
+
 export const generalColors = {
-	[ThemesType.dark]: generateBaseStyles(getThemePalette(ThemesType.dark)),
-	[ThemesType.light]: generateBaseStyles(getThemePalette(ThemesType.light))
+	[ThemesType.dark]: generateBaseStyles(themes[dark]),
+	[ThemesType.light]: generateBaseStyles(themes[light])
 }

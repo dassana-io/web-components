@@ -1,13 +1,13 @@
 import { dassanaBlue, dassanaGrays, dassanaReds, dassanaWhite } from './colors'
 
-export interface ThemePalette {
+export interface Theme {
 	background: string
 	primary: string
 	error: string
 	text: { disabled: string; primary: string }
 }
 
-export const lightPalette: ThemePalette = {
+export const lightPalette: Theme = {
 	background: dassanaWhite,
 	error: dassanaReds[6],
 	primary: dassanaBlue,
@@ -17,7 +17,7 @@ export const lightPalette: ThemePalette = {
 	}
 }
 
-export const darkPalette: ThemePalette = {
+export const darkPalette: Theme = {
 	background: dassanaGrays[9],
 	error: dassanaReds[6],
 	primary: dassanaBlue,
@@ -32,8 +32,7 @@ export enum ThemesType {
 	light = 'light'
 }
 
-const { dark, light } = ThemesType
-
-const themes = { [dark]: darkPalette, [light]: lightPalette }
-
-export const getThemePalette = (theme: ThemesType) => themes[theme]
+export const themes = {
+	[ThemesType.dark]: darkPalette,
+	[ThemesType.light]: lightPalette
+}
