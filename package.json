@@ -78,6 +78,7 @@
 		"@storybook/addons": "^6.0.21",
 		"@storybook/preset-create-react-app": "^3.1.4",
 		"@storybook/react": "^6.0.21",
+		"@svgr/rollup": "^5.4.0",
 		"@types/bytes": "^3.1.0",
 		"@types/classnames": "^2.2.10",
 		"@types/enzyme": "^3.10.5",
