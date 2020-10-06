@@ -1,8 +1,13 @@
 import 'antd/lib/notification/style/index.css'
-import { IconType } from 'antd/lib/notification'
 import { notification } from 'antd'
+import { ConfigProps, IconType } from 'antd/lib/notification'
 
-export const generateNotification = (type: IconType, message: string): void =>
+export const generateNotification = (
+	type: IconType,
+	message: string,
+	config?: ConfigProps
+): void =>
 	notification[type]({
-		message
+		message,
+		...config
 	})

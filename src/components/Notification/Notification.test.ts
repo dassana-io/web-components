@@ -17,8 +17,10 @@ describe('Notification', () => {
 		const mockErrorNotification = 'Fake Error Notification'
 		generateNotification('error', mockErrorNotification)
 
-		expect(notification.error).toHaveBeenCalledWith({
-			message: mockErrorNotification
-		})
+		expect(notification.error).toHaveBeenCalledWith(
+			expect.objectContaining({
+				message: mockErrorNotification
+			})
+		)
 	})
 })
