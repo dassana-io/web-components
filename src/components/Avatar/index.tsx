@@ -15,14 +15,14 @@ interface SharedAvatarProps {
 }
 
 interface AvatarIcon extends SharedAvatarProps {
+	/**
+	 * Icon to render as the avatar.
+	 */
 	icon: ReactNode
 	children?: never
 }
 
 interface GeneralAvatar extends SharedAvatarProps {
-	/**
-	 * Icon to render as the avatar.
-	 */
 	icon?: never
 	/**
 	 * Avatar children to render. **Note**: Either `children` or `icon` is required.
