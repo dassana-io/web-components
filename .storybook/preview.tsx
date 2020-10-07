@@ -91,7 +91,7 @@ const ThemedBlock: FC<ThemedBlockProps> = ({
 
 	return (
 		<div className={classes.themeBlock}>
-			<StoryWrapper dark={side !== left}>{children}</StoryWrapper>
+			<StoryWrapper dark={side === right}>{children}</StoryWrapper>
 		</div>
 	)
 }

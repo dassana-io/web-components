@@ -81,7 +81,7 @@ export const blacks = {
 
 export const blues = generateShades(blue)
 export const grays = generateShades(gray)
-export const greens = generateShades(green)
-export const oranges = generateShades(orange)
-export const reds = generateShades(red)
-export const yellows = generateShades(yellow)
+export const greens = { base: green }
+export const oranges = { base: orange }
+export const reds = { base: red }
+export const yellows = { base: yellow }
