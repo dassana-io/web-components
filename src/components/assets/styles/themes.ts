@@ -1,4 +1,4 @@
-import { dassanaBlue, dassanaGrays, dassanaReds, dassanaWhite } from './colors'
+import { blues, grays, reds, whites } from './colors'
 
 export interface Theme {
 	background: string
@@ -8,22 +8,22 @@ export interface Theme {
 }
 
 export const lightPalette: Theme = {
-	background: dassanaWhite,
-	error: dassanaReds[6],
-	primary: dassanaBlue,
+	background: whites.base,
+	error: reds.base,
+	primary: blues.base,
 	text: {
-		disabled: dassanaGrays[6],
-		primary: dassanaGrays[8]
+		disabled: grays.base,
+		primary: grays['darken-20']
 	}
 }
 
 export const darkPalette: Theme = {
-	background: dassanaGrays[9],
-	error: dassanaReds[6],
-	primary: dassanaBlue,
+	background: grays['darken-50'],
+	error: reds.base,
+	primary: blues.base,
 	text: {
-		disabled: dassanaWhite,
-		primary: dassanaWhite
+		disabled: whites.base,
+		primary: whites.base
 	}
 }
 

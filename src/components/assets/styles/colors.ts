@@ -1,56 +1,87 @@
+import { ColorManipulationTypes, manipulateColor } from '../../utils'
+
+const { lighten, darken } = ColorManipulationTypes
+
+const white = '#FEFEFE'
+const black = '#111111'
+
+const blue = '#2F54EB'
+const gray = '#7E8083'
+const green = '#81E154'
+const orange = '#F9BB5D'
+const red = '#E16854'
+const yellow = '#F9D75D'
+
+const lightenPercentages = [10, 30, 50, 70, 90]
+const darkenPercentages = [10, 20, 50, 70]
+
+interface LightShadeType {
+	'lighten-90': string
+	'lighten-70': string
+	'lighten-50': string
+	'lighten-30': string
+	'lighten-10': string
+}
+
+interface DarkShadeType {
+	'darken-10': string
+	'darken-20': string
+	'darken-50': string
+	'darken-70': string
+}
+
+interface ShadeType extends LightShadeType, DarkShadeType {
+	base: string
+}
+
+const generateLightShades = (baseColor: string, percentArr: number[]) => {
+	const shades: LightShadeType = {} as LightShadeType
+
+	percentArr.forEach(percentage => {
+		const shadeKey = `lighten-${percentage}` as keyof LightShadeType
+		shades[shadeKey] = manipulateColor(baseColor, percentage, lighten)
+	})
+
+	return shades
+}
+
+const generateDarkShades = (baseColor: string, percentArr: number[]) => {
+	const shades: DarkShadeType = {} as DarkShadeType
+
+	percentArr.forEach(percentage => {
+		const shadeKey = `darken-${percentage}` as keyof DarkShadeType
+		shades[shadeKey] = manipulateColor(baseColor, percentage, darken)
+	})
+
+	return shades
+}
+
+const generateShades = (baseColor: string) => {
+	const shades: ShadeType = {
+		base: baseColor,
+		...generateLightShades(baseColor, lightenPercentages),
+		...generateDarkShades(baseColor, darkenPercentages)
+	}
+
+	return shades
+}
+
 /* eslint-disable sort-keys */
-export const dassanaBlues = {
-	1: '#EBEEFE',
-	2: '#D5DDFB',
-	3: '#ACBBF7',
-	4: '#8298F3',
-	5: '#5976EF',
-	6: '#2F54EB',
-	7: '#233FB0',
-	8: '#182A76',
-	9: '#0C153B',
-	10: '#050818'
+export const whites = {
+	base: white,
+	'darken-5': manipulateColor(white, 5, darken),
+	'darken-10': manipulateColor(white, 10, darken),
+	'darken-15': manipulateColor(white, 15, darken),
+	'darken-20': manipulateColor(white, 20, darken)
+}
+export const blacks = {
+	...generateLightShades(black, lightenPercentages),
+	base: black
 }
 
-export const dassanaGrays = {
-	1: '#F7F7F7',
-	2: '#EEEEEF',
-	3: '#DCDDDF',
-	4: '#CBCDCE',
-	5: '#B9BCBE',
-	6: '#A8ABAE',
-	7: '#7E8083',
-	8: '#545657',
-	9: '#2A2B2C',
-	10: '#111111'
-}
-
-export const dassanaWhites = {
-	1: '#FFFFFF',
-	2: '#FEFEFE',
-	3: '#FDFDFD',
-	4: '#FCFCFC',
-	5: '#FAFAFA',
-	6: '#F9F9F9',
-	7: '#F7F7F7',
-	8: '#F1F1F1',
-	9: '#E7E7E7',
-	10: '#DCDCDC'
-}
-
-export const dassanaReds = {
-	1: '#FDF0EE',
-	2: '#F9E1DD',
-	3: '#F5CAC2',
-	4: '#F0AFA4',
-	5: '##E78676',
-	6: '#E16854',
-	7: '#A94E3F',
-	8: '#71342A',
-	9: '#381A15',
-	10: '#381A15'
-}
-
-export const dassanaBlue = dassanaBlues[6]
-export const pureWhite = dassanaWhites[1]
-export const dassanaWhite = dassanaWhites[2]
+export const blues = generateShades(blue)
+export const grays = generateShades(gray)
+export const greens = generateShades(green)
+export const oranges = generateShades(orange)
+export const reds = generateShades(red)
+export const yellows = generateShades(yellow)

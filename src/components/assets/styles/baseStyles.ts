@@ -1,21 +1,21 @@
+import { blues, grays } from './colors'
 import { ColorManipulationTypes, manipulateColor } from '../../utils'
-import { dassanaBlues, dassanaGrays } from './colors'
 import { Theme, themes, ThemesType } from './themes'
 
 export const generateBaseStyles = ({ background, primary, text }: Theme) => {
 	const base = {
 		bgColor: background,
-		borderColor: dassanaGrays[6],
+		borderColor: grays.base,
 		color: text.primary
 	}
 
 	const disabled = {
-		bgColor: dassanaGrays[3],
+		bgColor: grays['lighten-50'],
 		color: text.disabled
 	}
 
 	const hover = {
-		borderColor: dassanaBlues[5]
+		borderColor: blues['lighten-10']
 	}
 
 	const focus = {
