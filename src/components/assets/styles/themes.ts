@@ -27,12 +27,12 @@ export const darkPalette: Theme = {
 	}
 }
 
-export enum ThemesType {
+export enum ThemeType {
 	dark = 'dark',
 	light = 'light'
 }
 
 export const themes = {
-	[ThemesType.dark]: darkPalette,
-	[ThemesType.light]: lightPalette
+	[ThemeType.dark]: darkPalette,
+	[ThemeType.light]: lightPalette
 }

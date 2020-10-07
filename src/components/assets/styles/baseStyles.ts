@@ -1,6 +1,6 @@
 import { blues, grays } from './colors'
 import { ColorManipulationTypes, manipulateColor } from '../../utils'
-import { Theme, themes, ThemesType } from './themes'
+import { Theme, themes, ThemeType } from './themes'
 
 export const generateBaseStyles = ({ background, primary, text }: Theme) => {
 	const base = {
@@ -34,9 +34,9 @@ export const generateBaseStyles = ({ background, primary, text }: Theme) => {
 	return { base, disabled, focus, hover, placeholder }
 }
 
-const { dark, light } = ThemesType
+const { dark, light } = ThemeType
 
-export const generalColors = {
-	[ThemesType.dark]: generateBaseStyles(themes[dark]),
-	[ThemesType.light]: generateBaseStyles(themes[light])
+export const generalStyles = {
+	[ThemeType.dark]: generateBaseStyles(themes[dark]),
+	[ThemeType.light]: generateBaseStyles(themes[light])
 }

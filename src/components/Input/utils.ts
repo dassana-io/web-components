@@ -1,9 +1,9 @@
 import { fieldErrorStyles } from '../assets/styles/styleguide'
-import { generalColors } from '../assets/styles/baseStyles'
-import { ThemesType } from '../assets/styles/themes'
+import { generalStyles } from '../assets/styles/baseStyles'
+import { ThemeType } from '../assets/styles/themes'
 
-export const generateInputStyles = (themeType: ThemesType) => {
-	const { base, disabled, focus, hover, placeholder } = generalColors[
+export const generateInputStyles = (themeType: ThemeType) => {
+	const { base, disabled, focus, hover, placeholder } = generalStyles[
 		themeType
 	]
 

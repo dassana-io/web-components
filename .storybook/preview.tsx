@@ -8,13 +8,21 @@ import { StoryContext } from '@storybook/addons'
 import {
 	themes,
 	Theme,
-	ThemesType
+	ThemeType
 } from '../src/components/assets/styles/themes'
 import { createUseStyles, ThemeProvider, useTheme } from 'react-jss'
 import { withCssResources } from '@storybook/addon-cssresources'
 import React, { FC, ReactNode, useEffect } from 'react'
 
-const { dark, light } = ThemesType
+enum LayoutTypes {
+	sideBySide = 'side-by-side',
+	left = 'left',
+	right = 'right'
+}
+
+const { sideBySide, left, right } = LayoutTypes
+
+const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	storyContainer: {
@@ -29,9 +37,9 @@ const useStylesWithTheme = createUseStyles({
 	themeBlock: {
 		background: ({ theme }: { theme: Theme }) => theme.background,
 		height: '100vh',
-		left: props => (props.side === 'left' ? 0 : '50vw'),
+		left: props => (props.side === left ? 0 : '50vw'),
 		overflow: 'auto',
-		right: props => (props.side === 'right' ? '50vw' : 0),
+		right: props => (props.side === right ? '50vw' : 0),
 		width: '50vw'
 	}
 })
@@ -46,6 +54,10 @@ const ThemedCanvasBg = () => {
 	return null
 }
 
+interface StoryWrapperProps {
+	children: ReactNode
+	dark?: boolean
+}
 /*
 This wrapper does two things:
   1. Adds padding to the story since it was removed from .sb-show-main in ./index.css
@@ -64,11 +76,10 @@ const StoryWrapper: FC<StoryWrapperProps> = ({
 	return <div className={wrapperClasses}>{children}</div>
 }
 
-interface StoryWrapperProps {
+interface ThemedBlockProps {
 	children: ReactNode
-	dark?: boolean
+	side: LayoutTypes.left | LayoutTypes.right
 }
-
 /* This adds a wrapper to style the left and right blocks for side-by-side viewing of dark and light themes. */
 const ThemedBlock: FC<ThemedBlockProps> = ({
 	children,
@@ -80,16 +91,9 @@ const ThemedBlock: FC<ThemedBlockProps> = ({
 
 	return (
 		<div className={classes.themeBlock}>
-			<StoryWrapper dark={side === 'left' ? false : true}>
-				{children}
-			</StoryWrapper>
+			<StoryWrapper dark={side !== left}>{children}</StoryWrapper>
 		</div>
 	)
-}
-
-interface ThemedBlockProps {
-	children: ReactNode
-	side: 'left' | 'right'
 }
 
 /* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
@@ -100,16 +104,16 @@ const ThemeDecorator = (
 	const classes = useStyles()
 
 	switch (theme) {
-		case 'side-by-side': {
+		case sideBySide: {
 			return (
 				<div className={classes.storyContainer}>
 					<ThemeProvider theme={themes[light]}>
-						<ThemedBlock side='left'>
+						<ThemedBlock side={left}>
 							<ComponentStory />
 						</ThemedBlock>
 					</ThemeProvider>
 					<ThemeProvider theme={themes[dark]}>
-						<ThemedBlock side='right'>
+						<ThemedBlock side={right}>
 							<ComponentStory />
 						</ThemedBlock>
 					</ThemeProvider>
@@ -133,7 +137,7 @@ const ThemeDecorator = (
 export const globalTypes = {
 	theme: {
 		/* Setting side-by-side as default for chromatic allows for visual regression testing on both dark and light themed stories. */
-		defaultValue: isChromatic() ? 'side-by-side' : light,
+		defaultValue: isChromatic() ? sideBySide : light,
 		description: 'Global theme for components',
 		name: 'Theme',
 		toolbar: {
@@ -144,7 +148,7 @@ export const globalTypes = {
 				{
 					icon: 'sidebar',
 					title: 'side by side',
-					value: 'side-by-side'
+					value: sideBySide
 				}
 			]
 		}

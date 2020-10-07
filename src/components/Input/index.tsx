@@ -6,14 +6,14 @@ import { createUseStyles } from 'react-jss'
 import { generateInputStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
-import { ThemesType } from '../assets/styles/themes'
+import { ThemeType } from '../assets/styles/themes'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import React, { FC } from 'react'
 
-const { dark, light } = ThemesType
+const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	'@global': {
