@@ -18,14 +18,6 @@ describe('Predefined Icon', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
-	it('renders with correct src url', () => {
-		expect(wrapper.getDOMNode().getAttribute('src')).toContain('dassana')
-	})
-
-	it('has the correct alt attribute', () => {
-		expect(wrapper.getDOMNode().getAttribute('alt')).toBe('dassana')
-	})
-
 	it('has the correct height', () => {
 		expect(wrapper.getDOMNode().getAttribute('height')).toBe('64')
 	})
@@ -34,6 +26,13 @@ describe('Predefined Icon', () => {
 		wrapper = mount(<Icon iconKey='dassana' />)
 
 		expect(wrapper.getDOMNode().getAttribute('height')).toBe('32')
+	})
+
+	it('correctly applies the color prop if one is provided', () => {
+		const mockColor = 'blue'
+		wrapper = mount(<Icon color={mockColor} iconKey='dassana' />)
+
+		expect(wrapper.getDOMNode().getAttribute('fill')).toBe(mockColor)
 	})
 })
 

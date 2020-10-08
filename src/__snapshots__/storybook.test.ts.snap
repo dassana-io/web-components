@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Avatar Default 1`] = `
+<span
+  className="ant-avatar ant-avatar-circle"
+  style={Object {}}
+>
+  <span
+    className="ant-avatar-string"
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  >
+    D
+  </span>
+</span>
+`;
+
+exports[`Storyshots Avatar Icon 1`] = `
+<span
+  className="ant-avatar ant-avatar-circle ant-avatar-icon"
+  style={Object {}}
+>
+  <svg
+    fill="#7E8083"
+    height={32}
+    width={32}
+  >
+    dassana.svg
+  </svg>
+</span>
+`;
+
 exports[`Storyshots Button Default 1`] = `
 <button
   className="ant-btn ant-btn-default"
@@ -158,11 +191,13 @@ exports[`Storyshots Icon Custom 1`] = `
 `;
 
 exports[`Storyshots Icon Predefined 1`] = `
-<img
-  alt="dassana"
+<svg
+  fill="#7E8083"
   height={64}
-  src="dassana-blue.png"
-/>
+  width={64}
+>
+  dassana.svg
+</svg>
 `;
 
 exports[`Storyshots Input Default 1`] = `
@@ -343,11 +378,13 @@ exports[`Storyshots Popover Default 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <img
-      alt="dassana"
+    <svg
+      fill="#7E8083"
       height={32}
-      src="dassana-blue.png"
-    />
+      width={32}
+    >
+      dassana.svg
+    </svg>
   </span>
 </div>
 `;
@@ -365,11 +402,13 @@ exports[`Storyshots Popover Title 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <img
-      alt="dassana"
+    <svg
+      fill="#7E8083"
       height={32}
-      src="dassana-blue.png"
-    />
+      width={32}
+    >
+      dassana.svg
+    </svg>
   </span>
 </div>
 `;
@@ -790,11 +829,13 @@ exports[`Storyshots Select Icon 1`] = `
           <span
             className="icon-0-2-16"
           >
-            <img
-              alt="aws.svg"
+            <svg
+              fill="#7E8083"
               height={15}
-              src="aws.svg"
-            />
+              width={15}
+            >
+              aws.svg
+            </svg>
           </span>
           <span>
             AWS
@@ -1107,11 +1148,13 @@ exports[`Storyshots Tooltip Default 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <img
-      alt="dassana"
+    <svg
+      fill="#7E8083"
       height={32}
-      src="dassana-blue.png"
-    />
+      width={32}
+    >
+      dassana.svg
+    </svg>
   </span>
 </div>
 `;

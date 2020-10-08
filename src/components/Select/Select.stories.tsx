@@ -1,5 +1,3 @@
-import 'antd/lib/select/style/index.css'
-import IconsMap from '../Icon/IconsMap'
 import React from 'react'
 import { basicOptions, iconOptions } from './fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
@@ -24,7 +22,6 @@ export const Icon = Template.bind({})
 Icon.args = {
 	defaultValue: 'aws',
 	options: iconOptions,
-	optionsConfig: { iconMap: IconsMap },
 	placeholder: 'Choose a Cloud Provider'
 }
 

@@ -22,6 +22,7 @@ interface IconPath extends SharedIconProps {
 }
 
 interface IconKey extends SharedIconProps {
+	color?: string
 	iconKey: IconName
 	icon?: never
 }
@@ -32,10 +33,15 @@ const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 	const { icon } = props as IconPath
 	const { iconKey } = props as IconKey
 
-	const imgSrc = iconKey ? Icons[iconKey] : icon
-	const imgAlt = iconKey ? iconKey : icon
+	if (iconKey) {
+		const Svg = Icons[iconKey]
 
-	return <img alt={imgAlt} height={height} src={imgSrc} />
+		const { color = '#7E8083' } = props as IconKey
+
+		return <Svg fill={color} height={height} width={height} />
+	}
+
+	return <img alt={icon} height={height} src={icon} />
 }
 
 export default Icon
