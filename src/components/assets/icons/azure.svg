@@ -11,12 +11,12 @@
 	xml:space="preserve"
 >
 	<style type="text/css">
-		.st0 {
+		.st0-azure {
 			fill: #0072c6;
 		}
 	</style>
 	<path
-		class="st0"
+		class="st0-azure"
 		d="M33.6,5.1L18.9,17.8L6.3,40.4h11.3L33.6,5.1z M35.6,8l-6.3,17.7l12.1,15.2l-23.4,4h38.3L35.6,8z"
 	/>
 </svg>

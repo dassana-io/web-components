@@ -829,21 +829,13 @@ exports[`Storyshots Select Icon 1`] = `
           <span
             className="icon-0-2-16"
           >
-            <img
-              alt={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                }
-              }
+            <svg
+              fill="#7E8083"
               height={15}
-              src={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                }
-              }
-            />
+              width={15}
+            >
+              aws.svg
+            </svg>
           </span>
           <span>
             AWS
