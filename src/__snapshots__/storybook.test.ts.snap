@@ -3,6 +3,77 @@
 exports[`Storyshots Avatar Default 1`] = `
 <div
   className="storyWrapper-0-2-2"
+<<<<<<< HEAD
+>
+  <span
+    className="ant-avatar ant-avatar-circle"
+    style={Object {}}
+  >
+    <span
+      className="ant-avatar-string"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      D
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Storyshots Avatar Icon 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <span
+    className="ant-avatar ant-avatar-circle ant-avatar-icon"
+    style={Object {}}
+  >
+    <svg
+      fill="#7E8083"
+      height={32}
+      width={32}
+    >
+      dassana.svg
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`Storyshots Button Default 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <button
+    className="ant-btn ant-btn-default"
+    data-test="button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Default
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Storyshots Button Disabled 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <button
+    className="ant-btn ant-btn-default"
+    data-test="button"
+    disabled={true}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Disabled
+=======
 >
   <span
     className="ant-avatar ant-avatar-circle"
@@ -77,6 +148,45 @@ exports[`Storyshots Button Disabled 1`] = `
 </div>
 `;
 
+exports[`Storyshots Button Google 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <button
+    className="ant-btn ant-btn-default google-0-2-5"
+    data-test="button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <span
+      aria-label="google"
+      className="anticon anticon-google"
+      role="img"
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="google"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M881 442.4H519.7v148.5h206.4c-8.9 48-35.9 88.6-76.6 115.8-34.4 23-78.3 36.6-129.9 36.6-99.9 0-184.4-67.5-214.6-158.2-7.6-23-12-47.6-12-72.9s4.4-49.9 12-72.9c30.3-90.6 114.8-158.1 214.7-158.1 56.3 0 106.8 19.4 146.6 57.4l110-110.1c-66.5-62-153.2-100-256.6-100-149.9 0-279.6 86-342.7 211.4-26 51.8-40.8 110.4-40.8 172.4S151 632.8 177 684.6C240.1 810 369.8 896 519.7 896c103.6 0 190.4-34.4 253.8-93 72.5-66.8 114.4-165.2 114.4-282.1 0-27.2-2.4-53.3-6.9-78.5z"
+        />
+      </svg>
+    </span>
+    <span>
+      Sign in with Google
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
+    </span>
+  </button>
+</div>
+`;
+
 exports[`Storyshots Button Loading 1`] = `
 <div
   className="storyWrapper-0-2-2"
@@ -116,7 +226,10 @@ exports[`Storyshots Button Pending 1`] = `
           role="img"
           style={
             Object {
+<<<<<<< HEAD
               "color": "#94959A",
+=======
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
               "fontSize": 16,
             }
           }
@@ -212,6 +325,7 @@ exports[`Storyshots Input Default 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-5 container-d0-0-2-8"
   >
     <input
@@ -226,6 +340,26 @@ exports[`Storyshots Input Default 1`] = `
       type="text"
       value=""
     />
+=======
+    className="decorator-0-2-6 decorator"
+  >
+    <div
+      className="container-0-2-7 container-d0-0-2-9"
+    >
+      <input
+        className="ant-input"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+    </div>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   </div>
 </div>
 `;
@@ -235,6 +369,7 @@ exports[`Storyshots Input Error 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-5 container-d5-0-2-14"
   >
     <input
@@ -249,6 +384,26 @@ exports[`Storyshots Input Error 1`] = `
       type="text"
       value=""
     />
+=======
+    className="decorator-0-2-6 decorator"
+  >
+    <div
+      className="container-0-2-7 container-d5-0-2-15"
+    >
+      <input
+        className="ant-input error"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+    </div>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   </div>
 </div>
 `;
@@ -258,6 +413,7 @@ exports[`Storyshots Input Full Width 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-5 container-d4-0-2-13"
   >
     <input
@@ -272,6 +428,26 @@ exports[`Storyshots Input Full Width 1`] = `
       type="text"
       value=""
     />
+=======
+    className="decorator-0-2-6 decorator"
+  >
+    <div
+      className="container-0-2-7 container-d4-0-2-14"
+    >
+      <input
+        className="ant-input"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+    </div>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   </div>
 </div>
 `;
@@ -281,6 +457,7 @@ exports[`Storyshots Input Loading 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-5 container-d3-0-2-11"
   >
     <div
@@ -291,6 +468,22 @@ exports[`Storyshots Input Loading 1`] = `
       >
          
       </span>
+=======
+    className="decorator-0-2-6 decorator"
+  >
+    <div
+      className="container-0-2-7 container-d3-0-2-12"
+    >
+      <div
+        className="input-0-2-8"
+      >
+        <span
+          className="container-0-2-3 container-d1-0-2-13"
+        >
+           
+        </span>
+      </div>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
     </div>
   </div>
 </div>
@@ -301,6 +494,7 @@ exports[`Storyshots Input Placeholder 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-5 container-d1-0-2-9"
   >
     <input
@@ -315,6 +509,26 @@ exports[`Storyshots Input Placeholder 1`] = `
       type="text"
       value=""
     />
+=======
+    className="decorator-0-2-6 decorator"
+  >
+    <div
+      className="container-0-2-7 container-d1-0-2-10"
+    >
+      <input
+        className="ant-input"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Search..."
+        type="text"
+        value=""
+      />
+    </div>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   </div>
 </div>
 `;
@@ -552,6 +766,7 @@ exports[`Storyshots Radio Group Default 1`] = `
     </label>
     <label
       className="ant-radio-button-wrapper"
+<<<<<<< HEAD
     >
       <span
         className="ant-radio-button"
@@ -614,6 +829,32 @@ exports[`Storyshots Radio Group Loading 1`] = `
          
       </span>
     </div>
+=======
+    >
+      <span
+        className="ant-radio-button"
+        style={Object {}}
+      >
+        <input
+          checked={false}
+          className="ant-radio-button-input"
+          disabled={false}
+          name="radioGroup"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="low"
+        />
+        <span
+          className="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Low
+      </span>
+    </label>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   </div>
 </div>
 `;
@@ -712,10 +953,17 @@ exports[`Storyshots Select Default 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-22 container-d0-0-2-26"
   >
     <div
       className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow"
+=======
+    className="container-0-2-17 container-d0-0-2-21"
+  >
+    <div
+      className="ant-select dropdown-0-2-18 ant-select-single ant-select-show-arrow"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -808,10 +1056,17 @@ exports[`Storyshots Select Full Width 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-22 container-d2-0-2-28"
   >
     <div
       className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow"
+=======
+    className="container-0-2-17 container-d2-0-2-23"
+  >
+    <div
+      className="ant-select dropdown-0-2-18 ant-select-single ant-select-show-arrow"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -858,7 +1113,11 @@ exports[`Storyshots Select Full Width 1`] = `
           className="ant-select-selection-item"
         >
           <div
+<<<<<<< HEAD
             className="option-0-2-25"
+=======
+            className="option-0-2-20"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
           >
             <span>
               Lorem
@@ -909,10 +1168,17 @@ exports[`Storyshots Select Icon 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-22 container-d1-0-2-27"
   >
     <div
       className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow"
+=======
+    className="container-0-2-17 container-d1-0-2-22"
+  >
+    <div
+      className="ant-select dropdown-0-2-18 ant-select-single ant-select-show-arrow"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -959,10 +1225,17 @@ exports[`Storyshots Select Icon 1`] = `
           className="ant-select-selection-item"
         >
           <div
+<<<<<<< HEAD
             className="option-0-2-25"
           >
             <span
               className="icon-0-2-24"
+=======
+            className="option-0-2-20"
+          >
+            <span
+              className="icon-0-2-19"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
             >
               <svg
                 fill="#7E8083"
@@ -1021,10 +1294,17 @@ exports[`Storyshots Select Search 1`] = `
   className="storyWrapper-0-2-2"
 >
   <div
+<<<<<<< HEAD
     className="container-0-2-22 container-d3-0-2-29"
   >
     <div
       className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow ant-select-show-search"
+=======
+    className="container-0-2-17 container-d3-0-2-24"
+  >
+    <div
+      className="ant-select dropdown-0-2-18 ant-select-single ant-select-show-arrow ant-select-show-search"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -1117,7 +1397,11 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="storyWrapper-0-2-2"
 >
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d6-0-2-31"
+=======
+    className="container-0-2-3 container-d3-0-2-26"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
@@ -1129,27 +1413,47 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="storyWrapper-0-2-2"
 >
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d7-0-2-32"
+=======
+    className="container-0-2-3 container-d4-0-2-27"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d7-0-2-32"
+=======
+    className="container-0-2-3 container-d4-0-2-27"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d7-0-2-32"
+=======
+    className="container-0-2-3 container-d4-0-2-27"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d7-0-2-32"
+=======
+    className="container-0-2-3 container-d4-0-2-27"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d7-0-2-32"
+=======
+    className="container-0-2-3 container-d4-0-2-27"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
@@ -1161,7 +1465,11 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="storyWrapper-0-2-2"
 >
   <span
+<<<<<<< HEAD
     className="container-0-2-3 container-d5-0-2-30"
+=======
+    className="container-0-2-3 container-d2-0-2-25"
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
   >
      
   </span>
@@ -1200,6 +1508,7 @@ exports[`Storyshots Tag Colored Preset 1`] = `
     Blue
   </span>
 </div>
+<<<<<<< HEAD
 `;
 
 exports[`Storyshots Tag Default 1`] = `
@@ -1216,6 +1525,48 @@ exports[`Storyshots Tag Default 1`] = `
   >
     Default
   </span>
+=======
+`;
+
+exports[`Storyshots Tag Default 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <span
+    className="ant-tag"
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
+  >
+    Default
+  </span>
+</div>
+`;
+
+exports[`Storyshots Toggle Checked Disabled 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <button
+    aria-checked={false}
+    className="ant-switch ant-switch-disabled"
+    data-test="toggle"
+    disabled={true}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="switch"
+    type="button"
+  >
+    <div
+      className="ant-switch-handle"
+    />
+    <span
+      className="ant-switch-inner"
+    />
+  </button>
+>>>>>>> v0.4.0 -> v0.5.0 (#105)
 </div>
 `;
 
