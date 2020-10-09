@@ -6,7 +6,7 @@ const { dark } = ThemeType
 
 const useStyles = createUseStyles({
 	'@global': {
-		[`.${dark}`]: {
+		[`.${dark} .decorator`]: {
 			backgroundColor: themes[dark].background.secondary
 		}
 	},
@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface DecoratorProps {
+export interface DecoratorProps {
 	children: ReactNode
 	classes?: string[]
 }
