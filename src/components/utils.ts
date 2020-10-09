@@ -1,3 +1,5 @@
+import Color from 'color'
+import mapValues from 'lodash/mapValues'
 import { TooltipPlacement } from 'antd/es/tooltip'
 
 export const TAG = 'data-test'
@@ -23,3 +25,63 @@ export const placementOptions: TooltipPlacement[] = [
 	'topLeft',
 	'topRight'
 ]
+
+type RGB = {
+	r: number
+	g: number
+	b: number
+}
+
+const rgbToHex = (rgb: RGB) => Color(rgb).hex()
+
+const getRgba = (color: string, a: number) => {
+	const [r, g, b] = Color(color).rgb().array()
+
+	return `rgba(${r}, ${g}, ${b}, ${a})`
+}
+
+const tintFormula = (colorVal: number, ratio: number) =>
+	colorVal + (255 - colorVal) * ratio
+
+const shadeFormula = (colorVal: number, ratio: number) => colorVal * (1 - ratio)
+
+export enum ColorManipulationTypes {
+	fade = 'fade',
+	shade = 'shade',
+	tint = 'tint'
+}
+
+/* eslint-disable sort-keys */
+export const manipulateColor = (
+	color: string,
+	percent: number,
+	colorChangeType: ColorManipulationTypes
+) => {
+	if (percent < 0 || percent > 100)
+		throw new Error('please provide a valid percentage')
+
+	const clr = Color(color)
+	const rgb = Color(color).rgb().object() as RGB
+
+	const ratio = percent / 100
+
+	switch (colorChangeType) {
+		case ColorManipulationTypes.fade: {
+			const fadedColor = clr.fade(ratio)
+
+			return getRgba(fadedColor.hex(), fadedColor.alpha())
+		}
+
+		case ColorManipulationTypes.shade: {
+			const shade = mapValues(rgb, value => shadeFormula(value, ratio))
+
+			return rgbToHex(shade)
+		}
+
+		case ColorManipulationTypes.tint: {
+			const shade = mapValues(rgb, value => tintFormula(value, ratio))
+
+			return rgbToHex(shade)
+		}
+	}
+}

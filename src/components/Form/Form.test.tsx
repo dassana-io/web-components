@@ -1,7 +1,7 @@
 import FieldContext from './FieldContext'
 import FormSubmitButton from './FormSubmitButton'
 import React from 'react'
-import Form, { FormProps } from './index'
+import { Form, FormProps } from './index'
 import { mount, shallow, ShallowWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({

@@ -2,6 +2,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import image from '@rollup/plugin-image'
 import resolve from '@rollup/plugin-node-resolve'
 import styles from 'rollup-plugin-styles'
+import svgr from '@svgr/rollup'
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 
@@ -26,6 +27,7 @@ export default {
 		resolve(),
 		commonjs(),
 		styles(),
+		svgr(),
 		image(),
 		typescript({
 			tsconfig: 'tsconfig.rollup.json',

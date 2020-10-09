@@ -14,6 +14,7 @@ const Template: Story<IconProps> = args => <Icon {...args} />
 
 export const Predefined = Template.bind({})
 Predefined.argTypes = {
+	color: { control: { type: 'color' } },
 	icon: {
 		control: { disable: true }
 	}
