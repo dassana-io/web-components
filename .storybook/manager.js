@@ -8,7 +8,6 @@ addons.setConfig({
 	sidebarAnimations: true,
 	enableShortcuts: true,
 	isToolshown: true,
-	theme: undefined,
 	selectedPanel: 'Controls',
 	initialActive: 'sidebar',
 	showRoots: false

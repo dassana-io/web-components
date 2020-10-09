@@ -3,16 +3,24 @@ import { Input as AntDInput } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { generateInputStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import Skeleton from '../Skeleton'
+import { ThemeType } from '../assets/styles/themes'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import React, { FC } from 'react'
 
+const { dark, light } = ThemeType
+
 const useStyles = createUseStyles({
-	...fieldErrorStyles,
+	'@global': {
+		...fieldErrorStyles['@global'],
+		[`.${dark} input`]: generateInputStyles(dark),
+		input: generateInputStyles(light)
+	},
 	container: {
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
@@ -60,7 +68,7 @@ const Input: FC<InputProps> = (props: InputProps) => {
 
 	const inputClasses: string = cn(
 		{
-			[componentClasses.error]: error
+			error
 		},
 		classes
 	)

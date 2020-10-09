@@ -24,7 +24,7 @@ export interface FormProps<Model> {
 	onSubmit: SubmitHandler<FieldValues>
 }
 
-function Form<Model>({
+export function Form<Model>({
 	children,
 	initialValues = {} as Model,
 	loading = false,
@@ -59,4 +59,3 @@ Form.Select = FormSelect
 Form.Tree = FormTree
 
 export * from './types'
-export default Form
