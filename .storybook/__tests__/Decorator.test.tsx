@@ -4,9 +4,9 @@ import { shallow, ShallowWrapper } from 'enzyme'
 
 let wrapper: ShallowWrapper<DecoratorProps>
 
-describe('Avatar', () => {
+describe('Decorator', () => {
 	it('renders', () => {
-		wrapper = shallow(<Decorator>A</Decorator>)
+		wrapper = shallow(<Decorator>Decorator</Decorator>)
 
 		expect(wrapper).toHaveLength(1)
 	})
