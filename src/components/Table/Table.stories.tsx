@@ -1,6 +1,6 @@
 import React from 'react'
 import { Story } from '@storybook/react/types-6-0'
-import Table, { TableProps } from '.'
+import { Table, TableProps } from '.'
 import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'

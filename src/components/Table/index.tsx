@@ -25,7 +25,7 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	search?: boolean
 }
 
-function Table<DataType extends ParentDataType>({
+export function Table<DataType extends ParentDataType>({
 	columns,
 	data,
 	dataTag,
@@ -88,4 +88,3 @@ function Table<DataType extends ParentDataType>({
 }
 
 export * from './types'
-export default Table
