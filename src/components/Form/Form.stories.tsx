@@ -1,5 +1,4 @@
 import { basicOptions } from '../RadioGroup/fixtures/sample_options'
-import Decorator from '../../../.storybook/Decorator'
 import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import treeData from '../Tree/fixtures/0_sample_data'
@@ -12,13 +11,6 @@ export default {
 		onSubmit: { control: { disable: true } }
 	},
 	component: Form,
-	decorators: [
-		(ComponentStory: Story) => (
-			<Decorator>
-				<ComponentStory />
-			</Decorator>
-		)
-	],
 	parameters: {
 		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
 		storyshots: { disable: true }

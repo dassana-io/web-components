@@ -69,7 +69,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 
 	const inputClasses: string = cn(
 		{
-			[componentClasses.error]: error
+			error
 		},
 		classes
 	)
