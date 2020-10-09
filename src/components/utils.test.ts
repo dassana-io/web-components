@@ -1,4 +1,3 @@
-import Color from 'color'
 import {
 	ColorManipulationTypes,
 	getDataTestAttributeProp,
@@ -26,29 +25,29 @@ describe('getDataTestAttributeProp', () => {
 })
 
 describe('Color utils', () => {
-	const mockColor = 'hsl(100, 50%, 50%)'
+	const mockColor = '#2F54EB'
 	const mockPercent = 50
-	const { darken, fade, lighten } = ColorManipulationTypes
+	const { fade, shade, tint } = ColorManipulationTypes
 
 	describe('manipulateColor', () => {
-		it('should lighten the input color by given percentage for argument type lighten', () => {
+		it('should tint the input color by given percentage for argument type tint', () => {
 			const mockLightenedColor = manipulateColor(
 				mockColor,
 				mockPercent,
-				lighten
+				tint
 			)
 
-			expect(mockLightenedColor).toBe(Color('hsl(100, 50%, 75%)').hex())
+			expect(mockLightenedColor.toUpperCase()).toBe('#97AAF5')
 		})
 
-		it('should darken the input color by given percentage for argument type darken', () => {
+		it('should shade the input color by given percentage for argument type shade', () => {
 			const mockDarkenedColor = manipulateColor(
 				mockColor,
 				mockPercent,
-				darken
+				shade
 			)
 
-			expect(mockDarkenedColor).toBe(Color('hsl(100, 50%, 25%)').hex())
+			expect(mockDarkenedColor.toUpperCase()).toBe('#182A76')
 		})
 
 		it('should fade the input color by given percentage for argument type fade', () => {
@@ -60,11 +59,11 @@ describe('Color utils', () => {
 
 		it('should throw an error if percent value is out of bounds', () => {
 			expect(() => {
-				manipulateColor(mockColor, -1, lighten)
+				manipulateColor(mockColor, -1, tint)
 			}).toThrow()
 
 			expect(() => {
-				manipulateColor(mockColor, 101, darken)
+				manipulateColor(mockColor, 101, shade)
 			}).toThrow()
 		})
 	})

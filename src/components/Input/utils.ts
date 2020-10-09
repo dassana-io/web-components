@@ -1,9 +1,8 @@
 import { fieldErrorStyles } from '../assets/styles/styleguide'
-import { generalStyles } from '../assets/styles/baseStyles'
-import { ThemeType } from '../assets/styles/themes'
+import { themedStyles, ThemeType } from '../assets/styles/themes'
 
 export const generateInputStyles = (themeType: ThemeType) => {
-	const { base, disabled, focus, hover, placeholder } = generalStyles[
+	const { base, disabled, error, focus, hover, placeholder } = themedStyles[
 		themeType
 	]
 
@@ -15,7 +14,7 @@ export const generateInputStyles = (themeType: ThemeType) => {
 			'&:hover': {
 				borderColor: hover.borderColor
 			},
-			backgroundColor: base.bgColor,
+			backgroundColor: base.backgroundColor,
 			borderColor: base.borderColor,
 			color: base.color
 		},
@@ -23,12 +22,12 @@ export const generateInputStyles = (themeType: ThemeType) => {
 			'&:hover': {
 				borderColor: base.borderColor
 			},
-			backgroundColor: disabled.bgColor
+			backgroundColor: disabled.backgroundColor
 		},
 		'&.ant-input-focused, &.ant-input:focus': {
 			borderColor: focus.borderColor,
 			boxShadow: focus.boxShadow
 		},
-		'&.ant-input.error': fieldErrorStyles.error
+		'&.ant-input.error': { ...fieldErrorStyles.error, border: error.border }
 	}
 }

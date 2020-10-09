@@ -35,7 +35,7 @@ const useStyles = createUseStyles({
 
 const useStylesWithTheme = createUseStyles({
 	themeBlock: {
-		background: ({ theme }: { theme: Theme }) => theme.background,
+		background: ({ theme }: { theme: Theme }) => theme.background.primary,
 		height: '100vh',
 		left: props => (props.side === left ? 0 : '50vw'),
 		overflow: 'auto',
@@ -48,7 +48,7 @@ const ThemedCanvasBg = () => {
 	const theme: Theme = useTheme()
 
 	useEffect(() => {
-		document.body.style.background = theme.background
+		document.body.style.background = theme.background.primary
 	})
 
 	return null
