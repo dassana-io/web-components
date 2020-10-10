@@ -4,7 +4,7 @@ import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import React, { FC, useContext } from 'react'
-import Select, { SelectProps } from '../../Select'
+import { Select, SelectProps } from '../../Select'
 
 export interface FormSelectProps
 	extends BaseFieldProps,

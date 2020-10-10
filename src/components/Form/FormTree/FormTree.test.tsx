@@ -6,7 +6,7 @@ import treeData from '../../Tree/fixtures/0_sample_data'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import FormTree, { FormTreeProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
-import Tree, { TreeId } from '../../Tree'
+import { Tree, TreeId } from '../../Tree'
 
 /* Helper functions */
 interface MountWrapperArgsType {

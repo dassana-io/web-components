@@ -1,6 +1,6 @@
 import Decorator from '../../../.storybook/Decorator'
 import React from 'react'
-import Input, { InputProps } from './index'
+import { Input, InputProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {

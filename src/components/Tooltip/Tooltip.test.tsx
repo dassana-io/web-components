@@ -1,7 +1,7 @@
 import { Tooltip as AntDTooltip } from 'antd'
 import React from 'react'
 import { shallow, ShallowWrapper } from 'enzyme'
-import Tooltip, { TooltipProps } from './index'
+import { Tooltip, TooltipProps } from './index'
 
 let wrapper: ShallowWrapper
 

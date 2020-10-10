@@ -32,7 +32,7 @@ interface GeneralAvatar extends SharedAvatarProps {
 
 export type AvatarProps = GeneralAvatar | AvatarIcon
 
-const Avatar: FC<AvatarProps> = ({
+export const Avatar: FC<AvatarProps> = ({
 	children,
 	gap,
 	icon,
@@ -42,5 +42,3 @@ const Avatar: FC<AvatarProps> = ({
 		{children}
 	</AntDAvatar>
 )
-
-export default Avatar

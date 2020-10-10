@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon, { IconProps } from '.'
+import { Icon, IconProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper

@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import random from 'lodash/random'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import times from 'lodash/times'
 import React, { FC, Fragment, Key } from 'react'
 

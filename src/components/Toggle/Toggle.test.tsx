@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount, ReactWrapper } from 'enzyme'
-import Toggle, { ToggleProps } from '.'
+import { Toggle, ToggleProps } from '.'
 
 let wrapper: ReactWrapper
 let mockChange: jest.Mock<void>

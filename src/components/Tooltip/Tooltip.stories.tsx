@@ -1,8 +1,8 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Tooltip, { TooltipProps } from './index'
+import { Tooltip, TooltipProps } from './index'
 
 export default {
 	argTypes: {

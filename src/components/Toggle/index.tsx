@@ -23,7 +23,7 @@ export interface ToggleProps extends CommonComponentProps {
 	size?: 'default' | 'small'
 }
 
-const Toggle: FC<ToggleProps> = ({
+export const Toggle: FC<ToggleProps> = ({
 	checked,
 	dataTag,
 	disabled = false,
@@ -44,5 +44,3 @@ const Toggle: FC<ToggleProps> = ({
 		/>
 	)
 }
-
-export default Toggle

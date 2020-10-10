@@ -51,7 +51,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-const Link: FC<LinkProps> = ({
+export const Link: FC<LinkProps> = ({
 	children,
 	dataTag,
 	href,
@@ -73,5 +73,3 @@ const Link: FC<LinkProps> = ({
 		</AntDLink>
 	)
 }
-
-export default Link

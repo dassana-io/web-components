@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions'
 import { createUseStyles } from 'react-jss'
 import GoogleOutlined from '@ant-design/icons/GoogleOutlined'
 import React from 'react'
-import Button, { ButtonProps } from '.'
+import { Button, ButtonProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {

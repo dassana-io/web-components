@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { fontSizeRegular } from '../../assets/styles/styleguide'
-import Skeleton from '../../Skeleton'
+import { Skeleton } from '../../Skeleton'
 import React, { FC } from 'react'
 
 const useStyles = createUseStyles({

@@ -1,10 +1,10 @@
 import { action } from '@storybook/addon-actions'
-import Button from '../Button'
-import Icon from '../Icon'
+import { Button } from '../Button'
+import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Popover, { PopoverProps } from './index'
+import { Popover, PopoverProps } from './index'
 
 export default {
 	argTypes: {

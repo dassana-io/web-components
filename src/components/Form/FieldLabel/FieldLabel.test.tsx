@@ -1,5 +1,5 @@
 import React from 'react'
-import Skeleton from '../../Skeleton'
+import { Skeleton } from '../../Skeleton'
 import FieldLabel, { FieldLabelProps } from './index'
 import { mount, shallow, ShallowWrapper } from 'enzyme'
 

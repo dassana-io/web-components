@@ -29,7 +29,7 @@ export interface TooltipProps extends CommonComponentProps {
 	title: TooltipTitle
 }
 
-const Tooltip: FC<TooltipProps> = ({
+export const Tooltip: FC<TooltipProps> = ({
 	children,
 	classes = [],
 	dataTag,
@@ -47,5 +47,3 @@ const Tooltip: FC<TooltipProps> = ({
 		</span>
 	</AntDTooltip>
 )
-
-export default Tooltip
