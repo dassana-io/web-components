@@ -3,7 +3,7 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import { Input, InputProps } from '../../Input'
+import { Input, InputProps } from 'components/Input'
 import React, { FC, useContext } from 'react'
 
 export interface FormInputProps

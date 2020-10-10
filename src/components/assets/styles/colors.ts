@@ -1,4 +1,4 @@
-import { ColorManipulationTypes, manipulateColor } from '../../utils'
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 
 const { shade, tint } = ColorManipulationTypes
 

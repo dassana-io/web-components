@@ -9,7 +9,7 @@ import {
 	ColumnTypes,
 	NumberDateType,
 	ParentDataType
-} from '.'
+} from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import { Tag, TagProps } from '../Tag'

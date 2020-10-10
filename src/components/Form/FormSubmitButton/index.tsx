@@ -1,6 +1,6 @@
 import FieldContext from '../FieldContext'
 import { useFormContext } from 'react-hook-form'
-import { Button, ButtonProps } from '../../Button'
+import { Button, ButtonProps } from 'components/Button'
 import React, { FC, useContext } from 'react'
 
 export type FormButtonProps = Omit<ButtonProps, 'loading' | 'onClick'>

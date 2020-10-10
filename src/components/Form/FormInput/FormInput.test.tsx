@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
-import { Input } from '../../Input'
+import { Input } from 'components/Input'
 import React from 'react'
 import FormInput, { FormInputProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'

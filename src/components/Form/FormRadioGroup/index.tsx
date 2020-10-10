@@ -3,7 +3,7 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import { RadioGroup, RadioGroupProps } from '../../RadioGroup'
+import { RadioGroup, RadioGroupProps } from 'components/RadioGroup'
 import React, { FC, useContext } from 'react'
 
 export interface FormRadioGroupProps

@@ -1,4 +1,4 @@
-import { IconName } from '../../Icon'
+import { IconName } from 'components/Icon'
 import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
 
 const { component, number, string } = ColumnTypes
