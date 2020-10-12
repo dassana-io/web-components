@@ -1,4 +1,4 @@
-import colors, { ColorsType } from './colors'
+import colors from './colors'
 
 export const defaultFieldWidth = '300px'
 export const fieldErrorStyles = {
@@ -19,20 +19,8 @@ export const linkColor = '#1EA7FD'
 export const skeletonButtonBorderColor = '#DFDFDF'
 export * from './themes'
 
-interface SpacingType {
-	s: number
-	m: number
-	l: number
-	xl: number
-}
-
-interface Styleguide {
-	colors: ColorsType
-	spacing: SpacingType
-}
-
 /* eslint-disable sort-keys */
-export const styleguide: Styleguide = {
+export const styleguide = {
 	colors,
 	spacing: { s: 8, m: 16, l: 24, xl: 32 }
 }
