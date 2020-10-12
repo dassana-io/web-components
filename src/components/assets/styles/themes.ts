@@ -1,12 +1,12 @@
 import colors from './colors'
 import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 
+const { blacks, blues, greens, oranges, reds, whites } = colors
+
 export enum ThemeType {
 	dark = 'dark',
 	light = 'light'
 }
-
-const { blacks, blues, greens, oranges, reds, whites } = colors
 
 export interface Theme {
 	action: {
