@@ -1,7 +1,7 @@
 import { Input as AntDInput } from 'antd'
-import Input from './index'
+import { Input } from './index'
 import React from 'react'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import { mount, ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper

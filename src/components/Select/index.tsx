@@ -5,12 +5,12 @@ import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
-import Icon, { IconName, SharedIconProps } from '../Icon'
+import { Icon, IconName, SharedIconProps } from '../Icon'
 import React, { FC } from 'react'
 
 const { Option } = AntDSelect
@@ -79,7 +79,7 @@ export interface SelectProps extends BaseFormElementProps {
 	value?: string
 }
 
-const Select: FC<SelectProps> = (props: SelectProps) => {
+export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
 		classes = [],
 		dataTag,
@@ -168,5 +168,3 @@ const Select: FC<SelectProps> = (props: SelectProps) => {
 		</div>
 	)
 }
-
-export default Select

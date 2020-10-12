@@ -38,9 +38,9 @@ This is the code for a simple table:
 import {
 	ColumnType,
 	ColumnTypes,
+	Table,
 	TableProps
-} from '@dassana-io/web-components/lib/types/Table'
-import { Table } from '@dassana-io/web-components'
+} from '@dassana-io/web-components'
 
 // You specify the data object interface. This will be referred to as DataType
 export interface Person {
@@ -235,9 +235,9 @@ import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
+	Table,
 	TableProps
-} from '@dassana-io/web-components/lib/types/Table'
-import { Table } from '@dassana-io/web-components'
+} from '@dassana-io/web-components'
 
 export interface File {
 	file_name: string
@@ -405,14 +405,14 @@ interface ComponentToggleType {
 Here's an example of a table with data type: `component` and formats: `icon`, `link`, `tag` and `toggle`:
 
 ```js
-import { IconName } from "@dassana-io/web-components/lib/types/Icon";
-import { Table } from "@dassana-io/web-components";
 import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
+	IconName,
+	Table,
 	TableProps
-} from '@dassana-io/web-components/lib/types/Table'
+} from '@dassana-io/web-components'
 
 export interface Client {
 	name: string

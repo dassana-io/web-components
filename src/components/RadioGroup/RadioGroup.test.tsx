@@ -1,8 +1,8 @@
 import { Radio as AntDRadio } from 'antd'
 import { basicOptions } from './fixtures/sample_options'
-import RadioGroup from './index'
+import { RadioGroup } from './index'
 import React from 'react'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import { mount, ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper

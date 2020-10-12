@@ -1,6 +1,6 @@
 import { Tree as AntDTree } from 'antd'
 import React from 'react'
-import Tree from '../index'
+import { Tree } from '../index'
 import treeData0 from '../fixtures/0_sample_data'
 import TreeSkeleton from '../TreeSkeleton'
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'

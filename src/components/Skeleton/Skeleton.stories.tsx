@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Skeleton, { SkeletonProps } from './index'
+import { Skeleton, SkeletonProps } from './index'
 
 export default {
 	component: Skeleton,

@@ -1,5 +1,5 @@
 import React from 'react'
-import Link, { LinkProps } from '.'
+import { Link, LinkProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper

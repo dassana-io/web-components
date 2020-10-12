@@ -2,11 +2,11 @@ import { Controller } from 'react-hook-form'
 import FieldLabel from '../FieldLabel'
 import { FieldValues } from 'react-hook-form/dist/types/form'
 import React from 'react'
-import treeData from '../../Tree/fixtures/0_sample_data'
+import treeData from 'components/Tree/fixtures/0_sample_data'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import FormTree, { FormTreeProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
-import Tree, { TreeId } from '../../Tree'
+import { Tree, TreeId } from 'components/Tree'
 
 /* Helper functions */
 interface MountWrapperArgsType {

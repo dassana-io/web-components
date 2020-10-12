@@ -1,6 +1,6 @@
 import { generateNotification } from './index'
 import React from 'react'
-import Button, { ButtonProps } from '../Button'
+import { Button, ButtonProps } from '../Button'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {

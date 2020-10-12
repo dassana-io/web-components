@@ -60,7 +60,7 @@ interface CircleSkeletonProps
 	width: number
 }
 
-const Skeleton: FC<SkeletonProps> = (props: SkeletonProps) => {
+export const Skeleton: FC<SkeletonProps> = (props: SkeletonProps) => {
 	const { classes: customClasses, count } = props
 
 	const classes = useStyles(props)
@@ -89,5 +89,3 @@ Skeleton.defaultProps = {
 	count: 1,
 	duration: 1.2
 }
-
-export default Skeleton

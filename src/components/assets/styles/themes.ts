@@ -1,5 +1,5 @@
 import { blacks, blues, greens, oranges, reds, whites } from './colors'
-import { ColorManipulationTypes, manipulateColor } from '../../utils'
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 
 export enum ThemeType {
 	dark = 'dark',

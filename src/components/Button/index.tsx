@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import { CommonComponentProps } from '../types'
 import { getDataTestAttributeProp } from '../utils'
 import { LoadingOutlined } from '@ant-design/icons'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
 
@@ -48,7 +48,7 @@ export interface ButtonProps extends CommonComponentProps {
 	classes?: string[]
 }
 
-const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
 	children,
 	classes = [],
 	dataTag,
@@ -87,5 +87,3 @@ const Button: FC<ButtonProps> = ({
 		</AntDButton>
 	)
 }
-
-export default Button
