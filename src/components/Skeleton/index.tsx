@@ -1,26 +1,39 @@
 import cn from 'classnames'
+import colors from 'components/assets/styles/colors'
 import { createUseStyles } from 'react-jss'
+import { ThemeType } from 'components/assets/styles/themes'
 import React, { FC } from 'react'
 
+const { blacks, whites } = colors
+
+const { dark } = ThemeType
+
 const useStyles = createUseStyles({
-	'@global': {
-		'@keyframes skeleton': {
-			'0%': { backgroundPosition: '-200px 0' },
-			'100%': { backgroundPosition: 'calc(200px + 100%) 0' }
-		}
-	},
 	container: {
 		animation: props => `skeleton ${props.duration}s ease-in-out infinite`,
-		backgroundColor: '#EEEEEE',
-		backgroundImage: 'linear-gradient(90deg, #EEEEEE, #F5F5F5, #EEEEEE)',
+		backgroundColor: blacks['lighten-90'],
+		backgroundImage: `linear-gradient(90deg, ${blacks['lighten-90']}, ${whites['darken-5']} , ${blacks['lighten-90']})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: '200px 100%',
-		borderRadius: props => (props.circle ? '50%' : '4px'),
+		borderRadius: props => (props.circle ? '50%' : 4),
 		display: props => (props.count > 1 ? 'block' : 'inline-block'),
 		height: props => (props.height ? props.height : '100%'),
 		lineHeight: 1,
 		marginBottom: props => (props.count > 1 ? 5 : 0),
-		width: props => (props.width ? `${props.width}px` : '100%')
+		width: props => (props.width ? props.width : '100%')
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		'@keyframes skeleton': {
+			'0%': { backgroundPosition: '-200px 0' },
+			'100%': { backgroundPosition: 'calc(200px + 100%) 0' }
+		},
+		[`.${dark}`]: {
+			'& $container': {
+				backgroundColor: blacks['lighten-10'],
+				backgroundImage: `linear-gradient(90deg, ${blacks['lighten-10']}, ${blacks['lighten-20']} , ${blacks['lighten-10']})`
+			}
+		}
 	}
 })
 
