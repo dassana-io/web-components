@@ -1,10 +1,12 @@
-import { blacks, blues, greens, oranges, reds, whites } from './colors'
+import colors from './colors'
 import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 
 export enum ThemeType {
 	dark = 'dark',
 	light = 'light'
 }
+
+const { blacks, blues, greens, oranges, reds, whites } = colors
 
 export interface Theme {
 	action: {
@@ -23,7 +25,7 @@ export interface Theme {
 	warning: string
 }
 
-export const lightPalette: Theme = {
+const lightPalette: Theme = {
 	action: {
 		active: blacks.base,
 		disabled: blacks['lighten-90'] // update when defined by Design
@@ -43,14 +45,14 @@ export const lightPalette: Theme = {
 	warning: oranges.base
 }
 
-export const darkPalette: Theme = {
+const darkPalette: Theme = {
 	action: {
 		active: whites.base,
 		disabled: blacks['lighten-20'] // update when defined by Design
 	},
 	background: {
-		primary: blacks['darken-20'],
-		secondary: blacks.base
+		primary: blacks.base,
+		secondary: blacks['darken-20']
 	},
 	border: blacks['darken-20'],
 	error: reds.base,
@@ -63,7 +65,7 @@ export const darkPalette: Theme = {
 	warning: oranges.base
 }
 
-export const generateThemedStyles = ({
+const generateThemedStyles = ({
 	action,
 	background,
 	border,

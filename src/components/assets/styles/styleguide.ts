@@ -1,4 +1,5 @@
-export * from './colors'
+import colors, { ColorsType } from './colors'
+
 export const defaultFieldWidth = '300px'
 export const fieldErrorStyles = {
 	'@global': {
@@ -16,6 +17,22 @@ export const fieldErrorStyles = {
 export const fontSizeRegular = '14px'
 export const linkColor = '#1EA7FD'
 export const skeletonButtonBorderColor = '#DFDFDF'
-/* eslint-disable sort-keys */
-export const spacing = { s: 8, m: 16, l: 24, xl: 32 }
 export * from './themes'
+
+interface SpacingType {
+	s: number
+	m: number
+	l: number
+	xl: number
+}
+
+interface Styleguide {
+	colors: ColorsType
+	spacing: SpacingType
+}
+
+/* eslint-disable sort-keys */
+export const styleguide: Styleguide = {
+	colors,
+	spacing: { s: 8, m: 16, l: 24, xl: 32 }
+}

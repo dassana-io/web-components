@@ -66,9 +66,22 @@ const generateShades = (baseColor: string) => {
 	return shades
 }
 
-export const whites = { base: white }
-export const blues = generateShades(blue)
-export const blacks = generateShades(black)
-export const greens = { base: green }
-export const oranges = { base: orange }
-export const reds = { base: red }
+export interface ColorsType {
+	blacks: ShadeType
+	blues: ShadeType
+	whites: { base: string }
+	greens: { base: string }
+	oranges: { base: string }
+	reds: { base: string }
+}
+
+const colors: ColorsType = {
+	blacks: generateShades(black),
+	blues: generateShades(blue),
+	greens: { base: green },
+	oranges: { base: orange },
+	reds: { base: red },
+	whites: { base: white }
+}
+
+export default colors
