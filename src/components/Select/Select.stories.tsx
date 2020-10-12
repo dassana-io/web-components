@@ -1,7 +1,7 @@
 import React from 'react'
 import { basicOptions, iconOptions } from './fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Select, { SelectProps } from './index'
+import { Select, SelectProps } from './index'
 
 export default {
 	argTypes: {

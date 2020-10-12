@@ -1,5 +1,5 @@
 import * as reactHookForm from 'react-hook-form'
-import Button from '../../Button'
+import { Button } from 'components/Button'
 import FieldContext from '../FieldContext'
 import React from 'react'
 import FormSubmitButton, { FormButtonProps } from './index'

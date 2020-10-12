@@ -29,7 +29,7 @@ interface IconKey extends SharedIconProps {
 
 export type IconProps = IconKey | IconPath
 
-const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
+export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 	const { icon } = props as IconPath
 	const { iconKey } = props as IconKey
 
@@ -43,5 +43,3 @@ const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 
 	return <img alt={icon} height={height} src={icon} />
 }
-
-export default Icon

@@ -1,9 +1,9 @@
 import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
-import { iconOptions } from '../../Select/fixtures/sample_options'
+import { iconOptions } from 'components/Select/fixtures/sample_options'
 import React from 'react'
-import Select from '../../Select'
+import { Select } from 'components/Select'
 import FormSelect, { FormSelectProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 

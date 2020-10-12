@@ -9,11 +9,11 @@ import {
 	ColumnTypes,
 	NumberDateType,
 	ParentDataType
-} from '.'
-import Icon, { IconName, IconProps } from '../Icon'
-import Link, { LinkProps } from '../Link'
-import Tag, { TagProps } from '../Tag'
-import Toggle, { ToggleProps } from '../Toggle'
+} from './types'
+import { Icon, IconName, IconProps } from '../Icon'
+import { Link, LinkProps } from '../Link'
+import { Tag, TagProps } from '../Tag'
+import { Toggle, ToggleProps } from '../Toggle'
 
 /* ------- Exported Functions ------- */
 

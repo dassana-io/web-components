@@ -1,9 +1,9 @@
 import { Select as AntDSelect } from 'antd'
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import IconsMap from '../Icon/IconsMap'
 import React from 'react'
-import Select from './index'
-import Skeleton from '../Skeleton'
+import { Select } from './index'
+import { Skeleton } from '../Skeleton'
 import { basicOptions, iconOptions } from './fixtures/sample_options'
 import { mount, ReactWrapper, shallow } from 'enzyme'
 

@@ -4,7 +4,7 @@ import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import React, { FC, useContext } from 'react'
-import Tree, { TreeId, TreeProps } from '../../Tree'
+import { Tree, TreeId, TreeProps } from 'components/Tree'
 
 export interface FormTreeProps
 	extends BaseFieldProps,

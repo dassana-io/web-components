@@ -1,10 +1,7 @@
 import { act } from 'react-dom/test-utils'
 import moment from 'moment'
 import React from 'react'
-import mockData, {
-	DataType,
-	dateFormat
-} from '../../../__mocks__/table_mock_data'
+import mockData, { DataType, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 import { Table, TableProps } from '..'

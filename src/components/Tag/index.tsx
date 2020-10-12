@@ -13,8 +13,6 @@ export interface TagProps {
 	color?: string
 }
 
-const Tag: FC<TagProps> = ({ children, color }: TagProps) => {
+export const Tag: FC<TagProps> = ({ children, color }: TagProps) => {
 	return <AntDTag color={color}>{children}</AntDTag>
 }
-
-export default Tag

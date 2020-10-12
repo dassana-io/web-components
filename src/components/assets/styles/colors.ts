@@ -1,13 +1,13 @@
-import { ColorManipulationTypes, manipulateColor } from '../../utils'
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 
 const { shade, tint } = ColorManipulationTypes
 
 const black = '#282A35'
-const white = '#FFFFFF'
+const white = '#FEFEFE'
 
 const blue = '#2F54EB'
 const green = '#59C93D'
-const orange = 'EEAB47'
+const orange = '#EEAB47'
 const red = '#EE5C47'
 
 const lightenPercentages = [10, 20, 30, 40, 50, 60, 70, 80, 90]
@@ -66,9 +66,22 @@ const generateShades = (baseColor: string) => {
 	return shades
 }
 
-export const whites = { base: white }
-export const blues = generateShades(blue)
-export const blacks = generateShades(black)
-export const greens = { base: green }
-export const oranges = { base: orange }
-export const reds = { base: red }
+export interface ColorsType {
+	blacks: ShadeType
+	blues: ShadeType
+	greens: { base: string }
+	oranges: { base: string }
+	reds: { base: string }
+	whites: { base: string }
+}
+
+const colors: ColorsType = {
+	blacks: generateShades(black),
+	blues: generateShades(blue),
+	greens: { base: green },
+	oranges: { base: orange },
+	reds: { base: red },
+	whites: { base: white }
+}
+
+export default colors

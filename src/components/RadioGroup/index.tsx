@@ -2,7 +2,7 @@ import 'antd/lib/radio/style/index.css'
 import { Radio as AntDRadio } from 'antd'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import { skeletonButtonBorderColor } from '../assets/styles/styleguide'
 import times from 'lodash/times'
 import { getDataTestAttributeProp, TAG } from '../utils'
@@ -76,7 +76,7 @@ export interface RadioGroupProps extends CommonComponentProps {
 	value?: string
 }
 
-const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
+export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 	const {
 		defaultValue,
 		dataTag,
@@ -110,5 +110,3 @@ const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 		/>
 	)
 }
-
-export default RadioGroup

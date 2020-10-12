@@ -57,7 +57,7 @@ export interface TreeProps extends CommonComponentProps {
 
 export type TreeNodesHash = Record<TreeId, TreeNodeType>
 
-const Tree: FC<TreeProps> = ({
+export const Tree: FC<TreeProps> = ({
 	classes = [],
 	dataTag,
 	defaultChecked = [],
@@ -107,5 +107,3 @@ const Tree: FC<TreeProps> = ({
 		/>
 	)
 }
-
-export default Tree

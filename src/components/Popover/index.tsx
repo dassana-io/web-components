@@ -33,7 +33,7 @@ export interface PopoverProps extends CommonComponentProps {
 	title?: PopoverContent
 }
 
-const Popover: FC<PopoverProps> = ({
+export const Popover: FC<PopoverProps> = ({
 	children,
 	classes = [],
 	content,
@@ -52,5 +52,3 @@ const Popover: FC<PopoverProps> = ({
 		</span>
 	</AntDPopover>
 )
-
-export default Popover

@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateInputStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
-import Skeleton from '../Skeleton'
+import { Skeleton } from '../Skeleton'
 import { ThemeType } from '../assets/styles/themes'
 import {
 	defaultFieldWidth,
@@ -51,7 +51,7 @@ export interface InputProps extends BaseFormElementProps {
 	type?: 'text' | 'password'
 }
 
-const Input: FC<InputProps> = (props: InputProps) => {
+export const Input: FC<InputProps> = (props: InputProps) => {
 	const {
 		classes = [],
 		dataTag,
@@ -101,5 +101,3 @@ const Input: FC<InputProps> = (props: InputProps) => {
 		</div>
 	)
 }
-
-export default Input
