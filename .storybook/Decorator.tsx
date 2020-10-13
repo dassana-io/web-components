@@ -5,13 +5,15 @@ import cn from 'classnames'
 const { dark } = ThemeType
 
 const useStyles = createUseStyles({
-	'@global': {
-		[`.${dark} .decorator`]: {
-			backgroundColor: themes[dark].background.secondary
-		}
-	},
 	decorator: {
 		padding: '1rem'
+	},
+	'@global': {
+		[`.${dark}`]: {
+			'&  $decorator': {
+				backgroundColor: themes[dark].background.secondary
+			}
+		}
 	}
 })
 
@@ -27,9 +29,7 @@ const Decorator: FC<DecoratorProps> = ({
 	const decoratorClasses = useStyles()
 
 	return (
-		<div
-			className={cn(decoratorClasses.decorator, 'decorator', ...classes)}
-		>
+		<div className={cn(decoratorClasses.decorator, ...classes)}>
 			{children}
 		</div>
 	)

@@ -1,5 +1,10 @@
-import { fieldErrorStyles } from '../assets/styles/styleguide'
-import { themedStyles, ThemeType } from '../assets/styles/themes'
+import colors from 'components/assets/styles/colors'
+import { fieldErrorStyles } from 'components/assets/styles/styleguide'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+
+const { blacks } = colors
+
+const { dark } = ThemeType
 
 export const generateInputStyles = (themeType: ThemeType) => {
 	const { base, disabled, error, focus, hover, placeholder } = themedStyles[
@@ -29,5 +34,16 @@ export const generateInputStyles = (themeType: ThemeType) => {
 			boxShadow: focus.boxShadow
 		},
 		'&.ant-input.error': { ...fieldErrorStyles.error, border: error.border }
+	}
+}
+
+export const generateInputSkeletonStyles = (themeType: ThemeType) => {
+	const borderColor =
+		themeType === dark ? blacks['lighten-10'] : blacks['lighten-90']
+
+	return {
+		border: `1px solid ${borderColor}`,
+		borderRadius: '4px',
+		padding: '6px 14px'
 	}
 }
