@@ -3,11 +3,23 @@ import 'antd/lib/spin/style/index.css'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
 import { CommonComponentProps } from '../types'
+import { createUseStyles } from 'react-jss'
+import { generateButtonStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Skeleton } from '../Skeleton'
+import { ThemeType } from '../assets/styles/themes'
 import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
+
+const { dark, light } = ThemeType
+
+const useStyles = createUseStyles({
+	'@global': {
+		[`.${dark} button`]: generateButtonStyles(dark),
+		button: generateButtonStyles(light)
+	}
+})
 
 export interface ButtonProps extends CommonComponentProps {
 	/**
@@ -66,6 +78,8 @@ export const Button: FC<ButtonProps> = ({
 		onClick,
 		type: primary ? 'primary' : 'default'
 	}
+
+	useStyles()
 
 	return loading ? (
 		<Skeleton height={skeletonHeight} width={skeletonWidth} />
