@@ -14,6 +14,10 @@ export interface Theme {
 	action: {
 		active: string
 		disabled: string
+		loading: {
+			primary: string
+			secondary: string
+		}
 	}
 	background: {
 		primary: string
@@ -30,7 +34,11 @@ export interface Theme {
 const lightPalette: Theme = {
 	action: {
 		active: blacks.base,
-		disabled: blacks['lighten-90'] // update when defined by Design
+		disabled: blacks['lighten-90'], // update when defined by Design
+		loading: {
+			primary: blacks['lighten-90'],
+			secondary: whites['darken-5']
+		}
 	},
 	background: {
 		primary: whites.base,
@@ -50,7 +58,11 @@ const lightPalette: Theme = {
 const darkPalette: Theme = {
 	action: {
 		active: whites.base,
-		disabled: blacks['lighten-20'] // update when defined by Design
+		disabled: blacks['lighten-20'], // update when defined by Design
+		loading: {
+			primary: blacks['lighten-10'],
+			secondary: blacks['lighten-20']
+		}
 	},
 	background: {
 		primary: blacks.base,
@@ -67,11 +79,14 @@ const darkPalette: Theme = {
 	warning: oranges.base
 }
 
-const generateThemedStyles = (themeType: ThemeType) => {
-	const { action, background, border, error, primary, text } = themes[
-		themeType
-	]
-
+const generateThemedStyles = ({
+	action,
+	background,
+	border,
+	error,
+	primary,
+	text
+}: Theme) => {
 	const base = {
 		backgroundColor: background.primary,
 		borderColor: border,
@@ -101,10 +116,7 @@ const generateThemedStyles = (themeType: ThemeType) => {
 	}
 
 	const loading = {
-		border: `1px solid ${
-			themeType === dark ? blacks['lighten-10'] : blacks['lighten-90']
-		}`,
-		borderRadius: 4
+		border: `1px solid ${action.loading.primary}`
 	}
 
 	const placeholder = {
@@ -128,6 +140,6 @@ export const themes = {
 }
 
 export const themedStyles = {
-	[ThemeType.dark]: generateThemedStyles(dark),
-	[ThemeType.light]: generateThemedStyles(light)
+	[ThemeType.dark]: generateThemedStyles(themes[dark]),
+	[ThemeType.light]: generateThemedStyles(themes[light])
 }

@@ -16,9 +16,8 @@ export const fieldErrorStyles = {
 }
 export const fontSizeRegular = '14px'
 export const linkColor = '#1EA7FD'
-export const skeletonButtonBorderColor = '#DFDFDF'
+export const loadingBorderRadius = 4
 export * from './themes'
-
 /* eslint-disable sort-keys */
 export const styleguide = {
 	colors,

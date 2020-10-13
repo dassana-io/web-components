@@ -1,21 +1,27 @@
 import cn from 'classnames'
-import colors from 'components/assets/styles/colors'
 import { createUseStyles } from 'react-jss'
-import { ThemeType } from 'components/assets/styles/themes'
+import { loadingBorderRadius } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
+import { themes, ThemeType } from 'components/assets/styles/themes'
 
-const { blacks, whites } = colors
+const { light, dark } = ThemeType
 
-const { dark } = ThemeType
+const generatePartialSkeletonStyles = (themeType: ThemeType) => {
+	const { primary, secondary } = themes[themeType].action.loading
+
+	return {
+		backgroundColor: primary,
+		backgroundImage: `linear-gradient(90deg, ${primary}, ${secondary} , ${primary})`
+	}
+}
 
 const useStyles = createUseStyles({
 	container: {
+		...generatePartialSkeletonStyles(light),
 		animation: props => `skeleton ${props.duration}s ease-in-out infinite`,
-		backgroundColor: blacks['lighten-90'],
-		backgroundImage: `linear-gradient(90deg, ${blacks['lighten-90']}, ${whites['darken-5']} , ${blacks['lighten-90']})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: '200px 100%',
-		borderRadius: props => (props.circle ? '50%' : 4),
+		borderRadius: props => (props.circle ? '50%' : loadingBorderRadius),
 		display: props => (props.count > 1 ? 'block' : 'inline-block'),
 		height: props => (props.height ? props.height : '100%'),
 		lineHeight: 1,
@@ -30,8 +36,7 @@ const useStyles = createUseStyles({
 		},
 		[`.${dark}`]: {
 			'& $container': {
-				backgroundColor: blacks['lighten-10'],
-				backgroundImage: `linear-gradient(90deg, ${blacks['lighten-10']}, ${blacks['lighten-20']} , ${blacks['lighten-10']})`
+				...generatePartialSkeletonStyles(dark)
 			}
 		}
 	}

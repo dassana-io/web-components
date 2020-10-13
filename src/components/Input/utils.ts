@@ -1,4 +1,7 @@
-import { fieldErrorStyles } from 'components/assets/styles/styleguide'
+import {
+	fieldErrorStyles,
+	loadingBorderRadius
+} from 'components/assets/styles/styleguide'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 export const generateInputStyles = (themeType: ThemeType) => {
@@ -37,7 +40,7 @@ export const generateInputSkeletonStyles = (themeType: ThemeType) => {
 
 	return {
 		border: loading.border,
-		borderRadius: loading.borderRadius,
+		borderRadius: loadingBorderRadius,
 		padding: '6px 14px'
 	}
 }
