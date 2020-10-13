@@ -11,6 +11,10 @@ export const generateInputStyles = (themeType: ThemeType) => {
 
 	return {
 		'&.ant-input': {
+			'&$error': {
+				...fieldErrorStyles.error,
+				borderColor: error.borderColor
+			},
 			'&::placeholder': {
 				color: placeholder.color
 			},
@@ -30,8 +34,7 @@ export const generateInputStyles = (themeType: ThemeType) => {
 		'&.ant-input-focused, &.ant-input:focus': {
 			borderColor: focus.borderColor,
 			boxShadow: focus.boxShadow
-		},
-		'&.ant-input.error': { ...fieldErrorStyles.error, border: error.border }
+		}
 	}
 }
 

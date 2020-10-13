@@ -11,8 +11,7 @@ export const fieldErrorStyles = {
 		}
 	},
 	error: {
-		animation: 'shake 0.2s ease-in-out 0s 2',
-		border: '1px solid orange'
+		animation: 'shake 0.2s ease-in-out 0s 2'
 	}
 }
 export const fontSizeRegular = '14px'
