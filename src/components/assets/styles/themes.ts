@@ -8,6 +8,8 @@ export enum ThemeType {
 	light = 'light'
 }
 
+const { dark, light } = ThemeType
+
 export interface Theme {
 	action: {
 		active: string
@@ -65,14 +67,11 @@ const darkPalette: Theme = {
 	warning: oranges.base
 }
 
-const generateThemedStyles = ({
-	action,
-	background,
-	border,
-	error,
-	primary,
-	text
-}: Theme) => {
+const generateThemedStyles = (themeType: ThemeType) => {
+	const { action, background, border, error, primary, text } = themes[
+		themeType
+	]
+
 	const base = {
 		backgroundColor: background.primary,
 		borderColor: border,
@@ -101,11 +100,26 @@ const generateThemedStyles = ({
 		)}` // update when defined by Design
 	}
 
+	const loading = {
+		border: `1px solid ${
+			themeType === dark ? blacks['lighten-10'] : blacks['lighten-90']
+		}`,
+		borderRadius: 4
+	}
+
 	const placeholder = {
 		color: text.disabled // update when defined by Design
 	}
 
-	return { base, disabled, error: errorStyles, focus, hover, placeholder }
+	return {
+		base,
+		disabled,
+		error: errorStyles,
+		focus,
+		hover,
+		loading,
+		placeholder
+	}
 }
 
 export const themes = {
@@ -113,9 +127,7 @@ export const themes = {
 	[ThemeType.light]: lightPalette
 }
 
-const { dark, light } = ThemeType
-
 export const themedStyles = {
-	[ThemeType.dark]: generateThemedStyles(themes[dark]),
-	[ThemeType.light]: generateThemedStyles(themes[light])
+	[ThemeType.dark]: generateThemedStyles(dark),
+	[ThemeType.light]: generateThemedStyles(light)
 }

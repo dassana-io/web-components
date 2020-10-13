@@ -3,21 +3,37 @@ import { Radio as AntDRadio } from 'antd'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { Skeleton } from '../Skeleton'
-import { skeletonButtonBorderColor } from '../assets/styles/styleguide'
 import times from 'lodash/times'
 import { getDataTestAttributeProp, TAG } from '../utils'
 import React, { ChangeEventHandler, FC } from 'react'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+
+const { dark, light } = ThemeType
+
+const generateRadioSkeletonStyles = (themeType: ThemeType) => {
+	const { loading } = themedStyles[themeType]
+
+	return {
+		border: loading.border,
+		borderRadius: loading.borderRadius,
+		display: 'flex',
+		margin: '0 1px'
+	}
+}
 
 const useStyles = createUseStyles({
-	button: {
-		border: `1px solid ${skeletonButtonBorderColor}`,
-		display: 'flex'
-	},
 	container: {
 		display: 'flex'
 	},
 	skeleton: {
 		borderRadius: 'unset'
+	},
+	skeletonButton: generateRadioSkeletonStyles(light),
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $skeletonButton': generateRadioSkeletonStyles(dark)
+		}
 	}
 })
 
@@ -29,7 +45,7 @@ const RadioGroupSkeleton: FC<RadioGroupProps> = ({
 	return (
 		<div className={classes.container}>
 			{times(options.length, i => (
-				<div className={classes.button} key={i}>
+				<div className={classes.skeletonButton} key={i}>
 					<Skeleton
 						classes={[classes.skeleton]}
 						height={32}
