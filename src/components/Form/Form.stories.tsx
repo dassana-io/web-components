@@ -55,3 +55,6 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 )
 
 export const Default = Template.bind({})
+
+export const Loading = Template.bind({})
+Loading.args = { loading: true }

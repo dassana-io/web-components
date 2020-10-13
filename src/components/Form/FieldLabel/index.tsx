@@ -38,7 +38,7 @@ const FieldLabel: FC<FieldLabelProps> = ({
 		<div
 			className={cn({
 				[classes.container]: true,
-				[classes.required]: required
+				[classes.required]: required && !loading
 			})}
 		>
 			{loading ? <Skeleton width={skeletonWidth} /> : label}
