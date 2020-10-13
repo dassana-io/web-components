@@ -7,7 +7,7 @@ import { themes, ThemeType } from 'components/assets/styles/themes'
 const { light, dark } = ThemeType
 
 const generatePartialSkeletonStyles = (themeType: ThemeType) => {
-	const { primary, secondary } = themes[themeType].action.loading
+	const { primary, secondary } = themes[themeType].state.loading
 
 	return {
 		backgroundColor: primary,

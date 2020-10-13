@@ -1,5 +1,4 @@
 import colors from './colors'
-import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 
 const { blacks, blues, greens, oranges, reds, whites } = colors
 
@@ -11,14 +10,6 @@ export enum ThemeType {
 const { dark, light } = ThemeType
 
 export interface Theme {
-	action: {
-		active: string
-		disabled: string
-		loading: {
-			primary: string
-			secondary: string
-		}
-	}
 	background: {
 		primary: string
 		secondary: string
@@ -26,20 +17,21 @@ export interface Theme {
 	border: string
 	primary: string
 	error: string
+	state: {
+		active: string
+		disabled: string
+		hover: string
+		loading: {
+			primary: string
+			secondary: string
+		}
+	}
 	success: string
 	text: { disabled: string; primary: string }
 	warning: string
 }
 
 const lightPalette: Theme = {
-	action: {
-		active: blacks.base,
-		disabled: blacks['lighten-90'], // update when defined by Design
-		loading: {
-			primary: blacks['lighten-90'],
-			secondary: whites['darken-5']
-		}
-	},
 	background: {
 		primary: whites.base,
 		secondary: blacks['lighten-90']
@@ -47,6 +39,15 @@ const lightPalette: Theme = {
 	border: blacks['lighten-80'],
 	error: reds.base,
 	primary: blues.base,
+	state: {
+		active: blacks.base,
+		disabled: blacks['lighten-90'], // update when defined by Design
+		hover: blacks['lighten-30'],
+		loading: {
+			primary: blacks['lighten-90'],
+			secondary: whites['darken-5']
+		}
+	},
 	success: greens.base,
 	text: {
 		disabled: blacks['lighten-70'], // update when defined by Design
@@ -56,21 +57,23 @@ const lightPalette: Theme = {
 }
 
 const darkPalette: Theme = {
-	action: {
+	background: {
+		primary: blacks.base,
+		secondary: blacks['darken-20']
+	},
+	border: blacks['lighten-20'],
+	error: reds.base,
+	primary: blues.base,
+	state: {
 		active: whites.base,
-		disabled: blacks['lighten-20'], // update when defined by Design
+		disabled: blacks['lighten-10'], // update when defined by Design
+
+		hover: blacks['lighten-60'],
 		loading: {
 			primary: blacks['lighten-10'],
 			secondary: blacks['lighten-20']
 		}
 	},
-	background: {
-		primary: blacks.base,
-		secondary: blacks['darken-20']
-	},
-	border: blacks['darken-20'],
-	error: reds.base,
-	primary: blues.base,
 	success: greens.base,
 	text: {
 		disabled: blacks['lighten-20'], // update when defined by Design
@@ -80,11 +83,10 @@ const darkPalette: Theme = {
 }
 
 const generateThemedStyles = ({
-	action,
+	state,
 	background,
 	border,
 	error,
-	primary,
 	text
 }: Theme) => {
 	const base = {
@@ -94,7 +96,7 @@ const generateThemedStyles = ({
 	}
 
 	const disabled = {
-		backgroundColor: action.disabled,
+		backgroundColor: state.disabled,
 		color: text.disabled
 	}
 
@@ -103,20 +105,16 @@ const generateThemedStyles = ({
 	}
 
 	const hover = {
-		borderColor: blues['lighten-10'] // update when defined by Design
+		borderColor: state.hover
 	}
 
 	const focus = {
 		...hover,
-		boxShadow: `0px 0px 4px ${manipulateColor(
-			primary,
-			50,
-			ColorManipulationTypes.fade
-		)}` // update when defined by Design
+		boxShadow: 'none'
 	}
 
 	const loading = {
-		border: `1px solid ${action.loading.primary}`
+		border: `1px solid ${state.loading.primary}`
 	}
 
 	const placeholder = {
