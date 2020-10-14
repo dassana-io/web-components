@@ -51,6 +51,7 @@ export const Toggle: FC<ToggleProps> = ({
 	size = 'default'
 }: ToggleProps) => {
 	useStyles()
+
 	const toggleClasses = cn(classes)
 
 	const antDProps = {

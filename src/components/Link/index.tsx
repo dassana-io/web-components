@@ -1,16 +1,33 @@
 import 'antd/lib/typography/style/index.css'
+import cn from 'classnames'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
+import { generateLinkStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
-import { linkColor } from '../assets/styles/styleguide'
+import { ThemeType } from '../assets/styles/themes'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
+
+const { dark, light } = ThemeType
+
+const useStyles = createUseStyles({
+	'@global': {
+		[`.${dark}`]: {
+			'& $a': generateLinkStyles(dark)
+		},
+		a: generateLinkStyles(light)
+	}
+})
 
 const AntDLink = Typography.Link
 
 export type LinkTargetType = '_self' | '_blank'
 
 export interface SharedLinkProps extends CommonComponentProps {
+	/**
+	 * Array of classes to pass to element
+	 */
+	classes?: string[]
 	/**
 	 * Link children to render including link text.
 	 */
@@ -39,19 +56,8 @@ interface LinkClick extends SharedLinkProps {
 
 export type LinkProps = LinkHref | LinkClick
 
-interface AntDProps extends Omit<LinkProps, 'children'> {
-	underline: boolean
-}
-
-const useStyles = createUseStyles({
-	'@global': {
-		'a.ant-typography, .ant-typography a': {
-			color: linkColor
-		}
-	}
-})
-
 export const Link: FC<LinkProps> = ({
+	classes = [],
 	children,
 	dataTag,
 	href,
@@ -60,15 +66,16 @@ export const Link: FC<LinkProps> = ({
 }: LinkProps) => {
 	useStyles()
 
-	const antDProps: AntDProps = {
-		href,
-		onClick,
-		target,
-		underline: true
-	}
+	const linkClasses = cn(classes)
 
 	return (
-		<AntDLink {...antDProps} {...getDataTestAttributeProp('link', dataTag)}>
+		<AntDLink
+			className={linkClasses}
+			href={href}
+			onClick={onClick}
+			target={target}
+			{...getDataTestAttributeProp('link', dataTag)}
+		>
 			{children}
 		</AntDLink>
 	)

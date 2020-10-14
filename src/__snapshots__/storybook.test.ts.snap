@@ -371,9 +371,7 @@ exports[`Storyshots Link Click 1`] = `
     }
     target="_self"
   >
-    <u>
-      Click
-    </u>
+    Click
   </a>
 </div>
 `;
@@ -393,9 +391,7 @@ exports[`Storyshots Link Href 1`] = `
     }
     target="_self"
   >
-    <u>
-      Href
-    </u>
+    Href
   </a>
 </div>
 `;
