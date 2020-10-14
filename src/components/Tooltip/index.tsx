@@ -24,6 +24,10 @@ export interface TooltipProps extends CommonComponentProps {
 	 */
 	placement?: TooltipPlacement
 	/**
+	 * Selector of HTML element inside which to render the popup
+	 */
+	popupContainerSelector?: string
+	/**
 	 * Text shown in the tooltip
 	 */
 	title: TooltipTitle
@@ -34,16 +38,29 @@ export const Tooltip: FC<TooltipProps> = ({
 	classes = [],
 	dataTag,
 	placement = 'right',
+	popupContainerSelector,
 	title
-}: TooltipProps) => (
-	<AntDTooltip
-		overlayClassName={cn(classes)}
-		overlayStyle={{ borderRadius: 4 }}
-		placement={placement}
-		title={title}
-	>
-		<span {...getDataTestAttributeProp('tooltip-trigger', dataTag)}>
-			{children}
-		</span>
-	</AntDTooltip>
-)
+}: TooltipProps) => {
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: (): HTMLElement =>
+				document.querySelector(popupContainerSelector) as HTMLElement
+		}
+	}
+
+	return (
+		<AntDTooltip
+			overlayClassName={cn(classes)}
+			overlayStyle={{ borderRadius: 4 }}
+			placement={placement}
+			title={title}
+			{...popupContainerProps}
+		>
+			<span {...getDataTestAttributeProp('tooltip-trigger', dataTag)}>
+				{children}
+			</span>
+		</AntDTooltip>
+	)
+}

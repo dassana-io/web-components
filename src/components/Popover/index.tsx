@@ -24,6 +24,10 @@ export interface PopoverProps extends CommonComponentProps {
 	 */
 	content: PopoverContent
 	/**
+	 * Selector of HTML element inside which to render the popup
+	 */
+	popupContainerSelector?: string
+	/**
 	 * Position of popover relative to the target
 	 */
 	placement?: TooltipPlacement
@@ -39,16 +43,28 @@ export const Popover: FC<PopoverProps> = ({
 	content,
 	dataTag,
 	placement = 'bottom',
+	popupContainerSelector,
 	title
-}: PopoverProps) => (
-	<AntDPopover
-		content={content}
-		overlayClassName={cn(classes)}
-		placement={placement}
-		title={title}
-	>
-		<span {...getDataTestAttributeProp('popover-trigger', dataTag)}>
-			{children}
-		</span>
-	</AntDPopover>
-)
+}: PopoverProps) => {
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: (): HTMLElement =>
+				document.querySelector(popupContainerSelector) as HTMLElement
+		}
+	}
+	return (
+		<AntDPopover
+			content={content}
+			overlayClassName={cn(classes)}
+			placement={placement}
+			title={title}
+			{...popupContainerProps}
+		>
+			<span {...getDataTestAttributeProp('popover-trigger', dataTag)}>
+				{children}
+			</span>
+		</AntDPopover>
+	)
+}
