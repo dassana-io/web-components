@@ -1,6 +1,6 @@
+import { borderRadius } from 'components/assets/styles/styleguide'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { loadingBorderRadius } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
 import { themes, ThemeType } from 'components/assets/styles/themes'
 
@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
 		animation: props => `skeleton ${props.duration}s ease-in-out infinite`,
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: '200px 100%',
-		borderRadius: props => (props.circle ? '50%' : loadingBorderRadius),
+		borderRadius: props => (props.circle ? '50%' : borderRadius),
 		display: props => (props.count > 1 ? 'block' : 'inline-block'),
 		height: props => (props.height ? props.height : '100%'),
 		lineHeight: 1,

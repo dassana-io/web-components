@@ -1,4 +1,4 @@
-import { loadingBorderRadius } from 'components/assets/styles/styleguide'
+import { borderRadius } from 'components/assets/styles/styleguide'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 export const generateRadioSkeletonStyles = (themeType: ThemeType) => {
@@ -6,7 +6,7 @@ export const generateRadioSkeletonStyles = (themeType: ThemeType) => {
 
 	return {
 		border: loading.border,
-		borderRadius: loadingBorderRadius,
+		borderRadius: borderRadius,
 		display: 'flex',
 		margin: '0 1px'
 	}
