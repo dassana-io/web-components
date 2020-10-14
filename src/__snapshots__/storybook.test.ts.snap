@@ -1256,30 +1256,6 @@ exports[`Storyshots Tag Default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Toggle Checked Disabled 1`] = `
-<div
-  className="storyWrapper-0-2-2"
->
-  <button
-    aria-checked={false}
-    className="ant-switch ant-switch-disabled"
-    data-test="toggle"
-    disabled={true}
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="switch"
-    type="button"
-  >
-    <div
-      className="ant-switch-handle"
-    />
-    <span
-      className="ant-switch-inner"
-    />
-  </button>
-</div>
-`;
-
 exports[`Storyshots Toggle Default 1`] = `
 <div
   className="storyWrapper-0-2-2"

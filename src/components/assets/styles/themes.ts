@@ -21,6 +21,7 @@ export interface Theme {
 		disabled: string
 		error: string
 		hover: string
+		inactive: string
 		loading: {
 			primary: string
 			secondary: string
@@ -43,6 +44,7 @@ const lightPalette: Theme = {
 		disabled: blacks['lighten-90'], // update when defined by Design
 		error: reds.base,
 		hover: blacks['lighten-30'],
+		inactive: blacks['lighten-70'],
 		loading: {
 			primary: blacks['lighten-90'],
 			secondary: whites['darken-5']
@@ -68,6 +70,7 @@ const darkPalette: Theme = {
 		disabled: blacks['lighten-10'], // update when defined by Design
 		error: reds.base,
 		hover: blacks['lighten-60'],
+		inactive: blacks['lighten-20'],
 		loading: {
 			primary: blacks['lighten-10'],
 			secondary: blacks['lighten-20']
