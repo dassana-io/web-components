@@ -2,25 +2,14 @@ import 'antd/lib/radio/style/index.css'
 import { Radio as AntDRadio } from 'antd'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
-import { loadingBorderRadius } from 'components/assets/styles/styleguide'
+import { generateRadioSkeletonStyles } from './utils'
 import { Skeleton } from '../Skeleton'
+import { ThemeType } from 'components/assets/styles/themes'
 import times from 'lodash/times'
 import { getDataTestAttributeProp, TAG } from '../utils'
 import React, { ChangeEventHandler, FC } from 'react'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
-
-const generateRadioSkeletonStyles = (themeType: ThemeType) => {
-	const { loading } = themedStyles[themeType]
-
-	return {
-		border: loading.border,
-		borderRadius: loadingBorderRadius,
-		display: 'flex',
-		margin: '0 1px'
-	}
-}
 
 const useStyles = createUseStyles({
 	container: {

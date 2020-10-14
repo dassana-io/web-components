@@ -16,19 +16,19 @@ export interface Theme {
 	}
 	border: string
 	primary: string
-	error: string
 	state: {
 		active: string
 		disabled: string
+		error: string
 		hover: string
 		loading: {
 			primary: string
 			secondary: string
 		}
+		success: string
+		warning: string
 	}
-	success: string
 	text: { disabled: string; primary: string }
-	warning: string
 }
 
 const lightPalette: Theme = {
@@ -37,23 +37,24 @@ const lightPalette: Theme = {
 		secondary: blacks['lighten-90']
 	},
 	border: blacks['lighten-80'],
-	error: reds.base,
+
 	primary: blues.base,
 	state: {
 		active: blacks.base,
 		disabled: blacks['lighten-90'], // update when defined by Design
+		error: reds.base,
 		hover: blacks['lighten-30'],
 		loading: {
 			primary: blacks['lighten-90'],
 			secondary: whites['darken-5']
-		}
+		},
+		success: greens.base,
+		warning: oranges.base
 	},
-	success: greens.base,
 	text: {
 		disabled: blacks['lighten-70'], // update when defined by Design
 		primary: blacks['lighten-30']
-	},
-	warning: oranges.base
+	}
 }
 
 const darkPalette: Theme = {
@@ -62,33 +63,26 @@ const darkPalette: Theme = {
 		secondary: blacks['darken-20']
 	},
 	border: blacks['lighten-20'],
-	error: reds.base,
 	primary: blues.base,
 	state: {
 		active: whites.base,
 		disabled: blacks['lighten-10'], // update when defined by Design
-
+		error: reds.base,
 		hover: blacks['lighten-60'],
 		loading: {
 			primary: blacks['lighten-10'],
 			secondary: blacks['lighten-20']
-		}
+		},
+		success: greens.base,
+		warning: oranges.base
 	},
-	success: greens.base,
 	text: {
 		disabled: blacks['lighten-20'], // update when defined by Design
 		primary: blacks['lighten-50']
-	},
-	warning: oranges.base
+	}
 }
 
-const generateThemedStyles = ({
-	state,
-	background,
-	border,
-	error,
-	text
-}: Theme) => {
+const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	const base = {
 		backgroundColor: background.primary,
 		borderColor: border,
@@ -101,7 +95,7 @@ const generateThemedStyles = ({
 	}
 
 	const errorStyles = {
-		border: `1px solid ${error}`
+		border: `1px solid ${state.error}`
 	}
 
 	const hover = {
