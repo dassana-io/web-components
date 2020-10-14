@@ -1,5 +1,6 @@
 import colors from './colors'
 
+export const borderRadius = 4
 export const defaultFieldWidth = '300px'
 export const fieldErrorStyles = {
 	'@global': {
@@ -16,9 +17,7 @@ export const fieldErrorStyles = {
 }
 export const fontSizeRegular = '14px'
 export const linkColor = '#1EA7FD'
-export const skeletonButtonBorderColor = '#DFDFDF'
 export * from './themes'
-
 /* eslint-disable sort-keys */
 export const styleguide = {
 	colors,
