@@ -37,7 +37,6 @@ const lightPalette: Theme = {
 		secondary: blacks['lighten-90']
 	},
 	border: blacks['lighten-80'],
-
 	primary: blues.base,
 	state: {
 		active: blacks.base,
@@ -108,7 +107,7 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const loading = {
-		border: `1px solid ${state.loading.primary}`
+		border: state.loading.primary
 	}
 
 	const placeholder = {
