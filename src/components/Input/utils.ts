@@ -24,6 +24,7 @@ export const generateInputStyles = (themeType: ThemeType) => {
 				borderColor: hover.borderColor
 			},
 			backgroundColor: base.backgroundColor,
+			...borderStyles,
 			borderColor: base.borderColor,
 			borderRadius,
 			color: base.color
