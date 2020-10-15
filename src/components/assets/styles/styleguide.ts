@@ -1,6 +1,5 @@
 import colors from './colors'
 
-const border = '1px solid'
 const borderRadius = 4
 
 export const defaultFieldWidth = '300px'
@@ -18,7 +17,6 @@ export const fieldErrorStyles = {
 }
 
 export const styleguide = {
-	border,
 	borderRadius,
 	colors,
 	font: {

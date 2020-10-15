@@ -4,7 +4,7 @@ import {
 } from 'components/assets/styles/styleguide'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
-const { border, borderRadius } = styleguide
+const { borderRadius } = styleguide
 
 export const generateInputStyles = (themeType: ThemeType) => {
 	const { base, disabled, error, focus, hover, placeholder } = themedStyles[
@@ -23,7 +23,6 @@ export const generateInputStyles = (themeType: ThemeType) => {
 			'&:hover': {
 				borderColor: hover.borderColor
 			},
-
 			backgroundColor: base.backgroundColor,
 			borderColor: base.borderColor,
 			borderRadius,
@@ -46,8 +45,7 @@ export const generateInputSkeletonStyles = (themeType: ThemeType) => {
 	const { loading } = themedStyles[themeType]
 
 	return {
-		border,
-		borderColor: loading.borderColor,
+		border: `1px solid ${loading.borderColor}`,
 		borderRadius,
 		padding: '6px 14px'
 	}
