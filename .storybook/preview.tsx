@@ -24,6 +24,15 @@ const { sideBySide, left, right } = LayoutTypes
 
 const { dark, light } = ThemeType
 
+export interface SbTheme extends Theme {
+	type: ThemeType.dark | ThemeType.light
+}
+
+const sbThemes = {
+	[dark]: { ...themes[dark], type: dark },
+	[light]: { ...themes[light], type: light }
+}
+
 const useStyles = createUseStyles({
 	storyContainer: {
 		display: 'flex'
@@ -70,6 +79,7 @@ const StoryWrapper: FC<StoryWrapperProps> = ({
 	const classes = useStyles()
 	const wrapperClasses = cn({
 		dark,
+		light: !dark,
 		[classes.storyWrapper]: true
 	})
 
@@ -107,12 +117,12 @@ const ThemeDecorator = (
 		case sideBySide: {
 			return (
 				<div className={classes.storyContainer}>
-					<ThemeProvider theme={themes[light]}>
+					<ThemeProvider theme={sbThemes[light]}>
 						<ThemedBlock side={left}>
 							<ComponentStory />
 						</ThemedBlock>
 					</ThemeProvider>
-					<ThemeProvider theme={themes[dark]}>
+					<ThemeProvider theme={sbThemes[dark]}>
 						<ThemedBlock side={right}>
 							<ComponentStory />
 						</ThemedBlock>
@@ -123,7 +133,7 @@ const ThemeDecorator = (
 
 		default: {
 			return (
-				<ThemeProvider theme={themes[theme]}>
+				<ThemeProvider theme={sbThemes[theme as ThemeType]}>
 					<ThemedCanvasBg />
 					<StoryWrapper dark={theme === dark}>
 						<ComponentStory />
