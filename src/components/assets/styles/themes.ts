@@ -16,6 +16,7 @@ export interface Theme {
 	}
 	border: string
 	primary: string
+	secondary: string
 	state: {
 		active: string
 		disabled: string
@@ -38,7 +39,8 @@ const lightPalette: Theme = {
 		secondary: blacks['lighten-90']
 	},
 	border: blacks['lighten-80'],
-	primary: blues.base,
+	primary: blues['lighten-30'],
+	secondary: blues['lighten-50'],
 	state: {
 		active: blacks.base,
 		disabled: blacks['lighten-90'], // update when defined by Design
@@ -64,7 +66,8 @@ const darkPalette: Theme = {
 		secondary: blacks['darken-20']
 	},
 	border: blacks['lighten-20'],
-	primary: blues.base,
+	primary: blues['lighten-40'],
+	secondary: blues['lighten-50'],
 	state: {
 		active: whites.base,
 		disabled: blacks['lighten-10'], // update when defined by Design
@@ -110,7 +113,7 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const loading = {
-		border: state.loading.primary
+		borderColor: state.loading.primary
 	}
 
 	const placeholder = {

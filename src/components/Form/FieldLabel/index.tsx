@@ -1,12 +1,14 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { fontSizeRegular } from 'components/assets/styles/styleguide'
 import { Skeleton } from 'components/Skeleton'
+import { styleguide } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
+
+const { font } = styleguide
 
 const useStyles = createUseStyles({
 	container: {
-		fontSize: fontSizeRegular,
+		...font.body,
 		paddingBottom: 5
 	},
 	required: {

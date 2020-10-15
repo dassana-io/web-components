@@ -1,7 +1,8 @@
 import colors from './colors'
 
-export const border = '1px solid'
-export const borderRadius = 4
+const border = '1px solid'
+const borderRadius = 4
+
 export const defaultFieldWidth = '300px'
 export const fieldErrorStyles = {
 	'@global': {
@@ -15,10 +16,18 @@ export const fieldErrorStyles = {
 		animation: 'shake 0.2s ease-in-out 0s 2'
 	}
 }
-export const fontSizeRegular = '14px'
-export * from './themes'
-/* eslint-disable sort-keys */
+
 export const styleguide = {
+	border,
+	borderRadius,
 	colors,
+	font: {
+		body: { fontSize: 14 },
+		h1: { fontSize: 32 },
+		h2: { fontSize: 24 },
+		h3: { fontSize: 20 },
+		label: { fontSize: 12 }
+	},
+	// eslint-disable-next-line sort-keys
 	spacing: { s: 8, m: 16, l: 24, xl: 32 }
 }

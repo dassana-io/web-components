@@ -1,4 +1,3 @@
-import { border } from 'components/assets/styles/styleguide'
 import colors from 'components/assets/styles/colors'
 import {
 	themedStyles,
@@ -6,22 +5,24 @@ import {
 	ThemeType
 } from 'components/assets/styles/themes'
 
-const { blacks, blues, whites } = colors
+const { blacks, whites } = colors
 
-const { dark } = ThemeType
+const { dark, light } = ThemeType
+
+const togglePalette = {
+	[dark]: {
+		active: blacks['lighten-80'],
+		disabled: blacks['lighten-30']
+	},
+	[light]: {
+		active: whites.base,
+		disabled: whites['darken-5']
+	}
+}
 
 export const generateToggleStyles = (themeType: ThemeType) => {
 	const palette = themes[themeType]
 	const { base, disabled } = themedStyles[themeType]
-
-	const activeHandleBgColor =
-		themeType === dark ? blacks['lighten-80'] : whites.base
-
-	const disabledHandleBgColor =
-		themeType === dark ? blacks['lighten-30'] : whites['darken-5']
-
-	const toggleActiveBgColor =
-		themeType === dark ? blues['lighten-40'] : blues['lighten-50']
 
 	return {
 		'&.ant-switch': {
@@ -39,22 +40,22 @@ export const generateToggleStyles = (themeType: ThemeType) => {
 			'&.ant-switch-checked': {
 				'& .ant-switch-handle': {
 					'&::before': {
-						backgroundColor: activeHandleBgColor
+						backgroundColor: togglePalette[themeType].active
 					},
 					left: 'calc(100% - 18px - 1px)'
 				},
-				backgroundColor: toggleActiveBgColor,
-				borderColor: toggleActiveBgColor
+				backgroundColor: palette.primary,
+				borderColor: palette.primary
 			},
 			'&.ant-switch-disabled': {
 				'& .ant-switch-handle': {
 					'&::before': {
-						backgroundColor: disabledHandleBgColor
+						backgroundColor: togglePalette[themeType].disabled
 					}
 				},
 				'&.ant-switch-checked .ant-switch-handle': {
 					'&::before': {
-						backgroundColor: disabledHandleBgColor
+						backgroundColor: togglePalette[themeType].disabled
 					}
 				},
 				backgroundColor: disabled.backgroundColor,
@@ -70,8 +71,7 @@ export const generateToggleStyles = (themeType: ThemeType) => {
 				boxShadow: 'none'
 			},
 			backgroundColor: base.backgroundColor,
-			border,
-			borderColor: base.borderColor
+			border: `1px solid ${base.borderColor}`
 		}
 	}
 }

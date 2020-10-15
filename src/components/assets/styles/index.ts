@@ -1,2 +1,2 @@
-export * from './styleguide'
+export { styleguide } from './styleguide'
 export * from './themes'
