@@ -15,7 +15,10 @@ export default {
 		content: {
 			control: { disable: true },
 			defaultValue: (
-				<Button onClick={() => action('onClick')}>Click Me</Button>
+				<>
+					test
+					<Button onClick={() => action('onClick')}>Click Me</Button>
+				</>
 			)
 		},
 		placement: {

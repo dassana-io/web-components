@@ -3,9 +3,24 @@ import 'antd/lib/popover/style/index.css'
 import { Popover as AntDPopover } from 'antd'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
+import { createUseStyles } from 'react-jss'
+import { generatePopoverStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
+import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
+
 import React, { FC, ReactNode } from 'react'
+
+const { dark, light } = ThemeType
+
+const useStyles = createUseStyles({
+	'@global': {
+		[`.${dark}`]: {
+			'& $div': generatePopoverStyles(dark)
+		},
+		div: generatePopoverStyles(light)
+	}
+})
 
 export type PopoverContent = string | ReactNode
 
@@ -46,6 +61,8 @@ export const Popover: FC<PopoverProps> = ({
 	popupContainerSelector,
 	title
 }: PopoverProps) => {
+	useStyles()
+
 	let popupContainerProps = {}
 
 	if (popupContainerSelector) {
