@@ -154,6 +154,7 @@ exports[`Storyshots Button Pending 1`] = `
           role="img"
           style={
             Object {
+              "color": "#94959A",
               "fontSize": 16,
             }
           }
