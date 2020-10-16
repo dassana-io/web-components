@@ -1,6 +1,6 @@
 import colors from './colors'
 
-const { blacks, blues, greens, oranges, reds, whites } = colors
+const { blacks, greens, oranges, reds, whites } = colors
 
 export enum ThemeType {
 	dark = 'dark',
@@ -39,11 +39,11 @@ const lightPalette: Theme = {
 		secondary: blacks['lighten-90']
 	},
 	border: blacks['lighten-80'],
-	primary: blues['lighten-30'],
-	secondary: blues['lighten-50'],
+	primary: blacks.base,
+	secondary: blacks['lighten-30'],
 	state: {
 		active: blacks.base,
-		disabled: blacks['lighten-90'], // update when defined by Design
+		disabled: blacks['lighten-90'],
 		error: reds.base,
 		hover: blacks['lighten-30'],
 		inactive: blacks['lighten-70'],
@@ -55,7 +55,7 @@ const lightPalette: Theme = {
 		warning: oranges.base
 	},
 	text: {
-		disabled: blacks['lighten-70'], // update when defined by Design
+		disabled: blacks['lighten-70'],
 		primary: blacks['lighten-30']
 	}
 }
@@ -66,11 +66,11 @@ const darkPalette: Theme = {
 		secondary: blacks['darken-20']
 	},
 	border: blacks['lighten-20'],
-	primary: blues['lighten-40'],
-	secondary: blues['lighten-50'],
+	primary: blacks['lighten-50'],
+	secondary: blacks['lighten-30'],
 	state: {
 		active: whites.base,
-		disabled: blacks['lighten-10'], // update when defined by Design
+		disabled: blacks['lighten-10'],
 		error: reds.base,
 		hover: blacks['lighten-60'],
 		inactive: blacks['lighten-20'],
@@ -82,7 +82,7 @@ const darkPalette: Theme = {
 		warning: oranges.base
 	},
 	text: {
-		disabled: blacks['lighten-20'], // update when defined by Design
+		disabled: blacks['lighten-20'],
 		primary: blacks['lighten-50']
 	}
 }
@@ -117,7 +117,7 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const placeholder = {
-		color: text.disabled // update when defined by Design
+		color: text.disabled
 	}
 
 	return {
