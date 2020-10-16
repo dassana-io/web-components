@@ -8,7 +8,6 @@ import { generateButtonStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Skeleton } from '../Skeleton'
-import { ThemeType } from '../assets/styles/themes'
 import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
@@ -16,15 +15,6 @@ import { styleguide, ThemeType } from '../assets/styles'
 const {
 	colors: { blacks }
 } = styleguide
-
-const { dark, light } = ThemeType
-
-const useStyles = createUseStyles({
-	'@global': {
-		[`.${dark} button`]: generateButtonStyles(dark),
-		button: generateButtonStyles(light)
-	}
-})
 
 const { dark, light } = ThemeType
 
