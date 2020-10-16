@@ -1,45 +1,59 @@
+import colors from 'components/assets/styles/colors'
 import { styleguide } from 'components/assets/styles/styleguide'
-import { ThemeType } from 'components/assets/styles/themes'
+import { ColorManipulationTypes, manipulateColor } from '../utils'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+
+const { blacks, whites } = colors
 
 const { borderRadius } = styleguide
 
-const { dark } = ThemeType
+const { dark, light } = ThemeType
+
+const { fade } = ColorManipulationTypes
+
+const popoverPalette = {
+	[dark]: {
+		accent: manipulateColor(blacks.base, 72, fade),
+		background: blacks['lighten-10'],
+		text: {
+			title: blacks['lighten-80']
+		}
+	},
+	[light]: {
+		accent: manipulateColor(blacks['lighten-30'], 72, fade),
+		background: whites.base,
+		text: {
+			title: blacks.base
+		}
+	}
+}
 
 export const generatePopoverStyles = (themeType: ThemeType) => {
-	const testBlue = '#5876ef'
-	const testGreen = '#ace49e'
-
-	const backgroundColor = themeType === dark ? testBlue : testGreen
-	const color = themeType === dark ? testGreen : testBlue
-	const arrowBorderColor = themeType === dark ? testBlue : testGreen
-	const borderBottomColor = themeType === dark ? testGreen : testBlue
+	const { base } = themedStyles[themeType]
+	const { accent, background, text } = popoverPalette[themeType]
 
 	return {
 		'& .ant-popover': {
 			'& > .ant-popover-content': {
 				'& > .ant-popover-arrow': {
-					borderColor: arrowBorderColor,
-					// boxShadow: `0 0 5px ${testBlue}`,
 					boxShadow: 'none',
-					zIndex: -1
-					// display: 'none !important'
+					display: 'none'
 				},
 				'& > .ant-popover-inner': {
 					'& > .ant-popover-inner-content': {
-						color
-						// margin: '0 !important'
+						color: base.color
 					},
 					'& > .ant-popover-title': {
-						borderBottomColor: borderBottomColor,
-						color
+						borderBottomColor: base.borderColor,
+						color: text.title
 					},
-					backgroundColor,
+					backgroundColor: background,
 					borderRadius,
 					boxShadow: 'none',
-					// boxShadow: `0 3px 6px -4px ${testBlue}, 0 6px 16px 0 ${testBlue}, 0 9px 28px 8px ${testGreen}`,
-					color
+					color: base.color
 				}
-			}
+			},
+			filter: `drop-shadow(0px 2px 8px ${accent})`
 		}
 	}
 }

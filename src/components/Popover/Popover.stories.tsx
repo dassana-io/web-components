@@ -16,7 +16,7 @@ export default {
 			control: { disable: true },
 			defaultValue: (
 				<>
-					test
+					<div style={{ paddingBottom: 10 }}>View account info</div>
 					<Button onClick={() => action('onClick')}>Click Me</Button>
 				</>
 			)
