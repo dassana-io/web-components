@@ -1,6 +1,6 @@
 import colors from './colors'
 
-const { blacks, blues, greens, oranges, reds, whites } = colors
+const { blacks, greens, oranges, reds, whites } = colors
 
 export enum ThemeType {
 	dark = 'dark',
@@ -16,11 +16,13 @@ export interface Theme {
 	}
 	border: string
 	primary: string
+	secondary: string
 	state: {
 		active: string
 		disabled: string
 		error: string
 		hover: string
+		inactive: string
 		loading: {
 			primary: string
 			secondary: string
@@ -37,13 +39,14 @@ const lightPalette: Theme = {
 		secondary: blacks['lighten-90']
 	},
 	border: blacks['lighten-80'],
-
-	primary: blues.base,
+	primary: blacks.base,
+	secondary: blacks['lighten-30'],
 	state: {
 		active: blacks.base,
-		disabled: blacks['lighten-90'], // update when defined by Design
+		disabled: blacks['lighten-90'],
 		error: reds.base,
-		hover: blacks['lighten-30'],
+		hover: blacks.base,
+		inactive: blacks['lighten-70'],
 		loading: {
 			primary: blacks['lighten-90'],
 			secondary: whites['darken-5']
@@ -52,7 +55,7 @@ const lightPalette: Theme = {
 		warning: oranges.base
 	},
 	text: {
-		disabled: blacks['lighten-70'], // update when defined by Design
+		disabled: blacks['lighten-70'],
 		primary: blacks['lighten-30']
 	}
 }
@@ -63,12 +66,14 @@ const darkPalette: Theme = {
 		secondary: blacks['darken-20']
 	},
 	border: blacks['lighten-20'],
-	primary: blues.base,
+	primary: blacks['lighten-50'],
+	secondary: blacks['lighten-30'],
 	state: {
 		active: whites.base,
-		disabled: blacks['lighten-10'], // update when defined by Design
+		disabled: blacks['lighten-10'],
 		error: reds.base,
-		hover: blacks['lighten-60'],
+		hover: blacks['lighten-80'],
+		inactive: blacks['lighten-20'],
 		loading: {
 			primary: blacks['lighten-10'],
 			secondary: blacks['lighten-20']
@@ -77,7 +82,7 @@ const darkPalette: Theme = {
 		warning: oranges.base
 	},
 	text: {
-		disabled: blacks['lighten-20'], // update when defined by Design
+		disabled: blacks['lighten-20'],
 		primary: blacks['lighten-50']
 	}
 }
@@ -95,11 +100,12 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const errorStyles = {
-		border: `1px solid ${state.error}`
+		borderColor: state.error
 	}
 
 	const hover = {
-		borderColor: state.hover
+		borderColor: state.hover,
+		color: state.hover
 	}
 
 	const focus = {
@@ -108,11 +114,11 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const loading = {
-		border: `1px solid ${state.loading.primary}`
+		borderColor: state.loading.primary
 	}
 
 	const placeholder = {
-		color: text.disabled // update when defined by Design
+		color: text.disabled
 	}
 
 	return {

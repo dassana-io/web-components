@@ -1,10 +1,12 @@
-import { borderRadius } from 'components/assets/styles/styleguide'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { styleguide } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
 import { themes, ThemeType } from 'components/assets/styles/themes'
 
 const { light, dark } = ThemeType
+
+const { borderRadius } = styleguide
 
 const generatePartialSkeletonStyles = (themeType: ThemeType) => {
 	const { primary, secondary } = themes[themeType].state.loading

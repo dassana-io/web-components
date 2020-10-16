@@ -19,6 +19,7 @@ const useStyles = createUseStyles({
 	container: {
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
+	error: { ...fieldErrorStyles.error },
 	inputSkeleton: generateInputSkeletonStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -68,7 +69,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 
 	const inputClasses: string = cn(
 		{
-			error
+			[componentClasses.error]: error
 		},
 		classes
 	)

@@ -68,7 +68,7 @@ const generateShades = (baseColor: string) => {
 
 export interface ColorsType {
 	blacks: ShadeType
-	blues: ShadeType
+	blues: { base: string }
 	greens: { base: string }
 	oranges: { base: string }
 	reds: { base: string }
@@ -77,7 +77,7 @@ export interface ColorsType {
 
 const colors: ColorsType = {
 	blacks: generateShades(black),
-	blues: generateShades(blue),
+	blues: { base: blue },
 	greens: { base: green },
 	oranges: { base: orange },
 	reds: { base: red },

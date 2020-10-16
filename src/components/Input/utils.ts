@@ -1,8 +1,10 @@
 import {
-	borderRadius,
-	fieldErrorStyles
+	fieldErrorStyles,
+	styleguide
 } from 'components/assets/styles/styleguide'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+
+const { borderRadius } = styleguide
 
 export const generateInputStyles = (themeType: ThemeType) => {
 	const { base, disabled, error, focus, hover, placeholder } = themedStyles[
@@ -11,6 +13,10 @@ export const generateInputStyles = (themeType: ThemeType) => {
 
 	return {
 		'&.ant-input': {
+			'&$error': {
+				...fieldErrorStyles.error,
+				borderColor: error.borderColor
+			},
 			'&::placeholder': {
 				color: placeholder.color
 			},
@@ -19,6 +25,7 @@ export const generateInputStyles = (themeType: ThemeType) => {
 			},
 			backgroundColor: base.backgroundColor,
 			borderColor: base.borderColor,
+			borderRadius,
 			color: base.color
 		},
 		'&.ant-input-disabled, &.ant-input[disabled]': {
@@ -30,8 +37,7 @@ export const generateInputStyles = (themeType: ThemeType) => {
 		'&.ant-input-focused, &.ant-input:focus': {
 			borderColor: focus.borderColor,
 			boxShadow: focus.boxShadow
-		},
-		'&.ant-input.error': { ...fieldErrorStyles.error, border: error.border }
+		}
 	}
 }
 
@@ -39,8 +45,8 @@ export const generateInputSkeletonStyles = (themeType: ThemeType) => {
 	const { loading } = themedStyles[themeType]
 
 	return {
-		border: loading.border,
-		borderRadius: borderRadius,
+		border: `1px solid ${loading.borderColor}`,
+		borderRadius,
 		padding: '6px 14px'
 	}
 }
