@@ -1,5 +1,7 @@
-import { borderRadius } from 'components/assets/styles/styleguide'
+import { styleguide } from 'components/assets/styles/styleguide'
 import { ThemeType } from 'components/assets/styles/themes'
+
+const { borderRadius } = styleguide
 
 const { dark } = ThemeType
 
