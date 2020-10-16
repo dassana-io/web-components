@@ -8,9 +8,13 @@ import { generateButtonStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Skeleton } from '../Skeleton'
-import { ThemeType } from '../assets/styles/themes'
 import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
+import { styleguide, ThemeType } from '../assets/styles'
+
+const {
+	colors: { blacks }
+} = styleguide
 
 const { dark, light } = ThemeType
 
@@ -92,7 +96,13 @@ export const Button: FC<ButtonProps> = ({
 				<span style={{ paddingRight: 8 }}>
 					<Spin
 						indicator={
-							<LoadingOutlined spin style={{ fontSize: 16 }} />
+							<LoadingOutlined
+								spin
+								style={{
+									color: blacks['lighten-50'],
+									fontSize: 16
+								}}
+							/>
 						}
 					/>
 				</span>
