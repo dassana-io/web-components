@@ -3,13 +3,28 @@ import { createUseStyles } from 'react-jss'
 import { Skeleton } from 'components/Skeleton'
 import { styleguide } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+
+const { dark, light } = ThemeType
 
 const { font } = styleguide
 
-const useStyles = createUseStyles({
-	container: {
+export const generateFieldLabelStyles = (themeType: ThemeType) => {
+	const { base } = themedStyles[themeType]
+
+	return {
 		...font.body,
+		color: base.color,
 		paddingBottom: 5
+	}
+}
+
+const useStyles = createUseStyles({
+	'@global': {
+		[`.${dark}`]: {
+			'& $div': generateFieldLabelStyles(dark)
+		},
+		div: generateFieldLabelStyles(light)
 	},
 	required: {
 		'&::after': {
@@ -39,7 +54,6 @@ const FieldLabel: FC<FieldLabelProps> = ({
 	return (
 		<div
 			className={cn({
-				[classes.container]: true,
 				[classes.required]: required && !loading
 			})}
 		>
