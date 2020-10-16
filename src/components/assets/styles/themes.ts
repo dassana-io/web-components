@@ -45,7 +45,7 @@ const lightPalette: Theme = {
 		active: blacks.base,
 		disabled: blacks['lighten-90'],
 		error: reds.base,
-		hover: blacks['lighten-30'],
+		hover: blacks.base,
 		inactive: blacks['lighten-70'],
 		loading: {
 			primary: blacks['lighten-90'],
@@ -72,7 +72,7 @@ const darkPalette: Theme = {
 		active: whites.base,
 		disabled: blacks['lighten-10'],
 		error: reds.base,
-		hover: blacks['lighten-60'],
+		hover: blacks['lighten-80'],
 		inactive: blacks['lighten-20'],
 		loading: {
 			primary: blacks['lighten-10'],
@@ -104,7 +104,8 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const hover = {
-		borderColor: state.hover
+		borderColor: state.hover,
+		color: state.hover
 	}
 
 	const focus = {

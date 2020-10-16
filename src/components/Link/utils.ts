@@ -1,17 +1,14 @@
-import colors from 'components/assets/styles/colors'
-import { themes, ThemeType } from '../assets/styles/themes'
-
-const { blues } = colors
+import { themedStyles, ThemeType } from '../assets/styles/themes'
 
 export const generateLinkStyles = (themeType: ThemeType) => {
-	const palette = themes[themeType]
+	const { base, hover } = themedStyles[themeType]
 
 	return {
 		'&.ant-typography': {
 			'&:hover': {
-				color: blues['lighten-60']
+				color: hover.color
 			},
-			color: palette.primary
+			color: base.color
 		}
 	}
 }

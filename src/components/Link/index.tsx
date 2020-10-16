@@ -74,6 +74,7 @@ export const Link: FC<LinkProps> = ({
 			href={href}
 			onClick={onClick}
 			target={target}
+			underline={true}
 			{...getDataTestAttributeProp('link', dataTag)}
 		>
 			{children}
