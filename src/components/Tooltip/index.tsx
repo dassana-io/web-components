@@ -3,9 +3,23 @@ import 'antd/lib/tooltip/style/index.css'
 import { Tooltip as AntDTooltip } from 'antd'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
+import { createUseStyles } from 'react-jss'
+import { generateTooltipStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
+import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import React, { FC, ReactNode } from 'react'
+
+const { dark, light } = ThemeType
+
+const useStyles = createUseStyles({
+	'@global': {
+		[`.${dark}`]: {
+			'& $div': generateTooltipStyles(dark)
+		},
+		div: generateTooltipStyles(light)
+	}
+})
 
 export type TooltipTitle = string | ReactNode
 
@@ -41,6 +55,8 @@ export const Tooltip: FC<TooltipProps> = ({
 	popupContainerSelector,
 	title
 }: TooltipProps) => {
+	useStyles()
+
 	let popupContainerProps = {}
 
 	if (popupContainerSelector) {

@@ -41,16 +41,19 @@ export const generatePopoverStyles = (themeType: ThemeType) => {
 				},
 				'& > .ant-popover-inner': {
 					'& > .ant-popover-inner-content': {
-						color: base.color
+						color: base.color,
+						fontWeight: 300
 					},
 					'& > .ant-popover-title': {
 						borderBottomColor: base.borderColor,
-						color: text.title
+						color: text.title,
+						fontWeight: 300
 					},
 					backgroundColor: background,
 					borderRadius,
 					boxShadow: 'none',
-					color: base.color
+					color: base.color,
+					fontWeight: 300
 				}
 			},
 			filter: `drop-shadow(0px 2px 8px ${accent})`

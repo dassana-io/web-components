@@ -8,7 +8,6 @@ import { generatePopoverStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
-
 import React, { FC, ReactNode } from 'react'
 
 const { dark, light } = ThemeType

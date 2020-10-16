@@ -24,14 +24,6 @@ describe('Field Label', () => {
 		expect(wrapper.text()).toContain(MOCK_LABEL)
 	})
 
-	it('applies the correct class if required is passed as true', () => {
-		const fieldLabel = mount(<FieldLabel {...baseMockProps} required />)
-
-		expect(fieldLabel.getDOMNode().classList.toString()).toContain(
-			'required'
-		)
-	})
-
 	describe('loading', () => {
 		beforeEach(() => {
 			wrapper = shallow(<FieldLabel {...baseMockProps} loading />)
