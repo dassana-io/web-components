@@ -32,8 +32,8 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			firstName: 'First Name'
 		}}
 	>
-		<Form.Input label='First Name' name='firstName' required />
-		<Form.Input label='Last Name' name='lastName' />
+		<Form.Input fullWidth label='First Name' name='firstName' required />
+		<Form.Input fullWidth label='Last Name' name='lastName' />
 		<Form.Select
 			label='Cloud Type'
 			name='cloudType'

@@ -207,6 +207,118 @@ exports[`Storyshots Icon Predefined 1`] = `
 </div>
 `;
 
+exports[`Storyshots Input Default 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="container-0-2-5 container-d0-0-2-8"
+  >
+    <input
+      className="ant-input"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Input Error 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="container-0-2-5 container-d5-0-2-14"
+  >
+    <input
+      className="ant-input error-0-2-6"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Input Full Width 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="container-0-2-5 container-d4-0-2-13"
+  >
+    <input
+      className="ant-input"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Input Loading 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="container-0-2-5 container-d3-0-2-11"
+  >
+    <div
+      className="inputSkeleton-0-2-7"
+    >
+      <span
+        className="container-0-2-3 container-d1-0-2-12"
+      >
+         
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Input Placeholder 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="container-0-2-5 container-d1-0-2-9"
+  >
+    <input
+      className="ant-input"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Search..."
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
 exports[`Storyshots Link Click 1`] = `
 <div
   className="light storyWrapper-0-2-2"
