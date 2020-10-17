@@ -72,7 +72,7 @@ export interface ColorsType {
 	greens: { base: string }
 	oranges: { base: string }
 	reds: { base: string }
-	whites: { 'darken-5': string; base: string }
+	whites: { base: string; 'darken-5': string }
 }
 
 const colors: ColorsType = {
