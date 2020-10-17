@@ -1,14 +1,15 @@
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
-const { blacks } = styleguide.colors
+const { borderRadius, colors } = styleguide
+const { blacks } = colors
 
 const { dark, light } = ThemeType
 
 const buttonPalette = {
 	[dark]: {
-		color: blacks['lighten-30'],
+		color: blacks['lighten-50'],
 		disabledBgColor: blacks.base,
-		hoverColor: blacks['lighten-50'],
+		hoverColor: blacks['lighten-80'],
 		primaryBackgroundColor: blacks['lighten-30'],
 		primaryDisabledBgColor: blacks['lighten-10'],
 		primaryDisabledTextColor: blacks['darken-20'],
@@ -40,7 +41,7 @@ export const generateButtonStyles = (themeType: ThemeType) => {
 
 	const baseButtonStyles = {
 		borderColor: base.borderColor,
-		borderRadius: 4,
+		borderRadius,
 		color
 	}
 
