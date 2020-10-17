@@ -363,6 +363,24 @@ exports[`Storyshots Link Href 1`] = `
 </div>
 `;
 
+exports[`Storyshots Notification Default 1`] = `
+<div
+  className="storyWrapper-0-2-2"
+>
+  <button
+    className="ant-btn ant-btn-default"
+    data-test="button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Click
+    </span>
+  </button>
+</div>
+`;
+
 exports[`Storyshots Notifications Error 1`] = `
 <div
   className="light storyWrapper-0-2-2"
@@ -585,31 +603,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-15"
+    className="container-0-2-16"
   >
     <div
-      className="skeletonButton-0-2-17"
+      className="skeletonButton-0-2-18"
     >
       <span
-        className="container-0-2-3 container-d2-0-2-18 skeleton-0-2-16"
+        className="container-0-2-3 container-d2-0-2-19 skeleton-0-2-17"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-2-17"
+      className="skeletonButton-0-2-18"
     >
       <span
-        className="container-0-2-3 container-d3-0-2-19 skeleton-0-2-16"
+        className="container-0-2-3 container-d3-0-2-20 skeleton-0-2-17"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-2-17"
+      className="skeletonButton-0-2-18"
     >
       <span
-        className="container-0-2-3 container-d4-0-2-20 skeleton-0-2-16"
+        className="container-0-2-3 container-d4-0-2-21 skeleton-0-2-17"
       >
          
       </span>
@@ -712,10 +730,10 @@ exports[`Storyshots Select Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-22 container-d0-0-2-26"
+    className="container-0-2-23 container-d0-0-2-27"
   >
     <div
-      className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-2-24 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -808,10 +826,10 @@ exports[`Storyshots Select Full Width 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-22 container-d2-0-2-28"
+    className="container-0-2-23 container-d2-0-2-29"
   >
     <div
-      className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-2-24 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -858,7 +876,7 @@ exports[`Storyshots Select Full Width 1`] = `
           className="ant-select-selection-item"
         >
           <div
-            className="option-0-2-25"
+            className="option-0-2-26"
           >
             <span>
               Lorem
@@ -909,10 +927,10 @@ exports[`Storyshots Select Icon 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-22 container-d1-0-2-27"
+    className="container-0-2-23 container-d1-0-2-28"
   >
     <div
-      className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-2-24 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -959,10 +977,10 @@ exports[`Storyshots Select Icon 1`] = `
           className="ant-select-selection-item"
         >
           <div
-            className="option-0-2-25"
+            className="option-0-2-26"
           >
             <span
-              className="icon-0-2-24"
+              className="icon-0-2-25"
             >
               <svg
                 fill="#7E8083"
@@ -1021,10 +1039,10 @@ exports[`Storyshots Select Search 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-22 container-d3-0-2-29"
+    className="container-0-2-23 container-d3-0-2-30"
   >
     <div
-      className="ant-select dropdown-0-2-23 ant-select-single ant-select-show-arrow ant-select-show-search"
+      className="ant-select dropdown-0-2-24 ant-select-single ant-select-show-arrow ant-select-show-search"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -1117,7 +1135,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-3 container-d6-0-2-31"
+    className="container-0-2-3 container-d6-0-2-32"
   >
      
   </span>
@@ -1129,27 +1147,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-3 container-d7-0-2-32"
+    className="container-0-2-3 container-d7-0-2-33"
   >
      
   </span>
   <span
-    className="container-0-2-3 container-d7-0-2-32"
+    className="container-0-2-3 container-d7-0-2-33"
   >
      
   </span>
   <span
-    className="container-0-2-3 container-d7-0-2-32"
+    className="container-0-2-3 container-d7-0-2-33"
   >
      
   </span>
   <span
-    className="container-0-2-3 container-d7-0-2-32"
+    className="container-0-2-3 container-d7-0-2-33"
   >
      
   </span>
   <span
-    className="container-0-2-3 container-d7-0-2-32"
+    className="container-0-2-3 container-d7-0-2-33"
   >
      
   </span>
@@ -1161,7 +1179,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-3 container-d5-0-2-30"
+    className="container-0-2-3 container-d5-0-2-31"
   >
      
   </span>
