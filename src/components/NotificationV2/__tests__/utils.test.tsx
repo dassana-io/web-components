@@ -36,7 +36,7 @@ describe('useCreateDomElement', () => {
 		popupContainerElement.setAttribute('id', popupContainerId)
 		document.body.appendChild(popupContainerElement)
 
-		const { unmount } = renderHook(() =>
+		renderHook(() =>
 			useCreateDomElement(
 				() =>
 					document.querySelector(

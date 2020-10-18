@@ -75,7 +75,7 @@ export const useNotifications = () => {
 				}
 			])
 
-			// setTimeout(removeNotification, duration)
+			setTimeout(removeNotification, duration)
 		},
 		[]
 	)
