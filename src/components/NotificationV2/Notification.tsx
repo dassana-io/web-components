@@ -1,23 +1,41 @@
 import { createUseStyles } from 'react-jss'
 import { motion } from 'framer-motion'
-import { ThemeType } from 'components/assets/styles'
-import {
-	generatePartialNotificationStyles,
-	ProcessedNotification
-} from './utils'
+import { generateNotificationStyles, ProcessedNotification } from './utils'
 import React, { FC } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const {
+	colors: { blacks },
+	font,
+	spacing
+} = styleguide
 
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	closeButton: {
-		cursor: 'pointer'
+		...font.label,
+		'&:hover': {
+			color: blacks['lighten-30']
+		},
+		alignSelf: 'flex-end',
+		color: blacks['lighten-70'],
+		cursor: 'pointer',
+		position: 'absolute',
+		right: spacing.s,
+		top: spacing.s
 	},
-	container: generatePartialNotificationStyles(light),
+	container: generateNotificationStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $container': generatePartialNotificationStyles(dark)
+			'& $closeButton': {
+				'&:hover': {
+					color: blacks['lighten-40']
+				},
+				color: blacks['lighten-20']
+			},
+			'& $container': generateNotificationStyles(dark)
 		}
 	}
 })

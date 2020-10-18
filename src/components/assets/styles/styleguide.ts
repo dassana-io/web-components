@@ -17,6 +17,19 @@ export const fieldErrorStyles = {
 export const styleguide = {
 	borderRadius: 4,
 	colors,
+	flexCenter: {
+		alignItems: 'center',
+		display: 'flex',
+		justifyContent: 'center'
+	},
+	flexDown: {
+		display: 'flex',
+		flexDirection: 'column'
+	},
+	flexSpaceBetween: {
+		display: 'flex',
+		justifyContent: 'space-between'
+	},
 	font: {
 		body: { fontSize: 14, lineHeight: 22 },
 		bodyLarge: { fontSize: 16, lineHeight: 24 },

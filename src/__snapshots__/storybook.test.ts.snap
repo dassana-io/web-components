@@ -365,7 +365,43 @@ exports[`Storyshots Link Href 1`] = `
 
 exports[`Storyshots Notification Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
+>
+  <button
+    className="ant-btn ant-btn-default"
+    data-test="button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Click
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Storyshots NotificationDark Default 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <button
+    className="ant-btn ant-btn-default"
+    data-test="button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Click
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Storyshots NotificationLight Default 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"

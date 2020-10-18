@@ -27,12 +27,15 @@ export type NotificationConfig = NotificationConfigInterface
 
 export interface NotificationProviderProps {
 	children: ReactNode
+	getPopupContainer?: () => HTMLElement
 }
 
 const NotificationProvider: FC<NotificationProviderProps> = ({
-	children
+	children,
+	getPopupContainer
 }: NotificationProviderProps) => {
-	const rootElement = useCreateDomElement()
+	const rootElement = useCreateDomElement(getPopupContainer)
+
 	const { generateNotification, notifications } = useNotifications()
 
 	const classes = useStyles()

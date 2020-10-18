@@ -6,20 +6,26 @@ import { useCallback, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
 
-export const useCreateDomElement = () => {
+export const NOTIFICATION_CONTAINER_ID = 'notification-root'
+
+export const useCreateDomElement = (
+	getPopupContainer: () => HTMLElement = () => document.body
+) => {
 	const [domElement, setDomElement] = useState<HTMLDivElement | null>(null)
+
+	const root = getPopupContainer() || document.body
 
 	useEffect(() => {
 		const element = document.createElement('div')
-		element.setAttribute('id', 'notification-root')
+		element.setAttribute('id', NOTIFICATION_CONTAINER_ID)
 
-		document.body.appendChild(element)
+		root.appendChild(element)
 		setDomElement(element)
 
 		return () => {
-			document.body.removeChild(element)
+			root.removeChild(element)
 		}
-	}, [])
+	}, [root])
 
 	return domElement
 }
@@ -77,7 +83,7 @@ export const useNotifications = () => {
 	return { generateNotification, notifications }
 }
 
-export const generatePartialNotificationStyles = (themeType: ThemeType) => {
+export const generateNotificationStyles = (themeType: ThemeType) => {
 	const { base } = themedStyles[themeType]
 	const palette = themes[themeType]
 
@@ -90,6 +96,7 @@ export const generatePartialNotificationStyles = (themeType: ThemeType) => {
 		justifyContent: 'space-between',
 		marginBottom: spacing.m,
 		padding: spacing.m,
+		position: 'relative',
 		width: 384
 	}
 }
