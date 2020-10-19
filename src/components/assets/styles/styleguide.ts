@@ -18,11 +18,12 @@ export const styleguide = {
 	borderRadius: 4,
 	colors,
 	font: {
-		body: { fontSize: 14 },
-		h1: { fontSize: 32 },
-		h2: { fontSize: 24 },
-		h3: { fontSize: 20 },
-		label: { fontSize: 12 }
+		body: { fontSize: 14, lineHeight: 22 },
+		bodyLarge: { fontSize: 16, lineHeight: 24 },
+		h1: { fontSize: 32, lineHeight: 40 },
+		h2: { fontSize: 24, lineHeight: 32 },
+		h3: { fontSize: 20, lineHeight: 28 },
+		label: { fontSize: 12, lineHeight: 20 }
 	},
 	// eslint-disable-next-line sort-keys
 	spacing: { s: 8, m: 16, l: 24, xl: 32 }
