@@ -1,7 +1,6 @@
 import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
 import { SbTheme } from '../../../.storybook/preview'
-import { ThemeType } from 'components/assets/styles/themes'
 import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import React, { FC } from 'react'
@@ -29,13 +28,11 @@ export default {
 	title: 'Tooltip'
 } as Meta
 
-const { dark, light } = ThemeType
-
 const ThemedTooltip: FC<TooltipProps> = (props: TooltipProps) => {
 	const theme: SbTheme = useTheme()
 
-	const popupContainerSelector =
-		theme.type === dark ? `.${dark}` : `.${light}`
+	const popupContainerSelector = `.${theme.type}`
+
 	return (
 		<Tooltip popupContainerSelector={popupContainerSelector} {...props}>
 			<Icon iconKey='dassana' />
