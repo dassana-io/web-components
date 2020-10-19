@@ -24,6 +24,7 @@ const { sideBySide, left, right } = LayoutTypes
 
 const { dark, light } = ThemeType
 
+// Storybook theme needs an extra "type" property to conditionally render a dark or light themed story for Popover and Tooltip components.
 export interface SbTheme extends Theme {
 	type: ThemeType.dark | ThemeType.light
 }
