@@ -1,7 +1,5 @@
 import colors from './colors'
 
-const borderRadius = 4
-
 export const defaultFieldWidth = '300px'
 export const fieldErrorStyles = {
 	'@global': {
@@ -17,7 +15,7 @@ export const fieldErrorStyles = {
 }
 
 export const styleguide = {
-	borderRadius,
+	borderRadius: 4,
 	colors,
 	font: {
 		body: { fontSize: 14 },
