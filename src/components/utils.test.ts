@@ -1,7 +1,7 @@
 import {
 	ColorManipulationTypes,
 	getDataTestAttributeProp,
-	getPopupContainerCreator,
+	generatePopupSelector,
 	manipulateColor,
 	TAG
 } from './utils'
@@ -25,7 +25,7 @@ describe('getDataTestAttributeProp', () => {
 	})
 })
 
-describe('getPopupContainerCreator', () => {
+describe('generatePopupSelector', () => {
 	it('should return a function that finds and returns the DOM element with the provided selector', () => {
 		const popupContainerElement = document.createElement('div')
 		const popupContainerId = 'popup-container'
@@ -33,7 +33,7 @@ describe('getPopupContainerCreator', () => {
 		popupContainerElement.setAttribute('id', popupContainerId)
 		document.body.appendChild(popupContainerElement)
 
-		getPopupContainerCreator('#popup-container')()
+		generatePopupSelector('#popup-container')()
 
 		expect(document.querySelector('#popup-container')?.id).toBe(
 			'popup-container'

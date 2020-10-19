@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss'
 import { generateTooltipStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
-import { getDataTestAttributeProp, getPopupContainerCreator } from '../utils'
+import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
 import React, { FC, ReactNode } from 'react'
 
 const { dark, light } = ThemeType
@@ -61,7 +61,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
 	if (popupContainerSelector) {
 		popupContainerProps = {
-			getPopupContainer: getPopupContainerCreator(popupContainerSelector)
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
 		}
 	}
 

@@ -26,7 +26,7 @@ export const placementOptions: TooltipPlacement[] = [
 	'topRight'
 ]
 
-export const getPopupContainerCreator = (
+export const generatePopupSelector = (
 	popupContainerSelector: string
 ) => (): HTMLElement =>
 	document.querySelector(popupContainerSelector) as HTMLElement
