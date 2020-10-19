@@ -238,7 +238,7 @@ exports[`Storyshots Input Error 1`] = `
     className="container-0-2-5 container-d5-0-2-14"
   >
     <input
-      className="ant-input error"
+      className="ant-input error-0-2-6"
       data-test="input"
       disabled={false}
       onBlur={[Function]}
