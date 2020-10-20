@@ -3,9 +3,23 @@ import 'antd/lib/popover/style/index.css'
 import { Popover as AntDPopover } from 'antd'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
-import { getDataTestAttributeProp } from '../utils'
+import { createUseStyles } from 'react-jss'
+import { generatePopoverStyles } from './utils'
+import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
+import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
 import React, { FC, ReactNode } from 'react'
+
+const { dark, light } = ThemeType
+
+const useStyles = createUseStyles({
+	'@global': {
+		[`.${dark}`]: {
+			'& $div': generatePopoverStyles(dark)
+		},
+		div: generatePopoverStyles(light)
+	}
+})
 
 export type PopoverContent = string | ReactNode
 
@@ -24,6 +38,10 @@ export interface PopoverProps extends CommonComponentProps {
 	 */
 	content: PopoverContent
 	/**
+	 * Selector of HTML element inside which to render the popup
+	 */
+	popupContainerSelector?: string
+	/**
 	 * Position of popover relative to the target
 	 */
 	placement?: TooltipPlacement
@@ -39,16 +57,30 @@ export const Popover: FC<PopoverProps> = ({
 	content,
 	dataTag,
 	placement = 'bottom',
+	popupContainerSelector,
 	title
-}: PopoverProps) => (
-	<AntDPopover
-		content={content}
-		overlayClassName={cn(classes)}
-		placement={placement}
-		title={title}
-	>
-		<span {...getDataTestAttributeProp('popover-trigger', dataTag)}>
-			{children}
-		</span>
-	</AntDPopover>
-)
+}: PopoverProps) => {
+	useStyles()
+
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+	}
+
+	return (
+		<AntDPopover
+			content={content}
+			overlayClassName={cn(classes)}
+			placement={placement}
+			title={title}
+			{...popupContainerProps}
+		>
+			<span {...getDataTestAttributeProp('popover-trigger', dataTag)}>
+				{children}
+			</span>
+		</AntDPopover>
+	)
+}

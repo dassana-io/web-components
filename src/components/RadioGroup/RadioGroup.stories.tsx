@@ -28,3 +28,6 @@ Default.args = { options: basicOptions }
 
 export const PartiallyDisabled = Template.bind({})
 PartiallyDisabled.args = { options: basicOptionsDisabled }
+
+export const Loading = Template.bind({})
+Loading.args = { loading: true, options: basicOptions }

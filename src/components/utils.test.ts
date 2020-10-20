@@ -1,5 +1,6 @@
 import {
 	ColorManipulationTypes,
+	generatePopupSelector,
 	getDataTestAttributeProp,
 	manipulateColor,
 	TAG
@@ -21,6 +22,22 @@ describe('getDataTestAttributeProp', () => {
 		expect(attr).toMatchObject({
 			[TAG]: `${mockCmpName}-${mockDataTag}`
 		})
+	})
+})
+
+describe('generatePopupSelector', () => {
+	it('should return a function that finds and returns the DOM element with the provided selector', () => {
+		const popupContainerElement = document.createElement('div')
+		const popupContainerId = 'popup-container'
+
+		popupContainerElement.setAttribute('id', popupContainerId)
+		document.body.appendChild(popupContainerElement)
+
+		generatePopupSelector('#popup-container')()
+
+		expect(document.querySelector('#popup-container')?.id).toBe(
+			'popup-container'
+		)
 	})
 })
 

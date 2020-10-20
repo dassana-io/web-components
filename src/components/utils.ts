@@ -26,6 +26,11 @@ export const placementOptions: TooltipPlacement[] = [
 	'topRight'
 ]
 
+export const generatePopupSelector = (
+	popupContainerSelector: string
+) => (): HTMLElement =>
+	document.querySelector(popupContainerSelector) as HTMLElement
+
 type RGB = {
 	r: number
 	g: number

@@ -1,26 +1,46 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { styleguide } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
+import { themes, ThemeType } from 'components/assets/styles/themes'
+
+const { light, dark } = ThemeType
+
+const { borderRadius } = styleguide
+
+const generatePartialSkeletonStyles = (themeType: ThemeType) => {
+	const { primary, secondary } = themes[themeType].state.loading
+
+	return {
+		backgroundColor: primary,
+		backgroundImage: `linear-gradient(90deg, ${primary}, ${secondary} , ${primary})`
+	}
+}
 
 const useStyles = createUseStyles({
-	'@global': {
-		'@keyframes skeleton': {
-			'0%': { backgroundPosition: '-200px 0' },
-			'100%': { backgroundPosition: 'calc(200px + 100%) 0' }
-		}
-	},
 	container: {
+		...generatePartialSkeletonStyles(light),
 		animation: props => `skeleton ${props.duration}s ease-in-out infinite`,
-		backgroundColor: '#EEEEEE',
-		backgroundImage: 'linear-gradient(90deg, #EEEEEE, #F5F5F5, #EEEEEE)',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: '200px 100%',
-		borderRadius: props => (props.circle ? '50%' : '4px'),
+		borderRadius: props => (props.circle ? '50%' : borderRadius),
 		display: props => (props.count > 1 ? 'block' : 'inline-block'),
 		height: props => (props.height ? props.height : '100%'),
 		lineHeight: 1,
 		marginBottom: props => (props.count > 1 ? 5 : 0),
-		width: props => (props.width ? `${props.width}px` : '100%')
+		width: props => (props.width ? props.width : '100%')
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		'@keyframes skeleton': {
+			'0%': { backgroundPosition: '-200px 0' },
+			'100%': { backgroundPosition: 'calc(200px + 100%) 0' }
+		},
+		[`.${dark}`]: {
+			'& $container': {
+				...generatePartialSkeletonStyles(dark)
+			}
+		}
 	}
 })
 

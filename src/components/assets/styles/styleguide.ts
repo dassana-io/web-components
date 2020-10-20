@@ -10,17 +10,34 @@ export const fieldErrorStyles = {
 		}
 	},
 	error: {
-		animation: 'shake 0.2s ease-in-out 0s 2',
-		border: '1px solid orange'
+		animation: 'shake 0.2s ease-in-out 0s 2'
 	}
 }
-export const fontSizeRegular = '14px'
-export const linkColor = '#1EA7FD'
-export const skeletonButtonBorderColor = '#DFDFDF'
-export * from './themes'
 
-/* eslint-disable sort-keys */
 export const styleguide = {
+	borderRadius: 4,
 	colors,
+	flexCenter: {
+		alignItems: 'center',
+		display: 'flex',
+		justifyContent: 'center'
+	},
+	flexDown: {
+		display: 'flex',
+		flexDirection: 'column'
+	},
+	flexSpaceBetween: {
+		display: 'flex',
+		justifyContent: 'space-between'
+	},
+	font: {
+		body: { fontSize: 14, lineHeight: 22 },
+		bodyLarge: { fontSize: 16, lineHeight: 24 },
+		h1: { fontSize: 32, lineHeight: 40 },
+		h2: { fontSize: 24, lineHeight: 32 },
+		h3: { fontSize: 20, lineHeight: 28 },
+		label: { fontSize: 12, lineHeight: 20 }
+	},
+	// eslint-disable-next-line sort-keys
 	spacing: { s: 8, m: 16, l: 24, xl: 32 }
 }
