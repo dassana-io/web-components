@@ -1,7 +1,7 @@
 import { Popover as AntDPopover } from 'antd'
 import React from 'react'
+import { mount, shallow, ShallowWrapper } from 'enzyme'
 import { Popover, PopoverProps } from './index'
-import { shallow, ShallowWrapper } from 'enzyme'
 
 let wrapper: ShallowWrapper
 
@@ -38,6 +38,37 @@ describe('Popover', () => {
 	it('correctly passes the placement prop if one is provided', () => {
 		wrapper = getWrapper({ placement: 'top' })
 		expect(wrapper.find(AntDPopover).props().placement).toEqual('top')
+	})
+
+	it('does not pass the popupContainerSelector prop if it does not exist', () => {
+		const wrapper = mount(
+			<Popover content={mockContent}>
+				<div>Hello World</div>
+			</Popover>
+		)
+
+		expect(
+			wrapper.find(Popover).props().popupContainerSelector
+		).toBeUndefined()
+
+		expect(wrapper.find(AntDPopover).props().getPopupContainer).toBeFalsy()
+	})
+
+	it('correctly passes the popupContainerSelector prop if it exists', () => {
+		const wrapper = mount(
+			<Popover
+				content={mockContent}
+				popupContainerSelector='.test-container'
+			>
+				<div>Hello World</div>
+			</Popover>
+		)
+
+		expect(wrapper.find(Popover).props().popupContainerSelector).toEqual(
+			'.test-container'
+		)
+
+		expect(wrapper.find(AntDPopover).props().getPopupContainer).toBeTruthy()
 	})
 
 	it('has a default placement of bottom', () => {

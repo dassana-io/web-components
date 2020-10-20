@@ -2,9 +2,11 @@ import { action } from '@storybook/addon-actions'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
-import React from 'react'
+import { SbTheme } from '../../../.storybook/preview'
+import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { Popover, PopoverProps } from './index'
+import React, { FC } from 'react'
 
 export default {
 	argTypes: {
@@ -12,7 +14,10 @@ export default {
 		content: {
 			control: { disable: true },
 			defaultValue: (
-				<Button onClick={() => action('onClick')}>Click Me</Button>
+				<>
+					<div style={{ paddingBottom: 10 }}>View account info</div>
+					<Button onClick={() => action('onClick')}>Click Me</Button>
+				</>
 			)
 		},
 		placement: {
@@ -34,11 +39,19 @@ export default {
 	title: 'Popover'
 } as Meta
 
-const Template: Story<PopoverProps> = args => (
-	<Popover {...args}>
-		<Icon iconKey='dassana' />
-	</Popover>
-)
+const ThemedPopover: FC<PopoverProps> = (props: PopoverProps) => {
+	const theme: SbTheme = useTheme()
+
+	const popupContainerSelector = `.${theme.type}`
+
+	return (
+		<Popover popupContainerSelector={popupContainerSelector} {...props}>
+			<Icon iconKey='dassana' />
+		</Popover>
+	)
+}
+
+const Template: Story<PopoverProps> = args => <ThemedPopover {...args} />
 
 export const Default = Template.bind({})
 

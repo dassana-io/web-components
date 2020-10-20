@@ -5,6 +5,7 @@ import { Toggle, ToggleProps } from '.'
 
 export default {
 	argTypes: {
+		classes: { control: 'array' },
 		onChange: { defaultValue: action('onChange') }
 	},
 	component: Toggle,
@@ -18,11 +19,6 @@ Default.args = {}
 
 export const Disabled = Template.bind({})
 Disabled.args = {
-	disabled: true
-}
-
-export const CheckedDisabled = Template.bind({})
-CheckedDisabled.args = {
 	disabled: true
 }
 
