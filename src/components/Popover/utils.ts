@@ -1,11 +1,9 @@
-import colors from 'components/assets/styles/colors'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { ColorManipulationTypes, manipulateColor } from '../utils'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
+const { borderRadius, colors } = styleguide
 const { blacks, whites } = colors
-
-const { borderRadius } = styleguide
 
 const { dark, light } = ThemeType
 

@@ -28,7 +28,7 @@ const rootImport = options => ({
 })
 
 export default {
-	external: ['antd', 'react'],
+	external: ['antd', 'react', 'uuid'],
 	input: 'src/components/index.ts',
 	output: [
 		{

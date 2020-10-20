@@ -10,7 +10,7 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { Skeleton } from '../Skeleton'
 import { Button as AntDButton, Spin } from 'antd'
 import React, { FC, ReactNode } from 'react'
-import { styleguide, ThemeType } from '../assets/styles'
+import { styleguide, ThemeType } from 'components/assets/styles'
 
 const {
 	colors: { blacks }
@@ -24,7 +24,6 @@ const useStyles = createUseStyles({
 		button: generateButtonStyles(light)
 	}
 })
-
 export interface ButtonProps extends CommonComponentProps {
 	/**
 	 * Required click handler.
