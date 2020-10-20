@@ -21,6 +21,7 @@ const useStyles = createUseStyles({
 		alignSelf: 'flex-end',
 		color: blacks['lighten-70'],
 		cursor: 'pointer',
+		lineHeight: 1,
 		position: 'absolute',
 		right: spacing.s,
 		top: spacing.s

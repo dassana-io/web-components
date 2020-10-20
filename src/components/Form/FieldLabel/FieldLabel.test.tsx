@@ -1,7 +1,7 @@
 import React from 'react'
 import { Skeleton } from 'components/Skeleton'
 import FieldLabel, { FieldLabelProps } from './index'
-import { shallow, ShallowWrapper } from 'enzyme'
+import { mount, shallow, ShallowWrapper } from 'enzyme'
 
 let wrapper: ShallowWrapper<FieldLabelProps>
 

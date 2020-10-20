@@ -1,7 +1,7 @@
 import {
 	ColorManipulationTypes,
-	getDataTestAttributeProp,
 	generatePopupSelector,
+	getDataTestAttributeProp,
 	manipulateColor,
 	TAG
 } from './utils'

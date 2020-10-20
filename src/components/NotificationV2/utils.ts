@@ -8,6 +8,8 @@ const { spacing } = styleguide
 
 export const NOTIFICATION_CONTAINER_ID = 'notification-root'
 
+// Appends a div to the document, usually for use with React portals
+// Optional popup container function can be provided as an argument. Otherwise, it defaults to appending the div to document.body
 export const useCreateDomElement = (
 	getPopupContainer: () => HTMLElement = () => document.body
 ) => {
@@ -56,7 +58,7 @@ export const useNotifications = () => {
 
 	const generateNotification = useCallback(
 		(notificationConfig: NotificationConfig) => {
-			const { duration = 2000 } = notificationConfig
+			const { duration = 3000 } = notificationConfig
 			const processedConfig = omit(notificationConfig, 'duration')
 			const id = uuidV4()
 

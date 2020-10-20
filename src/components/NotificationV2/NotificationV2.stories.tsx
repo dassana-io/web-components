@@ -1,7 +1,7 @@
 import { Button } from '../Button'
+import { generatePopupSelector } from '../utils'
 import React from 'react'
 import { SbTheme } from '../../../.storybook/preview'
-import { ThemeType } from 'components/assets/styles/themes'
 import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import {
@@ -9,8 +9,6 @@ import {
 	NotificationTypes,
 	useNotification
 } from './index'
-
-const { dark, light } = ThemeType
 
 export default {
 	argTypes: {
@@ -22,11 +20,7 @@ export default {
 
 			return (
 				<NotificationProvider
-					getPopupContainer={() =>
-						document.querySelector(
-							theme.type === dark ? `.${dark}` : `.${light}`
-						) as HTMLElement
-					}
+					getPopupContainer={generatePopupSelector(`.${theme.type}`)}
 				>
 					<Story />
 				</NotificationProvider>
@@ -43,7 +37,7 @@ const Template: Story = () => {
 		<Button
 			onClick={() => {
 				generateNotification({
-					message: 'type',
+					message: 'Notification Message',
 					type: NotificationTypes.success
 				})
 			}}
