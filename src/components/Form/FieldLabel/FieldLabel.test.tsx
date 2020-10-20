@@ -24,12 +24,12 @@ describe('Field Label', () => {
 		expect(wrapper.text()).toContain(MOCK_LABEL)
 	})
 
-	it('applies the correct class if required is passed as true', () => {
-		const fieldLabel = mount(<FieldLabel {...baseMockProps} required />)
+	it('applies the correct class if required is not passed as true', () => {
+		const fieldLabel = mount(<FieldLabel {...baseMockProps} />)
 
-		expect(fieldLabel.getDOMNode().classList.toString()).toContain(
-			'required'
-		)
+		expect(
+			fieldLabel.find('span').at(1).getDOMNode().classList.toString()
+		).toContain('optional')
 	})
 
 	describe('loading', () => {

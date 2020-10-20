@@ -1,7 +1,9 @@
 import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
-import React from 'react'
+import { SbTheme } from '../../../.storybook/preview'
+import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
+import React, { FC } from 'react'
 import { Tooltip, TooltipProps } from './index'
 
 export default {
@@ -26,13 +28,22 @@ export default {
 	title: 'Tooltip'
 } as Meta
 
-const Template: Story<TooltipProps> = args => (
-	<Tooltip {...args}>
-		<Icon iconKey='dassana' />
-	</Tooltip>
-)
+const ThemedTooltip: FC<TooltipProps> = (props: TooltipProps) => {
+	const theme: SbTheme = useTheme()
+
+	const popupContainerSelector = `.${theme.type}`
+
+	return (
+		<Tooltip popupContainerSelector={popupContainerSelector} {...props}>
+			<Icon iconKey='dassana' />
+		</Tooltip>
+	)
+}
+
+const Template: Story<TooltipProps> = args => <ThemedTooltip {...args} />
 
 export const Default = Template.bind({})
+
 Default.args = {
 	title: 'Dassana'
 }

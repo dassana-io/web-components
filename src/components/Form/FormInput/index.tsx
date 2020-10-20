@@ -11,6 +11,7 @@ export interface FormInputProps
 		Omit<InputProps, 'onChange' | 'value'> {}
 
 const FormInput: FC<FormInputProps> = ({
+	fullWidth = false,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -33,6 +34,7 @@ const FormInput: FC<FormInputProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					fullWidth={fullWidth}
 					label={label}
 					loading={loading}
 					required={required}
@@ -47,6 +49,7 @@ const FormInput: FC<FormInputProps> = ({
 					<Input
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
+						fullWidth={fullWidth}
 						loading={loading}
 						onChange={onChange}
 						value={value}

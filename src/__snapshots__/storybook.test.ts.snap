@@ -2,7 +2,7 @@
 
 exports[`Storyshots Avatar Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="ant-avatar ant-avatar-circle"
@@ -24,7 +24,7 @@ exports[`Storyshots Avatar Default 1`] = `
 
 exports[`Storyshots Avatar Icon 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="ant-avatar ant-avatar-circle ant-avatar-icon"
@@ -43,7 +43,7 @@ exports[`Storyshots Avatar Icon 1`] = `
 
 exports[`Storyshots Button Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -61,7 +61,7 @@ exports[`Storyshots Button Default 1`] = `
 
 exports[`Storyshots Button Disabled 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -79,7 +79,7 @@ exports[`Storyshots Button Disabled 1`] = `
 
 exports[`Storyshots Button Loading 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="container-0-2-3 container-d0-0-2-4"
@@ -91,7 +91,7 @@ exports[`Storyshots Button Loading 1`] = `
 
 exports[`Storyshots Button Pending 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -147,7 +147,7 @@ exports[`Storyshots Button Pending 1`] = `
 
 exports[`Storyshots Button Primary 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-primary"
@@ -165,7 +165,7 @@ exports[`Storyshots Button Primary 1`] = `
 
 exports[`Storyshots Button Primary Disabled 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-primary"
@@ -183,7 +183,7 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 
 exports[`Storyshots Icon Custom 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <img
     alt="https://dummyimage.com/600x400/000/fff&text=Dassana"
@@ -195,7 +195,7 @@ exports[`Storyshots Icon Custom 1`] = `
 
 exports[`Storyshots Icon Predefined 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <svg
     fill="#7E8083"
@@ -209,7 +209,7 @@ exports[`Storyshots Icon Predefined 1`] = `
 
 exports[`Storyshots Input Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-5 container-d0-0-2-8"
@@ -232,7 +232,7 @@ exports[`Storyshots Input Default 1`] = `
 
 exports[`Storyshots Input Error 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-5 container-d5-0-2-14"
@@ -255,7 +255,7 @@ exports[`Storyshots Input Error 1`] = `
 
 exports[`Storyshots Input Full Width 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-5 container-d4-0-2-13"
@@ -278,7 +278,7 @@ exports[`Storyshots Input Full Width 1`] = `
 
 exports[`Storyshots Input Loading 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-5 container-d3-0-2-11"
@@ -298,7 +298,7 @@ exports[`Storyshots Input Loading 1`] = `
 
 exports[`Storyshots Input Placeholder 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-5 container-d1-0-2-9"
@@ -321,7 +321,7 @@ exports[`Storyshots Input Placeholder 1`] = `
 
 exports[`Storyshots Link Click 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <a
     className="ant-typography"
@@ -343,7 +343,7 @@ exports[`Storyshots Link Click 1`] = `
 
 exports[`Storyshots Link Href 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <a
     className="ant-typography"
@@ -365,7 +365,7 @@ exports[`Storyshots Link Href 1`] = `
 
 exports[`Storyshots Notifications Error 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -383,7 +383,7 @@ exports[`Storyshots Notifications Error 1`] = `
 
 exports[`Storyshots Notifications Info 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -401,7 +401,7 @@ exports[`Storyshots Notifications Info 1`] = `
 
 exports[`Storyshots Notifications Success 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -419,7 +419,7 @@ exports[`Storyshots Notifications Success 1`] = `
 
 exports[`Storyshots Notifications Warning 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     className="ant-btn ant-btn-default"
@@ -437,7 +437,7 @@ exports[`Storyshots Notifications Warning 1`] = `
 
 exports[`Storyshots Popover Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     style={
@@ -465,7 +465,7 @@ exports[`Storyshots Popover Default 1`] = `
 
 exports[`Storyshots Popover Title 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     style={
@@ -493,7 +493,7 @@ exports[`Storyshots Popover Title 1`] = `
 
 exports[`Storyshots Radio Group Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="ant-radio-group ant-radio-group-solid"
@@ -582,7 +582,7 @@ exports[`Storyshots Radio Group Default 1`] = `
 
 exports[`Storyshots Radio Group Loading 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-15"
@@ -620,7 +620,7 @@ exports[`Storyshots Radio Group Loading 1`] = `
 
 exports[`Storyshots Radio Group Partially Disabled 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="ant-radio-group ant-radio-group-solid"
@@ -709,7 +709,7 @@ exports[`Storyshots Radio Group Partially Disabled 1`] = `
 
 exports[`Storyshots Select Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-22 container-d0-0-2-26"
@@ -805,7 +805,7 @@ exports[`Storyshots Select Default 1`] = `
 
 exports[`Storyshots Select Full Width 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-22 container-d2-0-2-28"
@@ -906,7 +906,7 @@ exports[`Storyshots Select Full Width 1`] = `
 
 exports[`Storyshots Select Icon 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-22 container-d1-0-2-27"
@@ -1018,7 +1018,7 @@ exports[`Storyshots Select Icon 1`] = `
 
 exports[`Storyshots Select Search 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     className="container-0-2-22 container-d3-0-2-29"
@@ -1114,7 +1114,7 @@ exports[`Storyshots Select Search 1`] = `
 
 exports[`Storyshots Skeleton Circle 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="container-0-2-3 container-d6-0-2-31"
@@ -1126,7 +1126,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
 
 exports[`Storyshots Skeleton Count 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="container-0-2-3 container-d7-0-2-32"
@@ -1158,7 +1158,7 @@ exports[`Storyshots Skeleton Count 1`] = `
 
 exports[`Storyshots Skeleton Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="container-0-2-3 container-d5-0-2-30"
@@ -1170,7 +1170,7 @@ exports[`Storyshots Skeleton Default 1`] = `
 
 exports[`Storyshots Tag Colored 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="ant-tag ant-tag-has-color"
@@ -1187,7 +1187,7 @@ exports[`Storyshots Tag Colored 1`] = `
 
 exports[`Storyshots Tag Colored Preset 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="ant-tag ant-tag-blue"
@@ -1204,7 +1204,7 @@ exports[`Storyshots Tag Colored Preset 1`] = `
 
 exports[`Storyshots Tag Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <span
     className="ant-tag"
@@ -1221,7 +1221,7 @@ exports[`Storyshots Tag Default 1`] = `
 
 exports[`Storyshots Toggle Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     aria-checked={false}
@@ -1244,7 +1244,7 @@ exports[`Storyshots Toggle Default 1`] = `
 
 exports[`Storyshots Toggle Disabled 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     aria-checked={false}
@@ -1268,7 +1268,7 @@ exports[`Storyshots Toggle Disabled 1`] = `
 
 exports[`Storyshots Toggle Small 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <button
     aria-checked={false}
@@ -1291,7 +1291,7 @@ exports[`Storyshots Toggle Small 1`] = `
 
 exports[`Storyshots Tooltip Default 1`] = `
 <div
-  className="storyWrapper-0-2-2"
+  className="light storyWrapper-0-2-2"
 >
   <div
     style={

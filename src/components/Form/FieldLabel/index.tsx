@@ -1,7 +1,9 @@
-import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Skeleton } from 'components/Skeleton'
-import { styleguide } from 'components/assets/styles/styleguide'
+import {
+	defaultFieldWidth,
+	styleguide
+} from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
@@ -13,30 +15,41 @@ export const generateFieldLabelStyles = (themeType: ThemeType) => {
 	const { base } = themedStyles[themeType]
 
 	return {
-		...font.body,
+		...font.label,
 		color: base.color,
+		fontWeight: 300,
 		paddingBottom: 5
 	}
 }
 
+export const generateOptionalStyles = (themeType: ThemeType) => {
+	const { disabled } = themedStyles[themeType]
+
+	return {
+		color: `${disabled.color}`,
+		fontStyle: 'italic'
+	}
+}
+
 const useStyles = createUseStyles({
+	container: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
+	},
+	optional: generateOptionalStyles(light),
+	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $div': generateFieldLabelStyles(dark)
+			'& $div': generateFieldLabelStyles(dark),
+			'& $optional': generateOptionalStyles(dark)
 		},
 		div: generateFieldLabelStyles(light)
-	},
-	required: {
-		'&::after': {
-			color: 'red',
-			// eslint-disable-next-line quotes
-			content: "'*'",
-			paddingLeft: '5px'
-		}
 	}
 })
 
 export interface FieldLabelProps {
+	fullWidth?: boolean
 	label: string
 	loading?: boolean
 	required?: boolean
@@ -44,20 +57,26 @@ export interface FieldLabelProps {
 }
 
 const FieldLabel: FC<FieldLabelProps> = ({
+	fullWidth = false,
 	label,
 	loading = false,
 	required = false,
 	skeletonWidth = 100
 }: FieldLabelProps) => {
-	const classes = useStyles()
+	const classes = useStyles({ fullWidth })
 
 	return (
-		<div
-			className={cn({
-				[classes.required]: required && !loading
-			})}
-		>
-			{loading ? <Skeleton width={skeletonWidth} /> : label}
+		<div className={classes.container}>
+			{loading ? (
+				<Skeleton width={skeletonWidth} />
+			) : (
+				<>
+					<span>{label}</span>
+					{!required && (
+						<span className={classes.optional}>Optional</span>
+					)}
+				</>
+			)}
 		</div>
 	)
 }
