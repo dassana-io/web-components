@@ -1,7 +1,9 @@
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
-const { borderRadius, colors } = styleguide
-const { blacks } = colors
+const {
+	borderRadius,
+	colors: { blacks }
+} = styleguide
 
 const { dark, light } = ThemeType
 
