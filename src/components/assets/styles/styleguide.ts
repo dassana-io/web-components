@@ -31,12 +31,12 @@ export const styleguide = {
 		justifyContent: 'space-between'
 	},
 	font: {
-		body: { fontSize: 14, lineHeight: 22 },
-		bodyLarge: { fontSize: 16, lineHeight: 24 },
-		h1: { fontSize: 32, lineHeight: 40 },
-		h2: { fontSize: 24, lineHeight: 32 },
-		h3: { fontSize: 20, lineHeight: 28 },
-		label: { fontSize: 12, lineHeight: 20 }
+		body: { fontSize: 14, lineHeight: '22px' },
+		bodyLarge: { fontSize: 16, lineHeight: '24px' },
+		h1: { fontSize: 32, lineHeight: '40px' },
+		h2: { fontSize: 24, lineHeight: '32px' },
+		h3: { fontSize: 20, lineHeight: '28px' },
+		label: { fontSize: 12, lineHeight: '20px' }
 	},
 	// eslint-disable-next-line sort-keys
 	spacing: { s: 8, m: 16, l: 24, xl: 32 }
