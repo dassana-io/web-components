@@ -1,3 +1,4 @@
+import { generatePopupSelector } from '../../utils'
 import { act, renderHook } from '@testing-library/react-hooks'
 import {
 	NOTIFICATION_CONTAINER_ID,
@@ -37,12 +38,7 @@ describe('useCreateDomElement', () => {
 		document.body.appendChild(popupContainerElement)
 
 		renderHook(() =>
-			useCreateDomElement(
-				() =>
-					document.querySelector(
-						`#${popupContainerId}`
-					) as HTMLElement
-			)
+			useCreateDomElement(generatePopupSelector(`#${popupContainerId}`))
 		)
 
 		expect(
@@ -52,12 +48,7 @@ describe('useCreateDomElement', () => {
 
 	it('should default the root to document.body if getPopupContainer returns null', () => {
 		const { unmount } = renderHook(() =>
-			useCreateDomElement(
-				() =>
-					document.querySelector(
-						'#non-existent-selector'
-					) as HTMLElement
-			)
+			useCreateDomElement(generatePopupSelector('#non-existent-selector'))
 		)
 
 		expect(document.body.firstElementChild?.id).toBe(
