@@ -1,4 +1,4 @@
-import Icons, { IconKeys, IconName } from './IconsMap'
+import Icons, { IconName } from './IconsMap'
 import React, { FC } from 'react'
 
 export interface SharedIconProps {
@@ -32,7 +32,7 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 	const { iconKey } = props as IconKey
 
 	if (iconKey) {
-		const Svg = Icons[iconKey]
+		const Svg = Icons[iconKey] ? Icons[iconKey] : Icons.dassana
 
 		const { color = '#7E8083' } = props as IconKey
 
@@ -43,5 +43,3 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 }
 
 export type { IconName }
-
-export { IconKeys }

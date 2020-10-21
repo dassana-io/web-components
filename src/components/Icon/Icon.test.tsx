@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, IconProps } from '.'
+import { Icon, IconName, IconProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
@@ -33,6 +33,18 @@ describe('Predefined Icon', () => {
 		wrapper = mount(<Icon color={mockColor} iconKey='dassana' />)
 
 		expect(wrapper.getDOMNode().getAttribute('fill')).toBe(mockColor)
+	})
+
+	it('does not throw an error if provided iconKey does not exist', () => {
+		expect(() => {
+			wrapper = mount(<Icon iconKey={'mockKey' as IconName} />)
+		}).not.toThrow()
+	})
+
+	it('renders a default icon if provided iconKey does not exist', () => {
+		wrapper = mount(<Icon iconKey={'mockKey' as IconName} />)
+
+		expect(wrapper.find('svg')).toHaveLength(1)
 	})
 })
 
