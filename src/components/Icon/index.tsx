@@ -1,7 +1,5 @@
-import Icons, { IconName } from './IconsMap'
+import Icons, { IconKeys, IconName } from './IconsMap'
 import React, { FC } from 'react'
-
-export type { IconName }
 
 export interface SharedIconProps {
 	/**
@@ -43,3 +41,7 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 
 	return <img alt={icon} height={height} src={icon} />
 }
+
+export type { IconName }
+
+export { IconKeys }
