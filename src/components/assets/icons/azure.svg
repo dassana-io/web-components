@@ -1,22 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <svg
-	version="1.1"
-	id="Layer_1"
+	width="100"
+	height="100"
+	viewBox="0 0 100 100"
+	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	x="0px"
-	y="0px"
-	viewBox="0 0 62.7 50"
-	style="enable-background: new 0 0 62.7 50;"
-	xml:space="preserve"
 >
-	<style type="text/css">
-		.st0-azure {
-			fill: #0072c6;
-		}
-	</style>
-	<path
-		class="st0-azure"
-		d="M33.6,5.1L18.9,17.8L6.3,40.4h11.3L33.6,5.1z M35.6,8l-6.3,17.7l12.1,15.2l-23.4,4h38.3L35.6,8z"
-	/>
+	<g id="App icon/logo">
+		<g id="azure" clip-path="url(#clip0)">
+			<path
+				id="Vector"
+				d="M53.7088 14.0049L30.1249 34.4501L10 70.5619H28.1456L53.7088 14.0049ZM56.846 18.7885L46.7811 47.1486L66.0797 71.388L28.6404 77.8188H90L56.846 18.7885Z"
+				fill="#0072C6"
+			/>
+		</g>
+	</g>
+	<defs>
+		<clipPath id="clip0">
+			<rect
+				width="80"
+				height="63.8202"
+				fill="white"
+				transform="translate(10 14)"
+			/>
+		</clipPath>
+	</defs>
 </svg>
