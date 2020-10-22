@@ -1,8 +1,6 @@
 import Icons, { IconName } from './IconsMap'
 import React, { FC } from 'react'
 
-export type { IconName }
-
 export interface SharedIconProps {
 	/**
 	 * The height of the icon, in pixels. Width will be calculated by default.
@@ -34,7 +32,7 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 	const { iconKey } = props as IconKey
 
 	if (iconKey) {
-		const Svg = Icons[iconKey]
+		const Svg = Icons[iconKey] ? Icons[iconKey] : Icons.dassana
 
 		const { color = '#7E8083' } = props as IconKey
 
@@ -43,3 +41,5 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 
 	return <img alt={icon} height={height} src={icon} />
 }
+
+export type { IconName }

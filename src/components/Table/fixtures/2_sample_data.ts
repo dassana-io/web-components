@@ -88,7 +88,7 @@ const data: Client[] = [
 	},
 	{
 		admin_access: false,
-		company: 'google-cloud',
+		company: 'googleCloudService',
 		linked_in: 'duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },

@@ -32,6 +32,14 @@ describe('Field Label', () => {
 		).toContain('optional')
 	})
 
+	it('renders a field label that will span the width of its parent container if fullWidth is to true', () => {
+		const fieldLabel = mount(<FieldLabel fullWidth {...baseMockProps} />)
+
+		const style = window.getComputedStyle(fieldLabel.getDOMNode())
+
+		expect(style.width).toEqual('100%')
+	})
+
 	describe('loading', () => {
 		beforeEach(() => {
 			wrapper = shallow(<FieldLabel {...baseMockProps} loading />)
