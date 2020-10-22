@@ -9,42 +9,40 @@ import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
 
-const { font } = styleguide
+const { font, flexSpaceBetween } = styleguide
 
-export const generateFieldLabelStyles = (themeType: ThemeType) => {
+export const generateThemedContainerStyles = (themeType: ThemeType) => {
 	const { base } = themedStyles[themeType]
 
 	return {
-		...font.label,
-		color: base.color,
-		fontWeight: 300,
-		paddingBottom: 5
+		color: base.color
 	}
 }
 
-export const generateOptionalStyles = (themeType: ThemeType) => {
+export const generateThemedOptionalStyles = (themeType: ThemeType) => {
 	const { disabled } = themedStyles[themeType]
 
 	return {
-		color: `${disabled.color}`,
-		fontStyle: 'italic'
+		color: `${disabled.color}`
 	}
 }
 
 const useStyles = createUseStyles({
 	container: {
-		display: 'flex',
-		justifyContent: 'space-between',
+		...generateThemedContainerStyles(light),
+		...flexSpaceBetween,
+		...font.label,
+		fontWeight: 300,
+		paddingBottom: 5,
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
-	optional: generateOptionalStyles(light),
+	optional: { ...generateThemedOptionalStyles(light), fontStyle: 'italic' },
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $div': generateFieldLabelStyles(dark),
-			'& $optional': generateOptionalStyles(dark)
-		},
-		div: generateFieldLabelStyles(light)
+			'& $container': generateThemedContainerStyles(dark),
+			'& $optional': generateThemedOptionalStyles(dark)
+		}
 	}
 })
 

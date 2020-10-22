@@ -55,7 +55,7 @@ const columns: ColumnType[] = [
 		renderProps: {
 			iconMap: {
 				azure: 'https://dummyimage.com/600x400/0072c6/fff&text=A',
-				'google-cloud':
+				googleCloudService:
 					'https://dummyimage.com/600x400/EA4335/fff&text=G'
 			},
 			type: 'icon'
@@ -79,7 +79,7 @@ const data: Client1[] = [
 		start_date: 1553932342212
 	},
 	{
-		company: 'google-cloud',
+		company: 'googleCloudService',
 		linked_in: 'amet-c',
 		name: 'Amet Consectetur'
 	},

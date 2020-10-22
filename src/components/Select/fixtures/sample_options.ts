@@ -8,5 +8,5 @@ export const basicOptions: Options[] = [
 export const iconOptions: Options[] = [
 	{ iconKey: 'aws', text: 'AWS', value: 'aws' },
 	{ iconKey: 'azure', text: 'Azure', value: 'azure' },
-	{ iconKey: 'google-cloud', text: 'GCP', value: 'gcp' }
+	{ iconKey: 'googleCloudService', text: 'GCP', value: 'gcp' }
 ]

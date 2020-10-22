@@ -444,13 +444,13 @@ describe('Table sort: Column type - "component", format - "icon', () => {
 			'aws',
 			'azure',
 			'dassana',
-			'google-cloud'
+			'googleCloudService'
 		])
 
 		// descending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'company')).toEqual([
-			'google-cloud',
+			'googleCloudService',
 			'dassana',
 			'azure',
 			'aws'
@@ -467,13 +467,13 @@ describe('Table sort: Column type - "component", format - "icon', () => {
 			undefined,
 			'azure',
 			'dassana',
-			'google-cloud'
+			'googleCloudService'
 		])
 
 		// descending order
 		sorter.simulate('click')
 		expect(renderedData(wrapper, 'company')).toEqual([
-			'google-cloud',
+			'googleCloudService',
 			'dassana',
 			'azure',
 			undefined
