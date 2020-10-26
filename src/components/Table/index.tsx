@@ -7,18 +7,31 @@ import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { ColumnType, ParentDataType } from './types'
-import { mapFilterKeys, processColumns, processData } from './utils'
+import {
+	mapFilterKeys,
+	processColumns,
+	processData,
+	revertDataItem
+} from './utils'
 import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 
+export interface OnRowClick {
+	(data: Record<string, any>, rowIndex: number): void
+}
+
 export interface TableProps<DataType> extends CommonComponentProps {
+	/**
+	 * Array of column objects
+	 */
+	columns: ColumnType[]
 	/**
 	 * Array of data objects
 	 */
 	data: DataType[]
 	/**
-	 * Array of column objects
+	 * Optional callback that runs when a table row is clicked
 	 */
-	columns: ColumnType[]
+	onRowClick?: OnRowClick
 	/**
 	 * Optional prop to enable/disable table search.
 	 */
@@ -29,6 +42,7 @@ export function Table<DataType extends ParentDataType>({
 	columns,
 	data,
 	dataTag,
+	onRowClick,
 	search = true
 }: TableProps<DataType>): ReactElement {
 	const [searchTerm, setSearchTerm] = useState<string>('')
@@ -60,6 +74,18 @@ export function Table<DataType extends ParentDataType>({
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
 		delayedSearch(e.target.value)
 
+	let optionalProps = {}
+
+	if (onRowClick) {
+		optionalProps = {
+			onRow: (data: Record<string, any>, rowIndex: number) => ({
+				onClick: () => {
+					onRowClick(revertDataItem(data), rowIndex)
+				}
+			})
+		}
+	}
+
 	return (
 		<div>
 			{search && (
@@ -82,6 +108,7 @@ export function Table<DataType extends ParentDataType>({
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
 				{...getDataTestAttributeProp('table', dataTag)}
+				{...optionalProps}
 			/>
 		</div>
 	)

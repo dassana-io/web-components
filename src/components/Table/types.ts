@@ -1,3 +1,4 @@
+import { Key } from 'react'
 import { SharedIconProps } from '../Icon'
 import { SharedLinkProps } from '../Link'
 
@@ -92,5 +93,10 @@ type ComponentType =
 export type ColumnType = StringType | NumberType | ComponentType
 
 export interface ParentDataType extends Record<string, any> {
-	id?: string | number
+	id?: Key
+}
+
+export enum ProcessedDataKeys {
+	_FORMATTED_DATA = '_FORMATTED_DATA',
+	key = 'key'
 }

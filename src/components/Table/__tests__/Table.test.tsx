@@ -1,4 +1,5 @@
 import { act } from 'react-dom/test-utils'
+import { Table as AntDTable } from 'antd'
 import moment from 'moment'
 import React from 'react'
 import mockData, { DataType, dateFormat } from '__mocks__/table_mock_data'
@@ -136,5 +137,24 @@ describe('Table search', () => {
 		wrapper.update()
 
 		expect(renderedData(wrapper)).toHaveLength(2)
+	})
+})
+
+describe('Table onRowClick', () => {
+	it('calls onRowClick handler when a table row is clicked', () => {
+		const mockOnRowClick = jest.fn()
+
+		wrapper = mount(
+			createTable<Person>({ ...mockData0, onRowClick: mockOnRowClick })
+		)
+
+		const tableRow = wrapper.find('tbody').find('tr').at(1)
+
+		tableRow.simulate('click')
+		expect(mockOnRowClick).toHaveBeenCalledTimes(1)
+	})
+
+	it('does not pass an onRow prop if onRowClick prop does not exist', () => {
+		expect(wrapper.find(AntDTable).props().onRow).toBeFalsy()
 	})
 })
