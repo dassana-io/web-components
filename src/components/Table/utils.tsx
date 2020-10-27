@@ -374,8 +374,14 @@ export function createDateFormatter(
 	let displayFormat = ''
 	const { renderProps } = column
 
-	if (renderProps && renderProps.displayFormat)
-		displayFormat = renderProps.displayFormat
+	if (typeof renderProps === 'object') {
+		if ('displayFromNow' in renderProps)
+			return (num?: number) =>
+				num === undefined ? null : moment(num).fromNow()
+
+		if ('displayFormat' in renderProps && renderProps.displayFormat)
+			displayFormat = renderProps.displayFormat
+	}
 
 	return (num?: number) =>
 		num === undefined ? null : moment(num).format(displayFormat)
