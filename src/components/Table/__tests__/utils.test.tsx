@@ -40,6 +40,7 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'1MB',
+					'2 months ago',
 					formatDate(1598400668681, dateFormat0),
 					null
 				],
@@ -51,6 +52,7 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'1.91MB',
+					'a day ago',
 					formatDate(1582330066861, dateFormat0),
 					null
 				],
@@ -62,6 +64,7 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'1KB',
+					null,
 					formatDate(1553223066861, dateFormat0),
 					formatDate(1582330063211, dateFormat1)
 				],
@@ -74,6 +77,7 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'4MB',
+					null,
 					formatDate(1511022066861, dateFormat0),
 					null
 				],
@@ -85,6 +89,7 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'2KB',
+					null,
 					formatDate(1515021066861, dateFormat0),
 					formatDate(1515121066861, dateFormat1)
 				],

@@ -8,8 +8,7 @@ import {
 	ColumnType,
 	ColumnTypes,
 	NumberDateType,
-	ParentDataType,
-	ProcessedDataKeys
+	ParentDataType
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
@@ -58,23 +57,6 @@ export function processData<DataType extends ParentDataType>(
 		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
 		key: item.id ? item.id : i
 	}))
-}
-
-/* 
-Takes a data item that was processed and reverts it to the original format
-*/
-export function revertDataItem(processedItem: Record<string, any>) {
-	const { key, _FORMATTED_DATA } = ProcessedDataKeys
-
-	const reverted: Record<string, any> = {} as Record<string, any>
-
-	for (const [itemKey, val] of Object.entries(processedItem)) {
-		if (itemKey === key) {
-			reverted.id = val
-		} else if (itemKey !== _FORMATTED_DATA) reverted[itemKey] = val
-	}
-
-	return reverted
 }
 
 /*

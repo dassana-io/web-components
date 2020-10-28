@@ -10,19 +10,8 @@ import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { styleguide } from 'components/assets/styles'
 import { ColumnType, ParentDataType } from './types'
-import {
-	mapFilterKeys,
-	processColumns,
-	processData,
-	revertDataItem
-} from './utils'
-import React, {
-	ChangeEvent,
-	ReactElement,
-	useCallback,
-	useEffect,
-	useState
-} from 'react'
+import { mapFilterKeys, processColumns, processData } from './utils'
+import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 
 export interface OnRowClick {
 	(data: Record<string, any>, rowIndex: number): void
@@ -30,13 +19,10 @@ export interface OnRowClick {
 
 const { spacing } = styleguide
 
-export interface SearchProps {
-	placeholder: string
-}
-
 const useStyles = createUseStyles({
 	searchBar: {
-		alignSelf: 'flex-start',
+		alignSelf: props =>
+			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
 		marginBottom: spacing.m
 	},
 	tableContainer: {
@@ -44,6 +30,14 @@ const useStyles = createUseStyles({
 		flexDirection: 'column'
 	}
 })
+
+export interface SearchProps {
+	placeholder?: string
+	/**
+	 * Which side of the table to render the search bar in. Defaults to 'right'
+	 */
+	placement?: 'left' | 'right'
+}
 
 export interface TableProps<DataType> extends CommonComponentProps {
 	/**
@@ -65,7 +59,11 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	/**
 	 * Optional prop to enable/disable table search.
 	 */
-	search?: SearchProps | Boolean
+	search?: Boolean
+	/**
+	 * Optional props for search input.
+	 */
+	searchProps?: SearchProps
 }
 
 export function Table<DataType extends ParentDataType>({
@@ -74,36 +72,29 @@ export function Table<DataType extends ParentDataType>({
 	data,
 	dataTag,
 	onRowClick,
-	search = true
+	search = true,
+	searchProps = {}
 }: TableProps<DataType>): ReactElement {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataType[]>([])
-	const [processedColumns, setProcessedColumns] = useState(
-		processColumns<DataType>(columns)
-	)
-	const [processedData, setProcessedData] = useState(
-		processData<DataType>(data, columns)
-	)
+
+	const tableClasses = useStyles({ searchProps })
+
+	const processedColumns = processColumns<DataType>(columns)
+	const processedData = processData<DataType>(data, columns)
 
 	const delayedSearch = useCallback(
 		debounce(q => searchTable(q), 250),
 		[processedData]
 	)
 
-	const tableClasses = useStyles()
-
-	useEffect(() => {
-		setProcessedColumns(processColumns<DataType>(columns))
-		setProcessedData(processData<DataType>(data, columns))
-	}, [data, columns])
+	const fuse = new Fuse(processedData, {
+		isCaseSensitive: false,
+		keys: mapFilterKeys(columns),
+		threshold: 0.1
+	})
 
 	const searchTable = (value: string) => {
-		const fuse = new Fuse(processedData, {
-			isCaseSensitive: false,
-			keys: mapFilterKeys(columns),
-			threshold: 0.1
-		})
-
 		setSearchTerm(value)
 
 		const filteredData = fuse
@@ -120,10 +111,9 @@ export function Table<DataType extends ParentDataType>({
 
 	if (onRowClick) {
 		optionalProps = {
-			onRow: (data: Record<string, any>, rowIndex: number) => ({
-				onClick: () => {
-					onRowClick(revertDataItem(data), rowIndex)
-				}
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+			onRow: (rowData: Record<string, any>, rowIndex: number) => ({
+				onClick: () => onRowClick(data[rowIndex], rowIndex)
 			})
 		}
 	}
@@ -131,14 +121,8 @@ export function Table<DataType extends ParentDataType>({
 	let optionalSearchProps = {}
 
 	if (search) {
-		let placeholder = 'Search...'
-
-		if (search && typeof search === 'object' && 'placeholder' in search) {
-			placeholder = search.placeholder
-		}
-
 		optionalSearchProps = {
-			placeholder
+			placeholder: searchProps.placeholder ? searchProps.placeholder : ''
 		}
 	}
 

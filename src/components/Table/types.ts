@@ -101,8 +101,3 @@ export type ColumnType = StringType | NumberType | ComponentType
 export interface ParentDataType extends Record<string, any> {
 	id?: Key
 }
-
-export enum ProcessedDataKeys {
-	_FORMATTED_DATA = '_FORMATTED_DATA',
-	key = 'key'
-}

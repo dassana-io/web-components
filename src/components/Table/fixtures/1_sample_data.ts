@@ -5,7 +5,7 @@ export interface File {
 	data_size: number
 	created_at: number
 	updated_at?: number // Pass an optional type if there will be missing data
-	time_since_last_update?: number
+	last_opened?: number
 }
 
 export const dateFormat0 = 'MMM D, YYYY h:mm A'
@@ -27,10 +27,10 @@ const columns: ColumnType[] = [
 		type: number
 	},
 	{
-		dataIndex: 'time_since_last_update',
+		dataIndex: 'last_opened',
 		format: date,
 		renderProps: { displayFromNow: true },
-		title: 'Last Update',
+		title: 'Last Opened',
 		type: number
 	},
 	{
@@ -54,13 +54,13 @@ const data: File[] = [
 		created_at: 1598400668681,
 		data_size: 1048576,
 		file_name: 'IMG_4542.jpeg',
-		time_since_last_update: 1598400668681
+		last_opened: 1598400668681
 	},
 	{
 		created_at: 1582330066861,
 		data_size: 1998576,
 		file_name: 'test_123.png',
-		time_since_last_update: 1603779899922
+		last_opened: 1603779899922
 	},
 	{
 		created_at: 1553223066861,

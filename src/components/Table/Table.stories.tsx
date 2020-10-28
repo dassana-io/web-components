@@ -20,6 +20,9 @@ const commonArgTypes = {
 }`
 			}
 		}
+	},
+	searchProps: {
+		control: { disable: true }
 	}
 }
 
@@ -28,7 +31,8 @@ const SimpleTemplate: Story<TableProps<Person>> = args => (
 )
 export const Simple = SimpleTemplate.bind({})
 Simple.args = {
-	...tableData0
+	...tableData0,
+	searchProps: { placeholder: 'Search...', placement: 'right' }
 }
 Simple.argTypes = {
 	...commonArgTypes,
