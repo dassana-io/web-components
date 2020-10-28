@@ -28,8 +28,20 @@ export function renderedData(wrapper: ReactWrapper, dataIndex = '') {
 	}
 }
 
-export function formatDate(unixTS: number, displayFormat: string) {
-	return moment(unixTS).format(displayFormat)
+interface FormatDateParams {
+	displayFormat?: string
+	fromNow?: boolean
+	unixTS: number
+}
+
+export function formatDate({
+	unixTS,
+	displayFormat = '',
+	fromNow = false
+}: FormatDateParams) {
+	return fromNow
+		? moment(unixTS).fromNow()
+		: moment(unixTS).format(displayFormat)
 }
 
 let wrapper: ReactWrapper
@@ -72,7 +84,13 @@ describe('Table', () => {
 	it('renders all types and formats of data', () => {
 		wrapper = mount(createTable<DataType>(mockData))
 		const expected = {
-			_FORMATTED_DATA: [formatDate(1599193037581, dateFormat), '1KB'],
+			_FORMATTED_DATA: [
+				formatDate({
+					displayFormat: dateFormat,
+					unixTS: 1599193037581
+				}),
+				'1KB'
+			],
 			byte: 1024,
 			date: 1599193037581,
 			icon: 'test',

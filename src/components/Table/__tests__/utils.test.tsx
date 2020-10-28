@@ -40,8 +40,11 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'1MB',
-					'2 months ago',
-					formatDate(1598400668681, dateFormat0),
+					formatDate({ fromNow: true, unixTS: 1598400668681 }),
+					formatDate({
+						displayFormat: dateFormat0,
+						unixTS: 1598400668681
+					}),
 					null
 				],
 				created_at: 1598400668681,
@@ -52,8 +55,11 @@ describe('processData', () => {
 			{
 				_FORMATTED_DATA: [
 					'1.91MB',
-					'a day ago',
-					formatDate(1582330066861, dateFormat0),
+					formatDate({ fromNow: true, unixTS: 1603779899922 }),
+					formatDate({
+						displayFormat: dateFormat0,
+						unixTS: 1582330066861
+					}),
 					null
 				],
 				created_at: 1582330066861,
@@ -65,8 +71,14 @@ describe('processData', () => {
 				_FORMATTED_DATA: [
 					'1KB',
 					null,
-					formatDate(1553223066861, dateFormat0),
-					formatDate(1582330063211, dateFormat1)
+					formatDate({
+						displayFormat: dateFormat0,
+						unixTS: 1553223066861
+					}),
+					formatDate({
+						displayFormat: dateFormat1,
+						unixTS: 1582330063211
+					})
 				],
 				created_at: 1553223066861,
 				data_size: 1024,
@@ -78,7 +90,10 @@ describe('processData', () => {
 				_FORMATTED_DATA: [
 					'4MB',
 					null,
-					formatDate(1511022066861, dateFormat0),
+					formatDate({
+						displayFormat: dateFormat0,
+						unixTS: 1511022066861
+					}),
 					null
 				],
 				created_at: 1511022066861,
@@ -90,8 +105,14 @@ describe('processData', () => {
 				_FORMATTED_DATA: [
 					'2KB',
 					null,
-					formatDate(1515021066861, dateFormat0),
-					formatDate(1515121066861, dateFormat1)
+					formatDate({
+						displayFormat: dateFormat0,
+						unixTS: 1515021066861
+					}),
+					formatDate({
+						displayFormat: dateFormat1,
+						unixTS: 1515121066861
+					})
 				],
 				created_at: 1515021066861,
 				data_size: 2048,
@@ -141,7 +162,9 @@ describe('createByteFormatter', () => {
 	it('returns function that properly formats number into string date if input column provides valid format pattern', () => {
 		const formattedDate = createDateFormatter(dateColumn)(1599193037581)
 
-		expect(formattedDate).toEqual(formatDate(1599193037581, 'MM/DD/YY'))
+		expect(formattedDate).toEqual(
+			formatDate({ displayFormat: 'MM/DD/YY', unixTS: 1599193037581 })
+		)
 	})
 
 	it('returns function that returns null if input number is not provided', () => {

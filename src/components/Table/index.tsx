@@ -13,10 +13,6 @@ import { ColumnType, ParentDataType } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 
-export interface OnRowClick {
-	(data: Record<string, any>, rowIndex: number): void
-}
-
 const { spacing } = styleguide
 
 const useStyles = createUseStyles({
@@ -31,7 +27,14 @@ const useStyles = createUseStyles({
 	}
 })
 
+export interface OnRowClick<DataType> {
+	(data: DataType, rowIndex: number): void
+}
+
 export interface SearchProps {
+	/**
+	 * Describes expected value of element
+	 */
 	placeholder?: string
 	/**
 	 * Which side of the table to render the search bar in. Defaults to 'right'
@@ -55,7 +58,7 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	/**
 	 * Optional callback that runs when a table row is clicked
 	 */
-	onRowClick?: OnRowClick
+	onRowClick?: OnRowClick<DataType>
 	/**
 	 * Optional prop to enable/disable table search.
 	 */
@@ -73,7 +76,7 @@ export function Table<DataType extends ParentDataType>({
 	dataTag,
 	onRowClick,
 	search = true,
-	searchProps = {}
+	searchProps = {} as SearchProps
 }: TableProps<DataType>): ReactElement {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataType[]>([])
@@ -111,18 +114,9 @@ export function Table<DataType extends ParentDataType>({
 
 	if (onRowClick) {
 		optionalProps = {
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
-			onRow: (rowData: Record<string, any>, rowIndex: number) => ({
+			onRow: (_: Record<string, any>, rowIndex: number) => ({
 				onClick: () => onRowClick(data[rowIndex], rowIndex)
 			})
-		}
-	}
-
-	let optionalSearchProps = {}
-
-	if (search) {
-		optionalSearchProps = {
-			placeholder: searchProps.placeholder ? searchProps.placeholder : ''
 		}
 	}
 
@@ -133,7 +127,7 @@ export function Table<DataType extends ParentDataType>({
 					classes={[tableClasses.searchBar]}
 					dataTag='table-search'
 					onChange={handleChange}
-					{...optionalSearchProps}
+					placeholder={searchProps.placeholder}
 				/>
 			)}
 			<AntDTable

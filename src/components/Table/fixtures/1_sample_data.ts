@@ -1,3 +1,4 @@
+import { DateDisplayFormat } from '../types'
 import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
 
 export interface File {
@@ -29,7 +30,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'last_opened',
 		format: date,
-		renderProps: { displayFromNow: true },
+		renderProps: { displayFormat: DateDisplayFormat.fromNow }, // display date as time from now. E.g. 3 months ago
 		title: 'Last Opened',
 		type: number
 	},

@@ -38,17 +38,13 @@ interface NumberByteType extends Omit<NumberDefaultType, 'format'> {
 	format: ColumnFormats.byte
 }
 
-interface DisplayFromNow {
-	displayFromNow?: true
-}
-
-interface DisplayFormat {
-	displayFormat?: string
+export enum DateDisplayFormat {
+	fromNow = 'fromNow'
 }
 
 export interface NumberDateType extends Omit<NumberDefaultType, 'format'> {
 	format: ColumnFormats.date
-	renderProps?: DisplayFromNow | DisplayFormat
+	renderProps?: { displayFormat: string | DateDisplayFormat }
 }
 
 type NumberType = NumberDefaultType | NumberByteType | NumberDateType

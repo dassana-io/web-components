@@ -8,6 +8,9 @@ import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
 
 const commonArgTypes = {
+	dataTag: {
+		control: { disable: true }
+	},
 	onRowClick: {
 		control: { disable: true },
 		defaultValue: action('onRowClick'),
@@ -15,14 +18,24 @@ const commonArgTypes = {
 		table: {
 			type: {
 				detail: `
-        interface OnRowClick {
-  (data: Record<string, any>, rowIndex: number): void
+        interface OnRowClick<DataType> {
+  (data: DataType, rowIndex: number): void
 }`
 			}
 		}
 	},
 	searchProps: {
-		control: { disable: true }
+		control: 'object',
+		defaultValue: { placeholder: '', placement: 'left' }, // This isn't the default, it's a placeholder for storybook
+		table: {
+			type: {
+				detail: `
+        interface SearchProps {
+  placeholder?: string
+  placement?: 'left' | 'right'
+}`
+			}
+		}
 	}
 }
 
@@ -31,8 +44,7 @@ const SimpleTemplate: Story<TableProps<Person>> = args => (
 )
 export const Simple = SimpleTemplate.bind({})
 Simple.args = {
-	...tableData0,
-	searchProps: { placeholder: 'Search...', placement: 'right' }
+	...tableData0
 }
 Simple.argTypes = {
 	...commonArgTypes,

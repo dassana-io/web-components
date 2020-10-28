@@ -7,6 +7,7 @@ import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
+	DateDisplayFormat,
 	NumberDateType,
 	ParentDataType
 } from './types'
@@ -356,13 +357,13 @@ export function createDateFormatter(
 	let displayFormat = ''
 	const { renderProps } = column
 
-	if (typeof renderProps === 'object') {
-		if ('displayFromNow' in renderProps)
+	if (renderProps && renderProps.displayFormat) {
+		if (renderProps.displayFormat === DateDisplayFormat.fromNow) {
 			return (num?: number) =>
 				num === undefined ? null : moment(num).fromNow()
+		}
 
-		if ('displayFormat' in renderProps && renderProps.displayFormat)
-			displayFormat = renderProps.displayFormat
+		displayFormat = renderProps.displayFormat
 	}
 
 	return (num?: number) =>
