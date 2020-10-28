@@ -59,7 +59,7 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	/**
 	 * Optional prop to enable/disable table search.
 	 */
-	search?: Boolean
+	search?: boolean
 	/**
 	 * Optional props for search input.
 	 */

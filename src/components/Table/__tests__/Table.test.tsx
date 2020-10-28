@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils'
-import { Table as AntDTable } from 'antd'
 import moment from 'moment'
 import React from 'react'
+import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { DataType, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
@@ -109,7 +109,7 @@ describe('Table props', () => {
 	})
 })
 
-describe('Table search', () => {
+describe('Table search and searchProps', () => {
 	it('renders by default', () => {
 		const table = wrapper.find(Table)
 		const searchBar = table.find('input')
@@ -137,6 +137,44 @@ describe('Table search', () => {
 		wrapper.update()
 
 		expect(renderedData(wrapper)).toHaveLength(2)
+	})
+
+	it('it renders the search bar to the left by default', async () => {
+		const table = wrapper.find(Table)
+		const searchBar = table.find('input')
+
+		const style = window.getComputedStyle(searchBar.getDOMNode())
+
+		expect(style.alignSelf).toBe('flex-start')
+	})
+
+	it('it renders the search bar to the right if searchProps.placement is passed as right', async () => {
+		wrapper = mount(
+			createTable<DataType>({
+				...mockData,
+				searchProps: { placement: 'right' }
+			})
+		)
+
+		const table = wrapper.find(Table)
+		const searchBar = table.find('input')
+
+		const style = window.getComputedStyle(searchBar.getDOMNode())
+
+		expect(style.alignSelf).toBe('flex-end')
+	})
+
+	it('correctly passes the placeholder prop to the searchbar input', () => {
+		wrapper = mount(
+			createTable<DataType>({
+				...mockData,
+				searchProps: { placeholder: 'Mock placeholder' }
+			})
+		)
+
+		expect(wrapper.find(AntDInput).props().placeholder).toEqual(
+			'Mock placeholder'
+		)
 	})
 })
 
