@@ -90,15 +90,13 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	return loading ? (
 		<InputSkeleton {...props} />
 	) : (
-		<div className={componentClasses.container}>
-			<AntDInput
-				className={inputClasses}
-				disabled={disabled}
-				placeholder={placeholder}
-				type={type}
-				{...controlledCmpProps}
-				{...getDataTestAttributeProp('input', dataTag)}
-			/>
-		</div>
+		<AntDInput
+			className={cn(componentClasses.container, inputClasses)}
+			disabled={disabled}
+			placeholder={placeholder}
+			type={type}
+			{...controlledCmpProps}
+			{...getDataTestAttributeProp('input', dataTag)}
+		/>
 	)
 }

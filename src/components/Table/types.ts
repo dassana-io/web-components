@@ -1,3 +1,4 @@
+import { Key } from 'react'
 import { SharedIconProps } from '../Icon'
 import { SharedLinkProps } from '../Link'
 
@@ -37,11 +38,13 @@ interface NumberByteType extends Omit<NumberDefaultType, 'format'> {
 	format: ColumnFormats.byte
 }
 
+export enum DateDisplayFormat {
+	fromNow = 'fromNow'
+}
+
 export interface NumberDateType extends Omit<NumberDefaultType, 'format'> {
 	format: ColumnFormats.date
-	renderProps?: {
-		displayFormat?: string
-	}
+	renderProps?: { displayFormat: string | DateDisplayFormat }
 }
 
 type NumberType = NumberDefaultType | NumberByteType | NumberDateType
@@ -92,5 +95,5 @@ type ComponentType =
 export type ColumnType = StringType | NumberType | ComponentType
 
 export interface ParentDataType extends Record<string, any> {
-	id?: string | number
+	id?: Key
 }
