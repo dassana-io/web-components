@@ -93,6 +93,13 @@ const data: Client1[] = [
 	}
 ]
 
-const tableData2: TableProps<Client1> = { columns, data }
+const tableData2: TableProps<Client1> = {
+	columns,
+	data,
+	searchProps: {
+		placeholder: 'Search...',
+		placement: 'right'
+	}
+}
 
 export default tableData2

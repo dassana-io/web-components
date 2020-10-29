@@ -1,45 +1,94 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
+import cn from 'classnames'
 import { CommonComponentProps } from '../types'
+import { createUseStyles } from 'react-jss'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
+import { styleguide } from 'components/assets/styles'
 import { ColumnType, ParentDataType } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 
+const { flexDown, spacing } = styleguide
+
+const useStyles = createUseStyles({
+	searchBar: {
+		alignSelf: props =>
+			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
+		marginBottom: spacing.m
+	},
+	tableContainer: {
+		...flexDown
+	}
+})
+
+export interface OnRowClick<DataType> {
+	(data: DataType, rowIndex: number): void
+}
+
+export interface SearchProps {
+	/**
+	 * Describes expected value of element
+	 */
+	placeholder?: string
+	/**
+	 * Which side of the table to render the search bar in. Defaults to 'right'
+	 */
+	placement?: 'left' | 'right'
+}
+
 export interface TableProps<DataType> extends CommonComponentProps {
 	/**
-	 * Array of data objects
+	 * Array of classes to pass to button.
 	 */
-	data: DataType[]
+	classes?: string[]
 	/**
 	 * Array of column objects
 	 */
 	columns: ColumnType[]
 	/**
+	 * Array of data objects
+	 */
+	data: DataType[]
+	/**
+	 * Optional callback that runs when a table row is clicked
+	 */
+	onRowClick?: OnRowClick<DataType>
+	/**
 	 * Optional prop to enable/disable table search.
 	 */
 	search?: boolean
+	/**
+	 * Optional props for search input.
+	 */
+	searchProps?: SearchProps
 }
 
 export function Table<DataType extends ParentDataType>({
+	classes = [],
 	columns,
 	data,
 	dataTag,
-	search = true
+	onRowClick,
+	search = true,
+	searchProps = {} as SearchProps
 }: TableProps<DataType>): ReactElement {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataType[]>([])
-	const delayedSearch = useCallback(
-		debounce(q => searchTable(q), 250),
-		[]
-	)
+
+	const tableClasses = useStyles({ searchProps })
 
 	const processedColumns = processColumns<DataType>(columns)
 	const processedData = processData<DataType>(data, columns)
+
+	const delayedSearch = useCallback(
+		debounce(q => searchTable(q), 250),
+		[processedData]
+	)
 
 	const fuse = new Fuse(processedData, {
 		isCaseSensitive: false,
@@ -60,28 +109,31 @@ export function Table<DataType extends ParentDataType>({
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
 		delayedSearch(e.target.value)
 
-	return (
-		<div>
-			{search && (
-				<div
-					style={{
-						display: 'flex',
-						justifyContent: 'flex-end',
-						marginBottom: 16
-					}}
-				>
-					<Input
-						dataTag='table-search'
-						onChange={handleChange}
-						placeholder='Search table...'
-					/>
-				</div>
-			)}
+	let optionalProps = {}
 
+	if (onRowClick) {
+		optionalProps = {
+			onRow: (_: Record<string, any>, rowIndex: number) => ({
+				onClick: () => onRowClick(data[rowIndex], rowIndex)
+			})
+		}
+	}
+
+	return (
+		<div className={cn(tableClasses.tableContainer, classes)}>
+			{search && (
+				<Input
+					classes={[tableClasses.searchBar]}
+					dataTag='table-search'
+					onChange={handleChange}
+					placeholder={searchProps.placeholder}
+				/>
+			)}
 			<AntDTable
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
 				{...getDataTestAttributeProp('table', dataTag)}
+				{...optionalProps}
 			/>
 		</div>
 	)
