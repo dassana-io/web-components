@@ -13,7 +13,7 @@ import { ColumnType, ParentDataType } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 
-const { spacing } = styleguide
+const { flexDown, spacing } = styleguide
 
 const useStyles = createUseStyles({
 	searchBar: {
@@ -22,8 +22,7 @@ const useStyles = createUseStyles({
 		marginBottom: spacing.m
 	},
 	tableContainer: {
-		display: 'flex',
-		flexDirection: 'column'
+		...flexDown
 	}
 })
 
