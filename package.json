@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.2.2",
+		"@dassana-io/web-utils": "^0.6.0",
 		"@storybook/addon-cssresources": "^6.0.27",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
