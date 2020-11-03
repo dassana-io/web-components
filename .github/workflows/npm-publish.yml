@@ -47,3 +47,4 @@ jobs:
                   npm publish
               env:
                   NODE_AUTH_TOKEN: ${{github.token}}
+                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
