@@ -1,4 +1,5 @@
 import * as reactHookForm from 'react-hook-form'
+import { act } from 'react-dom/test-utils'
 import { Button } from 'components/Button'
 import FieldContext from '../FieldContext'
 import React from 'react'
@@ -17,11 +18,15 @@ const getMockFormContext = (isDirty = true) =>
 		handleSubmit: (onSubmit: any) => onSubmit()
 	} as reactHookForm.UseFormMethods)
 
-const getWrapper = () => (
+const getWrapper = (additionalButtonProps = {}) => (
 	<FieldContext.Provider
-		value={{ initialValues: {}, loading: true, onSubmit: mockOnSubmit }}
+		value={{
+			initialValues: {},
+			loading: false,
+			onSubmit: (_: any) => mockOnSubmit as any
+		}}
 	>
-		<FormSubmitButton>Submit</FormSubmitButton>
+		<FormSubmitButton {...additionalButtonProps}>Submit</FormSubmitButton>
 	</FieldContext.Provider>
 )
 
@@ -34,7 +39,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-	jest.resetAllMocks()
+	jest.clearAllMocks()
 })
 
 describe('FormButton', () => {
@@ -43,13 +48,26 @@ describe('FormButton', () => {
 	})
 
 	it('calls onSubmit when clicked', () => {
-		wrapper.simulate('click')
+		wrapper.find(Button).simulate('click')
 
-		expect(mockOnSubmit).toHaveBeenCalledTimes(1)
+		expect(mockOnSubmit).toHaveBeenCalled()
+	})
+
+	it('calls onSubmit when the Enter key is pressed', () => {
+		act(() => {
+			dispatchEvent(
+				new KeyboardEvent('keydown', {
+					code: 'Enter',
+					key: 'Enter'
+				})
+			)
+		})
+
+		expect(mockOnSubmit).toHaveBeenCalled()
 	})
 
 	it('correctly passes loading from field context', () => {
-		expect(wrapper.find(Button).props().loading).toBe(true)
+		expect(wrapper.find(Button).props().loading).toBe(false)
 	})
 
 	it('enables the submit button if form is dirty', () => {
@@ -57,13 +75,17 @@ describe('FormButton', () => {
 	})
 
 	it('disables the submit button if form is pristine', () => {
-		jest.clearAllMocks()
-
 		jest.spyOn(reactHookForm, 'useFormContext').mockImplementation(() =>
 			getMockFormContext(false)
 		)
 
 		wrapper = mount(getWrapper())
+
+		expect(wrapper.find(Button).props().disabled).toBe(true)
+	})
+
+	it('disables the submit button if isDisabled evaluates to true', () => {
+		wrapper = mount(getWrapper({ isDisabled: () => true }))
 
 		expect(wrapper.find(Button).props().disabled).toBe(true)
 	})

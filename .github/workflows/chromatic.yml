@@ -16,9 +16,12 @@ jobs:
               run: |
                   rm -rf tsconfig.rollup.json
                   npm install
-
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
             - uses: chromaui/action@v1
               # options required to the GitHub chromatic action
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
               with:
                   # our project token, to see how to obtain it
                   # refer to https://www.learnstorybook.com/intro-to-storybook/react/en/deploy/

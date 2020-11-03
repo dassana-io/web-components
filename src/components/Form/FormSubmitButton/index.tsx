@@ -1,22 +1,40 @@
 import FieldContext from '../FieldContext'
+import { FormStateProxy } from 'react-hook-form/dist/types/form'
 import { useFormContext } from 'react-hook-form'
+import { useShortcut } from '@dassana-io/web-utils'
 import { Button, ButtonProps } from 'components/Button'
 import React, { FC, useContext } from 'react'
 
-export type FormButtonProps = Omit<ButtonProps, 'loading' | 'onClick'>
+export interface FormButtonProps
+	extends Omit<ButtonProps, 'loading' | 'onClick'> {
+	isDisabled?: (formState: FormStateProxy) => boolean
+}
 
-const FormSubmitButton: FC<FormButtonProps> = (props: FormButtonProps) => {
+const FormSubmitButton: FC<FormButtonProps> = ({
+	isDisabled,
+	...rest
+}: FormButtonProps) => {
 	const { handleSubmit, formState } = useFormContext()
 	const { loading, onSubmit } = useContext(FieldContext)
 	const { isDirty } = formState
 
+	const isButtonDisabled = () =>
+		isDisabled ? isDisabled(formState) : !isDirty
+
+	useShortcut({
+		additionalConditionalFn: () => !isButtonDisabled(),
+		callback: handleSubmit(onSubmit),
+		key: 'Enter',
+		keyEvent: 'keydown'
+	})
+
 	return (
 		<Button
 			dataTag='submit-button'
-			disabled={!isDirty}
+			disabled={isButtonDisabled()}
 			loading={loading}
 			onClick={handleSubmit(onSubmit)}
-			{...props}
+			{...rest}
 		/>
 	)
 }
