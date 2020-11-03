@@ -1,13 +1,18 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
-import { FieldValues } from 'react-hook-form/dist/types/form'
 import FormInput from './FormInput'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
 import FormTree from './FormTree'
+import { FieldValues, UseFormMethods } from 'react-hook-form/dist/types/form'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import React, { ReactNode, useEffect } from 'react'
+import React, {
+	ReactNode,
+	RefObject,
+	useEffect,
+	useImperativeHandle
+} from 'react'
 
 const useStyles = createUseStyles({
 	container: {
@@ -19,6 +24,7 @@ const useStyles = createUseStyles({
 
 export interface FormProps<Model> {
 	children: ReactNode
+	formRef?: RefObject<UseFormMethods>
 	initialValues?: Model
 	loading?: boolean
 	onSubmit: SubmitHandler<FieldValues>
@@ -26,6 +32,7 @@ export interface FormProps<Model> {
 
 export function Form<Model>({
 	children,
+	formRef,
 	initialValues = {} as Model,
 	loading = false,
 	onSubmit
@@ -38,6 +45,8 @@ export function Form<Model>({
 	useEffect(() => {
 		reset(initialValues)
 	}, [initialValues, reset])
+
+	useImperativeHandle(formRef, () => methods)
 
 	return (
 		<FormProvider {...methods}>
@@ -58,4 +67,5 @@ Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
 Form.Tree = FormTree
 
+export type { UseFormMethods } from 'react-hook-form/dist/types/form'
 export * from './types'
