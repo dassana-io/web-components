@@ -1,8 +1,9 @@
+import { act } from 'react-dom/test-utils'
 import { Input as AntDInput } from 'antd'
 import { Input } from './index'
-import React from 'react'
 import { Skeleton } from '../Skeleton'
 import { mount, ReactWrapper, shallow } from 'enzyme'
+import React, { createRef } from 'react'
 
 let wrapper: ReactWrapper
 
@@ -33,6 +34,20 @@ describe('Input', () => {
 		wrapper = mount(<Input disabled />)
 
 		expect(wrapper.find(AntDInput).props().disabled).toBeTruthy()
+	})
+
+	it('correctly passes the ref if one is provided', () => {
+		const inputRef = createRef<AntDInput>()
+
+		wrapper = mount(<Input inputRef={inputRef} />)
+
+		expect(document.activeElement?.tagName).toMatch('BODY')
+
+		act(() => {
+			inputRef.current?.focus()
+		})
+
+		expect(document.activeElement?.tagName).toMatch('INPUT')
 	})
 
 	it('correctly passes the placeholder prop', () => {

@@ -6,8 +6,19 @@ import React from 'react'
 import FormInput, { FormInputProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
+const mockFocus = jest.fn()
+
+jest.mock('react', () => ({
+	...(jest.requireActual('react') as {}),
+	useRef: () => ({
+		current: {
+			focus: mockFocus
+		}
+	})
+}))
+
 jest.mock('react-hook-form', () => ({
-	...jest.requireActual('react-hook-form'),
+	...(jest.requireActual('react-hook-form') as {}),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),
@@ -89,5 +100,21 @@ describe('FormInput', () => {
 		expect(wrapper.find(Controller).props().rules).toMatchObject({
 			required: true
 		})
+	})
+
+	it('focuses on the input if required', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					initialValues: {},
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormInput focused name='foo' required />
+			</FieldContext.Provider>
+		)
+
+		expect(mockFocus).toHaveBeenCalled()
 	})
 })
