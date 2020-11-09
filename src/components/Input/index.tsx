@@ -11,7 +11,7 @@ import {
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import { generateInputSkeletonStyles, generateInputStyles } from './utils'
-import React, { FC } from 'react'
+import React, { FC, RefObject } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -45,6 +45,7 @@ const InputSkeleton: FC<InputProps> = (props: InputProps) => {
 }
 
 export interface InputProps extends BaseFormElementProps {
+	inputRef?: RefObject<AntDInput>
 	/**
 	 * Type of input (ex: text, password)
 	 * @default text
@@ -57,6 +58,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		classes = [],
 		dataTag,
 		disabled = false,
+		inputRef,
 		onChange,
 		error = false,
 		loading = false,
@@ -94,6 +96,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 			className={cn(componentClasses.container, inputClasses)}
 			disabled={disabled}
 			placeholder={placeholder}
+			ref={inputRef}
 			type={type}
 			{...controlledCmpProps}
 			{...getDataTestAttributeProp('input', dataTag)}
