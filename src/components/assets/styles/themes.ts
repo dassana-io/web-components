@@ -1,6 +1,6 @@
 import colors from './colors'
 
-const { blacks, greens, oranges, reds, whites } = colors
+const { blacks, greens, grays, oranges, reds, whites } = colors
 
 export enum ThemeType {
 	dark = 'dark',
@@ -36,20 +36,20 @@ export interface Theme {
 const lightPalette: Theme = {
 	background: {
 		primary: whites.base,
-		secondary: blacks['lighten-90']
+		secondary: grays.base
 	},
 	border: blacks['lighten-80'],
 	primary: blacks.base,
 	secondary: blacks['lighten-30'],
 	state: {
 		active: blacks.base,
-		disabled: blacks['lighten-90'],
+		disabled: grays.base,
 		error: reds.base,
 		hover: blacks.base,
 		inactive: blacks['lighten-70'],
 		loading: {
-			primary: blacks['lighten-90'],
-			secondary: whites['darken-5']
+			primary: grays.base,
+			secondary: grays['lighten-40']
 		},
 		success: greens.base,
 		warning: oranges.base

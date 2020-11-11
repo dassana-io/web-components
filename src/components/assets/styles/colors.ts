@@ -4,17 +4,18 @@ const { shade, tint } = ColorManipulationTypes
 
 const black = '#282A35'
 const white = '#FEFEFE'
+const gray = '#EAEAEB'
 
 const blue = '#2F54EB'
 const green = '#59C93D'
 const orange = '#EEAB47'
 const red = '#EE5C47'
 
-const lightenPercentages = [10, 20, 30, 40, 50, 60, 70, 80, 90]
-const darkenPercentages = [10, 20]
+interface Base {
+	base: string
+}
 
-interface LightShadeType {
-	'lighten-90': string
+interface Blacks extends Base {
 	'lighten-80': string
 	'lighten-70': string
 	'lighten-60': string
@@ -23,65 +24,71 @@ interface LightShadeType {
 	'lighten-30': string
 	'lighten-20': string
 	'lighten-10': string
-}
-
-interface DarkShadeType {
 	'darken-10': string
 	'darken-20': string
+	'darken-40': string
 }
 
-interface ShadeType extends LightShadeType, DarkShadeType {
-	base: string
+interface Grays extends Base {
+	'lighten-70': string
+	'lighten-40': string
 }
 
-const generateLightShades = (baseColor: string, percentArr: number[]) => {
-	const shades: LightShadeType = {} as LightShadeType
+const percentages: Record<string, any> = {
+	black: { darken: [10, 20, 40], lighten: [10, 20, 30, 40, 50, 60, 70, 80] },
+	gray: { lighten: [40, 70] }
+}
+
+const generateTints = (baseColor: string, percentArr: number[] = []) => {
+	const shades = {} as Record<string, string>
 
 	percentArr.forEach(percentage => {
-		const shadeKey = `lighten-${percentage}` as keyof LightShadeType
+		const shadeKey = `lighten-${percentage}`
 		shades[shadeKey] = manipulateColor(baseColor, percentage, tint)
 	})
 
 	return shades
 }
 
-const generateDarkShades = (baseColor: string, percentArr: number[]) => {
-	const shades: DarkShadeType = {} as DarkShadeType
+const generateShades = (baseColor: string, percentArr: number[] = []) => {
+	const shades = {} as Record<string, string>
 
 	percentArr.forEach(percentage => {
-		const shadeKey = `darken-${percentage}` as keyof DarkShadeType
+		const shadeKey = `darken-${percentage}`
 		shades[shadeKey] = manipulateColor(baseColor, percentage, shade)
 	})
 
 	return shades
 }
 
-const generateShades = (baseColor: string) => {
-	const shades: ShadeType = {
+const generateTintsAndShades = (baseColor: string) => {
+	const shades = {
 		base: baseColor,
-		...generateLightShades(baseColor, lightenPercentages),
-		...generateDarkShades(baseColor, darkenPercentages)
+		...generateTints(baseColor, percentages[baseColor]?.lighten),
+		...generateShades(baseColor, percentages[baseColor]?.darken)
 	}
 
 	return shades
 }
 
 export interface ColorsType {
-	blacks: ShadeType
+	blacks: Blacks
 	blues: { base: string }
+	grays: Grays
 	greens: { base: string }
 	oranges: { base: string }
 	reds: { base: string }
-	whites: { base: string; 'darken-5': string }
+	whites: { base: string }
 }
 
 const colors: ColorsType = {
-	blacks: generateShades(black),
+	blacks: generateTintsAndShades(black) as Blacks,
 	blues: { base: blue },
+	grays: generateTintsAndShades(gray) as Grays,
 	greens: { base: green },
 	oranges: { base: orange },
 	reds: { base: red },
-	whites: { base: white, 'darken-5': manipulateColor(white, 5, shade) }
+	whites: { base: white }
 }
 
 export default colors
