@@ -1,15 +1,83 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide } from 'components/assets/styles'
+import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
-const { flexDown, spacing } = styleguide
+const {
+	colors: { blacks, grays, whites },
+	flexDown,
+	spacing
+} = styleguide
 
-export const useStyles = createUseStyles({
-	searchBar: {
-		alignSelf: props =>
-			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
-		marginBottom: spacing.m
+const { dark, light } = ThemeType
+
+const tablePalette = {
+	[dark]: {
+		sortArrow: {
+			active: blacks['lighten-60'],
+			base: blacks['lighten-20']
+		},
+		th: {
+			base: {
+				background: blacks['darken-20']
+			},
+			sort: {
+				background: blacks['darken-40']
+			}
+		},
+		tr: {
+			base: {
+				background: blacks.base,
+				border: blacks['darken-40']
+			},
+			hover: {
+				background: blacks['darken-20']
+			},
+			selected: {
+				background: blacks['darken-40']
+			},
+			sort: {
+				background: blacks['darken-20']
+			}
+		}
 	},
-	tableContainer: {
+	[light]: {
+		sortArrow: {
+			active: blacks['lighten-20'],
+			base: blacks['lighten-60']
+		},
+		th: {
+			base: {
+				background: grays['lighten-40']
+			},
+			sort: {
+				background: grays.base
+			}
+		},
+		tr: {
+			base: {
+				background: whites.base,
+				border: grays.base
+			},
+			hover: {
+				background: grays['lighten-40']
+			},
+			selected: {
+				background: grays.base
+			},
+			sort: {
+				background: grays['lighten-40']
+			}
+		}
+	}
+}
+
+const generateTableStyles = (themeType: ThemeType) => {
+	const {
+		base: { color }
+	} = themedStyles[themeType]
+
+	const { sortArrow, th, tr } = tablePalette[themeType]
+
+	return {
 		...flexDown,
 		'& .ant-table-wrapper': {
 			'& .ant-table': {
@@ -17,15 +85,15 @@ export const useStyles = createUseStyles({
 					'&.ant-table-row': {
 						'& > td': {
 							'&.ant-table-column-sort': {
-								background: 'DarkSlateBlue'
+								background: tr.sort.background
 							},
-							background: 'MediumSlateBlue',
-							borderBottom: '1px solid MediumOrchid',
-							color: 'LemonChiffon',
+							background: tr.base.background,
+							borderBottom: `1px solid ${tr.base.border}`,
+							color,
 							fontWeight: 300
 						},
 						'&:hover > td': {
-							background: 'DarkSlateBlue'
+							background: tr.hover.background
 						}
 					},
 					cursor: 'default'
@@ -35,22 +103,35 @@ export const useStyles = createUseStyles({
 						'& > .ant-table-column-sorters': {
 							'& > .ant-table-column-sorter': {
 								'& .active': {
-									color: 'Navy'
+									color: sortArrow.active
 								},
-								color: 'DeepSkyBlue'
+								color: sortArrow.base
 							}
 						},
 						'&.ant-table-column-sort': {
-							background: 'BurlyWood'
+							background: th.sort.background
 						},
-						background: 'wheat',
+						background: th.base.background,
 						borderBottom: 'none',
 						borderRadius: 0,
-						color: 'Orchid',
+						color,
 						fontWeight: 400
 					}
 				}
 			}
 		}
+	}
+}
+
+export const useStyles = createUseStyles({
+	searchBar: {
+		alignSelf: props =>
+			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
+		marginBottom: spacing.m
+	},
+	tableContainer: generateTableStyles(light),
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark} $tableContainer`]: generateTableStyles(dark)
 	}
 })
