@@ -3,28 +3,14 @@ import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
-import { createUseStyles } from 'react-jss'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
-import { styleguide } from 'components/assets/styles'
+import { useStyles } from './styles'
 import { ColumnType, ParentDataType } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
-
-const { flexDown, spacing } = styleguide
-
-const useStyles = createUseStyles({
-	searchBar: {
-		alignSelf: props =>
-			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
-		marginBottom: spacing.m
-	},
-	tableContainer: {
-		...flexDown
-	}
-})
 
 export interface OnRowClick<DataType> {
 	(data: DataType, rowIndex: number): void
