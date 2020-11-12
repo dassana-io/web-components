@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
+	borderRadius,
 	colors: { blacks, grays, whites },
 	flexDown,
 	font,
@@ -10,11 +11,59 @@ const {
 
 const { dark, light } = ThemeType
 
+const paginationPalette = {
+	[dark]: {
+		disabledBgColor: blacks.base,
+		hoverColor: blacks['lighten-80']
+	},
+	[light]: {
+		disabledBgColor: grays.base,
+		hoverColor: blacks['darken-20']
+	}
+}
+
+export const generatePaginationStyles = (themeType: ThemeType) => {
+	const {
+		base: { backgroundColor, borderColor, color },
+		disabled
+	} = themedStyles[themeType]
+
+	const { disabledBgColor, hoverColor } = paginationPalette[themeType]
+
+	return {
+		'& .ant-pagination.ant-table-pagination > li': {
+			'&.ant-pagination-disabled, &.ant-pagination-disabled:hover': {
+				'& button.ant-pagination-item-link': {
+					backgroundColor: disabledBgColor,
+					borderColor,
+					color: disabled.color
+				}
+			},
+			'&.ant-pagination-item, & button.ant-pagination-item-link': {
+				'& a': { color },
+				backgroundColor: backgroundColor,
+				borderColor,
+				borderRadius,
+				color
+			},
+			'&.ant-pagination-item.ant-pagination-item-active, &.ant-pagination-item:hover, &:hover': {
+				'& a': { color: hoverColor },
+				'& button.ant-pagination-item-link': {
+					borderColor: hoverColor,
+					color: hoverColor
+				},
+				borderColor: hoverColor
+			},
+			borderRadius
+		}
+	}
+}
+
 const tablePalette = {
 	[dark]: {
 		arrow: {
 			active: blacks['lighten-60'],
-			base: blacks['lighten-20']
+			base: blacks['lighten-30']
 		},
 		th: {
 			base: {
@@ -25,15 +74,15 @@ const tablePalette = {
 			}
 		},
 		tr: {
+			active: {
+				background: blacks['darken-40']
+			},
 			base: {
 				background: blacks.base,
 				border: blacks['darken-40']
 			},
 			hover: {
 				background: blacks['darken-20']
-			},
-			selected: {
-				background: blacks['darken-40']
 			},
 			sort: {
 				background: blacks['darken-20']
@@ -42,7 +91,7 @@ const tablePalette = {
 	},
 	[light]: {
 		arrow: {
-			active: blacks['lighten-20'],
+			active: blacks['lighten-30'],
 			base: blacks['lighten-60']
 		},
 		th: {
@@ -54,15 +103,15 @@ const tablePalette = {
 			}
 		},
 		tr: {
+			active: {
+				background: grays.base
+			},
 			base: {
 				background: whites.base,
 				border: grays.base
 			},
 			hover: {
 				background: grays['lighten-40']
-			},
-			selected: {
-				background: grays.base
 			},
 			sort: {
 				background: grays['lighten-40']
@@ -81,36 +130,30 @@ const generateTableStyles = (themeType: ThemeType) => {
 	return {
 		...flexDown,
 		'& .ant-table-wrapper': {
+			...generatePaginationStyles(themeType),
 			'& .ant-table': {
 				'& > .ant-table-container': {
 					'& table': {
-						'& .ant-table-thead > tr': {
-							'& > th': {
-								'& > .ant-table-column-sorters': {
-									'& > .ant-table-column-sorter': {
-										'& .active': {
-											color: arrow.active
-										},
-										color: arrow.base
-									}
+						'& .ant-table-thead > tr > th': {
+							'& > .ant-table-column-sorters > .ant-table-column-sorter': {
+								'& .active': {
+									color: arrow.active
 								},
-								'&.ant-table-column-sort': {
-									background: th.sort.background
-								},
-								background: th.base.background,
-								borderBottom: 'none',
-								borderRadius: 0,
-								color,
-								fontWeight: 400
-							}
-						},
-						borderRadius: 0
+								color: arrow.base
+							},
+							'&.ant-table-column-sort': {
+								background: th.sort.background
+							},
+							background: th.base.background,
+							borderBottom: 'none',
+							borderRadius: 0,
+							color,
+							fontWeight: 400
+						}
 					},
-					borderRadius: 0,
 					cursor: 'default'
 				},
-				background: tr.base.background,
-				borderRadius: 0
+				background: tr.base.background
 			}
 		}
 	}
@@ -146,16 +189,15 @@ const generateThemedActiveRowStyles = (themeType: ThemeType) => {
 	const { tr } = tablePalette[themeType]
 
 	return {
-		'&.ant-table-row.ant-table-row-level-0': {
-			'& > td.ant-table-cell': {
-				background: tr.selected.background
-			}
+		'&.ant-table-row.ant-table-row-level-0 > td.ant-table-cell': {
+			background: tr.active.background
 		}
 	}
 }
 
 const commonRowActionIconStyles = {
 	content: '"\u27e9"', // chevron
+	// content: '"›"',
 	// content: '"\u276f"', // Heavy right-pointing angle quotation mark ornament
 	// content: '"\u3009"', // Right angle bracket (korean)
 	// content: '"\u003e"', // Greater than sign '>'
@@ -167,48 +209,43 @@ const commonRowActionIconStyles = {
 	top: 'calc(50% - 18px)'
 }
 
-const generateThemedRowActionIconStyles = (themeType: ThemeType) => {
+const generateThemedRowActionIconStyles = (
+	themeType: ThemeType,
+	active = false
+) => {
 	const { arrow } = tablePalette[themeType]
 
 	return {
-		color: arrow.active
+		color: active ? arrow.active : arrow.base
 	}
 }
+
+const rowActionIconActiveClasses =
+	'&.ant-table-row.ant-table-row-level-0 > td.ant-table-cell:last-child::after'
+const rowActionIconHoverClasses = '&.ant-table-row:hover > td:last-child::after'
 
 export const useStyles = createUseStyles({
 	row: generateThemedRowStyles(light),
 	rowActionIconActive: {
-		'&.ant-table-row.ant-table-row-level-0': {
-			'& > td.ant-table-cell': {
-				'&:last-child::after': {
-					...generateThemedRowActionIconStyles(light),
-					...commonRowActionIconStyles
-				}
-			}
+		[rowActionIconActiveClasses]: {
+			...generateThemedRowActionIconStyles(light, true),
+			...commonRowActionIconStyles
 		}
 	},
 	rowActionIconHover: {
-		'&.ant-table-row.ant-table-row-level-0': {
-			'&:hover > td.ant-table-cell': {
-				'&:last-child::after': {
-					...generateThemedRowActionIconStyles(light),
-					...commonRowActionIconStyles
-				}
-			}
+		[rowActionIconHoverClasses]: {
+			...generateThemedRowActionIconStyles(light),
+			...commonRowActionIconStyles
 		}
 	},
 	rowClickable: {
-		'&.ant-table-row': {
-			'& > td': {
-				cursor: 'pointer'
-			}
+		'&.ant-table-row > td': {
+			cursor: 'pointer'
 		}
 	},
 	rowWithActionIcon: {
-		'&.ant-table-row': {
-			'& > td:last-child': {
-				paddingRight: 50
-			}
+		'&.ant-table-row > td:last-child': {
+			paddingRight: 50
 		}
 	},
 	searchBar: {
@@ -225,22 +262,15 @@ export const useStyles = createUseStyles({
 			'& $activeRow': generateThemedActiveRowStyles(dark),
 			'& $row': generateThemedRowStyles(dark),
 			'& $rowActionIconActive': {
-				'&.ant-table-row.ant-table-row-level-0': {
-					'& > td.ant-table-cell': {
-						'&:last-child::after': {
-							...generateThemedRowActionIconStyles(dark)
-						}
-					}
-				}
+				[rowActionIconActiveClasses]: generateThemedRowActionIconStyles(
+					dark,
+					true
+				)
 			},
 			'& $rowActionIconHover': {
-				'&.ant-table-row.ant-table-row-level-0': {
-					'&:hover > td.ant-table-cell': {
-						'&:last-child::after': {
-							...generateThemedRowActionIconStyles(dark)
-						}
-					}
-				}
+				[rowActionIconHoverClasses]: generateThemedRowActionIconStyles(
+					dark
+				)
 			},
 			'& $tableContainer': generateTableStyles(dark)
 		}
