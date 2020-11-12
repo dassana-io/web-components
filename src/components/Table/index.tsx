@@ -44,6 +44,7 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	 * Optional callback that runs when a table row is clicked
 	 */
 	onRowClick?: OnRowClick<DataType>
+	showRowActionIcon?: boolean
 	/**
 	 * Optional prop to enable/disable table search.
 	 */
@@ -60,9 +61,11 @@ export function Table<DataType extends ParentDataType>({
 	data,
 	dataTag,
 	onRowClick,
+	showRowActionIcon = false,
 	search = true,
 	searchProps = {} as SearchProps
 }: TableProps<DataType>): ReactElement {
+	const [activeRowKey, setActiveRowKey] = useState('')
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataType[]>([])
 
@@ -82,6 +85,22 @@ export function Table<DataType extends ParentDataType>({
 		threshold: 0.1
 	})
 
+	const getRowClassName = (record: DataType, _: number) =>
+		cn({
+			[tableClasses.activeRow]: activeRowKey === record.key,
+			[tableClasses.row]: true,
+			[tableClasses.rowActionIconActive]:
+				showRowActionIcon && activeRowKey === record.key,
+			[tableClasses.rowActionIconHover]: showRowActionIcon && onRowClick,
+			[tableClasses.rowClickable]: onRowClick,
+			[tableClasses.rowWithActionIcon]: showRowActionIcon
+		})
+
+	const getRowKey = (record: DataType) => `${record.key}`
+
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+		delayedSearch(e.target.value)
+
 	const searchTable = (value: string) => {
 		setSearchTerm(value)
 
@@ -92,15 +111,18 @@ export function Table<DataType extends ParentDataType>({
 		setFilteredData(filteredData)
 	}
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-		delayedSearch(e.target.value)
-
 	let optionalProps = {}
 
 	if (onRowClick) {
 		optionalProps = {
-			onRow: (_: Record<string, any>, rowIndex: number) => ({
-				onClick: () => onRowClick(data[rowIndex], rowIndex)
+			onRow: (record: Record<string, any>, rowIndex: number) => ({
+				onClick: () => {
+					activeRowKey === record.key
+						? setActiveRowKey('')
+						: setActiveRowKey(record.key)
+
+					onRowClick(data[rowIndex], rowIndex)
+				}
 			})
 		}
 	}
@@ -118,6 +140,8 @@ export function Table<DataType extends ParentDataType>({
 			<AntDTable
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
+				rowClassName={getRowClassName}
+				rowKey={getRowKey}
 				{...getDataTestAttributeProp('table', dataTag)}
 				{...optionalProps}
 			/>
