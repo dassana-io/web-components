@@ -197,12 +197,6 @@ const generateThemedActiveRowStyles = (themeType: ThemeType) => {
 
 const commonRowActionIconStyles = {
 	content: '"\u27e9"', // chevron
-	// content: '"›"',
-	// content: '"\u276f"', // Heavy right-pointing angle quotation mark ornament
-	// content: '"\u3009"', // Right angle bracket (korean)
-	// content: '"\u003e"', // Greater than sign '>'
-	// content: '"\uff1e"', // 	Fullwidth greater-than sign
-	// content: '"\u2992"', // angle bracket with dot
 	...font.h2,
 	position: 'absolute',
 	right: 20,

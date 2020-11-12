@@ -209,3 +209,19 @@ MissingCells.argTypes = {
 		}
 	}
 }
+
+export const Paginated = NumberTemplate.bind({})
+Paginated.args = {
+	columns: tableData1.columns,
+	data: [
+		...tableData1.data,
+		...tableData1.data.slice(0, 3),
+		...tableData1.data,
+		...tableData1.data.slice(1, 4),
+		...tableData1.data,
+		...tableData1.data.slice(0, 2),
+		...tableData1.data
+	],
+	onRowClick: action('onRowClick'),
+	showRowActionIcon: true
+}
