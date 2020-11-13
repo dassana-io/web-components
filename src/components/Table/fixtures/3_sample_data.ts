@@ -4,12 +4,13 @@ const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
 
 export interface Client1 {
-	name?: string
-	start_date?: number
-	role?: { name: string; color: string }
-	linked_in?: string
 	admin_access?: boolean
 	company?: string
+	id: number
+	linked_in?: string
+	name?: string
+	role?: { name: string; color: string }
+	start_date?: number
 }
 
 const columns: ColumnType[] = [
@@ -69,23 +70,27 @@ const data: Client1[] = [
 	{
 		admin_access: false,
 		company: 'dassana',
+		id: 0,
 		linked_in: 'lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
 		start_date: 1519782342212
 	},
 	{
+		id: 1,
 		role: { color: 'magenta', name: 'Software Engineer' },
 		start_date: 1553932342212
 	},
 	{
 		company: 'googleCloudService',
+		id: 2,
 		linked_in: 'amet-c',
 		name: 'Amet Consectetur'
 	},
 	{
 		admin_access: true,
 		company: 'azure',
+		id: 3,
 		linked_in: 'duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },

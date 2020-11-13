@@ -8,12 +8,12 @@ import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { useStyles } from './styles'
-import { ColumnType, ParentDataType } from './types'
+import { ColumnType, DataId } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
-import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
+import React, { ChangeEvent, Key, useCallback, useState } from 'react'
 
-export interface OnRowClick<DataType> {
-	(data: DataType, rowIndex: number): void
+export interface OnRowClick<Data> {
+	(data: Data, rowIndex: number): void
 }
 
 export interface SearchProps {
@@ -27,7 +27,8 @@ export interface SearchProps {
 	placement?: 'left' | 'right'
 }
 
-export interface TableProps<DataType> extends CommonComponentProps {
+export interface TableProps<Data> extends CommonComponentProps {
+	activeRowKey?: Key
 	/**
 	 * Array of classes to pass to button.
 	 */
@@ -39,11 +40,11 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	/**
 	 * Array of data objects
 	 */
-	data: DataType[]
+	data: Array<Data & DataId>
 	/**
 	 * Optional callback that runs when a table row is clicked
 	 */
-	onRowClick?: OnRowClick<DataType>
+	onRowClick?: OnRowClick<Data & DataId>
 	showRowActionIcon?: boolean
 	/**
 	 * Optional prop to enable/disable table search.
@@ -55,24 +56,25 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	searchProps?: SearchProps
 }
 
-export function Table<DataType extends ParentDataType>({
+// eslint-disable-next-line comma-spacing
+export const Table = <Data,>({
+	activeRowKey = '',
 	classes = [],
 	columns,
 	data,
 	dataTag,
 	onRowClick,
-	showRowActionIcon = false,
 	search = true,
-	searchProps = {} as SearchProps
-}: TableProps<DataType>): ReactElement {
-	const [activeRowKey, setActiveRowKey] = useState('')
+	searchProps = {} as SearchProps,
+	showRowActionIcon = false
+}: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
-	const [filteredData, setFilteredData] = useState<DataType[]>([])
+	const [filteredData, setFilteredData] = useState<Array<Data & DataId>>([])
 
 	const tableClasses = useStyles({ searchProps })
 
-	const processedColumns = processColumns<DataType>(columns)
-	const processedData = processData<DataType>(data, columns)
+	const processedColumns = processColumns<Data & DataId>(columns)
+	const processedData = processData<Data & DataId>(data, columns)
 
 	const delayedSearch = useCallback(
 		debounce(q => searchTable(q), 250),
@@ -85,18 +87,18 @@ export function Table<DataType extends ParentDataType>({
 		threshold: 0.1
 	})
 
-	const getRowClassName = (record: DataType, _: number) =>
+	const getRowClassName = (record: Data & DataId, _: number) =>
 		cn({
-			[tableClasses.activeRow]: activeRowKey === record.key,
+			[tableClasses.activeRow]: onRowClick && activeRowKey === record.key,
 			[tableClasses.row]: true,
 			[tableClasses.rowActionIconActive]:
 				showRowActionIcon && activeRowKey === record.key,
-			[tableClasses.rowActionIconHover]: showRowActionIcon && onRowClick,
+			[tableClasses.rowActionIconHover]: onRowClick && showRowActionIcon,
 			[tableClasses.rowClickable]: onRowClick,
 			[tableClasses.rowWithActionIcon]: showRowActionIcon
 		})
 
-	const getRowKey = (record: DataType) => `${record.key}`
+	const getRowKey = (record: Data & DataId) => `${record.key}`
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
 		delayedSearch(e.target.value)
@@ -106,7 +108,10 @@ export function Table<DataType extends ParentDataType>({
 
 		const filteredData = fuse
 			.search(value)
-			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
+			.map(
+				({ item }: Fuse.FuseResult<Data & DataId>): Data & DataId =>
+					item
+			)
 
 		setFilteredData(filteredData)
 	}
@@ -115,14 +120,8 @@ export function Table<DataType extends ParentDataType>({
 
 	if (onRowClick) {
 		optionalProps = {
-			onRow: (record: Record<string, any>, rowIndex: number) => ({
-				onClick: () => {
-					activeRowKey === record.key
-						? setActiveRowKey('')
-						: setActiveRowKey(record.key)
-
-					onRowClick(data[rowIndex], rowIndex)
-				}
+			onRow: (_: Record<string, any>, rowIndex: number) => ({
+				onClick: () => onRowClick(data[rowIndex], rowIndex)
 			})
 		}
 	}

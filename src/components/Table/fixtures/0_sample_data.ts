@@ -2,33 +2,11 @@ import { ColumnType, ColumnTypes, TableProps } from '../.'
 
 export interface Person {
 	name: string
+	id: number | string
 	age: number
 }
 
 const { number, string } = ColumnTypes
-
-const data: Person[] = [
-	{
-		age: 36,
-		name: 'Lorem'
-	},
-	{
-		age: 32,
-		name: 'Ipsum'
-	},
-	{
-		age: 45,
-		name: 'Amet'
-	},
-	{
-		age: 50,
-		name: 'Elit'
-	},
-	{
-		age: 22,
-		name: 'Dolor'
-	}
-]
 
 const columns: ColumnType[] = [
 	{
@@ -40,6 +18,34 @@ const columns: ColumnType[] = [
 		dataIndex: 'age',
 		title: 'Age',
 		type: number
+	}
+]
+
+const data: Person[] = [
+	{
+		age: 36,
+		id: 0,
+		name: 'Lorem'
+	},
+	{
+		age: 32,
+		id: 1,
+		name: 'Ipsum'
+	},
+	{
+		age: 45,
+		id: 2,
+		name: 'Amet'
+	},
+	{
+		age: 50,
+		id: 3,
+		name: 'Elit'
+	},
+	{
+		age: 22,
+		id: 4,
+		name: 'Dolor'
 	}
 ]
 

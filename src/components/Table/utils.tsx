@@ -7,9 +7,9 @@ import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
+	DataId,
 	DateDisplayFormat,
-	NumberDateType,
-	ParentDataType
+	NumberDateType
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
@@ -20,21 +20,19 @@ import { Toggle, ToggleProps } from '../Toggle'
 
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
-export function processColumns<DataType extends ParentDataType>(
-	columns: ColumnType[]
-) {
+export function processColumns<Data extends DataId>(columns: ColumnType[]) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
-		const antDColumn: AntDColumnType<DataType> = {
+		const antDColumn: AntDColumnType<Data> = {
 			dataIndex,
 			showSorterTooltip: false,
 			title
 		}
 
-		applyRender<DataType>(column, antDColumn)
+		applyRender<Data>(column, antDColumn)
 
 		if (sort) {
-			applySort<DataType>(column, antDColumn)
+			applySort<Data>(column, antDColumn)
 		}
 
 		return antDColumn
@@ -47,16 +45,16 @@ Takes data prop passed to Table and returns data:
   2. with an added _FORMATTED_DATA key and array of formatted data value
     (this makes rows searchable by formatted data).
   */
-export function processData<DataType extends ParentDataType>(
-	data: DataType[],
+export function processData<Data extends DataId>(
+	data: Data[],
 	columns: ColumnType[]
 ) {
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
-	return data.map((item, i) => ({
+	return data.map(item => ({
 		...item,
 		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
-		key: item.id ? item.id : i
+		key: item.id
 	}))
 }
 
@@ -105,7 +103,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
   based on data type and format.
  */
 function compareStrings(column: ColumnType) {
-	return (a: ParentDataType, b: ParentDataType) => {
+	return (a: Record<string, any>, b: Record<string, any>) => {
 		const compareValA: string = a[column.dataIndex] || ''
 		const compareValB: string = b[column.dataIndex] || ''
 
@@ -114,7 +112,7 @@ function compareStrings(column: ColumnType) {
 }
 
 function compareNumbers(column: ColumnType) {
-	return (a: ParentDataType, b: ParentDataType) => {
+	return (a: Record<string, any>, b: Record<string, any>) => {
 		const valA = a[column.dataIndex]
 		const valB = b[column.dataIndex]
 
@@ -128,7 +126,7 @@ function compareNumbers(column: ColumnType) {
 function compareTags(column: ColumnType) {
 	/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
 	  this will break. */
-	return (a: ParentDataType, b: ParentDataType) => {
+	return (a: Record<string, any>, b: Record<string, any>) => {
 		const valA = a[column.dataIndex]
 		const valB = b[column.dataIndex]
 
@@ -140,7 +138,7 @@ function compareTags(column: ColumnType) {
 }
 
 function compareBooleans(column: ColumnType) {
-	return (a: ParentDataType, b: ParentDataType) => {
+	return (a: Record<string, any>, b: Record<string, any>) => {
 		const valA = a[column.dataIndex]
 		const valB = b[column.dataIndex]
 
@@ -152,10 +150,7 @@ function compareBooleans(column: ColumnType) {
 }
 
 /* Sets antD column sorter prop as appropriate compare function. */
-function applySort<DataType>(
-	column: ColumnType,
-	antDColumn: AntDColumnType<DataType>
-) {
+function applySort<Data>(column: ColumnType, antDColumn: AntDColumnType<Data>) {
 	const { component, number, string } = ColumnTypes
 	const { icon, link, tag, toggle } = ColumnFormats
 
@@ -193,9 +188,9 @@ depending on data type and format. Render function takes
 data value as input and returns a custom formatted value(
 can be a string or React Element).
 */
-function applyRender<DataType>(
+function applyRender<Data>(
 	column: ColumnType,
-	antDColumn: AntDColumnType<DataType>
+	antDColumn: AntDColumnType<Data>
 ) {
 	const { component, number } = ColumnTypes
 	const { byte, date, icon, link, tag, toggle } = ColumnFormats
@@ -311,9 +306,9 @@ function applyRender<DataType>(
 Creates array of formatted data so that rows can be
 searched and filtered by formatted data.
 */
-function createFormattedData<DataType>(
+function createFormattedData<Data>(
 	mappedFormat: Record<string, NumFormatterFunction>,
-	item: DataType
+	item: Data
 ) {
 	// @ts-ignore
 	return Object.keys(mappedFormat).map(key => mappedFormat[key](item[key]))

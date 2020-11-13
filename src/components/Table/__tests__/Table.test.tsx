@@ -2,16 +2,16 @@ import { act } from 'react-dom/test-utils'
 import moment from 'moment'
 import React from 'react'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
-import mockData, { DataType, dateFormat } from '__mocks__/table_mock_data'
+import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 import { Table, TableProps } from '..'
 
 /* Helper functions */
-export function createTable<DataType>(tableProps: TableProps<DataType>) {
+export function createTable<Data>(tableProps: TableProps<Data>) {
 	return (
 		<div>
-			<Table<DataType> {...tableProps} />
+			<Table<Data> {...tableProps} />
 		</div>
 	)
 }
@@ -77,12 +77,12 @@ describe('Table', () => {
 		expect(tableBody.find('tr')).toHaveLength(5)
 
 		tableBody.find('tr').forEach((node, i) => {
-			expect(node.find(`tr[data-row-key=${i}]`)).toHaveLength(1)
+			expect(node.find(`tr[data-row-key='${i}']`)).toHaveLength(1)
 		})
 	})
 
 	it('renders all types and formats of data', () => {
-		wrapper = mount(createTable<DataType>(mockData))
+		wrapper = mount(createTable<Data>(mockData))
 		const expected = {
 			_FORMATTED_DATA: [
 				formatDate({
@@ -95,6 +95,7 @@ describe('Table', () => {
 			date: 1599193037581,
 			icon: 'test',
 			icon_key: 'dassana',
+			id: 0,
 			key: 0,
 			link: 'test',
 			number: 0,
@@ -168,7 +169,7 @@ describe('Table search and searchProps', () => {
 
 	it('it renders the search bar to the right if searchProps.placement is passed as right', async () => {
 		wrapper = mount(
-			createTable<DataType>({
+			createTable<Data>({
 				...mockData,
 				searchProps: { placement: 'right' }
 			})
@@ -184,7 +185,7 @@ describe('Table search and searchProps', () => {
 
 	it('correctly passes the placeholder prop to the searchbar input', () => {
 		wrapper = mount(
-			createTable<DataType>({
+			createTable<Data>({
 				...mockData,
 				searchProps: { placeholder: 'Mock placeholder' }
 			})

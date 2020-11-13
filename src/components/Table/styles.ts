@@ -197,10 +197,11 @@ const generateThemedActiveRowStyles = (themeType: ThemeType) => {
 
 const commonRowActionIconStyles = {
 	content: '"\u27e9"', // chevron
-	...font.h2,
+	fontSize: font.body.fontSize,
+	lineHeight: '14px',
 	position: 'absolute',
-	right: 20,
-	top: 'calc(50% - 18px)'
+	right: spacing.l,
+	top: 'calc(50% - 8px)'
 }
 
 const generateThemedRowActionIconStyles = (
@@ -239,7 +240,7 @@ export const useStyles = createUseStyles({
 	},
 	rowWithActionIcon: {
 		'&.ant-table-row > td:last-child': {
-			paddingRight: 50
+			paddingRight: 2 * spacing.l
 		}
 	},
 	searchBar: {
