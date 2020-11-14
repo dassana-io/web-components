@@ -94,10 +94,7 @@ export const Table = <Data,>({
 	const getRowClassName = (record: Data & DataId, _: number) =>
 		cn({
 			[tableClasses.activeRow]: onRowClick && activeRowKey === record.key,
-			[tableClasses.row]: true,
-			[tableClasses.rowActionIconActive]:
-				showRowActionIcon && activeRowKey === record.key,
-			[tableClasses.rowActionIconHover]: onRowClick && showRowActionIcon
+			[tableClasses.row]: true
 		})
 
 	const getRowKey = (record: Data & DataId) => `${record.key}`

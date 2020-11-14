@@ -185,15 +185,6 @@ const generateThemedRowStyles = (themeType: ThemeType) => {
 	}
 }
 
-const commonRowActionIconStyles = {
-	content: '"\u27e9"', // chevron
-	fontSize: font.body.fontSize,
-	lineHeight: '14px',
-	position: 'absolute',
-	right: spacing.l,
-	top: 'calc(50% - 8px)'
-}
-
 const generateThemedRowActionIconStyles = (
 	themeType: ThemeType,
 	active = false
@@ -209,24 +200,40 @@ const generateThemedActiveRowStyles = (themeType: ThemeType) => {
 	const { tr } = tablePalette[themeType]
 
 	return {
-		[cellClasses]: {
-			background: tr.active.background
-		}
+		background: tr.active.background
 	}
 }
 
-const rowActionIconActiveClasses =
-	'&.ant-table-row.ant-table-row-level-0 > td.ant-table-cell:last-child::after'
-const rowActionIconHoverClasses = '&.ant-table-row:hover > td:last-child::after'
+interface Props {
+	[prop: string]: any
+}
+
+const rowActionIconLightStyles = (isActive = false) => ({
+	color: (props: Props) =>
+		props.showRowActionIcon
+			? generateThemedRowActionIconStyles(light, isActive).color
+			: '',
+	content: (props: Props) => (props.showRowActionIcon ? '"\u27e9"' : ''), // chevron
+	fontSize: (props: Props) =>
+		props.showRowActionIcon ? font.body.fontSize : 0,
+	lineHeight: (props: Props) => (props.showRowActionIcon ? '14px' : 0),
+	position: (props: Props) => (props.showRowActionIcon ? 'absolute' : 0),
+	right: (props: Props) => (props.showRowActionIcon ? spacing.l : 0),
+	top: (props: Props) => (props.showRowActionIcon ? 'calc(50% - 8px)' : 0)
+})
 
 export const useStyles = createUseStyles({
 	activeRow: {},
 	row: {
 		[rowClasses]: {
-			'&$activeRow': generateThemedActiveRowStyles(light),
+			'&$activeRow': {
+				[cellClasses]: {
+					...generateThemedActiveRowStyles(light),
+					'&:last-child::after': rowActionIconLightStyles(true)
+				}
+			},
 			[cellClasses]: {
 				...generateThemedRowStyles(light)[cellClasses],
-
 				'&:last-child': {
 					paddingRight: props =>
 						props.showRowActionIcon ? 2 * spacing.l : spacing.m
@@ -234,21 +241,10 @@ export const useStyles = createUseStyles({
 				cursor: props => (props.onRowClick ? 'pointer' : 'default'),
 				fontWeight: 300
 			},
-			[rowHoverCellClasses]: generateThemedRowStyles(light)[
-				rowHoverCellClasses
-			]
-		}
-	},
-	rowActionIconActive: {
-		[rowActionIconActiveClasses]: {
-			...generateThemedRowActionIconStyles(light, true),
-			...commonRowActionIconStyles
-		}
-	},
-	rowActionIconHover: {
-		[rowActionIconHoverClasses]: {
-			...generateThemedRowActionIconStyles(light),
-			...commonRowActionIconStyles
+			[rowHoverCellClasses]: {
+				...generateThemedRowStyles(light)[rowHoverCellClasses],
+				'&:last-child::after': rowActionIconLightStyles()
+			}
 		}
 	},
 	searchBar: {
@@ -260,30 +256,27 @@ export const useStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $activeRow': {
-				[rowClasses]: generateThemedActiveRowStyles(dark)
-			},
 			'& $row': {
 				[rowClasses]: {
-					'&$activeRow': generateThemedActiveRowStyles(dark),
+					'&$activeRow': {
+						[cellClasses]: {
+							...generateThemedActiveRowStyles(dark),
+							'&:last-child::after': generateThemedRowActionIconStyles(
+								dark,
+								true
+							)
+						}
+					},
 					[cellClasses]: {
 						...generateThemedRowStyles(dark)[cellClasses]
 					},
-					[rowHoverCellClasses]: generateThemedRowStyles(dark)[
-						rowHoverCellClasses
-					]
+					[rowHoverCellClasses]: {
+						...generateThemedRowStyles(dark)[rowHoverCellClasses],
+						'&:last-child::after': generateThemedRowActionIconStyles(
+							dark
+						)
+					}
 				}
-			},
-			'& $rowActionIconActive': {
-				[rowActionIconActiveClasses]: generateThemedRowActionIconStyles(
-					dark,
-					true
-				)
-			},
-			'& $rowActionIconHover': {
-				[rowActionIconHoverClasses]: generateThemedRowActionIconStyles(
-					dark
-				)
 			},
 			'& $tableContainer': generateTableStyles(dark)
 		}
