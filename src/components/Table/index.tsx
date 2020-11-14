@@ -9,7 +9,7 @@ import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { useStyles } from './styles'
 import { ColumnType, DataId } from './types'
-import { mapFilterKeys, processColumns, processData } from './utils'
+import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, { ChangeEvent, Key, useCallback, useState } from 'react'
 
 export interface OnRowClick<Data> {
@@ -77,6 +77,7 @@ export const Table = <Data,>({
 		showRowActionIcon
 	})
 
+	const mappedData = mapData<Data & DataId>(data)
 	const processedColumns = processColumns<Data & DataId>(columns)
 	const processedData = processData<Data & DataId>(data, columns)
 
@@ -119,8 +120,8 @@ export const Table = <Data,>({
 
 	if (onRowClick) {
 		optionalProps = {
-			onRow: (_: Record<string, any>, rowIndex: number) => ({
-				onClick: () => onRowClick(data[rowIndex], rowIndex)
+			onRow: (record: Record<string, any>, rowIndex: number) => ({
+				onClick: () => onRowClick(mappedData[record.id], rowIndex)
 			})
 		}
 	}

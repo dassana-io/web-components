@@ -1,15 +1,49 @@
 import { formatDate } from './Table.test'
-import mockData0 from '../fixtures/0_sample_data'
 import mockData2 from '../fixtures/2_sample_data'
 import { ColumnFormats, ColumnType, ColumnTypes } from '..'
 import {
 	createByteFormatter,
 	createDateFormatter,
+	mapData,
 	mapFilterKeys,
 	processColumns,
 	processData
 } from '../utils'
+import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData1, { dateFormat0, dateFormat1 } from '../fixtures/1_sample_data'
+
+describe('mapData', () => {
+	it('returns a hash of data items with the item id mapped to the item', () => {
+		const mockMappedData = {
+			0: {
+				age: 36,
+				id: 0,
+				name: 'Lorem'
+			},
+			1: {
+				age: 32,
+				id: 1,
+				name: 'Ipsum'
+			},
+			2: {
+				age: 45,
+				id: 2,
+				name: 'Amet'
+			},
+			3: {
+				age: 50,
+				id: 3,
+				name: 'Elit'
+			},
+			4: {
+				age: 22,
+				id: 4,
+				name: 'Dolor'
+			}
+		}
+		expect(mapData<Person>(mockData0.data)).toMatchObject(mockMappedData)
+	})
+})
 
 describe('processColumns', () => {
 	it('returns correctly formatted columns', () => {

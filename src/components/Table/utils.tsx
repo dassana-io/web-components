@@ -18,6 +18,20 @@ import { Toggle, ToggleProps } from '../Toggle'
 
 /* ------- Exported Functions ------- */
 
+interface MappedData<Data> {
+	[id: string]: Data
+}
+
+export const mapData = <Data extends DataId>(data: Data[]) => {
+	const mappedData: MappedData<Data> = {}
+
+	for (const item of data) {
+		mappedData[item.id] = item
+	}
+
+	return mappedData
+}
+
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
 export function processColumns<Data extends DataId>(columns: ColumnType[]) {
