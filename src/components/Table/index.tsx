@@ -71,7 +71,11 @@ export const Table = <Data,>({
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<Array<Data & DataId>>([])
 
-	const tableClasses = useStyles({ searchProps })
+	const tableClasses = useStyles({
+		onRowClick,
+		searchProps,
+		showRowActionIcon
+	})
 
 	const processedColumns = processColumns<Data & DataId>(columns)
 	const processedData = processData<Data & DataId>(data, columns)
@@ -93,9 +97,7 @@ export const Table = <Data,>({
 			[tableClasses.row]: true,
 			[tableClasses.rowActionIconActive]:
 				showRowActionIcon && activeRowKey === record.key,
-			[tableClasses.rowActionIconHover]: onRowClick && showRowActionIcon,
-			[tableClasses.rowClickable]: onRowClick,
-			[tableClasses.rowWithActionIcon]: showRowActionIcon
+			[tableClasses.rowActionIconHover]: onRowClick && showRowActionIcon
 		})
 
 	const getRowKey = (record: Data & DataId) => `${record.key}`

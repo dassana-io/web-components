@@ -159,6 +159,10 @@ const generateTableStyles = (themeType: ThemeType) => {
 	}
 }
 
+const rowClasses = '&.ant-table-row.ant-table-row-level-0'
+const cellClasses = '& > td'
+const rowHoverCellClasses = '&:hover > td'
+
 const generateThemedRowStyles = (themeType: ThemeType) => {
 	const {
 		base: { color }
@@ -167,30 +171,16 @@ const generateThemedRowStyles = (themeType: ThemeType) => {
 	const { tr } = tablePalette[themeType]
 
 	return {
-		'&.ant-table-row.ant-table-row-level-0': {
-			'& > td': {
-				'&.ant-table-column-sort': {
-					background: tr.sort.background
-				},
-				background: tr.base.background,
-				borderBottom: `1px solid ${tr.base.border}`,
-				color,
-				fontWeight: 300
+		[cellClasses]: {
+			'&.ant-table-column-sort': {
+				background: tr.sort.background
 			},
-			'&:hover > td': {
-				background: tr.hover.background
-			}
+			background: tr.base.background,
+			borderBottom: `1px solid ${tr.base.border}`,
+			color
 		},
-		borderRadius: 0
-	}
-}
-
-const generateThemedActiveRowStyles = (themeType: ThemeType) => {
-	const { tr } = tablePalette[themeType]
-
-	return {
-		'&.ant-table-row.ant-table-row-level-0 > td.ant-table-cell': {
-			background: tr.active.background
+		[rowHoverCellClasses]: {
+			background: tr.hover.background
 		}
 	}
 }
@@ -215,12 +205,40 @@ const generateThemedRowActionIconStyles = (
 	}
 }
 
+const generateThemedActiveRowStyles = (themeType: ThemeType) => {
+	const { tr } = tablePalette[themeType]
+
+	return {
+		[cellClasses]: {
+			background: tr.active.background
+		}
+	}
+}
+
 const rowActionIconActiveClasses =
 	'&.ant-table-row.ant-table-row-level-0 > td.ant-table-cell:last-child::after'
 const rowActionIconHoverClasses = '&.ant-table-row:hover > td:last-child::after'
 
 export const useStyles = createUseStyles({
-	row: generateThemedRowStyles(light),
+	activeRow: {},
+	row: {
+		[rowClasses]: {
+			'&$activeRow': generateThemedActiveRowStyles(light),
+			[cellClasses]: {
+				...generateThemedRowStyles(light)[cellClasses],
+
+				'&:last-child': {
+					paddingRight: props =>
+						props.showRowActionIcon ? 2 * spacing.l : spacing.m
+				},
+				cursor: props => (props.onRowClick ? 'pointer' : 'default'),
+				fontWeight: 300
+			},
+			[rowHoverCellClasses]: generateThemedRowStyles(light)[
+				rowHoverCellClasses
+			]
+		}
+	},
 	rowActionIconActive: {
 		[rowActionIconActiveClasses]: {
 			...generateThemedRowActionIconStyles(light, true),
@@ -233,29 +251,29 @@ export const useStyles = createUseStyles({
 			...commonRowActionIconStyles
 		}
 	},
-	rowClickable: {
-		'&.ant-table-row > td': {
-			cursor: 'pointer'
-		}
-	},
-	rowWithActionIcon: {
-		'&.ant-table-row > td:last-child': {
-			paddingRight: 2 * spacing.l
-		}
-	},
 	searchBar: {
 		alignSelf: props =>
 			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
 		marginBottom: spacing.m
 	},
-	// eslint-disable-next-line sort-keys
-	activeRow: generateThemedActiveRowStyles(light),
 	tableContainer: generateTableStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
-		[`.${dark} `]: {
-			'& $activeRow': generateThemedActiveRowStyles(dark),
-			'& $row': generateThemedRowStyles(dark),
+		[`.${dark}`]: {
+			'& $activeRow': {
+				[rowClasses]: generateThemedActiveRowStyles(dark)
+			},
+			'& $row': {
+				[rowClasses]: {
+					'&$activeRow': generateThemedActiveRowStyles(dark),
+					[cellClasses]: {
+						...generateThemedRowStyles(dark)[cellClasses]
+					},
+					[rowHoverCellClasses]: generateThemedRowStyles(dark)[
+						rowHoverCellClasses
+					]
+				}
+			},
 			'& $rowActionIconActive': {
 				[rowActionIconActiveClasses]: generateThemedRowActionIconStyles(
 					dark,
