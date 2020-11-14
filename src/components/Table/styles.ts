@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { TableProps } from '.'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -65,15 +66,7 @@ const tablePalette = {
 			active: blacks['lighten-60'],
 			base: blacks['lighten-30']
 		},
-		th: {
-			base: {
-				background: blacks['darken-20']
-			},
-			sort: {
-				background: blacks['darken-40']
-			}
-		},
-		tr: {
+		td: {
 			active: {
 				background: blacks['darken-40']
 			},
@@ -87,6 +80,14 @@ const tablePalette = {
 			sort: {
 				background: blacks['darken-20']
 			}
+		},
+		th: {
+			base: {
+				background: blacks['darken-20']
+			},
+			sort: {
+				background: blacks['darken-40']
+			}
 		}
 	},
 	[light]: {
@@ -94,15 +95,7 @@ const tablePalette = {
 			active: blacks['lighten-30'],
 			base: blacks['lighten-60']
 		},
-		th: {
-			base: {
-				background: grays['lighten-40']
-			},
-			sort: {
-				background: grays.base
-			}
-		},
-		tr: {
+		td: {
 			active: {
 				background: grays.base
 			},
@@ -116,6 +109,14 @@ const tablePalette = {
 			sort: {
 				background: grays['lighten-40']
 			}
+		},
+		th: {
+			base: {
+				background: grays['lighten-40']
+			},
+			sort: {
+				background: grays.base
+			}
 		}
 	}
 }
@@ -125,7 +126,7 @@ const generateTableStyles = (themeType: ThemeType) => {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { arrow, th, tr } = tablePalette[themeType]
+	const { arrow, td, th } = tablePalette[themeType]
 
 	return {
 		...flexDown,
@@ -153,42 +154,48 @@ const generateTableStyles = (themeType: ThemeType) => {
 					},
 					cursor: 'default'
 				},
-				background: tr.base.background
+				background: td.base.background
 			}
 		}
 	}
 }
 
-const rowClasses = '&.ant-table-row.ant-table-row-level-0'
 const cellClasses = '& > td'
+const lastCellAfterClasses = '&:last-child::after'
+const rowClasses = '&.ant-table-row.ant-table-row-level-0'
 const rowHoverCellClasses = '&:hover > td'
 
-const generateThemedRowStyles = (themeType: ThemeType) => {
+const generateThemedCellStyles = (themeType: ThemeType) => {
 	const {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { tr } = tablePalette[themeType]
+	const { td } = tablePalette[themeType]
 
 	return {
 		[cellClasses]: {
 			'&.ant-table-column-sort': {
-				background: tr.sort.background
+				background: td.sort.background
 			},
-			background: tr.base.background,
-			borderBottom: `1px solid ${tr.base.border}`,
+			background: td.base.background,
+			borderBottom: `1px solid ${td.base.border}`,
 			color
 		},
 		[rowHoverCellClasses]: {
-			background: tr.hover.background
+			background: td.hover.background
 		}
 	}
 }
 
-const generateThemedRowActionIconStyles = (
-	themeType: ThemeType,
-	active = false
-) => {
+const generateThemedActiveCellStyles = (themeType: ThemeType) => {
+	const { td } = tablePalette[themeType]
+
+	return {
+		background: td.active.background
+	}
+}
+
+const generateThemedRowIconStyles = (themeType: ThemeType, active = false) => {
 	const { arrow } = tablePalette[themeType]
 
 	return {
@@ -196,30 +203,15 @@ const generateThemedRowActionIconStyles = (
 	}
 }
 
-const generateThemedActiveRowStyles = (themeType: ThemeType) => {
-	const { tr } = tablePalette[themeType]
-
-	return {
-		background: tr.active.background
-	}
-}
-
-interface Props {
-	[prop: string]: any
-}
-
-const rowActionIconLightStyles = (isActive = false) => ({
-	color: (props: Props) =>
-		props.showRowActionIcon
-			? generateThemedRowActionIconStyles(light, isActive).color
-			: '',
-	content: (props: Props) => (props.showRowActionIcon ? '"\u27e9"' : ''), // chevron
-	fontSize: (props: Props) =>
-		props.showRowActionIcon ? font.body.fontSize : 0,
-	lineHeight: (props: Props) => (props.showRowActionIcon ? '14px' : 0),
-	position: (props: Props) => (props.showRowActionIcon ? 'absolute' : 0),
-	right: (props: Props) => (props.showRowActionIcon ? spacing.l : 0),
-	top: (props: Props) => (props.showRowActionIcon ? 'calc(50% - 8px)' : 0)
+const generateLightRowIconStyles = (isActive = false) => ({
+	...generateThemedRowIconStyles(light, isActive),
+	content: (props: TableProps<{}>) =>
+		props.showRowActionIcon && props.onRowClick ? '"\u27e9"' : '',
+	fontSize: font.body.fontSize,
+	lineHeight: '12px',
+	position: 'absolute',
+	right: spacing.l,
+	top: `calc(50% - ${font.body.fontSize / 2}px)`
 })
 
 export const useStyles = createUseStyles({
@@ -228,12 +220,12 @@ export const useStyles = createUseStyles({
 		[rowClasses]: {
 			'&$activeRow': {
 				[cellClasses]: {
-					...generateThemedActiveRowStyles(light),
-					'&:last-child::after': rowActionIconLightStyles(true)
+					...generateThemedActiveCellStyles(light),
+					[lastCellAfterClasses]: generateLightRowIconStyles(true)
 				}
 			},
 			[cellClasses]: {
-				...generateThemedRowStyles(light)[cellClasses],
+				...generateThemedCellStyles(light)[cellClasses],
 				'&:last-child': {
 					paddingRight: props =>
 						props.showRowActionIcon ? 2 * spacing.l : spacing.m
@@ -242,8 +234,8 @@ export const useStyles = createUseStyles({
 				fontWeight: 300
 			},
 			[rowHoverCellClasses]: {
-				...generateThemedRowStyles(light)[rowHoverCellClasses],
-				'&:last-child::after': rowActionIconLightStyles()
+				...generateThemedCellStyles(light)[rowHoverCellClasses],
+				[lastCellAfterClasses]: generateLightRowIconStyles()
 			}
 		}
 	},
@@ -260,19 +252,19 @@ export const useStyles = createUseStyles({
 				[rowClasses]: {
 					'&$activeRow': {
 						[cellClasses]: {
-							...generateThemedActiveRowStyles(dark),
-							'&:last-child::after': generateThemedRowActionIconStyles(
+							...generateThemedActiveCellStyles(dark),
+							[lastCellAfterClasses]: generateThemedRowIconStyles(
 								dark,
 								true
 							)
 						}
 					},
 					[cellClasses]: {
-						...generateThemedRowStyles(dark)[cellClasses]
+						...generateThemedCellStyles(dark)[cellClasses]
 					},
 					[rowHoverCellClasses]: {
-						...generateThemedRowStyles(dark)[rowHoverCellClasses],
-						'&:last-child::after': generateThemedRowActionIconStyles(
+						...generateThemedCellStyles(dark)[rowHoverCellClasses],
+						[lastCellAfterClasses]: generateThemedRowIconStyles(
 							dark
 						)
 					}
