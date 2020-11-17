@@ -28,9 +28,12 @@ export interface SearchProps {
 }
 
 export interface TableProps<Data> extends CommonComponentProps {
+	/**
+	 * Key(id) of active row if onRowClick exists
+	 */
 	activeRowKey?: Key
 	/**
-	 * Array of classes to pass to button.
+	 * Array of classes to pass to button
 	 */
 	classes?: string[]
 	/**
@@ -45,13 +48,16 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional callback that runs when a table row is clicked
 	 */
 	onRowClick?: OnRowClick<Data & DataId>
+	/**
+	 * Optional arrow icon that renders on the right side on hover or active if onRowClick exists
+	 * */
 	showRowActionIcon?: boolean
 	/**
-	 * Optional prop to enable/disable table search.
+	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
 	/**
-	 * Optional props for search input.
+	 * Optional props for search input
 	 */
 	searchProps?: SearchProps
 }

@@ -1,6 +1,6 @@
 import { act } from 'react-dom/test-utils'
 import moment from 'moment'
-import React from 'react'
+import React, { useState } from 'react'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
@@ -44,6 +44,7 @@ export function formatDate({
 		: moment(unixTS).format(displayFormat)
 }
 
+const mockOnRowClick = jest.fn()
 let wrapper: ReactWrapper
 
 beforeEach(() => {
@@ -51,7 +52,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-	wrapper.unmount()
+	jest.resetAllMocks()
 })
 
 describe('Table', () => {
@@ -197,10 +198,8 @@ describe('Table search and searchProps', () => {
 	})
 })
 
-describe('Table onRowClick', () => {
+describe('Table onRowClick, activeRowKey', () => {
 	it('calls onRowClick handler when a table row is clicked', () => {
-		const mockOnRowClick = jest.fn()
-
 		wrapper = mount(
 			createTable<Person>({ ...mockData0, onRowClick: mockOnRowClick })
 		)
@@ -213,5 +212,21 @@ describe('Table onRowClick', () => {
 
 	it('does not pass an onRow prop if onRowClick prop does not exist', () => {
 		expect(wrapper.find(AntDTable).props().onRow).toBeFalsy()
+	})
+
+	it('applies the active row styles if activeRowKey index passed with a valid key', () => {
+		wrapper = mount(
+			createTable<Person>({
+				...mockData0,
+				activeRowKey: 0,
+				onRowClick: mockOnRowClick,
+				showRowActionIcon: true
+			})
+		)
+
+		// eslint-disable-next-line quotes
+		const tableRow = wrapper.find("tr[data-row-key='0']")
+
+		expect(tableRow.getDOMNode().classList.toString()).toContain('active')
 	})
 })

@@ -206,7 +206,7 @@ const generateThemedRowIconStyles = (themeType: ThemeType, active = false) => {
 const generateLightRowIconStyles = (isActive = false) => ({
 	...generateThemedRowIconStyles(light, isActive),
 	content: (props: TableProps<{}>) =>
-		props.showRowActionIcon ? '"\u27e9"' : '',
+		props.showRowActionIcon ? '"\u27e9"' : '""',
 	fontSize: font.body.fontSize,
 	lineHeight: '12px',
 	position: 'absolute',
