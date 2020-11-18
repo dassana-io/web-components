@@ -9,6 +9,9 @@ import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
 
 const commonArgTypes = {
+	activeRowKey: {
+		control: { disable: true }
+	},
 	dataTag: {
 		control: { disable: true }
 	},
@@ -42,10 +45,13 @@ const commonArgTypes = {
 const DecoratedTableStory = <Data extends DataId>(props: TableProps<Data>) => {
 	const [activeRowKey, setActiveRowKey] = useState<Key>('')
 
-	const onRowClick = (clickedRowData: Data) =>
+	const onRowClick = (clickedRowData: Data, i: number) => {
+		action('onRowClick')(clickedRowData, i)
+
 		activeRowKey === clickedRowData.id
 			? setActiveRowKey('')
 			: setActiveRowKey(clickedRowData.id)
+	}
 
 	return (
 		<Table<Data>
@@ -100,8 +106,7 @@ const NumberTemplate: Story<TableProps<File>> = args => (
 )
 export const Number = NumberTemplate.bind({})
 Number.args = {
-	...tableData1,
-	showRowActionIcon: true
+	...tableData1
 }
 Number.argTypes = {
 	...commonArgTypes,
@@ -242,7 +247,6 @@ Paginated.args = {
 	data: paginatedData.map((item, i) => {
 		item.id = i
 		return item
-	}),
-	onRowClick: action('onRowClick'),
-	showRowActionIcon: true
+	})
 }
+Paginated.argTypes = commonArgTypes

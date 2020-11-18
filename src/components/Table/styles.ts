@@ -205,8 +205,7 @@ const generateThemedRowIconStyles = (themeType: ThemeType, active = false) => {
 
 const generateLightRowIconStyles = (isActive = false) => ({
 	...generateThemedRowIconStyles(light, isActive),
-	content: (props: TableProps<{}>) =>
-		props.showRowActionIcon ? '"\u27e9"' : '""',
+	content: (props: TableProps<{}>) => (props.onRowClick ? '"\u27e9"' : '""'),
 	fontSize: font.body.fontSize,
 	lineHeight: '12px',
 	position: 'absolute',
@@ -228,7 +227,7 @@ export const useStyles = createUseStyles({
 				...generateThemedCellStyles(light)[cellClasses],
 				'&:last-child': {
 					paddingRight: props =>
-						props.showRowActionIcon ? 2 * spacing.l : spacing.m
+						props.onRowClick ? 2 * spacing.l : spacing.m
 				},
 				cursor: props => (props.onRowClick ? 'pointer' : 'default'),
 				fontWeight: 300

@@ -49,10 +49,6 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 */
 	onRowClick?: OnRowClick<Data & DataId>
 	/**
-	 * Optional arrow icon that renders on the right side on hover or active if onRowClick exists
-	 * */
-	showRowActionIcon?: boolean
-	/**
 	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
@@ -71,16 +67,14 @@ export const Table = <Data,>({
 	dataTag,
 	onRowClick,
 	search = true,
-	searchProps = {} as SearchProps,
-	showRowActionIcon = false
+	searchProps = {} as SearchProps
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<Array<Data & DataId>>([])
 
 	const tableClasses = useStyles({
 		onRowClick,
-		searchProps,
-		showRowActionIcon
+		searchProps
 	})
 
 	const mappedData = mapData<Data & DataId>(data)
