@@ -1,10 +1,8 @@
 import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
-import FieldLabel from '../FieldLabel'
-import { iconOptions } from 'components/Select/fixtures/sample_options'
 import React from 'react'
-import { Select } from 'components/Select'
-import FormSelect, { FormSelectProps } from './index'
+import { Toggle } from 'components/Toggle'
+import FormToggle, { FormToggleProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
@@ -16,7 +14,7 @@ jest.mock('react-hook-form', () => ({
 	})
 }))
 
-let wrapper: ReactWrapper<FormSelectProps>
+let wrapper: ReactWrapper<FormToggleProps>
 
 const mockOnSubmit = jest.fn()
 
@@ -24,12 +22,12 @@ beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
-				initialValues: { foo: 'bar' },
+				initialValues: { foo: true },
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
 		>
-			<FormSelect name='foo' options={iconOptions} />
+			<FormToggle label='foo' name='foo' />
 		</FieldContext.Provider>
 	)
 })
@@ -38,27 +36,16 @@ afterEach(() => {
 	jest.resetAllMocks()
 })
 
-describe('FormSelect', () => {
+describe('FormToggle', () => {
 	it('renders', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
 	it('correctly passes a default value from initial values if it exists', () => {
-		expect(wrapper.find(Controller).props().defaultValue).toEqual('bar')
+		expect(wrapper.find(Controller).props().defaultValue).toEqual(true)
 	})
 
-	it('should render a Select component', () => {
-		const test = {
-			onChange: jest.fn(),
-			value: 'abc'
-		} as jest.Mocked<any>
-
-		const select = wrapper.find(Controller).invoke('render')!(test)
-
-		expect(select.type).toBe(Select)
-	})
-
-	it('renders a label if one is passed in', () => {
+	it('correctly passes a default value from initial values if defaultChecked is true', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
@@ -67,14 +54,26 @@ describe('FormSelect', () => {
 					onSubmit: mockOnSubmit
 				}}
 			>
-				<FormSelect
-					label='Field Label'
-					name='foo'
-					options={iconOptions}
-				/>
+				<FormToggle defaultChecked label='foo' name='foo' />
 			</FieldContext.Provider>
 		)
 
-		expect(wrapper.find(FieldLabel)).toHaveLength(1)
+		expect(wrapper.find(Controller).props().defaultValue).toEqual(true)
+	})
+
+	it('should render a Toggle component', () => {
+		const mockOnChange = jest.fn()
+		const test = {
+			onChange: mockOnChange,
+			value: true
+		} as jest.Mocked<any>
+
+		const toggle = wrapper.find(Controller).invoke('render')!(test)
+
+		expect(toggle.type).toBe(Toggle)
+
+		toggle.props.onChange(true)
+
+		expect(mockOnChange).toHaveBeenCalled()
 	})
 })

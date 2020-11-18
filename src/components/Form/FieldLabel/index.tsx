@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Skeleton } from 'components/Skeleton'
 import {
@@ -47,6 +48,7 @@ const useStyles = createUseStyles({
 })
 
 export interface FieldLabelProps {
+	classes?: string[]
 	fullWidth?: boolean
 	label: string
 	loading?: boolean
@@ -55,23 +57,26 @@ export interface FieldLabelProps {
 }
 
 const FieldLabel: FC<FieldLabelProps> = ({
+	classes = [],
 	fullWidth = false,
 	label,
 	loading = false,
 	required = false,
 	skeletonWidth = 100
 }: FieldLabelProps) => {
-	const classes = useStyles({ fullWidth })
+	const fieldLabelClasses = useStyles({ fullWidth })
 
 	return (
-		<div className={classes.container}>
+		<div className={cn({ [fieldLabelClasses.container]: true }, classes)}>
 			{loading ? (
 				<Skeleton width={skeletonWidth} />
 			) : (
 				<>
 					<span>{label}</span>
 					{!required && (
-						<span className={classes.optional}>Optional</span>
+						<span className={fieldLabelClasses.optional}>
+							Optional
+						</span>
 					)}
 				</>
 			)}

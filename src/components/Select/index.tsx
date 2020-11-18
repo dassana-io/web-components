@@ -8,10 +8,13 @@ import { getDataTestAttributeProp } from '../utils'
 import { Skeleton } from '../Skeleton'
 import {
 	defaultFieldWidth,
-	fieldErrorStyles
+	fieldErrorStyles,
+	styleguide
 } from '../assets/styles/styleguide'
 import { Icon, IconName, SharedIconProps } from '../Icon'
 import React, { FC } from 'react'
+
+const { flexAlignCenter } = styleguide
 
 const { Option } = AntDSelect
 
@@ -24,13 +27,11 @@ const useStyles = createUseStyles({
 		width: '100%'
 	},
 	icon: {
-		alignItems: 'center',
-		display: 'flex',
+		...flexAlignCenter,
 		paddingRight: 7.5
 	},
 	option: {
-		alignItems: 'center',
-		display: 'flex'
+		...flexAlignCenter
 	}
 })
 
