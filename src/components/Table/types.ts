@@ -97,3 +97,5 @@ export type ColumnType = StringType | NumberType | ComponentType
 export interface DataId extends Record<string, any> {
 	id: Key
 }
+
+export type TableData<Data> = Data & DataId

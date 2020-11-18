@@ -78,7 +78,7 @@ describe('Table', () => {
 		expect(tableBody.find('tr')).toHaveLength(5)
 
 		tableBody.find('tr').forEach((node, i) => {
-			expect(node.find(`tr[data-row-key='${i}']`)).toHaveLength(1)
+			expect(node.find(`tr[data-row-key=${i}]`)).toHaveLength(1)
 		})
 	})
 
@@ -224,7 +224,7 @@ describe('Table onRowClick, activeRowKey', () => {
 		)
 
 		// eslint-disable-next-line quotes
-		const tableRow = wrapper.find("tr[data-row-key='0']")
+		const tableRow = wrapper.find('tr[data-row-key=0]')
 
 		expect(tableRow.getDOMNode().classList.toString()).toContain('active')
 	})

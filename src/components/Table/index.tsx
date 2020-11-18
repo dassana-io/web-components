@@ -8,12 +8,18 @@ import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { useStyles } from './styles'
-import { ColumnType, DataId } from './types'
+import { ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
-import React, { ChangeEvent, Key, useCallback, useState } from 'react'
+import React, {
+	ChangeEvent,
+	Key,
+	useCallback,
+	useEffect,
+	useState
+} from 'react'
 
-export interface OnRowClick<Data> {
-	(data: Data, rowIndex: number): void
+export interface OnRowClick<TableData> {
+	(data: TableData, rowIndex: number): void
 }
 
 export interface SearchProps {
@@ -33,7 +39,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 */
 	activeRowKey?: Key
 	/**
-	 * Array of classes to pass to button
+	 * Array of classes to pass to Table
 	 */
 	classes?: string[]
 	/**
@@ -43,11 +49,11 @@ export interface TableProps<Data> extends CommonComponentProps {
 	/**
 	 * Array of data objects
 	 */
-	data: Array<Data & DataId>
+	data: TableData<Data>[]
 	/**
 	 * Optional callback that runs when a table row is clicked
 	 */
-	onRowClick?: OnRowClick<Data & DataId>
+	onRowClick?: OnRowClick<TableData<Data>>
 	/**
 	 * Optional prop to enable/disable table search
 	 */
@@ -70,16 +76,32 @@ export const Table = <Data,>({
 	searchProps = {} as SearchProps
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
-	const [filteredData, setFilteredData] = useState<Array<Data & DataId>>([])
+	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
 
 	const tableClasses = useStyles({
 		onRowClick,
 		searchProps
 	})
 
-	const mappedData = mapData<Data & DataId>(data)
-	const processedColumns = processColumns<Data & DataId>(columns)
-	const processedData = processData<Data & DataId>(data, columns)
+	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
+	const [processedColumns, setProcessedColumns] = useState(
+		processColumns<TableData<Data>>(columns)
+	)
+	const [processedData, setProcessedData] = useState(
+		processData<TableData<Data>>(data, columns)
+	)
+
+	useEffect(() => {
+		setMappedData(mapData<TableData<Data>>(data))
+	}, [data])
+
+	useEffect(() => {
+		setProcessedColumns(processColumns<TableData<Data>>(columns))
+	}, [columns])
+
+	useEffect(() => {
+		setProcessedData(processData<TableData<Data>>(data, columns))
+	}, [columns, data])
 
 	const delayedSearch = useCallback(
 		debounce(q => searchTable(q), 250),
@@ -92,13 +114,13 @@ export const Table = <Data,>({
 		threshold: 0.1
 	})
 
-	const getRowClassName = (record: Data & DataId, _: number) =>
+	const getRowClassName = (record: TableData<Data>, _: number) =>
 		cn({
 			[tableClasses.activeRow]: onRowClick && activeRowKey === record.key,
 			[tableClasses.row]: true
 		})
 
-	const getRowKey = (record: Data & DataId) => `${record.key}`
+	const getRowKey = (record: TableData<Data>) => record.key
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
 		delayedSearch(e.target.value)
@@ -109,7 +131,7 @@ export const Table = <Data,>({
 		const filteredData = fuse
 			.search(value)
 			.map(
-				({ item }: Fuse.FuseResult<Data & DataId>): Data & DataId =>
+				({ item }: Fuse.FuseResult<TableData<Data>>): TableData<Data> =>
 					item
 			)
 

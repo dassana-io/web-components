@@ -60,7 +60,7 @@ const percentages: Record<string, any> = {
 	[gray]: { lighten: [40, 70] }
 }
 
-interface GenerateTintsOrShades {
+interface GenerateColors {
 	(
 		baseColor: string,
 		type: ColorManipulationTypes.shade | ColorManipulationTypes.tint,
@@ -68,11 +68,7 @@ interface GenerateTintsOrShades {
 	): Record<string, string>
 }
 
-const generateTintsOrShades: GenerateTintsOrShades = (
-	baseColor,
-	type,
-	percentArr = []
-) => {
+const generateColors: GenerateColors = (baseColor, type, percentArr = []) => {
 	const colors = {} as Record<string, string>
 
 	percentArr.forEach(percentage => {
@@ -87,16 +83,8 @@ const generateTintsOrShades: GenerateTintsOrShades = (
 
 const generateTintsAndShades = (color: Colors) => ({
 	base: baseColors[color],
-	...generateTintsOrShades(
-		baseColors[color],
-		tint,
-		percentages[color]?.lighten
-	),
-	...generateTintsOrShades(
-		baseColors[color],
-		shade,
-		percentages[color]?.darken
-	)
+	...generateColors(baseColors[color], tint, percentages[color]?.lighten),
+	...generateColors(baseColors[color], shade, percentages[color]?.darken)
 })
 
 export interface ColorsType {

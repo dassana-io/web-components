@@ -18,12 +18,12 @@ import { Toggle, ToggleProps } from '../Toggle'
 
 /* ------- Exported Functions ------- */
 
-interface MappedData<Data> {
-	[id: string]: Data
+interface MappedData<TableData> {
+	[id: string]: TableData
 }
 
-export const mapData = <Data extends DataId>(data: Data[]) => {
-	const mappedData: MappedData<Data> = {}
+export const mapData = <TableData extends DataId>(data: TableData[]) => {
+	const mappedData: MappedData<TableData> = {}
 
 	for (const item of data) {
 		mappedData[item.id] = item
@@ -34,19 +34,21 @@ export const mapData = <Data extends DataId>(data: Data[]) => {
 
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
-export function processColumns<Data extends DataId>(columns: ColumnType[]) {
+export function processColumns<TableData extends DataId>(
+	columns: ColumnType[]
+) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
-		const antDColumn: AntDColumnType<Data> = {
+		const antDColumn: AntDColumnType<TableData> = {
 			dataIndex,
 			showSorterTooltip: false,
 			title
 		}
 
-		applyRender<Data>(column, antDColumn)
+		applyRender<TableData>(column, antDColumn)
 
 		if (sort) {
-			applySort<Data>(column, antDColumn)
+			applySort<TableData>(column, antDColumn)
 		}
 
 		return antDColumn
@@ -59,8 +61,8 @@ Takes data prop passed to Table and returns data:
   2. with an added _FORMATTED_DATA key and array of formatted data value
     (this makes rows searchable by formatted data).
   */
-export function processData<Data extends DataId>(
-	data: Data[],
+export function processData<TableData extends DataId>(
+	data: TableData[],
 	columns: ColumnType[]
 ) {
 	const mappedFormat = mapDataIndexToFormatter(columns)
@@ -164,7 +166,10 @@ function compareBooleans(column: ColumnType) {
 }
 
 /* Sets antD column sorter prop as appropriate compare function. */
-function applySort<Data>(column: ColumnType, antDColumn: AntDColumnType<Data>) {
+function applySort<TableData extends DataId>(
+	column: ColumnType,
+	antDColumn: AntDColumnType<TableData>
+) {
 	const { component, number, string } = ColumnTypes
 	const { icon, link, tag, toggle } = ColumnFormats
 
@@ -202,9 +207,9 @@ depending on data type and format. Render function takes
 data value as input and returns a custom formatted value(
 can be a string or React Element).
 */
-function applyRender<Data>(
+function applyRender<TableData extends DataId>(
 	column: ColumnType,
-	antDColumn: AntDColumnType<Data>
+	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number } = ColumnTypes
 	const { byte, date, icon, link, tag, toggle } = ColumnFormats
@@ -320,9 +325,9 @@ function applyRender<Data>(
 Creates array of formatted data so that rows can be
 searched and filtered by formatted data.
 */
-function createFormattedData<Data>(
+function createFormattedData<TableData extends DataId>(
 	mappedFormat: Record<string, NumFormatterFunction>,
-	item: Data
+	item: TableData
 ) {
 	// @ts-ignore
 	return Object.keys(mappedFormat).map(key => mappedFormat[key](item[key]))
