@@ -4,7 +4,7 @@ import { v4 as uuidV4 } from 'uuid'
 import { themedStyles, themes, ThemeType } from '../assets/styles/themes'
 import { useCallback, useEffect, useState } from 'react'
 
-const { spacing } = styleguide
+const { borderRadius, flexSpaceBetween, spacing } = styleguide
 
 export const NOTIFICATION_CONTAINER_ID = 'notification-root'
 
@@ -90,12 +90,11 @@ export const generateNotificationStyles = (themeType: ThemeType) => {
 	const palette = themes[themeType]
 
 	return {
+		...flexSpaceBetween,
 		background: palette.background.primary,
 		border: `1px solid ${base.borderColor}`,
-		borderRadius: 4,
+		borderRadius,
 		color: base.color,
-		display: 'flex',
-		justifyContent: 'space-between',
 		marginBottom: spacing.m,
 		padding: spacing.m,
 		position: 'relative',

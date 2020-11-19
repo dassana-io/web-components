@@ -4,6 +4,7 @@ import FormInput from './FormInput'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
+import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { FieldValues, UseFormMethods } from 'react-hook-form/dist/types/form'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -65,6 +66,7 @@ Form.SubmitButton = FormSubmitButton
 Form.Input = FormInput
 Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
+Form.Toggle = FormToggle
 Form.Tree = FormTree
 
 export type { UseFormMethods } from 'react-hook-form/dist/types/form'

@@ -1,16 +1,18 @@
 import { createUseStyles } from 'react-jss'
 import random from 'lodash/random'
 import { Skeleton } from '../Skeleton'
+import { styleguide } from 'components/assets/styles'
 import times from 'lodash/times'
 import React, { FC, Fragment, Key } from 'react'
+
+const { flexAlignCenter } = styleguide
 
 const useStyles = createUseStyles({
 	skeletonLabel: {
 		marginLeft: 5
 	},
 	treeNodeSkeleton: {
-		alignItems: 'center',
-		display: 'flex',
+		...flexAlignCenter,
 		marginLeft: props => (props.nestLevel ? props.nestLevel * 20 : 0),
 		paddingBottom: 10
 	}

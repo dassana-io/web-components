@@ -8,7 +8,7 @@ import FormRadioGroup, { FormRadioGroupProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
-	...jest.requireActual('react-hook-form'),
+	...(jest.requireActual('react-hook-form') as {}),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),

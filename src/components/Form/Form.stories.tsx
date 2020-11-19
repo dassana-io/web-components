@@ -45,6 +45,11 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			name='severity'
 			options={basicOptions}
 		/>
+		<Form.Toggle
+			defaultChecked
+			label='Production Environment'
+			name='isProduction'
+		/>
 		<Form.Tree
 			label='Cloud Accounts'
 			name='defaultCheckedKeys'
