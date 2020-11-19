@@ -42,7 +42,7 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 			},
 			'&.ant-pagination-item, & button.ant-pagination-item-link': {
 				'& a': { color },
-				backgroundColor: backgroundColor,
+				backgroundColor,
 				borderColor,
 				borderRadius,
 				color
