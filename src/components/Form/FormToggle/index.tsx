@@ -18,7 +18,8 @@ const useStyles = createUseStyles({
 	label: {
 		...font.body,
 		paddingBottom: 0,
-		width: 255
+		paddingRight: spacing.s,
+		width: ({ fullWidth }) => (fullWidth ? '100%' : 255)
 	}
 })
 
@@ -26,10 +27,12 @@ export interface FormToggleProps
 	extends Omit<BaseFieldProps, 'required'>,
 		Omit<ToggleProps, 'onChange' | 'checked'> {
 	label: string
+	fullWidth?: boolean
 }
 
 const FormToggle: FC<FormToggleProps> = ({
 	defaultChecked = false,
+	fullWidth = false,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -41,12 +44,13 @@ const FormToggle: FC<FormToggleProps> = ({
 		FieldContext
 	)
 
-	const classes = useStyles()
+	const classes = useStyles({ fullWidth })
 
 	rules.required = true
 
 	const defaultValue = (initialValues[name] as boolean) || defaultChecked
 
+	// TODO: add info tips
 	return (
 		<div className={classes.container}>
 			<FieldLabel

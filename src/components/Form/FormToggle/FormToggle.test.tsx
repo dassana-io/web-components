@@ -1,5 +1,6 @@
 import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
+import FieldLabel from '../FieldLabel'
 import React from 'react'
 import { Toggle } from 'components/Toggle'
 import FormToggle, { FormToggleProps } from './index'
@@ -75,5 +76,32 @@ describe('FormToggle', () => {
 		toggle.props.onChange(true)
 
 		expect(mockOnChange).toHaveBeenCalled()
+	})
+
+	it('should not render the label with the default width if fullWidth is passed as true', () => {
+		const div = document.createElement('div')
+		div.setAttribute('id', 'container')
+		document.body.appendChild(div)
+
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					initialValues: {},
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormToggle defaultChecked fullWidth label='foo' name='foo' />
+			</FieldContext.Provider>,
+			{
+				attachTo: document.getElementById('container')
+			}
+		)
+
+		const style = window.getComputedStyle(
+			wrapper.find(FieldLabel).getDOMNode()
+		)
+
+		expect(style.width).not.toEqual(255)
 	})
 })
