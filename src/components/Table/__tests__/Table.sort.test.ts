@@ -15,7 +15,7 @@ function compareArrsOfObjs(arr1: ObjectType[], arr2: ObjectType[]) {
 	})
 }
 
-function createDataCopy<DataType>(tableProps: TableProps<DataType>) {
+function createDataCopy<Data>(tableProps: TableProps<Data>) {
 	return JSON.parse(JSON.stringify(tableProps))
 }
 

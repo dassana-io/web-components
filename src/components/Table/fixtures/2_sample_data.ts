@@ -5,12 +5,13 @@ const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
 
 export interface Client {
-	name: string
-	start_date: number
-	role: { name: string; color: string }
-	linked_in: string
 	admin_access: boolean
 	company: IconName
+	id: number
+	linked_in: string
+	name: string
+	role: { name: string; color: string }
+	start_date: number
 }
 
 const columns: ColumnType[] = [
@@ -65,6 +66,7 @@ const data: Client[] = [
 	{
 		admin_access: true,
 		company: 'azure',
+		id: 0,
 		linked_in: 'lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
@@ -73,6 +75,7 @@ const data: Client[] = [
 	{
 		admin_access: false,
 		company: 'aws',
+		id: 1,
 		linked_in: 'dolor-s',
 		name: 'Dolor Sit',
 		role: { color: 'magenta', name: 'Software Engineer' },
@@ -81,6 +84,7 @@ const data: Client[] = [
 	{
 		admin_access: true,
 		company: 'dassana',
+		id: 2,
 		linked_in: 'amet-c',
 		name: 'Amet Consectetur',
 		role: { color: 'green', name: 'Designer' },
@@ -89,6 +93,7 @@ const data: Client[] = [
 	{
 		admin_access: false,
 		company: 'googleCloudService',
+		id: 3,
 		linked_in: 'duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },

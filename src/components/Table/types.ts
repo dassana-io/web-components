@@ -94,6 +94,8 @@ type ComponentType =
 
 export type ColumnType = StringType | NumberType | ComponentType
 
-export interface ParentDataType extends Record<string, any> {
-	id?: Key
+export interface DataId extends Record<string, any> {
+	id: Key
 }
+
+export type TableData<Data> = Data & DataId

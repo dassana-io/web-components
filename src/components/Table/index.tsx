@@ -3,31 +3,23 @@ import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
-import { createUseStyles } from 'react-jss'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
-import { styleguide } from 'components/assets/styles'
-import { ColumnType, ParentDataType } from './types'
-import { mapFilterKeys, processColumns, processData } from './utils'
-import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
+import { useStyles } from './styles'
+import { ColumnType, TableData } from './types'
+import { mapData, mapFilterKeys, processColumns, processData } from './utils'
+import React, {
+	ChangeEvent,
+	Key,
+	useCallback,
+	useEffect,
+	useState
+} from 'react'
 
-const { flexDown, spacing } = styleguide
-
-const useStyles = createUseStyles({
-	searchBar: {
-		alignSelf: props =>
-			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
-		marginBottom: spacing.m
-	},
-	tableContainer: {
-		...flexDown
-	}
-})
-
-export interface OnRowClick<DataType> {
-	(data: DataType, rowIndex: number): void
+export interface OnRowClick<TableData> {
+	(data: TableData, rowIndex: number): void
 }
 
 export interface SearchProps {
@@ -41,9 +33,13 @@ export interface SearchProps {
 	placement?: 'left' | 'right'
 }
 
-export interface TableProps<DataType> extends CommonComponentProps {
+export interface TableProps<Data> extends CommonComponentProps {
 	/**
-	 * Array of classes to pass to button.
+	 * Key(id) of active row if onRowClick exists
+	 */
+	activeRowKey?: Key
+	/**
+	 * Array of classes to pass to Table
 	 */
 	classes?: string[]
 	/**
@@ -53,22 +49,24 @@ export interface TableProps<DataType> extends CommonComponentProps {
 	/**
 	 * Array of data objects
 	 */
-	data: DataType[]
+	data: TableData<Data>[]
 	/**
 	 * Optional callback that runs when a table row is clicked
 	 */
-	onRowClick?: OnRowClick<DataType>
+	onRowClick?: OnRowClick<TableData<Data>>
 	/**
-	 * Optional prop to enable/disable table search.
+	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
 	/**
-	 * Optional props for search input.
+	 * Optional props for search input
 	 */
 	searchProps?: SearchProps
 }
 
-export function Table<DataType extends ParentDataType>({
+// eslint-disable-next-line comma-spacing
+export const Table = <Data,>({
+	activeRowKey = '',
 	classes = [],
 	columns,
 	data,
@@ -76,14 +74,34 @@ export function Table<DataType extends ParentDataType>({
 	onRowClick,
 	search = true,
 	searchProps = {} as SearchProps
-}: TableProps<DataType>): ReactElement {
+}: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
-	const [filteredData, setFilteredData] = useState<DataType[]>([])
+	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
 
-	const tableClasses = useStyles({ searchProps })
+	const tableClasses = useStyles({
+		onRowClick,
+		searchProps
+	})
 
-	const processedColumns = processColumns<DataType>(columns)
-	const processedData = processData<DataType>(data, columns)
+	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
+	const [processedColumns, setProcessedColumns] = useState(
+		processColumns<TableData<Data>>(columns)
+	)
+	const [processedData, setProcessedData] = useState(
+		processData<TableData<Data>>(data, columns)
+	)
+
+	useEffect(() => {
+		setMappedData(mapData<TableData<Data>>(data))
+	}, [data])
+
+	useEffect(() => {
+		setProcessedColumns(processColumns<TableData<Data>>(columns))
+	}, [columns])
+
+	useEffect(() => {
+		setProcessedData(processData<TableData<Data>>(data, columns))
+	}, [columns, data])
 
 	const delayedSearch = useCallback(
 		debounce(q => searchTable(q), 250),
@@ -96,25 +114,36 @@ export function Table<DataType extends ParentDataType>({
 		threshold: 0.1
 	})
 
+	const getRowClassName = (record: TableData<Data>, _: number) =>
+		cn({
+			[tableClasses.activeRow]: onRowClick && activeRowKey === record.key,
+			[tableClasses.row]: true
+		})
+
+	const getRowKey = (record: TableData<Data>) => record.key
+
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+		delayedSearch(e.target.value)
+
 	const searchTable = (value: string) => {
 		setSearchTerm(value)
 
 		const filteredData = fuse
 			.search(value)
-			.map(({ item }: Fuse.FuseResult<DataType>): DataType => item)
+			.map(
+				({ item }: Fuse.FuseResult<TableData<Data>>): TableData<Data> =>
+					item
+			)
 
 		setFilteredData(filteredData)
 	}
-
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-		delayedSearch(e.target.value)
 
 	let optionalProps = {}
 
 	if (onRowClick) {
 		optionalProps = {
-			onRow: (_: Record<string, any>, rowIndex: number) => ({
-				onClick: () => onRowClick(data[rowIndex], rowIndex)
+			onRow: (record: Record<string, any>, rowIndex: number) => ({
+				onClick: () => onRowClick(mappedData[record.id], rowIndex)
 			})
 		}
 	}
@@ -132,6 +161,8 @@ export function Table<DataType extends ParentDataType>({
 			<AntDTable
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
+				rowClassName={getRowClassName}
+				rowKey={getRowKey}
 				{...getDataTestAttributeProp('table', dataTag)}
 				{...optionalProps}
 			/>

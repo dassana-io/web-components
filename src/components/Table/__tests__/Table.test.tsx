@@ -2,16 +2,16 @@ import { act } from 'react-dom/test-utils'
 import moment from 'moment'
 import React from 'react'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
-import mockData, { DataType, dateFormat } from '__mocks__/table_mock_data'
+import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 import { Table, TableProps } from '..'
 
 /* Helper functions */
-export function createTable<DataType>(tableProps: TableProps<DataType>) {
+export function createTable<Data>(tableProps: TableProps<Data>) {
 	return (
 		<div>
-			<Table<DataType> {...tableProps} />
+			<Table<Data> {...tableProps} />
 		</div>
 	)
 }
@@ -44,6 +44,7 @@ export function formatDate({
 		: moment(unixTS).format(displayFormat)
 }
 
+const mockOnRowClick = jest.fn()
 let wrapper: ReactWrapper
 
 beforeEach(() => {
@@ -51,7 +52,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-	wrapper.unmount()
+	jest.resetAllMocks()
 })
 
 describe('Table', () => {
@@ -82,7 +83,7 @@ describe('Table', () => {
 	})
 
 	it('renders all types and formats of data', () => {
-		wrapper = mount(createTable<DataType>(mockData))
+		wrapper = mount(createTable<Data>(mockData))
 		const expected = {
 			_FORMATTED_DATA: [
 				formatDate({
@@ -95,6 +96,7 @@ describe('Table', () => {
 			date: 1599193037581,
 			icon: 'test',
 			icon_key: 'dassana',
+			id: 0,
 			key: 0,
 			link: 'test',
 			number: 0,
@@ -168,7 +170,7 @@ describe('Table search and searchProps', () => {
 
 	it('it renders the search bar to the right if searchProps.placement is passed as right', async () => {
 		wrapper = mount(
-			createTable<DataType>({
+			createTable<Data>({
 				...mockData,
 				searchProps: { placement: 'right' }
 			})
@@ -184,7 +186,7 @@ describe('Table search and searchProps', () => {
 
 	it('correctly passes the placeholder prop to the searchbar input', () => {
 		wrapper = mount(
-			createTable<DataType>({
+			createTable<Data>({
 				...mockData,
 				searchProps: { placeholder: 'Mock placeholder' }
 			})
@@ -196,10 +198,8 @@ describe('Table search and searchProps', () => {
 	})
 })
 
-describe('Table onRowClick', () => {
+describe('Table onRowClick, activeRowKey', () => {
 	it('calls onRowClick handler when a table row is clicked', () => {
-		const mockOnRowClick = jest.fn()
-
 		wrapper = mount(
 			createTable<Person>({ ...mockData0, onRowClick: mockOnRowClick })
 		)
@@ -212,5 +212,20 @@ describe('Table onRowClick', () => {
 
 	it('does not pass an onRow prop if onRowClick prop does not exist', () => {
 		expect(wrapper.find(AntDTable).props().onRow).toBeFalsy()
+	})
+
+	it('applies the active row styles if activeRowKey index passed with a valid key', () => {
+		wrapper = mount(
+			createTable<Person>({
+				...mockData0,
+				activeRowKey: 0,
+				onRowClick: mockOnRowClick
+			})
+		)
+
+		// eslint-disable-next-line quotes
+		const tableRow = wrapper.find('tr[data-row-key=0]')
+
+		expect(tableRow.getDOMNode().classList.toString()).toContain('active')
 	})
 })

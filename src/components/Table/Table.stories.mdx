@@ -14,7 +14,7 @@ The following examples start from a basic table and don't show all possible type
 
 Simple usage of the `Table` requires two props — `data` and `columns`.
 
-1. `data` - Data must be provided as an array of objects with keys that match column key - `dataIndex`.
+1. `data` - Data must be provided as an array of objects with keys that match column key - `dataIndex`. Each data item must also include a unique `id` of type `string` or `number`.
 2. `columns` - Columns must be provided as an array of objects with — a required `dataIndex` key, a required `title` key which will be the title of the column and a required data `type` key which determines the type of data to be rendered. Array order in columns will determine the column order in the table.
 
 You specify the data object interface and the `ColumnType` will be imported from Dassana's library. The `ColumnType` shown here isn't comprehensive, but stripped down to keep things simple:
@@ -42,9 +42,10 @@ import {
 	TableProps
 } from '@dassana-io/web-components'
 
-// You specify the data object interface. This will be referred to as DataType
+// You specify the data object interface.
 export interface Person {
 	name: string
+	id: number | string
 	age: number
 }
 
@@ -66,22 +67,27 @@ const columns: ColumnType[] = [
 const data: Person[] = [
 	{
 		age: 36,
+		id: 0,
 		name: 'Lorem'
 	},
 	{
 		age: 32,
+		id: 1,
 		name: 'Ipsum'
 	},
 	{
 		age: 45,
+		id: 2,
 		name: 'Amet'
 	},
 	{
 		age: 50,
+		id: 3,
 		name: 'Elit'
 	},
 	{
 		age: 22,
+		id: 4,
 		name: 'Dolor'
 	}
 ]
@@ -256,11 +262,12 @@ import {
 } from '@dassana-io/web-components'
 
 export interface File {
-	file_name: string
-	data_size: number
 	created_at: number
-	updated_at?: number // Pass an optional type if there will be missing data
+	data_size: number
+	id: number
+	file_name: string
 	last_opened?: number
+	updated_at?: number // Pass an optional type if there will be missing data
 }
 
 const { number, string } = ColumnTypes
@@ -306,29 +313,34 @@ const data: File[] = [
 		created_at: 1598400668681,
 		data_size: 1048576,
 		file_name: 'IMG_4542.jpeg',
+		id: 0,
 		last_opened: 1598400668681
 	},
 	{
 		created_at: 1582330066861,
 		data_size: 1998576,
 		file_name: 'test_123.png',
+		id: 1,
 		last_opened: 1603779899922
 	},
 	{
 		created_at: 1553223066861,
 		data_size: 1024,
 		file_name: 'passwords.txt',
+		id: 2,
 		updated_at: 1582330063211
 	},
 	{
 		created_at: 1511022066861,
 		data_size: 4194599,
-		file_name: 'birthday.mp4'
+		file_name: 'birthday.mp4',
+		id: 3
 	},
 	{
 		created_at: 1515021066861,
 		data_size: 2048,
 		file_name: 'letter.txt',
+		id: 4,
 		updated_at: 1515121066861
 	}
 ]
@@ -444,12 +456,13 @@ import {
 } from '@dassana-io/web-components'
 
 export interface Client {
-	name: string
-	start_date: number
-	role: { name: string; color: string }
-	linked_in: string
 	admin_access: boolean
 	company: IconName
+	id: number
+	linked_in: string
+	name: string
+	role: { name: string; color: string }
+	start_date: number
 }
 
 const { component, number, string } = ColumnTypes
@@ -507,6 +520,7 @@ const data: Client[] = [
 	{
 		admin_access: true,
 		company: 'azure',
+		id: 0,
 		linked_in: 'lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
@@ -515,6 +529,7 @@ const data: Client[] = [
 	{
 		admin_access: false,
 		company: 'aws',
+		id: 1,
 		linked_in: 'dolor-s',
 		name: 'Dolor Sit',
 		role: { color: 'magenta', name: 'Software Engineer' },
@@ -523,6 +538,7 @@ const data: Client[] = [
 	{
 		admin_access: true,
 		company: 'dassana',
+		id: 2,
 		linked_in: 'amet-c',
 		name: 'Amet Consectetur',
 		role: { color: 'green', name: 'Designer' },
@@ -531,6 +547,7 @@ const data: Client[] = [
 	{
 		admin_access: false,
 		company: 'googleCloudService',
+		id: 3,
 		linked_in: 'duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },
@@ -557,13 +574,14 @@ The rendered table:
 Make sure to declare keys as optional in the typescript interface if there will be missing data.
 
 ```ts
-interface Client {
-	name?: string
-	start_date?: number
-	role?: { name: string; color: string }
-	linked_in?: string
+export interface Client1 {
 	admin_access?: boolean
 	company?: string
+	id: number
+	linked_in?: string
+	name?: string
+	role?: { name: string; color: string }
+	start_date?: number
 }
 ```
 
@@ -696,3 +714,7 @@ type ComponentType = ComponentIconType | ComponentLinkType | ComponentTagType | 
 
 export type type ColumnType = StringType | NumberType | ComponentType
 ```
+
+<Canvas>
+	<Story story={stories.Paginated} name='Paginated' />
+</Canvas>
