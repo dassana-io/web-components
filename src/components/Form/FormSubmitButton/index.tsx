@@ -7,19 +7,22 @@ import React, { FC, useContext } from 'react'
 
 export interface FormButtonProps
 	extends Omit<ButtonProps, 'loading' | 'onClick'> {
-	isDisabled?: (formState: FormStateProxy) => boolean
+	isDisabled?: (
+		formState: FormStateProxy,
+		formValues: Record<string, any>
+	) => boolean
 }
 
 const FormSubmitButton: FC<FormButtonProps> = ({
 	isDisabled,
 	...rest
 }: FormButtonProps) => {
-	const { handleSubmit, formState } = useFormContext()
+	const { handleSubmit, formState, getValues } = useFormContext()
 	const { loading, onSubmit } = useContext(FieldContext)
 	const { isDirty } = formState
 
 	const isButtonDisabled = () =>
-		isDisabled ? isDisabled(formState) : !isDirty
+		isDisabled ? isDisabled(formState, getValues()) : !isDirty
 
 	useShortcut({
 		additionalConditionalFn: () => !isButtonDisabled(),

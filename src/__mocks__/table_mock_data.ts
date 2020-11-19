@@ -8,16 +8,17 @@ import {
 const { component, number, string } = ColumnTypes
 const { none, byte, date, icon, link, toggle, tag } = ColumnFormats
 
-export interface DataType {
-	string: string
-	number: number
-	date: number
+export interface Data {
 	byte: number
-	tag: string
-	link: string
-	toggle: boolean
-	icon_key: string
+	date: number
 	icon: string
+	icon_key: string
+	id: number
+	link: string
+	number: number
+	string: string
+	tag: string
+	toggle: boolean
 }
 
 export const dateFormat = 'MM/DD/YYYY'
@@ -94,12 +95,13 @@ const columns: ColumnType[] = [
 	}
 ]
 
-const data: DataType[] = [
+const data: Data[] = [
 	{
 		byte: 1024,
 		date: 1599193037581,
 		icon: 'test',
 		icon_key: 'dassana',
+		id: 0,
 		link: 'test',
 		number: 0,
 		string: 'Dassana',
@@ -108,6 +110,6 @@ const data: DataType[] = [
 	}
 ]
 
-const tableProps: TableProps<DataType> = { columns, data }
+const tableProps: TableProps<Data> = { columns, data }
 
 export default tableProps

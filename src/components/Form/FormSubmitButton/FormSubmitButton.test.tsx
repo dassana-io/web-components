@@ -15,6 +15,7 @@ const getMockFormContext = (isDirty = true) =>
 		formState: {
 			isDirty
 		},
+		getValues: jest.fn() as any,
 		handleSubmit: (onSubmit: any) => onSubmit()
 	} as reactHookForm.UseFormMethods)
 

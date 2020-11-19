@@ -17,6 +17,10 @@ export const fieldErrorStyles = {
 export const styleguide = {
 	borderRadius: 4,
 	colors,
+	flexAlignCenter: {
+		alignItems: 'center',
+		display: 'flex'
+	},
 	flexCenter: {
 		alignItems: 'center',
 		display: 'flex',
@@ -26,6 +30,11 @@ export const styleguide = {
 		display: 'flex',
 		flexDirection: 'column'
 	},
+	flexJustifyCenter: {
+		display: 'flex',
+		justifyContent: 'center'
+	},
+
 	flexSpaceBetween: {
 		display: 'flex',
 		justifyContent: 'space-between'

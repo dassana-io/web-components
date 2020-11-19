@@ -33,6 +33,10 @@ export interface ToggleProps extends CommonComponentProps {
 	 */
 	checked: boolean
 	/**
+	 * Determines whether the Switch is checked by default
+	 */
+	defaultChecked?: boolean
+	/**
 	 * Whether switch will be disabled
 	 */
 	disabled?: boolean
@@ -46,6 +50,7 @@ export const Toggle: FC<ToggleProps> = ({
 	checked,
 	classes = [],
 	dataTag,
+	defaultChecked = false,
 	disabled = false,
 	onChange,
 	size = 'default'
@@ -56,6 +61,7 @@ export const Toggle: FC<ToggleProps> = ({
 
 	const antDProps = {
 		checked,
+		defaultChecked,
 		disabled,
 		onChange,
 		size
