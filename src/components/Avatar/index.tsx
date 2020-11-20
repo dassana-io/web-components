@@ -1,7 +1,22 @@
 import 'antd/lib/avatar/style/index.css'
 import { Avatar as AntDAvatar } from 'antd'
 import { AvatarProps as AntDAvatarProps } from 'antd/lib/avatar'
+import { createUseStyles } from 'react-jss'
+import { styleguide } from 'components/assets/styles'
 import React, { FC, ReactNode } from 'react'
+
+const {
+	colors: { blacks }
+} = styleguide
+
+const useStyles = createUseStyles({
+	'@global': {
+		'.ant-avatar': {
+			background: blacks['lighten-30'],
+			color: blacks['lighten-80']
+		}
+	}
+})
 
 interface SharedAvatarProps {
 	/**
@@ -37,8 +52,12 @@ export const Avatar: FC<AvatarProps> = ({
 	gap,
 	icon,
 	size
-}: AvatarProps) => (
-	<AntDAvatar gap={gap} icon={icon} size={size}>
-		{children}
-	</AntDAvatar>
-)
+}: AvatarProps) => {
+	useStyles()
+
+	return (
+		<AntDAvatar gap={gap} icon={icon} size={size}>
+			{children}
+		</AntDAvatar>
+	)
+}
