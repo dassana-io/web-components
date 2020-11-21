@@ -35,8 +35,8 @@ export interface Theme {
 
 const lightPalette: Theme = {
 	background: {
-		primary: whites.base,
-		secondary: grays.base
+		primary: grays['lighten-70'],
+		secondary: whites.base
 	},
 	border: blacks['lighten-80'],
 	primary: blacks.base,
@@ -62,8 +62,8 @@ const lightPalette: Theme = {
 
 const darkPalette: Theme = {
 	background: {
-		primary: blacks.base,
-		secondary: blacks['darken-20']
+		primary: blacks['darken-40'],
+		secondary: blacks.base
 	},
 	border: blacks['lighten-20'],
 	primary: blacks['lighten-50'],
