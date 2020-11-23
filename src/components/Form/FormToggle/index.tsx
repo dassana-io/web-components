@@ -46,8 +46,6 @@ const FormToggle: FC<FormToggleProps> = ({
 
 	const classes = useStyles({ fullWidth })
 
-	rules.required = true
-
 	const defaultValue = (initialValues[name] as boolean) || defaultChecked
 
 	// TODO: add info tips
