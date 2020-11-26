@@ -1,7 +1,13 @@
+import cn from 'classnames'
 import Icons, { IconName } from './IconsMap'
 import React, { FC } from 'react'
 
 export interface SharedIconProps {
+	/**
+	 * Array of classes to pass to element
+	 * @default []
+	 */
+	classes?: string[]
 	/**
 	 * The height of the icon, in pixels. Width will be calculated by default.
 	 */
@@ -28,6 +34,8 @@ interface IconKey extends SharedIconProps {
 export type IconProps = IconKey | IconPath
 
 export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
+	const { classes = [] } = props
+
 	const { icon } = props as IconPath
 	const { iconKey } = props as IconKey
 
@@ -36,10 +44,17 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 
 		const { color = '#7E8083' } = props as IconKey
 
-		return <Svg fill={color} height={height} width={height} />
+		return (
+			<Svg
+				className={cn(classes)}
+				fill={color}
+				height={height}
+				width={height}
+			/>
+		)
 	}
 
-	return <img alt={icon} height={height} src={icon} />
+	return <img alt={icon} className={cn(classes)} height={height} src={icon} />
 }
 
 export type { IconName }

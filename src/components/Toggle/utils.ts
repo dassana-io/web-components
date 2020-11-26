@@ -9,11 +9,11 @@ const togglePalette = {
 	[dark]: {
 		active: {
 			primary: blacks['lighten-30'],
-			secondary: grays.base
+			secondary: blacks['lighten-80']
 		},
 		disabled: {
 			primary: blacks['lighten-10'],
-			secondary: blacks.base
+			secondary: blacks['lighten-20']
 		},
 		inactive: {
 			primary: blacks['lighten-10'],
@@ -21,13 +21,13 @@ const togglePalette = {
 		}
 	},
 	[light]: {
-		active: { primary: blacks.base, secondary: whites.base },
+		active: { primary: blacks['lighten-30'], secondary: whites.base },
 		disabled: {
 			primary: blacks['lighten-80'],
 			secondary: grays.base
 		},
 		inactive: {
-			primary: blacks['lighten-50'],
+			primary: blacks['lighten-80'],
 			secondary: whites.base
 		}
 	}
