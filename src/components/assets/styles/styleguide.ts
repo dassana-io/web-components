@@ -34,7 +34,10 @@ export const styleguide = {
 		display: 'flex',
 		justifyContent: 'center'
 	},
-
+	flexJustifyEnd: {
+		display: 'flex',
+		justifyContent: 'flex-end'
+	},
 	flexSpaceBetween: {
 		display: 'flex',
 		justifyContent: 'space-between'
@@ -48,5 +51,8 @@ export const styleguide = {
 		label: { fontSize: 12, lineHeight: '20px' }
 	},
 	// eslint-disable-next-line sort-keys
-	spacing: { s: 8, m: 16, l: 24, xl: 32 }
+	fontWeight: { light: 300, regular: 400, bold: 500 },
+	// eslint-disable-next-line sort-keys
+	spacing: { s: 8, m: 16, l: 24, xl: 32 },
+	topNavHeight: 64
 }

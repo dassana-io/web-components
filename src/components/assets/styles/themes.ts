@@ -38,7 +38,7 @@ const lightPalette: Theme = {
 		primary: grays['lighten-70'],
 		secondary: whites.base
 	},
-	border: blacks['lighten-80'],
+	border: grays.base,
 	primary: blacks.base,
 	secondary: blacks['lighten-30'],
 	state: {
@@ -65,11 +65,11 @@ const darkPalette: Theme = {
 		primary: blacks['darken-40'],
 		secondary: blacks.base
 	},
-	border: blacks['lighten-20'],
+	border: blacks['lighten-10'],
 	primary: blacks['lighten-50'],
 	secondary: blacks['lighten-30'],
 	state: {
-		active: whites.base,
+		active: grays.base,
 		disabled: blacks['lighten-10'],
 		error: reds.base,
 		hover: blacks['lighten-80'],
