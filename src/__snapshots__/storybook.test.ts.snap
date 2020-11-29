@@ -31,6 +31,7 @@ exports[`Storyshots Avatar Icon 1`] = `
     style={Object {}}
   >
     <svg
+      className=""
       fill="#7E8083"
       height={32}
       width={32}
@@ -187,6 +188,7 @@ exports[`Storyshots Icon Custom 1`] = `
 >
   <img
     alt="https://dummyimage.com/600x400/000/fff&text=Dassana"
+    className=""
     height={64}
     src="https://dummyimage.com/600x400/000/fff&text=Dassana"
   />
@@ -198,6 +200,7 @@ exports[`Storyshots Icon Predefined 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <svg
+    className=""
     fill="#7E8083"
     height={64}
     width={64}
@@ -454,6 +457,7 @@ exports[`Storyshots Popover Default 1`] = `
       onMouseLeave={[Function]}
     >
       <svg
+        className=""
         fill="#7E8083"
         height={32}
         width={32}
@@ -482,6 +486,7 @@ exports[`Storyshots Popover Title 1`] = `
       onMouseLeave={[Function]}
     >
       <svg
+        className=""
         fill="#7E8083"
         height={32}
         width={32}
@@ -967,6 +972,7 @@ exports[`Storyshots Select Icon 1`] = `
               className="icon-0-2-25"
             >
               <svg
+                className=""
                 fill="#7E8083"
                 height={15}
                 width={15}
@@ -1308,6 +1314,7 @@ exports[`Storyshots Tooltip Default 1`] = `
       onMouseLeave={[Function]}
     >
       <svg
+        className=""
         fill="#7E8083"
         height={32}
         width={32}
