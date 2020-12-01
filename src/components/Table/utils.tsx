@@ -12,10 +12,10 @@ import {
 	NumberDateType
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
+import { IngestionStatusDot, Status } from 'components/IngestionStatusDot'
 import { Link, LinkProps } from '../Link'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
-import { IngestionStatusDot, Status } from 'components/IngestionStatusDot'
 
 /* ------- Exported Functions ------- */
 

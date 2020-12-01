@@ -49,15 +49,15 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface Props {
+export interface IngestionStatusDotProps {
 	classes?: string[]
 	status?: Status
 }
 
-export const IngestionStatusDot: FC<Props> = ({
+export const IngestionStatusDot: FC<IngestionStatusDotProps> = ({
 	classes = [],
 	status = Status.OK
-}: Props) => {
+}: IngestionStatusDotProps) => {
 	const componentClasses = useStyles()
 
 	const ingestionStatusDotClasses = cn(

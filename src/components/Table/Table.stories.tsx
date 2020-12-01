@@ -7,6 +7,7 @@ import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
+import tableData4, { IngestionStatusType } from './fixtures/4_sample_data'
 
 const commonArgTypes = {
 	activeRowKey: {
@@ -250,3 +251,12 @@ Paginated.args = {
 	})
 }
 Paginated.argTypes = commonArgTypes
+
+const IngestionStatusTemplate: Story<TableProps<
+	IngestionStatusType
+>> = args => <Table<IngestionStatusType> {...args} />
+
+export const IngestionStatus = IngestionStatusTemplate.bind({})
+IngestionStatus.args = {
+	...tableData4
+}
