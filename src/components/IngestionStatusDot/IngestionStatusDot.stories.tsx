@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
 		...flexAlignCenter,
 		...font.body,
 		color: themedStyles[light].base.color,
-		paddingBottom: spacing.m
+		padding: `${spacing.s}px ${spacing.xl}px`
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

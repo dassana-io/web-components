@@ -1,5 +1,8 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import lowerCase from 'lodash/lowerCase'
+import { Tooltip } from 'antd'
+import upperFirst from 'lodash/upperFirst'
 import React, { FC } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -69,5 +72,16 @@ export const IngestionStatusDot: FC<IngestionStatusDotProps> = ({
 		classes
 	)
 
-	return <span className={ingestionStatusDotClasses}></span>
+	const showTooltip =
+		status === Status.HASISSUES || status === Status.NEEDSCONFIG
+
+	const tooltipText = upperFirst(lowerCase(status))
+
+	return showTooltip ? (
+		<Tooltip title={tooltipText}>
+			<span className={ingestionStatusDotClasses}></span>
+		</Tooltip>
+	) : (
+		<span className={ingestionStatusDotClasses}></span>
+	)
 }
