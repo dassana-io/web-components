@@ -15,6 +15,7 @@ import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
+import { IngestionStatusDot, Status } from 'components/IngestionStatusDot'
 
 /* ------- Exported Functions ------- */
 
@@ -81,7 +82,7 @@ More info --> https://fusejs.io/examples.html#nested-search
  */
 export function mapFilterKeys(columns: ColumnType[]) {
 	const { component, number, string } = ColumnTypes
-	const { icon, link, tag } = ColumnFormats
+	const { icon, ingestionStatusDot, link, tag } = ColumnFormats
 
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
@@ -92,6 +93,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 			case component:
 				switch (column.format) {
 					case icon:
+					case ingestionStatusDot:
 					case link:
 						keysArr.push(dataIndex)
 						break
@@ -171,12 +173,13 @@ function applySort<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number, string } = ColumnTypes
-	const { icon, link, tag, toggle } = ColumnFormats
+	const { icon, ingestionStatusDot, link, tag, toggle } = ColumnFormats
 
 	switch (column.type) {
 		case component:
 			switch (column.format) {
 				case icon:
+				case ingestionStatusDot:
 				case link:
 					antDColumn.sorter = compareStrings(column)
 					break
@@ -212,7 +215,15 @@ function applyRender<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number } = ColumnTypes
-	const { byte, date, icon, link, tag, toggle } = ColumnFormats
+	const {
+		byte,
+		date,
+		icon,
+		ingestionStatusDot,
+		link,
+		tag,
+		toggle
+	} = ColumnFormats
 
 	switch (column.type) {
 		case component:
@@ -241,6 +252,13 @@ function applyRender<TableData extends DataId>(
 
 						return <Icon {...iconProps} height={height} />
 					}
+					break
+				}
+
+				case ingestionStatusDot: {
+					antDColumn.render = (record: Status) => (
+						<IngestionStatusDot status={record} />
+					)
 					break
 				}
 

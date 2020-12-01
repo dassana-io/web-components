@@ -13,6 +13,7 @@ export enum ColumnFormats {
 	date = 'date',
 	byte = 'byte',
 	icon = 'icon',
+	ingestionStatusDot = 'ingestionStatusDot',
 	link = 'link',
 	tag = 'tag',
 	toggle = 'toggle'
@@ -69,6 +70,10 @@ interface ComponentIconType extends PartialComponentType {
 	renderProps: RenderPropsIcon | RenderPropsIconKey
 }
 
+interface ComponentIngestionStatusDotType extends PartialComponentType {
+	format: ColumnFormats.ingestionStatusDot
+}
+
 interface RenderPropsLink extends Pick<SharedLinkProps, 'target'> {
 	buildHref: (record?: string) => string
 }
@@ -88,6 +93,7 @@ interface ComponentToggleType extends PartialComponentType {
 
 type ComponentType =
 	| ComponentIconType
+	| ComponentIngestionStatusDotType
 	| ComponentLinkType
 	| ComponentTagType
 	| ComponentToggleType

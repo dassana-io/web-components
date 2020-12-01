@@ -1,3 +1,4 @@
+import { Status } from 'components'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -6,7 +7,16 @@ import {
 } from '../components/Table'
 
 const { component, number, string } = ColumnTypes
-const { none, byte, date, icon, link, toggle, tag } = ColumnFormats
+const {
+	none,
+	byte,
+	date,
+	icon,
+	ingestionStatusDot,
+	link,
+	toggle,
+	tag
+} = ColumnFormats
 
 export interface Data {
 	byte: number
@@ -14,6 +24,7 @@ export interface Data {
 	icon: string
 	icon_key: string
 	id: number
+	ingestion_status: Status
 	link: string
 	number: number
 	string: string
@@ -92,6 +103,12 @@ const columns: ColumnType[] = [
 		},
 		title: 'Component - Icon',
 		type: component
+	},
+	{
+		dataIndex: 'ingestion_status',
+		format: ingestionStatusDot,
+		title: 'Ingestion Status',
+		type: component
 	}
 ]
 
@@ -102,6 +119,7 @@ const data: Data[] = [
 		icon: 'test',
 		icon_key: 'dassana',
 		id: 0,
+		ingestion_status: Status.OK,
 		link: 'test',
 		number: 0,
 		string: 'Dassana',
