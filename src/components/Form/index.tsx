@@ -69,5 +69,8 @@ Form.Select = FormSelect
 Form.Toggle = FormToggle
 Form.Tree = FormTree
 
-export type { UseFormMethods } from 'react-hook-form/dist/types/form'
+export type {
+	FormStateProxy,
+	UseFormMethods
+} from 'react-hook-form/dist/types/form'
 export * from './types'
