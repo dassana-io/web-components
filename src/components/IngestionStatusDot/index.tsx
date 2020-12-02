@@ -54,12 +54,12 @@ const useStyles = createUseStyles({
 
 export interface IngestionStatusDotProps {
 	classes?: string[]
-	status?: Status
+	status: Status
 }
 
 export const IngestionStatusDot: FC<IngestionStatusDotProps> = ({
 	classes = [],
-	status = Status.OK
+	status
 }: IngestionStatusDotProps) => {
 	const componentClasses = useStyles()
 

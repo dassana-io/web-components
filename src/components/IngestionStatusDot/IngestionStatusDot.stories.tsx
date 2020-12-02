@@ -14,19 +14,22 @@ const { flexAlignCenter, font, spacing } = styleguide
 const { light, dark } = ThemeType
 
 const useStyles = createUseStyles({
-	statusDot: {
-		marginRight: spacing.m
-	},
-	wrapper: {
+	container: {
 		...flexAlignCenter,
+		padding: `${spacing.s}px ${spacing.l}px`
+	},
+	mainContainer: {
 		...font.body,
 		color: themedStyles[light].base.color,
-		padding: `${spacing.s}px ${spacing.xl}px`
+		paddingLeft: spacing.l
+	},
+	statusDot: {
+		marginRight: spacing.m
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $wrapper': {
+			'& $mainContainer': {
 				color: themedStyles[dark].base.color
 			}
 		}
@@ -41,7 +44,7 @@ const DecoratedDot: FC<Props> = ({ status }: Props) => {
 	const classes = useStyles()
 
 	return (
-		<div className={classes.wrapper}>
+		<div className={classes.container}>
 			<IngestionStatusDot classes={[classes.statusDot]} status={status} />
 			{status}
 		</div>
@@ -55,10 +58,15 @@ const statuses = [
 	Status.DISABLED
 ]
 
-export const All = () => (
-	<>
-		{statuses.map((status: Status) => (
-			<DecoratedDot key={status} status={status} />
-		))}
-	</>
-)
+export const All = () => {
+	const classes = useStyles()
+
+	return (
+		<div className={classes.mainContainer}>
+			<p>Hover over colored dot to show tooltip.</p>
+			{statuses.map((status: Status) => (
+				<DecoratedDot key={status} status={status} />
+			))}
+		</div>
+	)
+}
