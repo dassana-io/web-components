@@ -4,6 +4,7 @@ import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
+import noop from 'lodash/noop'
 import { Skeleton } from '../Skeleton'
 import { ThemeType } from '../assets/styles/themes'
 import {
@@ -46,6 +47,7 @@ const InputSkeleton: FC<InputProps> = (props: InputProps) => {
 
 export interface InputProps extends BaseFormElementProps {
 	inputRef?: RefObject<AntDInput>
+	onFocus?: () => void
 	/**
 	 * Type of input (ex: text, password)
 	 * @default text
@@ -60,6 +62,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		disabled = false,
 		inputRef,
 		onChange,
+		onFocus = noop,
 		error = false,
 		loading = false,
 		placeholder = '',
@@ -95,6 +98,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		<AntDInput
 			className={cn(componentClasses.container, inputClasses)}
 			disabled={disabled}
+			onFocus={onFocus}
 			placeholder={placeholder}
 			ref={inputRef}
 			type={type}

@@ -7,6 +7,7 @@ import FormInput, { FormInputProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
 const mockFocus = jest.fn()
+const mockClearErrors = jest.fn()
 
 jest.mock('react', () => ({
 	...(jest.requireActual('react') as {}),
@@ -21,17 +22,22 @@ jest.mock('react-hook-form', () => ({
 	...(jest.requireActual('react-hook-form') as {}),
 	Controller: () => <div />,
 	useFormContext: () => ({
+		clearErrors: mockClearErrors,
 		control: jest.fn(),
-		errors: () => ({ foo: true })
+		errors: { foo: true }
 	})
 }))
 
 let wrapper: ReactWrapper<FormInputProps>
 
 const mockOnSubmit = jest.fn()
+const mockRenderArgs = {
+	onChange: jest.fn(),
+	value: 'abc'
+} as jest.Mocked<any>
 
-beforeEach(() => {
-	wrapper = mount(
+const getMountedFormInput = (formInputProps: Partial<FormInputProps> = {}) =>
+	mount(
 		<FieldContext.Provider
 			value={{
 				initialValues: { foo: 'bar' },
@@ -39,9 +45,12 @@ beforeEach(() => {
 				onSubmit: mockOnSubmit
 			}}
 		>
-			<FormInput name='foo' />
+			<FormInput name='foo' required {...formInputProps} />
 		</FieldContext.Provider>
 	)
+
+beforeEach(() => {
+	wrapper = getMountedFormInput()
 })
 
 afterEach(() => {
@@ -58,12 +67,7 @@ describe('FormInput', () => {
 	})
 
 	it('should render an Input component', () => {
-		const test = {
-			onChange: jest.fn(),
-			value: 'abc'
-		} as jest.Mocked<any>
-
-		const input = wrapper.find(Controller).invoke('render')!(test)
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 
 		expect(input.type).toBe(Input)
 	})
@@ -85,17 +89,7 @@ describe('FormInput', () => {
 	})
 
 	it('correctly passes validation rules if required', () => {
-		wrapper = mount(
-			<FieldContext.Provider
-				value={{
-					initialValues: {},
-					loading: true,
-					onSubmit: mockOnSubmit
-				}}
-			>
-				<FormInput name='foo' required />
-			</FieldContext.Provider>
-		)
+		wrapper = getMountedFormInput()
 
 		expect(wrapper.find(Controller).props().rules).toMatchObject({
 			required: true
@@ -103,18 +97,26 @@ describe('FormInput', () => {
 	})
 
 	it('focuses on the input if required', () => {
-		wrapper = mount(
-			<FieldContext.Provider
-				value={{
-					initialValues: {},
-					loading: true,
-					onSubmit: mockOnSubmit
-				}}
-			>
-				<FormInput focused name='foo' required />
-			</FieldContext.Provider>
-		)
+		wrapper = getMountedFormInput({ focused: true })
 
 		expect(mockFocus).toHaveBeenCalled()
+	})
+
+	it('clears errors on focus if there are any', () => {
+		wrapper = getMountedFormInput()
+
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+		input.props.onFocus()
+
+		expect(mockClearErrors).toHaveBeenCalled()
+	})
+
+	it('does not call clearErrors if there are no errors associated with the input', () => {
+		wrapper = getMountedFormInput({ name: 'bar' })
+
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+		input.props.onFocus()
+
+		expect(mockClearErrors).not.toHaveBeenCalled()
 	})
 })
