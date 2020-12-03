@@ -64,6 +64,9 @@ export interface TableProps<Data> extends CommonComponentProps {
 	searchProps?: SearchProps
 }
 
+/* TODO: Add Table props to allow customization of pagination. */
+type Pagination = false | { showSizeChanger: false }
+
 // eslint-disable-next-line comma-spacing
 export const Table = <Data,>({
 	activeRowKey = '',
@@ -77,6 +80,7 @@ export const Table = <Data,>({
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
+	const [pagination, setPagination] = useState<Pagination>(false)
 
 	const tableClasses = useStyles({
 		onRowClick,
@@ -93,6 +97,9 @@ export const Table = <Data,>({
 
 	useEffect(() => {
 		setMappedData(mapData<TableData<Data>>(data))
+
+		if (data.length > 10) setPagination({ showSizeChanger: false })
+		else setPagination(false)
 	}, [data])
 
 	useEffect(() => {
@@ -138,14 +145,15 @@ export const Table = <Data,>({
 		setFilteredData(filteredData)
 	}
 
-	let optionalProps = {}
+	const optionalProps: Record<string, any> = {}
 
 	if (onRowClick) {
-		optionalProps = {
-			onRow: (record: Record<string, any>, rowIndex: number) => ({
-				onClick: () => onRowClick(mappedData[record.id], rowIndex)
-			})
-		}
+		optionalProps.onRow = (
+			record: Record<string, any>,
+			rowIndex: number
+		) => ({
+			onClick: () => onRowClick(mappedData[record.id], rowIndex)
+		})
 	}
 
 	return (
@@ -161,6 +169,7 @@ export const Table = <Data,>({
 			<AntDTable
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
+				pagination={pagination}
 				rowClassName={getRowClassName}
 				rowKey={getRowKey}
 				{...getDataTestAttributeProp('table', dataTag)}

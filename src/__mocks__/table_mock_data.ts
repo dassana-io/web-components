@@ -1,3 +1,4 @@
+import { ThemeType } from 'components'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -6,13 +7,14 @@ import {
 } from '../components/Table'
 
 const { component, number, string } = ColumnTypes
-const { none, byte, date, icon, link, toggle, tag } = ColumnFormats
+const { none, byte, date, icon, coloredDot, link, toggle, tag } = ColumnFormats
 
 export interface Data {
 	byte: number
 	date: number
+	dot: string
 	icon: string
-	icon_key: string
+	iconKey: string
 	id: number
 	link: string
 	number: number
@@ -73,7 +75,7 @@ const columns: ColumnType[] = [
 		type: component
 	},
 	{
-		dataIndex: 'icon_key',
+		dataIndex: 'iconKey',
 		format: icon,
 		renderProps: {
 			type: 'iconKey'
@@ -92,6 +94,23 @@ const columns: ColumnType[] = [
 		},
 		title: 'Component - Icon',
 		type: component
+	},
+	{
+		dataIndex: 'dot',
+		format: coloredDot,
+		renderProps: {
+			colorMap: {
+				test: {
+					colors: {
+						[ThemeType.light]: 'red',
+						[ThemeType.dark]: 'red'
+					},
+					tooltipText: 'Hi I am colored'
+				}
+			}
+		},
+		title: 'Colored Dot',
+		type: component
 	}
 ]
 
@@ -99,8 +118,9 @@ const data: Data[] = [
 	{
 		byte: 1024,
 		date: 1599193037581,
+		dot: 'test',
 		icon: 'test',
-		icon_key: 'dassana',
+		iconKey: 'dassana',
 		id: 0,
 		link: 'test',
 		number: 0,

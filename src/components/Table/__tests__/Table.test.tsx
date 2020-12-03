@@ -4,6 +4,7 @@ import React from 'react'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
+import mockData1, { File } from '../fixtures/4_sample_data'
 import { mount, ReactWrapper } from 'enzyme'
 import { Table, TableProps } from '..'
 
@@ -94,8 +95,9 @@ describe('Table', () => {
 			],
 			byte: 1024,
 			date: 1599193037581,
+			dot: 'test',
 			icon: 'test',
-			icon_key: 'dassana',
+			iconKey: 'dassana',
 			id: 0,
 			key: 0,
 			link: 'test',
@@ -214,7 +216,7 @@ describe('Table onRowClick, activeRowKey', () => {
 		expect(wrapper.find(AntDTable).props().onRow).toBeFalsy()
 	})
 
-	it('applies the active row styles if activeRowKey index passed with a valid key', () => {
+	it('applies the active row styles if activeRowKey index is passed with a valid key', () => {
 		wrapper = mount(
 			createTable<Person>({
 				...mockData0,
@@ -223,9 +225,36 @@ describe('Table onRowClick, activeRowKey', () => {
 			})
 		)
 
-		// eslint-disable-next-line quotes
 		const tableRow = wrapper.find('tr[data-row-key=0]')
 
 		expect(tableRow.getDOMNode().classList.toString()).toContain('active')
+	})
+})
+
+describe('Table pagination', () => {
+	it('does not show pagination if there are less than 10 rows', () => {
+		wrapper = mount(
+			createTable<Person>({
+				...mockData0
+			})
+		)
+
+		expect(wrapper.find(AntDTable).props().pagination).toBe(false)
+
+		expect(wrapper.find('.ant-pagination').exists()).toBeFalsy()
+	})
+
+	it('shows pagination if there are more than 10 rows', () => {
+		wrapper = mount(
+			createTable<File>({
+				...mockData1
+			})
+		)
+
+		expect(wrapper.find(AntDTable).props().pagination).toEqual({
+			showSizeChanger: false
+		})
+
+		expect(wrapper.find('.ant-pagination').exists()).toBeTruthy()
 	})
 })

@@ -2,8 +2,11 @@ import { BaseFieldProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
-import { styleguide } from 'components/assets/styles'
 import { Controller, useFormContext } from 'react-hook-form'
+import {
+	defaultFieldWidth,
+	styleguide
+} from 'components/assets/styles/styleguide'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import React, { FC, useContext } from 'react'
 import { Toggle, ToggleProps } from 'components/Toggle'
@@ -13,13 +16,14 @@ const { flexAlignCenter, font, spacing } = styleguide
 const useStyles = createUseStyles({
 	container: {
 		...flexAlignCenter,
+		maxWidth: ({ fullWidth }) => (fullWidth ? '100%' : defaultFieldWidth),
 		padding: `${spacing.m}px 0`
 	},
 	label: {
 		...font.body,
 		paddingBottom: 0,
-		paddingRight: spacing.s,
-		width: ({ fullWidth }) => (fullWidth ? '100%' : 255)
+		paddingRight: spacing.l,
+		width: 'unset'
 	}
 })
 
