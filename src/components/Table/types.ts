@@ -1,3 +1,4 @@
+import { ColoredDotProps } from 'components/ColoredDot'
 import { Key } from 'react'
 import { SharedIconProps } from '../Icon'
 import { SharedLinkProps } from '../Link'
@@ -13,6 +14,7 @@ export enum ColumnFormats {
 	date = 'date',
 	byte = 'byte',
 	icon = 'icon',
+	coloredDot = 'coloredDot',
 	link = 'link',
 	tag = 'tag',
 	toggle = 'toggle'
@@ -69,6 +71,13 @@ interface ComponentIconType extends PartialComponentType {
 	renderProps: RenderPropsIcon | RenderPropsIconKey
 }
 
+interface ComponentColoredDotType extends PartialComponentType {
+	format: ColumnFormats.coloredDot
+	renderProps: {
+		colorMap: Record<string, ColoredDotProps | null>
+	}
+}
+
 interface RenderPropsLink extends Pick<SharedLinkProps, 'target'> {
 	buildHref: (record?: string) => string
 }
@@ -88,6 +97,7 @@ interface ComponentToggleType extends PartialComponentType {
 
 type ComponentType =
 	| ComponentIconType
+	| ComponentColoredDotType
 	| ComponentLinkType
 	| ComponentTagType
 	| ComponentToggleType

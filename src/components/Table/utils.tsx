@@ -1,5 +1,6 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
+import { ColoredDot } from 'components/ColoredDot'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import React from 'react'
@@ -81,7 +82,7 @@ More info --> https://fusejs.io/examples.html#nested-search
  */
 export function mapFilterKeys(columns: ColumnType[]) {
 	const { component, number, string } = ColumnTypes
-	const { icon, link, tag } = ColumnFormats
+	const { icon, coloredDot, link, tag } = ColumnFormats
 
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
@@ -92,6 +93,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 			case component:
 				switch (column.format) {
 					case icon:
+					case coloredDot:
 					case link:
 						keysArr.push(dataIndex)
 						break
@@ -171,12 +173,13 @@ function applySort<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number, string } = ColumnTypes
-	const { icon, link, tag, toggle } = ColumnFormats
+	const { icon, coloredDot, link, tag, toggle } = ColumnFormats
 
 	switch (column.type) {
 		case component:
 			switch (column.format) {
 				case icon:
+				case coloredDot:
 				case link:
 					antDColumn.sorter = compareStrings(column)
 					break
@@ -212,7 +215,7 @@ function applyRender<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number } = ColumnTypes
-	const { byte, date, icon, link, tag, toggle } = ColumnFormats
+	const { byte, date, icon, coloredDot, link, tag, toggle } = ColumnFormats
 
 	switch (column.type) {
 		case component:
@@ -240,6 +243,17 @@ function applyRender<TableData extends DataId>(
             */
 
 						return <Icon {...iconProps} height={height} />
+					}
+					break
+				}
+
+				case coloredDot: {
+					antDColumn.render = (record: string) => {
+						const { colorMap } = column.renderProps
+
+						if (!colorMap[record]) return ''
+
+						return <ColoredDot {...colorMap[record]} />
 					}
 					break
 				}

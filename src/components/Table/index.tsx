@@ -55,6 +55,10 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 */
 	onRowClick?: OnRowClick<TableData<Data>>
 	/**
+	 * Optional prop to show or hide pagination. Pagination is present on the bottom right by default.
+	 */
+	pagination?: boolean
+	/**
 	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
@@ -72,6 +76,7 @@ export const Table = <Data,>({
 	data,
 	dataTag,
 	onRowClick,
+	pagination,
 	search = true,
 	searchProps = {} as SearchProps
 }: TableProps<Data>) => {
@@ -138,14 +143,19 @@ export const Table = <Data,>({
 		setFilteredData(filteredData)
 	}
 
-	let optionalProps = {}
+	const optionalProps: Record<string, any> = {}
 
 	if (onRowClick) {
-		optionalProps = {
-			onRow: (record: Record<string, any>, rowIndex: number) => ({
-				onClick: () => onRowClick(mappedData[record.id], rowIndex)
-			})
-		}
+		optionalProps.onRow = (
+			record: Record<string, any>,
+			rowIndex: number
+		) => ({
+			onClick: () => onRowClick(mappedData[record.id], rowIndex)
+		})
+	}
+
+	if (!pagination) {
+		optionalProps.pagination = pagination
 	}
 
 	return (

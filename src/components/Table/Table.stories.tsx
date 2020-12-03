@@ -7,6 +7,7 @@ import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
+import tableData4, { Dot } from './fixtures/4_sample_data'
 
 const commonArgTypes = {
 	activeRowKey: {
@@ -26,6 +27,10 @@ const commonArgTypes = {
   }`
 			}
 		}
+	},
+	pagination: {
+		description:
+			'Optional prop to show or hide pagination. Pagination is present on the bottom right by default.'
 	},
 	searchProps: {
 		control: 'object',
@@ -239,6 +244,8 @@ const paginatedData = [
 	...cloneDeep(tableData1.data.slice(1, 4)),
 	...cloneDeep(tableData1.data),
 	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data.slice(0, 2)),
 	...cloneDeep(tableData1.data)
 ]
 
@@ -250,3 +257,13 @@ Paginated.args = {
 	})
 }
 Paginated.argTypes = commonArgTypes
+
+const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
+	<Table<Dot> {...args} />
+)
+
+export const ColoredDot = ColoredDotTemplate.bind({})
+ColoredDot.args = {
+	...tableData4,
+	pagination: false
+}
