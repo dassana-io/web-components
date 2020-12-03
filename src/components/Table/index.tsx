@@ -55,10 +55,6 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 */
 	onRowClick?: OnRowClick<TableData<Data>>
 	/**
-	 * Optional prop to show or hide pagination. Pagination is present on the bottom right by default.
-	 */
-	pagination?: boolean
-	/**
 	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
@@ -68,6 +64,9 @@ export interface TableProps<Data> extends CommonComponentProps {
 	searchProps?: SearchProps
 }
 
+/* TODO: Add Table props to allow customization of pagination. */
+type Pagination = false | { showSizeChanger: false }
+
 // eslint-disable-next-line comma-spacing
 export const Table = <Data,>({
 	activeRowKey = '',
@@ -76,12 +75,12 @@ export const Table = <Data,>({
 	data,
 	dataTag,
 	onRowClick,
-	pagination,
 	search = true,
 	searchProps = {} as SearchProps
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
+	const [pagination, setPagination] = useState<Pagination>(false)
 
 	const tableClasses = useStyles({
 		onRowClick,
@@ -98,6 +97,9 @@ export const Table = <Data,>({
 
 	useEffect(() => {
 		setMappedData(mapData<TableData<Data>>(data))
+
+		if (data.length > 10) setPagination({ showSizeChanger: false })
+		else setPagination(false)
 	}, [data])
 
 	useEffect(() => {
@@ -154,10 +156,6 @@ export const Table = <Data,>({
 		})
 	}
 
-	if (!pagination) {
-		optionalProps.pagination = pagination
-	}
-
 	return (
 		<div className={cn(tableClasses.tableContainer, classes)}>
 			{search && (
@@ -171,6 +169,7 @@ export const Table = <Data,>({
 			<AntDTable
 				columns={processedColumns}
 				dataSource={searchTerm ? filteredData : processedData}
+				pagination={pagination}
 				rowClassName={getRowClassName}
 				rowKey={getRowKey}
 				{...getDataTestAttributeProp('table', dataTag)}
