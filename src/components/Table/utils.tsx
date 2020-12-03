@@ -1,8 +1,10 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
+import { ColoredDot } from 'components/ColoredDot'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import React from 'react'
+import { ThemeType } from 'components/assets/styles'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -12,7 +14,6 @@ import {
 	NumberDateType
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
-import { IngestionStatusDot, Status } from 'components/IngestionStatusDot'
 import { Link, LinkProps } from '../Link'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
@@ -82,7 +83,7 @@ More info --> https://fusejs.io/examples.html#nested-search
  */
 export function mapFilterKeys(columns: ColumnType[]) {
 	const { component, number, string } = ColumnTypes
-	const { icon, ingestionStatusDot, link, tag } = ColumnFormats
+	const { icon, coloredDot, link, tag } = ColumnFormats
 
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
@@ -93,7 +94,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 			case component:
 				switch (column.format) {
 					case icon:
-					case ingestionStatusDot:
+					case coloredDot:
 					case link:
 						keysArr.push(dataIndex)
 						break
@@ -173,13 +174,13 @@ function applySort<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number, string } = ColumnTypes
-	const { icon, ingestionStatusDot, link, tag, toggle } = ColumnFormats
+	const { icon, coloredDot, link, tag, toggle } = ColumnFormats
 
 	switch (column.type) {
 		case component:
 			switch (column.format) {
 				case icon:
-				case ingestionStatusDot:
+				case coloredDot:
 				case link:
 					antDColumn.sorter = compareStrings(column)
 					break
@@ -215,15 +216,7 @@ function applyRender<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>
 ) {
 	const { component, number } = ColumnTypes
-	const {
-		byte,
-		date,
-		icon,
-		ingestionStatusDot,
-		link,
-		tag,
-		toggle
-	} = ColumnFormats
+	const { byte, date, icon, coloredDot, link, tag, toggle } = ColumnFormats
 
 	switch (column.type) {
 		case component:
@@ -255,10 +248,14 @@ function applyRender<TableData extends DataId>(
 					break
 				}
 
-				case ingestionStatusDot: {
-					antDColumn.render = (record: Status) => (
-						<IngestionStatusDot status={record} />
-					)
+				case coloredDot: {
+					antDColumn.render = (record: string) => {
+						const { colorMap } = column.renderProps
+
+						if (!colorMap[record]) return ''
+
+						return <ColoredDot {...colorMap[record]} />
+					}
 					break
 				}
 

@@ -1,53 +1,78 @@
 import { ColumnFormats } from '../types'
-import { Status } from 'components/IngestionStatusDot'
+import { styleguide } from 'components/assets/styles'
+import { ThemeType } from 'components'
 import { ColumnType, ColumnTypes, TableProps } from '../.'
 
-export interface IngestionStatusType {
-	status_label: string
+const {
+	colors: { blacks, oranges }
+} = styleguide
+
+export interface Dot {
+	statusLabel: string
 	id: number | string
-	ingestion_status: Status
+	ingestionStatus: string
 }
 
-const { ingestionStatusDot } = ColumnFormats
+const { coloredDot } = ColumnFormats
 const { component, string } = ColumnTypes
 
 const columns: ColumnType[] = [
 	{
-		dataIndex: 'status_label',
+		dataIndex: 'statusLabel',
 		title: 'Status Label',
 		type: string
 	},
 	{
-		dataIndex: 'ingestion_status',
-		format: ingestionStatusDot,
-		title: 'Ingestion Status Dot',
+		dataIndex: 'ingestionStatus',
+		format: coloredDot,
+		renderProps: {
+			colorMap: {
+				disabled: null,
+				hasIssues: {
+					colors: {
+						[ThemeType.light]: oranges.base,
+						[ThemeType.dark]: oranges.base
+					},
+					tooltipText: 'Test'
+				},
+				needsConfig: {
+					colors: {
+						[ThemeType.light]: blacks['lighten-40'],
+						[ThemeType.dark]: blacks['lighten-70']
+					},
+					tooltipText: 'Needs Config'
+				},
+				ok: null
+			}
+		},
+		title: 'Ingestion Status',
 		type: component
 	}
 ]
 
-const data: IngestionStatusType[] = [
+const data: Dot[] = [
 	{
 		id: 0,
-		ingestion_status: Status.OK,
-		status_label: 'ok'
+		ingestionStatus: 'ok',
+		statusLabel: 'ok'
 	},
 	{
 		id: 1,
-		ingestion_status: Status.NEEDSCONFIG,
-		status_label: 'needs config'
+		ingestionStatus: 'needsConfig',
+		statusLabel: 'needs config'
 	},
 	{
 		id: 2,
-		ingestion_status: Status.DISABLED,
-		status_label: 'paused'
+		ingestionStatus: 'disabled',
+		statusLabel: 'paused'
 	},
 	{
 		id: 3,
-		ingestion_status: Status.HASISSUES,
-		status_label: 'issues'
+		ingestionStatus: 'hasIssues',
+		statusLabel: 'issues'
 	}
 ]
 
-const tableData4: TableProps<IngestionStatusType> = { columns, data }
+const tableData4: TableProps<Dot> = { columns, data }
 
 export default tableData4

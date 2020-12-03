@@ -1,7 +1,6 @@
 import { act } from 'react-dom/test-utils'
 import moment from 'moment'
 import React from 'react'
-import { Status } from 'components/IngestionStatusDot'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
@@ -96,9 +95,9 @@ describe('Table', () => {
 			byte: 1024,
 			date: 1599193037581,
 			icon: 'test',
-			icon_key: 'dassana',
+			iconKey: 'dassana',
 			id: 0,
-			ingestion_status: Status.OK,
+			ingestionStatus: 'test',
 			key: 0,
 			link: 'test',
 			number: 0,
