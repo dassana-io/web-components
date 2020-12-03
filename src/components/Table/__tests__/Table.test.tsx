@@ -230,3 +230,27 @@ describe('Table onRowClick, activeRowKey', () => {
 		expect(tableRow.getDOMNode().classList.toString()).toContain('active')
 	})
 })
+
+describe('Table pagination', () => {
+	it('does not pass pagination prop to AntD Table if it is true', () => {
+		wrapper = mount(
+			createTable<Person>({
+				...mockData0,
+				pagination: true
+			})
+		)
+
+		expect(wrapper.find(AntDTable).props().pagination).toBeUndefined()
+	})
+
+	it('passes pagination prop to AntD Table as if it is false', () => {
+		wrapper = mount(
+			createTable<Person>({
+				...mockData0,
+				pagination: false
+			})
+		)
+
+		expect(wrapper.find(AntDTable).props().pagination).toBe(false)
+	})
+})

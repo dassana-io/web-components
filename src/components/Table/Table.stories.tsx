@@ -28,6 +28,10 @@ const commonArgTypes = {
 			}
 		}
 	},
+	pagination: {
+		description:
+			'Optional prop to show or hide pagination. Pagination is present on the bottom right by default.'
+	},
 	searchProps: {
 		control: 'object',
 		defaultValue: { placeholder: '', placement: 'left' }, // This isn't the default, it's a placeholder for storybook
@@ -240,6 +244,8 @@ const paginatedData = [
 	...cloneDeep(tableData1.data.slice(1, 4)),
 	...cloneDeep(tableData1.data),
 	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data.slice(0, 2)),
 	...cloneDeep(tableData1.data)
 ]
 
@@ -258,5 +264,6 @@ const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
 
 export const ColoredDot = ColoredDotTemplate.bind({})
 ColoredDot.args = {
-	...tableData4
+	...tableData4,
+	pagination: false
 }

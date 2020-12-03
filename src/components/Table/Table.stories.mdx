@@ -42,14 +42,14 @@ import {
 	TableProps
 } from '@dassana-io/web-components'
 
+const { number, string } = ColumnTypes
+
 // You specify the data object interface.
 export interface Person {
 	name: string
 	id: number | string
 	age: number
 }
-
-const { number, string } = ColumnTypes
 
 const columns: ColumnType[] = [
 	{
@@ -261,6 +261,9 @@ import {
 	TableProps
 } from '@dassana-io/web-components'
 
+const { number, string } = ColumnTypes
+const { byte, date } = ColumnFormats
+
 export interface File {
 	created_at: number
 	data_size: number
@@ -269,9 +272,6 @@ export interface File {
 	last_opened?: number
 	updated_at?: number // Pass an optional type if there will be missing data
 }
-
-const { number, string } = ColumnTypes
-const { byte, date } = ColumnFormats
 
 const columns: ColumnType[] = [
 	{
@@ -455,6 +455,9 @@ import {
 	TableProps
 } from '@dassana-io/web-components'
 
+const { component, number, string } = ColumnTypes
+const { date, icon, link, toggle, tag } = ColumnFormats
+
 export interface Client {
 	admin_access: boolean
 	company: IconName
@@ -465,8 +468,6 @@ export interface Client {
 	start_date: number
 }
 
-const { component, number, string } = ColumnTypes
-const { date, icon, link, toggle, tag } = ColumnFormats
 
 const columns: ColumnType[] = [
 	{
