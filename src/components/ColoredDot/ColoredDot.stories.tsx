@@ -4,7 +4,12 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import React, { FC } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
+const { light, dark } = ThemeType
+
 export default {
+	argTypes: {
+		classes: { control: { disable: true } }
+	},
 	component: ColoredDot,
 	title: 'ColoredDot'
 } as Meta
@@ -14,8 +19,6 @@ const {
 	font,
 	spacing
 } = styleguide
-
-const { light, dark } = ThemeType
 
 const useStyles = createUseStyles({
 	container: {

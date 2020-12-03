@@ -182,24 +182,20 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </div>
 `;
 
-exports[`Storyshots ColoredDot All 1`] = `
+exports[`Storyshots ColoredDot Colored 1`] = `
 <div
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="mainContainer-0-1-7"
+    className="container-0-1-5"
   >
     <p>
       Hover over colored dot to show tooltip.
     </p>
     <span
-      className="coloredDot-0-1-8 dot-0-1-6"
-    />
-    <span
-      className="coloredDot-0-1-9 dot-0-1-6"
-    />
-    <span
-      className="coloredDot-0-1-10 dot-0-1-6"
+      className="coloredDot-0-1-7 dot-0-1-6"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     />
   </div>
 </div>
@@ -238,7 +234,7 @@ exports[`Storyshots Input Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-11 container-d0-0-1-14"
+    className="ant-input container-0-1-8 container-d0-0-1-11"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -257,7 +253,7 @@ exports[`Storyshots Input Error 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-11 container-d5-0-1-20 error-0-1-12"
+    className="ant-input container-0-1-8 container-d5-0-1-17 error-0-1-9"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -276,7 +272,7 @@ exports[`Storyshots Input Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-11 container-d4-0-1-19"
+    className="ant-input container-0-1-8 container-d4-0-1-16"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -295,13 +291,13 @@ exports[`Storyshots Input Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-11 container-d3-0-1-17"
+    className="container-0-1-8 container-d3-0-1-14"
   >
     <div
-      className="inputSkeleton-0-1-13"
+      className="inputSkeleton-0-1-10"
     >
       <span
-        className="container-0-1-3 container-d1-0-1-18"
+        className="container-0-1-3 container-d1-0-1-15"
       >
          
       </span>
@@ -315,7 +311,7 @@ exports[`Storyshots Input Placeholder 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-11 container-d1-0-1-15"
+    className="ant-input container-0-1-8 container-d1-0-1-12"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -615,31 +611,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-22"
+    className="container-0-1-19"
   >
     <div
-      className="skeletonButton-0-1-24"
+      className="skeletonButton-0-1-21"
     >
       <span
-        className="container-0-1-3 container-d2-0-1-25 skeleton-0-1-23"
+        className="container-0-1-3 container-d2-0-1-22 skeleton-0-1-20"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-24"
+      className="skeletonButton-0-1-21"
     >
       <span
-        className="container-0-1-3 container-d3-0-1-26 skeleton-0-1-23"
+        className="container-0-1-3 container-d3-0-1-23 skeleton-0-1-20"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-24"
+      className="skeletonButton-0-1-21"
     >
       <span
-        className="container-0-1-3 container-d4-0-1-27 skeleton-0-1-23"
+        className="container-0-1-3 container-d4-0-1-24 skeleton-0-1-20"
       >
          
       </span>
@@ -742,10 +738,10 @@ exports[`Storyshots Select Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-29 container-d0-0-1-33"
+    className="container-0-1-26 container-d0-0-1-30"
   >
     <div
-      className="ant-select dropdown-0-1-30 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-1-27 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -838,10 +834,10 @@ exports[`Storyshots Select Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-29 container-d2-0-1-35"
+    className="container-0-1-26 container-d2-0-1-32"
   >
     <div
-      className="ant-select dropdown-0-1-30 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-1-27 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -888,7 +884,7 @@ exports[`Storyshots Select Full Width 1`] = `
           className="ant-select-selection-item"
         >
           <div
-            className="option-0-1-32"
+            className="option-0-1-29"
           >
             <span>
               Lorem
@@ -939,10 +935,10 @@ exports[`Storyshots Select Icon 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-29 container-d1-0-1-34"
+    className="container-0-1-26 container-d1-0-1-31"
   >
     <div
-      className="ant-select dropdown-0-1-30 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-1-27 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -989,10 +985,10 @@ exports[`Storyshots Select Icon 1`] = `
           className="ant-select-selection-item"
         >
           <div
-            className="option-0-1-32"
+            className="option-0-1-29"
           >
             <span
-              className="icon-0-1-31"
+              className="icon-0-1-28"
             >
               <svg
                 className=""
@@ -1052,10 +1048,10 @@ exports[`Storyshots Select Search 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-29 container-d3-0-1-36"
+    className="container-0-1-26 container-d3-0-1-33"
   >
     <div
-      className="ant-select dropdown-0-1-30 ant-select-single ant-select-show-arrow ant-select-show-search"
+      className="ant-select dropdown-0-1-27 ant-select-single ant-select-show-arrow ant-select-show-search"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -1148,7 +1144,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d6-0-1-38"
+    className="container-0-1-3 container-d6-0-1-35"
   >
      
   </span>
@@ -1160,27 +1156,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d7-0-1-39"
+    className="container-0-1-3 container-d7-0-1-36"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-39"
+    className="container-0-1-3 container-d7-0-1-36"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-39"
+    className="container-0-1-3 container-d7-0-1-36"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-39"
+    className="container-0-1-3 container-d7-0-1-36"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-39"
+    className="container-0-1-3 container-d7-0-1-36"
   >
      
   </span>
@@ -1192,7 +1188,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d5-0-1-37"
+    className="container-0-1-3 container-d5-0-1-34"
   >
      
   </span>

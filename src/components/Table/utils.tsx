@@ -4,7 +4,6 @@ import { ColoredDot } from 'components/ColoredDot'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import React from 'react'
-import { ThemeType } from 'components/assets/styles'
 import {
 	ColumnFormats,
 	ColumnType,

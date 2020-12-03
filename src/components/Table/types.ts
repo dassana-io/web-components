@@ -1,4 +1,3 @@
-import { ThemeType } from 'components/assets/styles'
 import { ColoredDotProps } from 'components/ColoredDot'
 import { Key } from 'react'
 import { SharedIconProps } from '../Icon'

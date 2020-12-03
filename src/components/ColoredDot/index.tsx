@@ -38,7 +38,7 @@ export interface ColoredDotProps {
 export const ColoredDot: FC<ColoredDotProps> = ({
 	classes = [],
 	colors,
-	tooltipText = ''
+	tooltipText
 }: ColoredDotProps) => {
 	const componentClasses = createUseStyles({
 		colors
