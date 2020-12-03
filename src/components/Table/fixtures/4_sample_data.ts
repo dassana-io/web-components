@@ -1,78 +1,26 @@
-import { ColumnFormats } from '../types'
-import { styleguide } from 'components/assets/styles'
-import { ThemeType } from 'components'
-import { ColumnType, ColumnTypes, TableProps } from '../.'
+import cloneDeep from 'lodash/cloneDeep'
+import { TableProps } from '..'
+import tableData1, { File } from './1_sample_data'
 
-const {
-	colors: { blacks, oranges }
-} = styleguide
+const paginatedData = [
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data.slice(0, 3)),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data.slice(1, 4)),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data)
+]
 
-export interface Dot {
-	statusLabel: string
-	id: number | string
-	ingestionStatus: string
+const tableData4: TableProps<File> = {
+	columns: tableData1.columns,
+	data: paginatedData.map((item, i) => {
+		item.id = i
+		return item
+	})
 }
 
-const { coloredDot } = ColumnFormats
-const { component, string } = ColumnTypes
-
-const columns: ColumnType[] = [
-	{
-		dataIndex: 'statusLabel',
-		title: 'Status Label',
-		type: string
-	},
-	{
-		dataIndex: 'ingestionStatus',
-		format: coloredDot,
-		renderProps: {
-			colorMap: {
-				disabled: null,
-				hasIssues: {
-					colors: {
-						[ThemeType.light]: oranges.base,
-						[ThemeType.dark]: oranges.base
-					},
-					tooltipText: 'Test'
-				},
-				needsConfig: {
-					colors: {
-						[ThemeType.light]: blacks['lighten-40'],
-						[ThemeType.dark]: blacks['lighten-70']
-					},
-					tooltipText: 'Needs Config'
-				},
-				ok: null
-			}
-		},
-		title: 'Ingestion Status',
-		type: component
-	}
-]
-
-const data: Dot[] = [
-	{
-		id: 0,
-		ingestionStatus: 'ok',
-		statusLabel: 'ok'
-	},
-	{
-		id: 1,
-		ingestionStatus: 'needsConfig',
-		statusLabel: 'needs config'
-	},
-	{
-		id: 2,
-		ingestionStatus: 'disabled',
-		statusLabel: 'paused'
-	},
-	{
-		id: 3,
-		ingestionStatus: 'hasIssues',
-		statusLabel: 'issues'
-	}
-]
-
-const tableData4: TableProps<Dot> = { columns, data }
-
+export type { File }
 export default tableData4

@@ -1,6 +1,6 @@
 import { Controller } from 'react-hook-form'
+import { defaultFieldWidth } from 'components/assets/styles/styleguide'
 import FieldContext from '../FieldContext'
-import FieldLabel from '../FieldLabel'
 import React from 'react'
 import { Toggle } from 'components/Toggle'
 import FormToggle, { FormToggleProps } from './index'
@@ -78,7 +78,7 @@ describe('FormToggle', () => {
 		expect(mockOnChange).toHaveBeenCalled()
 	})
 
-	it('should not render the label with the default width if fullWidth is passed as true', () => {
+	it('renders component with max-width of defaultFieldWith if fullWidth is not passed as true', () => {
 		const div = document.createElement('div')
 		div.setAttribute('id', 'container')
 		document.body.appendChild(div)
@@ -91,7 +91,11 @@ describe('FormToggle', () => {
 					onSubmit: mockOnSubmit
 				}}
 			>
-				<FormToggle defaultChecked fullWidth label='foo' name='foo' />
+				<FormToggle
+					defaultChecked
+					label='label that will wrap for width less than or equal to defaultWidthWidth'
+					name='foo'
+				/>
 			</FieldContext.Provider>,
 			{
 				attachTo: document.getElementById('container')
@@ -99,9 +103,41 @@ describe('FormToggle', () => {
 		)
 
 		const style = window.getComputedStyle(
-			wrapper.find(FieldLabel).getDOMNode()
+			wrapper.find(FormToggle).getDOMNode()
 		)
 
-		expect(style.width).not.toEqual(255)
+		expect(parseInt(style.maxWidth)).toEqual(parseInt(defaultFieldWidth))
+	})
+
+	it('renders component with max-width of 100% if fullWidth is passed as true', () => {
+		const div = document.createElement('div')
+		div.setAttribute('id', 'container-1')
+		document.body.appendChild(div)
+
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					initialValues: {},
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormToggle
+					defaultChecked
+					fullWidth
+					label='label that will wrap for width less than or equal to defaultWidthWidth'
+					name='foo'
+				/>
+			</FieldContext.Provider>,
+			{
+				attachTo: document.getElementById('container-1')
+			}
+		)
+
+		const style = window.getComputedStyle(
+			wrapper.find(FormToggle).getDOMNode()
+		)
+
+		expect(style.maxWidth).toEqual('100%')
 	})
 })

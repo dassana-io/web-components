@@ -1,13 +1,13 @@
 import { action } from '@storybook/addon-actions'
-import cloneDeep from 'lodash/cloneDeep'
 import { Story } from '@storybook/react/types-6-0'
+import tableData4 from './fixtures/4_sample_data'
 import { DataId, Table, TableProps } from '.'
 import React, { Key, useState } from 'react'
 import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
-import tableData4, { Dot } from './fixtures/4_sample_data'
+import tableData5, { Dot } from './fixtures/5_sample_data'
 
 const commonArgTypes = {
 	activeRowKey: {
@@ -71,9 +71,7 @@ const SimpleTemplate: Story<TableProps<Person>> = args => (
 	<Table<Person> {...args} />
 )
 export const Simple = SimpleTemplate.bind({})
-Simple.args = {
-	...tableData0
-}
+Simple.args = tableData0
 Simple.argTypes = {
 	...commonArgTypes,
 	columns: {
@@ -110,9 +108,7 @@ const NumberTemplate: Story<TableProps<File>> = args => (
 	<DecoratedTableStory {...args} />
 )
 export const Number = NumberTemplate.bind({})
-Number.args = {
-	...tableData1
-}
+Number.args = tableData1
 Number.argTypes = {
 	...commonArgTypes,
 	columns: {
@@ -169,13 +165,12 @@ type NumberType = NumberDefaultType | NumberDate | NumberByteType`
 		}
 	}
 }
+
 const MixedTemplate: Story<TableProps<Client>> = args => (
 	<DecoratedTableStory<Client> {...args} />
 )
 export const Mixed = MixedTemplate.bind({})
-Mixed.args = {
-	...tableData2
-}
+Mixed.args = tableData2
 Mixed.argTypes = {
 	...commonArgTypes,
 	columns: {
@@ -236,34 +231,11 @@ MissingCells.argTypes = {
 }
 
 export const Paginated = NumberTemplate.bind({})
-
-const paginatedData = [
-	...cloneDeep(tableData1.data),
-	...cloneDeep(tableData1.data.slice(0, 3)),
-	...cloneDeep(tableData1.data),
-	...cloneDeep(tableData1.data.slice(1, 4)),
-	...cloneDeep(tableData1.data),
-	...cloneDeep(tableData1.data.slice(0, 2)),
-	...cloneDeep(tableData1.data.slice(0, 2)),
-	...cloneDeep(tableData1.data.slice(0, 2)),
-	...cloneDeep(tableData1.data)
-]
-
-Paginated.args = {
-	columns: tableData1.columns,
-	data: paginatedData.map((item, i) => {
-		item.id = i
-		return item
-	})
-}
+Paginated.args = tableData4
 Paginated.argTypes = commonArgTypes
 
 const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
 	<Table<Dot> {...args} />
 )
-
 export const ColoredDot = ColoredDotTemplate.bind({})
-ColoredDot.args = {
-	...tableData4,
-	pagination: false
-}
+ColoredDot.args = tableData5
