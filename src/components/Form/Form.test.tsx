@@ -4,25 +4,20 @@ import FormSubmitButton from './FormSubmitButton'
 import { UseFormMethods } from 'react-hook-form'
 import { Form, FormProps } from './index'
 import { mount, shallow, ShallowWrapper } from 'enzyme'
-import React, { BaseSyntheticEvent, createRef } from 'react'
-
-const mockPreventDefault = jest.fn()
-const mockHandleSubmit = (
-	fn: (data: Record<string, any>, event: BaseSyntheticEvent) => void
-) => fn({}, { preventDefault: mockPreventDefault } as any)
+import React, { createRef } from 'react'
 
 jest.mock('react-hook-form', () => ({
 	...(jest.requireActual('react-hook-form') as {}),
 	useForm: () => ({
 		getValues: mockGetValues,
-		handleSubmit: mockHandleSubmit,
+		handleSubmit: jest.fn(),
 		reset: mockReset
 	}),
 	useFormContext: () => ({
 		formState: {
 			isDirty: true
 		},
-		handleSubmit: mockHandleSubmit
+		handleSubmit: jest.fn()
 	})
 }))
 
@@ -45,10 +40,6 @@ beforeEach(() => {
 	)
 })
 
-afterEach(() => {
-	jest.resetAllMocks()
-})
-
 describe('Form', () => {
 	it('renders', () => {
 		expect(wrapper).toHaveLength(1)
@@ -65,19 +56,6 @@ describe('Form', () => {
 				onSubmit: mockOnSubmit
 			}
 		)
-	})
-
-	it('prevents event default on form submit', () => {
-		const mountedForm = mount(
-			<Form onSubmit={mockOnSubmit}>
-				<FormSubmitButton>Submit</FormSubmitButton>
-			</Form>
-		)
-
-		mountedForm.find('form').simulate('submit')
-
-		expect(mockPreventDefault).toHaveBeenCalled()
-		expect(mockOnSubmit).toHaveBeenCalled()
 	})
 
 	it('exposes form methods when a ref is passed', () => {

@@ -96,6 +96,30 @@ describe('FormInput', () => {
 		expect(mockFocus).toHaveBeenCalled()
 	})
 
+	it('prevents default behavior when enter is pressed within the input', () => {
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+		const mockPreventDefault = jest.fn()
+
+		input.props.onKeyDown({
+			key: 'Enter',
+			preventDefault: mockPreventDefault
+		})
+
+		expect(mockPreventDefault).toHaveBeenCalled()
+	})
+
+	it('does not prevent default behavior when other keys are pressed within the input', () => {
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+		const mockPreventDefault = jest.fn()
+
+		input.props.onKeyDown({
+			key: 'Escape',
+			preventDefault: mockPreventDefault
+		})
+
+		expect(mockPreventDefault).not.toHaveBeenCalled()
+	})
+
 	it('clears errors on focus if there are any', () => {
 		wrapper = getMountedFormInput()
 

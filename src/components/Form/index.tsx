@@ -40,18 +40,9 @@ export function Form<Model>({
 
 	useImperativeHandle(formRef, () => methods)
 
-	const formOnSubmit = (
-		data: Record<string, any>,
-		e?: React.BaseSyntheticEvent
-	) => {
-		e && e.preventDefault()
-
-		onSubmit(data)
-	}
-
 	return (
 		<FormProvider {...methods}>
-			<form onSubmit={handleSubmit(formOnSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<FieldContext.Provider value={{ loading, onSubmit }}>
 					<div className={classes.container}>{children}</div>
 				</FieldContext.Provider>
