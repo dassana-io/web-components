@@ -24,7 +24,6 @@ beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
-				initialValues: { foo: 'bar' },
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -43,10 +42,6 @@ describe('FormSelect', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
-	it('correctly passes a default value from initial values if it exists', () => {
-		expect(wrapper.find(Controller).props().defaultValue).toEqual('bar')
-	})
-
 	it('should render a Select component', () => {
 		const test = {
 			onChange: jest.fn(),
@@ -62,7 +57,6 @@ describe('FormSelect', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
-					initialValues: {},
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}

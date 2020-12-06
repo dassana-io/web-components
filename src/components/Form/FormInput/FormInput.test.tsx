@@ -40,7 +40,6 @@ const getMountedFormInput = (formInputProps: Partial<FormInputProps> = {}) =>
 	mount(
 		<FieldContext.Provider
 			value={{
-				initialValues: { foo: 'bar' },
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -62,10 +61,6 @@ describe('FormInput', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
-	it('correctly passes a default value from initial values if it exists', () => {
-		expect(wrapper.find(Controller).props().defaultValue).toEqual('bar')
-	})
-
 	it('should render an Input component', () => {
 		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 
@@ -76,7 +71,6 @@ describe('FormInput', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
-					initialValues: {},
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}

@@ -19,13 +19,9 @@ const FormSelect: FC<FormSelectProps> = ({
 	...rest
 }: FormSelectProps) => {
 	const { control } = useFormContext()
-	const { initialValues, loading } = useContext<FieldContextProps>(
-		FieldContext
-	)
+	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	rules.required = true
-
-	const defaultValue = (initialValues[name] as string) || ''
 
 	return (
 		<div>
@@ -39,12 +35,10 @@ const FormSelect: FC<FormSelectProps> = ({
 			)}
 			<Controller
 				control={control}
-				defaultValue={defaultValue}
 				name={name}
 				render={({ onChange, value }) => (
 					<Select
 						dataTag={getFormFieldDataTag(name)}
-						defaultValue={defaultValue}
 						loading={loading}
 						onChange={onChange}
 						value={value}

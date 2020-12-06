@@ -4,20 +4,25 @@ import FormSubmitButton from './FormSubmitButton'
 import { UseFormMethods } from 'react-hook-form'
 import { Form, FormProps } from './index'
 import { mount, shallow, ShallowWrapper } from 'enzyme'
-import React, { createRef } from 'react'
+import React, { BaseSyntheticEvent, createRef } from 'react'
+
+const mockPreventDefault = jest.fn()
+const mockHandleSubmit = (
+	fn: (data: Record<string, any>, event: BaseSyntheticEvent) => void
+) => fn({}, { preventDefault: mockPreventDefault } as any)
 
 jest.mock('react-hook-form', () => ({
 	...(jest.requireActual('react-hook-form') as {}),
 	useForm: () => ({
 		getValues: mockGetValues,
-		handleSubmit: jest.fn(),
+		handleSubmit: mockHandleSubmit,
 		reset: mockReset
 	}),
 	useFormContext: () => ({
 		formState: {
 			isDirty: true
 		},
-		handleSubmit: jest.fn()
+		handleSubmit: mockHandleSubmit
 	})
 }))
 
@@ -40,6 +45,10 @@ beforeEach(() => {
 	)
 })
 
+afterEach(() => {
+	jest.resetAllMocks()
+})
+
 describe('Form', () => {
 	it('renders', () => {
 		expect(wrapper).toHaveLength(1)
@@ -52,35 +61,23 @@ describe('Form', () => {
 	it('passes the correct props to FieldContext provider', () => {
 		expect(wrapper.find(FieldContext.Provider).props().value).toMatchObject(
 			{
-				initialValues: mockInitialValues,
 				loading: false,
 				onSubmit: mockOnSubmit
 			}
 		)
 	})
 
-	it('correctly defaults initial values to empty object if none is passed in', () => {
-		wrapper = shallow(
+	it('prevents event default on form submit', () => {
+		const mountedForm = mount(
 			<Form onSubmit={mockOnSubmit}>
 				<FormSubmitButton>Submit</FormSubmitButton>
 			</Form>
 		)
 
-		expect(
-			wrapper.find(FieldContext.Provider).props().value
-		).toMatchObject({ initialValues: {} })
-	})
+		mountedForm.find('form').simulate('submit')
 
-	it('correctly updates initial values', () => {
-		const form = mount(
-			<Form onSubmit={mockOnSubmit}>
-				<FormSubmitButton>Submit</FormSubmitButton>
-			</Form>
-		)
-
-		form.setProps({ initialValues: mockInitialValues })
-
-		expect(mockReset).toHaveBeenCalledWith(mockInitialValues)
+		expect(mockPreventDefault).toHaveBeenCalled()
+		expect(mockOnSubmit).toHaveBeenCalled()
 	})
 
 	it('exposes form methods when a ref is passed', () => {

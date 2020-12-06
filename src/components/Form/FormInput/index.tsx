@@ -26,9 +26,7 @@ const FormInput: FC<FormInputProps> = ({
 }: FormInputProps) => {
 	const inputRef = useRef<AntDInput>(null)
 	const { clearErrors, control, errors } = useFormContext()
-	const { initialValues, loading } = useContext<FieldContextProps>(
-		FieldContext
-	)
+	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
 
@@ -46,8 +44,6 @@ const FormInput: FC<FormInputProps> = ({
 		rules.required = true
 	}
 
-	const defaultValue = (initialValues[name] as string) || ''
-
 	return (
 		<div>
 			{label && (
@@ -61,7 +57,6 @@ const FormInput: FC<FormInputProps> = ({
 			)}
 			<Controller
 				control={control}
-				defaultValue={defaultValue}
 				name={name}
 				render={({ onChange, value }) => (
 					<Input

@@ -8,12 +8,7 @@ import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { FieldValues, UseFormMethods } from 'react-hook-form/dist/types/form'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import React, {
-	ReactNode,
-	RefObject,
-	useEffect,
-	useImperativeHandle
-} from 'react'
+import React, { ReactNode, RefObject, useImperativeHandle } from 'react'
 
 const useStyles = createUseStyles({
 	container: {
@@ -39,22 +34,25 @@ export function Form<Model>({
 	onSubmit
 }: FormProps<Model>) {
 	const classes = useStyles()
-	const methods = useForm()
+	const methods = useForm({ defaultValues: initialValues, mode: 'onBlur' })
 
-	const { handleSubmit, reset } = methods
-
-	useEffect(() => {
-		reset(initialValues)
-	}, [initialValues, reset])
+	const { handleSubmit } = methods
 
 	useImperativeHandle(formRef, () => methods)
 
+	const formOnSubmit = (
+		data: Record<string, any>,
+		e?: React.BaseSyntheticEvent
+	) => {
+		e && e.preventDefault()
+
+		onSubmit(data)
+	}
+
 	return (
 		<FormProvider {...methods}>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<FieldContext.Provider
-					value={{ initialValues, loading, onSubmit }}
-				>
+			<form onSubmit={handleSubmit(formOnSubmit)}>
+				<FieldContext.Provider value={{ loading, onSubmit }}>
 					<div className={classes.container}>{children}</div>
 				</FieldContext.Provider>
 			</form>
