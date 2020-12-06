@@ -59,28 +59,6 @@ describe('FormTree', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
-	// it('correctly passes a default value from initial values if it exists', () => {
-	// 	expect(wrapper.find(Controller).props().defaultValue).toMatchObject([0])
-	// })
-
-	// it('correctly passes default checked as default value if initial values do not exist', () => {
-	// 	mountWrapper({ defaultChecked: [1], name: 'foo' })
-	// 	expect(wrapper.find(Controller).props().defaultValue).toMatchObject([1])
-	// })
-
-	// it('correctly passes an empty array as default value if initial values and default checked do not exist', () => {
-	// 	mountWrapper({ name: 'foo' })
-	// 	expect(wrapper.find(Controller).props().defaultValue).toMatchObject([])
-	// })
-
-	// it('correctly passes default values if both default checked and initial values exist', () => {
-	// 	mountWrapper({
-	// 		defaultChecked: [1],
-	// 		name: 'foo'
-	// 	})
-	// 	expect(wrapper.find(Controller).props().defaultValue).toMatchObject([0])
-	// })
-
 	it('should render a Tree component', () => {
 		const test = {
 			onChange: jest.fn()
