@@ -52,35 +52,10 @@ describe('Form', () => {
 	it('passes the correct props to FieldContext provider', () => {
 		expect(wrapper.find(FieldContext.Provider).props().value).toMatchObject(
 			{
-				initialValues: mockInitialValues,
 				loading: false,
 				onSubmit: mockOnSubmit
 			}
 		)
-	})
-
-	it('correctly defaults initial values to empty object if none is passed in', () => {
-		wrapper = shallow(
-			<Form onSubmit={mockOnSubmit}>
-				<FormSubmitButton>Submit</FormSubmitButton>
-			</Form>
-		)
-
-		expect(
-			wrapper.find(FieldContext.Provider).props().value
-		).toMatchObject({ initialValues: {} })
-	})
-
-	it('correctly updates initial values', () => {
-		const form = mount(
-			<Form onSubmit={mockOnSubmit}>
-				<FormSubmitButton>Submit</FormSubmitButton>
-			</Form>
-		)
-
-		form.setProps({ initialValues: mockInitialValues })
-
-		expect(mockReset).toHaveBeenCalledWith(mockInitialValues)
 	})
 
 	it('exposes form methods when a ref is passed', () => {

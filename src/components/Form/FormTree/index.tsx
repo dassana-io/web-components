@@ -4,7 +4,7 @@ import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import React, { FC, useContext } from 'react'
-import { Tree, TreeId, TreeProps } from 'components/Tree'
+import { Tree, TreeProps } from 'components/Tree'
 
 export interface FormTreeProps
 	extends BaseFieldProps,
@@ -20,11 +20,7 @@ const FormTree: FC<FormTreeProps> = ({
 	...rest
 }: FormTreeProps) => {
 	const { control } = useFormContext()
-	const { initialValues, loading } = useContext<FieldContextProps>(
-		FieldContext
-	)
-	const defaultValue =
-		(initialValues[name] as TreeId[]) || defaultChecked || []
+	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	return (
 		<div>
@@ -38,12 +34,11 @@ const FormTree: FC<FormTreeProps> = ({
 			)}
 			<Controller
 				control={control}
-				defaultValue={defaultValue}
 				name={name}
-				render={({ onChange }) => (
+				render={({ onChange, value }) => (
 					<Tree
 						dataTag={getFormFieldDataTag(name)}
-						defaultChecked={defaultValue}
+						defaultChecked={value}
 						loading={loading}
 						onChange={onChange}
 						{...rest}

@@ -11,7 +11,6 @@ export interface FormRadioGroupProps
 		Omit<RadioGroupProps, 'onChange' | 'value'> {}
 
 const FormRadioGroup: FC<FormRadioGroupProps> = ({
-	defaultValue,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -20,13 +19,9 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 	...rest
 }: FormRadioGroupProps) => {
 	const { control } = useFormContext()
-	const { initialValues, loading } = useContext<FieldContextProps>(
-		FieldContext
-	)
+	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	rules.required = true
-
-	const initialValue = (initialValues[name] as string) || defaultValue || ''
 
 	return (
 		<div>
@@ -40,12 +35,10 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 			)}
 			<Controller
 				control={control}
-				defaultValue={initialValue}
 				name={name}
 				render={({ onChange, value }) => (
 					<RadioGroup
 						dataTag={getFormFieldDataTag(name)}
-						defaultValue={defaultValue}
 						loading={loading}
 						onChange={(
 							event: React.ChangeEvent<HTMLInputElement>

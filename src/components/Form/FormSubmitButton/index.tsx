@@ -17,12 +17,12 @@ const FormSubmitButton: FC<FormButtonProps> = ({
 	isDisabled,
 	...rest
 }: FormButtonProps) => {
-	const { handleSubmit, formState, getValues } = useFormContext()
+	const { handleSubmit, formState, watch } = useFormContext()
 	const { loading, onSubmit } = useContext(FieldContext)
 	const { isDirty } = formState
 
 	const isButtonDisabled = () =>
-		isDisabled ? isDisabled(formState, getValues()) : !isDirty
+		isDisabled ? isDisabled(formState, watch()) : !isDirty
 
 	useShortcut({
 		additionalConditionalFn: () => !isButtonDisabled(),

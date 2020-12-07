@@ -40,7 +40,6 @@ const getMountedFormInput = (formInputProps: Partial<FormInputProps> = {}) =>
 	mount(
 		<FieldContext.Provider
 			value={{
-				initialValues: { foo: 'bar' },
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -62,10 +61,6 @@ describe('FormInput', () => {
 		expect(wrapper).toHaveLength(1)
 	})
 
-	it('correctly passes a default value from initial values if it exists', () => {
-		expect(wrapper.find(Controller).props().defaultValue).toEqual('bar')
-	})
-
 	it('should render an Input component', () => {
 		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 
@@ -76,7 +71,6 @@ describe('FormInput', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
-					initialValues: {},
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -100,6 +94,30 @@ describe('FormInput', () => {
 		wrapper = getMountedFormInput({ focused: true })
 
 		expect(mockFocus).toHaveBeenCalled()
+	})
+
+	it('prevents default behavior when enter is pressed within the input', () => {
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+		const mockPreventDefault = jest.fn()
+
+		input.props.onKeyDown({
+			key: 'Enter',
+			preventDefault: mockPreventDefault
+		})
+
+		expect(mockPreventDefault).toHaveBeenCalled()
+	})
+
+	it('does not prevent default behavior when other keys are pressed within the input', () => {
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+		const mockPreventDefault = jest.fn()
+
+		input.props.onKeyDown({
+			key: 'Escape',
+			preventDefault: mockPreventDefault
+		})
+
+		expect(mockPreventDefault).not.toHaveBeenCalled()
 	})
 
 	it('clears errors on focus if there are any', () => {

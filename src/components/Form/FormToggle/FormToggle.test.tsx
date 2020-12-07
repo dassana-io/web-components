@@ -23,7 +23,6 @@ beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
-				initialValues: { foo: true },
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -40,26 +39,6 @@ afterEach(() => {
 describe('FormToggle', () => {
 	it('renders', () => {
 		expect(wrapper).toHaveLength(1)
-	})
-
-	it('correctly passes a default value from initial values if it exists', () => {
-		expect(wrapper.find(Controller).props().defaultValue).toEqual(true)
-	})
-
-	it('correctly passes a default value from initial values if defaultChecked is true', () => {
-		wrapper = mount(
-			<FieldContext.Provider
-				value={{
-					initialValues: {},
-					loading: true,
-					onSubmit: mockOnSubmit
-				}}
-			>
-				<FormToggle defaultChecked label='foo' name='foo' />
-			</FieldContext.Provider>
-		)
-
-		expect(wrapper.find(Controller).props().defaultValue).toEqual(true)
 	})
 
 	it('should render a Toggle component', () => {
@@ -86,7 +65,6 @@ describe('FormToggle', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
-					initialValues: {},
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -117,7 +95,6 @@ describe('FormToggle', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
-					initialValues: {},
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}

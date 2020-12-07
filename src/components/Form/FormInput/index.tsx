@@ -6,7 +6,7 @@ import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import { Input, InputProps } from 'components/Input'
-import React, { FC, useContext, useEffect, useRef } from 'react'
+import React, { FC, KeyboardEvent, useContext, useEffect, useRef } from 'react'
 
 export interface FormInputProps
 	extends BaseFieldProps,
@@ -26,14 +26,17 @@ const FormInput: FC<FormInputProps> = ({
 }: FormInputProps) => {
 	const inputRef = useRef<AntDInput>(null)
 	const { clearErrors, control, errors } = useFormContext()
-	const { initialValues, loading } = useContext<FieldContextProps>(
-		FieldContext
-	)
+	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
 
 	const onInputFocus = () => {
 		if (errors[name]) clearErrors(name)
+	}
+
+	const onKeyDown = (e: KeyboardEvent) => {
+		// This prevents the form from being automatically submitted when the Enter button is pressed
+		if (e.key === 'Enter') e.preventDefault()
 	}
 
 	useEffect(() => {
@@ -45,8 +48,6 @@ const FormInput: FC<FormInputProps> = ({
 	if (required) {
 		rules.required = true
 	}
-
-	const defaultValue = (initialValues[name] as string) || ''
 
 	return (
 		<div>
@@ -61,7 +62,6 @@ const FormInput: FC<FormInputProps> = ({
 			)}
 			<Controller
 				control={control}
-				defaultValue={defaultValue}
 				name={name}
 				render={({ onChange, value }) => (
 					<Input
@@ -72,6 +72,7 @@ const FormInput: FC<FormInputProps> = ({
 						loading={loading}
 						onChange={onChange}
 						onFocus={onInputFocus}
+						onKeyDown={onKeyDown}
 						value={value}
 						{...rest}
 					/>

@@ -12,7 +12,7 @@ import {
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import { generateInputSkeletonStyles, generateInputStyles } from './utils'
-import React, { FC, RefObject } from 'react'
+import React, { FC, KeyboardEvent, RefObject } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -48,6 +48,7 @@ const InputSkeleton: FC<InputProps> = (props: InputProps) => {
 export interface InputProps extends BaseFormElementProps {
 	inputRef?: RefObject<AntDInput>
 	onFocus?: () => void
+	onKeyDown?: (e: KeyboardEvent) => void
 	/**
 	 * Type of input (ex: text, password)
 	 * @default text
@@ -63,6 +64,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		inputRef,
 		onChange,
 		onFocus = noop,
+		onKeyDown = noop,
 		error = false,
 		loading = false,
 		placeholder = '',
@@ -99,6 +101,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 			className={cn(componentClasses.container, inputClasses)}
 			disabled={disabled}
 			onFocus={onFocus}
+			onKeyDown={onKeyDown}
 			placeholder={placeholder}
 			ref={inputRef}
 			type={type}
