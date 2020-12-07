@@ -1,6 +1,5 @@
 import { Controller } from 'react-hook-form'
 import FieldLabel from '../FieldLabel'
-import { FieldValues } from 'react-hook-form/dist/types/form'
 import React from 'react'
 import treeData from 'components/Tree/fixtures/0_sample_data'
 import FieldContext, { FieldContextProps } from '../FieldContext'
@@ -10,18 +9,12 @@ import { Tree, TreeId } from 'components/Tree'
 
 /* Helper functions */
 interface MountWrapperArgsType {
-	initialValues: FieldValues
 	name: string
 	defaultChecked?: TreeId[]
 }
 
-const mountWrapper = ({
-	initialValues,
-	name,
-	defaultChecked
-}: MountWrapperArgsType) => {
+const mountWrapper = ({ name, defaultChecked }: MountWrapperArgsType) => {
 	const defaultValue: FieldContextProps = {
-		initialValues,
 		loading: true,
 		onSubmit: mockOnSubmit
 	}
@@ -41,7 +34,7 @@ const mountWrapper = ({
 /* --------------------------------------- */
 
 jest.mock('react-hook-form', () => ({
-	...jest.requireActual('react-hook-form'),
+	...(jest.requireActual('react-hook-form') as {}),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),
@@ -54,7 +47,7 @@ let wrapper: ReactWrapper<FormTreeProps>
 const mockOnSubmit = jest.fn()
 
 beforeEach(() => {
-	mountWrapper({ initialValues: { foo: [0] }, name: 'foo' })
+	mountWrapper({ name: 'foo' })
 })
 
 afterEach(() => {
@@ -64,29 +57,6 @@ afterEach(() => {
 describe('FormTree', () => {
 	it('renders', () => {
 		expect(wrapper).toHaveLength(1)
-	})
-
-	it('correctly passes a default value from initial values if it exists', () => {
-		expect(wrapper.find(Controller).props().defaultValue).toMatchObject([0])
-	})
-
-	it('correctly passes default checked as default value if initial values do not exist', () => {
-		mountWrapper({ defaultChecked: [1], initialValues: {}, name: 'foo' })
-		expect(wrapper.find(Controller).props().defaultValue).toMatchObject([1])
-	})
-
-	it('correctly passes an empty array as default value if initial values and default checked do not exist', () => {
-		mountWrapper({ initialValues: {}, name: 'foo' })
-		expect(wrapper.find(Controller).props().defaultValue).toMatchObject([])
-	})
-
-	it('correctly passes default values if both default checked and initial values exist', () => {
-		mountWrapper({
-			defaultChecked: [1],
-			initialValues: { foo: [0] },
-			name: 'foo'
-		})
-		expect(wrapper.find(Controller).props().defaultValue).toMatchObject([0])
 	})
 
 	it('should render a Tree component', () => {
@@ -103,7 +73,6 @@ describe('FormTree', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
-					initialValues: {},
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}

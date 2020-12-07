@@ -44,13 +44,9 @@ const FormToggle: FC<FormToggleProps> = ({
 	...rest
 }: FormToggleProps) => {
 	const { control } = useFormContext()
-	const { initialValues, loading } = useContext<FieldContextProps>(
-		FieldContext
-	)
+	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const classes = useStyles({ fullWidth })
-
-	const defaultValue = (initialValues[name] as boolean) || defaultChecked
 
 	// TODO: add info tips
 	return (
@@ -64,7 +60,6 @@ const FormToggle: FC<FormToggleProps> = ({
 			/>
 			<Controller
 				control={control}
-				defaultValue={defaultValue}
 				name={name}
 				render={({ onChange, value }) => (
 					<Toggle
