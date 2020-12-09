@@ -154,6 +154,18 @@ const generateTableStyles = (themeType: ThemeType) => {
 					},
 					cursor: 'default'
 				},
+				'&.ant-table-empty .ant-table-tbody > tr.ant-table-placeholder': {
+					'& .ant-empty-image': {
+						display: 'none'
+					},
+					'& .ant-table-cell': {
+						borderBottom: 'none'
+					},
+					'& > .ant-table-cell': {
+						background: td.base.background
+					},
+					color: td.base.background
+				},
 				background: td.base.background
 			}
 		}

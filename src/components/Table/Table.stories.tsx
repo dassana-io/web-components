@@ -1,13 +1,19 @@
 import { action } from '@storybook/addon-actions'
+import { createUseStyles } from 'react-jss'
 import { Story } from '@storybook/react/types-6-0'
 import tableData4 from './fixtures/4_sample_data'
 import { DataId, Table, TableProps } from '.'
 import React, { Key, useState } from 'react'
+import { styleguide, themes, ThemeType } from 'components/assets/styles'
 import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
 import tableData5, { Dot } from './fixtures/5_sample_data'
+
+const { spacing } = styleguide
+
+const { dark, light } = ThemeType
 
 const commonArgTypes = {
 	activeRowKey: {
@@ -45,6 +51,33 @@ const commonArgTypes = {
 			}
 		}
 	}
+}
+
+const useStyles = createUseStyles({
+	decorator: {
+		background: themes[light].background.secondary,
+		height: `calc(100vh - ${spacing.m * 2}px)`,
+		padding: spacing.l,
+		width: `calc(100vw - ${spacing.m * 2}px)`
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $decorator': {
+				background: themes[dark].background.secondary
+			}
+		}
+	}
+})
+
+export const Decorator = (TableStory: Story) => {
+	const classes = useStyles()
+
+	return (
+		<div className={classes.decorator}>
+			<TableStory />
+		</div>
+	)
 }
 
 const DecoratedTableStory = <Data extends DataId>(props: TableProps<Data>) => {
