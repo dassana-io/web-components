@@ -163,9 +163,9 @@ describe('Table search and searchProps', () => {
 
 	it('it renders the search bar to the left by default', async () => {
 		const table = wrapper.find(Table)
-		const searchBar = table.find('input')
+		const searchBarWrapper = table.find('[className*="searchBarWrapper"]')
 
-		const style = window.getComputedStyle(searchBar.getDOMNode())
+		const style = window.getComputedStyle(searchBarWrapper.getDOMNode())
 
 		expect(style.alignSelf).toBe('flex-start')
 	})
@@ -179,9 +179,9 @@ describe('Table search and searchProps', () => {
 		)
 
 		const table = wrapper.find(Table)
-		const searchBar = table.find('input')
+		const searchBarWrapper = table.find('[className*="searchBarWrapper"]')
 
-		const style = window.getComputedStyle(searchBar.getDOMNode())
+		const style = window.getComputedStyle(searchBarWrapper.getDOMNode())
 
 		expect(style.alignSelf).toBe('flex-end')
 	})
