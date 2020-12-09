@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
 		},
 		background: tablePalette[light].td.base.background,
 		borderBottom: `1px solid ${tablePalette[light].td.base.border}`,
-		height: 64,
+		height: 54,
 		padding: `0 ${spacing.m}px`
 	},
 	th: {
@@ -42,7 +42,7 @@ const useStyles = createUseStyles({
 			paddingRight: spacing.l
 		},
 		background: tablePalette[light].th.base.background,
-		height: 54,
+		height: 55,
 		padding: `0 ${spacing.m}px`
 	},
 	// eslint-disable-next-line sort-keys
