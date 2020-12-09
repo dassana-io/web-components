@@ -161,27 +161,31 @@ export const Table = <Data,>({
 		})
 	}
 
-	return loading ? (
-		<TableSkeleton columns={columns} rowCount={skeletonRowCount} />
-	) : (
+	return (
 		<div className={cn(tableClasses.tableContainer, classes)}>
 			{search && (
-				<Input
-					classes={[tableClasses.searchBar]}
-					dataTag='table-search'
-					onChange={handleChange}
-					placeholder={searchProps.placeholder}
+				<div className={tableClasses.searchBarWrapper}>
+					<Input
+						dataTag='table-search'
+						loading={loading}
+						onChange={handleChange}
+						placeholder={searchProps.placeholder}
+					/>
+				</div>
+			)}
+			{loading ? (
+				<TableSkeleton columns={columns} rowCount={skeletonRowCount} />
+			) : (
+				<AntDTable
+					columns={processedColumns}
+					dataSource={searchTerm ? filteredData : processedData}
+					pagination={pagination}
+					rowClassName={getRowClassName}
+					rowKey={getRowKey}
+					{...getDataTestAttributeProp('table', dataTag)}
+					{...optionalProps}
 				/>
 			)}
-			<AntDTable
-				columns={processedColumns}
-				dataSource={searchTerm ? filteredData : processedData}
-				pagination={pagination}
-				rowClassName={getRowClassName}
-				rowKey={getRowKey}
-				{...getDataTestAttributeProp('table', dataTag)}
-				{...optionalProps}
-			/>
 		</div>
 	)
 }

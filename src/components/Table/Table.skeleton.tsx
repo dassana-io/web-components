@@ -31,6 +31,7 @@ const useStyles = createUseStyles({
 		},
 		background: tablePalette[light].td.base.background,
 		borderBottom: `1px solid ${tablePalette[light].td.base.border}`,
+		height: 64,
 		padding: `0 ${spacing.m}px`
 	},
 	th: {
@@ -41,9 +42,9 @@ const useStyles = createUseStyles({
 			paddingRight: spacing.l
 		},
 		background: tablePalette[light].th.base.background,
+		height: 54,
 		padding: `0 ${spacing.m}px`
 	},
-	tr: { height: 64 },
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
@@ -77,7 +78,7 @@ export const TableSkeleton: FC<Props> = ({ columns, rowCount }: Props) => {
 	return (
 		<table className={classes.table}>
 			<thead>
-				<tr className={classes.tr}>
+				<tr>
 					{times(columns.length, (j: number) => {
 						return (
 							<th className={classes.th} key={j}>
@@ -94,7 +95,7 @@ export const TableSkeleton: FC<Props> = ({ columns, rowCount }: Props) => {
 			<tbody>
 				{times(rowCount, (i: number) => {
 					return (
-						<tr className={classes.tr} key={i}>
+						<tr key={i}>
 							{times(columns.length, (j: number) => {
 								const format = columns[j].format
 								const type = columns[j].type
