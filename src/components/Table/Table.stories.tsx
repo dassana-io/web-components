@@ -239,3 +239,4 @@ const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
 )
 export const ColoredDot = ColoredDotTemplate.bind({})
 ColoredDot.args = tableData5
+ColoredDot.argTypes = commonArgTypes

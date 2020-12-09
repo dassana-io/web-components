@@ -1,11 +1,12 @@
 import { act } from 'react-dom/test-utils'
 import moment from 'moment'
 import React from 'react'
+import { TableSkeleton } from '../TableSkeleton'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData1, { File } from '../fixtures/4_sample_data'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
 import { Table, TableProps } from '..'
 
 /* Helper functions */
@@ -129,6 +130,19 @@ describe('Table props', () => {
 			expect.arrayContaining(mockData0.columns)
 		)
 	})
+
+	it('throws an error if passed skeletonRowCount prop is less than 1', () => {
+		expect(() =>
+			shallow(
+				<Table<Person>
+					columns={mockData0.columns}
+					data={[]}
+					loading
+					skeletonRowCount={0}
+				/>
+			)
+		).toThrow()
+	})
 })
 
 describe('Table search and searchProps', () => {
@@ -233,12 +247,6 @@ describe('Table onRowClick, activeRowKey', () => {
 
 describe('Table pagination', () => {
 	it('does not show pagination if there are less than 10 rows', () => {
-		wrapper = mount(
-			createTable<Person>({
-				...mockData0
-			})
-		)
-
 		expect(wrapper.find(AntDTable).props().pagination).toBe(false)
 
 		expect(wrapper.find('.ant-pagination').exists()).toBeFalsy()
@@ -256,5 +264,15 @@ describe('Table pagination', () => {
 		})
 
 		expect(wrapper.find('.ant-pagination').exists()).toBeTruthy()
+	})
+})
+
+describe('Table loading', () => {
+	it('renders a TableSkeleton if loading prop is passed as true', () => {
+		const wrapper: ShallowWrapper = shallow(
+			<Table<Person> columns={mockData0.columns} data={[]} loading />
+		)
+
+		expect(wrapper.find(TableSkeleton)).toHaveLength(1)
 	})
 })

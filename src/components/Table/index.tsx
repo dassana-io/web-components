@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
-import { TableSkeleton } from './Table.skeleton'
+import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
 import { ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
@@ -51,6 +51,9 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Array of data objects
 	 */
 	data: TableData<Data>[]
+	/**
+	 * Whether or not to show skeleton loader
+	 */
 	loading?: boolean
 	/**
 	 * Optional callback that runs when a table row is clicked
@@ -60,6 +63,9 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
+	/**
+	 * Number of skeleton table rows shown if loading is set to true
+	 */
 	skeletonRowCount?: number
 	/**
 	 * Optional props for search input
@@ -160,6 +166,9 @@ export const Table = <Data,>({
 			onClick: () => onRowClick(mappedData[record.id], rowIndex)
 		})
 	}
+
+	if (skeletonRowCount < 1)
+		throw new Error('skeletonRowCount must be a positive integer')
 
 	return (
 		<div className={cn(tableClasses.tableContainer, classes)}>
