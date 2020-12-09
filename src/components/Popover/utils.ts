@@ -40,7 +40,8 @@ export const generatePopoverStyles = (themeType: ThemeType) => {
 				'& > .ant-popover-inner': {
 					'& > .ant-popover-inner-content': {
 						color: base.color,
-						fontWeight: 300
+						fontWeight: 300,
+						padding: 0
 					},
 					'& > .ant-popover-title': {
 						borderBottomColor: base.borderColor,
