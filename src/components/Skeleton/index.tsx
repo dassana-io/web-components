@@ -70,7 +70,7 @@ interface DefaultSkeletonProps {
 	/**
 	 * Skeleton width. If undefined, skeleton will span the width of parent container. **Note**: width is a required prop for a circle skeleton.
 	 */
-	width?: number
+	width?: number | string
 }
 
 interface CircleSkeletonProps

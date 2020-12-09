@@ -7,6 +7,7 @@ import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
+import { TableSkeleton } from './Table.skeleton'
 import { useStyles } from './styles'
 import { ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
@@ -50,6 +51,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Array of data objects
 	 */
 	data: TableData<Data>[]
+	loading?: boolean
 	/**
 	 * Optional callback that runs when a table row is clicked
 	 */
@@ -58,6 +60,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional prop to enable/disable table search
 	 */
 	search?: boolean
+	skeletonRowCount?: number
 	/**
 	 * Optional props for search input
 	 */
@@ -74,8 +77,10 @@ export const Table = <Data,>({
 	columns,
 	data,
 	dataTag,
+	loading = false,
 	onRowClick,
 	search = true,
+	skeletonRowCount = 5,
 	searchProps = {} as SearchProps
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
@@ -156,7 +161,9 @@ export const Table = <Data,>({
 		})
 	}
 
-	return (
+	return loading ? (
+		<TableSkeleton columns={columns} rowCount={skeletonRowCount} />
+	) : (
 		<div className={cn(tableClasses.tableContainer, classes)}>
 			{search && (
 				<Input

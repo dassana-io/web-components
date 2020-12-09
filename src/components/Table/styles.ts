@@ -60,7 +60,7 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 	}
 }
 
-const tablePalette = {
+export const tablePalette = {
 	[dark]: {
 		arrow: {
 			active: blacks['lighten-60'],
