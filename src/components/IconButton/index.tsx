@@ -1,11 +1,14 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { generateThemedIconBtnStyles } from './utils'
 import {
 	FontAwesomeIcon,
 	FontAwesomeIconProps
 } from '@fortawesome/react-fontawesome'
+import {
+	generateThemedHasBorderStyles,
+	generateThemedIconBtnStyles
+} from './utils'
 import React, { FC, SyntheticEvent } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -15,7 +18,7 @@ const { light, dark } = ThemeType
 const useStyles = createUseStyles({
 	hasBorder: {
 		...flexCenter,
-		border: '1px solid',
+		...generateThemedHasBorderStyles(light),
 		borderRadius,
 		height: spacing.xl,
 		width: spacing.xl
@@ -32,6 +35,7 @@ const useStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
+			'& $hasBorder': generateThemedHasBorderStyles(dark),
 			'& $iconButton': generateThemedIconBtnStyles(dark)
 		}
 	}
@@ -43,7 +47,7 @@ export enum IconSizes {
 	'lg' = font.h2.fontSize
 }
 
-interface Props {
+export interface IconButtonProps {
 	classes?: string[]
 	hasBorder?: boolean
 	icon?: FontAwesomeIconProps['icon']
@@ -51,14 +55,13 @@ interface Props {
 	size?: number
 }
 
-/* NOTE: This will be moved to web-components eventually */
-export const IconButton: FC<Props> = ({
+export const IconButton: FC<IconButtonProps> = ({
 	classes = [],
 	hasBorder = false,
 	icon = faTimes,
 	onClick,
 	size
-}: Props) => {
+}: IconButtonProps) => {
 	const componentClasses = useStyles({ size })
 
 	const iconBtnClasses = cn(
@@ -69,7 +72,7 @@ export const IconButton: FC<Props> = ({
 		classes
 	)
 
-	const optionalProps: Pick<Props, 'onClick'> = {}
+	const optionalProps: Pick<IconButtonProps, 'onClick'> = {}
 
 	if (onClick) {
 		optionalProps.onClick = onClick

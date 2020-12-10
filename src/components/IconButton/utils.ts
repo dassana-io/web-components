@@ -17,18 +17,29 @@ const iconBtnPalette = {
 
 export const generateThemedIconBtnStyles = (themeType: ThemeType) => {
 	const {
-		base: { borderColor, color },
+		base: { color },
 		hover
+	} = themedStyles[themeType]
+
+	return {
+		'&:hover': {
+			color: hover.color
+		},
+		color
+	}
+}
+
+export const generateThemedHasBorderStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor }
 	} = themedStyles[themeType]
 
 	const { hoverBorderColor } = iconBtnPalette[themeType]
 
 	return {
 		'&:hover': {
-			borderColor: hoverBorderColor,
-			color: hover.color
+			border: `1px solid ${hoverBorderColor}`
 		},
-		borderColor,
-		color
+		border: `1px solid ${borderColor}`
 	}
 }
