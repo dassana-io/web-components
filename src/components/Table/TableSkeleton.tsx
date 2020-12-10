@@ -70,7 +70,7 @@ const THeaderCellSkeleton = () => {
 			<Skeleton
 				classes={[classes.skeleton]}
 				height={15}
-				width={`${random(20, 80)}%`}
+				width={`${random(25, 80)}%`}
 			/>
 		</th>
 	)
@@ -106,7 +106,7 @@ const TDataCellSkeleton: FC<TDataCellSkeletonProps> = ({
 		props =
 			format && mappedSkeletonProps[format]
 				? mappedSkeletonProps[format]
-				: { width: `${random(10, 100)}%` }
+				: { width: `${random(25, 100)}%` }
 	}
 
 	return (
@@ -133,25 +133,23 @@ export const TableSkeleton: FC<TableSkeletonProps> = ({
 		<table className={classes.table}>
 			<thead>
 				<tr>
-					{times(columns.length, (j: number) => {
-						return <THeaderCellSkeleton key={j} />
-					})}
+					{times(columns.length, (j: number) => (
+						<THeaderCellSkeleton key={j} />
+					))}
 				</tr>
 			</thead>
 			<tbody>
-				{times(rowCount, (i: number) => {
-					return (
-						<tr key={i}>
-							{times(columns.length, (j: number) => (
-								<TDataCellSkeleton
-									columns={columns}
-									index={j}
-									key={j}
-								/>
-							))}
-						</tr>
-					)
-				})}
+				{times(rowCount, (i: number) => (
+					<tr key={i}>
+						{times(columns.length, (j: number) => (
+							<TDataCellSkeleton
+								columns={columns}
+								index={j}
+								key={j}
+							/>
+						))}
+					</tr>
+				))}
 			</tbody>
 		</table>
 	)

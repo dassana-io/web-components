@@ -58,7 +58,7 @@ const useStyles = createUseStyles({
 		background: themes[light].background.secondary,
 		height: `calc(100vh - ${spacing.m * 2}px)`,
 		padding: spacing.l,
-		width: `calc(100vw - ${spacing.m * 2}px)`
+		width: '100%'
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

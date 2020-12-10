@@ -9,7 +9,7 @@ beforeEach(() => {
 	wrapper = mount(<TableSkeleton columns={mockData.columns} rowCount={5} />)
 })
 
-describe('TreeSkeleton', () => {
+describe('TableSkeleton', () => {
 	it('renders', () => {
 		expect(wrapper.find(TableSkeleton)).toHaveLength(1)
 	})
