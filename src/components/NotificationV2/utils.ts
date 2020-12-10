@@ -1,6 +1,13 @@
+import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import omit from 'lodash/omit'
 import { styleguide } from 'components/assets/styles'
 import { v4 as uuidV4 } from 'uuid'
+import {
+	faCheckCircle,
+	faExclamationCircle,
+	faExclamationTriangle,
+	faTimesCircle
+} from '@fortawesome/free-solid-svg-icons'
 import { themedStyles, themes, ThemeType } from '../assets/styles/themes'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -30,13 +37,6 @@ export const useCreateDomElement = (
 	}, [root])
 
 	return domElement
-}
-
-export enum NotificationTypes {
-	error = 'error',
-	info = 'info',
-	success = 'success',
-	warning = 'warning'
 }
 
 export interface NotificationConfig {
@@ -101,3 +101,20 @@ export const generateNotificationStyles = (themeType: ThemeType) => {
 		width: 384
 	}
 }
+
+export const mappedTypesToIcons = {
+	[NotificationTypes.error]: {
+		icon: faTimesCircle
+	},
+	[NotificationTypes.info]: {
+		icon: faExclamationCircle
+	},
+	[NotificationTypes.success]: {
+		icon: faCheckCircle
+	},
+	[NotificationTypes.warning]: {
+		icon: faExclamationTriangle
+	}
+}
+
+export { NotificationTypes }

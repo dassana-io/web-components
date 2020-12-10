@@ -1,18 +1,37 @@
 import { Button } from '../Button'
 import { generatePopupSelector } from '../utils'
+import omit from 'lodash/omit'
 import React from 'react'
 import { SbTheme } from '../../../.storybook/preview'
+import startCase from 'lodash/startCase'
 import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import {
+	NotificationConfig,
 	NotificationProvider,
 	NotificationTypes,
 	useNotification
 } from './index'
 
+const { error, info, success, warning } = NotificationTypes
+
 export default {
 	argTypes: {
-		children: { control: 'text' }
+		duration: {
+			control: { max: 10000, min: 1000, step: 500, type: 'range' },
+			defaultValue: 3000,
+			description:
+				'Optional time in miliseconds before the Notification dissapears'
+		},
+		message: { description: 'Notification message to display' },
+		type: {
+			control: {
+				options: [error, info, success, warning],
+				type: 'select'
+			},
+			description:
+				'Notification type which can either be error, info, success or warning. Each type renders a different icon'
+		}
 	},
 	decorators: [
 		Story => {
@@ -30,21 +49,39 @@ export default {
 	title: 'Notification'
 } as Meta
 
-const Template: Story = () => {
+const Template: Story<NotificationConfig> = args => {
 	const { generateNotification } = useNotification()
 
 	return (
 		<Button
-			onClick={() => {
-				generateNotification({
-					message: 'Notification Message',
-					type: NotificationTypes.success
-				})
-			}}
+			{...args}
+			onClick={() => generateNotification(omit(args, 'children'))}
 		>
-			Click
+			{startCase(args.type)}
 		</Button>
 	)
 }
 
-export const Default = Template.bind({})
+export const Error = Template.bind({})
+Error.args = {
+	message: 'Message for error notification',
+	type: error
+}
+
+export const Info = Template.bind({})
+Info.args = {
+	message: 'Message for info notification',
+	type: info
+}
+
+export const Success = Template.bind({})
+Success.args = {
+	message: 'Message for success notification',
+	type: success
+}
+
+export const Warning = Template.bind({})
+Warning.args = {
+	message: 'Message for warning notification',
+	type: warning
+}

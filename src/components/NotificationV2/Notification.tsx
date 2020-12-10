@@ -1,11 +1,20 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IconButton } from 'components/IconButton'
 import { motion } from 'framer-motion'
-import { generateNotificationStyles, ProcessedNotification } from './utils'
+
+import {
+	generateNotificationStyles,
+	mappedTypesToIcons,
+	NotificationTypes,
+	ProcessedNotification
+} from './utils'
 import React, { FC } from 'react'
-import { styleguide, ThemeType } from 'components/assets/styles'
+import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
-	colors: { blacks },
+	colors: { oranges, reds, greens },
 	font,
 	spacing
 } = styleguide
@@ -13,30 +22,24 @@ const {
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
-	closeButton: {
-		...font.label,
-		'&:hover': {
-			color: blacks['lighten-30']
-		},
-		alignSelf: 'flex-end',
-		color: blacks['lighten-70'],
-		cursor: 'pointer',
-		lineHeight: 1,
-		position: 'absolute',
-		right: spacing.s,
-		top: spacing.s
-	},
 	container: generateNotificationStyles(light),
+	error: { color: reds.base },
+	icon: {
+		...font.h2
+	},
+	info: { color: themedStyles[light].base.color },
+	message: {
+		alignSelf: 'center',
+		padding: `0 ${spacing.m}px`,
+		width: '100%'
+	},
+	success: { color: greens.base },
+	warning: { color: oranges.base },
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $closeButton': {
-				'&:hover': {
-					color: blacks['lighten-40']
-				},
-				color: blacks['lighten-20']
-			},
-			'& $container': generateNotificationStyles(dark)
+			'& $container': generateNotificationStyles(dark),
+			'& $info': { color: themedStyles[dark].base.color }
 		}
 	}
 })
@@ -46,8 +49,18 @@ export type NotificationProps = ProcessedNotification
 export const Notification: FC<NotificationProps> = (
 	props: NotificationProps
 ) => {
-	const { message, onClose } = props
+	const { error, info, success, warning } = NotificationTypes
+
+	const { message, onClose, type } = props
 	const classes = useStyles(props)
+
+	const iconClasses = cn({
+		[classes.error]: type === error,
+		[classes.icon]: true,
+		[classes.info]: type === info,
+		[classes.success]: type === success,
+		[classes.warning]: type === warning
+	})
 
 	return (
 		<motion.div
@@ -61,10 +74,12 @@ export const Notification: FC<NotificationProps> = (
 				type: 'spring'
 			}}
 		>
-			{message}
-			<div className={classes.closeButton} onClick={onClose}>
-				X
-			</div>
+			<FontAwesomeIcon
+				className={iconClasses}
+				icon={mappedTypesToIcons[type].icon}
+			/>
+			<div className={classes.message}>{message}</div>
+			<IconButton onClick={onClose} />
 		</motion.div>
 	)
 }
