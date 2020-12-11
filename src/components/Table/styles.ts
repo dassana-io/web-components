@@ -60,7 +60,7 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 	}
 }
 
-const tablePalette = {
+export const tablePalette = {
 	[dark]: {
 		arrow: {
 			active: blacks['lighten-60'],
@@ -154,6 +154,18 @@ const generateTableStyles = (themeType: ThemeType) => {
 					},
 					cursor: 'default'
 				},
+				'&.ant-table-empty .ant-table-tbody > tr.ant-table-placeholder': {
+					'& .ant-empty-image': {
+						display: 'none'
+					},
+					'& .ant-table-cell': {
+						borderBottom: 'none'
+					},
+					'& > .ant-table-cell': {
+						background: td.base.background
+					},
+					color: td.base.background
+				},
 				background: td.base.background
 			}
 		}
@@ -238,7 +250,7 @@ export const useStyles = createUseStyles({
 			}
 		}
 	},
-	searchBar: {
+	searchBarWrapper: {
 		alignSelf: props =>
 			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
 		marginBottom: spacing.m
