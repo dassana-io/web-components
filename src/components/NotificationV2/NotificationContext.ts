@@ -1,15 +1,14 @@
+import { createCtx } from '@dassana-io/web-utils'
 import { NotificationConfig } from './utils'
-import { createContext, useContext } from 'react'
 
 export interface NotificationContextProps {
 	generateNotification: (notification: NotificationConfig) => void
 }
 
-const NotificationCtx = createContext<NotificationContextProps>(
-	{} as NotificationContextProps
-)
+const [useNotificationContext, NotificationCtxProvider] = createCtx<
+	NotificationContextProps
+>()
 
-const useNotification = (): NotificationContextProps =>
-	useContext(NotificationCtx)
+const useNotification = (): NotificationContextProps => useNotificationContext()
 
-export { NotificationCtx, useNotification }
+export { NotificationCtxProvider, useNotification }

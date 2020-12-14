@@ -10,16 +10,16 @@ import {
 	useCreateDomElement,
 	useNotifications
 } from './utils'
-import { NotificationCtx, useNotification } from './NotificationContext'
+import { NotificationCtxProvider, useNotification } from './NotificationContext'
 import React, { FC, ReactNode } from 'react'
 
-const { spacing } = styleguide
+const { spacing, topNavHeight } = styleguide
 
 const useStyles = createUseStyles({
 	container: {
 		position: 'fixed',
 		right: spacing.m,
-		top: 64
+		top: topNavHeight
 	}
 })
 
@@ -42,9 +42,9 @@ const NotificationProvider: FC<NotificationProviderProps> = ({
 
 	return (
 		<>
-			<NotificationCtx.Provider value={{ generateNotification }}>
+			<NotificationCtxProvider value={{ generateNotification }}>
 				{children}
-			</NotificationCtx.Provider>
+			</NotificationCtxProvider>
 			{rootElement &&
 				createPortal(
 					<div className={classes.container}>
