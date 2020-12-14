@@ -91,7 +91,7 @@ export const generateNotificationStyles = (themeType: ThemeType) => {
 
 	return {
 		...flexSpaceBetween,
-		background: palette.background.primary,
+		background: palette.background.secondary,
 		border: `1px solid ${base.borderColor}`,
 		borderRadius,
 		color: base.color,

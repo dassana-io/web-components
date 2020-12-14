@@ -3,11 +3,9 @@ import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
 import { motion } from 'framer-motion'
-
 import {
 	generateNotificationStyles,
 	mappedTypesToIcons,
-	NotificationTypes,
 	ProcessedNotification
 } from './utils'
 import React, { FC } from 'react'
@@ -49,17 +47,12 @@ export type NotificationProps = ProcessedNotification
 export const Notification: FC<NotificationProps> = (
 	props: NotificationProps
 ) => {
-	const { error, info, success, warning } = NotificationTypes
-
 	const { message, onClose, type } = props
 	const classes = useStyles(props)
 
 	const iconClasses = cn({
-		[classes.error]: type === error,
 		[classes.icon]: true,
-		[classes.info]: type === info,
-		[classes.success]: type === success,
-		[classes.warning]: type === warning
+		[classes[type]]: true
 	})
 
 	return (

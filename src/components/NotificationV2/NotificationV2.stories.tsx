@@ -21,7 +21,7 @@ export default {
 			control: { max: 10000, min: 1000, step: 500, type: 'range' },
 			defaultValue: 3000,
 			description:
-				'Optional time in miliseconds before the Notification dissapears'
+				'Optional time in milliseconds before the Notification disappears'
 		},
 		message: { description: 'Notification message to display' },
 		type: {
