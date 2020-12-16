@@ -42,17 +42,17 @@ export const styleguide = {
 		display: 'flex',
 		justifyContent: 'space-between'
 	},
+	/* eslint-disable sort-keys */
 	font: {
+		label: { fontSize: 12, lineHeight: '20px' },
 		body: { fontSize: 14, lineHeight: '22px' },
 		bodyLarge: { fontSize: 16, lineHeight: '24px' },
-		h1: { fontSize: 32, lineHeight: '40px' },
-		h2: { fontSize: 24, lineHeight: '32px' },
 		h3: { fontSize: 20, lineHeight: '28px' },
-		label: { fontSize: 12, lineHeight: '20px' }
+		h2: { fontSize: 24, lineHeight: '32px' },
+		h1: { fontSize: 32, lineHeight: '40px' }
 	},
-	// eslint-disable-next-line sort-keys
 	fontWeight: { light: 300, regular: 400, bold: 500 },
-	// eslint-disable-next-line sort-keys
-	spacing: { s: 8, m: 16, l: 24, xl: 32 },
+	spacing: { xs: 4, s: 8, m: 16, l: 24, xl: 32 },
+	/* eslint-enable sort-keys */
 	topNavHeight: 64
 }

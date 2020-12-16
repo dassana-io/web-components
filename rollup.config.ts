@@ -28,7 +28,14 @@ const rootImport = options => ({
 })
 
 export default {
-	external: ['antd', 'react', 'uuid'],
+	external: [
+		'antd',
+		'@fortawesome/fontawesome-svg-core',
+		'@fortawesome/free-solid-svg-icons',
+		'@fortawesome/react-fontawesome',
+		'react',
+		'uuid'
+	],
 	input: 'src/components/index.ts',
 	output: [
 		{

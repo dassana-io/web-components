@@ -2,8 +2,11 @@ import { styleguide } from 'components/assets/styles/styleguide'
 import { ColorManipulationTypes, manipulateColor } from '../utils'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
-const { borderRadius, colors } = styleguide
-const { blacks, whites } = colors
+const {
+	borderRadius,
+	colors: { blacks, whites },
+	fontWeight
+} = styleguide
 
 const { dark, light } = ThemeType
 
@@ -40,18 +43,19 @@ export const generatePopoverStyles = (themeType: ThemeType) => {
 				'& > .ant-popover-inner': {
 					'& > .ant-popover-inner-content': {
 						color: base.color,
-						fontWeight: 300
+						fontWeight: fontWeight.light,
+						padding: 0
 					},
 					'& > .ant-popover-title': {
 						borderBottomColor: base.borderColor,
 						color: text.title,
-						fontWeight: 300
+						fontWeight: fontWeight.light
 					},
 					backgroundColor: background,
 					borderRadius,
 					boxShadow: 'none',
 					color: base.color,
-					fontWeight: 300
+					fontWeight: fontWeight.light
 				}
 			},
 			filter: `drop-shadow(0px 2px 8px ${accent})`

@@ -3,21 +3,25 @@ import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
 import { SbTheme } from '../../../.storybook/preview'
+import { styleguide } from 'components/assets/styles'
 import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { Popover, PopoverProps } from './index'
 import React, { FC } from 'react'
 
+const { spacing } = styleguide
+
 export default {
 	argTypes: {
 		children: { control: { disable: true } },
+		classes: { control: { disable: true } },
 		content: {
 			control: { disable: true },
 			defaultValue: (
-				<>
+				<div style={{ padding: `${spacing.s}px ${spacing.m}px` }}>
 					<div style={{ paddingBottom: 10 }}>View account info</div>
 					<Button onClick={() => action('onClick')}>Click Me</Button>
-				</>
+				</div>
 			)
 		},
 		placement: {

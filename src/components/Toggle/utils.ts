@@ -15,6 +15,10 @@ const togglePalette = {
 			primary: blacks['lighten-10'],
 			secondary: blacks['lighten-20']
 		},
+		focus: {
+			primary: blacks['lighten-10'],
+			secondary: blacks.base
+		},
 		inactive: {
 			primary: blacks['lighten-10'],
 			secondary: blacks['lighten-30']
@@ -26,6 +30,10 @@ const togglePalette = {
 			primary: blacks['lighten-80'],
 			secondary: grays.base
 		},
+		focus: {
+			primary: blacks['lighten-80'],
+			secondary: grays.base
+		},
 		inactive: {
 			primary: blacks['lighten-80'],
 			secondary: whites.base
@@ -34,7 +42,7 @@ const togglePalette = {
 }
 
 export const generateToggleStyles = (themeType: ThemeType) => {
-	const { active, inactive, disabled } = togglePalette[themeType]
+	const { active, inactive, focus, disabled } = togglePalette[themeType]
 
 	return {
 		'&.ant-switch': {
@@ -53,6 +61,9 @@ export const generateToggleStyles = (themeType: ThemeType) => {
 						backgroundColor: active.secondary
 					},
 					left: 'calc(100% - 18px - 2px)'
+				},
+				'&:focus': {
+					boxShadow: `0 0 0 3px ${focus.primary}`
 				},
 				backgroundColor: active.primary
 			},
@@ -76,7 +87,10 @@ export const generateToggleStyles = (themeType: ThemeType) => {
 				}
 			},
 			'&:focus': {
-				boxShadow: 'none'
+				'&:hover': {
+					boxShadow: `0 0 0 3px ${focus.secondary}`
+				},
+				boxShadow: `0 0 0 3px ${focus.secondary}`
 			},
 			backgroundColor: inactive.primary
 		}
