@@ -13,25 +13,40 @@ import {
 } from '../assets/styles/styleguide'
 import { Icon, IconName, SharedIconProps } from '../Icon'
 import React, { FC } from 'react'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { flexAlignCenter } = styleguide
+
+const { dark, light } = ThemeType
 
 const { Option } = AntDSelect
 
 const useStyles = createUseStyles({
-	...fieldErrorStyles,
 	container: {
+		'& .ant-select$error > .ant-select-selector': {
+			border: `1px solid ${themedStyles[light].error.borderColor}`
+		},
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
 	dropdown: {
 		width: '100%'
 	},
+	error: { ...fieldErrorStyles.error },
 	icon: {
 		...flexAlignCenter,
 		paddingRight: 7.5
 	},
 	option: {
 		...flexAlignCenter
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		...fieldErrorStyles['@global'],
+		[`.${dark}`]: {
+			'& $container .ant-select$error > .ant-select-selector': {
+				border: `1px solid ${themedStyles[dark].error.borderColor}`
+			}
+		}
 	}
 })
 

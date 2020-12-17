@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { basicOptions, iconOptions } from './fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
@@ -5,6 +6,7 @@ import { Select, SelectProps } from './index'
 
 export default {
 	argTypes: {
+		onChange: { defaultValue: action('onChange') },
 		value: { control: { disable: true } }
 	},
 	component: Select,
