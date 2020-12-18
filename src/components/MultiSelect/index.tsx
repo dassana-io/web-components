@@ -4,24 +4,26 @@ import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { getDataTestAttributeProp } from '../utils'
+import { mapOptions } from './utils'
 import { SelectSkeleton } from '../SharedComponents'
-import { Tag } from 'components'
+import { Checkbox, Tag } from 'components'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
 	styleguide
 } from '../assets/styles/styleguide'
+import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
 import React, { FC, useState } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
-const { flexAlignCenter } = styleguide
+const { flexAlignCenter, spacing } = styleguide
 
 const { dark, light } = ThemeType
 
 const { Option } = AntDSelect
 
 const useStyles = createUseStyles({
+	checkbox: { marginRight: spacing.s },
 	container: {
 		'& .ant-select$error > .ant-select-selector': {
 			border: `1px solid ${themedStyles[light].error.borderColor}`
@@ -43,8 +45,8 @@ const useStyles = createUseStyles({
 		background: 'transparent',
 		border: 'none',
 		color: themedStyles[light].base.color,
-		marginRight: 0,
-		paddingRight: 0
+		marginRight: spacing.xs,
+		padding: 0
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -57,7 +59,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface MultiSelectOptions {
+export interface MultiSelectOption {
 	text: string
 	value: string
 }
@@ -68,19 +70,25 @@ export interface MultiSelectProps
 	 * Default values for select component. Without this, the select dropdown will be blank until an option is selected. Gets overwritten by values if both are provided
 	 */
 	defaultValues?: string[]
+	maxTagCount?: number
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */
 	onChange?: (values?: string[]) => void
-	options: MultiSelectOptions[]
+	onSearch?: (value: string) => void
+	options: MultiSelectOption[]
 	/**
 	 * Input content values for controlled inputs. Requires an onChange to be passed
 	 */
 	pending?: boolean
 	/**
+	 * Selector of HTML element inside which to render the popup/dropdown
+	 */
+	popupContainerSelector?: string
+	/**
 	 * Selected values for if component is controlled. Requires an onChange to be passed
 	 */
-	values?: string
+	values?: string[]
 }
 
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
@@ -91,15 +99,18 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		disabled = false,
 		error = false,
 		loading = false,
+		maxTagCount = 2,
 		// pending = false,
+		popupContainerSelector,
 		onChange,
+		onSearch,
 		options,
 		placeholder = '',
 		values
 	} = props
-	const [localValues, setLocalValues] = useState(
-		values || defaultValues || []
-	)
+	const [localValues, setLocalValues] = useState(values || defaultValues)
+
+	const mappedOptions = mapOptions(options)
 
 	const componentClasses = useStyles(props)
 
@@ -127,12 +138,22 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
 
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+	}
+
 	const tagRender = (props: Record<string, any>) => {
 		const { label, value } = props
 
+		const index = localValues.indexOf(value)
 		const hasComma =
-			localValues.indexOf(value) !== -1 &&
-			localValues.indexOf(value) < localValues.length - 1
+			index !== -1 &&
+			index < maxTagCount - 1 &&
+			index < localValues.length - 1
 
 		return (
 			<Tag
@@ -140,24 +161,29 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				closable={false}
 				color={value}
 			>
-				{label}
-				{hasComma ? ',' : ''}
+				{mappedOptions[value] ? mappedOptions[value].text : label}
+				{hasComma ? ', ' : ''}
 			</Tag>
 		)
 	}
 
-	const renderOptions = () => {
-		return options.map(({ text, value }) => (
+	const renderOptions = () =>
+		options.map(({ text, value }) => (
 			<Option
 				className={componentClasses.option}
 				key={value}
 				label={text}
 				value={value}
 			>
+				<Checkbox
+					checked={localValues.indexOf(value) >= 0}
+					classes={[componentClasses.checkbox]}
+					// eslint-disable-next-line @typescript-eslint/no-empty-function
+					onChange={() => {}}
+				/>
 				<span>{text}</span>
 			</Option>
 		))
-	}
 
 	return loading ? (
 		<SelectSkeleton {...props} />
@@ -167,18 +193,19 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				className={inputClasses}
 				defaultValue={defaultValues}
 				disabled={disabled}
-				maxTagCount={2}
+				maxTagCount={maxTagCount}
 				maxTagPlaceholder={selectedOpts =>
 					`& ${selectedOpts.length} more`
 				}
-				maxTagTextLength={5}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
+				onSearch={onSearch}
 				placeholder={placeholder}
 				showArrow
 				tagRender={tagRender}
 				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
+				{...popupContainerProps}
 			>
 				{renderOptions()}
 			</AntDSelect>
