@@ -5,7 +5,7 @@ import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
-import { Skeleton } from '../Skeleton'
+import { SelectSkeleton } from '../SharedComponents'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
@@ -49,16 +49,6 @@ const useStyles = createUseStyles({
 		}
 	}
 })
-
-const SelectSkeleton: FC<SelectProps> = (props: SelectProps) => {
-	const classes = useStyles(props)
-
-	return (
-		<div className={classes.container}>
-			<Skeleton height={30} />
-		</div>
-	)
-}
 
 export interface Options {
 	iconKey?: IconName
