@@ -5,49 +5,12 @@ import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
+import { generateThemedCheckboxStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
-import { styleguide } from 'components/assets/styles'
+import { ThemeType } from '../assets/styles/themes'
 import React, { FC, ReactNode } from 'react'
-import { themedStyles, ThemeType } from '../assets/styles/themes'
 
 const { dark, light } = ThemeType
-const {
-	colors: { blacks, grays, whites }
-} = styleguide
-
-const checkboxPalette = {
-	[dark]: { primary: whites.base, secondary: blacks['lighten-30'] },
-	[light]: { primary: blacks.base, secondary: grays.base }
-}
-
-const generateThemedCheckboxStyles = (themeType: ThemeType) => {
-	const { primary, secondary } = checkboxPalette[themeType]
-	const {
-		base: { color }
-	} = themedStyles[themeType]
-
-	return {
-		'&.ant-checkbox-wrapper': {
-			'& .ant-checkbox ': {
-				'&:hover .ant-checkbox-inner': {
-					borderColor: primary
-				}
-			},
-			'& .ant-checkbox-checked': {
-				'&:after': { border: 'none' },
-				'&:hover .ant-checkbox-inner, .ant-checkbox-inner': {
-					'&::after': { borderColor: secondary },
-					backgroundColor: primary,
-					borderColor: primary
-				}
-			},
-			'&:hover .ant-checkbox-inner': {
-				borderColor: primary
-			},
-			color
-		}
-	}
-}
 
 const useStyles = createUseStyles({
 	'@global': {
