@@ -52,3 +52,10 @@ FullWidth.args = {
 	fullWidth: true,
 	options: basicOptions
 }
+
+export const Search = Template.bind({})
+Search.args = {
+	options: basicOptions,
+	searchPlaceholder: 'Search...',
+	showSearch: true
+}
