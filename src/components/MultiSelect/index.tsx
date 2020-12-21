@@ -12,8 +12,13 @@ import {
 	styleguide
 } from '../assets/styles/styleguide'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { generateThemedInputStyles, generateThemedTagStyles } from './utils'
-import React, { FC, useState } from 'react'
+import {
+	generateThemedDropdownStyles,
+	generateThemedInputStyles,
+	generateThemedOptionStyles,
+	generateThemedTagStyles
+} from './utils'
+import React, { FC, useRef, useState } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { borderRadius, flexAlignCenter, spacing } = styleguide
@@ -31,18 +36,23 @@ const useStyles = createUseStyles({
 			},
 			'&.ant-select-multiple': {
 				...generateThemedTagStyles(light),
+				'& .ant-select-selection-search': {
+					display: 'none'
+				},
 				'& .ant-select-selector': {
-					borderRadius,
-					...generateThemedInputStyles(light)
+					...generateThemedInputStyles(light),
+					borderRadius
 				}
 			},
 			width: '100%'
 		},
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
+	dropdown: generateThemedDropdownStyles(light),
 	error: { ...fieldErrorStyles.error },
 	option: {
-		...flexAlignCenter
+		...flexAlignCenter,
+		...generateThemedOptionStyles(light)
 	},
 	searchBar: {
 		margin: 3 * spacing.xs,
@@ -63,12 +73,13 @@ const useStyles = createUseStyles({
 					'&.ant-select-multiple': {
 						...generateThemedTagStyles(dark),
 						'& .ant-select-selector': {
-							borderRadius,
 							...generateThemedInputStyles(dark)
 						}
 					}
 				}
-			}
+			},
+			'& $dropdown': generateThemedDropdownStyles(dark),
+			'& $option': generateThemedOptionStyles(dark)
 		}
 	}
 })
@@ -134,6 +145,11 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		showSearch = false,
 		values
 	} = props
+	const selectRef = useRef<AntDSelect>(null)
+
+	// const [searchFocused, setSearchFocused] = useState(false)
+	const [searchValue, setSearchValue] = useState('')
+
 	const [localValues, setLocalValues] = useState(values || defaultValues)
 
 	const componentClasses = useStyles(props)
@@ -153,7 +169,14 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				setLocalValues(values)
 				onChange(values)
 			},
-			value: values
+			value: values ? values : localValues
+		}
+	} else {
+		controlledCmpProps = {
+			onChange: (values: string[]) => {
+				setLocalValues(values)
+			},
+			value: localValues
 		}
 	}
 
@@ -178,13 +201,22 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				className={inputClasses}
 				defaultValue={defaultValues}
 				disabled={disabled}
+				dropdownClassName={componentClasses.dropdown}
 				dropdownMatchSelectWidth
 				dropdownRender={menu => (
 					<>
 						{showSearch && (
 							<Input
 								classes={[componentClasses.searchBar]}
-								onChange={onSearch}
+								onChange={(
+									event: React.ChangeEvent<HTMLInputElement>
+								) => setSearchValue(event.target.value)}
+								// onChange={onSearch}
+								// onFocus={() => setSearchFocused(true)}
+								// onFocus={() => {
+								// 	if (selectRef.current)
+								// 		selectRef.current.blur()
+								// }}
 								placeholder={searchPlaceholder}
 							/>
 						)}
@@ -198,8 +230,14 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				maxTagTextLength={maxTagTextLength}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
+				// onInputKeyDown={e => {
+				// 	console.log(e.key)
+				// }}
 				optionLabelProp='label'
+				// open
 				placeholder={placeholder}
+				ref={selectRef}
+				// searchValue={searchValue}
 				showArrow
 				showSearch={false}
 				{...controlledCmpProps}

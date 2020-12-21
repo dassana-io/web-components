@@ -1,9 +1,41 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
-import { useTheme } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { MultiSelect, MultiSelectOption, MultiSelectProps } from './index'
 import React, { FC } from 'react'
+import { styleguide, themes, ThemeType } from 'components/assets/styles'
+
+const { spacing } = styleguide
+
+const { dark, light } = ThemeType
+
+const useStyles = createUseStyles({
+	decorator: {
+		background: themes[light].background.secondary,
+		height: `calc(100vh - ${spacing.m * 2}px)`,
+		padding: spacing.l,
+		width: '100%'
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $decorator': {
+				background: themes[dark].background.secondary
+			}
+		}
+	}
+})
+
+const Decorator = (MultiSelectStory: Story) => {
+	const classes = useStyles()
+
+	return (
+		<div className={classes.decorator}>
+			<MultiSelectStory />
+		</div>
+	)
+}
 
 export default {
 	argTypes: {
@@ -12,6 +44,7 @@ export default {
 		values: { control: { disable: true } }
 	},
 	component: MultiSelect,
+	decorators: [Decorator],
 	title: 'MultiSelect'
 } as Meta
 
