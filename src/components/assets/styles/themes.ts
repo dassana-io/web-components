@@ -43,7 +43,7 @@ const lightPalette: Theme = {
 	secondary: blacks['lighten-30'],
 	state: {
 		active: blacks.base,
-		disabled: grays.base,
+		disabled: grays['lighten-40'],
 		error: reds.base,
 		hover: blacks.base,
 		inactive: blacks['lighten-70'],
@@ -70,7 +70,7 @@ const darkPalette: Theme = {
 	secondary: blacks['lighten-30'],
 	state: {
 		active: grays.base,
-		disabled: blacks['lighten-10'],
+		disabled: blacks.base,
 		error: reds.base,
 		hover: blacks['lighten-80'],
 		inactive: blacks['lighten-20'],

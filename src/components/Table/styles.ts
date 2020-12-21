@@ -12,30 +12,18 @@ const {
 
 const { dark, light } = ThemeType
 
-const paginationPalette = {
-	[dark]: {
-		disabledBgColor: blacks.base,
-		hoverColor: blacks['lighten-80']
-	},
-	[light]: {
-		disabledBgColor: grays.base,
-		hoverColor: blacks['darken-20']
-	}
-}
-
 export const generatePaginationStyles = (themeType: ThemeType) => {
 	const {
 		base: { backgroundColor, borderColor, color },
-		disabled
+		disabled,
+		hover
 	} = themedStyles[themeType]
-
-	const { disabledBgColor, hoverColor } = paginationPalette[themeType]
 
 	return {
 		'& .ant-pagination.ant-table-pagination > li': {
 			'&.ant-pagination-disabled, &.ant-pagination-disabled:hover': {
 				'& button.ant-pagination-item-link': {
-					backgroundColor: disabledBgColor,
+					backgroundColor: disabled.backgroundColor,
 					borderColor,
 					color: disabled.color
 				}
@@ -48,12 +36,12 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 				color
 			},
 			'&.ant-pagination-item.ant-pagination-item-active, &.ant-pagination-item:hover, &:hover': {
-				'& a': { color: hoverColor },
+				'& a': { color: hover.color },
 				'& button.ant-pagination-item-link': {
-					borderColor: hoverColor,
-					color: hoverColor
+					borderColor: hover.borderColor,
+					color: hover.color
 				},
-				borderColor: hoverColor
+				borderColor: hover.borderColor
 			},
 			borderRadius
 		}

@@ -7,7 +7,7 @@ const {
 	colors: { blacks, grays }
 } = styleguide
 
-const tagPalette = {
+export const tagPalette = {
 	[dark]: {
 		background: blacks['lighten-10'],
 		borderColor: blacks['lighten-50'],
