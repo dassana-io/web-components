@@ -12,11 +12,15 @@ import {
 	styleguide
 } from '../assets/styles/styleguide'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { getTagRender, mapOptions } from './utils'
+import {
+	generateThemedInputStyles,
+	generateThemedTagStyles,
+	mapOptions
+} from './utils'
 import React, { FC, useState } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
-const { flexAlignCenter, spacing } = styleguide
+const { borderRadius, flexAlignCenter, spacing } = styleguide
 
 const { dark, light } = ThemeType
 
@@ -25,8 +29,17 @@ const { Option } = AntDSelect
 const useStyles = createUseStyles({
 	checkbox: { marginRight: spacing.s },
 	container: {
-		'& .ant-select$error > .ant-select-selector': {
-			border: `1px solid ${themedStyles[light].error.borderColor}`
+		'& .ant-select': {
+			'&$error > .ant-select-selector': {
+				border: `1px solid ${themedStyles[light].error.borderColor}`
+			},
+			'&.ant-select-multiple': {
+				...generateThemedTagStyles(light),
+				'& .ant-select-selector': {
+					borderRadius,
+					...generateThemedInputStyles(light)
+				}
+			}
 		},
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
@@ -48,8 +61,19 @@ const useStyles = createUseStyles({
 	'@global': {
 		...fieldErrorStyles['@global'],
 		[`.${dark}`]: {
-			'& $container .ant-select$error > .ant-select-selector': {
-				border: `1px solid ${themedStyles[dark].error.borderColor}`
+			'& $container': {
+				'& .ant-select': {
+					'&$error > .ant-select-selector': {
+						border: `1px solid ${themedStyles[dark].error.borderColor}`
+					},
+					'&.ant-select-multiple': {
+						...generateThemedTagStyles(dark),
+						'& .ant-select-selector': {
+							borderRadius,
+							...generateThemedInputStyles(dark)
+						}
+					}
+				}
 			}
 		}
 	}
@@ -156,16 +180,18 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				maxTagPlaceholder={selectedOpts =>
 					`& ${selectedOpts.length} more`
 				}
+				maxTagTextLength={maxTagTextLength}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
 				onSearch={onSearch}
+				optionLabelProp='label'
 				placeholder={placeholder}
 				showArrow
-				tagRender={getTagRender({
-					mappedOptions,
-					maxTagTextLength,
-					tagClasses: [componentClasses.tag]
-				})}
+				// tagRender={getTagRender({
+				// 	mappedOptions,
+				// 	maxTagTextLength,
+				// 	tagClasses: [componentClasses.tag]
+				// })}
 				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
 				{...popupContainerProps}
