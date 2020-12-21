@@ -2,17 +2,17 @@ import '../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
+import { Checkbox } from 'components'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { mapOptions } from './utils'
 import { SelectSkeleton } from '../SharedComponents'
-import { Checkbox, Tag } from 'components'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
 	styleguide
 } from '../assets/styles/styleguide'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
+import { getTagRender, mapOptions } from './utils'
 import React, { FC, useState } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
@@ -42,11 +42,7 @@ const useStyles = createUseStyles({
 		...flexAlignCenter
 	},
 	tag: {
-		background: 'transparent',
-		border: 'none',
-		color: themedStyles[light].base.color,
-		marginRight: spacing.xs,
-		padding: 0
+		marginRight: spacing.xs
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -71,6 +67,7 @@ export interface MultiSelectProps
 	 */
 	defaultValues?: string[]
 	maxTagCount?: number
+	maxTagTextLength?: number
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */
@@ -100,6 +97,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		error = false,
 		loading = false,
 		maxTagCount = 2,
+		maxTagTextLength = 5,
 		// pending = false,
 		popupContainerSelector,
 		onChange,
@@ -135,7 +133,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	}
 
 	if (values && !onChange) {
-		throw new Error('Controlled inputs require an onChange prop')
+		throw new Error('Controlled MultiSelect requires an onChange prop')
 	}
 
 	let popupContainerProps = {}
@@ -145,45 +143,6 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 			getPopupContainer: generatePopupSelector(popupContainerSelector)
 		}
 	}
-
-	const tagRender = (props: Record<string, any>) => {
-		const { label, value } = props
-
-		const index = localValues.indexOf(value)
-		const hasComma =
-			index !== -1 &&
-			index < maxTagCount - 1 &&
-			index < localValues.length - 1
-
-		return (
-			<Tag
-				classes={[componentClasses.tag]}
-				closable={false}
-				color={value}
-			>
-				{mappedOptions[value] ? mappedOptions[value].text : label}
-				{hasComma ? ', ' : ''}
-			</Tag>
-		)
-	}
-
-	const renderOptions = () =>
-		options.map(({ text, value }) => (
-			<Option
-				className={componentClasses.option}
-				key={value}
-				label={text}
-				value={value}
-			>
-				<Checkbox
-					checked={localValues.indexOf(value) >= 0}
-					classes={[componentClasses.checkbox]}
-					// eslint-disable-next-line @typescript-eslint/no-empty-function
-					onChange={() => {}}
-				/>
-				<span>{text}</span>
-			</Option>
-		))
 
 	return loading ? (
 		<SelectSkeleton {...props} />
@@ -202,12 +161,31 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				onSearch={onSearch}
 				placeholder={placeholder}
 				showArrow
-				tagRender={tagRender}
+				tagRender={getTagRender({
+					mappedOptions,
+					maxTagTextLength,
+					tagClasses: [componentClasses.tag]
+				})}
 				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
 				{...popupContainerProps}
 			>
-				{renderOptions()}
+				{options.map(({ text, value }) => (
+					<Option
+						className={componentClasses.option}
+						key={value}
+						label={text}
+						value={value}
+					>
+						<Checkbox
+							checked={localValues.indexOf(value) >= 0}
+							classes={[componentClasses.checkbox]}
+							// eslint-disable-next-line @typescript-eslint/no-empty-function
+							onChange={() => {}}
+						/>
+						<span>{text}</span>
+					</Option>
+				))}
 			</AntDSelect>
 		</div>
 	)

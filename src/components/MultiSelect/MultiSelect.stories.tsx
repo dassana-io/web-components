@@ -17,11 +17,12 @@ export default {
 
 const basicOptions: MultiSelectOption[] = [
 	{ text: 'Lorem', value: '0' },
-	{ text: 'Ipsum', value: '1' },
-	{ text: 'Dolor', value: '2' },
-	{ text: 'Sit', value: '3' },
-	{ text: 'Amet', value: '4' },
-	{ text: 'Consectetur', value: '5' }
+	{ text: 'Incididunt', value: '1' },
+	{ text: 'Ipsum', value: '2' },
+	{ text: 'Dolor', value: '3' },
+	{ text: 'Sit', value: '4' },
+	{ text: 'Amet', value: '5' },
+	{ text: 'Consectetur', value: '6' }
 ]
 
 const ThemedMultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
