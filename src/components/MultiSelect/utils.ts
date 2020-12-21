@@ -1,7 +1,4 @@
-import { MultiSelectOption } from '.'
-import React from 'react'
 import { styleguide } from 'components/assets/styles'
-import { Tag } from 'components'
 import { tagPalette } from 'components/Tag/utils'
 import { themedStyles, ThemeType } from '../assets/styles/themes'
 
@@ -10,22 +7,6 @@ const { dark, light } = ThemeType
 const {
 	colors: { blacks, grays, whites }
 } = styleguide
-
-interface MappedOptions {
-	[value: string]: MultiSelectOption
-}
-
-export const mapOptions = (options: MultiSelectOption[]) => {
-	const mappedOpts: MappedOptions = {}
-
-	for (const option of options) {
-		mappedOpts[option.value] = option
-	}
-
-	return mappedOpts
-}
-
-// ---------------------------
 
 export const generateThemedTagStyles = (themeType: ThemeType) => {
 	const { background, borderColor, color } = tagPalette[themeType]

@@ -2,21 +2,17 @@ import '../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
-import { Checkbox } from 'components'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { SelectSkeleton } from '../SharedComponents'
+import { Checkbox, Input } from 'components'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
 	styleguide
 } from '../assets/styles/styleguide'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import {
-	generateThemedInputStyles,
-	generateThemedTagStyles,
-	mapOptions
-} from './utils'
+import { generateThemedInputStyles, generateThemedTagStyles } from './utils'
 import React, { FC, useState } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
@@ -39,20 +35,18 @@ const useStyles = createUseStyles({
 					borderRadius,
 					...generateThemedInputStyles(light)
 				}
-			}
+			},
+			width: '100%'
 		},
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
-	dropdown: {
-		width: '100%'
-	},
 	error: { ...fieldErrorStyles.error },
-	icon: {
-		...flexAlignCenter,
-		paddingRight: 7.5
-	},
 	option: {
 		...flexAlignCenter
+	},
+	searchBar: {
+		margin: 3 * spacing.xs,
+		width: `calc(100% - ${6 * spacing.xs}px)`
 	},
 	tag: {
 		marginRight: spacing.xs
@@ -86,6 +80,7 @@ export interface MultiSelectOption {
 
 export interface MultiSelectProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
+	allowClear?: boolean
 	/**
 	 * Default values for select component. Without this, the select dropdown will be blank until an option is selected. Gets overwritten by values if both are provided
 	 */
@@ -96,7 +91,7 @@ export interface MultiSelectProps
 	 * Array of options to be rendered in the dropdown
 	 */
 	onChange?: (values?: string[]) => void
-	onSearch?: (value: string) => void
+	onSearch?: BaseFormElementProps['onChange']
 	options: MultiSelectOption[]
 	/**
 	 * Input content values for controlled inputs. Requires an onChange to be passed
@@ -106,6 +101,12 @@ export interface MultiSelectProps
 	 * Selector of HTML element inside which to render the popup/dropdown
 	 */
 	popupContainerSelector?: string
+	searchPlaceholder?: string
+	/**
+	 * Whether or not to show search input
+	 * @default false
+	 */
+	showSearch?: boolean
 	/**
 	 * Selected values for if component is controlled. Requires an onChange to be passed
 	 */
@@ -114,6 +115,7 @@ export interface MultiSelectProps
 
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const {
+		allowClear,
 		classes = [],
 		dataTag,
 		defaultValues = [],
@@ -121,25 +123,24 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		error = false,
 		loading = false,
 		maxTagCount = 2,
-		maxTagTextLength = 5,
+		maxTagTextLength = 6,
 		// pending = false,
 		popupContainerSelector,
 		onChange,
 		onSearch,
 		options,
 		placeholder = '',
+		searchPlaceholder = '',
+		showSearch = false,
 		values
 	} = props
 	const [localValues, setLocalValues] = useState(values || defaultValues)
-
-	const mappedOptions = mapOptions(options)
 
 	const componentClasses = useStyles(props)
 
 	const inputClasses: string = cn(
 		{
-			[componentClasses.error]: error,
-			[componentClasses.dropdown]: true
+			[componentClasses.error]: error
 		},
 		classes
 	)
@@ -173,9 +174,23 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	) : (
 		<div className={componentClasses.container}>
 			<AntDSelect
+				allowClear={allowClear}
 				className={inputClasses}
 				defaultValue={defaultValues}
 				disabled={disabled}
+				dropdownMatchSelectWidth
+				dropdownRender={menu => (
+					<>
+						{showSearch && (
+							<Input
+								classes={[componentClasses.searchBar]}
+								onChange={onSearch}
+								placeholder={searchPlaceholder}
+							/>
+						)}
+						{menu}
+					</>
+				)}
 				maxTagCount={maxTagCount}
 				maxTagPlaceholder={selectedOpts =>
 					`& ${selectedOpts.length} more`
@@ -183,15 +198,10 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				maxTagTextLength={maxTagTextLength}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
-				onSearch={onSearch}
 				optionLabelProp='label'
 				placeholder={placeholder}
 				showArrow
-				// tagRender={getTagRender({
-				// 	mappedOptions,
-				// 	maxTagTextLength,
-				// 	tagClasses: [componentClasses.tag]
-				// })}
+				showSearch={false}
 				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
 				{...popupContainerProps}
