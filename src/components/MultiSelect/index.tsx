@@ -18,7 +18,13 @@ import {
 	generateThemedOptionStyles,
 	generateThemedTagStyles
 } from './utils'
-import React, { FC, useRef, useState } from 'react'
+import React, {
+	ChangeEvent,
+	FC,
+	KeyboardEvent,
+	useEffect,
+	useState
+} from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { borderRadius, flexAlignCenter, spacing } = styleguide
@@ -101,8 +107,8 @@ export interface MultiSelectProps
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */
-	onChange?: (values?: string[]) => void
-	onSearch?: BaseFormElementProps['onChange']
+	onChange?: (values: string[]) => void
+	onSearch?: (value: string) => void
 	options: MultiSelectOption[]
 	/**
 	 * Input content values for controlled inputs. Requires an onChange to be passed
@@ -145,14 +151,18 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		showSearch = false,
 		values
 	} = props
-	const selectRef = useRef<AntDSelect>(null)
-
-	// const [searchFocused, setSearchFocused] = useState(false)
-	const [searchValue, setSearchValue] = useState('')
-
 	const [localValues, setLocalValues] = useState(values || defaultValues)
+	const [searchTerm, setSearchTerm] = useState('')
 
 	const componentClasses = useStyles(props)
+
+	useEffect(() => {
+		if (onSearch) onSearch(searchTerm)
+		// TODO:
+		else {
+			// filter using fuse and update options
+		}
+	}, [onSearch, searchTerm])
 
 	const inputClasses: string = cn(
 		{
@@ -161,24 +171,17 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		classes
 	)
 
-	let controlledCmpProps = {}
+	const onChangeAntD = (values?: string[]) => {
+		const vals = values ? values : []
 
-	if (onChange) {
-		controlledCmpProps = {
-			onChange: (values: string[]) => {
-				setLocalValues(values)
-				onChange(values)
-			},
-			value: values ? values : localValues
-		}
-	} else {
-		controlledCmpProps = {
-			onChange: (values: string[]) => {
-				setLocalValues(values)
-			},
-			value: localValues
-		}
+		if (onChange) onChange(vals)
+
+		setLocalValues(vals)
 	}
+
+	let optionalProps = {}
+
+	if (values) optionalProps = { value: values }
 
 	if (values && !onChange) {
 		throw new Error('Controlled MultiSelect requires an onChange prop')
@@ -208,15 +211,17 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 						{showSearch && (
 							<Input
 								classes={[componentClasses.searchBar]}
-								onChange={(
-									event: React.ChangeEvent<HTMLInputElement>
-								) => setSearchValue(event.target.value)}
-								// onChange={onSearch}
-								// onFocus={() => setSearchFocused(true)}
-								// onFocus={() => {
-								// 	if (selectRef.current)
-								// 		selectRef.current.blur()
-								// }}
+								onChange={(e: ChangeEvent<HTMLInputElement>) =>
+									setSearchTerm(e.target.value)
+								}
+								onKeyDown={(e: KeyboardEvent) => {
+									const keysToNotPropagate: KeyboardEvent['key'][] = [
+										'Enter',
+										'Backspace'
+									]
+									if (keysToNotPropagate.includes(e.key))
+										e.stopPropagation()
+								}}
 								placeholder={searchPlaceholder}
 							/>
 						)}
@@ -230,18 +235,13 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				maxTagTextLength={maxTagTextLength}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
-				// onInputKeyDown={e => {
-				// 	console.log(e.key)
-				// }}
+				onChange={onChangeAntD}
 				optionLabelProp='label'
-				// open
 				placeholder={placeholder}
-				ref={selectRef}
-				// searchValue={searchValue}
 				showArrow
 				showSearch={false}
-				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
+				{...optionalProps}
 				{...popupContainerProps}
 			>
 				{options.map(({ text, value }) => (
