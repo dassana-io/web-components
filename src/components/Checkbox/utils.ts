@@ -26,8 +26,10 @@ const checkboxPalette = {
 
 export const generateThemedCheckboxStyles = (themeType: ThemeType) => {
 	const { checked, unchecked } = checkboxPalette[themeType]
+
 	const {
 		base: { color },
+		disabled,
 		focus,
 		hover
 	} = themedStyles[themeType]
@@ -38,12 +40,25 @@ export const generateThemedCheckboxStyles = (themeType: ThemeType) => {
 				'& .ant-checkbox-input:focus + .ant-checkbox-inner': {
 					borderColor: checked.background
 				},
+				'&.ant-checkbox-disabled': {
+					'& .ant-checkbox-inner': {
+						backgroundColor: disabled.backgroundColor,
+						borderColor: `${unchecked.borderColor} !important`
+					},
+					'&:hover .ant-checkbox-inner, .ant-checkbox-inner': {
+						'&::after': { borderColor: disabled.color }
+					}
+				},
 				'&:after': { border: 'none' },
 				'&:hover .ant-checkbox-inner, .ant-checkbox-inner': {
 					'&::after': { borderColor: checked.checkmark },
 					backgroundColor: checked.background,
 					borderColor: checked.background
 				}
+			},
+			'& .ant-checkbox-disabled .ant-checkbox-inner': {
+				backgroundColor: disabled.backgroundColor,
+				borderColor: `${unchecked.borderColor} !important`
 			},
 			'& .ant-checkbox-inner': {
 				background: unchecked.background,

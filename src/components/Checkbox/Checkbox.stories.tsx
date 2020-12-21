@@ -24,3 +24,14 @@ export const Label = Template.bind({})
 Label.args = {
 	label: 'Checkbox'
 }
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+	disabled: true
+}
+
+export const DisabledChecked = Template.bind({})
+DisabledChecked.args = {
+	defaultChecked: true,
+	disabled: true
+}

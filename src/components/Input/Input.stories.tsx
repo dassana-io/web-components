@@ -26,3 +26,6 @@ FullWidth.args = { fullWidth: true }
 
 export const Error = Template.bind({})
 Error.args = { error: true }
+
+export const Disabled = Template.bind({})
+Disabled.args = { disabled: true }
