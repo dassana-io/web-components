@@ -30,9 +30,11 @@ const rootImport = options => ({
 export default {
 	external: [
 		'antd',
+		'@ant-design/icons',
 		'@fortawesome/fontawesome-svg-core',
 		'@fortawesome/free-solid-svg-icons',
 		'@fortawesome/react-fontawesome',
+		'fuse.js',
 		'react',
 		'uuid'
 	],

@@ -1,14 +1,25 @@
-import { styleguide } from 'components/assets/styles'
+import { createUseStyles } from 'react-jss'
 import { tagPalette } from 'components/Tag/utils'
+import {
+	defaultFieldWidth,
+	fieldErrorStyles,
+	styleguide
+} from '../assets/styles/styleguide'
+import {
+	generateThemedDisabledStyles,
+	generateThemedDropdownStyles,
+	generateThemedFocusedStyles,
+	generateThemedInputStyles,
+	generateThemedOptionStyles,
+	generateThemedSelectStyles
+} from 'components/Select/utils'
 import { themedStyles, ThemeType } from '../assets/styles/themes'
 
 const { dark, light } = ThemeType
 
-const {
-	colors: { blacks, grays, whites }
-} = styleguide
+const { borderRadius, flexAlignCenter, fontWeight, spacing } = styleguide
 
-export const generateThemedTagStyles = (themeType: ThemeType) => {
+const generateThemedTagStyles = (themeType: ThemeType) => {
 	const { background, borderColor, color } = tagPalette[themeType]
 
 	const { base, hover } = themedStyles[themeType]
@@ -23,92 +34,82 @@ export const generateThemedTagStyles = (themeType: ThemeType) => {
 			},
 			background,
 			borderColor,
-			color
+			color,
+			fontWeight: fontWeight.light
 		}
 	}
 }
 
-const selectPalette = {
-	[dark]: {
-		base: {
-			background: blacks['darken-40']
-		},
-		input: {
-			default: {
-				borderColor: blacks['lighten-20']
+const focusedClasses =
+	'&.ant-select-focused:not(.ant-select-disabled) .ant-select-selector'
+
+export const useStyles = createUseStyles({
+	checkbox: { marginRight: spacing.s },
+	container: ({ fullWidth, matchSelectedContentWidth }) => ({
+		'& .ant-select': {
+			'&$error > .ant-select-selector': {
+				border: `1px solid ${themedStyles[light].error.borderColor}`
 			},
-			disabled: {
-				background: blacks['darken-20'],
-				borderColor: blacks['darken-20']
-			}
-		},
-		option: {
-			hover: {
-				background: blacks['lighten-10']
+			'&.ant-select-multiple': {
+				'&.ant-select-disabled': generateThemedDisabledStyles(light),
+				...generateThemedSelectStyles(light),
+				...generateThemedTagStyles(light),
+				'& .ant-select-selector': {
+					...generateThemedInputStyles(light),
+					borderRadius
+				},
+				[focusedClasses]: generateThemedFocusedStyles(light)
 			},
-			selected: {
-				background: blacks['lighten-30'],
-				color: whites.base
-			}
-		}
+			minWidth:
+				matchSelectedContentWidth &&
+				typeof matchSelectedContentWidth === 'number'
+					? matchSelectedContentWidth
+					: 'unset',
+			width: matchSelectedContentWidth ? 'unset' : '100%'
+		},
+		width:
+			fullWidth || matchSelectedContentWidth ? '100%' : defaultFieldWidth
+	}),
+	dropdown: generateThemedDropdownStyles(light),
+	error: { ...fieldErrorStyles.error },
+	option: {
+		...flexAlignCenter,
+		...generateThemedOptionStyles(light)
 	},
-	[light]: {
-		base: {
-			background: whites.base
-		},
-		input: {
-			default: {
-				borderColor: blacks['lighten-80']
+	searchBar: {
+		margin: 3 * spacing.xs,
+		width: `calc(100% - ${6 * spacing.xs}px)`
+	},
+	tag: {
+		marginRight: spacing.xs
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		...fieldErrorStyles['@global'],
+		[`.${dark}`]: {
+			'& $container': {
+				'& .ant-select': {
+					'&$error > .ant-select-selector': {
+						border: `1px solid ${themedStyles[dark].error.borderColor}`
+					},
+					'&.ant-select-multiple': {
+						...generateThemedSelectStyles(dark),
+						...generateThemedTagStyles(dark),
+						'& .ant-select-selector': {
+							...generateThemedInputStyles(dark)
+						},
+						'&.ant-select-disabled': generateThemedDisabledStyles(
+							dark
+						)
+					}
+				},
+				'.ant-select-disabled.ant-select-multiple': generateThemedDisabledStyles(
+					dark
+				),
+				[focusedClasses]: generateThemedFocusedStyles(dark)
 			},
-			disabled: {
-				background: whites.base,
-				borderColor: grays.base
-			}
-		},
-		option: {
-			hover: {
-				background: grays['lighten-40']
-			},
-			selected: {
-				background: grays.base,
-				color: blacks.base
-			}
+			'& $dropdown': generateThemedDropdownStyles(dark),
+			'& $option': generateThemedOptionStyles(dark)
 		}
 	}
-}
-
-export const generateThemedInputStyles = (themeType: ThemeType) => {
-	const { background } = selectPalette[themeType].base
-	const { borderColor } = selectPalette[themeType].input.default
-
-	return {
-		background,
-		borderColor
-	}
-}
-
-export const generateThemedDropdownStyles = (themeType: ThemeType) => {
-	const { background } = selectPalette[themeType].base
-	return { background }
-}
-
-export const generateThemedOptionStyles = (themeType: ThemeType) => {
-	const {
-		base: { color }
-	} = themedStyles[themeType]
-
-	const { hover, selected } = selectPalette[themeType].option
-
-	return {
-		'&.ant-select-item-option': {
-			'&.ant-select-item-option-active': {
-				background: hover.background
-			},
-			'&.ant-select-item-option-selected': {
-				background: selected.background,
-				color: selected.color
-			},
-			color
-		}
-	}
-}
+})

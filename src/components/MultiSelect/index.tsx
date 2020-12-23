@@ -3,92 +3,23 @@ import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
-import { createUseStyles } from 'react-jss'
+import debounce from 'lodash/debounce'
+import Fuse from 'fuse.js'
 import { SelectSkeleton } from '../SharedComponents'
+import { useStyles } from './utils'
 import { Checkbox, Input } from 'components'
-import {
-	defaultFieldWidth,
-	fieldErrorStyles,
-	styleguide
-} from '../assets/styles/styleguide'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import {
-	generateThemedDropdownStyles,
-	generateThemedInputStyles,
-	generateThemedOptionStyles,
-	generateThemedTagStyles
-} from './utils'
+
 import React, {
 	ChangeEvent,
 	FC,
 	KeyboardEvent,
+	useCallback,
 	useEffect,
 	useState
 } from 'react'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
-
-const { borderRadius, flexAlignCenter, spacing } = styleguide
-
-const { dark, light } = ThemeType
 
 const { Option } = AntDSelect
-
-const useStyles = createUseStyles({
-	checkbox: { marginRight: spacing.s },
-	container: {
-		'& .ant-select': {
-			'&$error > .ant-select-selector': {
-				border: `1px solid ${themedStyles[light].error.borderColor}`
-			},
-			'&.ant-select-multiple': {
-				...generateThemedTagStyles(light),
-				'& .ant-select-selection-search': {
-					display: 'none'
-				},
-				'& .ant-select-selector': {
-					...generateThemedInputStyles(light),
-					borderRadius
-				}
-			},
-			width: '100%'
-		},
-		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
-	},
-	dropdown: generateThemedDropdownStyles(light),
-	error: { ...fieldErrorStyles.error },
-	option: {
-		...flexAlignCenter,
-		...generateThemedOptionStyles(light)
-	},
-	searchBar: {
-		margin: 3 * spacing.xs,
-		width: `calc(100% - ${6 * spacing.xs}px)`
-	},
-	tag: {
-		marginRight: spacing.xs
-	},
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		...fieldErrorStyles['@global'],
-		[`.${dark}`]: {
-			'& $container': {
-				'& .ant-select': {
-					'&$error > .ant-select-selector': {
-						border: `1px solid ${themedStyles[dark].error.borderColor}`
-					},
-					'&.ant-select-multiple': {
-						...generateThemedTagStyles(dark),
-						'& .ant-select-selector': {
-							...generateThemedInputStyles(dark)
-						}
-					}
-				}
-			},
-			'& $dropdown': generateThemedDropdownStyles(dark),
-			'& $option': generateThemedOptionStyles(dark)
-		}
-	}
-})
 
 export interface MultiSelectOption {
 	text: string
@@ -102,6 +33,10 @@ export interface MultiSelectProps
 	 * Default values for select component. Without this, the select dropdown will be blank until an option is selected. Gets overwritten by values if both are provided
 	 */
 	defaultValues?: string[]
+	/**
+	 * To set the width of the select to be the same as the
+	 */
+	matchSelectedContentWidth?: boolean | number
 	maxTagCount?: number
 	maxTagTextLength?: number
 	/**
@@ -109,10 +44,12 @@ export interface MultiSelectProps
 	 */
 	onChange?: (values: string[]) => void
 	onSearch?: (value: string) => void
-	options: MultiSelectOption[]
 	/**
-	 * Input content values for controlled inputs. Requires an onChange to be passed
+	 * Only valid if showSearch is true and and onSearch is not passed. By default options are only filtered by text. To filter by other keys, pass an array of keys to filter. Eg. ['value']
+	 * @default ['text']
 	 */
+	optionKeysToFilter?: string[]
+	options: MultiSelectOption[]
 	pending?: boolean
 	/**
 	 * Selector of HTML element inside which to render the popup/dropdown
@@ -145,6 +82,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		popupContainerSelector,
 		onChange,
 		onSearch,
+		optionKeysToFilter = ['text'],
 		options,
 		placeholder = '',
 		searchPlaceholder = '',
@@ -152,17 +90,13 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		values
 	} = props
 	const [localValues, setLocalValues] = useState(values || defaultValues)
+	const [filteredOptions, setFilteredOptions] = useState<MultiSelectOption[]>(
+		[]
+	)
+	const [optionsToMap, setOptionsToMap] = useState<MultiSelectOption[]>([])
 	const [searchTerm, setSearchTerm] = useState('')
 
 	const componentClasses = useStyles(props)
-
-	useEffect(() => {
-		if (onSearch) onSearch(searchTerm)
-		// TODO:
-		else {
-			// filter using fuse and update options
-		}
-	}, [onSearch, searchTerm])
 
 	const inputClasses: string = cn(
 		{
@@ -170,6 +104,40 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		},
 		classes
 	)
+
+	const fuse = new Fuse(options, {
+		isCaseSensitive: false,
+		keys: optionKeysToFilter,
+		threshold: 0.1
+	})
+
+	const searchOptions = (value: string) => {
+		setSearchTerm(value)
+
+		const filteredOptions = fuse
+			.search(value)
+			.map(
+				({
+					item
+				}: Fuse.FuseResult<MultiSelectOption>): MultiSelectOption =>
+					item
+			)
+
+		setFilteredOptions(filteredOptions)
+	}
+
+	const delayedSearch = useCallback(
+		debounce(q => searchOptions(q), 50),
+		[options]
+	)
+
+	useEffect(() => {
+		setOptionsToMap(searchTerm ? filteredOptions : options)
+	}, [options, filteredOptions, searchTerm])
+
+	useEffect(() => {
+		onSearch ? onSearch(searchTerm) : delayedSearch(searchTerm)
+	}, [delayedSearch, onSearch, searchTerm])
 
 	const onChangeAntD = (values?: string[]) => {
 		const vals = values ? values : []
@@ -205,7 +173,6 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				defaultValue={defaultValues}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
-				dropdownMatchSelectWidth
 				dropdownRender={menu => (
 					<>
 						{showSearch && (
@@ -240,11 +207,11 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				placeholder={placeholder}
 				showArrow
 				showSearch={false}
-				{...getDataTestAttributeProp('select', dataTag)}
+				{...getDataTestAttributeProp('multi-select', dataTag)}
 				{...optionalProps}
 				{...popupContainerProps}
 			>
-				{options.map(({ text, value }) => (
+				{optionsToMap.map(({ text, value }) => (
 					<Option
 						className={componentClasses.option}
 						key={value}
