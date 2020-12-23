@@ -1,7 +1,9 @@
 import { action } from '@storybook/addon-actions'
-import React from 'react'
+import { SbTheme } from '../../../.storybook/preview'
+import { useTheme } from 'react-jss'
 import { basicOptions, iconOptions } from './fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
+import React, { FC } from 'react'
 import { Select, SelectProps } from './index'
 
 export default {
@@ -13,7 +15,15 @@ export default {
 	title: 'Select'
 } as Meta
 
-const Template: Story<SelectProps> = args => <Select {...args} />
+const ThemedSelect: FC<SelectProps> = (props: SelectProps) => {
+	const theme: SbTheme = useTheme()
+
+	const popupContainerSelector = `.${theme.type}`
+
+	return <Select popupContainerSelector={popupContainerSelector} {...props} />
+}
+
+const Template: Story<SelectProps> = args => <ThemedSelect {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -37,6 +47,14 @@ FullWidth.args = {
 export const Search = Template.bind({})
 Search.args = {
 	options: iconOptions,
+	placeholder: 'Choose a Cloud Provider',
+	showSearch: true
+}
+
+export const SelectedOptionWidth = Template.bind({})
+SelectedOptionWidth.args = {
+	matchSelectedContentWidth: 50,
+	options: basicOptions,
 	placeholder: 'Choose a Cloud Provider',
 	showSearch: true
 }

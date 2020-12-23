@@ -1,41 +1,9 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
-import { createUseStyles, useTheme } from 'react-jss'
+import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { MultiSelect, MultiSelectOption, MultiSelectProps } from './index'
 import React, { FC } from 'react'
-import { styleguide, themes, ThemeType } from 'components/assets/styles'
-
-const { spacing } = styleguide
-
-const { dark, light } = ThemeType
-
-const useStyles = createUseStyles({
-	decorator: {
-		background: themes[light].background.secondary,
-		height: `calc(100vh - ${spacing.m * 2}px)`,
-		padding: spacing.l,
-		width: '100%'
-	},
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		[`.${dark}`]: {
-			'& $decorator': {
-				background: themes[dark].background.secondary
-			}
-		}
-	}
-})
-
-const Decorator = (MultiSelectStory: Story) => {
-	const classes = useStyles()
-
-	return (
-		<div className={classes.decorator}>
-			<MultiSelectStory />
-		</div>
-	)
-}
 
 export default {
 	argTypes: {
@@ -44,7 +12,10 @@ export default {
 		values: { control: { disable: true } }
 	},
 	component: MultiSelect,
-	decorators: [Decorator],
+	parameters: {
+		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
+		storyshots: { disable: true }
+	},
 	title: 'MultiSelect'
 } as Meta
 
@@ -77,7 +48,8 @@ const Template: Story<MultiSelectProps> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
-	options: basicOptions
+	options: basicOptions,
+	placeholder: 'Pls select'
 }
 
 export const FullWidth = Template.bind({})
@@ -90,5 +62,12 @@ export const Search = Template.bind({})
 Search.args = {
 	options: basicOptions,
 	searchPlaceholder: 'Search...',
+	showSearch: true
+}
+
+export const SelectedContentWidth = Template.bind({})
+SelectedContentWidth.args = {
+	matchSelectedContentWidth: 125,
+	options: basicOptions,
 	showSearch: true
 }

@@ -60,11 +60,9 @@ export const useStyles = createUseStyles({
 				},
 				[focusedClasses]: generateThemedFocusedStyles(light)
 			},
-			minWidth:
-				matchSelectedContentWidth &&
-				typeof matchSelectedContentWidth === 'number'
-					? matchSelectedContentWidth
-					: 'unset',
+			minWidth: matchSelectedContentWidth
+				? matchSelectedContentWidth
+				: 'unset',
 			width: matchSelectedContentWidth ? 'unset' : '100%'
 		},
 		width:

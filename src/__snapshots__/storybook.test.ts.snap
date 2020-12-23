@@ -182,6 +182,154 @@ exports[`Storyshots Button Primary Disabled 1`] = `
 </div>
 `;
 
+exports[`Storyshots Checkbox Default 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <label
+    className="ant-checkbox-wrapper"
+  >
+    <span
+      className="ant-checkbox"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-checkbox-input"
+        data-test="checkbox"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="ant-checkbox-inner"
+      />
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Storyshots Checkbox Default Checked 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <label
+    className="ant-checkbox-wrapper"
+  >
+    <span
+      className="ant-checkbox ant-checkbox-checked"
+      style={Object {}}
+    >
+      <input
+        checked={true}
+        className="ant-checkbox-input"
+        data-test="checkbox"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="ant-checkbox-inner"
+      />
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Storyshots Checkbox Disabled 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <label
+    className="ant-checkbox-wrapper ant-checkbox-wrapper-disabled"
+  >
+    <span
+      className="ant-checkbox ant-checkbox-disabled"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-checkbox-input"
+        data-test="checkbox"
+        disabled={true}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="ant-checkbox-inner"
+      />
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Storyshots Checkbox Disabled Checked 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <label
+    className="ant-checkbox-wrapper ant-checkbox-wrapper-disabled"
+  >
+    <span
+      className="ant-checkbox ant-checkbox-checked ant-checkbox-disabled"
+      style={Object {}}
+    >
+      <input
+        checked={true}
+        className="ant-checkbox-input"
+        data-test="checkbox"
+        disabled={true}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="ant-checkbox-inner"
+      />
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Storyshots Checkbox Label 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <label
+    className="ant-checkbox-wrapper"
+  >
+    <span
+      className="ant-checkbox"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-checkbox-input"
+        data-test="checkbox"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="ant-checkbox-inner"
+      />
+    </span>
+    <span>
+      Checkbox
+    </span>
+  </label>
+</div>
+`;
+
 exports[`Storyshots ColoredDot Colored 1`] = `
 <div
   className="light storyWrapper-0-1-2"
@@ -235,14 +383,14 @@ exports[`Storyshots IconButton Default 1`] = `
 >
   <span
     className="iconButton-0-1-10"
+    onClick={[Function]}
   >
     <svg
       aria-hidden="true"
-      className="svg-inline--fa fa-times fa-w-11 icon-0-1-9 icon-d0-0-1-11"
+      className="svg-inline--fa fa-times fa-w-11 icon-0-1-9 icon-d1-0-1-12"
       data-icon="times"
       data-prefix="fas"
       focusable="false"
-      onClick={[Function]}
       role="img"
       style={Object {}}
       viewBox="0 0 352 512"
@@ -263,9 +411,28 @@ exports[`Storyshots Input Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-12 container-d0-0-1-15"
+    className="ant-input container-0-1-13 container-d0-0-1-16"
     data-test="input"
     disabled={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder=""
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Storyshots Input Disabled 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <input
+    className="ant-input ant-input-disabled container-0-1-13 container-d6-0-1-23"
+    data-test="input"
+    disabled={true}
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
@@ -282,7 +449,7 @@ exports[`Storyshots Input Error 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-12 container-d5-0-1-21 error-0-1-13"
+    className="ant-input container-0-1-13 container-d5-0-1-22 error-0-1-14"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -301,7 +468,7 @@ exports[`Storyshots Input Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-12 container-d4-0-1-20"
+    className="ant-input container-0-1-13 container-d4-0-1-21"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -320,13 +487,13 @@ exports[`Storyshots Input Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-12 container-d3-0-1-18"
+    className="container-0-1-13 container-d3-0-1-19"
   >
     <div
-      className="inputSkeleton-0-1-14"
+      className="inputSkeleton-0-1-15"
     >
       <span
-        className="container-0-1-3 container-d1-0-1-19"
+        className="container-0-1-3 container-d1-0-1-20"
       >
          
       </span>
@@ -340,7 +507,7 @@ exports[`Storyshots Input Placeholder 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <input
-    className="ant-input container-0-1-12 container-d1-0-1-16"
+    className="ant-input container-0-1-13 container-d1-0-1-17"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -573,8 +740,9 @@ exports[`Storyshots Popover Default 1`] = `
   >
     <span
       data-test="popover-trigger"
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchStart={[Function]}
     >
       <svg
         className=""
@@ -602,8 +770,9 @@ exports[`Storyshots Popover Title 1`] = `
   >
     <span
       data-test="popover-trigger"
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchStart={[Function]}
     >
       <svg
         className=""
@@ -712,31 +881,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-23"
+    className="container-0-1-25"
   >
     <div
-      className="skeletonButton-0-1-25"
+      className="skeletonButton-0-1-27"
     >
       <span
-        className="container-0-1-3 container-d2-0-1-26 skeleton-0-1-24"
+        className="container-0-1-3 container-d2-0-1-28 skeleton-0-1-26"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-25"
+      className="skeletonButton-0-1-27"
     >
       <span
-        className="container-0-1-3 container-d3-0-1-27 skeleton-0-1-24"
+        className="container-0-1-3 container-d3-0-1-29 skeleton-0-1-26"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-25"
+      className="skeletonButton-0-1-27"
     >
       <span
-        className="container-0-1-3 container-d4-0-1-28 skeleton-0-1-24"
+        className="container-0-1-3 container-d4-0-1-30 skeleton-0-1-26"
       >
          
       </span>
@@ -839,10 +1008,10 @@ exports[`Storyshots Select Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-30 container-d0-0-1-34"
+    className="container-0-1-31 container-d0-0-1-36"
   >
     <div
-      className="ant-select dropdown-0-1-31 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-1-32 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -886,8 +1055,7 @@ exports[`Storyshots Select Default 1`] = `
           />
         </span>
         <span
-          className="ant-select-selection-item"
-          title=""
+          className="ant-select-selection-placeholder"
         >
           
         </span>
@@ -935,10 +1103,10 @@ exports[`Storyshots Select Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-30 container-d2-0-1-36"
+    className="container-0-1-31 container-d2-0-1-38"
   >
     <div
-      className="ant-select dropdown-0-1-31 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-1-32 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -985,7 +1153,7 @@ exports[`Storyshots Select Full Width 1`] = `
           className="ant-select-selection-item"
         >
           <div
-            className="option-0-1-33"
+            className="option-0-1-35"
           >
             <span>
               Lorem
@@ -1036,10 +1204,10 @@ exports[`Storyshots Select Icon 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-30 container-d1-0-1-35"
+    className="container-0-1-31 container-d1-0-1-37"
   >
     <div
-      className="ant-select dropdown-0-1-31 ant-select-single ant-select-show-arrow"
+      className="ant-select dropdown-0-1-32 ant-select-single ant-select-show-arrow"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -1086,10 +1254,10 @@ exports[`Storyshots Select Icon 1`] = `
           className="ant-select-selection-item"
         >
           <div
-            className="option-0-1-33"
+            className="option-0-1-35"
           >
             <span
-              className="icon-0-1-32"
+              className="icon-0-1-34"
             >
               <svg
                 className=""
@@ -1149,10 +1317,10 @@ exports[`Storyshots Select Search 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-30 container-d3-0-1-37"
+    className="container-0-1-31 container-d3-0-1-39"
   >
     <div
-      className="ant-select dropdown-0-1-31 ant-select-single ant-select-show-arrow ant-select-show-search"
+      className="ant-select dropdown-0-1-32 ant-select-single ant-select-show-arrow ant-select-show-search"
       data-test="select"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -1196,10 +1364,104 @@ exports[`Storyshots Select Search 1`] = `
           />
         </span>
         <span
-          className="ant-select-selection-item"
-          title=""
+          className="ant-select-selection-placeholder"
         >
-          
+          Choose a Cloud Provider
+        </span>
+      </div>
+      <span
+        aria-hidden={true}
+        className="ant-select-arrow"
+        onMouseDown={[Function]}
+        style={
+          Object {
+            "WebkitUserSelect": "none",
+            "userSelect": "none",
+          }
+        }
+        unselectable="on"
+      >
+        <span
+          aria-label="down"
+          className="anticon anticon-down ant-select-suffix"
+          role="img"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="down"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Select Selected Option Width 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <div
+    className="container-0-1-31 container-d4-0-1-40"
+  >
+    <div
+      className="ant-select dropdown-0-1-32 ant-select-single ant-select-show-arrow ant-select-show-search"
+      data-test="select"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+    >
+      <div
+        className="ant-select-selector"
+        onClick={[Function]}
+        onMouseDown={[Function]}
+      >
+        <span
+          className="ant-select-selection-search"
+        >
+          <input
+            aria-activedescendant="undefined_list_0"
+            aria-autocomplete="list"
+            aria-controls="undefined_list"
+            aria-haspopup="listbox"
+            aria-owns="undefined_list"
+            autoComplete="off"
+            className="ant-select-selection-search-input"
+            disabled={false}
+            onChange={[Function]}
+            onCompositionEnd={[Function]}
+            onCompositionStart={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onPaste={[Function]}
+            readOnly={false}
+            role="combobox"
+            style={
+              Object {
+                "opacity": null,
+              }
+            }
+            type="search"
+            unselectable={null}
+            value=""
+          />
+        </span>
+        <span
+          className="ant-select-selection-placeholder"
+        >
+          Choose a Cloud Provider
         </span>
       </div>
       <span
@@ -1245,7 +1507,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d6-0-1-39"
+    className="container-0-1-3 container-d6-0-1-42"
   >
      
   </span>
@@ -1257,27 +1519,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d7-0-1-40"
+    className="container-0-1-3 container-d7-0-1-43"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-40"
+    className="container-0-1-3 container-d7-0-1-43"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-40"
+    className="container-0-1-3 container-d7-0-1-43"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-40"
+    className="container-0-1-3 container-d7-0-1-43"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-40"
+    className="container-0-1-3 container-d7-0-1-43"
   >
      
   </span>
@@ -1289,7 +1551,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d5-0-1-38"
+    className="container-0-1-3 container-d5-0-1-41"
   >
      
   </span>
@@ -1309,23 +1571,28 @@ exports[`Storyshots Tag Colored 1`] = `
     }
   >
     Colored
-  </span>
-</div>
-`;
-
-exports[`Storyshots Tag Colored Preset 1`] = `
-<div
-  className="light storyWrapper-0-1-2"
->
-  <span
-    className="ant-tag ant-tag-blue"
-    style={
-      Object {
-        "backgroundColor": undefined,
-      }
-    }
-  >
-    Blue
+    <span
+      aria-label="close"
+      className="anticon anticon-close ant-tag-close-icon"
+      onClick={[Function]}
+      role="img"
+      tabIndex={-1}
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="close"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+        />
+      </svg>
+    </span>
   </span>
 </div>
 `;
@@ -1343,6 +1610,28 @@ exports[`Storyshots Tag Default 1`] = `
     }
   >
     Default
+    <span
+      aria-label="close"
+      className="anticon anticon-close ant-tag-close-icon"
+      onClick={[Function]}
+      role="img"
+      tabIndex={-1}
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="close"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+        />
+      </svg>
+    </span>
   </span>
 </div>
 `;
