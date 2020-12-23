@@ -23,6 +23,9 @@ const selectPalette = {
 		input: {
 			default: {
 				borderColor: blacks['lighten-20']
+			},
+			disabled: {
+				background: blacks['darken-20']
 			}
 		},
 		option: {
@@ -42,6 +45,9 @@ const selectPalette = {
 		input: {
 			default: {
 				borderColor: blacks['lighten-80']
+			},
+			disabled: {
+				background: grays['lighten-70']
 			}
 		},
 		option: {
@@ -58,13 +64,14 @@ const selectPalette = {
 
 export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 	const {
-		disabled: { color, backgroundColor, borderColor }
+		disabled: { color, borderColor }
 	} = themedStyles[themeType]
 
+	const { background } = selectPalette[themeType].input.disabled
 	return {
 		'& .ant-select-arrow': { color },
 		'& .ant-select-selector': {
-			backgroundColor,
+			background,
 			borderColor,
 			color
 		}
@@ -73,6 +80,7 @@ export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 
 export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	const { background } = selectPalette[themeType].base
+
 	return { background }
 }
 
@@ -156,6 +164,7 @@ const focusedClasses =
 export const useStyles = createUseStyles({
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
 		'& .ant-select': {
+			borderRadius,
 			...generateThemedSelectStyles(light),
 			...generateThemedSelectedItemStyles(light),
 			'& .ant-select-selector': {
@@ -167,11 +176,9 @@ export const useStyles = createUseStyles({
 			},
 			[disabledClasses]: generateThemedDisabledStyles(light),
 			[focusedClasses]: generateThemedFocusedStyles(light),
-			minWidth:
-				matchSelectedContentWidth &&
-				typeof matchSelectedContentWidth === 'number'
-					? matchSelectedContentWidth
-					: 'unset',
+			minWidth: matchSelectedContentWidth
+				? matchSelectedContentWidth
+				: 'unset',
 			width: matchSelectedContentWidth ? 'unset' : '100%'
 		},
 		width:

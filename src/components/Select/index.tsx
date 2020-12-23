@@ -26,7 +26,10 @@ export interface SelectProps extends BaseFormElementProps {
 	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
 	 */
 	defaultValue?: string
-	matchSelectedContentWidth?: boolean | number
+	/**
+	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
+	 */
+	matchSelectedContentWidth?: false | number
 	/**
 	 * Selector of HTML element inside which to render the popup/dropdown
 	 */
@@ -55,7 +58,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
 		classes = [],
 		dataTag,
-		// defaulting defaultValue to empty string doesn't render a placeholder if one is provided
+		// defaulting defaultValue to empty string doesn't render a placeholder if a placeholder is provided
 		defaultValue,
 		disabled = false,
 		error = false,

@@ -51,7 +51,7 @@ export interface IconButtonProps {
 	classes?: string[]
 	hasBorder?: boolean
 	icon?: FontAwesomeIconProps['icon']
-	onClick?: (e?: SyntheticEvent) => void
+	onClick: (e?: SyntheticEvent) => void
 	size?: number
 }
 
@@ -72,19 +72,9 @@ export const IconButton: FC<IconButtonProps> = ({
 		classes
 	)
 
-	const optionalProps: Pick<IconButtonProps, 'onClick'> = {}
-
-	if (onClick) {
-		optionalProps.onClick = onClick
-	}
-
 	return (
-		<span className={iconBtnClasses}>
-			<FontAwesomeIcon
-				className={componentClasses.icon}
-				icon={icon}
-				{...optionalProps}
-			/>
+		<span className={iconBtnClasses} onClick={onClick}>
+			<FontAwesomeIcon className={componentClasses.icon} icon={icon} />
 		</span>
 	)
 }

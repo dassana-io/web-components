@@ -34,9 +34,9 @@ export interface MultiSelectProps
 	 */
 	defaultValues?: string[]
 	/**
-	 * To set the width of the select to be the same as the
+	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
 	 */
-	matchSelectedContentWidth?: boolean | number
+	matchSelectedContentWidth?: false | number
 	maxTagCount?: number
 	maxTagTextLength?: number
 	/**
