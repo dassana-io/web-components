@@ -3,52 +3,13 @@ import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
-import { createUseStyles } from 'react-jss'
-import { getDataTestAttributeProp } from '../utils'
 import { SelectSkeleton } from '../SharedComponents'
-import {
-	defaultFieldWidth,
-	fieldErrorStyles,
-	styleguide
-} from '../assets/styles/styleguide'
+import { useStyles } from './utils'
+import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
 import { Icon, IconName, SharedIconProps } from '../Icon'
 import React, { FC } from 'react'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
-
-const { flexAlignCenter } = styleguide
-
-const { dark, light } = ThemeType
 
 const { Option } = AntDSelect
-
-const useStyles = createUseStyles({
-	container: {
-		'& .ant-select$error > .ant-select-selector': {
-			border: `1px solid ${themedStyles[light].error.borderColor}`
-		},
-		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
-	},
-	dropdown: {
-		width: '100%'
-	},
-	error: { ...fieldErrorStyles.error },
-	icon: {
-		...flexAlignCenter,
-		paddingRight: 7.5
-	},
-	option: {
-		...flexAlignCenter
-	},
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		...fieldErrorStyles['@global'],
-		[`.${dark}`]: {
-			'& $container .ant-select$error > .ant-select-selector': {
-				border: `1px solid ${themedStyles[dark].error.borderColor}`
-			}
-		}
-	}
-})
 
 export interface Options {
 	iconKey?: IconName
@@ -65,6 +26,11 @@ export interface SelectProps extends BaseFormElementProps {
 	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
 	 */
 	defaultValue?: string
+	matchSelectedContentWidth?: boolean | number
+	/**
+	 * Selector of HTML element inside which to render the popup/dropdown
+	 */
+	popupContainerSelector?: string
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */
@@ -89,13 +55,15 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
 		classes = [],
 		dataTag,
-		defaultValue = '',
+		// defaulting defaultValue to empty string doesn't render a placeholder if one is provided
+		defaultValue,
 		disabled = false,
 		error = false,
 		loading = false,
 		onChange,
 		options,
 		optionsConfig = {},
+		popupContainerSelector,
 		placeholder = '',
 		showSearch = false,
 		value
@@ -122,6 +90,14 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 
 	if (value && !onChange) {
 		throw new Error('Controlled inputs require an onChange prop')
+	}
+
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
 	}
 
 	const renderIcon = (
@@ -153,10 +129,12 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 				className={inputClasses}
 				defaultValue={defaultValue}
 				disabled={disabled}
+				dropdownClassName={componentClasses.dropdown}
 				placeholder={placeholder}
 				showSearch={showSearch}
 				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
+				{...popupContainerProps}
 			>
 				{options.map(({ iconKey, text, value }) => (
 					<Option

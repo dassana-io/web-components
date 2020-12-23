@@ -19,7 +19,7 @@ export interface Theme {
 	secondary: string
 	state: {
 		active: string
-		disabled: string
+		disabled: { background: string; border: string }
 		error: string
 		hover: string
 		inactive: string
@@ -43,7 +43,7 @@ const lightPalette: Theme = {
 	secondary: blacks['lighten-30'],
 	state: {
 		active: blacks.base,
-		disabled: grays['lighten-40'],
+		disabled: { background: grays['lighten-40'], border: grays.base },
 		error: reds.base,
 		hover: blacks.base,
 		inactive: blacks['lighten-70'],
@@ -55,7 +55,7 @@ const lightPalette: Theme = {
 		warning: oranges.base
 	},
 	text: {
-		disabled: blacks['lighten-70'],
+		disabled: blacks['lighten-80'],
 		primary: blacks['lighten-30']
 	}
 }
@@ -70,7 +70,10 @@ const darkPalette: Theme = {
 	secondary: blacks['lighten-30'],
 	state: {
 		active: grays.base,
-		disabled: blacks.base,
+		disabled: {
+			background: blacks['darken-20'],
+			border: blacks['darken-20']
+		},
 		error: reds.base,
 		hover: blacks['lighten-80'],
 		inactive: blacks['lighten-20'],
@@ -95,7 +98,8 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const disabled = {
-		backgroundColor: state.disabled,
+		backgroundColor: state.disabled.background,
+		borderColor: state.disabled.border,
 		color: text.disabled
 	}
 
