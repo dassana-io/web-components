@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { MultiSelectOption } from './types'
 import { tagPalette } from 'components/Tag/utils'
 import {
 	defaultFieldWidth,
@@ -41,7 +42,7 @@ const generateThemedTagStyles = (themeType: ThemeType) => {
 }
 
 const focusedClasses =
-	'&.ant-select-focused:not(.ant-select-disabled) .ant-select-selector'
+	'&.ant-select-focused.ant-select-multiple:not(.ant-select-disabled) .ant-select-selector'
 
 export const useStyles = createUseStyles({
 	checkbox: { marginRight: spacing.s },
@@ -91,23 +92,30 @@ export const useStyles = createUseStyles({
 						border: `1px solid ${themedStyles[dark].error.borderColor}`
 					},
 					'&.ant-select-multiple': {
+						'&.ant-select-disabled': generateThemedDisabledStyles(
+							dark
+						),
 						...generateThemedSelectStyles(dark),
 						...generateThemedTagStyles(dark),
 						'& .ant-select-selector': {
 							...generateThemedInputStyles(dark)
 						},
-						'&.ant-select-disabled': generateThemedDisabledStyles(
-							dark
-						)
+						[focusedClasses]: generateThemedFocusedStyles(dark)
 					}
-				},
-				'.ant-select-disabled.ant-select-multiple': generateThemedDisabledStyles(
-					dark
-				),
-				[focusedClasses]: generateThemedFocusedStyles(dark)
+				}
 			},
 			'& $dropdown': generateThemedDropdownStyles(dark),
 			'& $option': generateThemedOptionStyles(dark)
 		}
 	}
 })
+
+export const sortOptions = (
+	unsortedOpts: MultiSelectOption[],
+	localValues: string[]
+) =>
+	unsortedOpts.sort(
+		(optionA, optionB) =>
+			localValues.indexOf(optionB.value) -
+			localValues.indexOf(optionA.value)
+	)

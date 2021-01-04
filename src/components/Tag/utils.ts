@@ -9,13 +9,13 @@ const {
 
 export const tagPalette = {
 	[dark]: {
-		background: blacks['lighten-10'],
-		borderColor: blacks['lighten-50'],
-		color: blacks['lighten-80']
+		background: blacks.base,
+		borderColor: blacks['lighten-30'],
+		color: blacks['lighten-60']
 	},
 	[light]: {
-		background: blacks['lighten-80'],
-		borderColor: grays.base,
+		background: grays.base,
+		borderColor: blacks['lighten-80'],
 		color: blacks.base
 	}
 }
