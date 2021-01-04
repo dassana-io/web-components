@@ -25,16 +25,17 @@ const selectPalette = {
 				borderColor: blacks['lighten-20']
 			},
 			disabled: {
-				background: blacks['darken-20']
+				background: blacks['darken-20'],
+				color: blacks['lighten-30']
 			}
 		},
 		option: {
 			hover: {
-				background: blacks['lighten-10']
+				background: blacks['darken-20']
 			},
 			selected: {
-				background: blacks['lighten-30'],
-				color: whites.base
+				background: blacks.base,
+				color: grays.base
 			}
 		}
 	},
@@ -47,7 +48,8 @@ const selectPalette = {
 				borderColor: blacks['lighten-80']
 			},
 			disabled: {
-				background: grays['lighten-70']
+				background: grays['lighten-70'],
+				color: blacks['lighten-70']
 			}
 		},
 		option: {
@@ -64,10 +66,11 @@ const selectPalette = {
 
 export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 	const {
-		disabled: { color, borderColor }
+		disabled: { borderColor }
 	} = themedStyles[themeType]
 
-	const { background } = selectPalette[themeType].input.disabled
+	const { background, color } = selectPalette[themeType].input.disabled
+
 	return {
 		'& .ant-select-arrow': { color },
 		'& .ant-select-selector': {
