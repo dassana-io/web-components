@@ -82,6 +82,14 @@ export const useStyles = createUseStyles({
 	tag: {
 		marginRight: spacing.xs
 	},
+	tooltip: {
+		'&.ant-tooltip': {
+			'& > .ant-tooltip-content > .ant-tooltip-inner': {
+				overflowWrap: 'normal'
+			},
+			maxWidth: 'unset'
+		}
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],

@@ -31,10 +31,10 @@ const selectPalette = {
 		},
 		option: {
 			hover: {
-				background: blacks['darken-20']
+				background: blacks['darken-10']
 			},
 			selected: {
-				background: blacks.base,
+				background: blacks['lighten-10'],
 				color: grays.base
 			}
 		}
@@ -97,12 +97,20 @@ export const generateThemedFocusedStyles = (themeType: ThemeType) => {
 }
 
 export const generateThemedInputStyles = (themeType: ThemeType) => {
+	const {
+		base: { color }
+	} = themedStyles[themeType]
+
 	const { background } = selectPalette[themeType].base
 	const { borderColor } = selectPalette[themeType].input.default
 
 	return {
+		'& .ant-select-selection-search > .ant-select-selection-search-input': {
+			color
+		},
 		background,
-		borderColor
+		borderColor,
+		color
 	}
 }
 

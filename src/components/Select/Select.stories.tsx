@@ -53,7 +53,7 @@ Search.args = {
 
 export const SelectedOptionWidth = Template.bind({})
 SelectedOptionWidth.args = {
-	matchSelectedContentWidth: 50,
+	matchSelectedContentWidth: 75,
 	options: basicOptions,
 	placeholder: 'Choose a Cloud Provider',
 	showSearch: true
