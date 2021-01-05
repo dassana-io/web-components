@@ -16,6 +16,10 @@ export interface MultiSelectProps
 	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
 	 */
 	matchSelectedContentWidth?: false | number
+	/**
+	 * The number after which to show "& 'x' more" for selected tags. Setting it to 0 will always show all selected tags in the input
+	 * @default 2
+	 */
 	maxTagCount?: number
 	maxTagTextLength?: number
 	/**

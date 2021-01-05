@@ -26,7 +26,8 @@ const basicOptions: MultiSelectOption[] = [
 	{ text: 'Dolor', value: '3' },
 	{ text: 'Sit', value: '4' },
 	{ text: 'Amet', value: '5' },
-	{ text: 'Consectetur', value: '6' }
+	{ text: 'Consectetur', value: '6' },
+	{ text: 'LonglonglonglonglonglonglonglonglonglonglonglongMan', value: '7' }
 ]
 
 const ThemedMultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
@@ -68,6 +69,7 @@ Search.args = {
 export const SelectedContentWidth = Template.bind({})
 SelectedContentWidth.args = {
 	matchSelectedContentWidth: 125,
+	maxTagCount: 5,
 	options: basicOptions,
 	showSearch: true
 }
