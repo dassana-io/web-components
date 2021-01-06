@@ -398,6 +398,24 @@ exports[`Storyshots Link Href 1`] = `
 </div>
 `;
 
+exports[`Storyshots Modal Default 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <button
+    className="ant-btn ant-btn-default"
+    data-test="button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Open Modal
+    </span>
+  </button>
+</div>
+`;
+
 exports[`Storyshots Notification Error 1`] = `
 <div
   className="light storyWrapper-0-1-2"

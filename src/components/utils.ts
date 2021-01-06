@@ -1,6 +1,7 @@
 import Color from 'color'
 import mapValues from 'lodash/mapValues'
 import { TooltipPlacement } from 'antd/es/tooltip'
+import { useEffect, useState } from 'react'
 
 export const TAG = 'data-test'
 
@@ -89,4 +90,29 @@ export const manipulateColor = (
 			return rgbToHex(shade)
 		}
 	}
+}
+
+// Appends a div to the document, usually for use with React portals
+// Optional popup container function can be provided as an argument. Otherwise, it defaults to appending the div to document.body
+export const useCreateDomElement = (
+	divId: string,
+	getPopupContainer: () => HTMLElement = () => document.body
+) => {
+	const [domElement, setDomElement] = useState<HTMLDivElement | null>(null)
+
+	const root = getPopupContainer() || document.body
+
+	useEffect(() => {
+		const element = document.createElement('div')
+		element.setAttribute('id', divId)
+
+		root.appendChild(element)
+		setDomElement(element)
+
+		return () => {
+			root.removeChild(element)
+		}
+	}, [divId, root])
+
+	return domElement
 }

@@ -9,35 +9,11 @@ import {
 	faTimesCircle
 } from '@fortawesome/free-solid-svg-icons'
 import { themedStyles, themes, ThemeType } from '../assets/styles/themes'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const { borderRadius, flexSpaceBetween, spacing } = styleguide
 
 export const NOTIFICATION_CONTAINER_ID = 'notification-root'
-
-// Appends a div to the document, usually for use with React portals
-// Optional popup container function can be provided as an argument. Otherwise, it defaults to appending the div to document.body
-export const useCreateDomElement = (
-	getPopupContainer: () => HTMLElement = () => document.body
-) => {
-	const [domElement, setDomElement] = useState<HTMLDivElement | null>(null)
-
-	const root = getPopupContainer() || document.body
-
-	useEffect(() => {
-		const element = document.createElement('div')
-		element.setAttribute('id', NOTIFICATION_CONTAINER_ID)
-
-		root.appendChild(element)
-		setDomElement(element)
-
-		return () => {
-			root.removeChild(element)
-		}
-	}, [root])
-
-	return domElement
-}
 
 export interface NotificationConfig {
 	duration?: number
