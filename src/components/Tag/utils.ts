@@ -9,9 +9,9 @@ const {
 
 export const tagPalette = {
 	[dark]: {
-		background: blacks.base,
-		borderColor: blacks['lighten-30'],
-		color: blacks['lighten-60']
+		background: blacks['lighten-10'],
+		borderColor: blacks['lighten-10'],
+		color: blacks['lighten-50']
 	},
 	[light]: {
 		background: grays.base,

@@ -1,4 +1,5 @@
 import * as stories from './Table.stories.tsx'
+import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { Table } from '.'
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
 
@@ -8,7 +9,7 @@ The `Table` component creates a table from a provided data source. It allows for
 
 The following examples start from a basic table and don't show all possible types of data that the table can render. If you'd like to view all possible column types and formats in one place, [click here.](?path=/docs/table--mixed#columntype--all-column-types-and-formats)
 
-<Meta decorators={[stories.Decorator]} title='Table' component={Table} />
+<Meta decorators={[SecondaryBgDecorator]} title='Table' component={Table} />
 
 ## Simple Usage
 

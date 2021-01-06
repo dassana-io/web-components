@@ -10,11 +10,11 @@ const {
 const checkboxPalette = {
 	[dark]: {
 		checked: {
-			background: blacks['lighten-50'],
-			checkmark: blacks.base
+			background: whites.base,
+			checkmark: blacks['lighten-30']
 		},
 		unchecked: {
-			background: blacks['darken-40'],
+			background: blacks.base,
 			borderColor: blacks['lighten-10']
 		}
 	},

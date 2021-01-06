@@ -1,9 +1,13 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
 	styleguide
 } from '../assets/styles/styleguide'
+import { Icon, IconName, SharedIconProps } from '../Icon'
+import React, { FC, ReactNode } from 'react'
+import { SelectOption, SelectOptionsConfig, SelectProps } from './types'
 import { themedStyles, ThemeType } from '../assets/styles/themes'
 
 const { dark, light } = ThemeType
@@ -31,10 +35,10 @@ const selectPalette = {
 		},
 		option: {
 			hover: {
-				background: blacks['darken-10']
+				background: blacks['lighten-10']
 			},
 			selected: {
-				background: blacks['lighten-10'],
+				background: blacks.base,
 				color: grays.base
 			}
 		}
@@ -172,6 +176,15 @@ const disabledClasses =
 const focusedClasses =
 	'&.ant-select-focused:not(.ant-select-disabled).ant-select-single:not(.ant-select-customize-input) .ant-select-selector'
 
+export const tooltipStyles = {
+	'&.ant-tooltip': {
+		'& > .ant-tooltip-content > .ant-tooltip-inner': {
+			overflowWrap: 'normal'
+		},
+		maxWidth: 'unset'
+	}
+}
+
 export const useStyles = createUseStyles({
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
 		'& .ant-select': {
@@ -197,14 +210,10 @@ export const useStyles = createUseStyles({
 	}),
 	dropdown: generateThemedDropdownStyles(light),
 	error: { ...fieldErrorStyles.error },
-	icon: {
-		...flexAlignCenter,
-		paddingRight: 7.5
-	},
 	option: {
-		...flexAlignCenter,
 		...generateThemedOptionStyles(light)
 	},
+	tooltip: tooltipStyles,
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],
@@ -228,3 +237,66 @@ export const useStyles = createUseStyles({
 		}
 	}
 })
+
+// -------------------------------
+
+const useOptionChildrenStyles = createUseStyles({
+	icon: {
+		...flexAlignCenter,
+		paddingRight: 7.5
+	},
+	option: {
+		...flexAlignCenter,
+		minWidth: 0
+	},
+	optionText: {
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		whiteSpace: 'nowrap'
+	}
+})
+
+type OptionChildrenProps = Omit<SelectOption, 'value'> &
+	Pick<SelectProps, 'optionsConfig'> & { children?: ReactNode }
+
+export const OptionChildren: FC<OptionChildrenProps> = ({
+	children,
+	iconKey,
+	optionsConfig = {},
+	text
+}: OptionChildrenProps) => {
+	const classes = useOptionChildrenStyles()
+
+	const renderIcon = (
+		iconKey: IconName,
+		optionsConfig: SelectOptionsConfig
+	): JSX.Element => {
+		const commonIconProps: SharedIconProps = {
+			height: 15
+		}
+
+		const { iconMap } = optionsConfig
+
+		return (
+			<span className={classes.icon}>
+				{iconMap ? (
+					<Icon {...commonIconProps} icon={iconMap[iconKey]} />
+				) : (
+					<Icon {...commonIconProps} iconKey={iconKey} />
+				)}
+			</span>
+		)
+	}
+
+	return (
+		<div className={classes.option}>
+			{children && children}
+			{iconKey && renderIcon(iconKey, optionsConfig)}
+			<span className={cn(classes.optionText, 'option-text')}>
+				{text}
+			</span>
+		</div>
+	)
+}
+
+// -------------------------------

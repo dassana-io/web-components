@@ -1,7 +1,12 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
+import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { useTheme } from 'react-jss'
-import { basicOptions, iconOptions } from './fixtures/sample_options'
+import {
+	basicOptions,
+	iconOptions,
+	textOverflowOptions
+} from './fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import React, { FC } from 'react'
 import { Select, SelectProps } from './index'
@@ -12,6 +17,7 @@ export default {
 		value: { control: { disable: true } }
 	},
 	component: Select,
+	decorators: [SecondaryBgDecorator],
 	title: 'Select'
 } as Meta
 
@@ -27,7 +33,7 @@ const Template: Story<SelectProps> = args => <ThemedSelect {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-	options: basicOptions
+	options: textOverflowOptions
 }
 
 export const Icon = Template.bind({})

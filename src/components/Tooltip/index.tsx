@@ -45,6 +45,7 @@ export interface TooltipProps extends CommonComponentProps {
 	 * Text shown in the tooltip
 	 */
 	title: TooltipTitle
+	tooltipTriggerClasses?: string[]
 }
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -53,7 +54,8 @@ export const Tooltip: FC<TooltipProps> = ({
 	dataTag,
 	placement = 'right',
 	popupContainerSelector,
-	title
+	title,
+	tooltipTriggerClasses = []
 }: TooltipProps) => {
 	useStyles()
 
@@ -73,7 +75,10 @@ export const Tooltip: FC<TooltipProps> = ({
 			title={title}
 			{...popupContainerProps}
 		>
-			<span {...getDataTestAttributeProp('tooltip-trigger', dataTag)}>
+			<span
+				className={cn(tooltipTriggerClasses)}
+				{...getDataTestAttributeProp('tooltip-trigger', dataTag)}
+			>
 				{children}
 			</span>
 		</AntDTooltip>

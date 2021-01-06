@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss'
-import { MultiSelectOption } from './types'
+import { SelectOption } from 'components/Select'
 import { tagPalette } from 'components/Tag/utils'
 import {
 	defaultFieldWidth,
@@ -12,7 +12,8 @@ import {
 	generateThemedFocusedStyles,
 	generateThemedInputStyles,
 	generateThemedOptionStyles,
-	generateThemedSelectStyles
+	generateThemedSelectStyles,
+	tooltipStyles
 } from 'components/Select/utils'
 import { themedStyles, ThemeType } from '../assets/styles/themes'
 
@@ -37,6 +38,26 @@ const generateThemedTagStyles = (themeType: ThemeType) => {
 			borderColor,
 			color,
 			fontWeight: fontWeight.light
+		}
+	}
+}
+
+export const generateThemedMSOptionStyles = (themeType: ThemeType) => {
+	const optionClasses = '&.ant-select-item-option'
+
+	const optionStyles = generateThemedOptionStyles(themeType)[optionClasses]
+
+	return {
+		[optionClasses]: {
+			'& .ant-select-item-option-content': { ...flexAlignCenter },
+			'&.ant-select-item-option-active':
+				optionStyles['&.ant-select-item-option-active'],
+			'&.ant-select-item-option-selected': {
+				...optionStyles['&.ant-select-item-option-selected'],
+				background: 'transparent'
+			},
+			color: optionStyles.color,
+			fontWeight: optionStyles.fontWeight
 		}
 	}
 }
@@ -71,10 +92,7 @@ export const useStyles = createUseStyles({
 	}),
 	dropdown: generateThemedDropdownStyles(light),
 	error: { ...fieldErrorStyles.error },
-	option: {
-		...flexAlignCenter,
-		...generateThemedOptionStyles(light)
-	},
+	option: generateThemedMSOptionStyles(light),
 	searchBar: {
 		margin: 3 * spacing.xs,
 		width: `calc(100% - ${6 * spacing.xs}px)`
@@ -82,14 +100,8 @@ export const useStyles = createUseStyles({
 	tag: {
 		marginRight: spacing.xs
 	},
-	tooltip: {
-		'&.ant-tooltip': {
-			'& > .ant-tooltip-content > .ant-tooltip-inner': {
-				overflowWrap: 'normal'
-			},
-			maxWidth: 'unset'
-		}
-	},
+	tooltip: tooltipStyles,
+	tooltipTriggerClasses: { minWidth: 0 },
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],
@@ -113,13 +125,13 @@ export const useStyles = createUseStyles({
 				}
 			},
 			'& $dropdown': generateThemedDropdownStyles(dark),
-			'& $option': generateThemedOptionStyles(dark)
+			'& $option': generateThemedMSOptionStyles(dark)
 		}
 	}
 })
 
 export const sortOptions = (
-	unsortedOpts: MultiSelectOption[],
+	unsortedOpts: SelectOption[],
 	localValues: string[]
 ) =>
 	unsortedOpts.sort(
