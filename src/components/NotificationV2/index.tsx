@@ -3,11 +3,12 @@ import { createPortal } from 'react-dom'
 import { createUseStyles } from 'react-jss'
 import { Notification } from './Notification'
 import { styleguide } from 'components/assets/styles'
+import { useCreateDomElement } from 'components/utils'
 import {
+	NOTIFICATION_CONTAINER_ID,
 	NotificationConfig as NotificationConfigInterface,
 	NotificationTypes,
 	ProcessedNotification,
-	useCreateDomElement,
 	useNotifications
 } from './utils'
 import { NotificationCtxProvider, useNotification } from './NotificationContext'
@@ -34,7 +35,10 @@ const NotificationProvider: FC<NotificationProviderProps> = ({
 	children,
 	getPopupContainer
 }: NotificationProviderProps) => {
-	const rootElement = useCreateDomElement(getPopupContainer)
+	const rootElement = useCreateDomElement(
+		NOTIFICATION_CONTAINER_ID,
+		getPopupContainer
+	)
 
 	const { generateNotification, notifications } = useNotifications()
 
