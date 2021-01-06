@@ -1,58 +1,15 @@
 import '../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
-import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
-import { SelectSkeleton } from '../SharedComponents'
-import { useStyles } from './utils'
+import omit from 'lodash/omit'
+import { SelectSkeleton } from './SelectSkeleton'
+import { Tooltip } from 'components'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { Icon, IconName, SharedIconProps } from '../Icon'
-import React, { FC } from 'react'
-
+import { OptionChildren, useStyles } from './utils'
+import React, { FC, SyntheticEvent, useState } from 'react'
+import { SelectProps, ShowToolTip } from './types'
 const { Option } = AntDSelect
-
-export interface Options {
-	iconKey?: IconName
-	text: string
-	value: string
-}
-
-export interface OptionsConfig {
-	iconMap?: Record<string, string>
-}
-
-export interface SelectProps extends BaseFormElementProps {
-	/**
-	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
-	 */
-	defaultValue?: string
-	/**
-	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
-	 */
-	matchSelectedContentWidth?: false | number
-	/**
-	 * Selector of HTML element inside which to render the popup/dropdown
-	 */
-	popupContainerSelector?: string
-	/**
-	 * Array of options to be rendered in the dropdown
-	 */
-	options: Options[]
-	/**
-	 * Optional configuration that applies to the options. Ex: An icon map where each key in the map corresponds to the value of the option
-	 * @default {}
-	 */
-	optionsConfig?: OptionsConfig
-	/**
-	 * Whether or not to show search input
-	 * @default false
-	 */
-	showSearch?: boolean
-	/**
-	 * Input content value for controlled inputs. Requires an onChange to be passed
-	 */
-	value?: string
-}
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
@@ -71,6 +28,8 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		showSearch = false,
 		value
 	} = props
+
+	const [showToolTipList, setShowToolTipList] = useState<ShowToolTip>({})
 
 	const componentClasses = useStyles(props)
 
@@ -103,27 +62,6 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		}
 	}
 
-	const renderIcon = (
-		iconKey: IconName,
-		optionsConfig: OptionsConfig
-	): JSX.Element => {
-		const commonIconProps: SharedIconProps = {
-			height: 15
-		}
-
-		const { iconMap } = optionsConfig
-
-		return (
-			<span className={componentClasses.icon}>
-				{iconMap ? (
-					<Icon {...commonIconProps} icon={iconMap[iconKey]} />
-				) : (
-					<Icon {...commonIconProps} iconKey={iconKey} />
-				)}
-			</span>
-		)
-	}
-
 	return loading ? (
 		<SelectSkeleton {...props} />
 	) : (
@@ -143,15 +81,53 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 					<Option
 						className={componentClasses.option}
 						key={value}
+						label={text}
+						onMouseEnter={(e: SyntheticEvent) => {
+							const el = e.currentTarget.querySelector(
+								'.option-text'
+							)
+							// @ts-ignore
+							if (el.scrollWidth > el.offsetWidth) {
+								setShowToolTipList({
+									...showToolTipList,
+									[value]: true
+								})
+							}
+						}}
+						onMouseLeave={() =>
+							setShowToolTipList({
+								...omit(showToolTipList, value)
+							})
+						}
 						value={value}
 					>
-						<div className={componentClasses.option}>
-							{iconKey && renderIcon(iconKey, optionsConfig)}
-							<span>{text}</span>
-						</div>
+						{showToolTipList[value] ? (
+							<Tooltip
+								classes={[componentClasses.tooltip]}
+								placement='bottomLeft'
+								popupContainerSelector={popupContainerSelector}
+								title={text}
+							>
+								<OptionChildren
+									iconKey={iconKey}
+									key={value}
+									optionsConfig={optionsConfig}
+									text={text}
+								/>
+							</Tooltip>
+						) : (
+							<OptionChildren
+								iconKey={iconKey}
+								key={value}
+								optionsConfig={optionsConfig}
+								text={text}
+							/>
+						)}
 					</Option>
 				))}
 			</AntDSelect>
 		</div>
 	)
 }
+
+export * from './types'

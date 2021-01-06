@@ -3,11 +3,13 @@ import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import cn from 'classnames'
 import Fuse from 'fuse.js'
+import { MultiSelectProps } from './types'
 import omit from 'lodash/omit'
-import { SelectSkeleton } from '../SharedComponents'
+import { OptionChildren } from 'components/Select/utils'
+import { SelectOption } from 'components/Select'
+import { SelectSkeleton } from 'components/Select/SelectSkeleton'
 import { Checkbox, Input, Tooltip } from 'components'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { MultiSelectOption, MultiSelectProps } from './types'
 import React, {
 	ChangeEvent,
 	FC,
@@ -34,13 +36,14 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		loading = false,
 		maxTagCount = 2,
 		maxTagTextLength = 12,
-		// pending = false,
-		popupContainerSelector,
 		onChange,
 		onSearch,
 		optionKeysToFilter = ['text'],
 		options,
+		optionsConfig = {},
 		placeholder = '',
+		// pending = false,
+		popupContainerSelector,
 		searchPlaceholder = '',
 		showSearch = false,
 		values
@@ -90,7 +93,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		}
 	}
 
-	const searchFilter = (options: MultiSelectOption[], value: string) => {
+	const searchFilter = (options: SelectOption[], value: string) => {
 		if (value.length === 0) {
 			return options
 		}
@@ -103,10 +106,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		const filteredOptions = fuse
 			.search(value)
 			.map(
-				({
-					item
-				}: Fuse.FuseResult<MultiSelectOption>): MultiSelectOption =>
-					item
+				({ item }: Fuse.FuseResult<SelectOption>): SelectOption => item
 			)
 
 		return filteredOptions
@@ -163,14 +163,16 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				{...optionalProps}
 				{...popupContainerProps}
 			>
-				{sortedAndFilteredValues.map(({ text, value }) => {
+				{sortedAndFilteredValues.map(({ iconKey, text, value }) => {
 					return (
 						<Option
 							className={componentClasses.option}
 							key={value}
 							label={text}
 							onMouseEnter={(e: SyntheticEvent) => {
-								const el = e.currentTarget.childNodes[0]
+								const el = e.currentTarget.querySelector(
+									'.option-text'
+								)
 								// @ts-ignore
 								if (el.scrollWidth > el.offsetWidth) {
 									setShowToolTipList({
@@ -196,12 +198,28 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 								<Tooltip
 									classes={[componentClasses.tooltip]}
 									placement='bottomLeft'
+									popupContainerSelector={
+										popupContainerSelector
+									}
 									title={text}
+									tooltipTriggerClasses={[
+										componentClasses.tooltipTriggerClasses
+									]}
 								>
-									<span>{text}</span>
+									<OptionChildren
+										iconKey={iconKey}
+										key={value}
+										optionsConfig={optionsConfig}
+										text={text}
+									/>
 								</Tooltip>
 							) : (
-								<span>{text}</span>
+								<OptionChildren
+									iconKey={iconKey}
+									key={value}
+									optionsConfig={optionsConfig}
+									text={text}
+								/>
 							)}
 						</Option>
 					)

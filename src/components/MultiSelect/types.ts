@@ -1,21 +1,12 @@
-import { BaseFormElementProps } from '../types'
-
-export interface MultiSelectOption {
-	text: string
-	value: string
-}
+import { SelectProps } from 'components/Select'
 
 export interface MultiSelectProps
-	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
+	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {
 	allowClear?: boolean
 	/**
 	 * Default values for select component. Without this, the select dropdown will be blank until an option is selected. Gets overwritten by values if both are provided
 	 */
 	defaultValues?: string[]
-	/**
-	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
-	 */
-	matchSelectedContentWidth?: false | number
 	/**
 	 * The number after which to show "& 'x' more" for selected tags. Setting it to 0 will always show all selected tags in the input
 	 * @default 2
@@ -32,18 +23,8 @@ export interface MultiSelectProps
 	 * @default ['text']
 	 */
 	optionKeysToFilter?: string[]
-	options: MultiSelectOption[]
 	pending?: boolean
-	/**
-	 * Selector of HTML element inside which to render the popup/dropdown
-	 */
-	popupContainerSelector?: string
 	searchPlaceholder?: string
-	/**
-	 * Whether or not to show search input
-	 * @default false
-	 */
-	showSearch?: boolean
 	/**
 	 * Selected values for if component is controlled. Requires an onChange to be passed
 	 */

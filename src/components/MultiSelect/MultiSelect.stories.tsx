@@ -1,8 +1,11 @@
 import { action } from '@storybook/addon-actions'
+import { iconOptions } from 'components/Select/fixtures/sample_options'
 import { SbTheme } from '../../../.storybook/preview'
+import { SecondaryBgDecorator } from '../../../.storybook/utils'
+import { SelectOption } from 'components/Select'
 import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import { MultiSelect, MultiSelectOption, MultiSelectProps } from './index'
+import { MultiSelect, MultiSelectProps } from './index'
 import React, { FC } from 'react'
 
 export default {
@@ -12,6 +15,7 @@ export default {
 		values: { control: { disable: true } }
 	},
 	component: MultiSelect,
+	decorators: [SecondaryBgDecorator],
 	parameters: {
 		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
 		storyshots: { disable: true }
@@ -19,7 +23,7 @@ export default {
 	title: 'MultiSelect'
 } as Meta
 
-const basicOptions: MultiSelectOption[] = [
+const basicOptions: SelectOption[] = [
 	{ text: 'Lorem', value: '0' },
 	{ text: 'Incididunt', value: '1' },
 	{ text: 'Ipsum', value: '2' },
@@ -27,7 +31,7 @@ const basicOptions: MultiSelectOption[] = [
 	{ text: 'Sit', value: '4' },
 	{ text: 'Amet', value: '5' },
 	{ text: 'Consectetur', value: '6' },
-	{ text: 'LonglonglonglonglonglonglonglonglonglonglonglongMan', value: '7' }
+	{ text: 'Adipiscing elit sed do eiusmod', value: '7' }
 ]
 
 const ThemedMultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
@@ -53,12 +57,6 @@ Default.args = {
 	placeholder: 'Pls select'
 }
 
-export const FullWidth = Template.bind({})
-FullWidth.args = {
-	fullWidth: true,
-	options: basicOptions
-}
-
 export const Search = Template.bind({})
 Search.args = {
 	options: basicOptions,
@@ -72,4 +70,15 @@ SelectedContentWidth.args = {
 	maxTagCount: 5,
 	options: basicOptions,
 	showSearch: true
+}
+
+export const FullWidth = Template.bind({})
+FullWidth.args = {
+	fullWidth: true,
+	options: basicOptions
+}
+
+export const Icon = Template.bind({})
+Icon.args = {
+	options: iconOptions
 }
