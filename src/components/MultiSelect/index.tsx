@@ -27,7 +27,6 @@ interface ShowToolTip {
 
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const {
-		allowClear,
 		classes = [],
 		dataTag,
 		defaultValues = [],
@@ -120,7 +119,6 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	) : (
 		<div className={componentClasses.container}>
 			<AntDSelect
-				allowClear={allowClear}
 				className={inputClasses}
 				defaultValue={defaultValues}
 				disabled={disabled}

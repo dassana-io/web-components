@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles as createJssUseStyles } from 'react-jss'
 import { ThemeType } from 'components/assets/styles'
-import { Tooltip } from 'components'
+import { Tooltip } from 'antd'
 import React, { FC } from 'react'
 
 const { light, dark } = ThemeType
