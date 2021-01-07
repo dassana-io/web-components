@@ -8,6 +8,7 @@ import omit from 'lodash/omit'
 import { OptionChildren } from 'components/Select/utils'
 import { SelectOption } from 'components/Select'
 import { SelectSkeleton } from 'components/Select/SelectSkeleton'
+import { Spin } from 'components/Spin'
 import { Checkbox, Input, Tooltip } from 'components'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
 import React, {
@@ -41,7 +42,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		options,
 		optionsConfig = {},
 		placeholder = '',
-		// pending = false,
+		pending = false,
 		popupContainerSelector,
 		searchPlaceholder = '',
 		showSearch = false,
@@ -152,6 +153,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				maxTagTextLength={maxTagTextLength}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
+				notFoundContent={pending ? <Spin size={20} /> : 'No Data'}
 				onChange={onChangeAntD}
 				optionLabelProp='label'
 				placeholder={placeholder}

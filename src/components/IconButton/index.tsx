@@ -13,6 +13,7 @@ import React, { FC, SyntheticEvent } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { borderRadius, flexCenter, font, spacing } = styleguide
+
 const { light, dark } = ThemeType
 
 const useStyles = createUseStyles({

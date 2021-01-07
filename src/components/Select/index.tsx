@@ -71,6 +71,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 				defaultValue={defaultValue}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
+				notFoundContent='No Data'
 				placeholder={placeholder}
 				showSearch={showSearch}
 				{...controlledCmpProps}
