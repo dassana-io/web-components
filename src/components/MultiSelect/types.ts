@@ -2,7 +2,6 @@ import { SelectProps } from 'components/Select'
 
 export interface MultiSelectProps
 	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {
-	allowClear?: boolean
 	/**
 	 * Default values for select component. Without this, the select dropdown will be blank until an option is selected. Gets overwritten by values if both are provided
 	 */
