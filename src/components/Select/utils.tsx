@@ -86,9 +86,17 @@ export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 }
 
 export const generateThemedDropdownStyles = (themeType: ThemeType) => {
+	const {
+		disabled: { color }
+	} = themedStyles[themeType]
 	const { background } = selectPalette[themeType].base
 
-	return { background }
+	return {
+		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty': {
+			color
+		},
+		background
+	}
 }
 
 export const generateThemedFocusedStyles = (themeType: ThemeType) => {
