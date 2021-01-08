@@ -5,12 +5,12 @@ import cn from 'classnames'
 import Fuse from 'fuse.js'
 import { MultiSelectProps } from './types'
 import omit from 'lodash/omit'
-import { OptionChildren } from 'components/Select/utils'
 import { SelectOption } from 'components/Select'
 import { SelectSkeleton } from 'components/Select/SelectSkeleton'
 import { Spin } from 'components/Spin'
 import { Checkbox, Input, Tooltip } from 'components'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
+import { NotFoundContent, OptionChildren } from 'components/Select/utils'
 import React, {
 	ChangeEvent,
 	FC,
@@ -154,7 +154,15 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				maxTagTextLength={maxTagTextLength}
 				menuItemSelectedIcon={null}
 				mode={'multiple'}
-				notFoundContent={pending ? <Spin size={20} /> : 'No Data'}
+				notFoundContent={
+					pending ? (
+						<NotFoundContent>
+							<Spin size={20} />
+						</NotFoundContent>
+					) : (
+						<NotFoundContent />
+					)
+				}
 				onChange={onChangeAntD}
 				optionLabelProp='label'
 				placeholder={placeholder}
