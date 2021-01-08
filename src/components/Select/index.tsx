@@ -6,7 +6,7 @@ import omit from 'lodash/omit'
 import { SelectSkeleton } from './SelectSkeleton'
 import { Tooltip } from 'components'
 import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { OptionChildren, useStyles } from './utils'
+import { NotFoundContent, OptionChildren, useStyles } from './utils'
 import React, { FC, SyntheticEvent, useState } from 'react'
 import { SelectProps, ShowToolTip } from './types'
 const { Option } = AntDSelect
@@ -71,7 +71,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 				defaultValue={defaultValue}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
-				notFoundContent='No Data'
+				notFoundContent={<NotFoundContent />}
 				placeholder={placeholder}
 				showSearch={showSearch}
 				{...controlledCmpProps}

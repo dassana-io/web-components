@@ -10,12 +10,11 @@ body,
 	height: 100%;
 }
 
-html {
-	font-family: 'Inter', sans-serif;
-}
-
 @supports (font-variation-settings: normal) {
-	html {
+	html,
+	body,
+	#root,
+	.App {
 		font-family: 'Inter var', sans-serif;
 	}
 }

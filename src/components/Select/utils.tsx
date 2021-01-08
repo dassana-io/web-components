@@ -16,6 +16,7 @@ const {
 	borderRadius,
 	colors: { blacks, grays, whites },
 	flexAlignCenter,
+	flexCenter,
 	fontWeight
 } = styleguide
 
@@ -248,6 +249,28 @@ export const useStyles = createUseStyles({
 
 // -------------------------------
 
+const useNotFoundContentStyles = createUseStyles({
+	container: {
+		...flexCenter
+	}
+})
+
+interface Props {
+	children?: ReactNode
+}
+
+export const NotFoundContent: FC<Props> = ({ children }: Props) => {
+	const classes = useNotFoundContentStyles()
+
+	return (
+		<div className={classes.container}>
+			{children ? children : <span>No Data</span>}
+		</div>
+	)
+}
+
+// -------------------------------
+
 const useOptionChildrenStyles = createUseStyles({
 	icon: {
 		...flexAlignCenter,
@@ -307,4 +330,4 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 	)
 }
 
-// -------------------------------
+// ----------------------
