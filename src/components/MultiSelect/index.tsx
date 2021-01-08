@@ -93,13 +93,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		}
 	}
 
-	const searchFilter = (options: SelectOption[], value: string) => {
-		if (value.length === 0) {
-			return options
-		}
-
-		if (onSearch) {
-			onSearch(value)
+	const filterOptions = (options: SelectOption[], value?: string) => {
+		if (!value) {
 			return options
 		}
 
@@ -113,7 +108,10 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	}
 
 	const sortedValues = sortOptions(options, localValues)
-	const sortedAndFilteredValues = searchFilter(sortedValues, searchTerm)
+
+	const sortedAndFilteredValues = onSearch
+		? sortedValues
+		: filterOptions(sortedValues, searchTerm)
 
 	return loading ? (
 		<SelectSkeleton {...props} />
@@ -129,9 +127,12 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 						{showSearch && (
 							<Input
 								classes={[componentClasses.searchBar]}
-								onChange={(e: ChangeEvent<HTMLInputElement>) =>
+								onChange={(
+									e: ChangeEvent<HTMLInputElement>
+								) => {
+									if (onSearch) onSearch(e.target.value)
 									setSearchTerm(e.target.value)
-								}
+								}}
 								onKeyDown={(e: KeyboardEvent) => {
 									const keysToNotPropagate: KeyboardEvent['key'][] = [
 										'Enter',
