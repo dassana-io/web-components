@@ -3,7 +3,7 @@ import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { iconOptions } from 'components/Select/fixtures/sample_options'
 import React from 'react'
-import { Select } from 'components/Select'
+import { Select } from 'components/Select/SingleSelect'
 import FormSelect, { FormSelectProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 

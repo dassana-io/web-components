@@ -1,11 +1,11 @@
 import { createUseStyles } from 'react-jss'
-import { SelectOption } from 'components/Select'
+import { SelectOption } from 'components/Select/types'
 import { tagPalette } from 'components/Tag/utils'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
 	styleguide
-} from '../assets/styles/styleguide'
+} from '../../assets/styles/styleguide'
 import {
 	generateThemedDisabledStyles,
 	generateThemedDropdownStyles,
@@ -15,7 +15,7 @@ import {
 	generateThemedSelectStyles,
 	tooltipStyles
 } from 'components/Select/utils'
-import { themedStyles, ThemeType } from '../assets/styles/themes'
+import { themedStyles, ThemeType } from '../../assets/styles/themes'
 
 const { dark, light } = ThemeType
 

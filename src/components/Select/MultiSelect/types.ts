@@ -1,4 +1,4 @@
-import { SelectProps } from 'components/Select'
+import { SelectProps } from 'components/Select/SingleSelect'
 
 export interface MultiSelectProps
 	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {

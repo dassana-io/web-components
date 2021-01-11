@@ -1,13 +1,9 @@
-import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
 	styleguide
 } from '../assets/styles/styleguide'
-import { Icon, IconName, SharedIconProps } from '../Icon'
-import React, { FC, ReactNode } from 'react'
-import { SelectOption, SelectOptionsConfig, SelectProps } from './types'
 import { themedStyles, ThemeType } from '../assets/styles/themes'
 
 const { dark, light } = ThemeType
@@ -15,8 +11,6 @@ const { dark, light } = ThemeType
 const {
 	borderRadius,
 	colors: { blacks, grays, whites },
-	flexAlignCenter,
-	flexCenter,
 	fontWeight
 } = styleguide
 
@@ -222,7 +216,6 @@ export const useStyles = createUseStyles({
 	option: {
 		...generateThemedOptionStyles(light)
 	},
-	tooltip: tooltipStyles,
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],
@@ -246,88 +239,3 @@ export const useStyles = createUseStyles({
 		}
 	}
 })
-
-// -------------------------------
-
-const useNotFoundContentStyles = createUseStyles({
-	container: {
-		...flexCenter
-	}
-})
-
-interface Props {
-	children?: ReactNode
-}
-
-export const NotFoundContent: FC<Props> = ({ children }: Props) => {
-	const classes = useNotFoundContentStyles()
-
-	return (
-		<div className={classes.container}>
-			{children ? children : <span>No Data</span>}
-		</div>
-	)
-}
-
-// -------------------------------
-
-const useOptionChildrenStyles = createUseStyles({
-	icon: {
-		...flexAlignCenter,
-		paddingRight: 7.5
-	},
-	option: {
-		...flexAlignCenter,
-		minWidth: 0
-	},
-	optionText: {
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		whiteSpace: 'nowrap'
-	}
-})
-
-type OptionChildrenProps = Omit<SelectOption, 'value'> &
-	Pick<SelectProps, 'optionsConfig'> & { children?: ReactNode }
-
-export const OptionChildren: FC<OptionChildrenProps> = ({
-	children,
-	iconKey,
-	optionsConfig = {},
-	text
-}: OptionChildrenProps) => {
-	const classes = useOptionChildrenStyles()
-
-	const renderIcon = (
-		iconKey: IconName,
-		optionsConfig: SelectOptionsConfig
-	): JSX.Element => {
-		const commonIconProps: SharedIconProps = {
-			height: 15
-		}
-
-		const { iconMap } = optionsConfig
-
-		return (
-			<span className={classes.icon}>
-				{iconMap ? (
-					<Icon {...commonIconProps} icon={iconMap[iconKey]} />
-				) : (
-					<Icon {...commonIconProps} iconKey={iconKey} />
-				)}
-			</span>
-		)
-	}
-
-	return (
-		<div className={classes.option}>
-			{children && children}
-			{iconKey && renderIcon(iconKey, optionsConfig)}
-			<span className={cn(classes.optionText, 'option-text')}>
-				{text}
-			</span>
-		</div>
-	)
-}
-
-// ----------------------

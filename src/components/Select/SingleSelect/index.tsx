@@ -1,14 +1,18 @@
-import '../assets/styles/antdAnimations.css'
+import 'components/assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import cn from 'classnames'
-import omit from 'lodash/omit'
+import { NoContentFound } from 'components/Select/NoContentFound'
+import { OptionChildren } from 'components/Select/OptionChildren'
+import { SelectProps } from './types'
 import { SelectSkeleton } from './SelectSkeleton'
-import { Tooltip } from 'components'
-import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { NotFoundContent, OptionChildren, useStyles } from './utils'
-import React, { FC, SyntheticEvent, useState } from 'react'
-import { SelectProps, ShowToolTip } from './types'
+import { useStyles } from '../utils'
+import {
+	generatePopupSelector,
+	getDataTestAttributeProp
+} from 'components/utils'
+import React, { FC } from 'react'
+
 const { Option } = AntDSelect
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
@@ -28,8 +32,6 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		showSearch = false,
 		value
 	} = props
-
-	const [showToolTipList, setShowToolTipList] = useState<ShowToolTip>({})
 
 	const componentClasses = useStyles(props)
 
@@ -71,7 +73,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 				defaultValue={defaultValue}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
-				notFoundContent={<NotFoundContent />}
+				notFoundContent={<NoContentFound />}
 				placeholder={placeholder}
 				showSearch={showSearch}
 				{...controlledCmpProps}
@@ -83,47 +85,14 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 						className={componentClasses.option}
 						key={value}
 						label={text}
-						onMouseEnter={(e: SyntheticEvent) => {
-							const el = e.currentTarget.querySelector(
-								'.option-text'
-							)
-							// @ts-ignore
-							if (el.scrollWidth > el.offsetWidth) {
-								setShowToolTipList({
-									...showToolTipList,
-									[value]: true
-								})
-							}
-						}}
-						onMouseLeave={() =>
-							setShowToolTipList({
-								...omit(showToolTipList, value)
-							})
-						}
 						value={value}
 					>
-						{showToolTipList[value] ? (
-							<Tooltip
-								classes={[componentClasses.tooltip]}
-								placement='bottomLeft'
-								popupContainerSelector={popupContainerSelector}
-								title={text}
-							>
-								<OptionChildren
-									iconKey={iconKey}
-									key={value}
-									optionsConfig={optionsConfig}
-									text={text}
-								/>
-							</Tooltip>
-						) : (
-							<OptionChildren
-								iconKey={iconKey}
-								key={value}
-								optionsConfig={optionsConfig}
-								text={text}
-							/>
-						)}
+						<OptionChildren
+							iconKey={iconKey}
+							key={value}
+							optionsConfig={optionsConfig}
+							text={text}
+						/>
 					</Option>
 				))}
 			</AntDSelect>
