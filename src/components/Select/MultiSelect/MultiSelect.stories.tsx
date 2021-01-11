@@ -17,7 +17,7 @@ export default {
 	component: MultiSelect,
 	decorators: [SecondaryBgDecorator],
 	parameters: {
-		// disabled because shallow rendering gives warning, but FormTree only works with shallow render
+		// disabled because shallow rendering gives warning, but MultiSelect only works with shallow render
 		storyshots: { disable: true }
 	},
 	title: 'MultiSelect'

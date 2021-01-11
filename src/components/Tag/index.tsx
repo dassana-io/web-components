@@ -32,31 +32,31 @@ export interface TagProps {
 	 */
 	color?: string
 	/**
-	 * Whether the Tag can be closed or not. A closable Tag is rendered with a clickable 'X' at the end
+	 * Whether the Tag can be deleted or not. A deletable Tag is rendered with a clickable 'X' at the end
 	 * @default true
 	 */
-	closable?: boolean
+	deletable?: boolean
 	/**
-	 * Optional callback that runs when Tag is closed if it is closable
+	 * Optional callback that runs when Tag is closed if it is deletable
 	 */
-	onClose?: Function
+	onDelete?: Function
 }
 
 export const Tag: FC<TagProps> = ({
 	children,
 	classes = [],
-	closable = true,
+	deletable = true,
 	color,
-	onClose
+	onDelete
 }: TagProps) => {
 	useStyles()
 
 	return (
 		<AntDTag
 			className={cn(classes)}
-			closable={closable}
+			closable={deletable}
 			color={color}
-			onClose={onClose}
+			onClose={onDelete}
 		>
 			{children}
 		</AntDTag>

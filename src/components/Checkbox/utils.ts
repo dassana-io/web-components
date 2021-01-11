@@ -70,7 +70,7 @@ export const generateThemedCheckboxStyles = (themeType: ThemeType) => {
 			'& .ant-checkbox-input:focus + .ant-checkbox-inner': {
 				borderColor: focus.borderColor
 			},
-			'& .ant-checkbox:hover .ant-checkbox-inner ': {
+			'& .ant-checkbox:hover .ant-checkbox-inner': {
 				borderColor: checked.background
 			},
 			'&:hover .ant-checkbox-inner': {

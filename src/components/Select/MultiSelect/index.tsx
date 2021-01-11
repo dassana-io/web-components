@@ -164,29 +164,27 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				{...optionalProps}
 				{...popupContainerProps}
 			>
-				{sortedAndFilteredValues.map(({ iconKey, text, value }) => {
-					return (
-						<Option
-							className={componentClasses.option}
+				{sortedAndFilteredValues.map(({ iconKey, text, value }) => (
+					<Option
+						className={componentClasses.option}
+						key={value}
+						label={text}
+						value={value}
+					>
+						<Checkbox
+							checked={localValues.indexOf(value) >= 0}
+							classes={[componentClasses.checkbox]}
+							// eslint-disable-next-line @typescript-eslint/no-empty-function
+							onChange={() => {}}
+						/>
+						<OptionChildren
+							iconKey={iconKey}
 							key={value}
-							label={text}
-							value={value}
-						>
-							<Checkbox
-								checked={localValues.indexOf(value) >= 0}
-								classes={[componentClasses.checkbox]}
-								// eslint-disable-next-line @typescript-eslint/no-empty-function
-								onChange={() => {}}
-							/>
-							<OptionChildren
-								iconKey={iconKey}
-								key={value}
-								optionsConfig={optionsConfig}
-								text={text}
-							/>
-						</Option>
-					)
-				})}
+							optionsConfig={optionsConfig}
+							text={text}
+						/>
+					</Option>
+				))}
 			</AntDSelect>
 		</div>
 	)
