@@ -1,30 +1,23 @@
-import '../assets/styles/antdAnimations.css'
+import 'components/assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import cn from 'classnames'
 import Fuse from 'fuse.js'
 import { MultiSelectProps } from './types'
-import omit from 'lodash/omit'
-import { SelectOption } from 'components/Select'
-import { SelectSkeleton } from 'components/Select/SelectSkeleton'
+import { NoContentFound } from 'components/Select/NoContentFound'
+import { OptionChildren } from 'components/Select/OptionChildren'
+import { SelectOption } from 'components/Select/SingleSelect/types'
+import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
 import { Spin } from 'components/Spin'
-import { Checkbox, Input, Tooltip } from 'components'
-import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
-import { NotFoundContent, OptionChildren } from 'components/Select/utils'
-import React, {
-	ChangeEvent,
-	FC,
-	KeyboardEvent,
-	SyntheticEvent,
-	useState
-} from 'react'
+import { Checkbox, Input } from 'components'
+import {
+	generatePopupSelector,
+	getDataTestAttributeProp
+} from 'components/utils'
+import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 import { sortOptions, useStyles } from './utils'
 
 const { Option } = AntDSelect
-
-interface ShowToolTip {
-	[value: string]: boolean
-}
 
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const {
@@ -49,7 +42,6 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		values
 	} = props
 	const [localValues, setLocalValues] = useState(values || defaultValues)
-	const [showToolTipList, setShowToolTipList] = useState<ShowToolTip>({})
 
 	const [searchTerm, setSearchTerm] = useState('')
 
@@ -156,11 +148,11 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				mode={'multiple'}
 				notFoundContent={
 					pending ? (
-						<NotFoundContent>
+						<NoContentFound>
 							<Spin size={20} />
-						</NotFoundContent>
+						</NoContentFound>
 					) : (
-						<NotFoundContent />
+						<NoContentFound />
 					)
 				}
 				onChange={onChangeAntD}
@@ -178,23 +170,6 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 							className={componentClasses.option}
 							key={value}
 							label={text}
-							onMouseEnter={(e: SyntheticEvent) => {
-								const el = e.currentTarget.querySelector(
-									'.option-text'
-								)
-								// @ts-ignore
-								if (el.scrollWidth > el.offsetWidth) {
-									setShowToolTipList({
-										...showToolTipList,
-										[value]: true
-									})
-								}
-							}}
-							onMouseLeave={() =>
-								setShowToolTipList({
-									...omit(showToolTipList, value)
-								})
-							}
 							value={value}
 						>
 							<Checkbox
@@ -203,33 +178,12 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 								// eslint-disable-next-line @typescript-eslint/no-empty-function
 								onChange={() => {}}
 							/>
-							{showToolTipList[value] ? (
-								<Tooltip
-									classes={[componentClasses.tooltip]}
-									placement='bottomLeft'
-									popupContainerSelector={
-										popupContainerSelector
-									}
-									title={text}
-									tooltipTriggerClasses={[
-										componentClasses.tooltipTriggerClasses
-									]}
-								>
-									<OptionChildren
-										iconKey={iconKey}
-										key={value}
-										optionsConfig={optionsConfig}
-										text={text}
-									/>
-								</Tooltip>
-							) : (
-								<OptionChildren
-									iconKey={iconKey}
-									key={value}
-									optionsConfig={optionsConfig}
-									text={text}
-								/>
-							)}
+							<OptionChildren
+								iconKey={iconKey}
+								key={value}
+								optionsConfig={optionsConfig}
+								text={text}
+							/>
 						</Option>
 					)
 				})}

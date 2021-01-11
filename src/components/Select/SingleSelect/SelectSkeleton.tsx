@@ -1,7 +1,7 @@
-import { BaseFormElementProps } from '../types'
+import { BaseFormElementProps } from 'components/types'
 import { createUseStyles } from 'react-jss'
-import { defaultFieldWidth } from '../assets/styles/styleguide'
-import { Skeleton } from '../Skeleton'
+import { defaultFieldWidth } from '../../assets/styles/styleguide'
+import { Skeleton } from '../../Skeleton'
 import React, { FC } from 'react'
 
 const useStyles = createUseStyles({

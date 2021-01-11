@@ -987,7 +987,7 @@ exports[`Storyshots Select Default 1`] = `
     className="decorator-0-1-32"
   >
     <div
-      className="container-0-1-33 container-d0-0-1-38"
+      className="container-0-1-33 container-d0-0-1-37"
     >
       <div
         className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow"
@@ -1136,10 +1136,11 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-41"
+              className="option-0-1-40"
             >
               <span
-                className="optionText-0-1-42 option-text"
+                className="optionText-0-1-41 option-text"
+                onMouseEnter={[Function]}
               >
                 Lorem
               </span>
@@ -1193,7 +1194,7 @@ exports[`Storyshots Select Icon 1`] = `
     className="decorator-0-1-32"
   >
     <div
-      className="container-0-1-33 container-d1-0-1-39"
+      className="container-0-1-33 container-d1-0-1-38"
     >
       <div
         className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow"
@@ -1243,10 +1244,10 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-41"
+              className="option-0-1-40"
             >
               <span
-                className="icon-0-1-40"
+                className="icon-0-1-39"
               >
                 <svg
                   className=""
@@ -1258,7 +1259,8 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-1-42 option-text"
+                className="optionText-0-1-41 option-text"
+                onMouseEnter={[Function]}
               >
                 AWS
               </span>

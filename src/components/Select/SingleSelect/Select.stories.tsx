@@ -1,18 +1,20 @@
 import { action } from '@storybook/addon-actions'
-import { SbTheme } from '../../../.storybook/preview'
-import { SecondaryBgDecorator } from '../../../.storybook/utils'
+import { SbTheme } from '../../../../.storybook/preview'
+import { SecondaryBgDecorator } from '../../../../.storybook/utils'
+import { useStyles } from '../utils'
 import { useTheme } from 'react-jss'
 import {
 	basicOptions,
 	iconOptions,
 	textOverflowOptions
-} from './fixtures/sample_options'
+} from '../fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import React, { FC } from 'react'
 import { Select, SelectProps } from './index'
 
 export default {
 	argTypes: {
+		useStyles: { defaultValue: useStyles },
 		onChange: { defaultValue: action('onChange') },
 		value: { control: { disable: true } }
 	},
@@ -60,7 +62,7 @@ Search.args = {
 export const SelectedOptionWidth = Template.bind({})
 SelectedOptionWidth.args = {
 	matchSelectedContentWidth: 75,
-	options: basicOptions,
+	options: textOverflowOptions,
 	placeholder: 'Choose a Cloud Provider',
 	showSearch: true
 }
