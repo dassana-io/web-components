@@ -130,12 +130,42 @@ export const useStyles = createUseStyles({
 	}
 })
 
-export const sortOptions = (
-	unsortedOpts: SelectOption[],
+export const groupOptions = (
+	ungroupedOpts: SelectOption[],
 	localValues: string[]
-) =>
-	unsortedOpts.sort(
-		(optionA, optionB) =>
-			localValues.indexOf(optionB.value) -
-			localValues.indexOf(optionA.value)
-	)
+) => {
+	const selected: SelectOption[] = []
+	const unselected: SelectOption[] = []
+
+	for (const opt of ungroupedOpts) {
+		localValues.find(checkedVal => checkedVal === opt.value)
+			? selected.push(opt)
+			: unselected.push(opt)
+	}
+
+	return { selected, unselected }
+}
+
+const sortOptionsAlphabetically = (unsortedOpts: SelectOption[]) =>
+	unsortedOpts.sort((optionA, optionB) => {
+		const nameA = optionA.text.toUpperCase()
+		const nameB = optionB.text.toUpperCase()
+
+		if (nameA < nameB) return -1
+
+		if (nameA > nameB) return 1
+
+		return 0
+	})
+
+export const groupAndSortOptions = (
+	ungroupedOpts: SelectOption[],
+	localValues: string[]
+) => {
+	const { selected, unselected } = groupOptions(ungroupedOpts, localValues)
+
+	return [
+		...sortOptionsAlphabetically(selected),
+		...sortOptionsAlphabetically(unselected)
+	]
+}

@@ -14,8 +14,8 @@ import {
 	generatePopupSelector,
 	getDataTestAttributeProp
 } from 'components/utils'
+import { groupAndSortOptions, useStyles } from './utils'
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
-import { sortOptions, useStyles } from './utils'
 
 const { Option } = AntDSelect
 
@@ -99,7 +99,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		return filteredOptions
 	}
 
-	const sortedValues = sortOptions(options, localValues)
+	const sortedValues = groupAndSortOptions(options, localValues)
 
 	const sortedAndFilteredValues = onSearch
 		? sortedValues
