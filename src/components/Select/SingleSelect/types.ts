@@ -1,4 +1,4 @@
-import { BaseFormElementProps } from 'components/types'
+import { BaseFormElementProps } from '../../types'
 import { IconName } from '../../Icon'
 
 export interface SelectOption {

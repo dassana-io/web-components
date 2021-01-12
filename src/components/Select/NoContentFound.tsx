@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide } from 'components/assets/styles/styleguide'
+import { styleguide } from '../assets/styles/styleguide'
 import React, { FC, ReactNode } from 'react'
 
 const { flexCenter } = styleguide

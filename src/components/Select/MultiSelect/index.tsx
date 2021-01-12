@@ -1,19 +1,17 @@
-import 'components/assets/styles/antdAnimations.css'
+import '../../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
+import { Checkbox } from '../../Checkbox'
 import cn from 'classnames'
 import Fuse from 'fuse.js'
+import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
-import { NoContentFound } from 'components/Select/NoContentFound'
-import { OptionChildren } from 'components/Select/OptionChildren'
-import { SelectOption } from 'components/Select/SingleSelect/types'
-import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
-import { Spin } from 'components/Spin'
-import { Checkbox, Input } from 'components'
-import {
-	generatePopupSelector,
-	getDataTestAttributeProp
-} from 'components/utils'
+import { NoContentFound } from '../NoContentFound'
+import { OptionChildren } from '../OptionChildren'
+import { SelectOption } from '../SingleSelect/types'
+import { SelectSkeleton } from '../SingleSelect/SelectSkeleton'
+import { Spin } from '../../Spin'
+import { generatePopupSelector, getDataTestAttributeProp } from '../../utils'
 import { groupAndSortOptions, useStyles } from './utils'
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 

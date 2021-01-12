@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../../.storybook/utils'
+import { Select } from './index'
+import { SelectProps } from './types'
 import { useStyles } from '../utils'
 import { useTheme } from 'react-jss'
 import {
@@ -10,12 +12,11 @@ import {
 } from '../fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import React, { FC } from 'react'
-import { Select, SelectProps } from './index'
 
 export default {
 	argTypes: {
-		useStyles: { defaultValue: useStyles },
 		onChange: { defaultValue: action('onChange') },
+		useStyles: { defaultValue: useStyles },
 		value: { control: { disable: true } }
 	},
 	component: Select,

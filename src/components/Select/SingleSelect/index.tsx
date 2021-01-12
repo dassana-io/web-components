@@ -1,16 +1,13 @@
-import 'components/assets/styles/antdAnimations.css'
+import '../../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import cn from 'classnames'
-import { NoContentFound } from 'components/Select/NoContentFound'
-import { OptionChildren } from 'components/Select/OptionChildren'
+import { NoContentFound } from '../NoContentFound'
+import { OptionChildren } from '../OptionChildren'
 import { SelectProps } from './types'
 import { SelectSkeleton } from './SelectSkeleton'
 import { useStyles } from '../utils'
-import {
-	generatePopupSelector,
-	getDataTestAttributeProp
-} from 'components/utils'
+import { generatePopupSelector, getDataTestAttributeProp } from '../../utils'
 import React, { FC } from 'react'
 
 const { Option } = AntDSelect
