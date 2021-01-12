@@ -1,4 +1,6 @@
 import { createUseStyles } from 'react-jss'
+import Fuse from 'fuse.js'
+import { MultiSelectProps } from './types'
 import { SelectOption } from '../SingleSelect/types'
 import { tagPalette } from '../../Tag/utils'
 import {
@@ -169,3 +171,44 @@ export const groupAndSortOptions = (
 		...sortOptionsAlphabetically(unselected)
 	]
 }
+
+// ----------------------------------------
+
+interface GetSortedAndFilteredValuesArgs
+	extends Pick<MultiSelectProps, 'onSearch' | 'options'> {
+	fuse: Fuse<SelectOption>
+	localValues: string[]
+	searchTerm: string
+}
+
+export const getSortedAndFilteredValues = ({
+	fuse,
+	onSearch,
+	options,
+	localValues,
+	searchTerm
+}: GetSortedAndFilteredValuesArgs) => {
+	const filterOptions = (options: SelectOption[], value?: string) => {
+		if (!value) {
+			return options
+		}
+
+		const filteredOptions = fuse
+			.search(value)
+			.map(
+				({ item }: Fuse.FuseResult<SelectOption>): SelectOption => item
+			)
+
+		return filteredOptions
+	}
+
+	const sortedValues = groupAndSortOptions(options, localValues)
+
+	const sortedAndFilteredValues = onSearch
+		? sortedValues
+		: filterOptions(sortedValues, searchTerm)
+
+	return sortedAndFilteredValues
+}
+
+// ----------------------------------------

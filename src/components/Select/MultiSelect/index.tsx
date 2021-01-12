@@ -4,16 +4,22 @@ import { Select as AntDSelect } from 'antd'
 import { Checkbox } from '../../Checkbox'
 import cn from 'classnames'
 import Fuse from 'fuse.js'
+import { getDataTestAttributeProp } from '../../utils'
+import { getPopupContainerProps } from '../utils'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
 import { NoContentFound } from '../NoContentFound'
 import { OptionChildren } from '../OptionChildren'
-import { SelectOption } from '../SingleSelect/types'
 import { SelectSkeleton } from '../SingleSelect/SelectSkeleton'
 import { Spin } from '../../Spin'
-import { generatePopupSelector, getDataTestAttributeProp } from '../../utils'
-import { groupAndSortOptions, useStyles } from './utils'
-import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
+import { getSortedAndFilteredValues, useStyles } from './utils'
+import React, {
+	ChangeEvent,
+	FC,
+	KeyboardEvent,
+	ReactNode,
+	useState
+} from 'react'
 
 const { Option } = AntDSelect
 
@@ -52,6 +58,30 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		classes
 	)
 
+	const dropDownRender = (menu: ReactNode) => (
+		<>
+			{showSearch && (
+				<Input
+					classes={[componentClasses.searchBar]}
+					onChange={(e: ChangeEvent<HTMLInputElement>) => {
+						if (onSearch) onSearch(e.target.value)
+						setSearchTerm(e.target.value)
+					}}
+					onKeyDown={(e: KeyboardEvent) => {
+						const keysToNotPropagate: KeyboardEvent['key'][] = [
+							'Enter',
+							'Backspace'
+						]
+						if (keysToNotPropagate.includes(e.key))
+							e.stopPropagation()
+					}}
+					placeholder={searchPlaceholder}
+				/>
+			)}
+			{menu}
+		</>
+	)
+
 	const fuse = new Fuse(options, {
 		isCaseSensitive: false,
 		keys: optionKeysToFilter,
@@ -75,33 +105,13 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		throw new Error('Controlled MultiSelect requires an onChange prop')
 	}
 
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
-	const filterOptions = (options: SelectOption[], value?: string) => {
-		if (!value) {
-			return options
-		}
-
-		const filteredOptions = fuse
-			.search(value)
-			.map(
-				({ item }: Fuse.FuseResult<SelectOption>): SelectOption => item
-			)
-
-		return filteredOptions
-	}
-
-	const sortedValues = groupAndSortOptions(options, localValues)
-
-	const sortedAndFilteredValues = onSearch
-		? sortedValues
-		: filterOptions(sortedValues, searchTerm)
+	const sortedAndFilteredValues = getSortedAndFilteredValues({
+		fuse,
+		localValues,
+		onSearch,
+		options,
+		searchTerm
+	})
 
 	return loading ? (
 		<SelectSkeleton {...props} />
@@ -112,31 +122,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				defaultValue={defaultValues}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
-				dropdownRender={menu => (
-					<>
-						{showSearch && (
-							<Input
-								classes={[componentClasses.searchBar]}
-								onChange={(
-									e: ChangeEvent<HTMLInputElement>
-								) => {
-									if (onSearch) onSearch(e.target.value)
-									setSearchTerm(e.target.value)
-								}}
-								onKeyDown={(e: KeyboardEvent) => {
-									const keysToNotPropagate: KeyboardEvent['key'][] = [
-										'Enter',
-										'Backspace'
-									]
-									if (keysToNotPropagate.includes(e.key))
-										e.stopPropagation()
-								}}
-								placeholder={searchPlaceholder}
-							/>
-						)}
-						{menu}
-					</>
-				)}
+				dropdownRender={dropDownRender}
 				maxTagCount={maxTagCount}
 				maxTagPlaceholder={selectedOpts =>
 					`& ${selectedOpts.length} more`
@@ -159,8 +145,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				showArrow
 				showSearch={false}
 				{...getDataTestAttributeProp('multi-select', dataTag)}
+				{...getPopupContainerProps(popupContainerSelector)}
 				{...optionalProps}
-				{...popupContainerProps}
 			>
 				{sortedAndFilteredValues.map(({ iconKey, text, value }) => (
 					<Option

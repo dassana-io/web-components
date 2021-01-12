@@ -43,7 +43,3 @@ export interface SelectProps extends BaseFormElementProps {
 	 */
 	value?: string
 }
-
-export interface ShowToolTip {
-	[value: string]: boolean
-}

@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { generatePopupSelector } from 'components/utils'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles,
@@ -239,3 +240,14 @@ export const useStyles = createUseStyles({
 		}
 	}
 })
+
+export const getPopupContainerProps = (popupContainerSelector = '') => {
+	let popupContainerProps = {}
+
+	if (popupContainerSelector)
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+
+	return popupContainerProps
+}

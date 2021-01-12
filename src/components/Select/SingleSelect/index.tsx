@@ -2,12 +2,12 @@ import '../../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import cn from 'classnames'
+import { getDataTestAttributeProp } from '../../utils'
 import { NoContentFound } from '../NoContentFound'
 import { OptionChildren } from '../OptionChildren'
 import { SelectProps } from './types'
 import { SelectSkeleton } from './SelectSkeleton'
-import { useStyles } from '../utils'
-import { generatePopupSelector, getDataTestAttributeProp } from '../../utils'
+import { getPopupContainerProps, useStyles } from '../utils'
 import React, { FC } from 'react'
 
 const { Option } = AntDSelect
@@ -53,14 +53,6 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
 
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
 	return loading ? (
 		<SelectSkeleton {...props} />
 	) : (
@@ -75,7 +67,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 				showSearch={showSearch}
 				{...controlledCmpProps}
 				{...getDataTestAttributeProp('select', dataTag)}
-				{...popupContainerProps}
+				{...getPopupContainerProps(popupContainerSelector)}
 			>
 				{options.map(({ iconKey, text, value }) => (
 					<Option
