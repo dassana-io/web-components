@@ -16,44 +16,30 @@ import React, { FC, ReactNode } from 'react'
 
 const { Option } = AntDSelect
 
-type ClassesTypes = Record<
-	| 'error'
-	| 'checkbox'
-	| 'container'
-	| 'dropdown'
-	| 'option'
-	| 'searchBar'
-	| '@global',
-	string
->
-
 interface CommonBaseSelectProps
 	extends Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
-	useStyles(data?: unknown): ClassesTypes
+	useStyles(data?: unknown): Record<string, string>
 }
 
 interface BaseMultiSelectProps
 	extends Pick<
 		MultiSelectProps,
-		'maxTagCount' | 'maxTagTextLength' | 'pending'
+		'onChange' | 'maxTagCount' | 'maxTagTextLength' | 'pending'
 	> {
-	defaultValue: MultiSelectProps['defaultValues']
+	defaultValue?: MultiSelectProps['defaultValues']
 	dropdownRender: (menu: ReactNode) => ReactNode
-	onChange: MultiSelectProps['onChange']
 	localValues: string[]
 	mode: 'multiple'
 	value?: MultiSelectProps['values']
 }
 
-interface BaseSingleSelectProps {
-	defaultValue: SelectProps['defaultValue']
-	onChange?: SelectProps['onChange']
+interface BaseSingleSelectProps
+	extends Pick<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
 	mode: 'single'
-	value?: SelectProps['value']
 }
 
 type BaseSelectProps = CommonBaseSelectProps &
-	(BaseMultiSelectProps | BaseSingleSelectProps)
+	(BaseSingleSelectProps | BaseMultiSelectProps)
 
 export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 	const {
@@ -116,11 +102,12 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 			...getDataTestAttributeProp('multi-select', dataTag)
 		}
 	} else {
-		const { defaultValue, onChange, value } = props
+		const { defaultValue, onChange, showSearch, value } = props
 
 		singleSelectProps = {
 			defaultValue,
 			onChange,
+			showSearch,
 			value,
 			...getDataTestAttributeProp('select', dataTag)
 		}
