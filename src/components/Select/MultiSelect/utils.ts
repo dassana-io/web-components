@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss'
 import Fuse from 'fuse.js'
 import { MultiSelectProps } from './types'
 import { SelectOption } from '../SingleSelect/types'
+import sortBy from 'lodash/sortBy'
 import { tagPalette } from '../../Tag/utils'
 import {
 	defaultFieldWidth,
@@ -22,6 +23,22 @@ import { themedStyles, ThemeType } from '../../assets/styles/themes'
 const { dark, light } = ThemeType
 
 const { borderRadius, flexAlignCenter, fontWeight, spacing } = styleguide
+
+const filterOptions = (
+	fuse: Fuse<SelectOption>,
+	options: SelectOption[],
+	value?: string
+) => {
+	if (!value) {
+		return options
+	}
+
+	const filteredOptions = fuse
+		.search(value)
+		.map(({ item }: Fuse.FuseResult<SelectOption>): SelectOption => item)
+
+	return filteredOptions
+}
 
 const generateThemedTagStyles = (themeType: ThemeType) => {
 	const { background, borderColor, color } = tagPalette[themeType]
@@ -148,27 +165,15 @@ export const groupOptions = (
 	return { selected, unselected }
 }
 
-const sortOptionsAlphabetically = (unsortedOpts: SelectOption[]) =>
-	unsortedOpts.sort((optionA, optionB) => {
-		const nameA = optionA.text.toUpperCase()
-		const nameB = optionB.text.toUpperCase()
-
-		if (nameA < nameB) return -1
-
-		if (nameA > nameB) return 1
-
-		return 0
-	})
-
-export const groupAndSortOptions = (
+const groupAndSortOptions = (
 	ungroupedOpts: SelectOption[],
 	localValues: string[]
 ) => {
 	const { selected, unselected } = groupOptions(ungroupedOpts, localValues)
 
 	return [
-		...sortOptionsAlphabetically(selected),
-		...sortOptionsAlphabetically(unselected)
+		...sortBy(selected, [option => option.text.toUpperCase()]),
+		...sortBy(unselected, [option => option.text.toUpperCase()])
 	]
 }
 
@@ -188,25 +193,11 @@ export const getSortedAndFilteredValues = ({
 	localValues,
 	searchTerm
 }: GetSortedAndFilteredValuesArgs) => {
-	const filterOptions = (options: SelectOption[], value?: string) => {
-		if (!value) {
-			return options
-		}
-
-		const filteredOptions = fuse
-			.search(value)
-			.map(
-				({ item }: Fuse.FuseResult<SelectOption>): SelectOption => item
-			)
-
-		return filteredOptions
-	}
-
 	const sortedValues = groupAndSortOptions(options, localValues)
 
 	const sortedAndFilteredValues = onSearch
 		? sortedValues
-		: filterOptions(sortedValues, searchTerm)
+		: filterOptions(fuse, sortedValues, searchTerm)
 
 	return sortedAndFilteredValues
 }

@@ -31,7 +31,8 @@ const basicOptions: SelectOption[] = [
 	{ text: 'Sit', value: '4' },
 	{ text: 'Amet', value: '5' },
 	{ text: 'Consectetur', value: '6' },
-	{ text: 'Adipiscing elit sed do eiusmod', value: '7' }
+	{ text: 'Adipiscing elit sed do eiusmod', value: '7' },
+	{ text: 'consectetur', value: '8' }
 ]
 
 const ThemedMultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {

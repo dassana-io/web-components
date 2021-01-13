@@ -1008,7 +1008,7 @@ exports[`Storyshots Select Default 1`] = `
       className="container-0-1-33 container-d0-0-1-37"
     >
       <div
-        className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow"
+        className="ant-select ant-select-single ant-select-show-arrow"
         data-test="select"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -1107,7 +1107,7 @@ exports[`Storyshots Select Full Width 1`] = `
       className="container-0-1-33 container-d2-0-1-43"
     >
       <div
-        className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow"
+        className="ant-select ant-select-single ant-select-show-arrow"
         data-test="select"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -1215,7 +1215,7 @@ exports[`Storyshots Select Icon 1`] = `
       className="container-0-1-33 container-d1-0-1-38"
     >
       <div
-        className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow"
+        className="ant-select ant-select-single ant-select-show-arrow"
         data-test="select"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -1335,7 +1335,7 @@ exports[`Storyshots Select Search 1`] = `
       className="container-0-1-33 container-d3-0-1-44"
     >
       <div
-        className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow ant-select-show-search"
+        className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
         data-test="select"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -1434,7 +1434,7 @@ exports[`Storyshots Select Selected Option Width 1`] = `
       className="container-0-1-33 container-d4-0-1-45"
     >
       <div
-        className="ant-select dropdown-0-1-34 ant-select-single ant-select-show-arrow ant-select-show-search"
+        className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
         data-test="select"
         onBlur={[Function]}
         onFocus={[Function]}
