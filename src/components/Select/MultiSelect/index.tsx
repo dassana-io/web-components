@@ -9,6 +9,7 @@ import { getPopupContainerProps } from '../utils'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
 import { NoContentFound } from '../NoContentFound'
+import noop from 'lodash/noop'
 import { OptionChildren } from '../OptionChildren'
 import { SelectSkeleton } from '../SingleSelect/SelectSkeleton'
 import { Spin } from '../../Spin'
@@ -158,8 +159,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 						<Checkbox
 							checked={localValues.indexOf(value) >= 0}
 							classes={[componentClasses.checkbox]}
-							// eslint-disable-next-line @typescript-eslint/no-empty-function
-							onChange={() => {}}
+							onChange={noop}
 						/>
 						<OptionChildren
 							iconKey={iconKey}
