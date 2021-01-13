@@ -34,8 +34,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 
 	const inputClasses: string = cn(
 		{
-			[componentClasses.error]: error,
-			[componentClasses.dropdown]: true
+			[componentClasses.error]: error
 		},
 		classes
 	)

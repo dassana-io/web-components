@@ -1,18 +1,9 @@
 import '../../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
-import { Select as AntDSelect } from 'antd'
-import { Checkbox } from '../../Checkbox'
-import cn from 'classnames'
+import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
-import { getDataTestAttributeProp } from '../../utils'
-import { getPopupContainerProps } from '../utils'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
-import { NoContentFound } from '../NoContentFound'
-import noop from 'lodash/noop'
-import { OptionChildren } from '../OptionChildren'
-import { SelectSkeleton } from '../SingleSelect/SelectSkeleton'
-import { Spin } from '../../Spin'
 import { getSortedAndFilteredValues, useStyles } from './utils'
 import React, {
 	ChangeEvent,
@@ -22,8 +13,6 @@ import React, {
 	useState
 } from 'react'
 
-const { Option } = AntDSelect
-
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const {
 		classes = [],
@@ -31,9 +20,11 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		defaultValues = [],
 		disabled = false,
 		error = false,
+		fullWidth = false,
 		loading = false,
-		maxTagCount = 2,
-		maxTagTextLength = 12,
+		maxTagCount,
+		maxTagTextLength,
+		matchSelectedContentWidth = false,
 		onChange,
 		onSearch,
 		optionKeysToFilter = ['text'],
@@ -52,14 +43,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
 	const componentClasses = useStyles(props)
 
-	const inputClasses: string = cn(
-		{
-			[componentClasses.error]: error
-		},
-		classes
-	)
-
-	const dropDownRender = (menu: ReactNode) => (
+	const dropdownRender = (menu: ReactNode) => (
 		<>
 			{showSearch && (
 				<Input
@@ -114,63 +98,30 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		searchTerm
 	})
 
-	return loading ? (
-		<SelectSkeleton {...props} />
-	) : (
-		<div className={componentClasses.container}>
-			<AntDSelect
-				className={inputClasses}
-				defaultValue={defaultValues}
-				disabled={disabled}
-				dropdownClassName={componentClasses.dropdown}
-				dropdownRender={dropDownRender}
-				maxTagCount={maxTagCount}
-				maxTagPlaceholder={selectedOpts =>
-					`& ${selectedOpts.length} more`
-				}
-				maxTagTextLength={maxTagTextLength}
-				menuItemSelectedIcon={null}
-				mode={'multiple'}
-				notFoundContent={
-					pending ? (
-						<NoContentFound>
-							<Spin size={20} />
-						</NoContentFound>
-					) : (
-						<NoContentFound />
-					)
-				}
-				onChange={onChangeAntD}
-				optionLabelProp='label'
-				placeholder={placeholder}
-				showArrow
-				showSearch={false}
-				{...getDataTestAttributeProp('multi-select', dataTag)}
-				{...getPopupContainerProps(popupContainerSelector)}
-				{...optionalProps}
-			>
-				{sortedAndFilteredValues.map(({ iconKey, text, value }) => (
-					<Option
-						className={componentClasses.option}
-						key={value}
-						label={text}
-						value={value}
-					>
-						<Checkbox
-							checked={localValues.indexOf(value) >= 0}
-							classes={[componentClasses.checkbox]}
-							onChange={noop}
-						/>
-						<OptionChildren
-							iconKey={iconKey}
-							key={value}
-							optionsConfig={optionsConfig}
-							text={text}
-						/>
-					</Option>
-				))}
-			</AntDSelect>
-		</div>
+	return (
+		<BaseSelect
+			classes={classes}
+			dataTag={dataTag}
+			defaultValue={defaultValues}
+			disabled={disabled}
+			dropdownRender={dropdownRender}
+			error={error}
+			fullWidth={fullWidth}
+			loading={loading}
+			localValues={localValues}
+			matchSelectedContentWidth={matchSelectedContentWidth}
+			maxTagCount={maxTagCount}
+			maxTagTextLength={maxTagTextLength}
+			mode='multiple'
+			onChange={onChangeAntD}
+			options={sortedAndFilteredValues}
+			optionsConfig={optionsConfig}
+			pending={pending}
+			placeholder={placeholder}
+			popupContainerSelector={popupContainerSelector}
+			useStyles={useStyles}
+			{...optionalProps}
+		/>
 	)
 }
 
