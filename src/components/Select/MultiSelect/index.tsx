@@ -74,10 +74,12 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		threshold: 0.1
 	})
 
-	const onChangeAntD = (values = []) => {
-		if (onChange) onChange(values)
+	const onChangeAntD = (values?: string[]) => {
+		const vals = values ? values : []
 
-		setLocalValues(values)
+		if (onChange) onChange(vals)
+
+		setLocalValues(vals)
 	}
 
 	let optionalProps = {}
