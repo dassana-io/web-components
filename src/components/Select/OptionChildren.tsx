@@ -68,7 +68,7 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 			{children && children}
 			{iconKey && renderIcon(iconKey, optionsConfig)}
 			<span
-				className={cn(classes.optionText, 'option-text')}
+				className={cn(classes.optionText)}
 				onMouseEnter={(e: SyntheticEvent) => {
 					const el = e.currentTarget as HTMLElement
 

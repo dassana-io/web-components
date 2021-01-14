@@ -1157,7 +1157,7 @@ exports[`Storyshots Select Full Width 1`] = `
               className="option-0-1-40"
             >
               <span
-                className="optionText-0-1-41 option-text"
+                className="optionText-0-1-41"
                 onMouseEnter={[Function]}
               >
                 Lorem
@@ -1277,7 +1277,7 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-1-41 option-text"
+                className="optionText-0-1-41"
                 onMouseEnter={[Function]}
               >
                 AWS
