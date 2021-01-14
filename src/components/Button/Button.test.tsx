@@ -1,6 +1,7 @@
+import { Button as AntDButton } from 'antd'
 import React from 'react'
 import { Skeleton } from '../Skeleton'
-import { Button as AntDButton, Spin } from 'antd'
+import { Spin } from 'components/Spin'
 import { Button, ButtonProps } from '.'
 import { shallow, ShallowWrapper } from 'enzyme'
 

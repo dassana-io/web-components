@@ -1,6 +1,7 @@
 export * from './Avatar'
 export * from './assets/styles'
 export * from './Button'
+export * from './Checkbox'
 export * from './ColoredDot'
 export * from './Form'
 export * from './Input'

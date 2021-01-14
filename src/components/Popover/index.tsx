@@ -38,6 +38,10 @@ export interface PopoverProps extends CommonComponentProps {
 	 */
 	content: PopoverContent
 	/**
+	 * Callback that runs when visibility of popover changes
+	 */
+	onVisibleChange?: (visible: boolean) => void
+	/**
 	 * Selector of HTML element inside which to render the popup
 	 */
 	popupContainerSelector?: string
@@ -49,6 +53,14 @@ export interface PopoverProps extends CommonComponentProps {
 	 * Title of popover
 	 */
 	title?: PopoverContent
+	/**
+	 * Action type that will trigger the popover to open
+	 */
+	trigger?: 'hover' | 'click'
+	/**
+	 * Controlled open/close state of popover
+	 */
+	visible?: boolean
 }
 
 export const Popover: FC<PopoverProps> = ({
@@ -56,9 +68,12 @@ export const Popover: FC<PopoverProps> = ({
 	classes = [],
 	content,
 	dataTag,
+	onVisibleChange,
 	placement = 'bottom',
 	popupContainerSelector,
-	title
+	title,
+	trigger = 'click',
+	visible
 }: PopoverProps) => {
 	useStyles()
 
@@ -70,12 +85,24 @@ export const Popover: FC<PopoverProps> = ({
 		}
 	}
 
+	let controlledCmpProps = {}
+
+	if (onVisibleChange) {
+		controlledCmpProps = { onVisibleChange, visible }
+	}
+
+	if (visible && !onVisibleChange) {
+		throw new Error('Controlled Popover requires an onVisibleChange prop')
+	}
+
 	return (
 		<AntDPopover
 			content={content}
 			overlayClassName={cn(classes)}
 			placement={placement}
 			title={title}
+			trigger={trigger}
+			{...controlledCmpProps}
 			{...popupContainerProps}
 		>
 			<span {...getDataTestAttributeProp('popover-trigger', dataTag)}>

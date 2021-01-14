@@ -7,8 +7,16 @@ html,
 body,
 #root,
 .App {
-	font-family: 'Inter', sans-serif;
 	height: 100%;
+}
+
+@supports (font-variation-settings: normal) {
+	html,
+	body,
+	#root,
+	.App {
+		font-family: 'Inter var', sans-serif;
+	}
 }
 
 /* Storybook styles */

@@ -9,6 +9,4 @@ const [useNotificationContext, NotificationCtxProvider] = createCtx<
 	NotificationContextProps
 >()
 
-const useNotification = (): NotificationContextProps => useNotificationContext()
-
-export { NotificationCtxProvider, useNotification }
+export { NotificationCtxProvider, useNotificationContext as useNotification }
