@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { IconButton, IconSizes } from './index'
 import { mount, ReactWrapper } from 'enzyme'
@@ -8,10 +7,11 @@ let mockOnClick: jest.Mock<void>
 
 beforeEach(() => {
 	mockOnClick = jest.fn()
-	wrapper = mount(<IconButton />)
+	wrapper = mount(<IconButton onClick={mockOnClick} />)
 })
 
 afterEach(() => {
+	jest.clearAllMocks()
 	wrapper.unmount()
 })
 
@@ -22,18 +22,14 @@ describe('IconButton', () => {
 		expect(iconBtn).toHaveLength(1)
 	})
 
-	it('passes onClick props to FontAwesomeIcon if one is provided', () => {
-		wrapper = mount(<IconButton onClick={mockOnClick} />)
-
-		expect(wrapper.find(FontAwesomeIcon).props().onClick).toBeTruthy()
+	it('passes onClick props to FontAwesomeIcon', () => {
+		expect(wrapper.find(IconButton).props().onClick).toBeTruthy()
 	})
 
 	it('runs onClick function when IconButton is clicked', () => {
-		wrapper = mount(<IconButton onClick={mockOnClick} />)
+		const iconBtn = wrapper.find(IconButton)
 
-		const fontAwesomeIcon = wrapper.find(FontAwesomeIcon)
-
-		fontAwesomeIcon.simulate('click')
+		iconBtn.simulate('click')
 		expect(mockOnClick).toHaveBeenCalledTimes(1)
 	})
 
@@ -44,7 +40,9 @@ describe('IconButton', () => {
 	})
 
 	it('renders IconButton with fontSize equal to size if size prop is provided', () => {
-		wrapper = mount(<IconButton size={IconSizes.xs} />)
+		wrapper = mount(
+			<IconButton onClick={mockOnClick} size={IconSizes.xs} />
+		)
 
 		const styles = window.getComputedStyle(wrapper.find('svg').getDOMNode())
 

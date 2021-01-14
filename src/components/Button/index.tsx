@@ -1,20 +1,16 @@
 import 'antd/lib/button/style/index.css'
 import 'antd/lib/spin/style/index.css'
+import { Button as AntDButton } from 'antd'
 import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generateButtonStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
-import { LoadingOutlined } from '@ant-design/icons'
 import { Skeleton } from '../Skeleton'
-import { Button as AntDButton, Spin } from 'antd'
+import { Spin } from 'components/Spin'
+import { ThemeType } from 'components/assets/styles'
 import React, { FC, ReactNode } from 'react'
-import { styleguide, ThemeType } from 'components/assets/styles'
-
-const {
-	colors: { blacks }
-} = styleguide
 
 const { dark, light } = ThemeType
 
@@ -24,6 +20,7 @@ const useStyles = createUseStyles({
 		button: generateButtonStyles(light)
 	}
 })
+
 export interface ButtonProps extends CommonComponentProps {
 	/**
 	 * Required click handler.
@@ -93,17 +90,7 @@ export const Button: FC<ButtonProps> = ({
 		>
 			{pending && (
 				<span style={{ paddingRight: 8 }}>
-					<Spin
-						indicator={
-							<LoadingOutlined
-								spin
-								style={{
-									color: blacks['lighten-50'],
-									fontSize: 16
-								}}
-							/>
-						}
-					/>
+					<Spin />
 				</span>
 			)}
 			{children}
