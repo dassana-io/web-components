@@ -20,14 +20,36 @@ export enum ColumnFormats {
 	toggle = 'toggle'
 }
 
+export enum EditableCellTypes {
+	input = 'input',
+	select = 'select'
+}
 interface PartialColumnType {
 	dataIndex: string
 	title: string
 	sort?: boolean
 }
 
+interface CommonEditableCellConfig {
+	type: EditableCellTypes
+	onSave: (
+		record: Record<string, string>,
+		editedData: Record<string, string>
+	) => Promise<void>
+}
+
+interface EditableInputConfig extends CommonEditableCellConfig {
+	type: EditableCellTypes.input
+}
+interface EditableSelectConfig extends CommonEditableCellConfig {
+	type: EditableCellTypes.select
+}
+
+type EditableCellConfig = EditableInputConfig | EditableSelectConfig
+
 interface StringType extends PartialColumnType {
 	type: ColumnTypes.string
+	editConfig?: EditableCellConfig
 	format?: ColumnFormats.none
 }
 

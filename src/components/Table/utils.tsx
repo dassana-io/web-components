@@ -1,9 +1,9 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
 import { ColoredDot } from 'components/ColoredDot'
+import { EditableCell } from './EditableCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
-import React from 'react'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -14,6 +14,7 @@ import {
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
+import React, { Key } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
@@ -33,10 +34,16 @@ export const mapData = <TableData extends DataId>(data: TableData[]) => {
 	return mappedData
 }
 
+export interface TableMethods<T> {
+	deleteRow: (rowId: Key) => void
+	updateRowData: (rowId: Key, updatedData: T) => void
+}
+
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
 export function processColumns<TableData extends DataId>(
-	columns: ColumnType[]
+	columns: ColumnType[],
+	tableMethods: TableMethods<TableData>
 ) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
@@ -46,7 +53,7 @@ export function processColumns<TableData extends DataId>(
 			title
 		}
 
-		applyRender<TableData>(column, antDColumn)
+		applyRender<TableData>(column, antDColumn, tableMethods)
 
 		if (sort) {
 			applySort<TableData>(column, antDColumn)
@@ -212,12 +219,32 @@ can be a string or React Element).
 */
 function applyRender<TableData extends DataId>(
 	column: ColumnType,
-	antDColumn: AntDColumnType<TableData>
+	antDColumn: AntDColumnType<TableData>,
+	tableMethods: TableMethods<TableData>
 ) {
-	const { component, number } = ColumnTypes
+	const { component, number, string } = ColumnTypes
 	const { byte, date, icon, coloredDot, link, tag, toggle } = ColumnFormats
 
 	switch (column.type) {
+		case string: {
+			if (column.editConfig) {
+				const { updateRowData } = tableMethods
+				const { onSave, type } = column.editConfig
+
+				antDColumn.render = (record: string, rowData: TableData) => (
+					<EditableCell<TableData>
+						dataIndex={column.dataIndex}
+						onSave={onSave}
+						rowData={rowData}
+						type={type}
+						updateRowData={updateRowData}
+					>
+						{record}
+					</EditableCell>
+				)
+			}
+			break
+		}
 		case component:
 			switch (column.format) {
 				case icon: {

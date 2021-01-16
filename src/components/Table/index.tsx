@@ -1,6 +1,7 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
+import cloneDeep from 'lodash/cloneDeep'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
 import debounce from 'lodash/debounce'
@@ -10,7 +11,13 @@ import { Input } from '../Input'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
 import { ColumnType, TableData } from './types'
-import { mapData, mapFilterKeys, processColumns, processData } from './utils'
+import {
+	mapData,
+	mapFilterKeys,
+	processColumns,
+	processData,
+	TableMethods
+} from './utils'
 import React, {
 	ChangeEvent,
 	Key,
@@ -99,11 +106,46 @@ export const Table = <Data,>({
 	})
 
 	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
-	const [processedColumns, setProcessedColumns] = useState(
-		processColumns<TableData<Data>>(columns)
-	)
 	const [processedData, setProcessedData] = useState(
 		processData<TableData<Data>>(data, columns)
+	)
+
+	const deleteRow = useCallback(
+		(rowId: Key) => {
+			const updatedData = cloneDeep(processedData).filter(
+				row => row.id === rowId
+			)
+
+			setProcessedData(updatedData)
+		},
+		[processedData]
+	)
+
+	const updateRowData = useCallback(
+		(rowId: Key, updatedData: TableData<Data>) => {
+			const clonedData = cloneDeep(processedData)
+
+			const editedEntryIndex = clonedData.findIndex(
+				row => row.id === rowId
+			)
+
+			const currentData = clonedData[editedEntryIndex]
+
+			clonedData[editedEntryIndex] = {
+				...currentData,
+				...updatedData
+			}
+
+			setProcessedData(processedData)
+		},
+		[processedData]
+	)
+
+	const [processedColumns, setProcessedColumns] = useState(
+		processColumns<TableData<Data>>(columns, {
+			deleteRow,
+			updateRowData
+		})
 	)
 
 	useEffect(() => {
@@ -114,8 +156,13 @@ export const Table = <Data,>({
 	}, [data])
 
 	useEffect(() => {
-		setProcessedColumns(processColumns<TableData<Data>>(columns))
-	}, [columns])
+		setProcessedColumns(
+			processColumns<TableData<Data>>(columns, {
+				deleteRow,
+				updateRowData
+			})
+		)
+	}, [columns, deleteRow, updateRowData])
 
 	useEffect(() => {
 		setProcessedData(processData<TableData<Data>>(data, columns))
