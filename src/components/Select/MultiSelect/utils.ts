@@ -102,6 +102,11 @@ export const useStyles = createUseStyles({
 				...generateThemedSelectStyles(light),
 				...generateThemedTagStyles(light),
 				'& .ant-select-selector': {
+					'& .ant-select-selection-overflow': {
+						display: 'flex',
+						flexWrap: matchSelectedContentWidth ? 'nowrap' : 'wrap'
+					},
+					'&:after': { display: 'none' },
 					...generateThemedInputStyles(light),
 					borderRadius
 				},
