@@ -1,10 +1,12 @@
-import '../../assets/styles/antdAnimations.css'
-import 'antd/lib/select/style/index.css'
 import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
-import { getSortedAndFilteredValues, useStyles } from './utils'
+import {
+	getSortedAndFilteredValues,
+	useDropdownStyles,
+	useStyles
+} from './utils'
 import React, {
 	ChangeEvent,
 	FC,
@@ -41,15 +43,16 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
 	const [searchTerm, setSearchTerm] = useState('')
 
-	const componentClasses = useStyles(props)
+	const dropdownClasses = useDropdownStyles(props)
 
 	const dropdownRender = (menu: ReactNode) => (
 		<>
 			{showSearch && (
 				<Input
-					classes={[componentClasses.searchBar]}
+					classes={[dropdownClasses.searchBar]}
 					onChange={(e: ChangeEvent<HTMLInputElement>) => {
 						if (onSearch) onSearch(e.target.value)
+
 						setSearchTerm(e.target.value)
 					}}
 					onKeyDown={(e: KeyboardEvent) => {

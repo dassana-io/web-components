@@ -15,8 +15,7 @@ import {
 	generateThemedFocusedStyles,
 	generateThemedInputStyles,
 	generateThemedOptionStyles,
-	generateThemedSelectStyles,
-	tooltipStyles
+	generateThemedSelectStyles
 } from '../utils'
 import { themedStyles, ThemeType } from '../../assets/styles/themes'
 
@@ -84,6 +83,13 @@ export const generateThemedMSOptionStyles = (themeType: ThemeType) => {
 const focusedClasses =
 	'&.ant-select-focused.ant-select-multiple:not(.ant-select-disabled) .ant-select-selector'
 
+export const useDropdownStyles = createUseStyles({
+	searchBar: {
+		margin: 3 * spacing.xs,
+		width: `calc(100% - ${6 * spacing.xs}px)`
+	}
+})
+
 export const useStyles = createUseStyles({
 	checkbox: { marginRight: spacing.s },
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
@@ -112,15 +118,6 @@ export const useStyles = createUseStyles({
 	dropdown: generateThemedDropdownStyles(light),
 	error: { ...fieldErrorStyles.error },
 	option: generateThemedMSOptionStyles(light),
-	searchBar: {
-		margin: 3 * spacing.xs,
-		width: `calc(100% - ${6 * spacing.xs}px)`
-	},
-	tag: {
-		marginRight: spacing.xs
-	},
-	tooltip: tooltipStyles,
-	tooltipTriggerClasses: { minWidth: 0 },
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],

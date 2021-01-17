@@ -1,8 +1,6 @@
-import '../../assets/styles/antdAnimations.css'
-import 'antd/lib/select/style/index.css'
 import { BaseSelect } from '../BaseSelect'
 import { SelectProps } from './types'
-import { useStyles } from '../utils'
+import { useStyles } from './utils'
 import React, { FC } from 'react'
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {

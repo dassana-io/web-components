@@ -18,7 +18,7 @@ const { Option } = AntDSelect
 
 interface CommonBaseSelectProps
 	extends Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
-	useStyles(data?: unknown): Record<string, string>
+	useStyles: (data?: unknown) => Record<string, string>
 }
 
 interface BaseMultiSelectProps
