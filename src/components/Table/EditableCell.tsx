@@ -81,9 +81,9 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 	const editDivId = `editField-${rowData.id}`
 
 	const startEdit = (e: MouseEvent) => {
-		e.stopPropagation()
+		e.stopPropagation() // Prevents table row click from activating
 
-		setInputWidth(divRef.current!.clientWidth + 70)
+		setInputWidth(divRef.current!.clientWidth + 70) // Set input width to width of cell content
 		setIsEditing(true)
 	}
 
@@ -105,6 +105,7 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 			name: dataIndex,
 			required: true
 		}
+
 		switch (type) {
 			case EditableCellTypes.input:
 				return (
@@ -145,6 +146,7 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 				if (target) {
 					const withinBoundaries = e.composedPath().includes(target)
 
+					// Stop edit if user clicks outside of cell
 					if (!withinBoundaries) stopEdit()
 				}
 			}
@@ -161,9 +163,7 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 				className={classes.inputContainer}
 				id={editDivId}
 				onClick={(e: MouseEvent) => e.stopPropagation()} // Prevents table row click from activating
-				style={{
-					width: inputWidth
-				}}
+				style={{ width: inputWidth }}
 			>
 				{renderFormElement()}
 			</div>
