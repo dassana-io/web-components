@@ -11,13 +11,7 @@ import { Input } from '../Input'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
 import { ColumnType, TableData } from './types'
-import {
-	mapData,
-	mapFilterKeys,
-	processColumns,
-	processData,
-	TableMethods
-} from './utils'
+import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, {
 	ChangeEvent,
 	Key,
@@ -113,7 +107,7 @@ export const Table = <Data,>({
 	const deleteRow = useCallback(
 		(rowId: Key) => {
 			const updatedData = cloneDeep(processedData).filter(
-				row => row.id === rowId
+				row => row.id !== rowId
 			)
 
 			setProcessedData(updatedData)
@@ -136,7 +130,7 @@ export const Table = <Data,>({
 				...updatedData
 			}
 
-			setProcessedData(processedData)
+			setProcessedData(clonedData)
 		},
 		[processedData]
 	)
@@ -247,3 +241,4 @@ export const Table = <Data,>({
 }
 
 export * from './types'
+export { PARTIAL_ACTION_COLUMN } from './utils'

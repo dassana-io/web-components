@@ -71,6 +71,10 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'toggle',
 		format: toggle,
+		renderProps: {
+			onSave: async () =>
+				await new Promise(resolve => setTimeout(resolve, 1000))
+		},
 		title: 'Component - Toggle',
 		type: component
 	},

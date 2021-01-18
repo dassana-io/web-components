@@ -48,6 +48,10 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'admin_access',
 		format: toggle,
+		renderProps: {
+			onSave: async () =>
+				await new Promise(resolve => setTimeout(resolve, 1000))
+		},
 		title: 'Has Admin Access',
 		type: component
 	},

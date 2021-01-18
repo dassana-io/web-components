@@ -1,7 +1,8 @@
 import { ColoredDotProps } from 'components/ColoredDot'
-import { Key } from 'react'
 import { SharedIconProps } from '../Icon'
 import { SharedLinkProps } from '../Link'
+import { TableMethods } from './utils'
+import { Key, ReactNode } from 'react'
 
 export enum ColumnTypes {
 	string = 'string',
@@ -10,6 +11,7 @@ export enum ColumnTypes {
 }
 
 export enum ColumnFormats {
+	action = 'action',
 	none = 'none',
 	date = 'date',
 	byte = 'byte',
@@ -31,17 +33,16 @@ interface PartialColumnType {
 }
 
 interface CommonEditableCellConfig {
-	type: EditableCellTypes
-	onSave: (
-		record: Record<string, string>,
-		editedData: Record<string, string>
-	) => Promise<void>
+	onSave: <T>(record: T, editedData: T) => Promise<void>
 }
 
 interface EditableInputConfig extends CommonEditableCellConfig {
+	options?: never
 	type: EditableCellTypes.input
 }
+
 interface EditableSelectConfig extends CommonEditableCellConfig {
+	options: string[]
 	type: EditableCellTypes.select
 }
 
@@ -88,6 +89,18 @@ interface RenderPropsIconKey extends SharedIconProps {
 	type: 'iconKey'
 }
 
+export interface ComponentActionType extends PartialComponentType {
+	dataIndex: ''
+	format: ColumnFormats.action
+	renderProps: {
+		getCmp: <T>(
+			rowData: T,
+			tableMethods: TableMethods<TableData<T>>
+		) => ReactNode
+	}
+	title: ''
+}
+
 interface ComponentIconType extends PartialComponentType {
 	format: ColumnFormats.icon
 	renderProps: RenderPropsIcon | RenderPropsIconKey
@@ -113,11 +126,17 @@ interface ComponentTagType extends PartialComponentType {
 	format: ColumnFormats.tag
 }
 
+interface RenderPropsToggle {
+	onSave: (checked: boolean) => Promise<void>
+}
+
 interface ComponentToggleType extends PartialComponentType {
 	format: ColumnFormats.toggle
+	renderProps: RenderPropsToggle
 }
 
 type ComponentType =
+	| ComponentActionType
 	| ComponentIconType
 	| ComponentColoredDotType
 	| ComponentLinkType

@@ -48,6 +48,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		disabled = false,
 		error = false,
 		loading = false,
+		onBlur,
 		options,
 		optionsConfig = {},
 		placeholder = '',
@@ -106,6 +107,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 
 		singleSelectProps = {
 			defaultValue,
+			onBlur,
 			onChange,
 			showSearch,
 			value,

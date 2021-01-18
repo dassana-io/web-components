@@ -1,9 +1,17 @@
 import { createUseStyles } from 'react-jss'
-import { DataId, EditableCellTypes } from './types'
 import { Form } from '../Form'
+import { SelectOption } from 'components/Select'
 import { styleguide } from '../assets/styles'
 import { useShortcut } from '@dassana-io/web-utils'
-import React, { FC, Key, ReactNode, useRef, useState } from 'react'
+import { DataId, EditableCellTypes } from './types'
+import React, {
+	Key,
+	MouseEvent,
+	ReactNode,
+	useEffect,
+	useRef,
+	useState
+} from 'react'
 
 const { spacing } = styleguide
 
@@ -13,6 +21,7 @@ const useStyles = createUseStyles({
 			border: '1px solid lightgrey'
 		},
 		border: '1px solid transparent',
+		display: value => (value ? 'block' : 'none'),
 		padding: `${spacing.xs}px ${spacing.s}px`
 	},
 	formInput: {
@@ -29,35 +38,51 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface EditableCellProps<T> {
-	/**
-	 * Tag children to render including tag text.
-	 */
+const formatSelectOptions = (options: string[]) =>
+	options.map(option => ({ text: option, value: option } as SelectOption))
+
+interface CommonEditableCellProps<T> {
 	children: ReactNode
 	dataIndex: string
 	onSave: (record: T, editedData: T) => Promise<void>
-	/**
-	 * Color of tag - either a preset (`red`, `blue`, `green` etc.), a hex color code(eg. `#ffffff`) or a rgb color value(eg. `rgb(255, 0, 0)`).
-	 */
 	rowData: T
 	type: EditableCellTypes
 	updateRowData: (rowId: Key, data: T) => void
 }
 
-export const EditableCell = <T extends DataId>({
-	dataIndex,
-	children,
-	onSave,
-	rowData,
-	type,
-	updateRowData
-}: EditableCellProps<T>) => {
+interface EditableInputCellProps<T> extends CommonEditableCellProps<T> {
+	options?: never
+	type: EditableCellTypes.input
+}
+interface EditableSelectCellProps<T> extends CommonEditableCellProps<T> {
+	options: string[]
+	type: EditableCellTypes.select
+}
+
+export type EditableCellProps<T> =
+	| EditableInputCellProps<T>
+	| EditableSelectCellProps<T>
+
+export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
+	const {
+		dataIndex,
+		children,
+		onSave,
+		options,
+		rowData,
+		type,
+		updateRowData
+	} = props
+
 	const divRef = useRef<HTMLDivElement>(null)
 	const [isEditing, setIsEditing] = useState(false)
 	const [inputWidth, setInputWidth] = useState(0)
-	const classes = useStyles(divRef)
+	const classes = useStyles(children)
+	const editDivId = `editField-${rowData.id}`
 
-	const startEdit = () => {
+	const startEdit = (e: MouseEvent) => {
+		e.stopPropagation()
+
 		setInputWidth(divRef.current!.clientWidth + 70)
 		setIsEditing(true)
 	}
@@ -65,18 +90,46 @@ export const EditableCell = <T extends DataId>({
 	const stopEdit = () => setIsEditing(false)
 
 	const handleOnSubmit = async (data: T) => {
-		try {
-			await onSave(rowData, data)
+		await onSave(rowData, data)
 
-			updateRowData(rowData.id, data)
-			stopEdit()
-		} catch (error) {
-			console.log(error)
-		}
+		updateRowData(rowData.id, data)
+		stopEdit()
 	}
 
 	const onSubmit = (editedValues: Record<string, any>) =>
 		handleOnSubmit((editedValues as unknown) as T)
+
+	const renderFormElement = () => {
+		const commonProps = {
+			fullWidth: true,
+			name: dataIndex,
+			required: true
+		}
+		switch (type) {
+			case EditableCellTypes.input:
+				return (
+					<>
+						<Form.Input
+							{...commonProps}
+							containerClasses={[classes.formInput]}
+							fieldErrorClasses={[classes.inputErrorClasses]}
+						/>
+						<Form.SubmitButton classes={[classes.submitButton]}>
+							⏎
+						</Form.SubmitButton>
+					</>
+				)
+			case EditableCellTypes.select:
+				return (
+					<Form.Select
+						{...commonProps}
+						onBlur={stopEdit}
+						options={formatSelectOptions(options!)}
+						triggerSubmit
+					/>
+				)
+		}
+	}
 
 	useShortcut({
 		callback: stopEdit,
@@ -84,24 +137,35 @@ export const EditableCell = <T extends DataId>({
 		keyEvent: 'keydown'
 	})
 
+	useEffect(() => {
+		const clickListener = (e: Event) => {
+			if (isEditing) {
+				const target = document.querySelector(`#${editDivId}`)
+
+				if (target) {
+					const withinBoundaries = e.composedPath().includes(target)
+
+					if (!withinBoundaries) stopEdit()
+				}
+			}
+		}
+
+		document.addEventListener('click', clickListener)
+
+		return () => document.removeEventListener('click', clickListener)
+	}, [editDivId, isEditing, rowData.id])
+
 	return isEditing ? (
 		<Form initialValues={{ [dataIndex]: children }} onSubmit={onSubmit}>
 			<div
 				className={classes.inputContainer}
+				id={editDivId}
+				onClick={(e: MouseEvent) => e.stopPropagation()} // Prevents table row click from activating
 				style={{
 					width: inputWidth
 				}}
 			>
-				<Form.Input
-					containerClasses={[classes.formInput]}
-					fieldErrorClasses={[classes.inputErrorClasses]}
-					fullWidth
-					name={dataIndex}
-					required
-				/>
-				<Form.SubmitButton classes={[classes.submitButton]}>
-					⏎
-				</Form.SubmitButton>
+				{renderFormElement()}
 			</div>
 		</Form>
 	) : (

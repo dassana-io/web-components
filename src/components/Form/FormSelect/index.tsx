@@ -3,25 +3,38 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
+import React, { ChangeEvent, FC, useContext } from 'react'
 import { Select, SelectProps } from 'components/Select/SingleSelect'
 
 export interface FormSelectProps
 	extends BaseFieldProps,
-		Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {}
+		Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
+	triggerSubmit?: boolean
+}
 
 const FormSelect: FC<FormSelectProps> = ({
 	label,
 	labelSkeletonWidth,
 	name,
+	onBlur,
 	required,
 	rules = {},
+	triggerSubmit = false,
 	...rest
 }: FormSelectProps) => {
-	const { control } = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { control, handleSubmit } = useFormContext()
+	const { loading, onSubmit } = useContext<FieldContextProps>(FieldContext)
 
 	rules.required = true
+
+	const triggerOnSubmit = (value: ChangeEvent) =>
+		handleSubmit(onSubmit)(value)
+
+	const additionalSelectProps: Partial<SelectProps> = {}
+
+	if (triggerSubmit) {
+		additionalSelectProps.onBlur = onBlur
+	}
 
 	return (
 		<div>
@@ -40,8 +53,12 @@ const FormSelect: FC<FormSelectProps> = ({
 					<Select
 						dataTag={getFormFieldDataTag(name)}
 						loading={loading}
-						onChange={onChange}
+						onChange={value => {
+							onChange(value)
+							triggerSubmit && triggerOnSubmit(value)
+						}}
 						value={value}
+						{...additionalSelectProps}
 						{...rest}
 					/>
 				)}

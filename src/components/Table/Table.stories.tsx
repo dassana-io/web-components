@@ -10,6 +10,7 @@ import tableData1, { File } from './fixtures/1_sample_data'
 import tableData2, { Client } from './fixtures/2_sample_data'
 import tableData3, { Client1 } from './fixtures/3_sample_data'
 import tableData5, { Dot } from './fixtures/5_sample_data'
+import tableData6, { Client2 } from './fixtures/6_sample_data'
 
 const { spacing } = styleguide
 
@@ -273,3 +274,10 @@ const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
 export const ColoredDot = ColoredDotTemplate.bind({})
 ColoredDot.args = tableData5
 ColoredDot.argTypes = commonArgTypes
+
+const EditableCellsTemplate: Story<TableProps<Client2>> = args => (
+	<DecoratedTableStory<Client2> {...args} />
+)
+export const EditableCells = EditableCellsTemplate.bind({})
+EditableCells.args = tableData6
+EditableCells.argTypes = commonArgTypes
