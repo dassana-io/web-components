@@ -16,7 +16,6 @@ const FormSelect: FC<FormSelectProps> = ({
 	label,
 	labelSkeletonWidth,
 	name,
-	onBlur,
 	required,
 	rules = {},
 	triggerSubmit = false,
@@ -29,12 +28,6 @@ const FormSelect: FC<FormSelectProps> = ({
 
 	const triggerOnSubmit = (value: ChangeEvent) =>
 		handleSubmit(onSubmit)(value)
-
-	const additionalSelectProps: Partial<SelectProps> = {}
-
-	if (triggerSubmit) {
-		additionalSelectProps.onBlur = onBlur
-	}
 
 	return (
 		<div>
@@ -58,7 +51,6 @@ const FormSelect: FC<FormSelectProps> = ({
 							triggerSubmit && triggerOnSubmit(value)
 						}}
 						value={value}
-						{...additionalSelectProps}
 						{...rest}
 					/>
 				)}
