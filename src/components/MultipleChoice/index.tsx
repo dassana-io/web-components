@@ -1,12 +1,14 @@
-import { getSelectedKeysArr } from './utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import { MultipleChoiceProps } from './types'
+import { getSelectedKeysArr, useStyles } from './utils'
 import React, { FC, Key, useState } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	items,
 	onChange
 }: MultipleChoiceProps) => {
+	const componentClasses = useStyles()
+
 	const [selectedKeys, setSelectedKeys] = useState<Record<string, boolean>>(
 		{}
 	)
@@ -23,10 +25,11 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	}
 
 	return (
-		<div>
+		<div className={componentClasses.container}>
 			{items.map(({ key, label }, index) => (
 				<MultipleChoiceItem
 					index={index}
+					isSelected={!!selectedKeys[key]}
 					itemKey={key}
 					key={key}
 					label={label}

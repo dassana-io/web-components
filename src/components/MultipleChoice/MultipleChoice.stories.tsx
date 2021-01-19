@@ -17,8 +17,14 @@ const Template: Story<MultipleChoiceProps> = args => (
 export const Default = Template.bind({})
 Default.args = {
 	items: [
-		{ key: 0, label: 'Lorem' },
-		{ key: 1, label: 'Ipsum' },
-		{ key: 3, label: 'Dolor' }
+		{ key: 0, label: 'CISCO' },
+		{ key: 1, label: 'Sr Leadership' },
+		{ key: 3, label: 'SecOps' },
+		{ key: 4, label: 'Cloud Architect' },
+		{ key: 5, label: 'DevOps' },
+		{ key: 6, label: 'NetSec' },
+		{ key: 7, label: 'AppDev' },
+		{ key: 8, label: 'Compliance' },
+		{ key: 9, label: 'Other' }
 	]
 }
