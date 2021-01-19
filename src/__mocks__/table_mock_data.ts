@@ -73,7 +73,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'toggle',
 		format: toggle,
 		renderProps: {
-			onSave: fakeApiCallSuccess
+			onSave: () => fakeApiCallSuccess()
 		},
 		title: 'Component - Toggle',
 		type: component

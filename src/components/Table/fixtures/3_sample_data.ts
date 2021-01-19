@@ -49,7 +49,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'admin_access',
 		format: toggle,
 		renderProps: {
-			onSave: fakeApiCallSuccess
+			onSave: () => fakeApiCallSuccess()
 		},
 		title: 'Has Admin Access',
 		type: component

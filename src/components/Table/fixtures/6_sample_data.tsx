@@ -1,7 +1,6 @@
 import { Button } from '../../Button'
 import { fakeApiCallSuccess } from 'components/utils'
 import { PARTIAL_ACTION_COLUMN } from '../utils'
-import React from 'react'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -9,10 +8,39 @@ import {
 	EditableCellTypes,
 	TableProps
 } from '..'
+import React, { FC, useState } from 'react'
 
 const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
 
+interface AsyncDeleteButtonProps {
+	onDeleteSuccess: () => void
+}
+
+const AsyncDeleteButton: FC<AsyncDeleteButtonProps> = ({
+	onDeleteSuccess
+}: AsyncDeleteButtonProps) => {
+	const [pending, setPending] = useState(false)
+
+	const onClick = async () => {
+		setPending(true)
+
+		try {
+			await fakeApiCallSuccess()
+
+			onDeleteSuccess()
+			setPending(false)
+		} catch (error) {
+			setPending(false)
+		}
+	}
+
+	return (
+		<Button onClick={onClick} pending={pending}>
+			Delete
+		</Button>
+	)
+}
 export interface Client2 {
 	admin_access?: boolean
 	company?: string
@@ -28,7 +56,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
 		editConfig: {
-			onSave: fakeApiCallSuccess,
+			onSave: () => fakeApiCallSuccess(),
 			type: EditableCellTypes.input
 		},
 		title: 'Name',
@@ -37,7 +65,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'team',
 		editConfig: {
-			onSave: fakeApiCallSuccess,
+			onSave: () => fakeApiCallSuccess(),
 			options: ['Scranton', 'Utica', 'Buffalo'],
 			type: EditableCellTypes.select
 		},
@@ -73,7 +101,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'admin_access',
 		format: toggle,
 		renderProps: {
-			onSave: fakeApiCallSuccess
+			onSave: () => fakeApiCallSuccess()
 		},
 		title: 'Has Admin Access',
 		type: component
@@ -96,9 +124,9 @@ const columns: ColumnType[] = [
 		...PARTIAL_ACTION_COLUMN,
 		renderProps: {
 			getCmp: (row: Record<string, any>, tableMethods) => (
-				<Button onClick={() => tableMethods.deleteRow(row.id)}>
-					Delete
-				</Button>
+				<AsyncDeleteButton
+					onDeleteSuccess={() => tableMethods.deleteRow(row.id)}
+				/>
 			)
 		}
 	}
