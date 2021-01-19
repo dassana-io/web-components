@@ -14,6 +14,7 @@ export const CollapseIndicator: FC<CollapseIndicatorProps> = ({
 		animate={{
 			rotate: isCollapsed ? 0 : 180
 		}}
+		transition={{ duration: 0.5 }}
 		whileHover={{ scale: 1.1 }}
 	>
 		<FontAwesomeIcon icon={faChevronDown} />

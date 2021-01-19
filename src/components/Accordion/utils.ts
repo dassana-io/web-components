@@ -1,6 +1,4 @@
-import { styleguide, themedStyles, ThemeType } from '../assets/styles'
-
-const { spacing } = styleguide
+import { themedStyles, ThemeType } from '../assets/styles'
 
 export const generateAccordionPanelStyles = (themeType: ThemeType) => {
 	const { base } = themedStyles[themeType]
@@ -12,7 +10,6 @@ export const generateAccordionPanelStyles = (themeType: ThemeType) => {
 			borderTop: borderStyles
 		},
 		borderBottom: borderStyles,
-		color: base.color,
-		padding: spacing.m
+		color: base.color
 	}
 }

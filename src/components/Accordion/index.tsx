@@ -5,14 +5,15 @@ import { PanelContent } from './PanelContent'
 import React, { FC, Key, ReactNode, useState } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
-const { flexSpaceBetween, font } = styleguide
+const { flexSpaceBetween, font, spacing } = styleguide
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	header: {
 		...font.bodyLarge,
 		...flexSpaceBetween,
-		cursor: 'pointer'
+		cursor: 'pointer',
+		padding: spacing.m
 	},
 	panel: generateAccordionPanelStyles(light),
 	title: {

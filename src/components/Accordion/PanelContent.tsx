@@ -7,7 +7,8 @@ const { spacing } = styleguide
 
 const useStyles = createUseStyles({
 	content: {
-		paddingTop: spacing.s
+		padding: spacing.m,
+		paddingTop: 0
 	}
 })
 
