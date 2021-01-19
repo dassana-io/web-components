@@ -733,6 +733,7 @@ exports[`Storyshots Popover Default 1`] = `
     }
   >
     <span
+      className=""
       data-test="popover-trigger"
       onClick={[Function]}
       onMouseDown={[Function]}
@@ -763,6 +764,7 @@ exports[`Storyshots Popover Title 1`] = `
     }
   >
     <span
+      className=""
       data-test="popover-trigger"
       onClick={[Function]}
       onMouseDown={[Function]}

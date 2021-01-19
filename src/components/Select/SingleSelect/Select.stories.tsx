@@ -3,7 +3,6 @@ import { SbTheme } from '../../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../../.storybook/utils'
 import { Select } from './index'
 import { SelectProps } from './types'
-import { useStyles } from '../utils'
 import { useTheme } from 'react-jss'
 import {
 	basicOptions,
@@ -16,7 +15,7 @@ import React, { FC } from 'react'
 export default {
 	argTypes: {
 		onChange: { defaultValue: action('onChange') },
-		useStyles: { defaultValue: useStyles },
+		popupContainerSelector: { control: { disable: true } },
 		value: { control: { disable: true } }
 	},
 	component: Select,
