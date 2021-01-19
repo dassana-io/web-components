@@ -122,3 +122,5 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		/>
 	)
 }
+
+export * from './TimeInput'

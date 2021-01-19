@@ -21,6 +21,7 @@ export default {
 interface UserModel {
 	firstName: string
 	lastName?: string
+	timeInput?: number
 }
 
 const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
@@ -57,6 +58,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			name='severity'
 			options={basicOptions}
 		/>
+		<Form.TimeInput label='Time' name='timeInput' />
 		<Form.Toggle
 			defaultChecked
 			label='Production Environment'

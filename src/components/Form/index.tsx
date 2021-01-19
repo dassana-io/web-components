@@ -5,6 +5,7 @@ import FormInput from './FormInput'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
+import FormTimeInput from './FormTimeInput'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { FieldValues, UseFormMethods } from 'react-hook-form/dist/types/form'
@@ -72,6 +73,7 @@ Form.ChipInput = FormChipInput
 Form.Input = FormInput
 Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
+Form.TimeInput = FormTimeInput
 Form.Toggle = FormToggle
 Form.Tree = FormTree
 
