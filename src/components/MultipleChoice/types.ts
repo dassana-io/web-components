@@ -1,3 +1,4 @@
+import { BaseFormElementProps } from 'components/types'
 import { Key } from 'react'
 
 export interface MultipleChoiceItemConfig {
@@ -5,7 +6,12 @@ export interface MultipleChoiceItemConfig {
 	label: string
 }
 
-export interface MultipleChoiceProps {
+export interface MultipleChoiceProps
+	extends Pick<BaseFormElementProps, 'classes'> {
 	items: MultipleChoiceItemConfig[]
 	onChange: (selectedKeys: Key[]) => void
+	/**
+	 * Selector of HTML element inside which to render the popup/dropdown
+	 */
+	popupContainerSelector?: string
 }

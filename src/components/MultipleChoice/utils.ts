@@ -49,7 +49,8 @@ const multipleChoiceItemPalette = {
 			background: blacks['darken-20'],
 			border: blacks['lighten-10'],
 			text: blacks['lighten-80']
-		}
+		},
+		hover: { background: blacks.base }
 	},
 	[light]: {
 		active: {
@@ -59,7 +60,8 @@ const multipleChoiceItemPalette = {
 			background: whites.base,
 			border: blacks['lighten-80'],
 			text: blacks['lighten-30']
-		}
+		},
+		hover: { background: grays['lighten-40'] }
 	}
 }
 
@@ -105,7 +107,8 @@ const generateThemedKeyStyles = (themeType: ThemeType) => {
 const generateThemedMCItemStyles = (themeType: ThemeType) => {
 	const {
 		active,
-		base: { background, border, text }
+		base: { background, border, text },
+		hover
 	} = multipleChoiceItemPalette[themeType]
 
 	return {
@@ -116,6 +119,9 @@ const generateThemedMCItemStyles = (themeType: ThemeType) => {
 				color: keyPalette[themeType].active.text
 			},
 			borderColor: active.border
+		},
+		'&:hover': {
+			background: hover.background
 		},
 		background,
 		borderColor: border,
@@ -152,8 +158,10 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		borderRadius,
 		cursor: 'pointer',
 		fontWeight: fontWeight.light,
+		height: '100%',
 		position: 'relative'
 	},
+	tooltipTrigger: { height: '100%' },
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {

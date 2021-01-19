@@ -1,11 +1,14 @@
+import cn from 'classnames'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import { MultipleChoiceProps } from './types'
 import { getSelectedKeysArr, useStyles } from './utils'
 import React, { FC, Key, useState } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
+	classes = [],
 	items,
-	onChange
+	onChange,
+	popupContainerSelector
 }: MultipleChoiceProps) => {
 	const componentClasses = useStyles()
 
@@ -25,7 +28,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	}
 
 	return (
-		<div className={componentClasses.container}>
+		<div className={cn(componentClasses.container, classes)}>
 			{items.map(({ key, label }, index) => (
 				<MultipleChoiceItem
 					index={index}
@@ -34,6 +37,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 					key={key}
 					label={label}
 					onSelectedKeyChange={onSelectedKeyChange}
+					popupContainerSelector={popupContainerSelector}
 				/>
 			))}
 		</div>
