@@ -7,6 +7,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
 		classes = [],
 		dataTag,
+		defaultOpen = false,
 		// defaulting defaultValue to empty string doesn't render a placeholder if a placeholder is provided
 		defaultValue,
 		disabled = false,
@@ -40,6 +41,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		<BaseSelect
 			classes={classes}
 			dataTag={dataTag}
+			defaultOpen={defaultOpen}
 			defaultValue={defaultValue}
 			disabled={disabled}
 			error={error}

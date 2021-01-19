@@ -1,10 +1,47 @@
+import { Button } from '../../Button'
 import { fakeApiCallSuccess } from 'components/utils'
-import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+import { PARTIAL_ACTION_COLUMN } from '../utils'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	EditableCellTypes,
+	TableProps
+} from '..'
+import React, { FC, useState } from 'react'
 
 const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
 
-export interface Client1 {
+interface AsyncDeleteButtonProps {
+	onDeleteSuccess: () => void
+}
+
+const AsyncDeleteButton: FC<AsyncDeleteButtonProps> = ({
+	onDeleteSuccess
+}: AsyncDeleteButtonProps) => {
+	const [pending, setPending] = useState(false)
+
+	const onClick = async () => {
+		setPending(true)
+
+		try {
+			await fakeApiCallSuccess()
+
+			onDeleteSuccess()
+			setPending(false)
+		} catch (error) {
+			setPending(false)
+		}
+	}
+
+	return (
+		<Button onClick={onClick} pending={pending}>
+			Delete
+		</Button>
+	)
+}
+export interface Client2 {
 	admin_access?: boolean
 	company?: string
 	id: number
@@ -12,12 +49,27 @@ export interface Client1 {
 	name?: string
 	role?: { name: string; color: string }
 	start_date?: number
+	team?: string
 }
 
 const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
+		editConfig: {
+			onSave: () => fakeApiCallSuccess(),
+			type: EditableCellTypes.input
+		},
 		title: 'Name',
+		type: string
+	},
+	{
+		dataIndex: 'team',
+		editConfig: {
+			onSave: () => fakeApiCallSuccess(),
+			options: ['Scranton', 'Utica', 'Buffalo'],
+			type: EditableCellTypes.select
+		},
+		title: 'Team',
 		type: string
 	},
 	{
@@ -67,10 +119,20 @@ const columns: ColumnType[] = [
 		},
 		title: 'Company',
 		type: component
+	},
+	{
+		...PARTIAL_ACTION_COLUMN,
+		renderProps: {
+			getCmp: (row: Record<string, any>, tableMethods) => (
+				<AsyncDeleteButton
+					onDeleteSuccess={() => tableMethods.deleteRow(row.id)}
+				/>
+			)
+		}
 	}
 ]
 
-const data: Client1[] = [
+const data: Client2[] = [
 	{
 		admin_access: false,
 		company: 'dassana',
@@ -78,7 +140,8 @@ const data: Client1[] = [
 		linked_in: 'lorem-i',
 		name: 'Lorem Ipsum',
 		role: { color: 'blue', name: 'CEO' },
-		start_date: 1519782342212
+		start_date: 1519782342212,
+		team: 'Scranton'
 	},
 	{
 		id: 1,
@@ -98,11 +161,12 @@ const data: Client1[] = [
 		linked_in: 'duis-irure',
 		name: 'Duis Irure',
 		role: { color: 'purple', name: 'Business Development' },
-		start_date: 1531932342212
+		start_date: 1531932342212,
+		team: 'Buffalo'
 	}
 ]
 
-const tableData2: TableProps<Client1> = {
+const tableData6: TableProps<Client2> = {
 	columns,
 	data,
 	searchProps: {
@@ -111,4 +175,4 @@ const tableData2: TableProps<Client1> = {
 	}
 }
 
-export default tableData2
+export default tableData6

@@ -27,6 +27,11 @@ export interface BaseFormElementProps extends CommonComponentProps {
 	 */
 	loading?: boolean
 	/**
+	 * Callback that runs when element loses focus
+	 * @default () => {}
+	 */
+	onBlur?: ChangeEventHandler
+	/**
 	 * Callback that runs when element is updated
 	 * @default () => {}
 	 */
