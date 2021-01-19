@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from 'framer-motion'
 import React, { FC } from 'react'
 
-interface CollapseButtonProps {
+interface CollapseIndicatorProps {
 	isCollapsed: boolean
 }
 
-export const CollapseButton: FC<CollapseButtonProps> = ({
+export const CollapseIndicator: FC<CollapseIndicatorProps> = ({
 	isCollapsed
-}: CollapseButtonProps) => (
+}: CollapseIndicatorProps) => (
 	<motion.div
 		animate={{
 			rotate: isCollapsed ? 0 : 180

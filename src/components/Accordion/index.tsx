@@ -1,4 +1,4 @@
-import { CollapseButton } from './CollapseButton'
+import { CollapseIndicator } from './CollapseIndicator'
 import { createUseStyles } from 'react-jss'
 import { generateAccordionPanelStyles } from './utils'
 import { PanelContent } from './PanelContent'
@@ -94,7 +94,7 @@ export const Accordion: FC<AccordionProps> = ({
 							onClick={() => togglePanel(key)}
 						>
 							<div className={classes.title}>{title}</div>
-							<CollapseButton isCollapsed={!isActivePanel} />
+							<CollapseIndicator isCollapsed={!isActivePanel} />
 						</div>
 						<PanelContent isActive={isActivePanel}>
 							{content}
