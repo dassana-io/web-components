@@ -63,6 +63,8 @@ export type EditableCellProps<T> =
 	| EditableInputCellProps<T>
 	| EditableSelectCellProps<T>
 
+const EDIT_FIELD_TYPES_WITH_BUTTON = [EditableCellTypes.input]
+
 export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 	const {
 		dataIndex,
@@ -78,26 +80,42 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [inputWidth, setInputWidth] = useState(0)
 	const classes = useStyles(children)
-	const editDivId = `editField-${rowData.id}`
+	const editDivId = `editField-${dataIndex}-${rowData.id}`
 
 	const startEdit = (e: MouseEvent) => {
 		e.stopPropagation() // Prevents table row click from activating
 
-		setInputWidth(divRef.current!.clientWidth + 70) // Set input width to width of cell content
+		// eslint-disable-next-line quotes
+		const existingEditField = document.querySelector(
+			`[id^='editField-${dataIndex}']`
+		)
+
+		// Column width is decided by the width of the cell with the most content, so once it is
+		// set, we can just reuse it as the edit field width
+		if (existingEditField) {
+			setInputWidth(existingEditField.clientWidth)
+		} else {
+			let inputWidth = divRef.current!.clientWidth
+
+			if (EDIT_FIELD_TYPES_WITH_BUTTON.includes(type))
+				inputWidth = inputWidth + 70 // 70 accounts for submit button width
+
+			setInputWidth(inputWidth)
+		}
+
 		setIsEditing(true)
 	}
 
 	const stopEdit = () => setIsEditing(false)
 
-	const handleOnSubmit = async (data: T) => {
+	const handleOnSubmit = async (editedValues: Record<string, any>) => {
+		const data = (editedValues as unknown) as T
+
 		await onSave(rowData, data)
 
 		updateRowData(rowData.id, data)
 		stopEdit()
 	}
-
-	const onSubmit = (editedValues: Record<string, any>) =>
-		handleOnSubmit((editedValues as unknown) as T)
 
 	const renderFormElement = () => {
 		const commonProps = {
@@ -114,6 +132,7 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 							{...commonProps}
 							containerClasses={[classes.formInput]}
 							fieldErrorClasses={[classes.inputErrorClasses]}
+							focused
 						/>
 						<Form.SubmitButton classes={[classes.submitButton]}>
 							⏎
@@ -124,6 +143,7 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 				return (
 					<Form.Select
 						{...commonProps}
+						defaultOpen
 						onBlur={stopEdit}
 						options={formatSelectOptions(options!)}
 						triggerSubmit
@@ -158,7 +178,10 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 	}, [editDivId, isEditing, rowData.id])
 
 	return isEditing ? (
-		<Form initialValues={{ [dataIndex]: children }} onSubmit={onSubmit}>
+		<Form
+			initialValues={{ [dataIndex]: children }}
+			onSubmit={handleOnSubmit}
+		>
 			<div
 				className={classes.inputContainer}
 				id={editDivId}

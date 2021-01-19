@@ -1,4 +1,5 @@
 import { Button } from '../../Button'
+import { fakeApiCallSuccess } from 'components/utils'
 import { PARTIAL_ACTION_COLUMN } from '../utils'
 import React from 'react'
 import {
@@ -23,15 +24,11 @@ export interface Client2 {
 	team?: string
 }
 
-const fakeApiCall = async () => {
-	await new Promise(resolve => setTimeout(resolve, 1000))
-}
-
 const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
 		editConfig: {
-			onSave: fakeApiCall,
+			onSave: fakeApiCallSuccess,
 			type: EditableCellTypes.input
 		},
 		title: 'Name',
@@ -40,7 +37,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'team',
 		editConfig: {
-			onSave: fakeApiCall,
+			onSave: fakeApiCallSuccess,
 			options: ['Scranton', 'Utica', 'Buffalo'],
 			type: EditableCellTypes.select
 		},
@@ -76,7 +73,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'admin_access',
 		format: toggle,
 		renderProps: {
-			onSave: fakeApiCall
+			onSave: fakeApiCallSuccess
 		},
 		title: 'Has Admin Access',
 		type: component

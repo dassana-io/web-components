@@ -45,6 +45,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 	const {
 		classes = [],
 		dataTag,
+		defaultOpen = false,
 		disabled = false,
 		error = false,
 		loading = false,
@@ -121,6 +122,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		<div className={componentClasses.container}>
 			<AntDSelect
 				className={inputClasses}
+				defaultOpen={defaultOpen}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
 				notFoundContent={<NoContentFound />}
