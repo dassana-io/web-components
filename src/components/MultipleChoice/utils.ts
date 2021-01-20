@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { Key } from 'react'
 import { MultipleChoiceItemConfig } from './types'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -13,6 +14,18 @@ const {
 	spacing,
 	fontWeight
 } = styleguide
+
+export const getInitialSelectedKeys = (defaultSelected?: Key[]) => {
+	if (!defaultSelected) return {}
+
+	const selectedKeysObj: Record<string, boolean> = {}
+
+	defaultSelected.forEach(key => {
+		selectedKeysObj[key] = true
+	})
+
+	return selectedKeysObj
+}
 
 export const getSelectedKeysArr = (
 	items: MultipleChoiceItemConfig[],

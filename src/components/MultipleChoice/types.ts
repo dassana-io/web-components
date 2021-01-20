@@ -8,6 +8,7 @@ export interface MultipleChoiceItemConfig {
 
 export interface MultipleChoiceProps
 	extends Pick<BaseFormElementProps, 'classes'> {
+	defaultSelected?: Key[]
 	items: MultipleChoiceItemConfig[]
 	onChange: (selectedKeys: Key[]) => void
 	/**

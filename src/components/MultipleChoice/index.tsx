@@ -1,10 +1,11 @@
 import cn from 'classnames'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import { MultipleChoiceProps } from './types'
-import { getSelectedKeysArr, useStyles } from './utils'
+import { getInitialSelectedKeys, getSelectedKeysArr, useStyles } from './utils'
 import React, { FC, Key, useState } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
+	defaultSelected,
 	classes = [],
 	items,
 	onChange,
@@ -13,7 +14,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	const componentClasses = useStyles()
 
 	const [selectedKeys, setSelectedKeys] = useState<Record<string, boolean>>(
-		{}
+		getInitialSelectedKeys(defaultSelected)
 	)
 
 	const onSelectedKeyChange = (key: Key) => {

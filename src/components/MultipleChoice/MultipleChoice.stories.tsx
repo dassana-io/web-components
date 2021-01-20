@@ -41,6 +41,7 @@ const Template: Story<MultipleChoiceProps> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
+	defaultSelected: [4, 5],
 	items: [
 		{ key: 0, label: 'CISCO' },
 		{ key: 1, label: 'Sr Leadership' },
