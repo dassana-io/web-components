@@ -1,6 +1,5 @@
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import omit from 'lodash/omit'
-import { styleguide } from 'components/assets/styles'
 import { v4 as uuidV4 } from 'uuid'
 import {
 	faCheckCircle,
@@ -8,7 +7,7 @@ import {
 	faExclamationTriangle,
 	faTimesCircle
 } from '@fortawesome/free-solid-svg-icons'
-import { themedStyles, themes, ThemeType } from '../assets/styles/themes'
+import { styleguide, themedStyles, themes, ThemeType } from '../assets/styles'
 import { useCallback, useState } from 'react'
 
 const { borderRadius, flexSpaceBetween, spacing } = styleguide

@@ -1,19 +1,22 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
 import { ColoredDot } from 'components/ColoredDot'
+import { EditableCell } from './EditableCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
-import React from 'react'
 import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
+	ComponentActionType,
 	DataId,
 	DateDisplayFormat,
+	EditableCellTypes,
 	NumberDateType
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
+import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
@@ -33,10 +36,16 @@ export const mapData = <TableData extends DataId>(data: TableData[]) => {
 	return mappedData
 }
 
+export interface TableMethods<T> {
+	deleteRow: (rowId: Key) => void
+	updateRowData: (rowId: Key, updatedData: T) => void
+}
+
 /* Takes columns prop passed to Table and returns columns
 formatted to satisfy antD requirements. */
 export function processColumns<TableData extends DataId>(
-	columns: ColumnType[]
+	columns: ColumnType[],
+	tableMethods: TableMethods<TableData>
 ) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
@@ -46,7 +55,7 @@ export function processColumns<TableData extends DataId>(
 			title
 		}
 
-		applyRender<TableData>(column, antDColumn)
+		applyRender<TableData>(column, antDColumn, tableMethods)
 
 		if (sort) {
 			applySort<TableData>(column, antDColumn)
@@ -212,14 +221,88 @@ can be a string or React Element).
 */
 function applyRender<TableData extends DataId>(
 	column: ColumnType,
-	antDColumn: AntDColumnType<TableData>
+	antDColumn: AntDColumnType<TableData>,
+	tableMethods: TableMethods<TableData>
 ) {
-	const { component, number } = ColumnTypes
-	const { byte, date, icon, coloredDot, link, tag, toggle } = ColumnFormats
+	const { component, number, string } = ColumnTypes
+	const {
+		action,
+		byte,
+		date,
+		icon,
+		coloredDot,
+		link,
+		tag,
+		toggle
+	} = ColumnFormats
+	const { updateRowData } = tableMethods
 
 	switch (column.type) {
+		case string: {
+			if (column.editConfig) {
+				const { input, select } = EditableCellTypes
+				const { onSave, type } = column.editConfig
+
+				const commonProps = {
+					dataIndex: column.dataIndex,
+					onSave,
+					updateRowData
+				}
+
+				switch (type) {
+					case input:
+						antDColumn.render = (
+							record: string,
+							rowData: TableData
+						) => (
+							<EditableCell<TableData>
+								{...commonProps}
+								rowData={rowData}
+								type={input}
+							>
+								{record}
+							</EditableCell>
+						)
+						break
+
+					case select: {
+						const { options = [] } = column.editConfig
+
+						antDColumn.render = (
+							record: string,
+							rowData: TableData
+						) => (
+							<EditableCell<TableData>
+								{...commonProps}
+								options={options}
+								rowData={rowData}
+								type={select}
+							>
+								{record}
+							</EditableCell>
+						)
+						break
+					}
+				}
+			}
+			break
+		}
 		case component:
 			switch (column.format) {
+				case action: {
+					antDColumn.render = (_, rowData: TableData) => {
+						const { getCmp } = column.renderProps
+
+						return (
+							<div
+								onClick={(e: MouseEvent) => e.stopPropagation()}
+							>
+								{getCmp<TableData>(rowData, tableMethods)}
+							</div>
+						)
+					}
+					break
+				}
 				case icon: {
 					antDColumn.render = (record: IconName | string) => {
 						if (record === undefined) return ''
@@ -299,14 +382,21 @@ function applyRender<TableData extends DataId>(
 				}
 
 				case toggle: {
-					antDColumn.render = (record: boolean) => {
+					antDColumn.render = (
+						record: boolean,
+						rowData: TableData
+					) => {
 						if (record === undefined) return ''
+						const { onSave } = column.renderProps
 
 						const toggleProps: ToggleProps = {
 							checked: record,
-							// TODO: Extract out onChange to be passed in data
-							onChange: checked => {
-								console.log(`switch to ${checked}`)
+							onChange: async (checked: boolean) => {
+								await onSave(checked)
+
+								updateRowData(rowData.id, {
+									[column.dataIndex]: checked
+								} as TableData)
 							},
 							size: 'small'
 						}
@@ -407,3 +497,10 @@ export function createByteFormatter(): NumFormatterFunction {
 type NumFormatterFunction = (num?: number) => string | null
 
 /* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x */
+
+export const PARTIAL_ACTION_COLUMN: Omit<ComponentActionType, 'renderProps'> = {
+	dataIndex: '',
+	format: ColumnFormats.action,
+	title: '',
+	type: ColumnTypes.component
+}

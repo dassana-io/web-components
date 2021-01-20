@@ -45,6 +45,7 @@ export interface PopoverProps extends CommonComponentProps {
 	 * Selector of HTML element inside which to render the popup
 	 */
 	popupContainerSelector?: string
+	popupTriggerClasses?: string[]
 	/**
 	 * Position of popover relative to the target
 	 */
@@ -71,6 +72,7 @@ export const Popover: FC<PopoverProps> = ({
 	onVisibleChange,
 	placement = 'bottom',
 	popupContainerSelector,
+	popupTriggerClasses = [],
 	title,
 	trigger = 'click',
 	visible
@@ -105,7 +107,10 @@ export const Popover: FC<PopoverProps> = ({
 			{...controlledCmpProps}
 			{...popupContainerProps}
 		>
-			<span {...getDataTestAttributeProp('popover-trigger', dataTag)}>
+			<span
+				className={cn(popupTriggerClasses)}
+				{...getDataTestAttributeProp('popover-trigger', dataTag)}
+			>
 				{children}
 			</span>
 		</AntDPopover>

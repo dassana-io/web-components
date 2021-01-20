@@ -1,5 +1,6 @@
 import { Input as AntDInput } from 'antd'
 import { BaseFieldProps } from '../types'
+import cn from 'classnames'
 import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
@@ -15,6 +16,8 @@ export interface FormInputProps
 }
 
 const FormInput: FC<FormInputProps> = ({
+	containerClasses = [],
+	fieldErrorClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -50,7 +53,7 @@ const FormInput: FC<FormInputProps> = ({
 	}
 
 	return (
-		<div>
+		<div className={cn(containerClasses)}>
 			{label && (
 				<FieldLabel
 					fullWidth={fullWidth}
@@ -79,7 +82,11 @@ const FormInput: FC<FormInputProps> = ({
 				)}
 				rules={rules}
 			/>
-			<FieldError error={errorMsg} fullWidth={fullWidth} />
+			<FieldError
+				classes={fieldErrorClasses}
+				error={errorMsg}
+				fullWidth={fullWidth}
+			/>
 		</div>
 	)
 }

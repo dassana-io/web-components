@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react'
 
 export const TAG = 'data-test'
 
+export const fakeApiCallSuccess: () => Promise<void> = async (
+	timeoutDuration = 1000
+) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
+
 export const getDataTestAttributeProp = (
 	cmpName: string,
 	dataTag?: string
