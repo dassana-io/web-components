@@ -15,4 +15,6 @@ export default {
 const Template: Story<ChipInputProps> = args => <ChipInput {...args} />
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+	placeholder: '@yourdomain.com'
+}

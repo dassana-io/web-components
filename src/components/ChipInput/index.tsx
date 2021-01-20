@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { Input } from 'components/Input'
 import { Tag } from 'components/Tag'
 import { useShortcut } from '@dassana-io/web-utils'
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
 export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
@@ -15,14 +15,17 @@ export interface ChipInputProps
 export const ChipInput: FC<ChipInputProps> = ({
 	onChange,
 	classes = [],
+	error,
 	disabled = false,
 	loading = false,
+	placeholder,
 	values
 }: ChipInputProps) => {
 	const [addedValues, setAddedValues] = useState<string[]>(
 		values ? values : []
 	)
 	const [currInputValue, setCurrInputValue] = useState('')
+	const [isInvalidValue, setIsInvalidValue] = useState(false)
 
 	const onDelete = (value: string) => {
 		const newValues = addedValues.filter(addedValue => addedValue !== value)
@@ -33,20 +36,24 @@ export const ChipInput: FC<ChipInputProps> = ({
 	}
 
 	const onEnterBtnClick = () => {
-		if (currInputValue && !addedValues.includes(currInputValue)) {
-			const newValues = [...addedValues, currInputValue]
+		const newValues = [...addedValues, currInputValue]
 
-			setAddedValues(newValues)
+		setAddedValues(newValues)
 
-			if (onChange) onChange(newValues)
-		}
+		if (onChange) onChange(newValues)
 	}
 
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>) =>
 		setCurrInputValue(event.target.value.toLowerCase())
 
+	useEffect(() => {
+		!currInputValue || addedValues.includes(currInputValue) || error
+			? setIsInvalidValue(true)
+			: setIsInvalidValue(false)
+	}, [addedValues, currInputValue, error])
+
 	useShortcut({
-		additionalConditionalFn: () => !disabled,
+		additionalConditionalFn: () => !disabled || !isInvalidValue,
 		callback: onEnterBtnClick,
 		key: 'Enter',
 		keyEvent: 'keydown'
@@ -60,11 +67,13 @@ export const ChipInput: FC<ChipInputProps> = ({
 			<div>
 				<Input
 					disabled={disabled}
+					error={error}
 					loading={loading}
 					onChange={onInputChange}
+					placeholder={placeholder}
 				/>
 				<Button
-					disabled={disabled}
+					disabled={disabled || isInvalidValue}
 					loading={loading}
 					onClick={onEnterBtnClick}
 				>
