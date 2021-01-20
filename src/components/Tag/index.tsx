@@ -37,7 +37,7 @@ export interface TagProps {
 	 */
 	deletable?: boolean
 	/**
-	 * Optional callback that runs when Tag is closed if it is deletable
+	 * Optional callback that runs when Tag is deleted if it is deletable
 	 */
 	onDelete?: Function
 }
