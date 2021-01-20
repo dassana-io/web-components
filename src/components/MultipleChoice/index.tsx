@@ -1,20 +1,23 @@
 import cn from 'classnames'
+import { getDataTestAttributeProp } from 'components/utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import { MultipleChoiceProps } from './types'
 import { getInitialSelectedKeys, getSelectedKeysArr, useStyles } from './utils'
 import React, { FC, Key, useState } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
-	defaultSelected,
 	classes = [],
+	dataTag,
+	defaultSelectedKeys,
 	items,
 	onChange,
-	popupContainerSelector
+	popupContainerSelector,
+	keys
 }: MultipleChoiceProps) => {
 	const componentClasses = useStyles()
 
 	const [selectedKeys, setSelectedKeys] = useState<Record<string, boolean>>(
-		getInitialSelectedKeys(defaultSelected)
+		getInitialSelectedKeys(keys ? keys : defaultSelectedKeys)
 	)
 
 	const onSelectedKeyChange = (key: Key) => {
@@ -28,6 +31,10 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		onChange(getSelectedKeysArr(items, newSelectedKeys))
 	}
 
+	if (keys && !onChange) {
+		throw new Error('Controlled components require an onChange prop')
+	}
+
 	return (
 		<div className={cn(componentClasses.container, classes)}>
 			{items.map(({ key, label }, index) => (
@@ -39,6 +46,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 					label={label}
 					onSelectedKeyChange={onSelectedKeyChange}
 					popupContainerSelector={popupContainerSelector}
+					{...getDataTestAttributeProp('multiple-choice', dataTag)}
 				/>
 			))}
 		</div>
