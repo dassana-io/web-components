@@ -3,8 +3,14 @@ import { Button } from 'components/Button'
 import cn from 'classnames'
 import { Input } from 'components/Input'
 import { Tag } from 'components/Tag'
-import { useShortcut } from '@dassana-io/web-utils'
-import React, { ChangeEvent, FC, useEffect, useState } from 'react'
+import { useStyles } from './utils'
+import React, {
+	ChangeEvent,
+	FC,
+	KeyboardEvent,
+	useEffect,
+	useState
+} from 'react'
 
 export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
@@ -17,6 +23,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	classes = [],
 	error,
 	disabled = false,
+	fullWidth,
 	loading = false,
 	placeholder,
 	values
@@ -26,6 +33,8 @@ export const ChipInput: FC<ChipInputProps> = ({
 	)
 	const [currInputValue, setCurrInputValue] = useState('')
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
+
+	const componentClasses = useStyles({ fullWidth })
 
 	const onDelete = (value: string) => {
 		const newValues = addedValues.filter(addedValue => addedValue !== value)
@@ -46,33 +55,37 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>) =>
 		setCurrInputValue(event.target.value.toLowerCase())
 
+	const onKeyDown = (e: KeyboardEvent<Element>) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+
+			if (!isInvalidValue && !disabled) onEnterBtnClick()
+		}
+	}
+
 	useEffect(() => {
 		!currInputValue || addedValues.includes(currInputValue) || error
 			? setIsInvalidValue(true)
 			: setIsInvalidValue(false)
 	}, [addedValues, currInputValue, error])
 
-	useShortcut({
-		additionalConditionalFn: () => !disabled || !isInvalidValue,
-		callback: onEnterBtnClick,
-		key: 'Enter',
-		keyEvent: 'keydown'
-	})
-
 	if (values && !onChange)
 		throw new Error('Controlled chip inputs require an onChange prop')
 
 	return (
 		<div className={cn(classes)}>
-			<div>
+			<div className={componentClasses.inputAndButtonWrapper}>
 				<Input
 					disabled={disabled}
 					error={error}
+					fullWidth={fullWidth}
 					loading={loading}
 					onChange={onInputChange}
+					onKeyDown={onKeyDown}
 					placeholder={placeholder}
 				/>
 				<Button
+					classes={[componentClasses.enterButton]}
 					disabled={disabled || isInvalidValue}
 					loading={loading}
 					onClick={onEnterBtnClick}
@@ -80,10 +93,11 @@ export const ChipInput: FC<ChipInputProps> = ({
 					⏎
 				</Button>
 			</div>
-			<div>
+			<div className={componentClasses.tagsWrapper}>
 				{!loading &&
 					addedValues.map((value, i) => (
 						<Tag
+							classes={[componentClasses.tag]}
 							key={`${value}-${i}`}
 							onDelete={() => onDelete(value)}
 						>

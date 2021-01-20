@@ -12,9 +12,18 @@ export default {
 	title: 'ChipInput'
 } as Meta
 
-const Template: Story<ChipInputProps> = args => <ChipInput {...args} />
+let key = 0
+
+const Template: Story<ChipInputProps> = args => (
+	<ChipInput {...args} key={key++} />
+)
 
 export const Default = Template.bind({})
 Default.args = {
 	placeholder: '@yourdomain.com'
+}
+
+export const FullWidth = Template.bind({})
+FullWidth.args = {
+	fullWidth: true
 }
