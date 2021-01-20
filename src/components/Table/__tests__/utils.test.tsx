@@ -12,6 +12,11 @@ import {
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData1, { dateFormat0, dateFormat1 } from '../fixtures/1_sample_data'
 
+const mockTableMethods = {
+	deleteRow: jest.fn,
+	updateRowData: jest.fn
+}
+
 describe('mapData', () => {
 	it('returns a hash of data items with the item id mapped to the item', () => {
 		const mockMappedData = {
@@ -62,9 +67,9 @@ describe('processColumns', () => {
 			}
 		]
 
-		expect(processColumns(mockData0.columns)).toMatchObject(
-			mockProcessedCols
-		)
+		expect(
+			processColumns(mockData0.columns, mockTableMethods)
+		).toMatchObject(mockProcessedCols)
 	})
 })
 

@@ -17,6 +17,11 @@ export interface SelectProps extends BaseFormElementProps {
 	 */
 	defaultValue?: string
 	/**
+	 * Whether or not to menu is open by default
+	 * @default false
+	 */
+	defaultOpen?: boolean
+	/**
 	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
 	 */
 	matchSelectedContentWidth?: false | number

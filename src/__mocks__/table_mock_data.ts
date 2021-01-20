@@ -1,3 +1,4 @@
+import { fakeApiCallSuccess } from 'components/utils'
 import { ThemeType } from 'components'
 import {
 	ColumnFormats,
@@ -71,6 +72,9 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'toggle',
 		format: toggle,
+		renderProps: {
+			onSave: () => fakeApiCallSuccess()
+		},
 		title: 'Component - Toggle',
 		type: component
 	},

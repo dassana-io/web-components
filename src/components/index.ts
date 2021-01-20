@@ -1,3 +1,4 @@
+export * from './Accordion'
 export * from './Avatar'
 export * from './assets/styles'
 export * from './Button'
