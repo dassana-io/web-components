@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { getDataTestAttributeProp } from 'components/utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import { MultipleChoiceProps } from './types'
+import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
 import { getInitialSelectedKeys, getSelectedKeysArr, useStyles } from './utils'
 import React, { FC, Key, useState } from 'react'
 
@@ -10,9 +11,11 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	dataTag,
 	defaultSelectedKeys,
 	items,
+	loading = false,
 	onChange,
 	popupContainerSelector,
-	keys
+	keys,
+	skeletonItemCount = 4
 }: MultipleChoiceProps) => {
 	const componentClasses = useStyles()
 
@@ -37,18 +40,25 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 
 	return (
 		<div className={cn(componentClasses.container, classes)}>
-			{items.map(({ key, label }, index) => (
-				<MultipleChoiceItem
-					index={index}
-					isSelected={!!selectedKeys[key]}
-					itemKey={key}
-					key={key}
-					label={label}
-					onSelectedKeyChange={onSelectedKeyChange}
-					popupContainerSelector={popupContainerSelector}
-					{...getDataTestAttributeProp('multiple-choice', dataTag)}
-				/>
-			))}
+			{loading ? (
+				<MultipleChoiceSkeleton count={skeletonItemCount} />
+			) : (
+				items.map(({ key, label }, index) => (
+					<MultipleChoiceItem
+						index={index}
+						isSelected={!!selectedKeys[key]}
+						itemKey={key}
+						key={key}
+						label={label}
+						onSelectedKeyChange={onSelectedKeyChange}
+						popupContainerSelector={popupContainerSelector}
+						{...getDataTestAttributeProp(
+							'multiple-choice',
+							dataTag
+						)}
+					/>
+				))
+			)}
 		</div>
 	)
 }

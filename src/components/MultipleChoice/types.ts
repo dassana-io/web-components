@@ -7,7 +7,7 @@ export interface MultipleChoiceItemConfig {
 }
 
 export interface MultipleChoiceProps
-	extends Pick<BaseFormElementProps, 'classes' | 'dataTag'> {
+	extends Pick<BaseFormElementProps, 'classes' | 'dataTag' | 'loading'> {
 	/**
 	 * Default selected keys for multi choice component. Gets overwritten by keys if both are provided
 	 */
@@ -19,4 +19,5 @@ export interface MultipleChoiceProps
 	 */
 	popupContainerSelector?: string
 	keys: Key[]
+	skeletonItemCount?: number
 }

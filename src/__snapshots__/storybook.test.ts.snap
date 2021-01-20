@@ -2272,7 +2272,7 @@ exports[`Storyshots TimeInput Default 1`] = `
     >
       <input
         className="ant-input"
-        data-test="input"
+        data-test="time-input"
         disabled={false}
         onBlur={[Function]}
         onChange={[Function]}

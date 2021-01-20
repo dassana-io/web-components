@@ -142,7 +142,6 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 
 	const onChangeAntD = (e: ChangeEvent<HTMLInputElement>) => {
 		if (onChange) {
-			// TODO: regex check value to be in format 0:00 with first num between 0 - 12
 			onChange(
 				stringTo24HourTimeNum(
 					e.target.value,
@@ -168,7 +167,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		optionalProps.defaultValue = numberToTimeStr(defaultValue).time
 
 	if ((value || value === 0) && !onChange) {
-		throw new Error('Controlled inputs require an onChange prop')
+		throw new Error('Controlled components require an onChange prop')
 	}
 
 	return loading ? (
@@ -184,7 +183,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			placeholder={placeholder}
 			type={'text'}
 			{...optionalProps}
-			{...getDataTestAttributeProp('input', dataTag)}
+			{...getDataTestAttributeProp('time-input', dataTag)}
 		/>
 	)
 }

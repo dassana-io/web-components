@@ -3,7 +3,7 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { ChangeEvent, FC, useContext } from 'react'
+import React, { FC, useContext } from 'react'
 import { MultipleChoice, MultipleChoiceProps } from 'components/MultipleChoice'
 
 export interface FormMultipleChoiceProps
@@ -45,8 +45,7 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 					return (
 						<MultipleChoice
 							dataTag={getFormFieldDataTag(name)}
-							// TOOD: Add skeleton loader to Multiple Choice
-							// loading={loading}
+							loading={loading}
 							onChange={selectedKeys => {
 								onChange(selectedKeys)
 							}}

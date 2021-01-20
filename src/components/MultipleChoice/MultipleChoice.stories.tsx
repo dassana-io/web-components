@@ -7,8 +7,10 @@ import React, { FC } from 'react'
 
 export default {
 	argTypes: {
+		loading: { control: 'boolean' },
 		onChange: { defaultValue: action('onChange') },
-		popupContainerSelector: { control: { disable: true } }
+		popupContainerSelector: { control: { disable: true } },
+		skeletonItemCount: { control: 'number' }
 	},
 	decorators: [
 		(MultiChoiceStory: Story) => (
