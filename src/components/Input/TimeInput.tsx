@@ -81,11 +81,6 @@ export interface TimeInputProps
 	onChange?: (value: number) => void
 	onFocus?: () => void
 	onKeyDown?: (e: KeyboardEvent) => void
-	/**
-	 * Type of input (ex: text, password)
-	 * @default text
-	 */
-	type?: 'text' | 'password'
 	value?: number
 }
 
@@ -101,7 +96,6 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		error = false,
 		loading = false,
 		placeholder = '',
-		type = 'text',
 		value
 	} = props
 
@@ -188,7 +182,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			onFocus={onFocus}
 			onKeyDown={onKeyDown}
 			placeholder={placeholder}
-			type={type}
+			type={'text'}
 			{...optionalProps}
 			{...getDataTestAttributeProp('input', dataTag)}
 		/>
