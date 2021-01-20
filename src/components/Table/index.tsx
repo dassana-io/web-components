@@ -1,6 +1,7 @@
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
+import cloneDeep from 'lodash/cloneDeep'
 import cn from 'classnames'
 import { CommonComponentProps } from '../types'
 import debounce from 'lodash/debounce'
@@ -99,11 +100,46 @@ export const Table = <Data,>({
 	})
 
 	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
-	const [processedColumns, setProcessedColumns] = useState(
-		processColumns<TableData<Data>>(columns)
-	)
 	const [processedData, setProcessedData] = useState(
 		processData<TableData<Data>>(data, columns)
+	)
+
+	const deleteRow = useCallback(
+		(rowId: Key) => {
+			const updatedData = cloneDeep(processedData).filter(
+				row => row.id !== rowId
+			)
+
+			setProcessedData(updatedData)
+		},
+		[processedData]
+	)
+
+	const updateRowData = useCallback(
+		(rowId: Key, updatedData: TableData<Data>) => {
+			const clonedData = cloneDeep(processedData)
+
+			const editedEntryIndex = clonedData.findIndex(
+				row => row.id === rowId
+			)
+
+			const currentData = clonedData[editedEntryIndex]
+
+			clonedData[editedEntryIndex] = {
+				...currentData,
+				...updatedData
+			}
+
+			setProcessedData(clonedData)
+		},
+		[processedData]
+	)
+
+	const [processedColumns, setProcessedColumns] = useState(
+		processColumns<TableData<Data>>(columns, {
+			deleteRow,
+			updateRowData
+		})
 	)
 
 	useEffect(() => {
@@ -114,8 +150,13 @@ export const Table = <Data,>({
 	}, [data])
 
 	useEffect(() => {
-		setProcessedColumns(processColumns<TableData<Data>>(columns))
-	}, [columns])
+		setProcessedColumns(
+			processColumns<TableData<Data>>(columns, {
+				deleteRow,
+				updateRowData
+			})
+		)
+	}, [columns, deleteRow, updateRowData])
 
 	useEffect(() => {
 		setProcessedData(processData<TableData<Data>>(data, columns))
@@ -200,3 +241,4 @@ export const Table = <Data,>({
 }
 
 export * from './types'
+export { PARTIAL_ACTION_COLUMN } from './utils'
