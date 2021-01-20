@@ -1,9 +1,9 @@
 import { BaseFormElementProps } from 'components/types'
 import { Button } from 'components/Button'
 import cn from 'classnames'
-import { Input } from 'components/Input'
 import { Tag } from 'components/Tag'
 import { useStyles } from './utils'
+import { Input, InputProps } from 'components/Input'
 import React, {
 	ChangeEvent,
 	FC,
@@ -13,7 +13,8 @@ import React, {
 } from 'react'
 
 export interface ChipInputProps
-	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
+	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
+		Pick<InputProps, 'inputRef' | 'onFocus'> {
 	onChange?: (addedValues: string[]) => void
 	values?: string[]
 }
@@ -23,6 +24,8 @@ export const ChipInput: FC<ChipInputProps> = ({
 	classes = [],
 	error,
 	disabled = false,
+	inputRef,
+	onFocus,
 	fullWidth,
 	loading = false,
 	placeholder,
@@ -74,24 +77,28 @@ export const ChipInput: FC<ChipInputProps> = ({
 
 	return (
 		<div className={cn(classes)}>
-			<div className={componentClasses.inputAndButtonWrapper}>
+			<div className={componentClasses.inputAndBtnWrapper}>
 				<Input
 					disabled={disabled}
 					error={error}
 					fullWidth={fullWidth}
+					inputRef={inputRef}
 					loading={loading}
 					onChange={onInputChange}
+					onFocus={onFocus}
 					onKeyDown={onKeyDown}
 					placeholder={placeholder}
 				/>
-				<Button
-					classes={[componentClasses.enterButton]}
-					disabled={disabled || isInvalidValue}
-					loading={loading}
-					onClick={onEnterBtnClick}
-				>
-					⏎
-				</Button>
+				<div className={componentClasses.btnWrapper}>
+					<Button
+						classes={[componentClasses.enterBtn]}
+						disabled={disabled || isInvalidValue}
+						loading={loading}
+						onClick={onEnterBtnClick}
+					>
+						⏎
+					</Button>
+				</div>
 			</div>
 			<div className={componentClasses.tagsWrapper}>
 				{!loading &&

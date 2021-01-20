@@ -39,6 +39,11 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			name='cloudType'
 			options={iconOptions}
 		/>
+		<Form.ChipInput
+			label='Domains'
+			name='domains'
+			placeholder='@yourdomain.com'
+		/>
 		<Form.RadioGroup
 			defaultValue='low'
 			label='Severity'

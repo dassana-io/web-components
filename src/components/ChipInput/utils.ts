@@ -4,14 +4,17 @@ import { styleguide } from 'components/assets/styles'
 
 const { flexAlignCenter, spacing } = styleguide
 
-const buttonWidth = 50
+const btnWidth = 50
+const btnMarginLeft = spacing.m
 
 export const useStyles = createUseStyles({
-	enterButton: {
-		marginLeft: spacing.m,
-		width: buttonWidth
+	btnWrapper: {
+		marginLeft: btnMarginLeft
 	},
-	inputAndButtonWrapper: {
+	enterBtn: {
+		width: btnWidth
+	},
+	inputAndBtnWrapper: {
 		...flexAlignCenter,
 		flexWrap: 'nowrap',
 		paddingBottom: spacing.s
@@ -25,6 +28,6 @@ export const useStyles = createUseStyles({
 		width: ({ fullWidth }) =>
 			fullWidth
 				? '100%'
-				: buttonWidth + parseInt(defaultFieldWidth) + spacing.m
+				: btnWidth + parseInt(defaultFieldWidth) + btnMarginLeft
 	}
 })
