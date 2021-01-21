@@ -15,8 +15,6 @@ const {
 	fontWeight
 } = styleguide
 
-export const isLetter = (str: string) => str.length === 1 && /[a-z]/i.test(str)
-
 export const getInitialSelectedKeys = (defaultSelected?: Key[]) => {
 	if (!defaultSelected) return {}
 
@@ -33,6 +31,9 @@ export const getSelectedKeysArr = (
 	items: MultipleChoiceItemConfig[],
 	selectedKeys: Record<string, boolean>
 ) => items.filter(item => !!selectedKeys[item.key]).map(item => item.key)
+
+export const isEnglishAlphabet = (str: string) =>
+	str.length === 1 && /[a-z]/i.test(str)
 
 /* ------ MultipleChoice Container Styles ------ */
 

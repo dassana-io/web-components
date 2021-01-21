@@ -6,7 +6,7 @@ import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
 import {
 	getInitialSelectedKeys,
 	getSelectedKeysArr,
-	isLetter,
+	isEnglishAlphabet,
 	useStyles
 } from './utils'
 import React, { FC, Key, KeyboardEvent, useState } from 'react'
@@ -45,7 +45,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	}
 
 	const onKeyDown = (e: KeyboardEvent) => {
-		if (isLetter(e.key)) {
+		if (isEnglishAlphabet(e.key)) {
 			e.preventDefault()
 			e.stopPropagation()
 
@@ -54,6 +54,11 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 			onSelectedKeyChange(items[index].key)
 		}
 	}
+
+	if (items.length > 26)
+		throw new Error(
+			'There can be no more than 26 items in a multiple choice component.'
+		)
 
 	return (
 		<div
