@@ -110,10 +110,11 @@ export const ChipInput: FC<ChipInputProps> = ({
 			</div>
 			<div className={componentClasses.tagsWrapper}>
 				{!loading &&
-					addedValues.map((value, i) => (
+					addedValues.map(value => (
 						<Tag
 							classes={[componentClasses.tag]}
-							key={i}
+							deletable
+							key={value}
 							onDelete={() => onDelete(value)}
 						>
 							{value}
