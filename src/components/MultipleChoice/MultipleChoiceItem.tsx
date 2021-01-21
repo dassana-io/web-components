@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MultipleChoiceItemConfig } from '.'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
-import { useShortcut } from '@dassana-io/web-utils'
 import React, { FC, Key } from 'react'
 
 export interface MultipleChoiceItemProps
@@ -33,22 +32,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 
 	const handleChange = () => onSelectedKeyChange(itemKey)
 
-	const [lowercaseKey, uppercaseKey] = [
-		String.fromCharCode(index + 97),
-		String.fromCharCode(index + 65)
-	]
-
-	useShortcut({
-		callback: handleChange,
-		key: lowercaseKey,
-		keyEvent: 'keydown'
-	})
-
-	useShortcut({
-		callback: handleChange,
-		key: uppercaseKey,
-		keyEvent: 'keydown'
-	})
+	const uppercaseKey = String.fromCharCode(index + 65)
 
 	return (
 		<Tooltip

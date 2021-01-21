@@ -3,8 +3,13 @@ import { getDataTestAttributeProp } from 'components/utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import { MultipleChoiceProps } from './types'
 import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
-import { getInitialSelectedKeys, getSelectedKeysArr, useStyles } from './utils'
-import React, { FC, Key, useState } from 'react'
+import {
+	getInitialSelectedKeys,
+	getSelectedKeysArr,
+	isLetter,
+	useStyles
+} from './utils'
+import React, { FC, Key, KeyboardEvent, useState } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	classes = [],
@@ -15,7 +20,8 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	onChange,
 	popupContainerSelector,
 	keys,
-	skeletonItemCount = 4
+	skeletonItemCount = 4,
+	tabIndex = 0
 }: MultipleChoiceProps) => {
 	const componentClasses = useStyles()
 
@@ -38,8 +44,23 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		throw new Error('Controlled components require an onChange prop')
 	}
 
+	const onKeyDown = (e: KeyboardEvent) => {
+		if (isLetter(e.key)) {
+			e.preventDefault()
+			e.stopPropagation()
+
+			const index = e.key.toUpperCase().charCodeAt(0) - 65
+
+			onSelectedKeyChange(items[index].key)
+		}
+	}
+
 	return (
-		<div className={cn(componentClasses.container, classes)}>
+		<div
+			className={cn(componentClasses.container, classes)}
+			onKeyDown={onKeyDown}
+			tabIndex={tabIndex}
+		>
 			{loading ? (
 				<MultipleChoiceSkeleton count={skeletonItemCount} />
 			) : (

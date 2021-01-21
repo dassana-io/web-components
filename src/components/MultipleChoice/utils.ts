@@ -15,6 +15,8 @@ const {
 	fontWeight
 } = styleguide
 
+export const isLetter = (str: string) => str.length === 1 && /[a-z]/i.test(str)
+
 export const getInitialSelectedKeys = (defaultSelected?: Key[]) => {
 	if (!defaultSelected) return {}
 
@@ -38,6 +40,7 @@ const gridGap = spacing.m
 
 export const useStyles = createUseStyles({
 	container: {
+		'&:focus': { outline: 'none' },
 		backgroundColor: 'transparent',
 		display: 'grid',
 		gridAutoFlow: 'row',

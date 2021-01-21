@@ -20,4 +20,5 @@ export interface MultipleChoiceProps
 	popupContainerSelector?: string
 	keys: Key[]
 	skeletonItemCount?: number
+	tabIndex?: number
 }

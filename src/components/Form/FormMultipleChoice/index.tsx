@@ -3,8 +3,8 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
 import { MultipleChoice, MultipleChoiceProps } from 'components/MultipleChoice'
+import React, { FC, useContext } from 'react'
 
 export interface FormMultipleChoiceProps
 	extends BaseFieldProps,
@@ -45,11 +45,11 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 					return (
 						<MultipleChoice
 							dataTag={getFormFieldDataTag(name)}
+							keys={value}
 							loading={loading}
 							onChange={selectedKeys => {
 								onChange(selectedKeys)
 							}}
-							keys={value}
 							{...rest}
 						/>
 					)

@@ -946,6 +946,8 @@ exports[`Storyshots MultipleChoice Default 1`] = `
   >
     <div
       className="container-0-1-29"
+      onKeyDown={[Function]}
+      tabIndex={0}
     >
       <span
         className="tooltipTrigger-0-1-34"
