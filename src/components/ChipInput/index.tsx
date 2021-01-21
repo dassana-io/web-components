@@ -61,6 +61,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
+			e.stopPropagation()
 
 			if (!isInvalidValue && !disabled) onEnterBtnClick()
 		}
