@@ -4,6 +4,15 @@ import { styleguide } from 'components/assets/styles'
 
 const { flexAlignCenter, spacing } = styleguide
 
+export const getInitialValues = (
+	values?: string[],
+	defaultValues?: string[]
+) => {
+	if (values) return values
+
+	return defaultValues ? defaultValues : []
+}
+
 const btnWidth = 50
 const btnMarginLeft = spacing.m
 
@@ -27,7 +36,7 @@ export const useStyles = createUseStyles({
 		flexWrap: 'wrap',
 		width: ({ fullWidth }) =>
 			fullWidth
-				? '100%'
-				: btnWidth + parseInt(defaultFieldWidth) + btnMarginLeft
+				? `calc( 100% - ${btnWidth + btnMarginLeft}px)`
+				: defaultFieldWidth
 	}
 })
