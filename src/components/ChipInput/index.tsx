@@ -1,8 +1,9 @@
 import { BaseFormElementProps } from 'components/types'
 import { Button } from 'components/Button'
 import cn from 'classnames'
+import { getDataTestAttributeProp } from 'components/utils'
 import { Tag } from 'components/Tag'
-import { useStyles } from './utils'
+import { getInitialValues, useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
 import React, {
 	ChangeEvent,
@@ -15,6 +16,7 @@ import React, {
 export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
 		Pick<InputProps, 'inputRef' | 'onFocus'> {
+	defaultValues?: string[]
 	onChange?: (addedValues: string[]) => void
 	values?: string[]
 }
@@ -22,6 +24,8 @@ export interface ChipInputProps
 export const ChipInput: FC<ChipInputProps> = ({
 	onChange,
 	classes = [],
+	dataTag,
+	defaultValues,
 	error,
 	disabled = false,
 	inputRef,
@@ -32,7 +36,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	values
 }: ChipInputProps) => {
 	const [addedValues, setAddedValues] = useState<string[]>(
-		values ? values : []
+		getInitialValues(values, defaultValues)
 	)
 	const [currInputValue, setCurrInputValue] = useState('')
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
@@ -77,7 +81,10 @@ export const ChipInput: FC<ChipInputProps> = ({
 		throw new Error('Controlled chip inputs require an onChange prop')
 
 	return (
-		<div className={cn(classes)}>
+		<div
+			className={cn(classes)}
+			{...getDataTestAttributeProp('chip-input', dataTag)}
+		>
 			<div className={componentClasses.inputAndBtnWrapper}>
 				<Input
 					disabled={disabled}
@@ -106,7 +113,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 					addedValues.map((value, i) => (
 						<Tag
 							classes={[componentClasses.tag]}
-							key={`${value}-${i}`}
+							key={i}
 							onDelete={() => onDelete(value)}
 						>
 							{value}

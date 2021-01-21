@@ -12,14 +12,11 @@ export default {
 	title: 'ChipInput'
 } as Meta
 
-let key = 0
-
-const Template: Story<ChipInputProps> = args => (
-	<ChipInput {...args} key={key++} />
-)
+const Template: Story<ChipInputProps> = args => <ChipInput {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
+	defaultValues: ['@lorem.com', '@ipsum.com'],
 	placeholder: '@yourdomain.com'
 }
 
