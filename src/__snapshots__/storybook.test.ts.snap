@@ -477,12 +477,6 @@ exports[`Storyshots ChipInput Full Width 1`] = `
 </div>
 `;
 
-exports[`Storyshots ChipInput Is Valid Domain 1`] = `
-<div
-  className="light storyWrapper-0-1-2"
-/>
-`;
-
 exports[`Storyshots ChipInput Validated 1`] = `
 <div
   className="light storyWrapper-0-1-2"

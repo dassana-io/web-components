@@ -11,7 +11,11 @@ import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
-import { generateInputSkeletonStyles, generateInputStyles } from './utils'
+import {
+	generateAddonStyles,
+	generateInputSkeletonStyles,
+	generateInputStyles
+} from './utils'
 import React, { FC, KeyboardEvent, RefObject } from 'react'
 
 const { dark, light } = ThemeType
@@ -27,9 +31,11 @@ const useStyles = createUseStyles({
 		...fieldErrorStyles['@global'],
 		[`.${dark}`]: {
 			'& $input': generateInputStyles(dark),
-			'& $inputSkeleton': generateInputSkeletonStyles(dark)
+			'& $inputSkeleton': generateInputSkeletonStyles(dark),
+			'& $span': generateAddonStyles(dark)
 		},
-		input: generateInputStyles(light)
+		input: generateInputStyles(light),
+		span: generateAddonStyles(light)
 	}
 })
 
@@ -46,6 +52,8 @@ const InputSkeleton: FC<InputProps> = (props: InputProps) => {
 }
 
 export interface InputProps extends BaseFormElementProps {
+	addonAfter?: string
+	addonBefore?: string
 	inputRef?: RefObject<AntDInput>
 	onFocus?: () => void
 	onKeyDown?: (e: KeyboardEvent) => void
@@ -58,6 +66,8 @@ export interface InputProps extends BaseFormElementProps {
 
 export const Input: FC<InputProps> = (props: InputProps) => {
 	const {
+		addonAfter,
+		addonBefore,
 		classes = [],
 		dataTag,
 		disabled = false,
@@ -98,6 +108,8 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		<InputSkeleton {...props} />
 	) : (
 		<AntDInput
+			addonAfter={addonAfter}
+			addonBefore={addonBefore}
 			className={cn(componentClasses.container, inputClasses)}
 			disabled={disabled}
 			onFocus={onFocus}

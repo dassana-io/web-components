@@ -43,6 +43,30 @@ export const generateInputStyles = (themeType: ThemeType) => {
 	}
 }
 
+export const generateAddonStyles = (themeType: ThemeType) => {
+	const {
+		base: { backgroundColor, borderColor, color }
+	} = themedStyles[themeType]
+
+	return {
+		'&.ant-input-wrapper': {
+			'& .ant-input-group-addon': {
+				backgroundColor,
+				borderColor,
+				color
+			},
+			'& .ant-input-group-addon:first-child': {
+				borderBottomLeftRadius: borderRadius,
+				borderTopLeftRadius: borderRadius
+			},
+			'& .ant-input-group-addon:last-child': {
+				borderBottomRightRadius: borderRadius,
+				borderTopRightRadius: borderRadius
+			}
+		}
+	}
+}
+
 export const generateInputSkeletonStyles = (themeType: ThemeType) => {
 	const { loading } = themedStyles[themeType]
 
