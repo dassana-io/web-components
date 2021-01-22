@@ -32,7 +32,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 
 	const errorMsg = errors[name] ? errors[name].message : ''
 
-	const onChipInputFocus = () => {
+	const clearChipInputErrors = () => {
 		if (errors[name]) clearErrors(name)
 	}
 
@@ -62,6 +62,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 				name={name}
 				render={({ onChange, value }) => (
 					<ChipInput
+						clearErrros={clearChipInputErrors}
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
 						errorMsg={errorMsg}
@@ -69,7 +70,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 						inputRef={inputRef}
 						loading={loading}
 						onChange={onChange}
-						onFocus={onChipInputFocus}
+						onFocus={clearChipInputErrors}
 						values={value}
 						{...rest}
 					/>

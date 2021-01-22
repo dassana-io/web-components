@@ -47,7 +47,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			required
 			rules={{
 				validate: (values: string[]) =>
-					values.length > 2 || 'Please provide at least two domains'
+					values.length > 1 || 'Please provide at least two domains'
 			}}
 			undeleteableValues={['@lorem.com']}
 		/>

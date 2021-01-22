@@ -30,6 +30,7 @@ export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
 		Pick<InputProps, 'addonAfter' | 'addonBefore' | 'inputRef' | 'onFocus'>,
 		Pick<BaseFieldProps, 'fieldErrorClasses'> {
+	clearErrros?: () => void
 	defaultValues?: string[]
 	errorMsg?: string
 	onChange?: (addedValues: string[]) => void
@@ -41,18 +42,19 @@ export interface ChipInputProps
 export const ChipInput: FC<ChipInputProps> = ({
 	addonAfter,
 	addonBefore,
-	onChange,
 	classes = [],
+	clearErrros,
 	dataTag,
 	defaultValues,
+	disabled = false,
 	error,
 	errorMsg = '',
 	fieldErrorClasses = [],
-	disabled = false,
-	inputRef,
-	onFocus,
 	fullWidth,
+	inputRef,
 	loading = false,
+	onFocus,
+	onChange,
 	placeholder,
 	undeleteableValues = [],
 	validate,
@@ -63,6 +65,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	)
 	const [inputValue, setInputValue] = useState('')
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
+	const [localError, setLocalError] = useState(false)
 	const [localErrorMsg, setLocalErrorMsg] = useState('')
 
 	const componentClasses = useStyles({ fullWidth })
@@ -90,7 +93,11 @@ export const ChipInput: FC<ChipInputProps> = ({
 
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value.toLowerCase())
+
 		setLocalErrorMsg('')
+		setLocalError(false)
+
+		if (clearErrros) clearErrros()
 	}
 
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
@@ -103,7 +110,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 			if (validate) {
 				validated = validate(inputValue)
 
-				if (typeof validated === 'string') setLocalErrorMsg(validated)
+				if (validated !== true) {
+					setLocalError(true)
+
+					if (typeof validated === 'string')
+						setLocalErrorMsg(validated)
+				}
 			}
 
 			if (!isInvalidValue && !disabled && validated === true)
@@ -134,10 +146,10 @@ export const ChipInput: FC<ChipInputProps> = ({
 		))
 
 	useEffect(() => {
-		!inputValue || addedValues.includes(inputValue) || error
+		!inputValue || addedValues.includes(inputValue) || localError || error
 			? setIsInvalidValue(true)
 			: setIsInvalidValue(false)
-	}, [addedValues, inputValue, error])
+	}, [addedValues, inputValue, localError, error])
 
 	if (values && !onChange)
 		throw new Error('Controlled chip inputs require an onChange prop')
@@ -151,7 +163,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 				<Input
 					addonBefore={addonBefore}
 					disabled={disabled}
-					error={!!localErrorMsg || error}
+					error={localError || error}
 					fullWidth={fullWidth}
 					inputRef={inputRef}
 					loading={loading}
