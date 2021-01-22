@@ -4,7 +4,41 @@ import {
 } from 'components/assets/styles/styleguide'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
-const { borderRadius } = styleguide
+const { borderRadius, fontWeight } = styleguide
+
+export const generateAddonStyles = (themeType: ThemeType) => {
+	const {
+		base: { backgroundColor, borderColor, color },
+		error
+	} = themedStyles[themeType]
+
+	return {
+		'&.ant-input-group-wrapper': {
+			'& .ant-input-wrapper': {
+				'& .ant-input-group-addon': {
+					backgroundColor,
+					borderColor,
+					color,
+					fontWeight: fontWeight.light
+				},
+				'& .ant-input-group-addon:first-child': {
+					borderBottomLeftRadius: borderRadius,
+					borderTopLeftRadius: borderRadius
+				},
+				'& .ant-input-group-addon:last-child': {
+					borderBottomRightRadius: borderRadius,
+					borderTopRightRadius: borderRadius
+				}
+			},
+			'&$error': {
+				'& .ant-input-wrapper .ant-input': {
+					...fieldErrorStyles.error,
+					borderColor: error.borderColor
+				}
+			}
+		}
+	}
+}
 
 export const generateInputStyles = (themeType: ThemeType) => {
 	const { base, disabled, error, focus, hover, placeholder } = themedStyles[
@@ -14,8 +48,10 @@ export const generateInputStyles = (themeType: ThemeType) => {
 	return {
 		'&.ant-input': {
 			'&$error': {
-				...fieldErrorStyles.error,
-				borderColor: error.borderColor
+				'&$container': {
+					...fieldErrorStyles.error,
+					borderColor: error.borderColor
+				}
 			},
 			'&::placeholder': {
 				color: placeholder.color

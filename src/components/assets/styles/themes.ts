@@ -104,7 +104,8 @@ const generateThemedStyles = ({ state, background, border, text }: Theme) => {
 	}
 
 	const errorStyles = {
-		borderColor: state.error
+		borderColor: state.error,
+		color: state.error
 	}
 
 	const hover = {

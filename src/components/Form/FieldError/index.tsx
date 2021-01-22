@@ -5,17 +5,19 @@ import {
 	styleguide
 } from 'components/assets/styles/styleguide'
 import React, { FC } from 'react'
-import { themes, ThemeType } from 'components/assets/styles/themes'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
 
 const { font } = styleguide
 
 export const generateThemedContainerStyles = (themeType: ThemeType) => {
-	const { warning } = themes[themeType].state
+	const {
+		error: { color }
+	} = themedStyles[themeType]
 
 	return {
-		color: warning
+		color
 	}
 }
 

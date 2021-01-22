@@ -28,6 +28,7 @@ export const generateThemedTagStyles = (themeType: ThemeType) => {
 	return {
 		'&.ant-tag': {
 			'& .ant-tag-close-icon': {
+				'&:focus': { outline: 'none' },
 				'&:hover': {
 					color: hover.color
 				},

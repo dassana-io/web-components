@@ -28,7 +28,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 		{...args}
 		initialValues={{
 			cloudType: 'azure',
-			defaultCheckedKeys: [5],
+			domains: ['@lorem.com'],
 			firstName: 'First Name'
 		}}
 	>
@@ -38,6 +38,18 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Cloud Type'
 			name='cloudType'
 			options={iconOptions}
+		/>
+		<Form.ChipInput
+			addonBefore='@'
+			label='Domains'
+			name='domains'
+			placeholder='yourdomain.com'
+			required
+			rules={{
+				validate: (values: string[]) =>
+					values.length > 1 || 'Please provide at least two domains'
+			}}
+			undeleteableValues={['@lorem.com']}
 		/>
 		<Form.RadioGroup
 			defaultValue='low'

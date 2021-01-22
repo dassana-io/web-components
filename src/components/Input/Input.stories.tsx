@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { Input, InputProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
@@ -5,6 +6,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 export default {
 	argTypes: {
 		classes: { control: 'array' },
+		onChange: { defaultValue: action('onChange') },
 		value: { control: { disable: true } }
 	},
 	component: Input,
@@ -29,3 +31,10 @@ Error.args = { error: true }
 
 export const Disabled = Template.bind({})
 Disabled.args = { disabled: true }
+
+export const Addons = Template.bind({})
+Addons.args = {
+	addonAfter: '.com',
+	addonBefore: '@',
+	placeholder: 'yourdomain'
+}
