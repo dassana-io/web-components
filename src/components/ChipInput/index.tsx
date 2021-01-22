@@ -91,7 +91,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 			e.preventDefault()
 			e.stopPropagation()
 
-			let validated
+			let validated: boolean | string = true
 
 			if (validate) {
 				validated = validate(inputValue)
@@ -99,7 +99,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 				if (typeof validated === 'string') setLocalErrorMsg(validated)
 			}
 
-			if (validated === true && !isInvalidValue && !disabled)
+			if (!isInvalidValue && !disabled && validated === true)
 				addInputValue()
 		}
 	}

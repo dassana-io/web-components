@@ -28,7 +28,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 		{...args}
 		initialValues={{
 			cloudType: 'azure',
-			defaultCheckedKeys: [5],
+			domains: ['@lorem.com'],
 			firstName: 'First Name'
 		}}
 	>
@@ -43,6 +43,12 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Domains'
 			name='domains'
 			placeholder='@yourdomain.com'
+			required
+			rules={{
+				validate: (values: string[]) =>
+					values.length > 2 || 'Please provide at least two values.'
+			}}
+			undeleteableValues={['@lorem.com']}
 		/>
 		<Form.RadioGroup
 			defaultValue='low'
