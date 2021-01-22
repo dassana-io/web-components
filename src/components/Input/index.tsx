@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
 	container: {
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
-	error: { ...fieldErrorStyles.error },
+	error: {},
 	inputSkeleton: generateInputSkeletonStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {

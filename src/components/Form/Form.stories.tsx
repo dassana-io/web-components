@@ -40,9 +40,10 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			options={iconOptions}
 		/>
 		<Form.ChipInput
+			addonBefore='@'
 			label='Domains'
 			name='domains'
-			placeholder='@yourdomain.com'
+			placeholder='yourdomain.com'
 			required
 			rules={{
 				validate: (values: string[]) =>

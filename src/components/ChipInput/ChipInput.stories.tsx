@@ -28,14 +28,15 @@ FullWidth.args = {
 
 // This is for demo purposes only
 const isValidDomain = (str: string) =>
-	/^@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(
+	/^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(
 		str
 	)
 
-export const Validated = Template.bind({})
-Validated.args = {
+export const ValidatedWithAddon = Template.bind({})
+ValidatedWithAddon.args = {
+	addonBefore: '@',
 	defaultValues: ['@lorem.com', '@ipsum.com'],
-	placeholder: '@yourdomain.com',
+	placeholder: 'yourdomain.com',
 	undeleteableValues: ['@lorem.com'],
 	validate: (inputVal: string) =>
 		isValidDomain(inputVal) || 'Please enter a valid domain'

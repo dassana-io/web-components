@@ -8,6 +8,7 @@ import { Tag } from 'components/Tag'
 import {
 	actionItemWidth,
 	getInitialValues,
+	getInputValue,
 	getTagDeletionProps,
 	useStyles
 } from './utils'
@@ -26,7 +27,7 @@ export interface Validate {
 
 export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
-		Pick<InputProps, 'inputRef' | 'onFocus'>,
+		Pick<InputProps, 'addonAfter' | 'addonBefore' | 'inputRef' | 'onFocus'>,
 		Pick<BaseFieldProps, 'fieldErrorClasses'> {
 	defaultValues?: string[]
 	errorMsg?: string
@@ -37,6 +38,8 @@ export interface ChipInputProps
 }
 
 export const ChipInput: FC<ChipInputProps> = ({
+	addonAfter,
+	addonBefore,
 	onChange,
 	classes = [],
 	dataTag,
@@ -64,7 +67,10 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const componentClasses = useStyles({ fullWidth })
 
 	const addInputValue = () => {
-		const newValues = [...addedValues, inputValue]
+		const newValues = [
+			...addedValues,
+			getInputValue(inputValue, addonBefore, addonAfter)
+		]
 
 		setAddedValues(newValues)
 
@@ -142,6 +148,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 		>
 			<div className={componentClasses.wrapper}>
 				<Input
+					addonBefore={addonBefore}
 					disabled={disabled}
 					error={!!localErrorMsg || error}
 					fullWidth={fullWidth}

@@ -22,6 +22,12 @@ export const getInitialValues = (
 	return defaultValues ? defaultValues : []
 }
 
+export const getInputValue = (
+	inputValue?: string,
+	addonBefore = '',
+	addonAfter = ''
+) => `${addonBefore}${inputValue}${addonAfter}`
+
 // -----------------------------------
 
 interface GetTagDeletionProps {

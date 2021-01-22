@@ -477,7 +477,7 @@ exports[`Storyshots ChipInput Full Width 1`] = `
 </div>
 `;
 
-exports[`Storyshots ChipInput Validated 1`] = `
+exports[`Storyshots ChipInput Validated With Addon 1`] = `
 <div
   className="light storyWrapper-0-1-2"
 >
@@ -488,18 +488,32 @@ exports[`Storyshots ChipInput Validated 1`] = `
     <div
       className="wrapper-0-1-14"
     >
-      <input
-        className="ant-input container-0-1-16 container-d2-0-1-26"
-        data-test="input"
-        disabled={false}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        placeholder="@yourdomain.com"
-        type="text"
-        value=""
-      />
+      <span
+        className="ant-input-group-wrapper container-0-1-16 container-d2-0-1-26"
+      >
+        <span
+          className="ant-input-wrapper ant-input-group"
+        >
+          <span
+            className="ant-input-group-addon"
+          >
+            @
+          </span>
+          <input
+            className="ant-input"
+            data-test="input"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="yourdomain.com"
+            style={null}
+            type="text"
+            value=""
+          />
+        </span>
+      </span>
       <div
         className="actionItem-0-1-7"
       >
@@ -647,6 +661,44 @@ exports[`Storyshots IconButton Default 1`] = `
         style={Object {}}
       />
     </svg>
+  </span>
+</div>
+`;
+
+exports[`Storyshots Input Addons 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <span
+    className="ant-input-group-wrapper container-0-1-16 container-d10-0-1-43"
+  >
+    <span
+      className="ant-input-wrapper ant-input-group"
+    >
+      <span
+        className="ant-input-group-addon"
+      >
+        @
+      </span>
+      <input
+        className="ant-input"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder="yourdomain"
+        style={null}
+        type="text"
+        value=""
+      />
+      <span
+        className="ant-input-group-addon"
+      >
+        .com
+      </span>
+    </span>
   </span>
 </div>
 `;
@@ -1128,31 +1180,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-44"
+    className="container-0-1-45"
   >
     <div
-      className="skeletonButton-0-1-46"
+      className="skeletonButton-0-1-47"
     >
       <span
-        className="container-0-1-3 container-d2-0-1-47 skeleton-0-1-45"
+        className="container-0-1-3 container-d2-0-1-48 skeleton-0-1-46"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-46"
+      className="skeletonButton-0-1-47"
     >
       <span
-        className="container-0-1-3 container-d3-0-1-48 skeleton-0-1-45"
+        className="container-0-1-3 container-d3-0-1-49 skeleton-0-1-46"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-46"
+      className="skeletonButton-0-1-47"
     >
       <span
-        className="container-0-1-3 container-d4-0-1-49 skeleton-0-1-45"
+        className="container-0-1-3 container-d4-0-1-50 skeleton-0-1-46"
       >
          
       </span>
@@ -1255,10 +1307,10 @@ exports[`Storyshots Select Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-50"
+    className="decorator-0-1-51"
   >
     <div
-      className="container-0-1-51 container-d0-0-1-55"
+      className="container-0-1-52 container-d0-0-1-56"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -1355,10 +1407,10 @@ exports[`Storyshots Select Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-50"
+    className="decorator-0-1-51"
   >
     <div
-      className="container-0-1-51 container-d2-0-1-61"
+      className="container-0-1-52 container-d2-0-1-62"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -1409,10 +1461,10 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-58"
+              className="option-0-1-59"
             >
               <span
-                className="optionText-0-1-59"
+                className="optionText-0-1-60"
                 onMouseEnter={[Function]}
               >
                 Lorem
@@ -1464,10 +1516,10 @@ exports[`Storyshots Select Icon 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-50"
+    className="decorator-0-1-51"
   >
     <div
-      className="container-0-1-51 container-d1-0-1-56"
+      className="container-0-1-52 container-d1-0-1-57"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -1518,10 +1570,10 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-58"
+              className="option-0-1-59"
             >
               <span
-                className="icon-0-1-57"
+                className="icon-0-1-58"
               >
                 <svg
                   className=""
@@ -1533,7 +1585,7 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-1-59"
+                className="optionText-0-1-60"
                 onMouseEnter={[Function]}
               >
                 AWS
@@ -1585,10 +1637,10 @@ exports[`Storyshots Select Search 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-50"
+    className="decorator-0-1-51"
   >
     <div
-      className="container-0-1-51 container-d3-0-1-62"
+      className="container-0-1-52 container-d3-0-1-63"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -1685,10 +1737,10 @@ exports[`Storyshots Select Selected Option Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-50"
+    className="decorator-0-1-51"
   >
     <div
-      className="container-0-1-51 container-d4-0-1-63"
+      className="container-0-1-52 container-d4-0-1-64"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -1785,7 +1837,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d6-0-1-65"
+    className="container-0-1-3 container-d6-0-1-66"
   >
      
   </span>
@@ -1797,27 +1849,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d7-0-1-66"
+    className="container-0-1-3 container-d7-0-1-67"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-66"
+    className="container-0-1-3 container-d7-0-1-67"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-66"
+    className="container-0-1-3 container-d7-0-1-67"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-66"
+    className="container-0-1-3 container-d7-0-1-67"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d7-0-1-66"
+    className="container-0-1-3 container-d7-0-1-67"
   >
      
   </span>
@@ -1829,7 +1881,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d5-0-1-64"
+    className="container-0-1-3 container-d5-0-1-65"
   >
      
   </span>
