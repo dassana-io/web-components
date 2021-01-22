@@ -1,8 +1,16 @@
 import { createUseStyles } from 'react-jss'
-import { defaultFieldWidth } from 'components/assets/styles/styleguide'
-import { styleguide } from 'components/assets/styles'
+import {
+	defaultFieldWidth,
+	styleguide
+} from 'components/assets/styles/styleguide'
 
-const { flexAlignCenter, spacing } = styleguide
+const {
+	colors: { blacks },
+	flexAlignCenter,
+	font,
+	fontWeight,
+	spacing
+} = styleguide
 
 export const getInitialValues = (
 	values?: string[],
@@ -13,21 +21,18 @@ export const getInitialValues = (
 	return defaultValues ? defaultValues : []
 }
 
-const btnWidth = 50
-const btnMarginLeft = spacing.m
+const actionItemWidth = 82
+const actionItemMarginLeft = spacing.m
 
 export const useStyles = createUseStyles({
-	btnWrapper: {
-		marginLeft: btnMarginLeft
+	actionItem: {
+		color: blacks['lighten-50'],
+		marginLeft: actionItemMarginLeft,
+		width: actionItemWidth
 	},
-	enterBtn: {
-		width: btnWidth
-	},
-	inputAndBtnWrapper: {
-		...flexAlignCenter,
-		flexWrap: 'nowrap',
-		paddingBottom: spacing.s
-	},
+	enterIcon: { colors: blacks['lighten-30'] },
+	firstText: { ...font.label, fontWeight: fontWeight.light },
+	secondText: { ...font.body, fontWeight: fontWeight.regular },
 	tag: {
 		marginBottom: spacing.s
 	},
@@ -36,7 +41,12 @@ export const useStyles = createUseStyles({
 		flexWrap: 'wrap',
 		width: ({ fullWidth }) =>
 			fullWidth
-				? `calc( 100% - ${btnWidth + btnMarginLeft}px)`
+				? `calc( 100% - ${actionItemWidth + actionItemMarginLeft}px)`
 				: defaultFieldWidth
+	},
+	wrapper: {
+		...flexAlignCenter,
+		flexWrap: 'nowrap',
+		paddingBottom: spacing.s
 	}
 })

@@ -1,7 +1,8 @@
 import { BaseFormElementProps } from 'components/types'
-import { Button } from 'components/Button'
 import cn from 'classnames'
+import { EnterOutlined } from '@ant-design/icons'
 import { getDataTestAttributeProp } from 'components/utils'
+import { styleguide } from 'components/assets/styles/styleguide'
 import { Tag } from 'components/Tag'
 import { getInitialValues, useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
@@ -12,6 +13,10 @@ import React, {
 	useEffect,
 	useState
 } from 'react'
+
+const {
+	colors: { blacks }
+} = styleguide
 
 export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
@@ -38,10 +43,20 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const [addedValues, setAddedValues] = useState<string[]>(
 		getInitialValues(values, defaultValues)
 	)
-	const [currInputValue, setCurrInputValue] = useState('')
+	const [inputValue, setInputValue] = useState('')
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
 
 	const componentClasses = useStyles({ fullWidth })
+
+	const addInputValue = () => {
+		const newValues = [...addedValues, inputValue]
+
+		setAddedValues(newValues)
+
+		if (onChange) onChange(newValues)
+
+		resetInputValue()
+	}
 
 	const onDelete = (value: string) => {
 		const newValues = addedValues.filter(addedValue => addedValue !== value)
@@ -51,31 +66,25 @@ export const ChipInput: FC<ChipInputProps> = ({
 		if (onChange) onChange(newValues)
 	}
 
-	const onEnterBtnClick = () => {
-		const newValues = [...addedValues, currInputValue]
-
-		setAddedValues(newValues)
-
-		if (onChange) onChange(newValues)
-	}
-
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>) =>
-		setCurrInputValue(event.target.value.toLowerCase())
+		setInputValue(event.target.value.toLowerCase())
 
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
 			e.stopPropagation()
 
-			if (!isInvalidValue && !disabled) onEnterBtnClick()
+			if (!isInvalidValue && !disabled) addInputValue()
 		}
 	}
 
+	const resetInputValue = () => setInputValue('')
+
 	useEffect(() => {
-		!currInputValue || addedValues.includes(currInputValue) || error
+		!inputValue || addedValues.includes(inputValue) || error
 			? setIsInvalidValue(true)
 			: setIsInvalidValue(false)
-	}, [addedValues, currInputValue, error])
+	}, [addedValues, inputValue, error])
 
 	if (values && !onChange)
 		throw new Error('Controlled chip inputs require an onChange prop')
@@ -85,7 +94,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 			className={cn(classes)}
 			{...getDataTestAttributeProp('chip-input', dataTag)}
 		>
-			<div className={componentClasses.inputAndBtnWrapper}>
+			<div className={componentClasses.wrapper}>
 				<Input
 					disabled={disabled}
 					error={error}
@@ -96,17 +105,21 @@ export const ChipInput: FC<ChipInputProps> = ({
 					onFocus={onFocus}
 					onKeyDown={onKeyDown}
 					placeholder={placeholder}
+					value={inputValue}
 				/>
-				<div className={componentClasses.btnWrapper}>
-					<Button
-						classes={[componentClasses.enterBtn]}
-						disabled={disabled || isInvalidValue}
-						loading={loading}
-						onClick={onEnterBtnClick}
-					>
-						⏎
-					</Button>
-				</div>
+				{!loading && (
+					<div className={componentClasses.actionItem}>
+						<span className={componentClasses.firstText}>
+							press&nbsp;
+						</span>
+						<span className={componentClasses.secondText}>
+							enter
+						</span>
+						<EnterOutlined
+							style={{ color: blacks['lighten-30'] }}
+						/>
+					</div>
+				)}
 			</div>
 			<div className={componentClasses.tagsWrapper}>
 				{!loading &&
