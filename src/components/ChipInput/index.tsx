@@ -1,12 +1,16 @@
 import { BaseFieldProps } from 'components/Form/types'
 import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
-import { EnterOutlined } from '@ant-design/icons'
 import FieldError from 'components/Form/FieldError'
 import { getDataTestAttributeProp } from 'components/utils'
-import { styleguide } from 'components/assets/styles/styleguide'
+import { Skeleton } from 'components/Skeleton'
 import { Tag } from 'components/Tag'
-import { getInitialValues, getTagDeletionProps, useStyles } from './utils'
+import {
+	actionItemWidth,
+	getInitialValues,
+	getTagDeletionProps,
+	useStyles
+} from './utils'
 import { Input, InputProps } from 'components/Input'
 import React, {
 	ChangeEvent,
@@ -15,10 +19,6 @@ import React, {
 	useEffect,
 	useState
 } from 'react'
-
-const {
-	colors: { blacks }
-} = styleguide
 
 export interface Validate {
 	(inputVal: string): boolean | string
@@ -104,6 +104,17 @@ export const ChipInput: FC<ChipInputProps> = ({
 		}
 	}
 
+	const renderSkeletenTags = () => (
+		<>
+			<Skeleton height={22} width={70} />
+			<Skeleton
+				classes={[componentClasses.skeleton]}
+				height={22}
+				width={85}
+			/>
+		</>
+	)
+
 	const renderTags = () =>
 		addedValues.map(value => (
 			<Tag
@@ -142,7 +153,13 @@ export const ChipInput: FC<ChipInputProps> = ({
 					placeholder={placeholder}
 					value={inputValue}
 				/>
-				{!loading && (
+				{loading ? (
+					<Skeleton
+						classes={[componentClasses.skeleton]}
+						height={32}
+						width={actionItemWidth}
+					/>
+				) : (
 					<div className={componentClasses.actionItem}>
 						<span className={componentClasses.firstText}>
 							press&nbsp;
@@ -150,14 +167,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 						<span className={componentClasses.secondText}>
 							enter
 						</span>
-						<EnterOutlined
-							style={{ color: blacks['lighten-30'] }}
-						/>
+						<span className={componentClasses.enterIcon}>↵</span>
 					</div>
 				)}
 			</div>
 			<div className={componentClasses.tagsWrapper}>
-				{!loading && renderTags()}
+				{loading ? renderSkeletenTags() : renderTags()}
 			</div>
 			<FieldError
 				classes={fieldErrorClasses}

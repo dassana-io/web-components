@@ -38,5 +38,5 @@ Validated.args = {
 	placeholder: '@yourdomain.com',
 	undeleteableValues: ['@lorem.com'],
 	validate: (inputVal: string) =>
-		isValidDomain(inputVal) || 'Please enter a valid domain.'
+		isValidDomain(inputVal) || 'Please enter a valid domain'
 }

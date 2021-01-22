@@ -52,18 +52,24 @@ export const getTagDeletionProps: GetTagDeletionProps = (
 
 // -----------------------------------
 
-const actionItemWidth = 82
+export const actionItemWidth = 82
 const actionItemMarginLeft = spacing.m
 
 export const useStyles = createUseStyles({
 	actionItem: {
 		color: blacks['lighten-50'],
 		marginLeft: actionItemMarginLeft,
+		position: 'relative',
 		width: actionItemWidth
 	},
-	enterIcon: { colors: blacks['lighten-30'] },
+	enterIcon: { color: blacks['lighten-30'], position: 'absolute', top: 5 },
 	firstText: { ...font.label, fontWeight: fontWeight.light },
-	secondText: { ...font.body, fontWeight: fontWeight.regular },
+	secondText: {
+		...font.body,
+		fontWeight: fontWeight.regular,
+		marginRight: spacing.xs
+	},
+	skeleton: { marginLeft: actionItemMarginLeft },
 	tag: {
 		marginBottom: spacing.s
 	},
