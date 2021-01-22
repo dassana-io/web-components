@@ -1,3 +1,4 @@
+import { ActionItem } from './ActionItem'
 import { BaseFieldProps } from 'components/Form/types'
 import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
@@ -160,23 +161,10 @@ export const ChipInput: FC<ChipInputProps> = ({
 					placeholder={placeholder}
 					value={inputValue}
 				/>
-				{loading ? (
-					<Skeleton
-						classes={[componentClasses.skeleton]}
-						height={32}
-						width={actionItemWidth}
-					/>
-				) : (
-					<div className={componentClasses.actionItem}>
-						<span className={componentClasses.firstText}>
-							press&nbsp;
-						</span>
-						<span className={componentClasses.secondText}>
-							enter
-						</span>
-						<span className={componentClasses.enterIcon}>↵</span>
-					</div>
-				)}
+				<ActionItem
+					actionItemWidth={actionItemWidth}
+					loading={loading}
+				/>
 			</div>
 			<div className={componentClasses.tagsWrapper}>
 				{loading ? renderSkeletenTags() : renderTags()}

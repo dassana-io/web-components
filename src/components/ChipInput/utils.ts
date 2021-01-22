@@ -59,23 +59,9 @@ export const getTagDeletionProps: GetTagDeletionProps = (
 // -----------------------------------
 
 export const actionItemWidth = 82
-const actionItemMarginLeft = spacing.m
 
 export const useStyles = createUseStyles({
-	actionItem: {
-		color: blacks['lighten-50'],
-		marginLeft: actionItemMarginLeft,
-		position: 'relative',
-		width: actionItemWidth
-	},
-	enterIcon: { color: blacks['lighten-30'], position: 'absolute', top: 5 },
-	firstText: { ...font.label, fontWeight: fontWeight.light },
-	secondText: {
-		...font.body,
-		fontWeight: fontWeight.regular,
-		marginRight: spacing.xs
-	},
-	skeleton: { marginLeft: actionItemMarginLeft },
+	skeleton: { marginLeft: spacing.m },
 	tag: {
 		marginBottom: spacing.s
 	},
@@ -84,7 +70,7 @@ export const useStyles = createUseStyles({
 		flexWrap: 'wrap',
 		width: ({ fullWidth }) =>
 			fullWidth
-				? `calc( 100% - ${actionItemWidth + actionItemMarginLeft}px)`
+				? `calc( 100% - ${actionItemWidth + spacing.m}px)`
 				: defaultFieldWidth
 	},
 	wrapper: {

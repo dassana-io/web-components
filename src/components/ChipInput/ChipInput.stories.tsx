@@ -41,3 +41,8 @@ ValidatedWithAddon.args = {
 	validate: (inputVal: string) =>
 		isValidDomain(inputVal) || 'Please enter a valid domain'
 }
+
+export const Loading = Template.bind({})
+Loading.args = {
+	loading: true
+}
