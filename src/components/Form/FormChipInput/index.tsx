@@ -1,7 +1,6 @@
 import { Input as AntDInput } from 'antd'
 import { BaseFieldProps } from '../types'
 import cn from 'classnames'
-import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { ChipInput, ChipInputProps } from 'components/ChipInput'
@@ -65,6 +64,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 					<ChipInput
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
+						errorMsg={errorMsg}
 						fullWidth={fullWidth}
 						inputRef={inputRef}
 						loading={loading}
@@ -75,11 +75,6 @@ const FormChipInput: FC<FormChipInputProps> = ({
 					/>
 				)}
 				rules={rules}
-			/>
-			<FieldError
-				classes={fieldErrorClasses}
-				error={errorMsg}
-				fullWidth={fullWidth}
 			/>
 		</div>
 	)

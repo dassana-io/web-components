@@ -1,6 +1,8 @@
+import { BaseFieldProps } from 'components/Form/types'
 import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
 import { EnterOutlined } from '@ant-design/icons'
+import FieldError from 'components/Form/FieldError'
 import { getDataTestAttributeProp } from 'components/utils'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { Tag } from 'components/Tag'
@@ -18,12 +20,19 @@ const {
 	colors: { blacks }
 } = styleguide
 
+export interface Validate {
+	(inputVal: string): boolean | string
+}
+
 export interface ChipInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
-		Pick<InputProps, 'inputRef' | 'onFocus'> {
+		Pick<InputProps, 'inputRef' | 'onFocus'>,
+		Pick<BaseFieldProps, 'fieldErrorClasses'> {
 	defaultValues?: string[]
+	errorMsg?: string
 	onChange?: (addedValues: string[]) => void
 	undeleteableValues?: string[]
+	validate?: Validate
 	values?: string[]
 }
 
@@ -33,6 +42,8 @@ export const ChipInput: FC<ChipInputProps> = ({
 	dataTag,
 	defaultValues,
 	error,
+	errorMsg = '',
+	fieldErrorClasses = [],
 	disabled = false,
 	inputRef,
 	onFocus,
@@ -40,6 +51,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	loading = false,
 	placeholder,
 	undeleteableValues = [],
+	validate,
 	values
 }: ChipInputProps) => {
 	const [addedValues, setAddedValues] = useState<string[]>(
@@ -47,6 +59,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	)
 	const [inputValue, setInputValue] = useState('')
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
+	const [localErrorMsg, setLocalErrorMsg] = useState('')
 
 	const componentClasses = useStyles({ fullWidth })
 
@@ -68,15 +81,26 @@ export const ChipInput: FC<ChipInputProps> = ({
 		if (onChange) onChange(newValues)
 	}
 
-	const onInputChange = (event: ChangeEvent<HTMLInputElement>) =>
+	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value.toLowerCase())
+		setLocalErrorMsg('')
+	}
 
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
 			e.stopPropagation()
 
-			if (!isInvalidValue && !disabled) addInputValue()
+			let validated
+
+			if (validate) {
+				validated = validate(inputValue)
+
+				if (typeof validated === 'string') setLocalErrorMsg(validated)
+			}
+
+			if (validated === true && !isInvalidValue && !disabled)
+				addInputValue()
 		}
 	}
 
@@ -108,7 +132,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 			<div className={componentClasses.wrapper}>
 				<Input
 					disabled={disabled}
-					error={error}
+					error={!!localErrorMsg || error}
 					fullWidth={fullWidth}
 					inputRef={inputRef}
 					loading={loading}
@@ -135,6 +159,11 @@ export const ChipInput: FC<ChipInputProps> = ({
 			<div className={componentClasses.tagsWrapper}>
 				{!loading && renderTags()}
 			</div>
+			<FieldError
+				classes={fieldErrorClasses}
+				error={localErrorMsg || errorMsg}
+				fullWidth={fullWidth}
+			/>
 		</div>
 	)
 }
