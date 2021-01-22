@@ -17,7 +17,8 @@ const Template: Story<ChipInputProps> = args => <ChipInput {...args} />
 export const Default = Template.bind({})
 Default.args = {
 	defaultValues: ['@lorem.com', '@ipsum.com'],
-	placeholder: '@yourdomain.com'
+	placeholder: '@yourdomain.com',
+	undeleteableValues: ['@lorem.com']
 }
 
 export const FullWidth = Template.bind({})

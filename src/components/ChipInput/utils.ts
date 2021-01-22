@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { TagProps } from 'components/Tag'
 import {
 	defaultFieldWidth,
 	styleguide
@@ -20,6 +21,36 @@ export const getInitialValues = (
 
 	return defaultValues ? defaultValues : []
 }
+
+// -----------------------------------
+
+interface GetTagDeletionProps {
+	(
+		value: string,
+		undeleteableValues: string[],
+		onDelete: (value: string) => void
+	): Pick<TagProps, 'deletable' | 'onDelete'>
+}
+export const getTagDeletionProps: GetTagDeletionProps = (
+	value,
+	undeleteableValues,
+	onDelete
+) => {
+	let tagDeletionProps = {}
+
+	if (undeleteableValues.includes(value)) {
+		tagDeletionProps = { deletable: false }
+	} else {
+		tagDeletionProps = {
+			deletable: true,
+			onDelete: () => onDelete(value)
+		}
+	}
+
+	return tagDeletionProps
+}
+
+// -----------------------------------
 
 const actionItemWidth = 82
 const actionItemMarginLeft = spacing.m

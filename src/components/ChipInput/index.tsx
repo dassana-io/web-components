@@ -4,7 +4,7 @@ import { EnterOutlined } from '@ant-design/icons'
 import { getDataTestAttributeProp } from 'components/utils'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { Tag } from 'components/Tag'
-import { getInitialValues, useStyles } from './utils'
+import { getInitialValues, getTagDeletionProps, useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
 import React, {
 	ChangeEvent,
@@ -23,6 +23,7 @@ export interface ChipInputProps
 		Pick<InputProps, 'inputRef' | 'onFocus'> {
 	defaultValues?: string[]
 	onChange?: (addedValues: string[]) => void
+	undeleteableValues?: string[]
 	values?: string[]
 }
 
@@ -38,6 +39,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	fullWidth,
 	loading = false,
 	placeholder,
+	undeleteableValues = [],
 	values
 }: ChipInputProps) => {
 	const [addedValues, setAddedValues] = useState<string[]>(
@@ -55,7 +57,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 
 		if (onChange) onChange(newValues)
 
-		resetInputValue()
+		setInputValue('')
 	}
 
 	const onDelete = (value: string) => {
@@ -78,7 +80,16 @@ export const ChipInput: FC<ChipInputProps> = ({
 		}
 	}
 
-	const resetInputValue = () => setInputValue('')
+	const renderTags = () =>
+		addedValues.map(value => (
+			<Tag
+				classes={[componentClasses.tag]}
+				key={value}
+				{...getTagDeletionProps(value, undeleteableValues, onDelete)}
+			>
+				{value}
+			</Tag>
+		))
 
 	useEffect(() => {
 		!inputValue || addedValues.includes(inputValue) || error
@@ -122,17 +133,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 				)}
 			</div>
 			<div className={componentClasses.tagsWrapper}>
-				{!loading &&
-					addedValues.map(value => (
-						<Tag
-							classes={[componentClasses.tag]}
-							deletable
-							key={value}
-							onDelete={() => onDelete(value)}
-						>
-							{value}
-						</Tag>
-					))}
+				{!loading && renderTags()}
 			</div>
 		</div>
 	)
