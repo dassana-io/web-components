@@ -5,13 +5,7 @@ import {
 	styleguide
 } from 'components/assets/styles/styleguide'
 
-const {
-	colors: { blacks },
-	flexAlignCenter,
-	font,
-	fontWeight,
-	spacing
-} = styleguide
+const { flexAlignCenter, spacing } = styleguide
 
 export const getInitialValues = (
 	values?: string[],
@@ -58,7 +52,7 @@ export const getTagDeletionProps: GetTagDeletionProps = (
 
 // -----------------------------------
 
-export const actionItemWidth = 82
+export const shortcutMicrocopyWidth = 82
 
 export const useStyles = createUseStyles({
 	skeleton: { marginLeft: spacing.m },
@@ -70,7 +64,7 @@ export const useStyles = createUseStyles({
 		flexWrap: 'wrap',
 		width: ({ fullWidth }) =>
 			fullWidth
-				? `calc( 100% - ${actionItemWidth + spacing.m}px)`
+				? `calc( 100% - ${shortcutMicrocopyWidth + spacing.m}px)`
 				: defaultFieldWidth
 	},
 	wrapper: {

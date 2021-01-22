@@ -348,10 +348,10 @@ exports[`Storyshots ChipInput Default 1`] = `
         value=""
       />
       <div
-        className="actionItem-0-1-16 actionItem-d0-0-1-21"
+        className="container-0-1-16 container-d0-0-1-21"
       >
         <span
-          className="firstText-0-1-18"
+          className="firstText-0-1-17"
         >
           press 
         </span>
@@ -361,7 +361,7 @@ exports[`Storyshots ChipInput Default 1`] = `
           enter
         </span>
         <span
-          className="enterIcon-0-1-17"
+          className="icon-0-1-18"
         >
           ↵
         </span>
@@ -446,10 +446,10 @@ exports[`Storyshots ChipInput Full Width 1`] = `
         value=""
       />
       <div
-        className="actionItem-0-1-16 actionItem-d1-0-1-26"
+        className="container-0-1-16 container-d1-0-1-26"
       >
         <span
-          className="firstText-0-1-18"
+          className="firstText-0-1-17"
         >
           press 
         </span>
@@ -459,7 +459,7 @@ exports[`Storyshots ChipInput Full Width 1`] = `
           enter
         </span>
         <span
-          className="enterIcon-0-1-17"
+          className="icon-0-1-18"
         >
           ↵
         </span>
@@ -568,10 +568,10 @@ exports[`Storyshots ChipInput Validated With Addon 1`] = `
         </span>
       </span>
       <div
-        className="actionItem-0-1-16 actionItem-d2-0-1-30"
+        className="container-0-1-16 container-d2-0-1-30"
       >
         <span
-          className="firstText-0-1-18"
+          className="firstText-0-1-17"
         >
           press 
         </span>
@@ -581,7 +581,7 @@ exports[`Storyshots ChipInput Validated With Addon 1`] = `
           enter
         </span>
         <span
-          className="enterIcon-0-1-17"
+          className="icon-0-1-18"
         >
           ↵
         </span>

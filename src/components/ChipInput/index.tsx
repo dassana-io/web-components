@@ -1,16 +1,16 @@
-import { ActionItem } from './ActionItem'
 import { BaseFieldProps } from 'components/Form/types'
 import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
 import FieldError from 'components/Form/FieldError'
 import { getDataTestAttributeProp } from 'components/utils'
+import { ShortcutMicrocopy } from 'components/ShortcutMicrocopy'
 import { Skeleton } from 'components/Skeleton'
 import { Tag } from 'components/Tag'
 import {
-	actionItemWidth,
 	getInitialValues,
 	getInputValue,
 	getTagDeletionProps,
+	shortcutMicrocopyWidth,
 	useStyles
 } from './utils'
 import { Input, InputProps } from 'components/Input'
@@ -161,9 +161,9 @@ export const ChipInput: FC<ChipInputProps> = ({
 					placeholder={placeholder}
 					value={inputValue}
 				/>
-				<ActionItem
-					actionItemWidth={actionItemWidth}
+				<ShortcutMicrocopy
 					loading={loading}
+					width={shortcutMicrocopyWidth}
 				/>
 			</div>
 			<div className={componentClasses.tagsWrapper}>

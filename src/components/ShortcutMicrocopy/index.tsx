@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Skeleton } from 'components/Skeleton'
 import { styleguide } from 'components/assets/styles/styleguide'
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 const {
 	colors: { blacks },
@@ -12,17 +12,17 @@ const {
 } = styleguide
 
 const useStyles = createUseStyles({
-	actionItem: {
+	container: {
 		color: blacks['lighten-50'],
 		marginLeft: spacing.m,
-		width: ({ actionItemWidth }) => actionItemWidth
+		width: ({ width }) => width
 	},
-	enterIcon: {
+	firstText: { ...font.label, fontWeight: fontWeight.light },
+	icon: {
 		color: blacks['lighten-30'],
 		height: 22,
 		verticalAlign: 'middle'
 	},
-	firstText: { ...font.label, fontWeight: fontWeight.light },
 	secondText: {
 		...font.body,
 		fontWeight: fontWeight.regular,
@@ -31,30 +31,32 @@ const useStyles = createUseStyles({
 	skeleton: { marginLeft: spacing.m }
 })
 
-export interface ActionItemProps {
-	actionItemWidth?: number
+export interface ShortcutMicrocopyProps {
 	classes?: string[]
+	icon?: ReactNode
 	loading?: boolean
+	width?: number
 }
 
-export const ActionItem: FC<ActionItemProps> = ({
-	actionItemWidth = 82,
+export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 	classes = [],
-	loading = false
-}: ActionItemProps) => {
-	const componentClasses = useStyles({ actionItemWidth })
+	icon = '↵',
+	loading = false,
+	width = 82
+}: ShortcutMicrocopyProps) => {
+	const componentClasses = useStyles({ width })
 
 	return loading ? (
 		<Skeleton
 			classes={[componentClasses.skeleton]}
 			height={32}
-			width={actionItemWidth}
+			width={width}
 		/>
 	) : (
-		<div className={cn(componentClasses.actionItem, classes)}>
+		<div className={cn(componentClasses.container, classes)}>
 			<span className={componentClasses.firstText}>press&nbsp;</span>
 			<span className={componentClasses.secondText}>enter</span>
-			<span className={componentClasses.enterIcon}>↵</span>
+			<span className={componentClasses.icon}>{icon}</span>
 		</div>
 	)
 }
