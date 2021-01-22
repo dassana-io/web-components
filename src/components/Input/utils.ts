@@ -14,8 +14,10 @@ export const generateInputStyles = (themeType: ThemeType) => {
 	return {
 		'&.ant-input': {
 			'&$error': {
-				...fieldErrorStyles.error,
-				borderColor: error.borderColor
+				'&$container': {
+					...fieldErrorStyles.error,
+					borderColor: error.borderColor
+				}
 			},
 			'&::placeholder': {
 				color: placeholder.color
