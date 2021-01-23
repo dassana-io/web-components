@@ -52,8 +52,6 @@ export const getTagDeletionProps: GetTagDeletionProps = (
 
 // -----------------------------------
 
-export const shortcutMicrocopyWidth = 82
-
 export const useStyles = createUseStyles({
 	skeleton: { marginLeft: spacing.m },
 	tag: {
@@ -62,9 +60,9 @@ export const useStyles = createUseStyles({
 	tagsWrapper: {
 		display: 'flex',
 		flexWrap: 'wrap',
-		width: ({ fullWidth }) =>
+		width: ({ fullWidth, shortcutMicrocopyWidth }) =>
 			fullWidth
-				? `calc( 100% - ${shortcutMicrocopyWidth + spacing.m}px)`
+				? `calc( 100% - ${shortcutMicrocopyWidth}px)`
 				: defaultFieldWidth
 	},
 	wrapper: {

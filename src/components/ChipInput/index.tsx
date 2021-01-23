@@ -8,7 +8,6 @@ import {
 	getInitialValues,
 	getInputValue,
 	getTagDeletionProps,
-	shortcutMicrocopyWidth,
 	useStyles
 } from './utils'
 import { Input, InputProps } from 'components/Input'
@@ -17,6 +16,8 @@ import React, {
 	FC,
 	KeyboardEvent,
 	useEffect,
+	useLayoutEffect,
+	useRef,
 	useState
 } from 'react'
 
@@ -57,6 +58,8 @@ export const ChipInput: FC<ChipInputProps> = ({
 	validate,
 	values
 }: ChipInputProps) => {
+	const shortcutMicrocopyRef = useRef<HTMLDivElement>(null)
+
 	const [addedValues, setAddedValues] = useState<string[]>(
 		getInitialValues(values, defaultValues)
 	)
@@ -64,8 +67,9 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
 	const [localError, setLocalError] = useState(false)
 	const [localErrorMsg, setLocalErrorMsg] = useState('')
+	const [shortcutMicrocopyWidth, setShortcutMicrocopyWidth] = useState(101)
 
-	const componentClasses = useStyles({ fullWidth })
+	const componentClasses = useStyles({ fullWidth, shortcutMicrocopyWidth })
 
 	const addInputValue = () => {
 		const newValues = [
@@ -148,6 +152,11 @@ export const ChipInput: FC<ChipInputProps> = ({
 			: setIsInvalidValue(false)
 	}, [addedValues, inputValue, localError, error])
 
+	useLayoutEffect(() => {
+		if (shortcutMicrocopyRef && shortcutMicrocopyRef.current)
+			setShortcutMicrocopyWidth(shortcutMicrocopyRef.current.scrollWidth)
+	}, [])
+
 	if (values && !onChange)
 		throw new Error('Controlled chip inputs require an onChange prop')
 
@@ -172,7 +181,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 				/>
 				<ShortcutMicrocopy
 					loading={loading}
-					width={shortcutMicrocopyWidth}
+					shortcutMicrocopyRef={shortcutMicrocopyRef}
 				/>
 			</div>
 			<div className={componentClasses.tagsWrapper}>
