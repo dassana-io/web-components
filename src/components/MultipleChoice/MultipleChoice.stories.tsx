@@ -1,10 +1,25 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
 import { themedModalStyles } from 'components/Modal/utils'
-import { useTheme } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { MultipleChoice, MultipleChoiceProps } from './index'
-import React, { FC } from 'react'
+import React, { FC, Fragment, useRef } from 'react'
+
+const useStyles = createUseStyles({
+	eventTarget: ({ theme }) => ({
+		'&:focus': {
+			outline: 'none'
+		},
+		...themedModalStyles(theme.type),
+		border: `1px solid ${theme.text.disabled}`,
+		padding: 60
+	}),
+	text: {
+		color: ({ theme }) => theme.text.primary,
+		fontWeight: 300
+	}
+})
 
 export default {
 	argTypes: {
@@ -13,37 +28,39 @@ export default {
 		popupContainerSelector: { control: { disable: true } },
 		skeletonItemCount: { control: 'number' }
 	},
-	decorators: [
-		(MultiChoiceStory: Story) => {
-			const theme: SbTheme = useTheme()
-
-			return (
-				<div style={{ ...themedModalStyles(theme.type), padding: 60 }}>
-					<MultiChoiceStory />
-				</div>
-			)
-		}
-	],
 	title: 'MultipleChoice'
 } as Meta
 
-const ThemedMultiChoice: FC<MultipleChoiceProps> = (
+const ThemedMultipleChoice: FC<MultipleChoiceProps> = (
 	props: MultipleChoiceProps
 ) => {
 	const theme: SbTheme = useTheme()
+	const divRef = useRef<HTMLDivElement>(null)
+
+	const classes = useStyles({ theme })
 
 	const popupContainerSelector = `.${theme.type}`
 
+	const getEventTarget = () => divRef
+
 	return (
-		<MultipleChoice
-			popupContainerSelector={popupContainerSelector}
-			{...props}
-		/>
+		<Fragment key={theme.type}>
+			<h3 className={classes.text}>
+				Click on the bordered box to give focus to the component
+			</h3>
+			<div className={classes.eventTarget} ref={divRef} tabIndex={0}>
+				<MultipleChoice
+					{...props}
+					getEventTarget={getEventTarget}
+					popupContainerSelector={popupContainerSelector}
+				/>
+			</div>
+		</Fragment>
 	)
 }
 
 const Template: Story<MultipleChoiceProps> = args => (
-	<ThemedMultiChoice {...args} />
+	<ThemedMultipleChoice {...args} />
 )
 
 const items = [

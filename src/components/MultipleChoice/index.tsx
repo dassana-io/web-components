@@ -9,12 +9,13 @@ import {
 	isEnglishAlphabet,
 	useStyles
 } from './utils'
-import React, { FC, Key, KeyboardEvent, useState } from 'react'
+import React, { FC, Key, useCallback, useEffect, useState } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	classes = [],
 	dataTag,
 	defaultSelectedKeys,
+	getEventTarget,
 	items,
 	loading = false,
 	onChange,
@@ -28,31 +29,50 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		getInitialSelectedKeys(keys ? keys : defaultSelectedKeys)
 	)
 
-	const onSelectedKeyChange = (key: Key) => {
-		const newSelectedKeys = {
-			...selectedKeys,
-			[key]: !selectedKeys[key]
-		}
+	const onSelectedKeyChange = useCallback(
+		(key: Key) => {
+			const newSelectedKeys = {
+				...selectedKeys,
+				[key]: !selectedKeys[key]
+			}
 
-		setSelectedKeys(newSelectedKeys)
+			setSelectedKeys(newSelectedKeys)
 
-		onChange(getSelectedKeysArr(items, newSelectedKeys))
-	}
+			onChange(getSelectedKeysArr(items, newSelectedKeys))
+		},
+		[items, onChange, selectedKeys]
+	)
 
 	if (keys && !onChange) {
 		throw new Error('Controlled components require an onChange prop')
 	}
 
-	const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-		if (isEnglishAlphabet(e.key)) {
-			e.preventDefault()
-			e.stopPropagation()
+	useEffect(() => {
+		const onKeyDown = (e: KeyboardEvent) => {
+			if (isEnglishAlphabet(e.key)) {
+				e.preventDefault()
+				e.stopPropagation()
 
-			const index = e.key.toUpperCase().charCodeAt(0) - 65
+				const index = e.key.toUpperCase().charCodeAt(0) - 65
 
-			onSelectedKeyChange(items[index].key)
+				onSelectedKeyChange(items[index].key)
+			}
 		}
-	}
+
+		const eventTargetRef = getEventTarget && getEventTarget()
+
+		if (eventTargetRef && eventTargetRef.current) {
+			const target = eventTargetRef.current
+
+			target.addEventListener('keydown', onKeyDown)
+
+			return () => target.removeEventListener('keydown', onKeyDown)
+		} else {
+			window.addEventListener('keydown', onKeyDown)
+
+			return () => window.removeEventListener('keydown', onKeyDown)
+		}
+	}, [getEventTarget, items, onSelectedKeyChange])
 
 	if (items.length > 26)
 		throw new Error(
@@ -60,10 +80,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		)
 
 	return (
-		<div
-			className={cn(componentClasses.container, classes)}
-			onKeyDown={onKeyDown}
-		>
+		<div className={cn(componentClasses.container, classes)}>
 			{loading ? (
 				<MultipleChoiceSkeleton count={skeletonItemCount} />
 			) : (
