@@ -9,19 +9,26 @@ import React, { FC, KeyboardEvent } from 'react'
 export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	index: number
 	isSelected?: boolean
+	itemsCount: number
 	onSelectedChange: (value: string) => void
 	popupContainerSelector?: string
+	singleColumnItemsCount?: number
 }
 
 const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	index,
 	isSelected = false,
+	itemsCount,
 	value,
 	label,
 	onSelectedChange,
-	popupContainerSelector
+	popupContainerSelector,
+	singleColumnItemsCount = 8
 }: MultipleChoiceItemProps) => {
-	const classes = useMultipleChoiceItemStyles()
+	const classes = useMultipleChoiceItemStyles({
+		itemsCount,
+		singleColumnItemsCount
+	})
 
 	const componentClasses = {
 		[classes.multipleChoiceItem]: true,

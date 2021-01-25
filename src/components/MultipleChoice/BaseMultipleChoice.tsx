@@ -11,18 +11,20 @@ interface SharedBaseMultipleChoiceProps
 	onSelectedChange: (value: string) => void
 }
 
-interface SingleBaseMultipleChoiceProps {
+interface SingleBaseMultipleChoiceProps extends SharedBaseMultipleChoiceProps {
 	mode: 'single'
 	value: string
 }
 
-interface MultipleBaseMultipleChoiceProps {
+interface MultipleBaseMultipleChoiceProps
+	extends SharedBaseMultipleChoiceProps {
 	mode: 'multiple'
 	values: Record<string, boolean>
 }
 
-type BaseMultipleChoiceProps = SharedBaseMultipleChoiceProps &
-	(SingleBaseMultipleChoiceProps | MultipleBaseMultipleChoiceProps)
+type BaseMultipleChoiceProps =
+	| SingleBaseMultipleChoiceProps
+	| MultipleBaseMultipleChoiceProps
 
 export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 	props: BaseMultipleChoiceProps
@@ -35,10 +37,11 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 		loading = false,
 		onSelectedChange,
 		popupContainerSelector,
+		singleColumnItemsCount = 8,
 		skeletonItemCount = 4
 	} = props
 
-	const componentClasses = useStyles()
+	const componentClasses = useStyles(props)
 
 	useEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
@@ -75,7 +78,11 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 	return (
 		<div className={cn(componentClasses.container, classes)}>
 			{loading ? (
-				<MultipleChoiceSkeleton count={skeletonItemCount} />
+				<MultipleChoiceSkeleton
+					count={skeletonItemCount}
+					itemsCount={items.length}
+					singleColumnItemsCount={singleColumnItemsCount}
+				/>
 			) : (
 				items.map(({ value, label }, index) => {
 					const isSelected =
@@ -87,10 +94,12 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 						<MultipleChoiceItem
 							index={index}
 							isSelected={isSelected}
+							itemsCount={items.length}
 							key={value}
 							label={label}
 							onSelectedChange={onSelectedChange}
 							popupContainerSelector={popupContainerSelector}
+							singleColumnItemsCount={singleColumnItemsCount}
 							value={value}
 							{...getDataTestAttributeProp(
 								'multiple-choice',

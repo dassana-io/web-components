@@ -3,18 +3,11 @@ import { MultipleMultipleChoiceProps } from './types'
 import { getInitialSelectedValues, getSelectedValuesArr } from './utils'
 import React, { FC, useCallback, useState } from 'react'
 
-export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = ({
-	classes = [],
-	dataTag,
-	defaultValues,
-	getEventTarget,
-	items,
-	loading = false,
-	onChange,
-	popupContainerSelector,
-	skeletonItemCount = 4,
-	values
-}: MultipleMultipleChoiceProps) => {
+export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = (
+	props: MultipleMultipleChoiceProps
+) => {
+	const { defaultValues, items, onChange, values } = props
+
 	const [selectedValues, setSelectedValues] = useState<
 		Record<string, boolean>
 	>(getInitialSelectedValues(values ? values : defaultValues))
@@ -40,15 +33,10 @@ export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = ({
 
 	return (
 		<BaseMultipleChoice
-			classes={classes}
-			dataTag={dataTag}
-			getEventTarget={getEventTarget}
+			{...props}
 			items={items}
-			loading={loading}
 			mode={'multiple'}
 			onSelectedChange={onSelectedChange}
-			popupContainerSelector={popupContainerSelector}
-			skeletonItemCount={skeletonItemCount}
 			values={selectedValues}
 		/>
 	)

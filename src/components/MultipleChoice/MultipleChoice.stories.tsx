@@ -26,6 +26,7 @@ export default {
 		loading: { control: 'boolean' },
 		onChange: { defaultValue: action('onChange') },
 		popupContainerSelector: { control: { disable: true } },
+		singleColumnItemsCount: { control: 'number', defaultValue: 8 },
 		skeletonItemCount: { control: 'number' }
 	},
 	title: 'MultipleChoice'
@@ -91,4 +92,9 @@ Single.args = {
 	defaultValue: 'sr-leadership',
 	items: multichoiceItems,
 	mode: 'single'
+}
+
+export const SingleColumn = Template.bind({})
+SingleColumn.args = {
+	items: multichoiceItems.slice(2)
 }

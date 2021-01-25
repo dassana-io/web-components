@@ -39,22 +39,42 @@ export const isEnglishAlphabet = (str: string) =>
 
 /* ------ MultipleChoice Container Styles ------ */
 
-const gridGap = spacing.m
+export const gridGap = spacing.m
+
+const generateContainerStyles = ({
+	itemsCount,
+	singleColumnItemsCount
+}: {
+	itemsCount: number
+	singleColumnItemsCount: number
+}) => {
+	let styles = {}
+
+	if (itemsCount > singleColumnItemsCount) {
+		styles = {
+			gridAutoFlow: 'row',
+			gridGap,
+			gridTemplateColumns: `calc(50% - ${gridGap / 2}px) calc(50% - ${
+				gridGap / 2
+			}px)`
+		}
+	}
+
+	return styles
+}
 
 export const useStyles = createUseStyles({
-	container: {
+	container: ({ items, singleColumnItemsCount }) => ({
+		...generateContainerStyles({
+			itemsCount: items.length,
+			singleColumnItemsCount
+		}),
 		'&:focus': { outline: 'none' },
 		backgroundColor: 'transparent',
 		display: 'grid',
-		gridAutoFlow: 'row',
-		gridAutoRows: 40,
-		gridGap,
-		gridTemplateColumns: `calc(50% - ${gridGap / 2}px) calc(50% - ${
-			gridGap / 2
-		}px)`,
 		overflow: 'auto',
 		width: '100%'
-	}
+	})
 })
 
 /* -x-x-x-x-x- MultipleChoiceItem Styles -x-x-x-x-x- */
@@ -153,6 +173,7 @@ const generateThemedMCItemStyles = (themeType: ThemeType) => {
 	}
 }
 
+export const itemHeight = 40
 const keyDimension = 22
 
 export const useMultipleChoiceItemStyles = createUseStyles({
@@ -182,10 +203,15 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		borderRadius,
 		cursor: 'pointer',
 		fontWeight: fontWeight.light,
-		height: '100%',
+		height: itemHeight,
+		marginBottom: ({ itemsCount, singleColumnItemsCount }) =>
+			itemsCount > singleColumnItemsCount ? 0 : gridGap,
 		position: 'relative'
 	},
-	tooltipTrigger: { height: '100%' },
+	tooltipTrigger: {
+		'&:last-of-type $multipleChoiceItem': { marginBottom: 0 },
+		height: '100%'
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {

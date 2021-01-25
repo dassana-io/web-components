@@ -18,6 +18,11 @@ export interface SharedMultiChoiceProps
 	 */
 	popupContainerSelector?: string
 	skeletonItemCount?: number
+	/**
+	 * The number of items at which items split into two columns
+	 * @default 8
+	 */
+	singleColumnItemsCount?: number
 }
 
 export interface SingleMultiChoiceProps extends SharedMultiChoiceProps {
