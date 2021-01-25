@@ -46,18 +46,25 @@ const Template: Story<MultipleChoiceProps> = args => (
 	<ThemedMultiChoice {...args} />
 )
 
+const items = [
+	'CISCO',
+	'Sr Leadership',
+	'SecOps',
+	'Cloud Architect',
+	'DevOps',
+	'NetSec',
+	'AppDev',
+	'Compliance',
+	'Other'
+]
+
+const multichoiceItems = items.map(item => ({
+	key: item.toLowerCase().split(' ').join('-'),
+	label: item
+}))
+
 export const Default = Template.bind({})
 Default.args = {
-	defaultSelectedKeys: [4, 5],
-	items: [
-		{ key: 0, label: 'CISCO' },
-		{ key: 1, label: 'Sr Leadership' },
-		{ key: 3, label: 'SecOps' },
-		{ key: 4, label: 'Cloud Architect' },
-		{ key: 5, label: 'DevOps' },
-		{ key: 6, label: 'NetSec' },
-		{ key: 7, label: 'AppDev' },
-		{ key: 8, label: 'Compliance' },
-		{ key: 9, label: 'Other' }
-	]
+	defaultSelectedKeys: ['sr-leadership', 'devops'],
+	items: multichoiceItems
 }

@@ -20,8 +20,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	onChange,
 	popupContainerSelector,
 	keys,
-	skeletonItemCount = 4,
-	tabIndex = 0
+	skeletonItemCount = 4
 }: MultipleChoiceProps) => {
 	const componentClasses = useStyles()
 
@@ -44,7 +43,7 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		throw new Error('Controlled components require an onChange prop')
 	}
 
-	const onKeyDown = (e: KeyboardEvent) => {
+	const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
 		if (isEnglishAlphabet(e.key)) {
 			e.preventDefault()
 			e.stopPropagation()
@@ -64,7 +63,6 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		<div
 			className={cn(componentClasses.container, classes)}
 			onKeyDown={onKeyDown}
-			tabIndex={tabIndex}
 		>
 			{loading ? (
 				<MultipleChoiceSkeleton count={skeletonItemCount} />

@@ -71,14 +71,14 @@ const multipleChoiceItemPalette = {
 	},
 	[light]: {
 		active: {
-			border: blacks['lighten-80']
+			border: blacks['lighten-70']
 		},
 		base: {
 			background: whites.base,
 			border: blacks['lighten-80'],
 			text: blacks['lighten-30']
 		},
-		hover: { background: grays['lighten-40'] }
+		hover: { background: grays['lighten-70'] }
 	}
 }
 
@@ -136,6 +136,11 @@ const generateThemedMCItemStyles = (themeType: ThemeType) => {
 				color: keyPalette[themeType].active.text
 			},
 			borderColor: active.border
+		},
+		'&:focus': {
+			background: hover.background,
+			borderColor: active.border,
+			outline: 'none'
 		},
 		'&:hover': {
 			background: hover.background

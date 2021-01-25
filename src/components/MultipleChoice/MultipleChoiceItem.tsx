@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MultipleChoiceItemConfig } from '.'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
-import React, { FC, Key } from 'react'
+import React, { FC, Key, KeyboardEvent } from 'react'
 
 export interface MultipleChoiceItemProps
 	extends Omit<MultipleChoiceItemConfig, 'key'> {
@@ -34,6 +34,15 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 
 	const uppercaseKey = String.fromCharCode(index + 65)
 
+	const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			e.stopPropagation()
+
+			handleChange()
+		}
+	}
+
 	return (
 		<Tooltip
 			placement='left'
@@ -41,7 +50,12 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 			title={`Key ${uppercaseKey}`}
 			tooltipTriggerClasses={[classes.tooltipTrigger]}
 		>
-			<div className={cn(componentClasses)} onClick={handleChange}>
+			<div
+				className={cn(componentClasses)}
+				onClick={handleChange}
+				onKeyDown={onKeyDown}
+				tabIndex={0}
+			>
 				<div className={classes.key}>{uppercaseKey}</div>
 				<span>{label}</span>
 				{isSelected && (
