@@ -1,5 +1,3 @@
-import { BaseFieldProps } from 'components/Form/types'
-import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
 import FieldError from 'components/Form/FieldError'
 import { getDataTestAttributeProp } from 'components/utils'
@@ -27,12 +25,11 @@ export interface Validate {
 }
 
 export interface ChipInputProps
-	extends Omit<BaseFormElementProps, 'onChange' | 'value'>,
-		Pick<InputProps, 'addonAfter' | 'addonBefore' | 'inputRef' | 'onFocus'>,
-		Pick<BaseFieldProps, 'fieldErrorClasses'> {
+	extends Omit<InputProps, 'onChange' | 'onKeyDown' | 'type' | 'value'> {
 	clearErrros?: () => void
 	defaultValues?: string[]
 	errorMsg?: string
+	fieldErrorClasses?: string[]
 	onChange?: (addedValues: string[]) => void
 	undeleteableValues?: string[]
 	validate?: Validate
