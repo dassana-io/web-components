@@ -10,8 +10,8 @@ const MultipleChoiceSkeleton: FC<MultipleChoiceSkeletonProps> = ({
 	count
 }: MultipleChoiceSkeletonProps) => (
 	<>
-		{times(count, _ => (
-			<Skeleton height={40} />
+		{times(count, i => (
+			<Skeleton height={40} key={i} />
 		))}
 	</>
 )

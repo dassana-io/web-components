@@ -2,18 +2,26 @@ import { Button } from '../Button'
 import { Emitter } from '@dassana-io/web-utils'
 import { ModalConfig } from './utils'
 import React from 'react'
+import { SbTheme } from '../../../.storybook/preview'
+import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { ModalProvider, useModal } from './index'
-
 const mockEmitter = new Emitter()
 
 export default {
 	decorators: [
-		Story => (
-			<ModalProvider emitter={mockEmitter}>
-				<Story />
-			</ModalProvider>
-		)
+		Story => {
+			const theme: SbTheme = useTheme()
+
+			return (
+				<ModalProvider
+					emitter={mockEmitter}
+					popupContainerSelector={`.${theme.type}`}
+				>
+					<Story />
+				</ModalProvider>
+			)
+		}
 	],
 	title: 'Modal'
 } as Meta

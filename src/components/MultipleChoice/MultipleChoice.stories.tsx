@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
+import { themedModalStyles } from 'components/Modal/utils'
 import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { MultipleChoice, MultipleChoiceProps } from './index'
@@ -13,11 +14,15 @@ export default {
 		skeletonItemCount: { control: 'number' }
 	},
 	decorators: [
-		(MultiChoiceStory: Story) => (
-			<div style={{ padding: 60 }}>
-				<MultiChoiceStory />
-			</div>
-		)
+		(MultiChoiceStory: Story) => {
+			const theme: SbTheme = useTheme()
+
+			return (
+				<div style={{ ...themedModalStyles(theme.type), padding: 60 }}>
+					<MultiChoiceStory />
+				</div>
+			)
+		}
 	],
 	title: 'MultipleChoice'
 } as Meta
