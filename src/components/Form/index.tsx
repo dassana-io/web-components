@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
+import FormChipInput from './FormChipInput'
 import FormInput from './FormInput'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
@@ -67,6 +68,7 @@ export function Form<Model>({
 }
 
 Form.SubmitButton = FormSubmitButton
+Form.ChipInput = FormChipInput
 Form.Input = FormInput
 Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect

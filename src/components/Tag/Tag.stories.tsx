@@ -9,7 +9,7 @@ export default {
 		color: {
 			control: 'color'
 		},
-		onClose: { defaultValue: action('onClose') }
+		onDelete: { defaultValue: action('onDelete') }
 	},
 	component: Tag,
 	title: 'Tag'
