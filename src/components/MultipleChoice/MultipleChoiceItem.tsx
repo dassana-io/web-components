@@ -1,26 +1,24 @@
 import cn from 'classnames'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { MultipleChoiceItemConfig } from '.'
+import { MultipleChoiceItemConfig } from './types'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
 import React, { FC, Key, KeyboardEvent } from 'react'
 
-export interface MultipleChoiceItemProps
-	extends Omit<MultipleChoiceItemConfig, 'key'> {
+export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	index: number
 	isSelected?: boolean
-	itemKey: Key
-	onSelectedKeyChange: (key: Key) => void
+	onSelectedChange: (value: Key) => void
 	popupContainerSelector?: string
 }
 
 const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	index,
 	isSelected = false,
-	itemKey,
+	value,
 	label,
-	onSelectedKeyChange,
+	onSelectedChange,
 	popupContainerSelector
 }: MultipleChoiceItemProps) => {
 	const classes = useMultipleChoiceItemStyles()
@@ -30,7 +28,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 		[classes.activeItem]: isSelected
 	}
 
-	const handleChange = () => onSelectedKeyChange(itemKey)
+	const handleChange = () => onSelectedChange(value)
 
 	const uppercaseKey = String.fromCharCode(index + 65)
 

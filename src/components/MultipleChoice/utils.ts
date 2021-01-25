@@ -15,7 +15,10 @@ const {
 	fontWeight
 } = styleguide
 
-export const getInitialSelectedKeys = (defaultSelected?: Key[]) => {
+export const getInitialSelectedValue = (defaultSelected?: string) =>
+	defaultSelected ? defaultSelected : ''
+
+export const getInitialSelectedValues = (defaultSelected?: Key[]) => {
 	if (!defaultSelected) return {}
 
 	const selectedKeysObj: Record<string, boolean> = {}
@@ -27,10 +30,10 @@ export const getInitialSelectedKeys = (defaultSelected?: Key[]) => {
 	return selectedKeysObj
 }
 
-export const getSelectedKeysArr = (
+export const getSelectedValuesArr = (
 	items: MultipleChoiceItemConfig[],
 	selectedKeys: Record<string, boolean>
-) => items.filter(item => !!selectedKeys[item.key]).map(item => item.key)
+) => items.filter(item => !!selectedKeys[item.value]).map(item => item.value)
 
 export const isEnglishAlphabet = (str: string) =>
 	str.length === 1 && /[a-z]/i.test(str)

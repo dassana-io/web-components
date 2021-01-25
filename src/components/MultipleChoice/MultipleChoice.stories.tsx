@@ -46,7 +46,7 @@ const ThemedMultipleChoice: FC<MultipleChoiceProps> = (
 	return (
 		<Fragment key={theme.type}>
 			<h3 className={classes.text}>
-				Click on the bordered box to give focus to the component
+				Click on the bordered box to use keyboard shortcuts
 			</h3>
 			<div className={classes.eventTarget} ref={divRef} tabIndex={0}>
 				<MultipleChoice
@@ -76,12 +76,19 @@ const items = [
 ]
 
 const multichoiceItems = items.map(item => ({
-	key: item.toLowerCase().split(' ').join('-'),
-	label: item
+	label: item,
+	value: item.toLowerCase().split(' ').join('-')
 }))
 
-export const Default = Template.bind({})
-Default.args = {
-	defaultSelectedKeys: ['sr-leadership', 'devops'],
+export const Multiple = Template.bind({})
+Multiple.args = {
+	defaultValues: ['sr-leadership', 'devops'],
 	items: multichoiceItems
+}
+
+export const Single = Template.bind({})
+Single.args = {
+	defaultValue: 'sr-leadership',
+	items: multichoiceItems,
+	mode: 'single'
 }
