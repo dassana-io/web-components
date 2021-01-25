@@ -1,9 +1,9 @@
 import { BaseFormElementProps } from 'components/types'
-import { Key, RefObject } from 'react'
+import { RefObject } from 'react'
 
 export interface MultipleChoiceItemConfig {
 	label: string
-	value: Key
+	value: string
 }
 
 export interface SharedMultiChoiceProps
@@ -23,7 +23,7 @@ export interface SharedMultiChoiceProps
 export interface SingleMultiChoiceProps extends SharedMultiChoiceProps {
 	defaultValue?: string
 	mode: 'single'
-	onChange?: (value: Key) => void
+	onChange?: (value: string) => void
 	value?: string
 }
 
@@ -31,10 +31,10 @@ export interface MultipleMultipleChoiceProps extends SharedMultiChoiceProps {
 	/**
 	 * Default selected values for multi choice component. Gets overwritten by values if both are provided
 	 */
-	defaultValues?: Key[]
+	defaultValues?: string[]
 	mode?: 'multiple'
-	onChange?: (values: Key[]) => void
-	values?: Key[]
+	onChange?: (values: string[]) => void
+	values?: string[]
 }
 
 export type MultipleChoiceProps =

@@ -1,5 +1,4 @@
 import { createUseStyles } from 'react-jss'
-import { Key } from 'react'
 import { MultipleChoiceItemConfig } from './types'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -18,7 +17,7 @@ const {
 export const getInitialSelectedValue = (defaultSelected?: string) =>
 	defaultSelected ? defaultSelected : ''
 
-export const getInitialSelectedValues = (defaultSelected?: Key[]) => {
+export const getInitialSelectedValues = (defaultSelected?: string[]) => {
 	if (!defaultSelected) return {}
 
 	const selectedKeysObj: Record<string, boolean> = {}

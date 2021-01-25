@@ -15,6 +15,7 @@ export interface FormMultipleChoiceProps
 const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 	label,
 	labelSkeletonWidth,
+	mode,
 	name,
 	required,
 	rules = {},
@@ -42,14 +43,25 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 				control={control}
 				name={name}
 				render={({ onChange, value }) => {
-					return (
+					return mode === 'single' ? (
 						<MultipleChoice
 							dataTag={getFormFieldDataTag(name)}
-							keys={value}
 							loading={loading}
-							onChange={selectedKeys => {
-								onChange(selectedKeys)
+							mode='single'
+							onChange={(value: string) => {
+								onChange(value)
 							}}
+							value={value as string}
+							{...rest}
+						/>
+					) : (
+						<MultipleChoice
+							dataTag={getFormFieldDataTag(name)}
+							loading={loading}
+							onChange={(values: string[]) => {
+								onChange(values)
+							}}
+							values={value as string[]}
 							{...rest}
 						/>
 					)

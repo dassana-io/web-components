@@ -1,7 +1,7 @@
 import { BaseMultipleChoice } from './BaseMultipleChoice'
 import { MultipleMultipleChoiceProps } from './types'
 import { getInitialSelectedValues, getSelectedValuesArr } from './utils'
-import React, { FC, Key, useCallback, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = ({
 	classes = [],
@@ -20,7 +20,7 @@ export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = ({
 	>(getInitialSelectedValues(values ? values : defaultValues))
 
 	const onSelectedChange = useCallback(
-		(value: Key) => {
+		(value: string) => {
 			const newSelectedValues = {
 				...selectedValues,
 				[value]: !selectedValues[value]

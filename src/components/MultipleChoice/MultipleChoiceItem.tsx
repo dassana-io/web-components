@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MultipleChoiceItemConfig } from './types'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
-import React, { FC, Key, KeyboardEvent } from 'react'
+import React, { FC, KeyboardEvent } from 'react'
 
 export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	index: number
 	isSelected?: boolean
-	onSelectedChange: (value: Key) => void
+	onSelectedChange: (value: string) => void
 	popupContainerSelector?: string
 }
 

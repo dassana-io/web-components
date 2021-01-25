@@ -31,8 +31,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			cloudType: 'azure',
 			defaultCheckedKeys: [5],
 			domains: ['@lorem.com'],
-			firstName: 'First Name',
-			multileChoice: [0]
+			firstName: 'First Name'
 		}}
 	>
 		<Form.Input label='First Name' name='firstName' required />
@@ -69,16 +68,6 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Cloud Accounts'
 			name='defaultCheckedKeys'
 			treeData={treeData}
-		/>
-		<Form.MultipleChoice
-			items={[
-				{ key: 0, label: 'CISCO' },
-				{ key: 1, label: 'Sr Leadership' },
-				{ key: 3, label: 'SecOps' },
-				{ key: 4, label: 'Other' }
-			]}
-			label='Roles'
-			name='multileChoice'
 		/>
 		<Form.SubmitButton>Submit</Form.SubmitButton>
 	</Form>

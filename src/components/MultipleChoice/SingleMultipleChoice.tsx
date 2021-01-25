@@ -1,7 +1,7 @@
 import { BaseMultipleChoice } from './BaseMultipleChoice'
 import { getInitialSelectedValue } from './utils'
 import { SingleMultiChoiceProps } from './types'
-import React, { FC, Key, useCallback, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 export const SingleMultipleChoice: FC<SingleMultiChoiceProps> = ({
 	classes = [],
@@ -15,12 +15,12 @@ export const SingleMultipleChoice: FC<SingleMultiChoiceProps> = ({
 	skeletonItemCount = 4,
 	value
 }: SingleMultiChoiceProps) => {
-	const [selectedValue, setSelectedValue] = useState<Key>(
+	const [selectedValue, setSelectedValue] = useState<string>(
 		getInitialSelectedValue(value ? value : defaultValue)
 	)
 
 	const onSelectedChange = useCallback(
-		(value: Key) => {
+		(value: string) => {
 			setSelectedValue(value)
 
 			if (onChange) onChange(value)

@@ -4,16 +4,16 @@ import MultipleChoiceItem from './MultipleChoiceItem'
 import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
 import { SharedMultiChoiceProps } from './types'
 import { isEnglishAlphabet, useStyles } from './utils'
-import React, { FC, Key, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 
 interface SharedBaseMultipleChoiceProps
 	extends Omit<SharedMultiChoiceProps, 'mode'> {
-	onSelectedChange: (value: Key) => void
+	onSelectedChange: (value: string) => void
 }
 
 interface SingleBaseMultipleChoiceProps {
 	mode: 'single'
-	value: Key
+	value: string
 }
 
 interface MultipleBaseMultipleChoiceProps {
