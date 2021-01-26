@@ -159,9 +159,12 @@ const generateThemedMCItemStyles = (themeType: ThemeType) => {
 			},
 			borderColor: active.border
 		},
-		'&:focus': {
+		'&$focused': {
 			background: hover.background,
 			borderColor: active.border,
+			outline: 'none'
+		},
+		'&:focus': {
 			outline: 'none'
 		},
 		'&:hover': {
@@ -182,6 +185,7 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		position: 'absolute',
 		right: spacing.s
 	},
+	focused: {},
 	key: {
 		...flexCenter,
 		...font.label,

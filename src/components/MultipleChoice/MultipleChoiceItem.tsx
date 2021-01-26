@@ -36,8 +36,9 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	const multipleChoiceItemRef = useRef<HTMLDivElement>(null)
 
 	const componentClasses = {
-		[classes.multipleChoiceItem]: true,
-		[classes.activeItem]: isSelected
+		[classes.activeItem]: isSelected,
+		[classes.focused]: focus,
+		[classes.multipleChoiceItem]: true
 	}
 
 	const handleChange = useCallback(() => {
