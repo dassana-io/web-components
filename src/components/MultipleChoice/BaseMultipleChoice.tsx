@@ -61,11 +61,11 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 
 		// onKeyDown will check which key is pressed and conditionally select/deselect item or give focus to item
 		const onKeyDown = (e: KeyboardEvent) => {
-			//  if key pressed is english alphabet (either lower or uppercase), select/deselect item
-			if (isEnglishAlphabet(e.key)) {
-				preventDefault(e)
+			const index = e.key.toUpperCase().charCodeAt(0) - 65
 
-				const index = e.key.toUpperCase().charCodeAt(0) - 65
+			// If key pressed is english alphabet (either lower or uppercase) and index of item is less than items length, select/deselect item
+			if (isEnglishAlphabet(e.key) && index < items.length) {
+				preventDefault(e)
 
 				onSelectedChange(items[index].value)
 			}
@@ -105,7 +105,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 
 		const eventTargetRef = getEventTarget && getEventTarget()
 
-		// attach event listener to the event target if one is provided, otherwise attach it to the window
+		// Attach event listener to the event target if one is provided, otherwise attach it to the window
 		if (eventTargetRef && eventTargetRef.current) {
 			const target = eventTargetRef.current
 
