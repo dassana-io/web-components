@@ -82,7 +82,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 				tabIndex={focus ? 0 : -1}
 			>
 				<div className={classes.key}>{uppercaseKey}</div>
-				<span>{label}</span>
+				<span className={classes.label}>{label}</span>
 				{isSelected && (
 					<span className={classes.checkmark}>
 						<FontAwesomeIcon icon={faCheck} />

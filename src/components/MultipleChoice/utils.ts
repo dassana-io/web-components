@@ -190,10 +190,15 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		borderRadius: 2,
 		fontWeight: fontWeight.regular,
 		height: keyDimension,
-		marginLeft: spacing.s,
 		marginRight: spacing.s,
+		minWidth: keyDimension,
 		textAlign: 'center',
 		width: keyDimension
+	},
+	label: {
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		whiteSpace: 'nowrap'
 	},
 	multipleChoiceItem: {
 		...flexAlignCenter,
@@ -207,6 +212,9 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		height: itemHeight,
 		marginBottom: ({ itemsCount, singleColumnItemsCount }) =>
 			itemsCount > singleColumnItemsCount ? 0 : gridGap,
+		minWidth: 100,
+		padding: spacing.s,
+		paddingRight: spacing.l, // to account for width of check mark
 		position: 'relative'
 	},
 	// eslint-disable-next-line sort-keys
