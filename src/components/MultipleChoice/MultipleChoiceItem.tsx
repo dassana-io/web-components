@@ -7,10 +7,10 @@ import { useMultipleChoiceItemStyles } from './utils'
 import React, { FC, KeyboardEvent, useCallback, useEffect, useRef } from 'react'
 
 export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
+	focus?: boolean
 	index: number
 	isSelected?: boolean
 	itemsCount: number
-	focus?: boolean
 	onSelectedChange: (value: string) => void
 	popupContainerSelector?: string
 	setFocus: (index: number) => void
@@ -18,10 +18,10 @@ export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 }
 
 const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
+	focus,
 	index,
 	isSelected = false,
 	itemsCount,
-	focus,
 	label,
 	onSelectedChange,
 	popupContainerSelector,
@@ -73,6 +73,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 			popupContainerSelector={popupContainerSelector}
 			renderWithoutDataTag
 			title={`Key ${uppercaseKey}`}
+			triggerMode={['focus', 'hover']}
 		>
 			<div
 				className={cn(componentClasses)}

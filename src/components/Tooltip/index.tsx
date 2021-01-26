@@ -23,6 +23,8 @@ const useStyles = createUseStyles({
 
 export type TooltipTitle = string | ReactNode
 
+export type TooltipTriggerMode = 'hover' | 'focus' | 'click'
+
 export interface TooltipProps extends CommonComponentProps {
 	/**
 	 * Element tooltip should be anchored to
@@ -48,6 +50,10 @@ export interface TooltipProps extends CommonComponentProps {
 	 */
 	title: TooltipTitle
 	tooltipTriggerClasses?: string[]
+	/**
+	 * Action type that will trigger the tooltip to open
+	 */
+	triggerMode?: TooltipTriggerMode | TooltipTriggerMode[]
 }
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -58,7 +64,8 @@ export const Tooltip: FC<TooltipProps> = ({
 	popupContainerSelector,
 	renderWithoutDataTag = false,
 	title,
-	tooltipTriggerClasses = []
+	tooltipTriggerClasses = [],
+	triggerMode = 'hover'
 }: TooltipProps) => {
 	useStyles()
 
@@ -76,6 +83,7 @@ export const Tooltip: FC<TooltipProps> = ({
 			overlayStyle={{ borderRadius: 4 }}
 			placement={placement}
 			title={title}
+			trigger={triggerMode}
 			{...popupContainerProps}
 		>
 			{renderWithoutDataTag ? (

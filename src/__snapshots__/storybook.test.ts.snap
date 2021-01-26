@@ -961,257 +961,253 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <h3
-    className="text-0-1-54 text-d1-0-1-56"
+    className="heading-0-1-54 heading-d1-0-1-57"
   >
     Click on the bordered box to use keyboard shortcuts
   </h3>
+  <p
+    className="info-0-1-55 info-d2-0-1-58"
+  >
+    Press Tab or Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect
+  </p>
   <div
-    className="eventTarget-0-1-53 eventTarget-d0-0-1-55"
+    className="eventTarget-0-1-53 eventTarget-d0-0-1-56"
     tabIndex={0}
   >
     <div
-      className="container-0-1-57"
+      className="container-0-1-59 container-d0-0-1-60"
     >
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d0-0-1-66"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            A
-          </div>
-          <span>
-            CISCO
-          </span>
+          A
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          CISCO
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d1-0-1-67 activeItem-0-1-61"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61 activeItem-0-1-58"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
+          B
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          Sr Leadership
+        </span>
+        <span
+          className="checkmark-0-1-62"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-check fa-w-16 "
+            data-icon="check"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            B
-          </div>
-          <span>
-            Sr Leadership
-          </span>
-          <span
-            className="checkmark-0-1-59"
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-check fa-w-16 "
-              data-icon="check"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
+            <path
+              d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+              fill="currentColor"
               style={Object {}}
-              viewBox="0 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </span>
-        </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d2-0-1-68"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            C
-          </div>
-          <span>
-            SecOps
-          </span>
+          C
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          SecOps
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d3-0-1-69"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            D
-          </div>
-          <span>
-            Cloud Architect
-          </span>
+          D
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          Cloud Architect
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d4-0-1-70 activeItem-0-1-61"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61 activeItem-0-1-58"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
+          E
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          DevOps
+        </span>
+        <span
+          className="checkmark-0-1-62"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-check fa-w-16 "
+            data-icon="check"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            E
-          </div>
-          <span>
-            DevOps
-          </span>
-          <span
-            className="checkmark-0-1-59"
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-check fa-w-16 "
-              data-icon="check"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
+            <path
+              d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+              fill="currentColor"
               style={Object {}}
-              viewBox="0 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </span>
-        </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d5-0-1-71"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            F
-          </div>
-          <span>
-            NetSec
-          </span>
+          F
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          NetSec
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d6-0-1-72"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            G
-          </div>
-          <span>
-            AppDev
-          </span>
+          G
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          AppDev
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d7-0-1-73"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            H
-          </div>
-          <span>
-            Compliance
-          </span>
+          H
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          Compliance
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d8-0-1-74"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            I
-          </div>
-          <span>
-            Other
-          </span>
+          I
         </div>
-      </span>
+        <span
+          className="label-0-1-64"
+        >
+          Other
+        </span>
+      </div>
     </div>
   </div>
 </div>
@@ -1222,236 +1218,405 @@ exports[`Storyshots MultipleChoice Single 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <h3
-    className="text-0-1-54 text-d3-0-1-64"
+    className="heading-0-1-54 heading-d4-0-1-76"
   >
     Click on the bordered box to use keyboard shortcuts
   </h3>
+  <p
+    className="info-0-1-55 info-d5-0-1-77"
+  >
+    Press Tab or Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect
+  </p>
   <div
-    className="eventTarget-0-1-53 eventTarget-d2-0-1-63"
+    className="eventTarget-0-1-53 eventTarget-d3-0-1-75"
     tabIndex={0}
   >
     <div
-      className="container-0-1-57"
+      className="container-0-1-59 container-d1-0-1-78"
     >
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d9-0-1-79"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            A
-          </div>
-          <span>
-            CISCO
-          </span>
+          A
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          CISCO
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d10-0-1-80 activeItem-0-1-61"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61 activeItem-0-1-58"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
+          B
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          Sr Leadership
+        </span>
+        <span
+          className="checkmark-0-1-62"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-check fa-w-16 "
+            data-icon="check"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            B
-          </div>
-          <span>
-            Sr Leadership
-          </span>
-          <span
-            className="checkmark-0-1-59"
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-check fa-w-16 "
-              data-icon="check"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
+            <path
+              d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+              fill="currentColor"
               style={Object {}}
-              viewBox="0 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </span>
-        </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d11-0-1-81"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            C
-          </div>
-          <span>
-            SecOps
-          </span>
+          C
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          SecOps
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d12-0-1-82"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            D
-          </div>
-          <span>
-            Cloud Architect
-          </span>
+          D
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          Cloud Architect
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d13-0-1-83"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            E
-          </div>
-          <span>
-            DevOps
-          </span>
+          E
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          DevOps
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d14-0-1-84"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            F
-          </div>
-          <span>
-            NetSec
-          </span>
+          F
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          NetSec
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d15-0-1-85"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            G
-          </div>
-          <span>
-            AppDev
-          </span>
+          G
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          AppDev
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d16-0-1-86"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            H
-          </div>
-          <span>
-            Compliance
-          </span>
+          H
         </div>
-      </span>
-      <span
-        className="tooltipTrigger-0-1-62"
-        data-test="tooltip-trigger"
+        <span
+          className="label-0-1-64"
+        >
+          Compliance
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d17-0-1-87"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
+        tabIndex={-1}
       >
         <div
-          className="multipleChoiceItem-0-1-61"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          className="key-0-1-63"
         >
-          <div
-            className="key-0-1-60"
-          >
-            I
-          </div>
-          <span>
-            Other
-          </span>
+          I
         </div>
-      </span>
+        <span
+          className="label-0-1-64"
+        >
+          Other
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots MultipleChoice Single Column 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <h3
+    className="heading-0-1-54 heading-d7-0-1-89"
+  >
+    Click on the bordered box to use keyboard shortcuts
+  </h3>
+  <p
+    className="info-0-1-55 info-d8-0-1-90"
+  >
+    Press Tab or Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect
+  </p>
+  <div
+    className="eventTarget-0-1-53 eventTarget-d6-0-1-88"
+    tabIndex={0}
+  >
+    <div
+      className="container-0-1-59 container-d2-0-1-91"
+    >
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d18-0-1-92"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          A
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          SecOps
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d19-0-1-93"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          B
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          Cloud Architect
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d20-0-1-94"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          C
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          DevOps
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d21-0-1-95"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          D
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          NetSec
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d22-0-1-96"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          E
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          AppDev
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d23-0-1-97"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          F
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          Compliance
+        </span>
+      </div>
+      <div
+        className="multipleChoiceItem-0-1-65 multipleChoiceItem-d24-0-1-98"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="key-0-1-63"
+        >
+          G
+        </div>
+        <span
+          className="label-0-1-64"
+        >
+          Other
+        </span>
+      </div>
     </div>
   </div>
 </div>
@@ -1757,31 +1922,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-66"
+    className="container-0-1-100"
   >
     <div
-      className="skeletonButton-0-1-68"
+      className="skeletonButton-0-1-102"
     >
       <span
-        className="container-0-1-3 container-d6-0-1-69 skeleton-0-1-67"
+        className="container-0-1-3 container-d6-0-1-103 skeleton-0-1-101"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-68"
+      className="skeletonButton-0-1-102"
     >
       <span
-        className="container-0-1-3 container-d7-0-1-70 skeleton-0-1-67"
+        className="container-0-1-3 container-d7-0-1-104 skeleton-0-1-101"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-68"
+      className="skeletonButton-0-1-102"
     >
       <span
-        className="container-0-1-3 container-d8-0-1-71 skeleton-0-1-67"
+        className="container-0-1-3 container-d8-0-1-105 skeleton-0-1-101"
       >
          
       </span>
@@ -1884,10 +2049,10 @@ exports[`Storyshots Select Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-72"
+    className="decorator-0-1-106"
   >
     <div
-      className="container-0-1-73 container-d0-0-1-77"
+      className="container-0-1-107 container-d0-0-1-111"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -1984,10 +2149,10 @@ exports[`Storyshots Select Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-72"
+    className="decorator-0-1-106"
   >
     <div
-      className="container-0-1-73 container-d2-0-1-83"
+      className="container-0-1-107 container-d2-0-1-117"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -2038,10 +2203,10 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-80"
+              className="option-0-1-114"
             >
               <span
-                className="optionText-0-1-81"
+                className="optionText-0-1-115"
                 onMouseEnter={[Function]}
               >
                 Lorem
@@ -2093,10 +2258,10 @@ exports[`Storyshots Select Icon 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-72"
+    className="decorator-0-1-106"
   >
     <div
-      className="container-0-1-73 container-d1-0-1-78"
+      className="container-0-1-107 container-d1-0-1-112"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -2147,10 +2312,10 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-80"
+              className="option-0-1-114"
             >
               <span
-                className="icon-0-1-79"
+                className="icon-0-1-113"
               >
                 <svg
                   className=""
@@ -2162,7 +2327,7 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-1-81"
+                className="optionText-0-1-115"
                 onMouseEnter={[Function]}
               >
                 AWS
@@ -2214,10 +2379,10 @@ exports[`Storyshots Select Search 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-72"
+    className="decorator-0-1-106"
   >
     <div
-      className="container-0-1-73 container-d3-0-1-84"
+      className="container-0-1-107 container-d3-0-1-118"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -2314,10 +2479,10 @@ exports[`Storyshots Select Selected Option Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-72"
+    className="decorator-0-1-106"
   >
     <div
-      className="container-0-1-73 container-d4-0-1-85"
+      className="container-0-1-107 container-d4-0-1-119"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -2583,7 +2748,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d10-0-1-87"
+    className="container-0-1-3 container-d10-0-1-121"
   >
      
   </span>
@@ -2595,27 +2760,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d11-0-1-88"
+    className="container-0-1-3 container-d11-0-1-122"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d11-0-1-88"
+    className="container-0-1-3 container-d11-0-1-122"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d11-0-1-88"
+    className="container-0-1-3 container-d11-0-1-122"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d11-0-1-88"
+    className="container-0-1-3 container-d11-0-1-122"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d11-0-1-88"
+    className="container-0-1-3 container-d11-0-1-122"
   >
      
   </span>
@@ -2627,7 +2792,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d9-0-1-86"
+    className="container-0-1-3 container-d9-0-1-120"
   >
      
   </span>

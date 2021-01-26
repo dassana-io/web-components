@@ -43,7 +43,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 
 	const componentClasses = useStyles(props)
 
-	const [currentFocus, setCurrentFocus] = useState(0)
+	const [currentFocus, setCurrentFocus] = useState(-1)
 	const [isShiftPressed, setIsShiftPressed] = useState(false)
 
 	// https://dev.to/rafi993/roving-focus-in-react-with-custom-hooks-1ln
