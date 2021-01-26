@@ -147,10 +147,14 @@ export const ChipInput: FC<ChipInputProps> = ({
 		))
 
 	useEffect(() => {
-		!inputValue || addedValues.includes(inputValue) || localError || error
+		const isDuplicate = addedValues.includes(
+			getInputValue(inputValue, addonBefore, addonAfter)
+		)
+
+		!inputValue || isDuplicate || localError || error
 			? setIsInvalidValue(true)
 			: setIsInvalidValue(false)
-	}, [addedValues, inputValue, localError, error])
+	}, [addonBefore, addonAfter, addedValues, inputValue, localError, error])
 
 	useLayoutEffect(() => {
 		if (shortcutMicrocopyRef && shortcutMicrocopyRef.current)
