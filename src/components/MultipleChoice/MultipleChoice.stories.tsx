@@ -32,10 +32,13 @@ const useStyles = createUseStyles({
 export default {
 	argTypes: {
 		loading: { control: 'boolean' },
+		mode: {
+			control: { options: ['multiple', 'single'], type: 'inline-radio' },
+			defaultValue: 'multiple'
+		},
 		onChange: { defaultValue: action('onChange') },
-		popupContainerSelector: { control: { disable: true } },
 		singleColumnItemsCount: { control: 'number', defaultValue: 8 },
-		skeletonItemCount: { control: 'number' }
+		skeletonItemCount: { control: 'number', defaultValue: 4 }
 	},
 	title: 'MultipleChoice'
 } as Meta

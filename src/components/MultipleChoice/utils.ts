@@ -93,7 +93,7 @@ const multipleChoiceItemPalette = {
 	},
 	[light]: {
 		active: {
-			border: blacks['lighten-70']
+			border: blacks['lighten-60']
 		},
 		base: {
 			background: whites.base,
