@@ -71,8 +71,8 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 		<Tooltip
 			placement='left'
 			popupContainerSelector={popupContainerSelector}
+			renderWithoutDataTag
 			title={`Key ${uppercaseKey}`}
-			tooltipTriggerClasses={[classes.tooltipTrigger]}
 		>
 			<div
 				className={cn(componentClasses)}

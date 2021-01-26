@@ -199,6 +199,7 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		...flexAlignCenter,
 		...font.body,
 		...generateThemedMCItemStyles(light),
+		'&:last-of-type': { marginBottom: 0 },
 		border: '1px solid',
 		borderRadius,
 		cursor: 'pointer',
@@ -207,10 +208,6 @@ export const useMultipleChoiceItemStyles = createUseStyles({
 		marginBottom: ({ itemsCount, singleColumnItemsCount }) =>
 			itemsCount > singleColumnItemsCount ? 0 : gridGap,
 		position: 'relative'
-	},
-	tooltipTrigger: {
-		'&:last-of-type $multipleChoiceItem': { marginBottom: 0 },
-		height: '100%'
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

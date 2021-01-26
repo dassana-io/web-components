@@ -41,6 +41,8 @@ export interface TooltipProps extends CommonComponentProps {
 	 * Selector of HTML element inside which to render the popup
 	 */
 	popupContainerSelector?: string
+	/** Renders without a wrapping span */
+	renderWithoutDataTag?: boolean
 	/**
 	 * Text shown in the tooltip
 	 */
@@ -54,6 +56,7 @@ export const Tooltip: FC<TooltipProps> = ({
 	dataTag,
 	placement = 'right',
 	popupContainerSelector,
+	renderWithoutDataTag = false,
 	title,
 	tooltipTriggerClasses = []
 }: TooltipProps) => {
@@ -75,12 +78,16 @@ export const Tooltip: FC<TooltipProps> = ({
 			title={title}
 			{...popupContainerProps}
 		>
-			<span
-				className={cn(tooltipTriggerClasses)}
-				{...getDataTestAttributeProp('tooltip-trigger', dataTag)}
-			>
-				{children}
-			</span>
+			{renderWithoutDataTag ? (
+				children
+			) : (
+				<span
+					className={cn(tooltipTriggerClasses)}
+					{...getDataTestAttributeProp('tooltip-trigger', dataTag)}
+				>
+					{children}
+				</span>
+			)}
 		</AntDTooltip>
 	)
 }
