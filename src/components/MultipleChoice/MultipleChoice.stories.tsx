@@ -1,10 +1,13 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
+import { styleguide } from 'components/assets/styles/styleguide'
 import { themedModalStyles } from 'components/Modal/utils'
 import { createUseStyles, useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { MultipleChoice, MultipleChoiceProps } from './index'
 import React, { FC, Fragment, useRef } from 'react'
+
+const { font, fontWeight } = styleguide
 
 const useStyles = createUseStyles({
 	eventTarget: ({ theme }) => ({
@@ -15,9 +18,14 @@ const useStyles = createUseStyles({
 		border: `1px solid ${theme.text.disabled}`,
 		padding: 60
 	}),
-	text: {
+	heading: {
 		color: ({ theme }) => theme.text.primary,
-		fontWeight: 300
+		fontWeight: fontWeight.light
+	},
+	info: {
+		...font.body,
+		color: ({ theme }) => theme.text.primary,
+		fontWeight: fontWeight.light
 	}
 })
 
@@ -46,9 +54,13 @@ const ThemedMultipleChoice: FC<MultipleChoiceProps> = (
 
 	return (
 		<Fragment key={theme.type}>
-			<h3 className={classes.text}>
+			<h3 className={classes.heading}>
 				Click on the bordered box to use keyboard shortcuts
 			</h3>
+			<p className={classes.info}>
+				Press Tab or Up, Down, Left, Right arrow keys to navigate. Press
+				enter or alphabet keys to select/deselect
+			</p>
 			<div className={classes.eventTarget} ref={divRef} tabIndex={0}>
 				<MultipleChoice
 					{...props}

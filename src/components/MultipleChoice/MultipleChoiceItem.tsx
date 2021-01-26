@@ -4,14 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MultipleChoiceItemConfig } from './types'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
-import React, { FC, KeyboardEvent } from 'react'
+import React, { FC, KeyboardEvent, useCallback, useEffect, useRef } from 'react'
 
 export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	index: number
 	isSelected?: boolean
 	itemsCount: number
+	focus?: boolean
 	onSelectedChange: (value: string) => void
 	popupContainerSelector?: string
+	setFocus: (index: number) => void
 	singleColumnItemsCount?: number
 }
 
@@ -19,34 +21,51 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	index,
 	isSelected = false,
 	itemsCount,
-	value,
+	focus,
 	label,
 	onSelectedChange,
 	popupContainerSelector,
-	singleColumnItemsCount = 8
+	setFocus,
+	singleColumnItemsCount = 8,
+	value
 }: MultipleChoiceItemProps) => {
 	const classes = useMultipleChoiceItemStyles({
 		itemsCount,
 		singleColumnItemsCount
 	})
+	const multipleChoiceItemRef = useRef<HTMLDivElement>(null)
 
 	const componentClasses = {
 		[classes.multipleChoiceItem]: true,
 		[classes.activeItem]: isSelected
 	}
 
-	const handleChange = () => onSelectedChange(value)
+	const handleChange = useCallback(() => {
+		setFocus(index)
+
+		onSelectedChange(value)
+	}, [index, onSelectedChange, setFocus, value])
 
 	const uppercaseKey = String.fromCharCode(index + 65)
 
-	const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-		if (e.key === 'Enter') {
-			e.preventDefault()
-			e.stopPropagation()
+	const onKeyDown = useCallback(
+		(e: KeyboardEvent<HTMLDivElement>) => {
+			if (e.key === 'Enter') {
+				e.preventDefault()
+				e.stopPropagation()
 
-			handleChange()
+				handleChange()
+			}
+		},
+		[handleChange]
+	)
+
+	useEffect(() => {
+		if (focus) {
+			if (multipleChoiceItemRef && multipleChoiceItemRef.current)
+				multipleChoiceItemRef.current.focus()
 		}
-	}
+	}, [focus])
 
 	return (
 		<Tooltip
@@ -59,7 +78,8 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 				className={cn(componentClasses)}
 				onClick={handleChange}
 				onKeyDown={onKeyDown}
-				tabIndex={0}
+				ref={multipleChoiceItemRef}
+				tabIndex={focus ? 0 : -1}
 			>
 				<div className={classes.key}>{uppercaseKey}</div>
 				<span>{label}</span>
