@@ -6,6 +6,7 @@ import FormMultipleChoice from './FormMultipleChoice'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
+import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { FieldValues, UseFormMethods } from 'react-hook-form/dist/types/form'
@@ -74,6 +75,7 @@ Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
 Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
+Form.Timezone = FormTimezone
 Form.Toggle = FormToggle
 Form.Tree = FormTree
 
