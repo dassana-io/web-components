@@ -21,17 +21,14 @@ export const predefinedKeysMap = {
 	shift: '⇧'
 }
 
-export const getShortcutKeyItem = (shortcut: ShortcutKey) => {
-	const item: ShortcutKeyItem = {} as ShortcutKeyItem
-
-	item.text = typeof shortcut === 'string' ? shortcut : shortcut.text
-
-	item.icon =
-		typeof shortcut === 'string'
-			? predefinedKeysMap[shortcut]
-			: shortcut.icon
-
-	return item
+export const getShortcutKeyItem = (shortcut: ShortcutKey): ShortcutKeyItem => {
+	if (typeof shortcut !== 'string') return shortcut
+	else {
+		return {
+			icon: predefinedKeysMap[shortcut],
+			text: shortcut
+		}
+	}
 }
 
 export const useStyles = createUseStyles({
@@ -42,7 +39,10 @@ export const useStyles = createUseStyles({
 		...font.body,
 		fontWeight: fontWeight.regular
 	},
-	label: { ...font.label, fontWeight: fontWeight.light },
+	label: {
+		...font.label,
+		fontWeight: fontWeight.light
+	},
 	shortcutMicrocopy: {
 		display: 'inline-block',
 		paddingLeft: spacing.m

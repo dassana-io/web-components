@@ -72,6 +72,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		dataTag,
 		disabled = false,
 		inputRef,
+		onBlur = noop,
 		onChange,
 		onFocus = noop,
 		onKeyDown = noop,
@@ -112,6 +113,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 			addonBefore={addonBefore}
 			className={cn(componentClasses.container, inputClasses)}
 			disabled={disabled}
+			onBlur={onBlur}
 			onFocus={onFocus}
 			onKeyDown={onKeyDown}
 			placeholder={placeholder}

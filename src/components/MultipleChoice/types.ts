@@ -6,7 +6,7 @@ export interface MultipleChoiceItemConfig {
 	value: string
 }
 
-export interface SharedMultiChoiceProps
+export interface SharedProps
 	extends Pick<BaseFormElementProps, 'classes' | 'dataTag' | 'loading'> {
 	/**
 	 * Optional callback that returns ref of element to which attach event listener to. By default, it's attached to the window
@@ -25,23 +25,24 @@ export interface SharedMultiChoiceProps
 	singleColumnItemsCount?: number
 }
 
-export interface SingleMultiChoiceProps extends SharedMultiChoiceProps {
+export interface SingleProps extends SharedProps {
 	defaultValue?: string
-	mode: 'single'
 	onChange?: (value: string) => void
 	value?: string
 }
 
-export interface MultipleMultipleChoiceProps extends SharedMultiChoiceProps {
+export interface MultipleProps extends SharedProps {
 	/**
 	 * Default selected values for multi choice component. Gets overwritten by values if both are provided
 	 */
 	defaultValues?: string[]
-	mode?: 'multiple'
 	onChange?: (values: string[]) => void
 	values?: string[]
 }
 
-export type MultipleChoiceProps =
-	| MultipleMultipleChoiceProps
-	| SingleMultiChoiceProps
+export interface MultipleChoiceProps extends SharedProps {
+	defaultValue?: SingleProps['defaultValue'] | MultipleProps['defaultValues']
+	mode: 'multiple' | 'single'
+	onChange?: SingleProps['onChange'] | MultipleProps['onChange']
+	value?: SingleProps['value'] | MultipleProps['values']
+}

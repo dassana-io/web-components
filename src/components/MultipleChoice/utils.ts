@@ -14,8 +14,29 @@ const {
 	fontWeight
 } = styleguide
 
-export const getInitialSelectedValue = (defaultSelected?: string) =>
-	defaultSelected ? defaultSelected : ''
+// -*-*-*-*-*- filterMap -*-*-*-*-*-
+// TODO: move this into web-utils
+
+interface FilterMapConfig<T, U> {
+	filterConditionFn: (item: T) => boolean
+	items: T[]
+	mapFn: (item: T) => U
+}
+
+export const filterMap = <T, U>({
+	filterConditionFn,
+	items,
+	mapFn
+}: FilterMapConfig<T, U>) =>
+	items.reduce((filterAndMapped: U[], item: T) => {
+		if (filterConditionFn(item)) {
+			filterAndMapped.push(mapFn(item))
+		}
+
+		return filterAndMapped
+	}, [])
+
+//  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 
 export const getInitialSelectedValues = (defaultSelected?: string[]) => {
 	if (!defaultSelected) return {}
@@ -32,7 +53,12 @@ export const getInitialSelectedValues = (defaultSelected?: string[]) => {
 export const getSelectedValuesArr = (
 	items: MultipleChoiceItemConfig[],
 	selectedKeys: Record<string, boolean>
-) => items.filter(item => !!selectedKeys[item.value]).map(item => item.value)
+) =>
+	filterMap({
+		filterConditionFn: item => !!selectedKeys[item.value],
+		items,
+		mapFn: item => item.value
+	})
 
 export const isEnglishAlphabet = (str: string) =>
 	str.length === 1 && /[a-z]/i.test(str)

@@ -2,46 +2,40 @@ import cn from 'classnames'
 import { getDataTestAttributeProp } from 'components/utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
-import { SharedMultiChoiceProps } from './types'
+import { SharedProps } from './types'
 import { isEnglishAlphabet, useStyles } from './utils'
 import React, { FC, useEffect, useState } from 'react'
 
-interface SharedBaseMultipleChoiceProps
-	extends Omit<SharedMultiChoiceProps, 'mode'> {
+interface SharedBaseProps extends Omit<SharedProps, 'mode'> {
 	onSelectedChange: (value: string) => void
+	isSelected: (value: string) => boolean
 }
 
-interface SingleBaseMultipleChoiceProps extends SharedBaseMultipleChoiceProps {
+interface SingleBaseProps extends SharedBaseProps {
 	mode: 'single'
 	value: string
 }
 
-interface MultipleBaseMultipleChoiceProps
-	extends SharedBaseMultipleChoiceProps {
+interface MultipleBaseProps extends SharedBaseProps {
 	mode: 'multiple'
 	values: Record<string, boolean>
 }
 
-type BaseMultipleChoiceProps =
-	| SingleBaseMultipleChoiceProps
-	| MultipleBaseMultipleChoiceProps
+type BaseMultipleChoiceProps = SingleBaseProps | MultipleBaseProps
 
-export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
-	props: BaseMultipleChoiceProps
-) => {
-	const {
-		classes = [],
-		dataTag,
-		getEventTarget,
-		items,
-		loading = false,
-		onSelectedChange,
-		popupContainerSelector,
-		singleColumnItemsCount = 8,
-		skeletonItemCount = 4
-	} = props
-
-	const componentClasses = useStyles(props)
+export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
+	classes = [],
+	dataTag,
+	getEventTarget,
+	isSelected,
+	items,
+	loading = false,
+	onSelectedChange,
+	popupContainerSelector,
+	singleColumnItemsCount = 8,
+	skeletonItemCount = 6
+}: BaseMultipleChoiceProps) => {
+	const componentClasses = useStyles({ items, singleColumnItemsCount })
 
 	const [currentFocus, setCurrentFocus] = useState(-1)
 	const [isShiftPressed, setIsShiftPressed] = useState(false)
@@ -141,32 +135,27 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = (
 					singleColumnItemsCount={singleColumnItemsCount}
 				/>
 			) : (
-				items.map(({ value, label }, index) => {
-					const isSelected =
-						props.mode === 'single'
-							? props.value === value
-							: !!props.values[value]
-
-					return (
-						<MultipleChoiceItem
-							focus={currentFocus === index}
-							index={index}
-							isSelected={isSelected}
-							itemsCount={items.length}
-							key={value}
-							label={label}
-							onSelectedChange={onSelectedChange}
-							popupContainerSelector={popupContainerSelector}
-							setFocus={setCurrentFocus}
-							singleColumnItemsCount={singleColumnItemsCount}
-							value={value}
-							{...getDataTestAttributeProp(
-								'multiple-choice',
-								dataTag
-							)}
-						/>
-					)
-				})
+				items.map(({ value, label }, index) => (
+					<MultipleChoiceItem
+						focus={currentFocus === index}
+						index={index}
+						isSelected={isSelected(value)}
+						itemsCount={items.length}
+						key={value}
+						label={label}
+						onSelect={(index, value) => {
+							setCurrentFocus(index)
+							onSelectedChange(value)
+						}}
+						popupContainerSelector={popupContainerSelector}
+						singleColumnItemsCount={singleColumnItemsCount}
+						value={value}
+						{...getDataTestAttributeProp(
+							'multiple-choice',
+							dataTag
+						)}
+					/>
+				))
 			)}
 		</div>
 	)

@@ -23,11 +23,11 @@ export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 				<Fragment key={i}>
 					{text && (
 						<span className={componentClasses.keyName}>
-							{text}&nbsp;
+							{`${text} `}
 						</span>
 					)}
 					<span className={componentClasses.icon}>{icon}</span>
-					{i + 1 < items.length && <span>&nbsp;+&nbsp;</span>}
+					{i + 1 < items.length && <span> + </span>}
 				</Fragment>
 			)
 		})
@@ -46,7 +46,7 @@ export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 				<Skeleton height={32} width={skeletonWidth} />
 			) : (
 				<div className={componentClasses.wrapper}>
-					<span className={componentClasses.label}>press&nbsp;</span>
+					<span className={componentClasses.label}>{'press '}</span>
 					{renderShortcutKeys()}
 				</div>
 			)}

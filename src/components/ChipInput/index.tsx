@@ -51,6 +51,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	fullWidth,
 	inputRef,
 	loading = false,
+	onBlur,
 	onFocus,
 	onChange,
 	placeholder,
@@ -68,6 +69,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const [localError, setLocalError] = useState(false)
 	const [localErrorMsg, setLocalErrorMsg] = useState('')
 	const [shortcutMicrocopyWidth, setShortcutMicrocopyWidth] = useState(101)
+	const [showShortcutMicrocopy, setShowShortcutMicrocopy] = useState(false)
 
 	const componentClasses = useStyles({ fullWidth, shortcutMicrocopyWidth })
 
@@ -92,6 +94,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 		if (onChange) onChange(newValues)
 	}
 
+	const onInputBlur = (event: ChangeEvent<HTMLInputElement>) => {
+		setShowShortcutMicrocopy(false)
+
+		if (onBlur) onBlur(event)
+	}
+
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value.toLowerCase())
 
@@ -99,6 +107,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 		setLocalError(false)
 
 		if (clearErrros) clearErrros()
+	}
+
+	const onInputFocus = () => {
+		setShowShortcutMicrocopy(true)
+
+		if (onFocus) onFocus()
 	}
 
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
@@ -157,7 +171,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	}, [addonBefore, addonAfter, addedValues, inputValue, localError, error])
 
 	useLayoutEffect(() => {
-		if (shortcutMicrocopyRef && shortcutMicrocopyRef.current)
+		if (shortcutMicrocopyRef.current)
 			setShortcutMicrocopyWidth(shortcutMicrocopyRef.current.scrollWidth)
 	}, [])
 
@@ -177,16 +191,18 @@ export const ChipInput: FC<ChipInputProps> = ({
 					fullWidth={fullWidth}
 					inputRef={inputRef}
 					loading={loading}
+					onBlur={onInputBlur}
 					onChange={onInputChange}
-					onFocus={onFocus}
+					onFocus={onInputFocus}
 					onKeyDown={onKeyDown}
 					placeholder={placeholder}
 					value={inputValue}
 				/>
-				<ShortcutMicrocopy
-					loading={loading}
-					shortcutMicrocopyRef={shortcutMicrocopyRef}
-				/>
+				{showShortcutMicrocopy && (
+					<ShortcutMicrocopy
+						shortcutMicrocopyRef={shortcutMicrocopyRef}
+					/>
+				)}
 			</div>
 			<div className={componentClasses.tagsWrapper}>
 				{loading ? renderSkeletenTags() : renderTags()}

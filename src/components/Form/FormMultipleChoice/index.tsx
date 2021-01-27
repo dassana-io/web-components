@@ -1,21 +1,17 @@
 import { BaseFieldProps } from '../types'
-import FieldLabel from '../FieldLabel'
-import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
+import { getFormFieldDataTag, renderFieldLabel } from '../utils'
 import { MultipleChoice, MultipleChoiceProps } from 'components/MultipleChoice'
 import React, { FC, useContext } from 'react'
 
 export interface FormMultipleChoiceProps
 	extends BaseFieldProps,
-		Omit<MultipleChoiceProps, 'onChange' | 'keys'> {
-	label: string
-}
+		Omit<MultipleChoiceProps, 'onChange' | 'value'> {}
 
 const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 	label,
 	labelSkeletonWidth,
-	mode,
 	name,
 	required,
 	rules = {},
@@ -30,42 +26,25 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 
 	return (
 		<div>
-			{label && (
-				<FieldLabel
-					fullWidth
-					label={label}
-					loading={loading}
-					required={required}
-					skeletonWidth={labelSkeletonWidth}
-				/>
-			)}
+			{renderFieldLabel({
+				fullWidth: true,
+				label,
+				loading,
+				required,
+				skeletonWidth: labelSkeletonWidth
+			})}
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => {
-					return mode === 'single' ? (
-						<MultipleChoice
-							dataTag={getFormFieldDataTag(name)}
-							loading={loading}
-							mode='single'
-							onChange={(value: string) => {
-								onChange(value)
-							}}
-							value={value as string}
-							{...rest}
-						/>
-					) : (
-						<MultipleChoice
-							dataTag={getFormFieldDataTag(name)}
-							loading={loading}
-							onChange={(values: string[]) => {
-								onChange(values)
-							}}
-							values={value as string[]}
-							{...rest}
-						/>
-					)
-				}}
+				render={({ onChange, value }) => (
+					<MultipleChoice
+						dataTag={getFormFieldDataTag(name)}
+						loading={loading}
+						onChange={onChange}
+						value={value}
+						{...rest}
+					/>
+				)}
 				rules={rules}
 			/>
 		</div>

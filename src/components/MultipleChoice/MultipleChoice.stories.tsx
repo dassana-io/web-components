@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions'
+import { multipleChoiceItems } from './fixtures'
 import { SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { themedModalStyles } from 'components/Modal/utils'
@@ -38,7 +39,7 @@ export default {
 		},
 		onChange: { defaultValue: action('onChange') },
 		singleColumnItemsCount: { control: 'number', defaultValue: 8 },
-		skeletonItemCount: { control: 'number', defaultValue: 4 }
+		skeletonItemCount: { control: 'number', defaultValue: 6 }
 	},
 	title: 'MultipleChoice'
 } as Meta
@@ -79,37 +80,22 @@ const Template: Story<MultipleChoiceProps> = args => (
 	<ThemedMultipleChoice {...args} />
 )
 
-const items = [
-	'CISCO',
-	'Sr Leadership',
-	'SecOps',
-	'Cloud Architect',
-	'DevOps',
-	'NetSec',
-	'AppDev',
-	'Compliance',
-	'Other'
-]
-
-const multichoiceItems = items.map(item => ({
-	label: item,
-	value: item.toLowerCase().split(' ').join('-')
-}))
-
 export const Multiple = Template.bind({})
 Multiple.args = {
-	defaultValues: ['sr-leadership', 'devops'],
-	items: multichoiceItems
+	defaultValue: ['sr-leadership', 'devops'],
+	items: multipleChoiceItems,
+	mode: 'multiple'
 }
 
 export const Single = Template.bind({})
 Single.args = {
 	defaultValue: 'sr-leadership',
-	items: multichoiceItems,
+	items: multipleChoiceItems,
 	mode: 'single'
 }
 
 export const SingleColumn = Template.bind({})
 SingleColumn.args = {
-	items: multichoiceItems.slice(2)
+	items: multipleChoiceItems.slice(2),
+	mode: 'multiple'
 }

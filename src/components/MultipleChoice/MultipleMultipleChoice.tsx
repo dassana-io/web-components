@@ -1,10 +1,10 @@
 import { BaseMultipleChoice } from './BaseMultipleChoice'
-import { MultipleMultipleChoiceProps } from './types'
+import { MultipleProps } from './types'
 import { getInitialSelectedValues, getSelectedValuesArr } from './utils'
 import React, { FC, useCallback, useState } from 'react'
 
-export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = (
-	props: MultipleMultipleChoiceProps
+export const MultipleMultipleChoice: FC<MultipleProps> = (
+	props: MultipleProps
 ) => {
 	const { defaultValues, items, onChange, values } = props
 
@@ -34,8 +34,9 @@ export const MultipleMultipleChoice: FC<MultipleMultipleChoiceProps> = (
 	return (
 		<BaseMultipleChoice
 			{...props}
+			isSelected={value => selectedValues[value]}
 			items={items}
-			mode={'multiple'}
+			mode='multiple'
 			onSelectedChange={onSelectedChange}
 			values={selectedValues}
 		/>

@@ -11,9 +11,8 @@ export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	index: number
 	isSelected?: boolean
 	itemsCount: number
-	onSelectedChange: (value: string) => void
+	onSelect: (index: number, value: string) => void
 	popupContainerSelector?: string
-	setFocus: (index: number) => void
 	singleColumnItemsCount?: number
 }
 
@@ -23,9 +22,8 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	isSelected = false,
 	itemsCount,
 	label,
-	onSelectedChange,
+	onSelect,
 	popupContainerSelector,
-	setFocus,
 	singleColumnItemsCount = 8,
 	value
 }: MultipleChoiceItemProps) => {
@@ -42,10 +40,8 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	}
 
 	const handleChange = useCallback(() => {
-		setFocus(index)
-
-		onSelectedChange(value)
-	}, [index, onSelectedChange, setFocus, value])
+		onSelect(index, value)
+	}, [index, onSelect, value])
 
 	const uppercaseKey = String.fromCharCode(index + 65)
 
@@ -62,10 +58,8 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	)
 
 	useEffect(() => {
-		if (focus) {
-			if (multipleChoiceItemRef && multipleChoiceItemRef.current)
-				multipleChoiceItemRef.current.focus()
-		}
+		if (focus && multipleChoiceItemRef.current)
+			multipleChoiceItemRef.current.focus()
 	}, [focus])
 
 	return (
