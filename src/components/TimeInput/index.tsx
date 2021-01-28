@@ -5,9 +5,12 @@ import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
 import { getDataTestAttributeProp } from 'components/utils'
 import InputSkeleton from 'components/Input/InputSkeleton'
+import { MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
-import moment, { MomentInputObject } from 'moment'
+import { formatTime, parseTime } from './utils'
 import React, { FC } from 'react'
+
+export type TimeFormat = 'unix' | 'hours'
 
 export interface TimeInputProps
 	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
@@ -21,8 +24,9 @@ export interface TimeInputProps
 	onKeyDown?: (e: KeyboardEvent) => void
 	/**
 	 * format the time will be sent in. Either a unix timestamp in seconds or hour integer (0 - 24)
+	 * @default 'unix'
 	 */
-	format?: 'unix' | 'hours'
+	format?: TimeFormat
 	value?: number
 }
 
@@ -45,17 +49,15 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 	if (value && !onChange) {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
-
 	const inputClasses: string = cn(classes)
 
 	let controlledCmpProps = {}
 
 	if (onChange) {
 		controlledCmpProps = {
-			onChange: (momentObj: MomentInputObject) => {
-				onChange(moment(momentObj).unix())
-			},
-			value: value ? moment.unix(value) : value
+			onChange: (momentObj: MomentInputObject) =>
+				onChange(parseTime(momentObj, format)),
+			value: formatTime(format, value)
 		}
 	}
 
