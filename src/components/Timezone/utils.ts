@@ -1,4 +1,4 @@
-import timezones from './timezones.js'
+import timezones from './timezones'
 
 export const getTimezoneValue = (value = '') => {
 	const guessedUserTz = guessUserTimezone()
