@@ -8,14 +8,13 @@ import InputSkeleton from 'components/Input/InputSkeleton'
 import { MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
 import range from 'lodash/range'
-import { formatTime, parseTime } from './utils'
+import { formatTime, parseTime, useStyles } from './utils'
 import React, { FC } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
 
 export interface TimeInputProps
-	extends Omit<BaseFormElementProps, 'onChange' | 'value'> {
-	defaultValue?: number
+	extends Omit<BaseFormElementProps, 'fullWidth' | 'onChange' | 'value'> {
 	/** moment display format to format date. Defaults to 'hh:mm A' which will display 08:54 PM
 	 * @default 'hh:mm A'
 	 * */
@@ -45,6 +44,8 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		format = 'unix',
 		value
 	} = props
+
+	useStyles()
 
 	const componentClasses = cn(classes)
 
