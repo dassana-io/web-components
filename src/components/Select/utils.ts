@@ -1,6 +1,10 @@
 import { generatePopupSelector } from 'components/utils'
 import { styleguide } from '../assets/styles/styleguide'
-import { themedStyles, ThemeType } from '../assets/styles/themes'
+import {
+	dropdownStyles,
+	themedStyles,
+	ThemeType
+} from '../assets/styles/themes'
 
 const { dark, light } = ThemeType
 
@@ -79,13 +83,14 @@ export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	const {
 		disabled: { color }
 	} = themedStyles[themeType]
-	const { background } = selectPalette[themeType].base
+	const { background, boxShadow } = dropdownStyles[themeType]
 
 	return {
 		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty': {
 			color
 		},
-		background
+		background,
+		boxShadow
 	}
 }
 

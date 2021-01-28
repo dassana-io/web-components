@@ -146,3 +146,14 @@ export const themedStyles = {
 	[ThemeType.dark]: generateThemedStyles(themes[dark]),
 	[ThemeType.light]: generateThemedStyles(themes[light])
 }
+
+export const dropdownStyles = {
+	[dark]: {
+		background: blacks['darken-40'],
+		boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)'
+	},
+	[light]: {
+		background: whites.base,
+		boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)'
+	}
+}
