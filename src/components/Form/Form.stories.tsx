@@ -63,7 +63,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			}}
 			undeleteableValues={['@lorem.com']}
 		/>
-		<Form.TimeInput label='Start time' name='workStart' />
+		<Form.TimeInput label='Start time' name='workStart' required />
 		<Form.Timezone label='Timezone' name='timezone' />
 		<Form.RadioGroup
 			defaultValue='low'

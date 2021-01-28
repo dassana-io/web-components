@@ -1,11 +1,16 @@
 import { createUseStyles } from 'react-jss'
+import { generateButtonStyles } from 'components/Button/utils'
 import { TimeFormat } from './index'
+import {
+	dropdownStyles,
+	themedStyles,
+	ThemeType
+} from 'components/assets/styles/themes'
 import {
 	fieldErrorStyles,
 	styleguide
 } from 'components/assets/styles/styleguide'
 import moment, { MomentInputObject } from 'moment'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { borderRadius } = styleguide
 const { dark, light } = ThemeType
@@ -26,6 +31,51 @@ export const parseTime = (momentObj: MomentInputObject, format: TimeFormat) => {
 	return format === 'unix'
 		? moment(momentObj).unix()
 		: parseInt(moment(momentObj).format(hourIntegerFormat))
+}
+
+// -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x-
+
+const generateDropdownStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor, color }
+	} = themedStyles[themeType]
+
+	const {
+		base: { background, boxShadow },
+		hover,
+		selected
+	} = dropdownStyles[themeType]
+
+	return {
+		'& .ant-picker-panel-container': {
+			'& .ant-picker-panel': {
+				'& .ant-picker-footer': {
+					borderTopColor: borderColor
+				},
+				'& .ant-picker-time-panel-column': {
+					'& > li.ant-picker-time-panel-cell': {
+						'& .ant-picker-time-panel-cell-inner': {
+							'&:hover': { background: hover.background },
+							color
+						},
+						'&.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover': {
+							background: selected.background
+						}
+					},
+					'& > li.ant-picker-time-panel-cell-selected div.ant-picker-time-panel-cell-inner': {
+						background: selected.background,
+						color: selected.color
+					},
+					'&:not(:first-child)': {
+						borderColor
+					}
+				},
+				borderColor
+			},
+			backgroundColor: background,
+			boxShadow
+		}
+	}
 }
 
 const generateTimeInputStyles = (themeType: ThemeType) => {
@@ -53,6 +103,13 @@ const generateTimeInputStyles = (themeType: ThemeType) => {
 					color
 				}
 			},
+			'&$error': {
+				'&:hover, &.ant-picker-focused': {
+					borderColor: error.borderColor
+				},
+				...fieldErrorStyles.error,
+				borderColor: error.borderColor
+			},
 			'&.ant-picker-disabled': {
 				'&:hover': {
 					borderColor
@@ -66,6 +123,7 @@ const generateTimeInputStyles = (themeType: ThemeType) => {
 			'&:hover': {
 				borderColor: hover.borderColor
 			},
+
 			backgroundColor: backgroundColor,
 			borderColor: borderColor,
 			borderRadius,
@@ -75,14 +133,19 @@ const generateTimeInputStyles = (themeType: ThemeType) => {
 }
 
 export const useStyles = createUseStyles({
-	container: {},
+	dropdown: generateDropdownStyles(light),
 	error: {},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],
 		[`.${dark}`]: {
-			'& $div': generateTimeInputStyles(dark)
+			'& $button': generateButtonStyles(dark),
+			'& $div': generateTimeInputStyles(dark),
+			'& $dropdown': generateDropdownStyles(dark)
 		},
+		button: generateButtonStyles(light),
 		div: generateTimeInputStyles(light)
 	}
 })
+
+// -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-

@@ -3,12 +3,12 @@ import 'antd/lib/time-picker/style/index.css'
 import { TimePicker as AntDTimeInput } from 'antd'
 import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
-import { getDataTestAttributeProp } from 'components/utils'
 import InputSkeleton from 'components/Input/InputSkeleton'
 import { MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
 import range from 'lodash/range'
 import { formatTime, parseTime, useStyles } from './utils'
+import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
 import React, { FC } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
@@ -26,6 +26,10 @@ export interface TimeInputProps
 	 * @default 'unix'
 	 */
 	format?: TimeFormat
+	/**
+	 * Selector of HTML element inside which to render the dropdown
+	 */
+	popupContainerSelector?: string
 	value?: number
 }
 
@@ -39,15 +43,14 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		onChange,
 		onFocus = noop,
 		placeholder = '',
+		popupContainerSelector,
 		error = false,
 		loading = false,
 		format = 'unix',
 		value
 	} = props
 
-	useStyles()
-
-	const componentClasses = cn(classes)
+	const componentClasses = useStyles()
 
 	if (value && !onChange) {
 		throw new Error('Controlled inputs require an onChange prop')
@@ -63,6 +66,14 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		}
 	}
 
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+	}
+
 	let optionalProps = {}
 
 	if (format === 'hours') {
@@ -75,15 +86,17 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		<InputSkeleton width={120} />
 	) : (
 		<AntDTimeInput
-			className={cn(componentClasses)}
+			className={cn({ [componentClasses.error]: error }, classes)}
 			disabled={disabled}
 			format={displayFormat}
 			onBlur={onBlur}
 			onFocus={onFocus}
 			placeholder={placeholder}
+			popupClassName={componentClasses.dropdown}
 			showNow={false}
 			{...controlledCmpProps}
 			{...optionalProps}
+			{...popupContainerProps}
 			{...getDataTestAttributeProp('time-input', dataTag)}
 		/>
 	)

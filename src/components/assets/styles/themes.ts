@@ -149,11 +149,30 @@ export const themedStyles = {
 
 export const dropdownStyles = {
 	[dark]: {
-		background: blacks['darken-40'],
-		boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)'
+		base: {
+			background: blacks['darken-40'],
+			boxShadow: '0px 2px 8px rgba(255, 255, 255, 0.08)'
+		},
+
+		hover: {
+			background: blacks['lighten-10']
+		},
+		selected: {
+			background: blacks.base,
+			color: grays.base
+		}
 	},
 	[light]: {
-		background: whites.base,
-		boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)'
+		base: {
+			background: whites.base,
+			boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)'
+		},
+		hover: {
+			background: grays['lighten-40']
+		},
+		selected: {
+			background: grays.base,
+			color: blacks.base
+		}
 	}
 }

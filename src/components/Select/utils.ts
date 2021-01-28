@@ -26,15 +26,6 @@ const selectPalette = {
 				background: blacks['darken-20'],
 				color: blacks['lighten-30']
 			}
-		},
-		option: {
-			hover: {
-				background: blacks['lighten-10']
-			},
-			selected: {
-				background: blacks.base,
-				color: grays.base
-			}
 		}
 	},
 	[light]: {
@@ -48,15 +39,6 @@ const selectPalette = {
 			disabled: {
 				background: grays['lighten-70'],
 				color: blacks['lighten-70']
-			}
-		},
-		option: {
-			hover: {
-				background: grays['lighten-40']
-			},
-			selected: {
-				background: grays.base,
-				color: blacks.base
 			}
 		}
 	}
@@ -83,7 +65,10 @@ export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	const {
 		disabled: { color }
 	} = themedStyles[themeType]
-	const { background, boxShadow } = dropdownStyles[themeType]
+
+	const {
+		base: { background, boxShadow }
+	} = dropdownStyles[themeType]
 
 	return {
 		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty': {
@@ -126,7 +111,7 @@ export const generateThemedOptionStyles = (themeType: ThemeType) => {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { hover, selected } = selectPalette[themeType].option
+	const { hover, selected } = dropdownStyles[themeType]
 
 	return {
 		'&.ant-select-item-option': {
