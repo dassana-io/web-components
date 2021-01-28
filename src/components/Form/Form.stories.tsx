@@ -29,6 +29,7 @@ interface UserModel {
 	timeInput?: number
 	severity?: string
 	timezone?: string
+	workStart?: number
 }
 
 const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
@@ -62,6 +63,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			}}
 			undeleteableValues={['@lorem.com']}
 		/>
+		<Form.TimeInput label='Start time' name='workStart' />
 		<Form.Timezone label='Timezone' name='timezone' />
 		<Form.RadioGroup
 			defaultValue='low'

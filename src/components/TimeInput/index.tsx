@@ -7,6 +7,7 @@ import { getDataTestAttributeProp } from 'components/utils'
 import InputSkeleton from 'components/Input/InputSkeleton'
 import { MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
+import range from 'lodash/range'
 import { formatTime, parseTime } from './utils'
 import React, { FC } from 'react'
 
@@ -21,9 +22,8 @@ export interface TimeInputProps
 	displayFormat?: string
 	onChange?: (value: number) => void
 	onFocus?: () => void
-	onKeyDown?: (e: KeyboardEvent) => void
 	/**
-	 * format the time will be sent in. Either a unix timestamp in seconds or hour integer (0 - 24)
+	 * format of time input value. Either a unix timestamp in seconds or hour integer (0 - 24)
 	 * @default 'unix'
 	 */
 	format?: TimeFormat
@@ -46,10 +46,11 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		value
 	} = props
 
+	const componentClasses = cn(classes)
+
 	if (value && !onChange) {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
-	const inputClasses: string = cn(classes)
 
 	let controlledCmpProps = {}
 
@@ -61,17 +62,27 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		}
 	}
 
+	let optionalProps = {}
+
+	if (format === 'hours') {
+		optionalProps = {
+			disabledMinutes: () => range(60)
+		}
+	}
+
 	return loading ? (
 		<InputSkeleton width={120} />
 	) : (
 		<AntDTimeInput
-			className={cn(inputClasses)}
+			className={cn(componentClasses)}
 			disabled={disabled}
 			format={displayFormat}
 			onBlur={onBlur}
 			onFocus={onFocus}
 			placeholder={placeholder}
+			showNow={false}
 			{...controlledCmpProps}
+			{...optionalProps}
 			{...getDataTestAttributeProp('time-input', dataTag)}
 		/>
 	)
