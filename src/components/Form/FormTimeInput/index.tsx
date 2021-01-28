@@ -13,7 +13,6 @@ export interface FormTimeInputProps
 }
 
 const FormTimeInput: FC<FormTimeInputProps> = ({
-	fullWidth = false,
 	label,
 	labelSkeletonWidth,
 	focused,
@@ -35,7 +34,6 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
-					fullWidth={fullWidth}
 					label={label}
 					loading={loading}
 					required={required}
@@ -49,7 +47,6 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 					<TimeInput
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
-						fullWidth={fullWidth}
 						loading={loading}
 						onChange={onChange}
 						onFocus={onFocus}

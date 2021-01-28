@@ -15,6 +15,7 @@ export type TimeFormat = 'unix' | 'hours'
 
 export interface TimeInputProps
 	extends Omit<BaseFormElementProps, 'fullWidth' | 'onChange' | 'value'> {
+	defaultValue?: number
 	/** moment display format to format date. Defaults to 'hh:mm A' which will display 08:54 PM
 	 * @default 'hh:mm A'
 	 * */
@@ -36,6 +37,7 @@ export interface TimeInputProps
 export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 	const {
 		classes = [],
+		defaultValue,
 		dataTag,
 		disabled = false,
 		displayFormat = 'hh:mm A',
@@ -87,6 +89,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 	) : (
 		<AntDTimeInput
 			className={cn({ [componentClasses.error]: error }, classes)}
+			defaultValue={formatTime(format, defaultValue)}
 			disabled={disabled}
 			format={displayFormat}
 			onBlur={onBlur}

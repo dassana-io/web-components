@@ -37,7 +37,8 @@ export const parseTime = (momentObj: MomentInputObject, format: TimeFormat) => {
 
 const generateDropdownStyles = (themeType: ThemeType) => {
 	const {
-		base: { borderColor, color }
+		base: { borderColor, color },
+		disabled
 	} = themedStyles[themeType]
 
 	const {
@@ -57,6 +58,14 @@ const generateDropdownStyles = (themeType: ThemeType) => {
 						'& .ant-picker-time-panel-cell-inner': {
 							'&:hover': { background: hover.background },
 							color
+						},
+						'&.ant-picker-time-panel-cell-disabled': {
+							'& .ant-picker-time-panel-cell-inner': {
+								color: disabled.color
+							},
+							'& .ant-picker-time-panel-cell-inner:hover': {
+								background
+							}
 						},
 						'&.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover': {
 							background: selected.background
