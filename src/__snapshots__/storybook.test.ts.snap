@@ -910,7 +910,7 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         <span
           className="label-0-1-59"
         >
-          CISCO
+          CISO
         </span>
       </div>
       <div
@@ -1167,7 +1167,7 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         <span
           className="label-0-1-59"
         >
-          CISCO
+          CISO
         </span>
       </div>
       <div

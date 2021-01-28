@@ -1,5 +1,5 @@
 const items = [
-	'CISCO',
+	'CISO',
 	'Sr Leadership',
 	'SecOps',
 	'Cloud Architect',
