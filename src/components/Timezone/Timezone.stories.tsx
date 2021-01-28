@@ -12,6 +12,10 @@ export default {
 		value: { control: { disable: true } }
 	},
 	component: Timezone,
+	parameters: {
+		// disabled because default timezone will differ based on where the snapshots were created
+		storyshots: { disable: true }
+	},
 	title: 'Timezone'
 } as Meta
 
