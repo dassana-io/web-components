@@ -26,9 +26,8 @@ FullWidth.args = {
 	fullWidth: true
 }
 
-// This is for demo purposes only
 const isValidDomain = (str: string) =>
-	/^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(
+	/^((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
 		str
 	)
 
