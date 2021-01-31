@@ -8,7 +8,6 @@ import {
 	getInitialValues,
 	getInputValue,
 	getTagDeletionProps,
-	shortcutMicrocopyWidth,
 	useStyles
 } from './utils'
 import { Input, InputProps } from 'components/Input'
@@ -17,6 +16,8 @@ import React, {
 	FC,
 	KeyboardEvent,
 	useEffect,
+	useLayoutEffect,
+	useRef,
 	useState
 } from 'react'
 
@@ -50,6 +51,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	fullWidth,
 	inputRef,
 	loading = false,
+	onBlur,
 	onFocus,
 	onChange,
 	placeholder,
@@ -57,6 +59,8 @@ export const ChipInput: FC<ChipInputProps> = ({
 	validate,
 	values
 }: ChipInputProps) => {
+	const shortcutMicrocopyRef = useRef<HTMLDivElement>(null)
+
 	const [addedValues, setAddedValues] = useState<string[]>(
 		getInitialValues(values, defaultValues)
 	)
@@ -64,8 +68,10 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const [isInvalidValue, setIsInvalidValue] = useState(false)
 	const [localError, setLocalError] = useState(false)
 	const [localErrorMsg, setLocalErrorMsg] = useState('')
+	const [shortcutMicrocopyWidth, setShortcutMicrocopyWidth] = useState(101)
+	const [showShortcutMicrocopy, setShowShortcutMicrocopy] = useState(false)
 
-	const componentClasses = useStyles({ fullWidth })
+	const componentClasses = useStyles({ fullWidth, shortcutMicrocopyWidth })
 
 	const addInputValue = () => {
 		const newValues = [
@@ -88,6 +94,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 		if (onChange) onChange(newValues)
 	}
 
+	const onInputBlur = (event: ChangeEvent<HTMLInputElement>) => {
+		setShowShortcutMicrocopy(false)
+
+		if (onBlur) onBlur(event)
+	}
+
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value.toLowerCase())
 
@@ -95,6 +107,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 		setLocalError(false)
 
 		if (clearErrros) clearErrros()
+	}
+
+	const onInputFocus = () => {
+		setShowShortcutMicrocopy(true)
+
+		if (onFocus) onFocus()
 	}
 
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
@@ -143,10 +161,19 @@ export const ChipInput: FC<ChipInputProps> = ({
 		))
 
 	useEffect(() => {
-		!inputValue || addedValues.includes(inputValue) || localError || error
+		const isDuplicate = addedValues.includes(
+			getInputValue(inputValue, addonBefore, addonAfter)
+		)
+
+		!inputValue || isDuplicate || localError || error
 			? setIsInvalidValue(true)
 			: setIsInvalidValue(false)
-	}, [addedValues, inputValue, localError, error])
+	}, [addonBefore, addonAfter, addedValues, inputValue, localError, error])
+
+	useLayoutEffect(() => {
+		if (shortcutMicrocopyRef.current)
+			setShortcutMicrocopyWidth(shortcutMicrocopyRef.current.scrollWidth)
+	}, [])
 
 	if (values && !onChange)
 		throw new Error('Controlled chip inputs require an onChange prop')
@@ -164,16 +191,18 @@ export const ChipInput: FC<ChipInputProps> = ({
 					fullWidth={fullWidth}
 					inputRef={inputRef}
 					loading={loading}
+					onBlur={onInputBlur}
 					onChange={onInputChange}
-					onFocus={onFocus}
+					onFocus={onInputFocus}
 					onKeyDown={onKeyDown}
 					placeholder={placeholder}
 					value={inputValue}
 				/>
-				<ShortcutMicrocopy
-					loading={loading}
-					width={shortcutMicrocopyWidth}
-				/>
+				{showShortcutMicrocopy && (
+					<ShortcutMicrocopy
+						shortcutMicrocopyRef={shortcutMicrocopyRef}
+					/>
+				)}
 			</div>
 			<div className={componentClasses.tagsWrapper}>
 				{loading ? renderSkeletenTags() : renderTags()}

@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom'
 import { Emitter } from '@dassana-io/web-utils'
 import Modal from './Modal'
-import { useCreateDomElement } from 'components/utils'
+import { generatePopupSelector, useCreateDomElement } from 'components/utils'
 import { MODAL_CONTAINER_ID, useModalCmp } from './utils'
 import { ModalCtx, useModal } from './ModalContext'
 import React, { FC, ReactNode } from 'react'
@@ -9,11 +9,26 @@ import React, { FC, ReactNode } from 'react'
 export interface Props {
 	children: ReactNode
 	emitter: Emitter
+	popupContainerSelector?: string
 }
 
-const ModalProvider: FC<Props> = ({ children, emitter }: Props) => {
+const ModalProvider: FC<Props> = ({
+	children,
+	emitter,
+	popupContainerSelector
+}: Props) => {
 	const { modalConfig, setModalConfig, unsetModal } = useModalCmp()
-	const rootElement = useCreateDomElement(MODAL_CONTAINER_ID)
+
+	let getPopupContainer
+
+	if (popupContainerSelector) {
+		getPopupContainer = generatePopupSelector(popupContainerSelector)
+	}
+
+	const rootElement = useCreateDomElement(
+		MODAL_CONTAINER_ID,
+		getPopupContainer
+	)
 
 	return (
 		<ModalCtx.Provider value={{ setModalConfig, unsetModal }}>

@@ -1,11 +1,10 @@
 import { Input as AntDInput } from 'antd'
 import { BaseFieldProps } from '../types'
 import cn from 'classnames'
-import FieldLabel from '../FieldLabel'
-import { getFormFieldDataTag } from '../utils'
 import { ChipInput, ChipInputProps } from 'components/ChipInput'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
+import { getFormFieldDataTag, renderFieldLabel } from '../utils'
 import React, { FC, useContext, useEffect, useRef } from 'react'
 
 export interface FormChipInputProps
@@ -48,15 +47,13 @@ const FormChipInput: FC<FormChipInputProps> = ({
 
 	return (
 		<div className={cn(containerClasses)}>
-			{label && (
-				<FieldLabel
-					fullWidth={fullWidth}
-					label={label}
-					loading={loading}
-					required={required}
-					skeletonWidth={labelSkeletonWidth}
-				/>
-			)}
+			{renderFieldLabel({
+				fullWidth,
+				label,
+				loading,
+				required,
+				skeletonWidth: labelSkeletonWidth
+			})}
 			<Controller
 				control={control}
 				name={name}

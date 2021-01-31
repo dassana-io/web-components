@@ -21,6 +21,7 @@ export default {
 interface UserModel {
 	firstName: string
 	lastName?: string
+	timeInput?: number
 }
 
 const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
@@ -28,6 +29,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 		{...args}
 		initialValues={{
 			cloudType: 'azure',
+			defaultCheckedKeys: [5],
 			domains: ['@lorem.com'],
 			firstName: 'First Name'
 		}}

@@ -1,16 +1,13 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { ModalConfig } from './utils'
 import noop from 'lodash/noop'
-import {
-	Emitter,
-	EmitterEventTypes,
-	useShortcut,
-	useTheme
-} from '@dassana-io/web-utils'
+import { Emitter, EmitterEventTypes, useShortcut } from '@dassana-io/web-utils'
 import { IconButton, IconSizes } from 'components/IconButton'
+import { ModalConfig, themedModalStyles } from './utils'
 import React, { FC, useEffect } from 'react'
-import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const { dark, light } = ThemeType
 
 const { flexCenter, spacing } = styleguide
 
@@ -21,17 +18,10 @@ const useStyles = createUseStyles({
 		top: spacing.m,
 		zIndex: 10000
 	},
-	container: ({
-		overlay,
-		theme
-	}: {
-		overlay: boolean
-		theme: ThemeType
-	}) => ({
+	container: ({ overlay }: { overlay: boolean }) => ({
 		...flexCenter,
-		background: themedStyles[theme].base.backgroundColor,
+		...themedModalStyles(light),
 		bottom: 0,
-		color: themedStyles[theme].base.color,
 		height: '100%',
 		left: 0,
 		opacity: overlay ? 0.6 : 1,
@@ -40,7 +30,13 @@ const useStyles = createUseStyles({
 		top: 0,
 		width: '100%',
 		zIndex: 9999
-	})
+	}),
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $container': themedModalStyles(dark)
+		}
+	}
 })
 
 interface ModalProps {
@@ -62,8 +58,7 @@ const Modal: FC<ModalProps> = ({
 		onClose,
 		overlay = false
 	} = options
-	const theme = useTheme(emitter)
-	const modalClasses = useStyles({ overlay, theme })
+	const modalClasses = useStyles({ overlay })
 
 	const onModalClose = () => (onClose ? onClose() : unsetModal())
 
