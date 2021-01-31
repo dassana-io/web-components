@@ -35,6 +35,7 @@ export default {
 		'@fortawesome/free-solid-svg-icons',
 		'@fortawesome/react-fontawesome',
 		'fuse.js',
+		'moment',
 		'react',
 		'uuid'
 	],
