@@ -8,7 +8,7 @@ import { MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
 import range from 'lodash/range'
 import { formatTime, parseTime, useStyles } from './utils'
-import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
+import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { FC } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
@@ -68,14 +68,6 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		}
 	}
 
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
 	let optionalProps = {}
 
 	if (format === 'hours') {
@@ -99,8 +91,8 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			showNow={false}
 			{...controlledCmpProps}
 			{...optionalProps}
-			{...popupContainerProps}
 			{...getDataTestAttributeProp('time-input', dataTag)}
+			{...getPopupContainerProps(popupContainerSelector)}
 		/>
 	)
 }

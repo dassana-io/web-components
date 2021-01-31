@@ -1,4 +1,3 @@
-import { generatePopupSelector } from 'components/utils'
 import { styleguide } from '../assets/styles/styleguide'
 import {
 	dropdownStyles,
@@ -154,15 +153,4 @@ export const tooltipStyles = {
 		},
 		maxWidth: 'unset'
 	}
-}
-
-export const getPopupContainerProps = (popupContainerSelector = '') => {
-	let popupContainerProps = {}
-
-	if (popupContainerSelector)
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-
-	return popupContainerProps
 }

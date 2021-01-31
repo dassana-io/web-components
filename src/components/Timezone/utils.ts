@@ -1,6 +1,10 @@
 import timezones from './timezones'
 
-export const getTimezoneValue = (value = '') => {
+interface GetTimezoneValue {
+	(value?: string): string | undefined
+}
+
+export const getTimezoneValue: GetTimezoneValue = (value = '') => {
 	const guessedUserTz = guessUserTimezone()
 
 	// if a value is provided and it exists, return the value
@@ -11,13 +15,28 @@ export const getTimezoneValue = (value = '') => {
 	// otherwise the default value will be undefined and the user will have to select from the list
 }
 
-export const guessUserTimezone = () =>
+// -----------------------------------------------------
+
+export const guessUserTimezone = (): string =>
 	Intl.DateTimeFormat().resolvedOptions().timeZone
 
-const isValidIanaName = (value: string) =>
-	timezones.find(({ ianaName }) => ianaName === value)
+// -----------------------------------------------------
 
-export const mappedTimezoneOpts = () =>
+const isValidIanaName = (value: string): boolean =>
+	!!timezones.find(({ ianaName }) => ianaName === value)
+
+// -----------------------------------------------------
+
+interface TimezoneOption {
+	text: string
+	value: string
+}
+
+interface MappedTimezoneOpts {
+	(): TimezoneOption[]
+}
+
+export const mappedTimezoneOpts: MappedTimezoneOpts = () =>
 	timezones.map(value => ({
 		text: value.text,
 		value: value.ianaName

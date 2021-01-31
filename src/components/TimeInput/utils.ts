@@ -17,7 +17,11 @@ const { dark, light } = ThemeType
 
 const hourIntegerFormat = 'HH'
 
-export const formatTime = (format: TimeFormat, value?: number) => {
+interface FormatTime {
+	(format: TimeFormat, value?: number | undefined): moment.Moment | undefined
+}
+
+export const formatTime: FormatTime = (format, value) => {
 	if (!value && typeof value !== 'number') return value
 
 	if (format === 'unix') {
@@ -27,7 +31,16 @@ export const formatTime = (format: TimeFormat, value?: number) => {
 	return moment(value, hourIntegerFormat)
 }
 
-export const parseTime = (momentObj: MomentInputObject, format: TimeFormat) => {
+// ----------------------------------------
+
+interface ParseTime {
+	(momentObj: MomentInputObject, format: TimeFormat): number
+}
+
+export const parseTime: ParseTime = (
+	momentObj: MomentInputObject,
+	format: TimeFormat
+) => {
 	return format === 'unix'
 		? moment(momentObj).unix()
 		: parseInt(moment(momentObj).format(hourIntegerFormat))
