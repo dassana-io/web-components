@@ -48,3 +48,5 @@ const ModalProvider: FC<Props> = ({
 }
 
 export { ModalProvider, useModal }
+
+export type { ModalConfig, ModalOptions } from './utils'

@@ -41,7 +41,8 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			defaultCheckedKeys: [5],
 			domains: ['@lorem.com'],
 			firstName: 'First Name',
-			timezone: 'Asia/Kathmandu'
+			timezone: 'Asia/Kathmandu',
+			workStart: 9
 		}}
 	>
 		<Form.Input label='First Name' name='firstName' required />
@@ -63,7 +64,12 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			}}
 			undeleteableValues={['@lorem.com']}
 		/>
-		<Form.TimeInput label='Start time' name='workStart' required />
+		<Form.TimeInput
+			format='hours'
+			label='Start time'
+			name='workStart'
+			required
+		/>
 		<Form.Timezone label='Timezone' name='timezone' />
 		<Form.RadioGroup
 			defaultValue='low'
