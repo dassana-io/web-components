@@ -16,7 +16,8 @@ export default {
 					IconSizes.xl
 				],
 				type: 'select'
-			}
+			},
+			defaultValue: IconSizes.sm
 		}
 	},
 	component: IconButton,
@@ -26,3 +27,12 @@ export default {
 const Template: Story<IconButtonProps> = args => <IconButton {...args} />
 
 export const Default = Template.bind({})
+
+export const Pending = Template.bind({})
+Pending.argTypes = {
+	size: { defaultValue: IconSizes.lg }
+}
+Pending.args = {
+	circle: true,
+	pending: true
+}

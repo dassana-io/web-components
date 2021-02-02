@@ -1,3 +1,4 @@
+import { getRgba } from 'components/utils'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -31,15 +32,16 @@ export const generateThemedIconBtnStyles = (themeType: ThemeType) => {
 
 export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 	const {
+		base: { borderColor },
 		disabled: { backgroundColor, color }
 	} = themedStyles[themeType]
 
 	return {
-		'&$hasBorder': {
+		'&$circle': {
 			backgroundColor
 		},
-		'&$hasBorder:hover': {
-			border: 'none'
+		'&$circle:hover': {
+			border: `1px solid ${borderColor}`
 		},
 		'&$iconButton': {
 			color,
@@ -51,7 +53,7 @@ export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 	}
 }
 
-export const generateThemedHasBorderStyles = (themeType: ThemeType) => {
+export const generateThemedCircleButtonStyles = (themeType: ThemeType) => {
 	const {
 		base: { borderColor }
 	} = themedStyles[themeType]
@@ -63,5 +65,14 @@ export const generateThemedHasBorderStyles = (themeType: ThemeType) => {
 			border: `1px solid ${hoverBorderColor}`
 		},
 		border: `1px solid ${borderColor}`
+	}
+}
+
+export const generateThemedPendingStyles = (themeType: ThemeType) => {
+	const { hoverBorderColor } = iconBtnPalette[themeType]
+
+	return {
+		border: `3px solid ${getRgba(hoverBorderColor, 0.2)}`,
+		'border-left-color': hoverBorderColor
 	}
 }
