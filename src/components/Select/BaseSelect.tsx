@@ -109,6 +109,8 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 			defaultValue,
 			onBlur,
 			onChange,
+			// Todo: allow filtering by multiple keys like in MultipleSelect with prop 	'optionKeysToFilter'. AntD prop is filterOption
+			optionFilterProp: 'label',
 			showSearch,
 			value,
 			...getDataTestAttributeProp('select', dataTag)

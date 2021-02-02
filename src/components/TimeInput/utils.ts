@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import { generateButtonStyles } from 'components/Button/utils'
+import isUndefined from 'lodash/isUndefined'
 import { TimeFormat } from './index'
 import {
 	dropdownStyles,
@@ -22,7 +23,7 @@ interface FormatTime {
 }
 
 export const formatTime: FormatTime = (format, value) => {
-	if (!value && typeof value !== 'number') return value
+	if (isUndefined(value)) return value
 
 	if (format === 'unix') {
 		return moment.unix(value)
@@ -40,11 +41,10 @@ interface ParseTime {
 export const parseTime: ParseTime = (
 	momentObj: MomentInputObject,
 	format: TimeFormat
-) => {
-	return format === 'unix'
+) =>
+	format === 'unix'
 		? moment(momentObj).unix()
 		: parseInt(moment(momentObj).format(hourIntegerFormat))
-}
 
 // -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x-
 

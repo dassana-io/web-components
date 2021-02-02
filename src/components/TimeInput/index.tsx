@@ -28,6 +28,12 @@ export interface TimeInputProps
 	 */
 	format?: TimeFormat
 	/**
+	 * Interval between minutes in dropdown
+	 * @default 1
+	 * */
+
+	minuteStep?: number
+	/**
 	 * Selector of HTML element inside which to render the dropdown
 	 */
 	popupContainerSelector?: string
@@ -44,6 +50,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		onBlur = noop,
 		onChange,
 		onFocus = noop,
+		minuteStep = 1,
 		placeholder = '',
 		popupContainerSelector,
 		error = false,
@@ -84,6 +91,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			defaultValue={formatTime(format, defaultValue)}
 			disabled={disabled}
 			format={displayFormat}
+			minuteStep={minuteStep}
 			onBlur={onBlur}
 			onFocus={onFocus}
 			placeholder={placeholder}
