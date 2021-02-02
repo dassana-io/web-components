@@ -9,7 +9,12 @@ export default {
 		onClick: { defaultValue: action('onClick') },
 		size: {
 			control: {
-				options: [IconSizes.xs, IconSizes.sm, IconSizes.lg],
+				options: [
+					IconSizes.xs,
+					IconSizes.sm,
+					IconSizes.lg,
+					IconSizes.xl
+				],
 				type: 'select'
 			}
 		}

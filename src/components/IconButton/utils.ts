@@ -29,6 +29,28 @@ export const generateThemedIconBtnStyles = (themeType: ThemeType) => {
 	}
 }
 
+export const generateThemedDisabledStyles = (themeType: ThemeType) => {
+	const {
+		disabled: { backgroundColor, color }
+	} = themedStyles[themeType]
+
+	return {
+		'&$hasBorder': {
+			backgroundColor
+		},
+		'&$hasBorder:hover': {
+			border: 'none'
+		},
+		'&$iconButton': {
+			color,
+			cursor: 'not-allowed'
+		},
+		'&$iconButton:hover': {
+			color
+		}
+	}
+}
+
 export const generateThemedHasBorderStyles = (themeType: ThemeType) => {
 	const {
 		base: { borderColor }
