@@ -100,6 +100,7 @@ export const Popover: FC<PopoverProps> = ({
 	return (
 		<AntDPopover
 			content={content}
+			destroyTooltipOnHide
 			overlayClassName={cn(classes)}
 			placement={placement}
 			title={title}
