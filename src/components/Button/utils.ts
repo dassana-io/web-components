@@ -7,7 +7,7 @@ const {
 
 const { dark, light } = ThemeType
 
-const buttonPalette = {
+export const buttonPalette = {
 	[dark]: {
 		color: blacks['lighten-50'],
 		disabledBgColor: blacks.base,
