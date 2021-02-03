@@ -4,7 +4,7 @@ interface GetTimezoneValue {
 	(value?: string): string | undefined
 }
 
-export const getTimezoneValue: GetTimezoneValue = (value = '') => {
+export const getTimezoneDefaultValue: GetTimezoneValue = (value = '') => {
 	const guessedUserTz = guessUserTimezone()
 
 	// if a value is provided and it exists, return the value
