@@ -3,8 +3,6 @@ import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
 import { Checkbox } from '../Checkbox'
 import cn from 'classnames'
-import { getDataTestAttributeProp } from '../utils'
-import { getPopupContainerProps } from './utils'
 import { MultiSelectProps } from './MultiSelect/types'
 import { NoContentFound } from './NoContentFound'
 import noop from 'lodash/noop'
@@ -12,6 +10,7 @@ import { OptionChildren } from './OptionChildren'
 import { SelectProps } from './SingleSelect/types'
 import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
+import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { FC, ReactNode } from 'react'
 
 const { Option } = AntDSelect
@@ -110,6 +109,8 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 			defaultValue,
 			onBlur,
 			onChange,
+			// Todo: allow filtering by multiple keys like in MultipleSelect with prop 	'optionKeysToFilter'. AntD prop is filterOption
+			optionFilterProp: 'label',
 			showSearch,
 			value,
 			...getDataTestAttributeProp('select', dataTag)

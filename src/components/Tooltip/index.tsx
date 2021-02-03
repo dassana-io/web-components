@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss'
 import { generateTooltipStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
-import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
+import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { FC, ReactNode } from 'react'
 
 const { dark, light } = ThemeType
@@ -69,14 +69,6 @@ export const Tooltip: FC<TooltipProps> = ({
 }: TooltipProps) => {
 	useStyles()
 
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
 	return (
 		<AntDTooltip
 			overlayClassName={cn(classes)}
@@ -84,7 +76,7 @@ export const Tooltip: FC<TooltipProps> = ({
 			placement={placement}
 			title={title}
 			trigger={triggerMode}
-			{...popupContainerProps}
+			{...getPopupContainerProps(popupContainerSelector)}
 		>
 			{renderWithoutDataTag ? (
 				children

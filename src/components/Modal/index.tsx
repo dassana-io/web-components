@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom'
 import { Emitter } from '@dassana-io/web-utils'
 import Modal from './Modal'
-import { generatePopupSelector, useCreateDomElement } from 'components/utils'
+import { getPopupContainerProps, useCreateDomElement } from 'components/utils'
 import { MODAL_CONTAINER_ID, useModalCmp } from './utils'
 import { ModalCtx, useModal } from './ModalContext'
 import React, { FC, ReactNode } from 'react'
@@ -19,15 +19,9 @@ const ModalProvider: FC<Props> = ({
 }: Props) => {
 	const { modalConfig, setModalConfig, unsetModal } = useModalCmp()
 
-	let getPopupContainer
-
-	if (popupContainerSelector) {
-		getPopupContainer = generatePopupSelector(popupContainerSelector)
-	}
-
 	const rootElement = useCreateDomElement(
 		MODAL_CONTAINER_ID,
-		getPopupContainer
+		getPopupContainerProps(popupContainerSelector).getPopupContainer
 	)
 
 	return (
@@ -48,3 +42,5 @@ const ModalProvider: FC<Props> = ({
 }
 
 export { ModalProvider, useModal }
+
+export type { ModalConfig, ModalOptions } from './utils'

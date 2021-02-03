@@ -1,5 +1,6 @@
 import Color from 'color'
 import mapValues from 'lodash/mapValues'
+import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
 
@@ -40,6 +41,20 @@ type RGB = {
 	r: number
 	g: number
 	b: number
+}
+
+export const getPopupContainerProps = (
+	popupContainerSelector = ''
+): PopupContainerProps => {
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+	}
+
+	return popupContainerProps
 }
 
 const rgbToHex = (rgb: RGB) => Color(rgb).hex()

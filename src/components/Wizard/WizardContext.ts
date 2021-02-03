@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 
 export interface WizardContextProps {
-	data: Record<string, string>
+	data: Record<string, any>
 	goToStep: (step: number) => void
 	maxActiveStep: number
 	nextStep: () => void
