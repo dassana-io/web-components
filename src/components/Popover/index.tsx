@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss'
 import { generatePopoverStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
 import { TooltipPlacement } from 'antd/es/tooltip'
-import { generatePopupSelector, getDataTestAttributeProp } from '../utils'
+import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { FC, ReactNode } from 'react'
 
 const { dark, light } = ThemeType
@@ -79,14 +79,6 @@ export const Popover: FC<PopoverProps> = ({
 }: PopoverProps) => {
 	useStyles()
 
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
 	let controlledCmpProps = {}
 
 	if (onVisibleChange) {
@@ -100,12 +92,13 @@ export const Popover: FC<PopoverProps> = ({
 	return (
 		<AntDPopover
 			content={content}
+			destroyTooltipOnHide
 			overlayClassName={cn(classes)}
 			placement={placement}
 			title={title}
 			trigger={trigger}
 			{...controlledCmpProps}
-			{...popupContainerProps}
+			{...getPopupContainerProps(popupContainerSelector)}
 		>
 			<span
 				className={cn(popupTriggerClasses)}

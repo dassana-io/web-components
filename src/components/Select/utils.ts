@@ -1,6 +1,9 @@
-import { generatePopupSelector } from 'components/utils'
 import { styleguide } from '../assets/styles/styleguide'
-import { themedStyles, ThemeType } from '../assets/styles/themes'
+import {
+	dropdownStyles,
+	themedStyles,
+	ThemeType
+} from '../assets/styles/themes'
 
 const { dark, light } = ThemeType
 
@@ -22,15 +25,6 @@ const selectPalette = {
 				background: blacks['darken-20'],
 				color: blacks['lighten-30']
 			}
-		},
-		option: {
-			hover: {
-				background: blacks['lighten-10']
-			},
-			selected: {
-				background: blacks.base,
-				color: grays.base
-			}
 		}
 	},
 	[light]: {
@@ -44,15 +38,6 @@ const selectPalette = {
 			disabled: {
 				background: grays['lighten-70'],
 				color: blacks['lighten-70']
-			}
-		},
-		option: {
-			hover: {
-				background: grays['lighten-40']
-			},
-			selected: {
-				background: grays.base,
-				color: blacks.base
 			}
 		}
 	}
@@ -79,13 +64,17 @@ export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	const {
 		disabled: { color }
 	} = themedStyles[themeType]
-	const { background } = selectPalette[themeType].base
+
+	const {
+		base: { background, boxShadow }
+	} = dropdownStyles[themeType]
 
 	return {
 		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty': {
 			color
 		},
-		background
+		background,
+		boxShadow
 	}
 }
 
@@ -121,7 +110,7 @@ export const generateThemedOptionStyles = (themeType: ThemeType) => {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { hover, selected } = selectPalette[themeType].option
+	const { hover, selected } = dropdownStyles[themeType]
 
 	return {
 		'&.ant-select-item-option': {
@@ -164,15 +153,4 @@ export const tooltipStyles = {
 		},
 		maxWidth: 'unset'
 	}
-}
-
-export const getPopupContainerProps = (popupContainerSelector = '') => {
-	let popupContainerProps = {}
-
-	if (popupContainerSelector)
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-
-	return popupContainerProps
 }

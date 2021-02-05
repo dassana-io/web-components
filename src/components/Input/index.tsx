@@ -4,18 +4,14 @@ import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
+import InputSkeleton from './InputSkeleton'
 import noop from 'lodash/noop'
-import { Skeleton } from '../Skeleton'
 import { ThemeType } from '../assets/styles/themes'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
-import {
-	generateAddonStyles,
-	generateInputSkeletonStyles,
-	generateInputStyles
-} from './utils'
+import { generateAddonStyles, generateInputStyles } from './utils'
 import React, { FC, KeyboardEvent, RefObject } from 'react'
 
 const { dark, light } = ThemeType
@@ -25,31 +21,17 @@ const useStyles = createUseStyles({
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
 	error: {},
-	inputSkeleton: generateInputSkeletonStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],
 		[`.${dark}`]: {
 			'& $input': generateInputStyles(dark),
-			'& $inputSkeleton': generateInputSkeletonStyles(dark),
 			'& $span': generateAddonStyles(dark)
 		},
 		input: generateInputStyles(light),
 		span: generateAddonStyles(light)
 	}
 })
-
-const InputSkeleton: FC<InputProps> = (props: InputProps) => {
-	const classes = useStyles(props)
-
-	return (
-		<div className={classes.container}>
-			<div className={classes.inputSkeleton}>
-				<Skeleton height={16} />
-			</div>
-		</div>
-	)
-}
 
 export interface InputProps extends BaseFormElementProps {
 	addonAfter?: string
@@ -106,7 +88,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	}
 
 	return loading ? (
-		<InputSkeleton {...props} />
+		<InputSkeleton fullWidth={props.fullWidth} />
 	) : (
 		<AntDInput
 			addonAfter={addonAfter}

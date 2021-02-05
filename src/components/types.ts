@@ -54,3 +54,11 @@ export interface BaseFormElementProps extends CommonComponentProps {
 export interface CommonComponentProps {
 	dataTag?: string
 }
+
+/* 
+If component has element that gets added to the DOM on click, hover etc, you can pass an optional prop to explicitly state which DOM element to render the popover/dropdown inside of.
+In most cases, it's attached to document.body by default
+*/
+export interface PopupContainerProps {
+	getPopupContainer?: () => HTMLElement
+}

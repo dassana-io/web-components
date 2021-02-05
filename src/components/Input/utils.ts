@@ -76,13 +76,3 @@ export const generateInputStyles = (themeType: ThemeType) => {
 		}
 	}
 }
-
-export const generateInputSkeletonStyles = (themeType: ThemeType) => {
-	const { loading } = themedStyles[themeType]
-
-	return {
-		border: `1px solid ${loading.borderColor}`,
-		borderRadius,
-		padding: '6px 14px'
-	}
-}

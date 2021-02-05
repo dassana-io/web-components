@@ -1,3 +1,5 @@
+import { buttonPalette } from 'components/Button/utils'
+import { getRgba } from 'components/utils'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -29,6 +31,31 @@ export const generateThemedIconBtnStyles = (themeType: ThemeType) => {
 	}
 }
 
+export const generateThemedDisabledStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor },
+		disabled: { color: disabledColor }
+	} = themedStyles[themeType]
+	const { disabledBgColor } = buttonPalette[themeType]
+
+	return {
+		'&$circle': {
+			backgroundColor: disabledBgColor
+		},
+		'&$circle:hover': {
+			backgroundColor: disabledBgColor,
+			borderColor
+		},
+		'&$iconButton': {
+			color: disabledColor,
+			cursor: 'not-allowed'
+		},
+		'&$iconButton:hover': {
+			color: disabledColor
+		}
+	}
+}
+
 export const generateThemedHasBorderStyles = (themeType: ThemeType) => {
 	const {
 		base: { borderColor }
@@ -41,5 +68,37 @@ export const generateThemedHasBorderStyles = (themeType: ThemeType) => {
 			border: `1px solid ${hoverBorderColor}`
 		},
 		border: `1px solid ${borderColor}`
+	}
+}
+
+export const generateThemedPendingStyles = (themeType: ThemeType) => {
+	const { hoverBorderColor } = iconBtnPalette[themeType]
+
+	return {
+		border: `3px solid ${getRgba(hoverBorderColor, 0.2)}`,
+		'border-left-color': hoverBorderColor
+	}
+}
+
+export const generateThemedPrimaryStyles = (themeType: ThemeType) => {
+	const {
+		primaryBackgroundColor,
+		primaryDisabledBgColor,
+		primaryDisabledTextColor,
+		primaryHoverBgColor
+	} = buttonPalette[themeType]
+
+	return {
+		'&$disabled': {
+			backgroundColor: primaryDisabledBgColor,
+			color: primaryDisabledTextColor
+		},
+		'&:hover': {
+			backgroundColor: primaryHoverBgColor,
+			color: blacks['lighten-80']
+		},
+		backgroundColor: primaryBackgroundColor,
+		borderColor: 'transparent',
+		color: blacks['lighten-80']
 	}
 }
