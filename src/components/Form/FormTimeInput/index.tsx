@@ -10,12 +10,14 @@ export interface FormTimeInputProps
 	extends BaseFieldProps,
 		Omit<TimeInputProps, 'defaultValue' | 'onChange' | 'value'> {
 	focused?: boolean
+	fullWidth?: boolean
 }
 
 const FormTimeInput: FC<FormTimeInputProps> = ({
 	label,
 	labelSkeletonWidth,
 	focused,
+	fullWidth,
 	name,
 	required,
 	rules = {},
@@ -34,6 +36,7 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					fullWidth
 					label={label}
 					loading={loading}
 					required={required}
