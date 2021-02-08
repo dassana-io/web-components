@@ -31,6 +31,7 @@ const FormSubmitButton: FC<FormButtonProps> = ({
 
 	const isButtonDisabled = () =>
 		isDisabled ? isDisabled(formState, watch()) : !isDirty
+
 	/* TODO: Refactor to allow for multiple keys */
 	useShortcut({
 		additionalConditionalFn: () => !isButtonDisabled(),
