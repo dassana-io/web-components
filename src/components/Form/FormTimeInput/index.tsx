@@ -36,7 +36,7 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
-					fullWidth
+					fullWidth={fullWidth}
 					label={label}
 					loading={loading}
 					required={required}
