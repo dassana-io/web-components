@@ -14,7 +14,7 @@ const { fade } = ColorManipulationTypes
 
 const popoverPalette = {
 	[dark]: {
-		accent: manipulateColor(blacks.base, 72, fade),
+		accent: manipulateColor(blacks['darken-40'], 72, fade),
 		background: blacks['lighten-10'],
 		text: {
 			title: blacks['lighten-80']
