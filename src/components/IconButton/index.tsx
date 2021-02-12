@@ -81,7 +81,7 @@ const useStyles = createUseStyles({
 			'& $disabled': generateThemedDisabledStyles(dark),
 			'& $hasBorder': {
 				...generateThemedHasBorderStyles(dark),
-				'& $primary': generateThemedPrimaryStyles(dark)
+				'&$primary': generateThemedPrimaryStyles(dark)
 			},
 			'& $iconButton': generateThemedIconBtnStyles(dark)
 		},

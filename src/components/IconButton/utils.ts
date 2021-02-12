@@ -82,20 +82,29 @@ export const generateThemedPendingStyles = (themeType: ThemeType) => {
 
 export const generateThemedPrimaryStyles = (themeType: ThemeType) => {
 	const {
+		disabled: { color: disabledColor }
+	} = themedStyles[themeType]
+	const {
+		disabledBgColor,
 		primaryBackgroundColor,
-		primaryDisabledBgColor,
-		primaryDisabledTextColor,
 		primaryHoverBgColor
 	} = buttonPalette[themeType]
 
 	return {
-		'&$disabled': {
-			backgroundColor: primaryDisabledBgColor,
-			color: primaryDisabledTextColor
-		},
-		'&:hover': {
-			backgroundColor: primaryHoverBgColor,
-			color: blacks['lighten-80']
+		'&$circle': {
+			'&$disabled': {
+				'&:hover': {
+					backgroundColor: disabledBgColor,
+					borderColor: disabledBgColor,
+					color: disabledColor
+				},
+				backgroundColor: disabledBgColor,
+				color: disabledColor
+			},
+			'&:hover': {
+				backgroundColor: primaryHoverBgColor,
+				color: blacks['lighten-80']
+			}
 		},
 		backgroundColor: primaryBackgroundColor,
 		borderColor: 'transparent',
