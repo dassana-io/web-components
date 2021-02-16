@@ -1,13 +1,14 @@
 import FieldContext from '../FieldContext'
 import { FormStateProxy } from 'react-hook-form/dist/types/form'
+import { getUseShortcutProps } from './utils'
 import { useFormContext } from 'react-hook-form'
-import { useShortcut } from '@dassana-io/web-utils'
 import { Button, ButtonProps } from 'components/Button'
 import React, { FC, useContext } from 'react'
 import {
 	ShortcutMicrocopy,
 	ShortcutMicrocopyProps
 } from 'components/ShortcutMicrocopy'
+import { useShortcut, UseShortcutConfig } from '@dassana-io/web-utils'
 
 export interface FormButtonProps
 	extends Omit<ButtonProps, 'loading' | 'onClick'> {
@@ -17,12 +18,17 @@ export interface FormButtonProps
 	) => boolean
 	renderShortcutMicrocopy?: boolean
 	shortcutMicrocopyProps?: ShortcutMicrocopyProps
+	useShortcutProps?: Omit<
+		UseShortcutConfig,
+		'additionalConditionalFn' | 'callback'
+	>
 }
 
 const FormSubmitButton: FC<FormButtonProps> = ({
 	isDisabled,
 	renderShortcutMicrocopy = false,
 	shortcutMicrocopyProps,
+	useShortcutProps,
 	...rest
 }: FormButtonProps) => {
 	const { handleSubmit, formState, watch } = useFormContext()
@@ -32,13 +38,13 @@ const FormSubmitButton: FC<FormButtonProps> = ({
 	const isButtonDisabled = () =>
 		isDisabled ? isDisabled(formState, watch()) : !isDirty
 
-	/* TODO: Refactor to allow for multiple keys */
-	useShortcut({
-		additionalConditionalFn: () => !isButtonDisabled(),
-		callback: handleSubmit(onSubmit),
-		key: 'Enter',
-		keyEvent: 'keydown'
-	})
+	useShortcut(
+		getUseShortcutProps({
+			additionalConditionalFn: () => !isButtonDisabled(),
+			callback: handleSubmit(onSubmit),
+			useShortcutProps
+		})
+	)
 
 	return (
 		<>
