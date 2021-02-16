@@ -37,6 +37,7 @@ export interface InputProps extends BaseFormElementProps {
 	addonAfter?: string
 	addonBefore?: string
 	inputRef?: RefObject<AntDInput>
+	focused?: boolean
 	onFocus?: () => void
 	onKeyDown?: (e: KeyboardEvent) => void
 	/**
@@ -53,6 +54,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		classes = [],
 		dataTag,
 		disabled = false,
+		focused = false,
 		inputRef,
 		onBlur = noop,
 		onChange,
@@ -93,6 +95,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		<AntDInput
 			addonAfter={addonAfter}
 			addonBefore={addonBefore}
+			autoFocus={focused}
 			className={cn(componentClasses.container, inputClasses)}
 			disabled={disabled}
 			onBlur={onBlur}

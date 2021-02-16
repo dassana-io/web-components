@@ -20,6 +20,7 @@ export interface TimeInputProps
 	 * @default 'hh:mm A'
 	 * */
 	displayFormat?: string
+	focused?: boolean
 	onChange?: (value: number) => void
 	onFocus?: () => void
 	/**
@@ -47,6 +48,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		dataTag,
 		disabled = false,
 		displayFormat = 'hh:mm A',
+		focused = false,
 		onBlur = noop,
 		onChange,
 		onFocus = noop,
@@ -87,6 +89,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		<InputSkeleton width={120} />
 	) : (
 		<AntDTimeInput
+			autoFocus={focused}
 			className={cn({ [componentClasses.error]: error }, classes)}
 			defaultValue={formatTime(format, defaultValue)}
 			disabled={disabled}

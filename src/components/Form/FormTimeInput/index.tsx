@@ -16,7 +16,6 @@ export interface FormTimeInputProps
 const FormTimeInput: FC<FormTimeInputProps> = ({
 	label,
 	labelSkeletonWidth,
-	focused,
 	fullWidth,
 	name,
 	required,

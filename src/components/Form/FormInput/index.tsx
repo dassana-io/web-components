@@ -7,7 +7,7 @@ import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import { Input, InputProps } from 'components/Input'
-import React, { FC, KeyboardEvent, useContext, useEffect, useRef } from 'react'
+import React, { FC, KeyboardEvent, useContext, useRef } from 'react'
 
 export interface FormInputProps
 	extends BaseFieldProps,
@@ -42,12 +42,6 @@ const FormInput: FC<FormInputProps> = ({
 		if (e.key === 'Enter') e.preventDefault()
 	}
 
-	useEffect(() => {
-		if (focused && inputRef.current) {
-			inputRef.current.focus()
-		}
-	}, [focused])
-
 	if (required) {
 		rules.required = true
 	}
@@ -70,6 +64,7 @@ const FormInput: FC<FormInputProps> = ({
 					<Input
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
+						focused={focused}
 						fullWidth={fullWidth}
 						inputRef={inputRef}
 						loading={loading}
