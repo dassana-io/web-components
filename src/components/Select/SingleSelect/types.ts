@@ -21,6 +21,7 @@ export interface SelectProps extends BaseFormElementProps {
 	 * @default false
 	 */
 	defaultOpen?: boolean
+	focused?: boolean
 	/**
 	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
 	 */
@@ -29,6 +30,7 @@ export interface SelectProps extends BaseFormElementProps {
 	 * Selector of HTML element inside which to render the popup/dropdown
 	 */
 	popupContainerSelector?: string
+	onFocus?: () => void
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */

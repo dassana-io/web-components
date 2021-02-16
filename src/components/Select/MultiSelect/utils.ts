@@ -94,10 +94,10 @@ export const useStyles = createUseStyles({
 	checkbox: { marginRight: spacing.s },
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
 		'& .ant-select': {
-			'&$error > .ant-select-selector': {
-				border: `1px solid ${themedStyles[light].error.borderColor}`
-			},
 			'&.ant-select-multiple': {
+				'&$error > .ant-select-selector': {
+					border: `1px solid ${themedStyles[light].error.borderColor}`
+				},
 				'&.ant-select-disabled': generateThemedDisabledStyles(light),
 				...generateThemedSelectStyles(light),
 				...generateThemedTagStyles(light),
@@ -106,7 +106,7 @@ export const useStyles = createUseStyles({
 						display: 'flex',
 						flexWrap: matchSelectedContentWidth ? 'nowrap' : 'wrap'
 					},
-					'&:after': { display: 'none' },
+					'&:after': { width: 0 },
 					...generateThemedInputStyles(light),
 					borderRadius
 				},

@@ -23,6 +23,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		defaultValues = [],
 		disabled = false,
 		error = false,
+		focused = false,
 		fullWidth = false,
 		loading = false,
 		maxTagCount,
@@ -104,6 +105,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
 	return (
 		<BaseSelect
+			{...props}
 			classes={classes}
 			dataTag={dataTag}
 			defaultOpen={defaultOpen}
@@ -111,6 +113,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 			disabled={disabled}
 			dropdownRender={dropdownRender}
 			error={error}
+			focused={focused}
 			fullWidth={fullWidth}
 			loading={loading}
 			localValues={localValues}

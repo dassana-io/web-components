@@ -12,6 +12,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		defaultValue,
 		disabled = false,
 		error = false,
+		focused = false,
 		fullWidth = false,
 		loading = false,
 		matchSelectedContentWidth = false,
@@ -39,12 +40,14 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 
 	return (
 		<BaseSelect
+			{...props}
 			classes={classes}
 			dataTag={dataTag}
 			defaultOpen={defaultOpen}
 			defaultValue={defaultValue}
 			disabled={disabled}
 			error={error}
+			focused={focused}
 			fullWidth={fullWidth}
 			loading={loading}
 			matchSelectedContentWidth={matchSelectedContentWidth}
