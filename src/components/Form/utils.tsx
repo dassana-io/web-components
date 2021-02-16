@@ -5,14 +5,13 @@ import FieldLabel, { FieldLabelProps } from './FieldLabel'
 
 export const getFormFieldDataTag = (tag: string): string => `field-${tag}`
 
-export const renderFieldLabel = (props: Partial<FieldLabelProps>) => {
-	if (props.label) return <FieldLabel {...(props as FieldLabelProps)} />
-}
+// --------------------------------------
 
 interface Params {
 	rules?: ValidationRules
 	required?: boolean
 }
+
 export const getRulesForArrVals = ({
 	rules = {},
 	required = false
@@ -22,21 +21,31 @@ export const getRulesForArrVals = ({
 	if (required) {
 		newRules.required = true
 
-		const required = (values: string[]) => values.length > 0 || ''
+		const requiredRules = {
+			required: (values: string[]) => values.length > 0 || ''
+		}
 
-		if (!('validate' in newRules)) {
-			newRules.validate = required
-		} else {
-			newRules.validate =
-				typeof newRules.validate === 'object'
-					? { ...newRules.validate, required }
-					: {
-							required,
-							validate: newRules.validate!
-							// eslint-disable-next-line no-mixed-spaces-and-tabs
-					  }
+		let extraRules = {}
+
+		if (newRules.validate) {
+			if (typeof newRules.validate === 'object') {
+				extraRules = { ...newRules.validate }
+			} else {
+				extraRules = { validate: newRules.validate }
+			}
+		}
+
+		newRules.validate = {
+			...extraRules,
+			...requiredRules
 		}
 	}
 
 	return newRules
+}
+
+// --------------------------------------
+
+export const renderFieldLabel = (props: Partial<FieldLabelProps>) => {
+	if (props.label) return <FieldLabel {...(props as FieldLabelProps)} />
 }
