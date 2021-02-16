@@ -90,14 +90,20 @@ export const useDropdownStyles = createUseStyles({
 	}
 })
 
+const generateErrorStyles = (themeType: ThemeType) => ({
+	'&$error': {
+		'&:hover > div.ant-select-selector, & > .ant-select-selector': {
+			border: `1px solid ${themedStyles[themeType].error.borderColor}`
+		}
+	}
+})
+
 export const useStyles = createUseStyles({
 	checkbox: { marginRight: spacing.s },
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
 		'& .ant-select': {
 			'&.ant-select-multiple': {
-				'&$error > .ant-select-selector': {
-					border: `1px solid ${themedStyles[light].error.borderColor}`
-				},
+				...generateErrorStyles(light),
 				'&.ant-select-disabled': generateThemedDisabledStyles(light),
 				...generateThemedSelectStyles(light),
 				...generateThemedTagStyles(light),
@@ -129,10 +135,8 @@ export const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $container': {
 				'& .ant-select': {
-					'&$error > .ant-select-selector': {
-						border: `1px solid ${themedStyles[dark].error.borderColor}`
-					},
 					'&.ant-select-multiple': {
+						...generateErrorStyles(dark),
 						'&.ant-select-disabled': generateThemedDisabledStyles(
 							dark
 						),

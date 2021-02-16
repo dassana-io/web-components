@@ -35,6 +35,16 @@ const disabledClasses =
 const focusedClasses =
 	'&.ant-select-focused:not(.ant-select-disabled).ant-select-single:not(.ant-select-customize-input) .ant-select-selector'
 
+const generateErrorStyles = (themeType: ThemeType) => ({
+	'&$error': {
+		'&$error': {
+			'&:hover > .ant-select-selector, & > .ant-select-selector': {
+				border: `1px solid ${themedStyles[themeType].error.borderColor}`
+			}
+		}
+	}
+})
+
 export const useStyles = createUseStyles({
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
 		'& .ant-select': {
@@ -45,9 +55,7 @@ export const useStyles = createUseStyles({
 				...generateThemedInputStyles(light),
 				borderRadius
 			},
-			'&$error > .ant-select-selector': {
-				border: `1px solid ${themedStyles[light].error.borderColor}`
-			},
+			...generateErrorStyles(light),
 			[disabledClasses]: generateThemedDisabledStyles(light),
 			[focusedClasses]: generateThemedFocusedStyles(light),
 			minWidth: matchSelectedContentWidth
@@ -74,9 +82,8 @@ export const useStyles = createUseStyles({
 					'& .ant-select-selector': {
 						...generateThemedInputStyles(dark)
 					},
-					'&$error > .ant-select-selector': {
-						border: `1px solid ${themedStyles[dark].error.borderColor}`
-					},
+					...generateErrorStyles(dark),
+
 					[disabledClasses]: generateThemedDisabledStyles(dark),
 					[focusedClasses]: generateThemedFocusedStyles(dark)
 				}
