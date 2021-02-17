@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { generateButtonStyles } from 'components/Button/utils'
+import isNull from 'lodash/isNull'
 import isUndefined from 'lodash/isUndefined'
-import { TimeFormat } from './index'
 import {
 	dropdownStyles,
 	themedStyles,
@@ -12,6 +12,7 @@ import {
 	styleguide
 } from 'components/assets/styles/styleguide'
 import moment, { MomentInputObject } from 'moment'
+import { TimeFormat, TimeInputProps } from './index'
 
 const { borderRadius } = styleguide
 const { dark, light } = ThemeType
@@ -19,11 +20,13 @@ const { dark, light } = ThemeType
 const hourIntegerFormat = 'HH'
 
 interface FormatTime {
-	(format: TimeFormat, value?: number | undefined): moment.Moment | undefined
+	(format: TimeFormat, value?: TimeInputProps['value']):
+		| moment.Moment
+		| undefined
 }
 
 export const formatTime: FormatTime = (format, value) => {
-	if (isUndefined(value)) return value
+	if (isUndefined(value) || isNull(value)) return
 
 	if (format === 'unix') {
 		return moment.unix(value)
@@ -35,16 +38,19 @@ export const formatTime: FormatTime = (format, value) => {
 // ----------------------------------------
 
 interface ParseTime {
-	(momentObj: MomentInputObject, format: TimeFormat): number
+	(momentObj: MomentInputObject, format: TimeFormat): number | null
 }
 
 export const parseTime: ParseTime = (
 	momentObj: MomentInputObject,
 	format: TimeFormat
-) =>
-	format === 'unix'
+) => {
+	if (!momentObj) return null
+
+	return format === 'unix'
 		? moment(momentObj).unix()
 		: parseInt(moment(momentObj).format(hourIntegerFormat))
+}
 
 // -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x-
 

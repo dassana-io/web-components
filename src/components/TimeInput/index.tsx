@@ -21,7 +21,7 @@ export interface TimeInputProps
 	 * */
 	displayFormat?: string
 	focused?: boolean
-	onChange?: (value: number) => void
+	onChange?: (value: number | null) => void
 	onFocus?: () => void
 	/**
 	 * format of time input value. Either a unix timestamp in seconds or hour integer (0 - 24)
@@ -38,7 +38,7 @@ export interface TimeInputProps
 	 * Selector of HTML element inside which to render the dropdown
 	 */
 	popupContainerSelector?: string
-	value?: number
+	value?: number | null
 }
 
 export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
