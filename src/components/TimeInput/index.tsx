@@ -9,7 +9,7 @@ import noop from 'lodash/noop'
 import range from 'lodash/range'
 import { formatTime, parseTime, useStyles } from './utils'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC } from 'react'
+import React, { FC, FocusEvent } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
 
@@ -21,8 +21,8 @@ export interface TimeInputProps
 	 * */
 	displayFormat?: string
 	focused?: boolean
-	onChange?: (value: number | null) => void
-	onFocus?: () => void
+	onChange?: (value: number) => void
+	onFocus?: (event: FocusEvent<HTMLInputElement>) => void
 	/**
 	 * format of time input value. Either a unix timestamp in seconds or hour integer (0 - 24)
 	 * @default 'unix'
@@ -38,7 +38,7 @@ export interface TimeInputProps
 	 * Selector of HTML element inside which to render the dropdown
 	 */
 	popupContainerSelector?: string
-	value?: number | null
+	value?: number
 }
 
 export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
@@ -51,7 +51,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		focused = false,
 		onBlur = noop,
 		onChange,
-		onFocus = noop,
+		onFocus,
 		minuteStep = 1,
 		placeholder = '',
 		popupContainerSelector,
@@ -85,10 +85,30 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		}
 	}
 
+	let onFocusProps = {}
+
+	// This prevents the input from being highlighted when it receives focus
+	const onTimeInputFocus = (e: FocusEvent<HTMLInputElement>) =>
+		e.target.setSelectionRange(0, 0)
+
+	if (onFocus) {
+		onFocusProps = {
+			onFocus: (e: FocusEvent<HTMLInputElement>) => {
+				onTimeInputFocus(e)
+				onFocus(e)
+			}
+		}
+	} else {
+		onFocusProps = {
+			onFocus: onTimeInputFocus
+		}
+	}
+
 	return loading ? (
 		<InputSkeleton width={120} />
 	) : (
 		<AntDTimeInput
+			allowClear={false}
 			autoFocus={focused}
 			className={cn({ [componentClasses.error]: error }, classes)}
 			defaultValue={formatTime(format, defaultValue)}
@@ -96,11 +116,11 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			format={displayFormat}
 			minuteStep={minuteStep}
 			onBlur={onBlur}
-			onFocus={onFocus}
 			placeholder={placeholder}
 			popupClassName={componentClasses.dropdown}
 			showNow={false}
 			{...controlledCmpProps}
+			{...onFocusProps}
 			{...optionalProps}
 			{...getDataTestAttributeProp('time-input', dataTag)}
 			{...getPopupContainerProps(popupContainerSelector)}
