@@ -959,7 +959,7 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
   <p
     className="info-0-1-62 info-d2-0-1-65"
   >
-    Press Tab or Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
+    Press Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
   </p>
   <div
     className="eventTarget-0-1-60 eventTarget-d0-0-1-63"
@@ -1216,7 +1216,7 @@ exports[`Storyshots MultipleChoice Single 1`] = `
   <p
     className="info-0-1-62 info-d5-0-1-85"
   >
-    Press Tab or Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
+    Press Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
   </p>
   <div
     className="eventTarget-0-1-60 eventTarget-d3-0-1-83"
@@ -1452,7 +1452,7 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
   <p
     className="info-0-1-62 info-d8-0-1-98"
   >
-    Press Tab or Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
+    Press Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
   </p>
   <div
     className="eventTarget-0-1-60 eventTarget-d6-0-1-96"

@@ -62,8 +62,8 @@ const ThemedMultipleChoice: FC<MultipleChoiceProps> = (
 				Click on the bordered box to use keyboard shortcuts
 			</h3>
 			<p className={classes.info}>
-				Press Tab or Up, Down, Left, Right arrow keys to navigate. Press
-				enter or alphabet keys to select/deselect.
+				Press Up, Down, Left, Right arrow keys to navigate. Press enter
+				or alphabet keys to select/deselect.
 			</p>
 			<div className={classes.eventTarget} ref={divRef} tabIndex={0}>
 				<MultipleChoice
