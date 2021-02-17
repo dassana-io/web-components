@@ -12,6 +12,7 @@ import React, {
 	FC,
 	KeyboardEvent,
 	ReactNode,
+	useEffect,
 	useState
 } from 'react'
 
@@ -42,6 +43,10 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		values
 	} = props
 	const [localValues, setLocalValues] = useState(values || defaultValues)
+
+	useEffect(() => {
+		if (values) setLocalValues(values)
+	}, [values])
 
 	const [searchTerm, setSearchTerm] = useState('')
 
