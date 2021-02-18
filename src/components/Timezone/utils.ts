@@ -1,10 +1,13 @@
+import { TimezoneProps } from './index'
 import timezones from './timezones'
 
 interface GetTimezoneValue {
-	(value?: string): string | undefined
+	(value: TimezoneProps['value']): string | undefined
 }
 
-export const getTimezoneDefaultValue: GetTimezoneValue = (value = '') => {
+export const getTimezoneDefaultValue: GetTimezoneValue = (
+	value: TimezoneProps['value']
+) => {
 	const guessedUserTz = guessUserTimezone()
 
 	// if a value is provided and it exists, return the value
