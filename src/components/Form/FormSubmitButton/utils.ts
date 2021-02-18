@@ -12,9 +12,13 @@ export const getUseShortcutProps = ({
 	callback,
 	useShortcutProps
 }: Params): UseShortcutConfig => {
-	const defaultConfig: UseShortcutConfig = {
+	const commonShortcutConfigProps = {
 		additionalConditionalFn,
-		callback,
+		callback
+	}
+
+	const defaultConfig: UseShortcutConfig = {
+		...commonShortcutConfigProps,
 		key: 'Enter',
 		keyEvent: 'keydown'
 	}
@@ -25,8 +29,7 @@ export const getUseShortcutProps = ({
 		const { key, keyEvent } = useShortcutProps
 
 		return {
-			additionalConditionalFn,
-			callback,
+			...commonShortcutConfigProps,
 			key,
 			keyEvent
 		}
@@ -36,8 +39,7 @@ export const getUseShortcutProps = ({
 		const { keys } = useShortcutProps
 
 		return {
-			additionalConditionalFn,
-			callback,
+			...commonShortcutConfigProps,
 			keys
 		}
 	}

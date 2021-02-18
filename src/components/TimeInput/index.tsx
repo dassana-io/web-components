@@ -51,7 +51,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		focused = false,
 		onBlur = noop,
 		onChange,
-		onFocus,
+		onFocus = noop,
 		minuteStep = 1,
 		placeholder = '',
 		popupContainerSelector,
@@ -85,24 +85,9 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		}
 	}
 
-	let onFocusProps = {}
-
-	// This prevents the input from being highlighted when it receives focus
+	// This prevents the input content from being highlighted when it receives focus
 	const onTimeInputFocus = (e: FocusEvent<HTMLInputElement>) =>
 		e.target.setSelectionRange(0, 0)
-
-	if (onFocus) {
-		onFocusProps = {
-			onFocus: (e: FocusEvent<HTMLInputElement>) => {
-				onTimeInputFocus(e)
-				onFocus(e)
-			}
-		}
-	} else {
-		onFocusProps = {
-			onFocus: onTimeInputFocus
-		}
-	}
 
 	return loading ? (
 		<InputSkeleton width={120} />
@@ -116,11 +101,14 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			format={displayFormat}
 			minuteStep={minuteStep}
 			onBlur={onBlur}
+			onFocus={(e: FocusEvent<HTMLInputElement>) => {
+				onTimeInputFocus(e)
+				onFocus(e)
+			}}
 			placeholder={placeholder}
 			popupClassName={componentClasses.dropdown}
 			showNow={false}
 			{...controlledCmpProps}
-			{...onFocusProps}
 			{...optionalProps}
 			{...getDataTestAttributeProp('time-input', dataTag)}
 			{...getPopupContainerProps(popupContainerSelector)}

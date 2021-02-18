@@ -1,4 +1,3 @@
-import { Input as AntDInput } from 'antd'
 import { BaseFieldProps } from '../types'
 import cn from 'classnames'
 import FieldError from '../FieldError'
@@ -7,7 +6,7 @@ import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import { Input, InputProps } from 'components/Input'
-import React, { FC, KeyboardEvent, useContext, useRef } from 'react'
+import React, { FC, KeyboardEvent, useContext } from 'react'
 
 export interface FormInputProps
 	extends BaseFieldProps,
@@ -27,7 +26,6 @@ const FormInput: FC<FormInputProps> = ({
 	rules = {},
 	...rest
 }: FormInputProps) => {
-	const inputRef = useRef<AntDInput>(null)
 	const { clearErrors, control, errors } = useFormContext()
 	const { loading } = useContext<FieldContextProps>(FieldContext)
 
@@ -66,7 +64,6 @@ const FormInput: FC<FormInputProps> = ({
 						error={errors[name]}
 						focused={focused}
 						fullWidth={fullWidth}
-						inputRef={inputRef}
 						loading={loading}
 						onChange={onChange}
 						onFocus={onInputFocus}
