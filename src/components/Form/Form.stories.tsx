@@ -101,7 +101,9 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			name='cloudAccounts'
 			treeData={treeData}
 		/>
-		<Form.SubmitButton>Submit</Form.SubmitButton>
+		<Form.SubmitButton useShortcutProps={{ keys: ['Shift', 'Enter'] }}>
+			Submit
+		</Form.SubmitButton>
 	</Form>
 )
 

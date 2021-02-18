@@ -10,6 +10,12 @@ import {
 } from 'components/ShortcutMicrocopy'
 import { useShortcut, UseShortcutConfig } from '@dassana-io/web-utils'
 
+/**
+ * TODO: Move to web-utils
+ * More info on Distributive Conditional Types: https://stackoverflow.com/a/57103940/11279811
+ */
+type DistributiveOmit<T, K extends keyof T> = T extends T ? Omit<T, K> : never
+
 export interface FormButtonProps
 	extends Omit<ButtonProps, 'loading' | 'onClick'> {
 	isDisabled?: (
@@ -18,7 +24,8 @@ export interface FormButtonProps
 	) => boolean
 	renderShortcutMicrocopy?: boolean
 	shortcutMicrocopyProps?: ShortcutMicrocopyProps
-	useShortcutProps?: Omit<
+
+	useShortcutProps?: DistributiveOmit<
 		UseShortcutConfig,
 		'additionalConditionalFn' | 'callback'
 	>
