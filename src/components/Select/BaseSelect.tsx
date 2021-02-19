@@ -47,8 +47,10 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		defaultOpen = false,
 		disabled = false,
 		error = false,
+		focused = false,
 		loading = false,
 		onBlur,
+		onFocus,
 		options,
 		optionsConfig = {},
 		placeholder = '',
@@ -122,11 +124,13 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 	) : (
 		<div className={componentClasses.container}>
 			<AntDSelect
+				autoFocus={focused}
 				className={inputClasses}
 				defaultOpen={defaultOpen}
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
 				notFoundContent={<NoContentFound />}
+				onFocus={onFocus}
 				placeholder={placeholder}
 				showArrow
 				showSearch={showSearch}

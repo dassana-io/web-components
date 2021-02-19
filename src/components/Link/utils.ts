@@ -1,14 +1,20 @@
-import { themedStyles, ThemeType } from '../assets/styles/themes'
+import { styleguide } from 'components/assets/styles/styleguide'
+import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+
+const { fontWeight } = styleguide
 
 export const generateLinkStyles = (themeType: ThemeType) => {
 	const { base, hover } = themedStyles[themeType]
 
 	return {
 		'&.ant-typography': {
-			'&:hover': {
-				color: hover.color
+			'&:hover, &:focus': {
+				color: hover.color,
+				fontWeight: fontWeight.regular
 			},
-			color: base.color
+			color: base.color,
+			fontWeight: fontWeight.light,
+			transition: 'all 0.3s'
 		}
 	}
 }

@@ -1,7 +1,6 @@
 import 'antd/lib/button/style/index.css'
 import 'antd/lib/spin/style/index.css'
 import { Button as AntDButton } from 'antd'
-import { ButtonProps as AntDButtonProps } from 'antd/es/button'
 import classnames from 'classnames'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
@@ -38,6 +37,7 @@ export interface ButtonProps extends CommonComponentProps {
 	 * Adds the disabled attribute and styles (opacity, gray scale filter, no pointer events).
 	 */
 	disabled?: boolean
+	focused?: boolean
 	/**
 	 * Renders a skeleton for the button.
 	 */
@@ -65,6 +65,7 @@ export const Button: FC<ButtonProps> = ({
 	classes = [],
 	dataTag,
 	disabled = false,
+	focused = false,
 	loading = false,
 	onClick,
 	pending = false,
@@ -72,20 +73,17 @@ export const Button: FC<ButtonProps> = ({
 	skeletonHeight = 32,
 	skeletonWidth = 75
 }: ButtonProps) => {
-	const antDProps: AntDButtonProps = {
-		className: classnames(classes),
-		disabled: pending || disabled,
-		onClick,
-		type: primary ? 'primary' : 'default'
-	}
-
 	useStyles()
 
 	return loading ? (
 		<Skeleton height={skeletonHeight} width={skeletonWidth} />
 	) : (
 		<AntDButton
-			{...antDProps}
+			autoFocus={focused}
+			className={classnames(classes)}
+			disabled={pending || disabled}
+			onClick={onClick}
+			type={primary ? 'primary' : 'default'}
 			{...getDataTestAttributeProp('button', dataTag)}
 		>
 			{pending && (

@@ -26,6 +26,7 @@ interface UserModel {
 	firstName: string
 	isProduction?: boolean
 	lastName?: string
+	persona?: string[]
 	timeInput?: number
 	severity?: string
 	timezone?: string
@@ -41,6 +42,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			defaultCheckedKeys: [5],
 			domains: ['@lorem.com'],
 			firstName: 'First Name',
+			persona: ['other'],
 			timezone: 'Asia/Kathmandu',
 			workStart: 9
 		}}
@@ -51,6 +53,18 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Cloud Type'
 			name='cloudType'
 			options={iconOptions}
+		/>
+		<Form.MultiSelect
+			label='Persona'
+			name='persona'
+			options={[
+				{ text: 'CISO', value: 'ciso' },
+				{ text: 'SecOps', value: 'sec-ops' },
+				{ text: 'DevOps', value: 'dev-ops' },
+				{ text: 'Compliance', value: 'compliance' },
+				{ text: 'other', value: 'other' }
+			]}
+			required
 		/>
 		<Form.ChipInput
 			addonBefore='@'
@@ -87,7 +101,9 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			name='cloudAccounts'
 			treeData={treeData}
 		/>
-		<Form.SubmitButton>Submit</Form.SubmitButton>
+		<Form.SubmitButton useShortcutProps={{ keys: ['Shift', 'Enter'] }}>
+			Submit
+		</Form.SubmitButton>
 	</Form>
 )
 

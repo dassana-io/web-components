@@ -90,12 +90,6 @@ describe('FormInput', () => {
 		})
 	})
 
-	it('focuses on the input if required', () => {
-		wrapper = getMountedFormInput({ focused: true })
-
-		expect(mockFocus).toHaveBeenCalled()
-	})
-
 	it('prevents default behavior when enter is pressed within the input', () => {
 		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 		const mockPreventDefault = jest.fn()

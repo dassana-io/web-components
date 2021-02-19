@@ -3,6 +3,7 @@ import FieldContext from './FieldContext'
 import FormChipInput from './FormChipInput'
 import FormInput from './FormInput'
 import FormMultipleChoice from './FormMultipleChoice'
+import FormMultiSelect from './FormMultiSelect'
 import FormRadioGroup from './FormRadioGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
@@ -74,6 +75,7 @@ Form.SubmitButton = FormSubmitButton
 Form.ChipInput = FormChipInput
 Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
+Form.MultiSelect = FormMultiSelect
 Form.RadioGroup = FormRadioGroup
 Form.Select = FormSelect
 Form.TimeInput = FormTimeInput

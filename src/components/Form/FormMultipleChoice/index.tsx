@@ -1,7 +1,11 @@
 import { BaseFieldProps } from '../types'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import { getFormFieldDataTag, renderFieldLabel } from '../utils'
+import {
+	getFormFieldDataTag,
+	getRulesForArrVals,
+	renderFieldLabel
+} from '../utils'
 import { MultipleChoice, MultipleChoiceProps } from 'components/MultipleChoice'
 import React, { FC, useContext } from 'react'
 
@@ -45,7 +49,7 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 						{...rest}
 					/>
 				)}
-				rules={rules}
+				rules={getRulesForArrVals({ required, rules })}
 			/>
 		</div>
 	)
