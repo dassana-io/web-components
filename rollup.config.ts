@@ -6,6 +6,7 @@ import pkg from './package.json'
 import resolve from '@rollup/plugin-node-resolve'
 import styles from 'rollup-plugin-styles'
 import svgr from '@svgr/rollup'
+import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 
 const assetFileNames = '[name]-[hash][extname]'
@@ -29,14 +30,24 @@ const rootImport = options => ({
 
 export default {
 	external: [
-		'antd',
 		'@ant-design/icons',
+		'@dassana-io/web-utils',
 		'@fortawesome/fontawesome-svg-core',
 		'@fortawesome/free-solid-svg-icons',
 		'@fortawesome/react-fontawesome',
+		'antd',
+		'bytes',
+		'classnames',
+		'color',
+		'framer-motion',
 		'fuse.js',
+		'lodash',
 		'moment',
 		'react',
+		'react-dom',
+		'react-hook-form',
+		'react-jss',
+		'typescript',
 		'uuid'
 	],
 	input: 'src/components/index.ts',
@@ -64,6 +75,7 @@ export default {
 		typescript({
 			tsconfig: 'tsconfig.rollup.json',
 			useTsconfigDeclarationDir: true
-		})
+		}),
+		terser()
 	]
 }

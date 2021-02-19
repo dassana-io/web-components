@@ -1,38 +1,39 @@
 import { BaseFieldProps } from '../types'
+import cn from 'classnames'
+import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
-import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
+import { getFormFieldDataTag, getRulesForArrVals } from '../utils'
+import { MultiSelect, MultiSelectProps } from 'components/Select/MultiSelect'
 import React, { FC, useContext } from 'react'
-import { TimeInput, TimeInputProps } from 'components/TimeInput'
 
-export interface FormTimeInputProps
+export interface FormMultiSelectProps
 	extends BaseFieldProps,
-		Omit<TimeInputProps, 'defaultValue' | 'onChange' | 'value'> {
-	focused?: boolean
-	fullWidth?: boolean
-}
+		Omit<MultiSelectProps, 'defaultValues' | 'onChange' | 'values'> {}
 
-const FormTimeInput: FC<FormTimeInputProps> = ({
+const FormMultiSelect: FC<FormMultiSelectProps> = ({
+	containerClasses = [],
+	fieldErrorClasses = [],
+	fullWidth = false,
 	label,
 	labelSkeletonWidth,
-	fullWidth,
 	name,
 	required,
 	rules = {},
 	...rest
-}: FormTimeInputProps) => {
+}: FormMultiSelectProps) => {
 	const { clearErrors, control, errors } = useFormContext()
 	const { loading } = useContext<FieldContextProps>(FieldContext)
+
+	const errorMsg = errors[name] ? errors[name].message : ''
 
 	const onFocus = () => {
 		if (errors[name]) clearErrors(name)
 	}
 
-	if (required) rules.required = true
-
 	return (
-		<div>
+		<div className={cn(containerClasses)}>
 			{label && (
 				<FieldLabel
 					fullWidth={fullWidth}
@@ -46,20 +47,26 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 				control={control}
 				name={name}
 				render={({ onChange, value }) => (
-					<TimeInput
+					<MultiSelect
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
+						fullWidth={fullWidth}
 						loading={loading}
 						onChange={onChange}
 						onFocus={onFocus}
-						value={value}
+						values={value}
 						{...rest}
 					/>
 				)}
-				rules={rules}
+				rules={getRulesForArrVals({ required, rules })}
+			/>
+			<FieldError
+				classes={fieldErrorClasses}
+				error={errorMsg}
+				fullWidth={fullWidth}
 			/>
 		</div>
 	)
 }
 
-export default FormTimeInput
+export default FormMultiSelect

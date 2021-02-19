@@ -31,7 +31,7 @@ const MultipleTemplate: Story<FormProps<MultipleProps>> = (
 		<Form.MultipleChoice
 			items={multipleChoiceItems}
 			mode='multiple'
-			name='multipleChoice'
+			name='roles'
 			required
 		/>
 		<Form.SubmitButton>Submit</Form.SubmitButton>
@@ -56,7 +56,7 @@ const SingleTemplate: Story<FormProps<SingleProps>> = (
 		<Form.MultipleChoice
 			items={multipleChoiceItems}
 			mode='single'
-			name='multipleChoice'
+			name='role'
 			required
 		/>
 	</Form>

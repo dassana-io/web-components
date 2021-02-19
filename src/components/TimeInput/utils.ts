@@ -1,7 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import { generateButtonStyles } from 'components/Button/utils'
 import isUndefined from 'lodash/isUndefined'
-import { TimeFormat } from './index'
 import {
 	dropdownStyles,
 	themedStyles,
@@ -12,6 +11,7 @@ import {
 	styleguide
 } from 'components/assets/styles/styleguide'
 import moment, { MomentInputObject } from 'moment'
+import { TimeFormat, TimeInputProps } from './index'
 
 const { borderRadius } = styleguide
 const { dark, light } = ThemeType
@@ -19,7 +19,9 @@ const { dark, light } = ThemeType
 const hourIntegerFormat = 'HH'
 
 interface FormatTime {
-	(format: TimeFormat, value?: number | undefined): moment.Moment | undefined
+	(format: TimeFormat, value?: TimeInputProps['value']):
+		| moment.Moment
+		| undefined
 }
 
 export const formatTime: FormatTime = (format, value) => {

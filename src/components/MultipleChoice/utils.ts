@@ -38,21 +38,26 @@ export const filterMap = <T, U>({
 
 //  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 
-export const getInitialSelectedValues = (defaultSelected?: string[]) => {
+export interface MultipleSelectedValues {
+	[value: string]: boolean
+}
+
+export const selectedValsArrToObj = (
+	values: string[]
+): MultipleSelectedValues =>
+	values.reduce((acc, value) => ({ ...acc, [value]: true }), {})
+
+export const getInitialSelectedValues = (
+	defaultSelected?: string[]
+): MultipleSelectedValues => {
 	if (!defaultSelected) return {}
 
-	const selectedKeysObj: Record<string, boolean> = {}
-
-	defaultSelected.forEach(key => {
-		selectedKeysObj[key] = true
-	})
-
-	return selectedKeysObj
+	return selectedValsArrToObj(defaultSelected)
 }
 
 export const getSelectedValuesArr = (
 	items: MultipleChoiceItemConfig[],
-	selectedKeys: Record<string, boolean>
+	selectedKeys: MultipleSelectedValues
 ) =>
 	filterMap({
 		filterConditionFn: item => !!selectedKeys[item.value],

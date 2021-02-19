@@ -9,7 +9,7 @@ import noop from 'lodash/noop'
 import range from 'lodash/range'
 import { formatTime, parseTime, useStyles } from './utils'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC } from 'react'
+import React, { FC, FocusEvent } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
 
@@ -20,8 +20,9 @@ export interface TimeInputProps
 	 * @default 'hh:mm A'
 	 * */
 	displayFormat?: string
+	focused?: boolean
 	onChange?: (value: number) => void
-	onFocus?: () => void
+	onFocus?: (event: FocusEvent<HTMLInputElement>) => void
 	/**
 	 * format of time input value. Either a unix timestamp in seconds or hour integer (0 - 24)
 	 * @default 'unix'
@@ -47,6 +48,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		dataTag,
 		disabled = false,
 		displayFormat = 'hh:mm A',
+		focused = false,
 		onBlur = noop,
 		onChange,
 		onFocus = noop,
@@ -83,17 +85,26 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 		}
 	}
 
+	// This prevents the input content from being highlighted when it receives focus
+	const onTimeInputFocus = (e: FocusEvent<HTMLInputElement>) =>
+		e.target.setSelectionRange(0, 0)
+
 	return loading ? (
 		<InputSkeleton width={120} />
 	) : (
 		<AntDTimeInput
+			allowClear={false}
+			autoFocus={focused}
 			className={cn({ [componentClasses.error]: error }, classes)}
 			defaultValue={formatTime(format, defaultValue)}
 			disabled={disabled}
 			format={displayFormat}
 			minuteStep={minuteStep}
 			onBlur={onBlur}
-			onFocus={onFocus}
+			onFocus={(e: FocusEvent<HTMLInputElement>) => {
+				onTimeInputFocus(e)
+				onFocus(e)
+			}}
 			placeholder={placeholder}
 			popupClassName={componentClasses.dropdown}
 			showNow={false}
