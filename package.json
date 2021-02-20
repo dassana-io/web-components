@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.2.2",
-		"@dassana-io/web-utils": "^0.7.6",
+		"@dassana-io/web-utils": "^0.7.10",
 		"@fortawesome/fontawesome-svg-core": "^1.2.32",
 		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"@fortawesome/react-fontawesome": "^0.1.14",
@@ -100,7 +100,6 @@
 		"normalize.css": "^8.0.1",
 		"react-test-renderer": "^16.14.0",
 		"rollup": "^2.32.1",
-		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-styles": "^3.11.0",
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-typescript2": "^0.28.0"
