@@ -1765,6 +1765,20 @@ exports[`Storyshots Notifications Warning 1`] = `
 </div>
 `;
 
+exports[`Storyshots PageLoader Default 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <div
+    className="container-0-1-108"
+  >
+    <svg>
+      loading_lightbulb.svg
+    </svg>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Popover Default 1`] = `
 <div
   className="light storyWrapper-0-1-2"
@@ -1921,31 +1935,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="container-0-1-108"
+    className="container-0-1-109"
   >
     <div
-      className="skeletonButton-0-1-110"
+      className="skeletonButton-0-1-111"
     >
       <span
-        className="container-0-1-3 container-d5-0-1-111 skeleton-0-1-109"
+        className="container-0-1-3 container-d5-0-1-112 skeleton-0-1-110"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-110"
+      className="skeletonButton-0-1-111"
     >
       <span
-        className="container-0-1-3 container-d6-0-1-112 skeleton-0-1-109"
+        className="container-0-1-3 container-d6-0-1-113 skeleton-0-1-110"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-1-110"
+      className="skeletonButton-0-1-111"
     >
       <span
-        className="container-0-1-3 container-d7-0-1-113 skeleton-0-1-109"
+        className="container-0-1-3 container-d7-0-1-114 skeleton-0-1-110"
       >
          
       </span>
@@ -2043,15 +2057,28 @@ exports[`Storyshots Radio Group Partially Disabled 1`] = `
 </div>
 `;
 
+exports[`Storyshots SVGImage Default 1`] = `
+<div
+  className="light storyWrapper-0-1-2"
+>
+  <svg
+    height="100%"
+    width="100%"
+  >
+    aws.svg
+  </svg>
+</div>
+`;
+
 exports[`Storyshots Select Default 1`] = `
 <div
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
-      className="container-0-1-115 container-d0-0-1-119"
+      className="container-0-1-116 container-d0-0-1-120"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -2149,10 +2176,10 @@ exports[`Storyshots Select Full Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
-      className="container-0-1-115 container-d2-0-1-125"
+      className="container-0-1-116 container-d2-0-1-126"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -2204,10 +2231,10 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-122"
+              className="option-0-1-123"
             >
               <span
-                className="optionText-0-1-123"
+                className="optionText-0-1-124"
                 onMouseEnter={[Function]}
               >
                 Lorem
@@ -2259,10 +2286,10 @@ exports[`Storyshots Select Icon 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
-      className="container-0-1-115 container-d1-0-1-120"
+      className="container-0-1-116 container-d1-0-1-121"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -2314,10 +2341,10 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-1-122"
+              className="option-0-1-123"
             >
               <span
-                className="icon-0-1-121"
+                className="icon-0-1-122"
               >
                 <svg
                   className=""
@@ -2329,7 +2356,7 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-1-123"
+                className="optionText-0-1-124"
                 onMouseEnter={[Function]}
               >
                 AWS
@@ -2381,10 +2408,10 @@ exports[`Storyshots Select Search 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
-      className="container-0-1-115 container-d3-0-1-126"
+      className="container-0-1-116 container-d3-0-1-127"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -2482,10 +2509,10 @@ exports[`Storyshots Select Selected Option Width 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
-      className="container-0-1-115 container-d4-0-1-127"
+      className="container-0-1-116 container-d4-0-1-128"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -2583,24 +2610,24 @@ exports[`Storyshots ShortcutMicrocopy Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="shortcutMicrocopy-0-1-131"
+    className="shortcutMicrocopy-0-1-132"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-1-132"
+      className="wrapper-0-1-133"
     >
       <span
-        className="label-0-1-130"
+        className="label-0-1-131"
       >
         press 
       </span>
       <span
-        className="keyName-0-1-129"
+        className="keyName-0-1-130"
       >
         enter 
       </span>
       <span
-        className="icon-0-1-128"
+        className="icon-0-1-129"
       >
         ↵
       </span>
@@ -2614,19 +2641,19 @@ exports[`Storyshots ShortcutMicrocopy Icon Only 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="shortcutMicrocopy-0-1-131"
+    className="shortcutMicrocopy-0-1-132"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-1-132"
+      className="wrapper-0-1-133"
     >
       <span
-        className="label-0-1-130"
+        className="label-0-1-131"
       >
         press 
       </span>
       <span
-        className="icon-0-1-128"
+        className="icon-0-1-129"
       >
         ⌘
       </span>
@@ -2640,24 +2667,24 @@ exports[`Storyshots ShortcutMicrocopy Mixed 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="shortcutMicrocopy-0-1-131"
+    className="shortcutMicrocopy-0-1-132"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-1-132"
+      className="wrapper-0-1-133"
     >
       <span
-        className="label-0-1-130"
+        className="label-0-1-131"
       >
         press 
       </span>
       <span
-        className="keyName-0-1-129"
+        className="keyName-0-1-130"
       >
         cmd 
       </span>
       <span
-        className="icon-0-1-128"
+        className="icon-0-1-129"
       >
         ⌘
       </span>
@@ -2665,12 +2692,12 @@ exports[`Storyshots ShortcutMicrocopy Mixed 1`] = `
          + 
       </span>
       <span
-        className="keyName-0-1-129"
+        className="keyName-0-1-130"
       >
         Enter 
       </span>
       <span
-        className="icon-0-1-128"
+        className="icon-0-1-129"
       >
         <span
           aria-label="enter"
@@ -2703,24 +2730,24 @@ exports[`Storyshots ShortcutMicrocopy Predefined Keys 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="shortcutMicrocopy-0-1-131"
+    className="shortcutMicrocopy-0-1-132"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-1-132"
+      className="wrapper-0-1-133"
     >
       <span
-        className="label-0-1-130"
+        className="label-0-1-131"
       >
         press 
       </span>
       <span
-        className="keyName-0-1-129"
+        className="keyName-0-1-130"
       >
         cmd 
       </span>
       <span
-        className="icon-0-1-128"
+        className="icon-0-1-129"
       >
         ⌘
       </span>
@@ -2728,12 +2755,12 @@ exports[`Storyshots ShortcutMicrocopy Predefined Keys 1`] = `
          + 
       </span>
       <span
-        className="keyName-0-1-129"
+        className="keyName-0-1-130"
       >
         enter 
       </span>
       <span
-        className="icon-0-1-128"
+        className="icon-0-1-129"
       >
         ↵
       </span>
@@ -2747,7 +2774,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d9-0-1-134"
+    className="container-0-1-3 container-d9-0-1-135"
   >
      
   </span>
@@ -2759,27 +2786,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d10-0-1-135"
+    className="container-0-1-3 container-d10-0-1-136"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d10-0-1-135"
+    className="container-0-1-3 container-d10-0-1-136"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d10-0-1-135"
+    className="container-0-1-3 container-d10-0-1-136"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d10-0-1-135"
+    className="container-0-1-3 container-d10-0-1-136"
   >
      
   </span>
   <span
-    className="container-0-1-3 container-d10-0-1-135"
+    className="container-0-1-3 container-d10-0-1-136"
   >
      
   </span>
@@ -2791,7 +2818,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <span
-    className="container-0-1-3 container-d8-0-1-133"
+    className="container-0-1-3 container-d8-0-1-134"
   >
      
   </span>
@@ -2881,7 +2908,7 @@ exports[`Storyshots TimeInput Disabled 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
       className="ant-picker ant-picker-disabled"
@@ -2944,10 +2971,10 @@ exports[`Storyshots TimeInput Error 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
-      className="ant-picker error-0-1-137"
+      className="ant-picker error-0-1-138"
       onMouseUp={[Function]}
     >
       <div
@@ -3007,7 +3034,7 @@ exports[`Storyshots TimeInput Hours 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
       className="ant-picker"
@@ -3070,7 +3097,7 @@ exports[`Storyshots TimeInput Placeholder 1`] = `
   className="light storyWrapper-0-1-2"
 >
   <div
-    className="decorator-0-1-114"
+    className="decorator-0-1-115"
   >
     <div
       className="ant-picker"
