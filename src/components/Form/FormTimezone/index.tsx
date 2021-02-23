@@ -48,7 +48,10 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 						loading={loading}
 						onChange={value => {
 							onChange(value)
-							triggerSubmit && triggerOnSubmit(value)
+							triggerSubmit &&
+								triggerOnSubmit(
+									(value as unknown) as ChangeEvent
+								)
 						}}
 						value={value}
 						{...rest}
