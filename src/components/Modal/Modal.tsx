@@ -63,7 +63,8 @@ const Modal: FC<ModalProps> = ({
 	const onModalClose = () => (onClose ? onClose() : unsetModal())
 
 	useShortcut({
-		callback: disableKeyboardShortcut ? noop : onModalClose,
+		callback:
+			disableKeyboardShortcut || hideCloseButton ? noop : onModalClose,
 		key: 'Escape',
 		keyEvent: 'keydown'
 	})
