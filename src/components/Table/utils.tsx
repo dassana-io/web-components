@@ -1,5 +1,6 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
+import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
 import isUndefined from 'lodash/isUndefined'
@@ -19,6 +20,8 @@ import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
+
+export const columnDefaultFixedWidth = 100
 
 /* ------- Exported Functions ------- */
 
@@ -48,12 +51,16 @@ export function processColumns<TableData extends DataId>(
 	tableMethods: TableMethods<TableData>
 ) {
 	return columns.map(column => {
-		const { dataIndex, title, sort = true } = column
+		const { dataIndex, ellipsis, title, sort = true, width } = column
 		const antDColumn: AntDColumnType<TableData> = {
 			dataIndex,
 			showSorterTooltip: false,
 			title
 		}
+
+		if (width) antDColumn.width = width
+
+		if (ellipsis && !width) antDColumn.width = columnDefaultFixedWidth
 
 		applyRender<TableData>(column, antDColumn, tableMethods)
 
@@ -284,6 +291,10 @@ function applyRender<TableData extends DataId>(
 						break
 					}
 				}
+			} else if (column.ellipsis) {
+				antDColumn.render = (record: string) => (
+					<CellWithTooltip text={record} width={column.width} />
+				)
 			}
 			break
 		}
