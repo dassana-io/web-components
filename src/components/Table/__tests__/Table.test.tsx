@@ -6,6 +6,7 @@ import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData1, { File } from '../fixtures/4_sample_data'
+import mockData2, { JSONPathData } from '../fixtures/7_sample_data'
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
 import { Table, TableProps } from '..'
 
@@ -108,7 +109,27 @@ describe('Table', () => {
 			toggle: false
 		}
 
-		expect(expected).toMatchObject(renderedData(wrapper)[0])
+		expect(expected).toEqual(renderedData(wrapper)[0])
+	})
+
+	it('renders all types and formats of data if col dataIndex is a JSONPath', () => {
+		wrapper = mount(createTable<JSONPathData>(mockData2))
+
+		const expected = {
+			'$.company.value': 'azure',
+			'$.name.value': 'Lorem ipsum',
+			'$.start_date.date': 1519782342212,
+			_FORMATTED_DATA: [
+				formatDate({
+					displayFormat: dateFormat,
+					unixTS: 1519782342212
+				})
+			],
+			id: 0,
+			key: 0
+		}
+
+		expect(expected).toEqual(renderedData(wrapper)[0])
 	})
 })
 

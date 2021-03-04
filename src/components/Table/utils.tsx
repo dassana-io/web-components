@@ -91,8 +91,8 @@ export function processData<TableData extends DataId>(
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
 	return data.map(item => {
-		const mappedData: ProcessedData<TableData> = {
-			_FORMATTED_DATA: createFormattedData(mappedFormat, item),
+		const partialData: ProcessedData<TableData> = {
+			id: item.id,
 			key: item.id
 		} as ProcessedData<TableData>
 
@@ -106,13 +106,16 @@ export function processData<TableData extends DataId>(
 				})
 
 				if (value.length)
-					mappedData[dataIndex as keyof TableData] = value[0]
+					partialData[dataIndex as keyof TableData] = value[0]
 			} else {
-				mappedData[dataIndex as keyof TableData] = item[dataIndex]
+				partialData[dataIndex as keyof TableData] = item[dataIndex]
 			}
 		})
 
-		return mappedData
+		return {
+			...partialData,
+			_FORMATTED_DATA: createFormattedData(mappedFormat, partialData)
+		}
 	})
 }
 
