@@ -41,6 +41,7 @@ export default {
 		'color',
 		'framer-motion',
 		'fuse.js',
+		'jsonpath-plus',
 		'lodash',
 		'moment',
 		'react',

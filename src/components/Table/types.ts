@@ -31,7 +31,7 @@ interface PartialColumnType {
 	dataIndex: string
 	/**
 	 * Whether to truncate text width ellipsis and show a tooltip on hover. Makes the table column fixed width (can be customized by providing a width). Currently only works with string type
-	 * */
+	 */
 	ellipsis?: boolean
 	title: string
 	sort?: boolean

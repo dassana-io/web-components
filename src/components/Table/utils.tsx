@@ -4,6 +4,7 @@ import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
 import isUndefined from 'lodash/isUndefined'
+import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
 import {
 	ColumnFormats,
@@ -72,6 +73,11 @@ export function processColumns<TableData extends DataId>(
 	})
 }
 
+type ProcessedData<T> = T & {
+	_FORMATTED_DATA: (string | null)[]
+	key: Key
+}
+
 /*
 Takes data prop passed to Table and returns data:
   1. formatted to satisfy antD requirements
@@ -81,14 +87,33 @@ Takes data prop passed to Table and returns data:
 export function processData<TableData extends DataId>(
 	data: TableData[],
 	columns: ColumnType[]
-) {
+): ProcessedData<TableData>[] {
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
-	return data.map(item => ({
-		...item,
-		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
-		key: item.id
-	}))
+	return data.map(item => {
+		const mappedData: ProcessedData<TableData> = {
+			_FORMATTED_DATA: createFormattedData(mappedFormat, item),
+			key: item.id
+		} as ProcessedData<TableData>
+
+		columns.forEach(col => {
+			const { dataIndex } = col
+
+			if (dataIndex[0] === '$') {
+				const value = JSONPath({
+					json: item,
+					path: dataIndex
+				})
+
+				if (value.length)
+					mappedData[dataIndex as keyof TableData] = value[0]
+			} else {
+				mappedData[dataIndex as keyof TableData] = item[dataIndex]
+			}
+		})
+
+		return mappedData
+	})
 }
 
 /*
@@ -444,7 +469,6 @@ function createFormattedData<TableData extends DataId>(
 	mappedFormat: Record<string, NumFormatterFunction>,
 	item: TableData
 ) {
-	// @ts-ignore
 	return Object.keys(mappedFormat).map(key => mappedFormat[key](item[key]))
 }
 

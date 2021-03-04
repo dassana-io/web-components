@@ -201,7 +201,7 @@ export const Table = <Data,>({
 			record: Record<string, any>,
 			rowIndex: number
 		) => ({
-			onClick: () => onRowClick(mappedData[record.id], rowIndex)
+			onClick: () => onRowClick(mappedData[record.key], rowIndex)
 		})
 	}
 
