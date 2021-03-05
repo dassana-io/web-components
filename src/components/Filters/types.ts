@@ -1,5 +1,5 @@
-import { MultiSelectProps } from 'components/Select'
-import { AxiosInstance, Emitter } from '@dassana-io/web-utils/lib/types'
+import { MultiSelectProps } from '../Select'
+import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
 
 export interface Filter {
 	key?: string

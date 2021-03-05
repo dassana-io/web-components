@@ -15,7 +15,10 @@ import {
 	ProcessedFilters,
 	SelectedValsFilters
 } from './types'
-import { mockDynamicFilterOptions, mockFilterOptions } from '__mocks__'
+import {
+	mockDynamicFilterOptions,
+	mockFilterOptions
+} from '__mocks__/filter_mock_data'
 import { styleguide, ThemeType } from 'components/assets/styles'
 import { useEffect, useState } from 'react'
 
