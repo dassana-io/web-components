@@ -3,6 +3,7 @@ import bytes from 'bytes'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
+import { isJSONPath } from 'components/utils'
 import isUndefined from 'lodash/isUndefined'
 import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
@@ -73,6 +74,8 @@ export function processColumns<TableData extends DataId>(
 	})
 }
 
+// ------------------------------------------------
+
 type ProcessedData<T> = T & {
 	_FORMATTED_DATA: (string | null)[]
 	key: Key
@@ -99,7 +102,7 @@ export function processData<TableData extends DataId>(
 		columns.forEach(col => {
 			const { dataIndex } = col
 
-			if (dataIndex[0] === '$') {
+			if (isJSONPath(dataIndex)) {
 				const value = JSONPath({
 					json: item,
 					path: dataIndex

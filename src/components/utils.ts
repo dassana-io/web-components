@@ -4,19 +4,6 @@ import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
 
-export const TAG = 'data-test'
-
-export const fakeApiCallSuccess: () => Promise<void> = async (
-	timeoutDuration = 1000
-) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
-
-export const getDataTestAttributeProp = (
-	cmpName: string,
-	dataTag?: string
-): { [TAG]: string } => ({
-	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
-})
-
 export const placementOptions: TooltipPlacement[] = [
 	'bottom',
 	'bottomLeft',
@@ -32,30 +19,9 @@ export const placementOptions: TooltipPlacement[] = [
 	'topRight'
 ]
 
-export const generatePopupSelector = (
-	popupContainerSelector: string
-) => (): HTMLElement =>
-	document.querySelector(popupContainerSelector) as HTMLElement
+export const TAG = 'data-test'
 
-type RGB = {
-	r: number
-	g: number
-	b: number
-}
-
-export const getPopupContainerProps = (
-	popupContainerSelector = ''
-): PopupContainerProps => {
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
-	return popupContainerProps
-}
+/* ------------ Utilities related to colors ------------ */
 
 const rgbToHex = (rgb: RGB) => Color(rgb).hex()
 
@@ -76,7 +42,6 @@ export enum ColorManipulationTypes {
 	tint = 'tint'
 }
 
-/* eslint-disable sort-keys */
 export const manipulateColor = (
 	color: string,
 	percent: number,
@@ -110,6 +75,47 @@ export const manipulateColor = (
 		}
 	}
 }
+
+/* ---------------------------------------------------- */
+
+export const fakeApiCallSuccess: () => Promise<void> = async (
+	timeoutDuration = 1000
+) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
+
+export const getDataTestAttributeProp = (
+	cmpName: string,
+	dataTag?: string
+): { [TAG]: string } => ({
+	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
+})
+
+export const generatePopupSelector = (
+	popupContainerSelector: string
+) => (): HTMLElement =>
+	document.querySelector(popupContainerSelector) as HTMLElement
+
+type RGB = {
+	r: number
+	g: number
+	b: number
+}
+
+export const getPopupContainerProps = (
+	popupContainerSelector = ''
+): PopupContainerProps => {
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+	}
+
+	return popupContainerProps
+}
+
+// TODO: implement JSONPath validator? For now, a string that starts with '$' will be considered a JSONPath
+export const isJSONPath = (path: string): boolean => path[0] === '$'
 
 // Appends a div to the document, usually for use with React portals
 // Optional popup container function can be provided as an argument. Otherwise, it defaults to appending the div to document.body
