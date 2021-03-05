@@ -1,4 +1,4 @@
-import { fakeApiCallSuccess } from 'components/utils'
+import { fakeApiCallSuccess } from '../components/utils'
 import { ThemeType } from 'components'
 import {
 	ColumnFormats,

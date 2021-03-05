@@ -1,4 +1,4 @@
-import { ColoredDotProps } from 'components/ColoredDot'
+import { ColoredDotProps } from '../ColoredDot'
 import { SharedIconProps } from '../Icon'
 import { SharedLinkProps } from '../Link'
 import { TableMethods } from './utils'

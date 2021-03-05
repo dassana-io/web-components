@@ -1,4 +1,4 @@
-import { CommonComponentProps } from 'components/types'
+import { CommonComponentProps } from '../types'
 import { predefinedKeysMap } from './utils'
 import { ReactNode, RefObject } from 'react'
 
