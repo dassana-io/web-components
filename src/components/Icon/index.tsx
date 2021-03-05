@@ -1,6 +1,11 @@
 import cn from 'classnames'
+import { styleguide } from 'components/assets/styles'
 import Icons, { IconName } from './IconsMap'
 import React, { FC } from 'react'
+
+const {
+	colors: { blacks }
+} = styleguide
 
 export interface SharedIconProps {
 	/**
@@ -15,6 +20,7 @@ export interface SharedIconProps {
 }
 
 interface IconPath extends SharedIconProps {
+	altText?: string
 	/**
 	 * The url of the icon if rendering a custom icon.
 	 */
@@ -36,13 +42,12 @@ export type IconProps = IconKey | IconPath
 export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 	const { classes = [] } = props
 
-	const { icon } = props as IconPath
-	const { iconKey } = props as IconKey
+	if (props.iconKey) {
+		const { iconKey } = props
 
-	if (iconKey) {
 		const Svg = Icons[iconKey] ? Icons[iconKey] : Icons.dassana
 
-		const { color = '#7E8083' } = props as IconKey
+		const { color = blacks['lighten-40'] } = props as IconKey
 
 		return (
 			<Svg
@@ -54,7 +59,16 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 		)
 	}
 
-	return <img alt={icon} className={cn(classes)} height={height} src={icon} />
+	const { altText = '' } = props as IconPath
+
+	return (
+		<img
+			alt={altText}
+			className={cn(classes)}
+			height={height}
+			src={props.icon}
+		/>
+	)
 }
 
 export type { IconName }

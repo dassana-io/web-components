@@ -95,6 +95,10 @@ interface RenderPropsIconKey extends SharedIconProps {
 	type: 'iconKey'
 }
 
+interface RenderPropsIconUrl extends SharedIconProps {
+	type: 'iconUrl'
+}
+
 export interface ComponentActionType extends PartialComponentType {
 	dataIndex: ''
 	format: ColumnFormats.action
@@ -109,7 +113,7 @@ export interface ComponentActionType extends PartialComponentType {
 
 interface ComponentIconType extends PartialComponentType {
 	format: ColumnFormats.icon
-	renderProps: RenderPropsIcon | RenderPropsIconKey
+	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
 }
 
 interface ComponentColoredDotType extends PartialComponentType {

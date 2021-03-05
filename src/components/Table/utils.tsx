@@ -349,10 +349,23 @@ function applyRender<TableData extends DataId>(
 						const renderProps = column.renderProps
 						const { height = 25 } = renderProps
 
-						const iconProps: IconProps =
-							renderProps.type === 'icon'
-								? { icon: renderProps.iconMap[record] }
-								: { iconKey: record as IconName }
+						let iconProps: IconProps = {} as IconProps
+
+						switch (renderProps.type) {
+							case 'icon':
+								iconProps = {
+									icon: renderProps.iconMap[record]
+								}
+								break
+
+							case 'iconKey':
+								iconProps = { iconKey: record as IconName }
+								break
+
+							case 'iconUrl':
+								iconProps = { icon: record }
+								break
+						}
 
 						if (renderProps.type === 'icon' && !iconProps.icon)
 							return record
