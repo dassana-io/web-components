@@ -1,4 +1,4 @@
-import { FilterOptions } from '../components/Filters'
+import { FilterOptions } from '../types'
 
 export const mockDynamicFilterOptions = [
 	{
