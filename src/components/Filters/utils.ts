@@ -18,7 +18,7 @@ import {
 import {
 	mockDynamicFilterOptions,
 	mockFilterOptions
-} from '__mocks__/filter_mock_data'
+} from './fixtures/0_sample_data'
 import { styleguide, ThemeType } from 'components/assets/styles'
 import { useEffect, useState } from 'react'
 
