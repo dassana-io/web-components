@@ -16,6 +16,7 @@ export enum ColumnFormats {
 	date = 'date',
 	byte = 'byte',
 	icon = 'icon',
+	iconArray = 'iconArray',
 	coloredDot = 'coloredDot',
 	link = 'link',
 	tag = 'tag',
@@ -112,7 +113,7 @@ export interface ComponentActionType extends PartialComponentType {
 }
 
 interface ComponentIconType extends PartialComponentType {
-	format: ColumnFormats.icon
+	format: ColumnFormats.icon | ColumnFormats.iconArray
 	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
 }
 

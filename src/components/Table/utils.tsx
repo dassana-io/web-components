@@ -108,8 +108,10 @@ export function processData<TableData extends DataId>(
 					path: dataIndex
 				})
 
-				if (value.length)
-					partialData[dataIndex as keyof TableData] = value[0]
+				if (value.length) {
+					partialData[dataIndex as keyof TableData] =
+						value.length <= 1 ? value[0] : value
+				}
 			} else {
 				partialData[dataIndex as keyof TableData] = item[dataIndex]
 			}
@@ -268,6 +270,7 @@ function applyRender<TableData extends DataId>(
 		byte,
 		date,
 		icon,
+		iconArray,
 		coloredDot,
 		link,
 		tag,
@@ -345,9 +348,10 @@ function applyRender<TableData extends DataId>(
 					}
 					break
 				}
+
 				case icon: {
-					antDColumn.render = (record: IconName | string) => {
-						if (record === undefined) return ''
+					antDColumn.render = (record?: IconName | string) => {
+						if (!record) return ''
 
 						const renderProps = column.renderProps
 						const { height = 25 } = renderProps
@@ -381,6 +385,59 @@ function applyRender<TableData extends DataId>(
             */
 
 						return <Icon {...iconProps} height={height} />
+					}
+					break
+				}
+
+				case iconArray: {
+					antDColumn.render = (record?: (IconName | string)[]) => {
+						if (!record) return ''
+
+						if (!Array.isArray(record))
+							throw new Error(
+								'ColumnFormats.iconArray requires an array of icons'
+							)
+
+						const renderProps = column.renderProps
+						const { height = 25 } = renderProps
+
+						let iconPropsArr: IconProps[] = []
+
+						switch (renderProps.type) {
+							case 'icon': {
+								iconPropsArr = record.map(item => ({
+									icon: renderProps.iconMap[item]
+								}))
+								break
+							}
+
+							case 'iconKey': {
+								iconPropsArr = record.map(item => ({
+									iconKey: item as IconName
+								}))
+								break
+							}
+
+							case 'iconUrl': {
+								iconPropsArr = record.map(item => ({
+									icon: item
+								}))
+
+								break
+							}
+						}
+
+						return (
+							<div>
+								{iconPropsArr.map((iconProps, i) => (
+									<Icon
+										{...iconProps}
+										height={height}
+										key={i}
+									/>
+								))}
+							</div>
+						)
 					}
 					break
 				}
