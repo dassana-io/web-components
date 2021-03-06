@@ -2,6 +2,6 @@ module.exports = {
 	collectCoverageFrom: ['lib/**/*.{ts,tsx,js,jsx}'],
 	coverageDirectory: 'coverage',
 	preset: 'ts-jest',
-	resetMocks: true,
+	resetMocks: false,
 	testEnvironment: 'node'
 }

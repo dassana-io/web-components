@@ -36,7 +36,7 @@ describe('IconButton', () => {
 	it('inherits fontSize if size prop is not provided', () => {
 		const styles = window.getComputedStyle(wrapper.find('svg').getDOMNode())
 
-		expect(styles.fontSize).toBe('inherit')
+		expect(styles.fontSize).toBeFalsy()
 	})
 
 	it('renders IconButton with fontSize equal to size if size prop is provided', () => {

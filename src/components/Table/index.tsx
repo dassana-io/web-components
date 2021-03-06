@@ -162,10 +162,7 @@ export const Table = <Data,>({
 		setProcessedData(processData<TableData<Data>>(data, columns))
 	}, [columns, data])
 
-	const delayedSearch = useCallback(
-		debounce(q => searchTable(q), 250),
-		[processedData]
-	)
+	const delayedSearch = debounce(q => searchTable(q), 250)
 
 	const fuse = new Fuse(processedData, {
 		isCaseSensitive: false,
