@@ -11,14 +11,23 @@ import FormTimeInput from './FormTimeInput'
 import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
-import { FieldValues, UseFormMethods } from 'react-hook-form/dist/types/form'
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import {
+	DeepPartial,
+	FieldValues,
+	FormProvider,
+	SubmitHandler,
+	useForm
+} from 'react-hook-form'
 import React, {
 	ReactNode,
 	RefObject,
 	useEffect,
 	useImperativeHandle
 } from 'react'
+import {
+	UnpackNestedValue,
+	UseFormMethods
+} from 'react-hook-form/dist/types/form'
 
 const useStyles = createUseStyles({
 	container: {
@@ -28,10 +37,10 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface FormProps<Model> {
+export interface FormProps<Model extends FieldValues> {
 	children: ReactNode
-	formRef?: RefObject<UseFormMethods>
-	initialValues?: Model
+	formRef?: RefObject<UseFormMethods<Model>>
+	initialValues?: UnpackNestedValue<DeepPartial<Model>>
 	loading?: boolean
 	onSubmit: SubmitHandler<FieldValues>
 }
@@ -39,7 +48,7 @@ export interface FormProps<Model> {
 export function Form<Model>({
 	children,
 	formRef,
-	initialValues = {} as Model,
+	initialValues = {} as UnpackNestedValue<DeepPartial<Model>>,
 	loading = false,
 	onSubmit
 }: FormProps<Model>) {
