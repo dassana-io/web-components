@@ -39,7 +39,7 @@ export interface TagProps {
 	/**
 	 * Optional callback that runs when Tag is deleted if it is deletable
 	 */
-	onDelete?: Function
+	onDelete?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 export const Tag: FC<TagProps> = ({

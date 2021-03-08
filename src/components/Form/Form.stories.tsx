@@ -2,7 +2,6 @@ import { basicOptions } from '../RadioGroup/fixtures/sample_options'
 import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import treeData from '../Tree/fixtures/0_sample_data'
-import { TreeNodeType } from 'components/Tree'
 import { Form, FormProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
@@ -20,7 +19,7 @@ export default {
 } as Meta
 
 interface UserModel {
-	cloudAccounts?: TreeNodeType[]
+	cloudAccounts?: number[]
 	cloudType?: string
 	domains?: string[]
 	firstName: string
@@ -39,7 +38,6 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 		initialValues={{
 			cloudAccounts: [5],
 			cloudType: 'azure',
-			defaultCheckedKeys: [5],
 			domains: ['@lorem.com'],
 			firstName: 'First Name',
 			persona: ['other'],

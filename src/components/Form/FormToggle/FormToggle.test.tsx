@@ -1,8 +1,8 @@
-import { Controller } from 'react-hook-form'
 import { defaultFieldWidth } from 'components/assets/styles/styleguide'
 import FieldContext from '../FieldContext'
 import React from 'react'
 import { Toggle } from 'components/Toggle'
+import { Controller, InputState } from 'react-hook-form'
 import FormToggle, { FormToggleProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
@@ -48,7 +48,10 @@ describe('FormToggle', () => {
 			value: true
 		} as jest.Mocked<any>
 
-		const toggle = wrapper.find(Controller).invoke('render')!(test)
+		const toggle = wrapper.find(Controller).invoke('render')!(
+			test,
+			{} as InputState
+		)
 
 		expect(toggle.type).toBe(Toggle)
 

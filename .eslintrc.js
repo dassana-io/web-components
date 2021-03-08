@@ -39,6 +39,7 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars-experimental': 'warn',
 		'comma-dangle': ['warn', 'never'],
 		'comma-spacing': ['warn', { after: true, before: false }],
+		'import/no-anonymous-default-export': 'off',
 		'key-spacing': [
 			'warn',
 			{
