@@ -7,6 +7,7 @@ import { isJSONPath } from 'components/utils'
 import isUndefined from 'lodash/isUndefined'
 import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
+import { MultipleIcons } from './MultipleIcons'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -23,7 +24,8 @@ import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
-export const columnDefaultFixedWidth = 100
+export const defaultColumnFixedWidth = 100
+export const defaultIconHeight = 25
 
 /* ------- Exported Functions ------- */
 
@@ -62,7 +64,7 @@ export function processColumns<TableData extends DataId>(
 
 		if (width) antDColumn.width = width
 
-		if (ellipsis && !width) antDColumn.width = columnDefaultFixedWidth
+		if (ellipsis && !width) antDColumn.width = defaultColumnFixedWidth
 
 		applyRender<TableData>(column, antDColumn, tableMethods)
 
@@ -332,6 +334,7 @@ function applyRender<TableData extends DataId>(
 			}
 			break
 		}
+
 		case component:
 			switch (column.format) {
 				case action: {
@@ -354,7 +357,7 @@ function applyRender<TableData extends DataId>(
 						if (!record) return ''
 
 						const renderProps = column.renderProps
-						const { height = 25 } = renderProps
+						const { height = defaultIconHeight } = renderProps
 
 						let iconProps: IconProps = {} as IconProps
 
@@ -399,7 +402,7 @@ function applyRender<TableData extends DataId>(
 							)
 
 						const renderProps = column.renderProps
-						const { height = 25 } = renderProps
+						const { height = defaultIconHeight } = renderProps
 
 						let iconPropsArr: IconProps[] = []
 
@@ -428,15 +431,10 @@ function applyRender<TableData extends DataId>(
 						}
 
 						return (
-							<div>
-								{iconPropsArr.map((iconProps, i) => (
-									<Icon
-										{...iconProps}
-										height={height}
-										key={i}
-									/>
-								))}
-							</div>
+							<MultipleIcons
+								height={height}
+								iconPropsArr={iconPropsArr}
+							/>
 						)
 					}
 					break

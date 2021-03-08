@@ -1,5 +1,5 @@
-import { columnDefaultFixedWidth } from './utils'
 import { createUseStyles } from 'react-jss'
+import { defaultColumnFixedWidth } from './utils'
 import { Tooltip } from 'components/Tooltip'
 import React, { FC, SyntheticEvent, useState } from 'react'
 
@@ -20,7 +20,7 @@ interface CellWithTooltipProps {
 
 export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 	text,
-	width = columnDefaultFixedWidth
+	width = defaultColumnFixedWidth
 }: CellWithTooltipProps) => {
 	const [hasTooltip, setHasTooltip] = useState(false)
 
