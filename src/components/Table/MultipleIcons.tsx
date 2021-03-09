@@ -79,8 +79,15 @@ export const MultipleIcons: FC<Props> = ({
 						isInsideTooltip: true,
 						sliceStartIndex: truncateLength
 					})}
+					triggerMode='click'
 				>
-					<span className={classes.count}>
+					<span
+						className={classes.count}
+						onClick={e =>
+							// this is to prevent the entire row from being clicked
+							e.stopPropagation()
+						}
+					>
 						+{iconPropsArr.length - truncateLength}
 					</span>
 				</Tooltip>
