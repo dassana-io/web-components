@@ -83,19 +83,29 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
-interface RenderPropsIcon extends SharedIconProps {
+interface SharedCompIcontype extends SharedIconProps {
+	filterKey?: string
+	iconKey?: string
+}
+
+interface RenderPropsIcon extends SharedCompIcontype {
 	type: 'icon'
 	iconMap: {
 		[key: string]: string
 	}
 }
 
-interface RenderPropsIconKey extends SharedIconProps {
+interface RenderPropsIconKey extends SharedCompIcontype {
 	type: 'iconKey'
 }
 
-interface RenderPropsIconUrl extends SharedIconProps {
+interface RenderPropsIconUrl extends SharedCompIcontype {
 	type: 'iconUrl'
+}
+
+interface ComponentIconType extends PartialComponentType {
+	format: ColumnFormats.icon
+	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
 }
 
 export interface ComponentActionType extends PartialComponentType {
@@ -108,11 +118,6 @@ export interface ComponentActionType extends PartialComponentType {
 		) => ReactNode
 	}
 	title: ''
-}
-
-interface ComponentIconType extends PartialComponentType {
-	format: ColumnFormats.icon
-	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
 }
 
 interface ComponentColoredDotType extends PartialComponentType {

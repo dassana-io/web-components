@@ -97,20 +97,22 @@ export function processData<TableData extends DataId>(
 		} as ProcessedData<TableData>
 
 		columns.forEach(col => {
-			const { dataIndex } = col
+			const { dataIndex, format } = col
 
-			if (isJSONPath(dataIndex)) {
-				const value = JSONPath({
-					json: item,
-					path: dataIndex
-				})
+			const value = JSONPath({
+				json: item,
+				path: `$.${dataIndex}`
+			})
 
-				if (value.length) {
-					partialData[dataIndex as keyof TableData] =
-						value.length <= 1 ? value[0] : value
-				}
-			} else {
-				partialData[dataIndex as keyof TableData] = item[dataIndex]
+			if (value.length) {
+				partialData[dataIndex as keyof TableData] = value[0]
+			}
+
+			//@ts-ignore
+			const pathArr: string[] = JSONPath.toPathArray(`$.${dataIndex}`)
+
+			if (pathArr && pathArr.length) {
+				partialData[pathArr[0] as keyof TableData] = item[pathArr[0]]
 			}
 		})
 
@@ -138,11 +140,22 @@ export function mapFilterKeys(columns: ColumnType[]) {
 		switch (column.type) {
 			case component:
 				switch (column.format) {
-					case icon:
 					case coloredDot:
 					case link:
 						keysArr.push(dataIndex)
 						break
+
+					case icon: {
+						const {
+							renderProps: { filterKey, iconKey }
+						} = column
+
+						if (iconKey && filterKey) {
+							keysArr.push(`${dataIndex}.${filterKey}`)
+						} else if (!iconKey) {
+							keysArr.push(dataIndex)
+						}
+					}
 
 					case tag:
 						keysArr.push([dataIndex, 'name'])

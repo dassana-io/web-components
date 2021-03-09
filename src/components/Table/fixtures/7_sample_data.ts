@@ -8,21 +8,21 @@ const { component, number, string } = ColumnTypes
 const { date, icon } = ColumnFormats
 
 export interface JSONPathData {
-	company: { id: string; value: IconName }
+	company: { id: string; name?: string; value: IconName }
 	id: number
 	name: { id: string; value: string }
 	start_date: { id: string; date: number }
-	vendors: { id: string; value: string }[]
+	vendors: { id: string; name?: string; value: string }[]
 }
 
 const columns: ColumnType[] = [
 	{
-		dataIndex: '$.name.value',
+		dataIndex: 'name.value',
 		title: 'Name',
 		type: string
 	},
 	{
-		dataIndex: '$.start_date.date',
+		dataIndex: 'start_date.date',
 		format: date,
 		renderProps: {
 			displayFormat: dateFormat
@@ -31,19 +31,21 @@ const columns: ColumnType[] = [
 		type: number
 	},
 	{
-		dataIndex: '$.company.value',
+		dataIndex: 'company',
 		format: icon,
 		renderProps: {
-			type: 'iconKey'
+			type: 'iconKey',
+			iconKey: 'value'
 		},
 		title: 'Company',
 		type: component
 	},
 	{
-		dataIndex: '$.vendors..value',
+		dataIndex: 'vendors',
 		format: icon,
 		renderProps: {
-			type: 'iconUrl'
+			type: 'iconUrl',
+			iconKey: 'value'
 		},
 		title: 'Vendors',
 		type: component
@@ -52,7 +54,7 @@ const columns: ColumnType[] = [
 
 const data: JSONPathData[] = [
 	{
-		company: { id: 'c1', value: 'azure' },
+		company: { id: 'c1', name: 'azure', value: 'azure' },
 		id: 0,
 		name: { id: 'n1', value: 'Lorem ipsum' },
 		start_date: { date: 1519782342212, id: 'sd1' },

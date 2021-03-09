@@ -70,7 +70,7 @@ export const MultipleIcons: FC<Props> = ({
 	return (
 		<>
 			{renderIcons({ sliceEndIndex: truncateLength, sliceStartIndex: 0 })}
-			{truncateLength < iconPropsArr.length ? (
+			{truncateLength < iconPropsArr.length && (
 				<Tooltip
 					classes={[classes.tooltip]}
 					placement='bottom'
@@ -91,8 +91,6 @@ export const MultipleIcons: FC<Props> = ({
 						+{iconPropsArr.length - truncateLength}
 					</span>
 				</Tooltip>
-			) : (
-				''
 			)}
 		</>
 	)
