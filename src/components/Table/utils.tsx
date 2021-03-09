@@ -171,6 +171,9 @@ function compareStrings(column: ColumnType) {
 		const compareValA: string = a[column.dataIndex] || ''
 		const compareValB: string = b[column.dataIndex] || ''
 
+		// this prevents things from breaking if sort is being applied to arrays
+		if (Array.isArray(compareValA) || Array.isArray(compareValB)) return 0
+
 		return compareValA.localeCompare(compareValB)
 	}
 }
@@ -267,7 +270,6 @@ function applyRender<TableData extends DataId>(
 		byte,
 		date,
 		icon,
-		iconArray,
 		coloredDot,
 		link,
 		tag,
@@ -348,33 +350,71 @@ function applyRender<TableData extends DataId>(
 				}
 
 				case icon: {
-					antDColumn.render = (record?: IconName | string) => {
+					type IconRecord = IconName | string
+
+					antDColumn.render = (
+						record?: IconRecord | IconRecord[]
+					) => {
 						if (!record) return ''
 
 						const renderProps = column.renderProps
 						const { height = defaultIconHeight } = renderProps
 
-						let iconProps: IconProps = {} as IconProps
+						if (Array.isArray(record)) {
+							let iconPropsArr: IconProps[] = []
 
-						switch (renderProps.type) {
-							case 'icon':
-								iconProps = {
-									icon: renderProps.iconMap[record]
+							switch (renderProps.type) {
+								case 'icon': {
+									iconPropsArr = record.map(item => ({
+										icon: renderProps.iconMap[item]
+									}))
+									break
 								}
-								break
 
-							case 'iconKey':
-								iconProps = { iconKey: record as IconName }
-								break
+								case 'iconKey': {
+									iconPropsArr = record.map(item => ({
+										iconKey: item as IconName
+									}))
+									break
+								}
 
-							case 'iconUrl':
-								iconProps = { icon: record }
-								break
-						}
+								case 'iconUrl': {
+									iconPropsArr = record.map(item => ({
+										icon: item
+									}))
 
-						if (renderProps.type === 'icon' && !iconProps.icon)
-							return record
-						/* Custom icons are defined as a map of key and url in the Column object.
+									break
+								}
+							}
+
+							return (
+								<MultipleIcons
+									height={height}
+									iconPropsArr={iconPropsArr}
+								/>
+							)
+						} else {
+							let iconProps: IconProps = {} as IconProps
+
+							switch (renderProps.type) {
+								case 'icon':
+									iconProps = {
+										icon: renderProps.iconMap[record]
+									}
+									break
+
+								case 'iconKey':
+									iconProps = { iconKey: record as IconName }
+									break
+
+								case 'iconUrl':
+									iconProps = { icon: record }
+									break
+							}
+
+							if (renderProps.type === 'icon' && !iconProps.icon)
+								return record
+							/* Custom icons are defined as a map of key and url in the Column object.
               E.g. { renderProps: {iconMap: { example-icon: 'https://dummyimage.com/600x400/0072c6/fff&text=A' }, ...}, ...}
               Then in the data object, you reference the iconMap key - 'example-icon'.
               E.g. { demo_icon: 'example-icon', ... }
@@ -382,55 +422,8 @@ function applyRender<TableData extends DataId>(
               In this example, it will be 'example-icon'.
             */
 
-						return <Icon {...iconProps} height={height} />
-					}
-					break
-				}
-
-				case iconArray: {
-					antDColumn.render = (record?: (IconName | string)[]) => {
-						if (!record) return ''
-
-						if (!Array.isArray(record))
-							throw new Error(
-								'ColumnFormats.iconArray requires an array of icons'
-							)
-
-						const renderProps = column.renderProps
-						const { height = defaultIconHeight } = renderProps
-
-						let iconPropsArr: IconProps[] = []
-
-						switch (renderProps.type) {
-							case 'icon': {
-								iconPropsArr = record.map(item => ({
-									icon: renderProps.iconMap[item]
-								}))
-								break
-							}
-
-							case 'iconKey': {
-								iconPropsArr = record.map(item => ({
-									iconKey: item as IconName
-								}))
-								break
-							}
-
-							case 'iconUrl': {
-								iconPropsArr = record.map(item => ({
-									icon: item
-								}))
-
-								break
-							}
+							return <Icon {...iconProps} height={height} />
 						}
-
-						return (
-							<MultipleIcons
-								height={height}
-								iconPropsArr={iconPropsArr}
-							/>
-						)
 					}
 					break
 				}

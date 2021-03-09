@@ -112,25 +112,25 @@ describe('Table', () => {
 		expect(expected).toEqual(renderedData(wrapper)[0])
 	})
 
-	it('renders all types and formats of data if col dataIndex is a JSONPath', () => {
-		wrapper = mount(createTable<JSONPathData>(mockData2))
+	// it('renders all types and formats of data if col dataIndex is a JSONPath', () => {
+	// 	wrapper = mount(createTable<JSONPathData>(mockData2))
 
-		const expected = {
-			'$.company.value': 'azure',
-			'$.name.value': 'Lorem ipsum',
-			'$.start_date.date': 1519782342212,
-			_FORMATTED_DATA: [
-				formatDate({
-					displayFormat: dateFormat,
-					unixTS: 1519782342212
-				})
-			],
-			id: 0,
-			key: 0
-		}
+	// 	const expected = {
+	// 		'$.company.value': 'azure',
+	// 		'$.name.value': 'Lorem ipsum',
+	// 		'$.start_date.date': 1519782342212,
+	// 		_FORMATTED_DATA: [
+	// 			formatDate({
+	// 				displayFormat: dateFormat,
+	// 				unixTS: 1519782342212
+	// 			})
+	// 		],
+	// 		id: 0,
+	// 		key: 0
+	// 	}
 
-		expect(expected).toEqual(renderedData(wrapper)[0])
-	})
+	// 	expect(expected).toEqual(renderedData(wrapper)[0])
+	// })
 })
 
 describe('Table props', () => {

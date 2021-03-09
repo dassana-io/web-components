@@ -5,7 +5,7 @@ import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
 // This file contains table data with col dataIndex as a JSONPath instead of string
 
 const { component, number, string } = ColumnTypes
-const { date, icon, iconArray } = ColumnFormats
+const { date, icon } = ColumnFormats
 
 export interface JSONPathData {
 	company: { id: string; value: IconName }
@@ -41,7 +41,7 @@ const columns: ColumnType[] = [
 	},
 	{
 		dataIndex: '$.vendors..value',
-		format: iconArray,
+		format: icon,
 		renderProps: {
 			type: 'iconUrl'
 		},
