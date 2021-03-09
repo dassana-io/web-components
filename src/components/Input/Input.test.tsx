@@ -1,4 +1,3 @@
-import { act } from 'react-dom/test-utils'
 import { Input as AntDInput } from 'antd'
 import { Input } from './index'
 import { Skeleton } from '../Skeleton'
@@ -41,13 +40,8 @@ describe('Input', () => {
 
 		wrapper = mount(<Input inputRef={inputRef} />)
 
-		expect(document.activeElement?.tagName).toMatch('BODY')
-
-		act(() => {
-			inputRef.current?.focus()
-		})
-
-		expect(document.activeElement?.tagName).toMatch('INPUT')
+		// @ts-ignore
+		expect(wrapper.find(AntDInput).getElement().ref).toBe(inputRef)
 	})
 
 	it('correctly passes the placeholder prop', () => {

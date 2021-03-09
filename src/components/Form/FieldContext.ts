@@ -1,6 +1,5 @@
 import { createContext } from 'react'
-import { FieldValues } from 'react-hook-form/dist/types/form'
-import { SubmitHandler } from 'react-hook-form'
+import { FieldValues, SubmitHandler } from 'react-hook-form'
 
 export interface FieldContextProps {
 	loading: boolean

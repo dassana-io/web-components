@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 import React from 'react'
-import { ValidationRules } from 'react-hook-form'
+import { RegisterOptions } from 'react-hook-form'
 import FieldLabel, { FieldLabelProps } from './FieldLabel'
 
 export const getFormFieldDataTag = (tag: string): string => `field-${tag}`
@@ -8,19 +8,19 @@ export const getFormFieldDataTag = (tag: string): string => `field-${tag}`
 // --------------------------------------
 
 interface Params {
-	rules?: ValidationRules
+	rules?: RegisterOptions
 	required?: boolean
 }
 
 /**
  * For Form items that have input type of array, react-hook-form's required check no longer works - an array of length 0 is a valid response.
  * This util function will add an extra "required" rule that checks if the array is empty or not
- * It will also take the rules passed to the component and format it to satisfy react-hook-form's ValidationRules type - which consists of some default rules and a customizable "validate" rule.
+ * It will also take the rules passed to the component and format it to satisfy react-hook-form's RegisterOptions type - which consists of some default rules and a customizable "validate" rule.
  */
 export const getRulesForArrVals = ({
 	rules = {},
 	required = false
-}: Params): ValidationRules => {
+}: Params): RegisterOptions => {
 	// first make a clone of the passed rules
 	const newRules = cloneDeep(rules)
 

@@ -1,9 +1,9 @@
 import { basicOptions } from 'components/RadioGroup/fixtures/sample_options'
-import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { RadioGroup } from 'components/RadioGroup'
 import React from 'react'
+import { Controller, InputState } from 'react-hook-form'
 import FormRadioGroup, { FormRadioGroupProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
@@ -25,7 +25,10 @@ const mockChangeEvent = {
 const mockOnSubmit = jest.fn()
 
 const getRenderedCmp = (wrapper: ReactWrapper<FormRadioGroupProps>) =>
-	wrapper.find(Controller).invoke('render')!(mockChangeEvent)
+	wrapper.find(Controller).invoke('render')!(
+		mockChangeEvent,
+		{} as InputState
+	)
 
 beforeEach(() => {
 	wrapper = mount(

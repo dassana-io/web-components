@@ -21,7 +21,8 @@ interface SpinProps {
 	size?: number
 }
 
-export const Spin: FC<SpinProps> = ({ size = 16 }) => {
+export const Spin: FC<SpinProps> = (props: SpinProps) => {
+	const { size = 16 } = props
 	const classes = useStyles({ size })
 
 	return (
