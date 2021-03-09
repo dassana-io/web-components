@@ -1,49 +1,53 @@
 import { createUseStyles } from 'react-jss'
-import { defaultColumnFixedWidth } from './utils'
 import { Tooltip } from 'components/Tooltip'
 import React, { FC, SyntheticEvent, useState } from 'react'
 
 const useStyles = createUseStyles({
+	container: { display: 'grid', placeItems: 'stretch' },
 	text: {
 		display: 'block',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
-		whiteSpace: 'nowrap',
-		width: ({ width }) => width
+		whiteSpace: 'nowrap'
+	},
+	wrapper: {
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		whiteSpace: 'nowrap'
 	}
 })
 
 interface CellWithTooltipProps {
 	text: string
-	width?: number
 }
 
 export const CellWithTooltip: FC<CellWithTooltipProps> = ({
-	text,
-	width = defaultColumnFixedWidth
+	text
 }: CellWithTooltipProps) => {
 	const [hasTooltip, setHasTooltip] = useState(false)
 
-	const classes = useStyles({ width })
+	const classes = useStyles()
 
 	return (
-		<span
-			className={classes.text}
-			onMouseEnter={(e: SyntheticEvent) => {
-				const el = e.currentTarget as HTMLElement
+		<div className={classes.container}>
+			<div
+				className={classes.wrapper}
+				onMouseEnter={(e: SyntheticEvent) => {
+					const el = e.currentTarget as HTMLElement
 
-				el.scrollWidth > el.offsetWidth
-					? setHasTooltip(true)
-					: setHasTooltip(false)
-			}}
-		>
-			{hasTooltip ? (
-				<Tooltip placement='bottomLeft' title={text}>
-					{text}
-				</Tooltip>
-			) : (
-				text
-			)}
-		</span>
+					el.scrollWidth > el.offsetWidth
+						? setHasTooltip(true)
+						: setHasTooltip(false)
+				}}
+			>
+				{hasTooltip ? (
+					<Tooltip placement='bottomLeft' title={text}>
+						{text}
+					</Tooltip>
+				) : (
+					text
+				)}
+			</div>
+		</div>
 	)
 }

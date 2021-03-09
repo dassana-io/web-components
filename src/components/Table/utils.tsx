@@ -24,7 +24,6 @@ import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
-export const defaultColumnFixedWidth = 100
 export const defaultIconHeight = 25
 
 /* ------- Exported Functions ------- */
@@ -55,16 +54,12 @@ export function processColumns<TableData extends DataId>(
 	tableMethods: TableMethods<TableData>
 ) {
 	return columns.map(column => {
-		const { dataIndex, ellipsis, title, sort = true, width } = column
+		const { dataIndex, title, sort = true } = column
 		const antDColumn: AntDColumnType<TableData> = {
 			dataIndex,
 			showSorterTooltip: false,
 			title
 		}
-
-		if (width) antDColumn.width = width
-
-		if (ellipsis && !width) antDColumn.width = defaultColumnFixedWidth
 
 		applyRender<TableData>(column, antDColumn, tableMethods)
 
@@ -329,7 +324,7 @@ function applyRender<TableData extends DataId>(
 				}
 			} else if (column.ellipsis) {
 				antDColumn.render = (record: string) => (
-					<CellWithTooltip text={record} width={column.width} />
+					<CellWithTooltip text={record} />
 				)
 			}
 			break
