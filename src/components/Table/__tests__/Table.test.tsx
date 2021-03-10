@@ -123,7 +123,12 @@ describe('Table', () => {
 		)
 
 		const expected = {
-			_FORMATTED_DATA: ['02/27/2018'],
+			_FORMATTED_DATA: [
+				formatDate({
+					displayFormat: dateFormat,
+					unixTS: 1519782342212
+				})
+			],
 			company: { id: 'c1', name: 'azure', value: 'azure' },
 			id: 0,
 			key: 0,
