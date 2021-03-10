@@ -177,6 +177,32 @@ export function mapFilterKeys(columns: ColumnType[]) {
 
 /* -*-*-*-*-*- Helpers for parsing columns -*-*-*-*-*- */
 
+const compareIcons = (column: ComponentIconType) => (
+	a: Record<string, any>,
+	b: Record<string, any>
+) => {
+	const {
+		dataIndex,
+		renderProps: { iconKey }
+	} = column
+
+	const jsonPath = iconKey ? `$.${dataIndex}.${iconKey}` : `$.${dataIndex}`
+
+	const compareValA =
+		JSONPath({
+			json: a,
+			path: jsonPath
+		})[0] || ''
+
+	const compareValB =
+		JSONPath({
+			json: b,
+			path: jsonPath
+		})[0] || ''
+
+	return compareValA.localeCompare(compareValB)
+}
+
 /* 
   Compare functions used by applySort to pass a custom sorter
   based on data type and format.
@@ -185,9 +211,6 @@ function compareStrings(column: ColumnType) {
 	return (a: Record<string, any>, b: Record<string, any>) => {
 		const compareValA: string = a[column.dataIndex] || ''
 		const compareValB: string = b[column.dataIndex] || ''
-
-		// this prevents things from breaking if sort is being applied to arrays
-		if (Array.isArray(compareValA) || Array.isArray(compareValB)) return 0
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -242,10 +265,13 @@ function applySort<TableData extends DataId>(
 	switch (column.type) {
 		case component:
 			switch (column.format) {
-				case icon:
 				case coloredDot:
 				case link:
 					antDColumn.sorter = compareStrings(column)
+					break
+
+				case icon:
+					antDColumn.sorter = compareIcons(column)
 					break
 
 				case tag:
