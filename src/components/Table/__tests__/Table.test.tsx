@@ -112,25 +112,35 @@ describe('Table', () => {
 		expect(expected).toEqual(renderedData(wrapper)[0])
 	})
 
-	// it('renders all types and formats of data if col dataIndex is a JSONPath', () => {
-	// 	wrapper = mount(createTable<JSONPathData>(mockData2))
+	it('renders all types and formats of data if col dataIndex is a JSONPath', () => {
+		const { columns, data } = mockData2
 
-	// 	const expected = {
-	// 		'$.company.value': 'azure',
-	// 		'$.name.value': 'Lorem ipsum',
-	// 		'$.start_date.date': 1519782342212,
-	// 		_FORMATTED_DATA: [
-	// 			formatDate({
-	// 				displayFormat: dateFormat,
-	// 				unixTS: 1519782342212
-	// 			})
-	// 		],
-	// 		id: 0,
-	// 		key: 0
-	// 	}
+		wrapper = mount(
+			createTable<JSONPathData>({
+				columns: columns,
+				data: [data[0]]
+			})
+		)
 
-	// 	expect(expected).toEqual(renderedData(wrapper)[0])
-	// })
+		const expected = {
+			_FORMATTED_DATA: ['02/27/2018'],
+			company: { id: 'c1', name: 'azure', value: 'azure' },
+			id: 0,
+			key: 0,
+			name: { id: 'n1', value: 'Lorem ipsum' },
+			'name.value': 'Lorem ipsum',
+			start_date: { date: 1519782342212, id: 'sd1' },
+			'start_date.date': 1519782342212,
+			vendors: [
+				{
+					id: 'v1',
+					value: 'https://dummyimage.com/300x300/a92323/fff&text=C'
+				}
+			]
+		}
+
+		expect(expected).toEqual(renderedData(wrapper)[0])
+	})
 })
 
 describe('Table props', () => {
