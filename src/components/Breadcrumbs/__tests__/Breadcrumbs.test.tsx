@@ -1,4 +1,4 @@
-import { Link } from '@dassana-io/web-components'
+import { Link } from '../../Link'
 import React from 'react'
 import { BreadcrumbConfig, Breadcrumbs } from '../index'
 import { shallow, ShallowWrapper } from 'enzyme'
