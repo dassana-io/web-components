@@ -34,8 +34,8 @@ const columns: ColumnType[] = [
 		dataIndex: 'company',
 		format: icon,
 		renderProps: {
-			type: 'iconKey',
-			iconKey: 'value'
+			iconKey: 'value',
+			type: 'iconKey'
 		},
 		title: 'Company',
 		type: component
@@ -44,9 +44,10 @@ const columns: ColumnType[] = [
 		dataIndex: 'vendors',
 		format: icon,
 		renderProps: {
-			type: 'iconUrl',
-			iconKey: 'value'
+			iconKey: 'value',
+			type: 'iconUrl'
 		},
+		sort: false,
 		title: 'Vendors',
 		type: component
 	}

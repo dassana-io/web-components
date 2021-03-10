@@ -114,9 +114,6 @@ export const getPopupContainerProps = (
 	return popupContainerProps
 }
 
-// TODO: implement JSONPath validator? For now, a string that starts with '$' will be considered a JSONPath
-export const isJSONPath = (path: string): boolean => path[0] === '$'
-
 // Appends a div to the document, usually for use with React portals
 // Optional popup container function can be provided as an argument. Otherwise, it defaults to appending the div to document.body
 export const useCreateDomElement = (

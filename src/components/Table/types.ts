@@ -88,7 +88,7 @@ interface SharedCompIcontype extends SharedIconProps {
 	iconKey?: string
 }
 
-interface RenderPropsIcon extends SharedCompIcontype {
+export interface RenderPropsIcon extends SharedCompIcontype {
 	type: 'icon'
 	iconMap: {
 		[key: string]: string
@@ -103,7 +103,7 @@ interface RenderPropsIconUrl extends SharedCompIcontype {
 	type: 'iconUrl'
 }
 
-interface ComponentIconType extends PartialComponentType {
+export interface ComponentIconType extends PartialComponentType {
 	format: ColumnFormats.icon
 	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
 }

@@ -3,7 +3,6 @@ import bytes from 'bytes'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
-import { isJSONPath } from 'components/utils'
 import isUndefined from 'lodash/isUndefined'
 import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
@@ -13,10 +12,12 @@ import {
 	ColumnType,
 	ColumnTypes,
 	ComponentActionType,
+	ComponentIconType,
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
-	NumberDateType
+	NumberDateType,
+	RenderPropsIcon
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
@@ -97,7 +98,7 @@ export function processData<TableData extends DataId>(
 		} as ProcessedData<TableData>
 
 		columns.forEach(col => {
-			const { dataIndex, format } = col
+			const { dataIndex } = col
 
 			const value = JSONPath({
 				json: item,
@@ -155,6 +156,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 						} else if (!iconKey) {
 							keysArr.push(dataIndex)
 						}
+						break
 					}
 
 					case tag:
@@ -363,39 +365,122 @@ function applyRender<TableData extends DataId>(
 				}
 
 				case icon: {
-					type IconRecord = IconName | string
+					type IconRecord = IconName | string | Record<string, any>
+
+					const renderProps = column.renderProps
+					const { iconKey, height = defaultIconHeight } = renderProps
+
+					const jsonPath = iconKey ? `$.${iconKey}` : ''
+
+					const getIconOrIconKey = (
+						record: IconRecord
+					): string | IconName | undefined => {
+						if (typeof record === 'object') {
+							const value = JSONPath({
+								json: record,
+								path: jsonPath
+							})
+
+							if (value && value.length) return value[0]
+						} else return record
+					}
+
+					type GetIconProps = (
+						record: IconRecord,
+						type: ComponentIconType['renderProps']['type'],
+						iconMap?: RenderPropsIcon['iconMap']
+					) => IconProps
+
+					const getIconProps: GetIconProps = (
+						record,
+						type,
+						iconMap = {}
+					) => {
+						const val = getIconOrIconKey(record)
+
+						if (!val) return {} as IconProps
+
+						switch (type) {
+							case 'icon':
+								return { icon: iconMap[val] }
+
+							case 'iconUrl':
+								return { icon: val }
+
+							case 'iconKey':
+								return { iconKey: val as IconName }
+						}
+					}
+
+					type GetIconPropsArr = (
+						recordArr: IconRecord[],
+						type: ComponentIconType['renderProps']['type'],
+						iconMap?: RenderPropsIcon['iconMap']
+					) => IconProps[]
+
+					const getIconPropsArr: GetIconPropsArr = (
+						recordArr = [],
+						type,
+						iconMap = {}
+					) => {
+						return recordArr.reduce<IconProps[]>((acc, item) => {
+							const val = getIconOrIconKey(item)
+
+							if (!val) return [...acc]
+
+							let iconProps: IconProps
+
+							switch (type) {
+								case 'icon':
+									iconProps = {
+										icon: iconMap[val]
+									}
+									break
+
+								case 'iconUrl':
+									iconProps = { icon: val }
+									break
+
+								case 'iconKey':
+									iconProps = { iconKey: val as IconName }
+									break
+							}
+
+							return [...acc, iconProps]
+						}, [])
+					}
 
 					antDColumn.render = (
 						record?: IconRecord | IconRecord[]
 					) => {
 						if (!record) return ''
 
-						const renderProps = column.renderProps
-						const { height = defaultIconHeight } = renderProps
-
 						if (Array.isArray(record)) {
 							let iconPropsArr: IconProps[] = []
 
 							switch (renderProps.type) {
 								case 'icon': {
-									iconPropsArr = record.map(item => ({
-										icon: renderProps.iconMap[item]
-									}))
+									iconPropsArr = getIconPropsArr(
+										record,
+										'icon',
+										renderProps.iconMap
+									)
 									break
 								}
 
 								case 'iconKey': {
-									iconPropsArr = record.map(item => ({
-										iconKey: item as IconName
-									}))
+									iconPropsArr = getIconPropsArr(
+										record,
+										'iconKey'
+									)
 									break
 								}
 
 								case 'iconUrl': {
-									iconPropsArr = record.map(item => ({
-										icon: item
-									}))
-
+									iconPropsArr = getIconPropsArr(
+										record,
+										'iconUrl'
+									)
 									break
 								}
 							}
@@ -410,19 +495,24 @@ function applyRender<TableData extends DataId>(
 							let iconProps: IconProps = {} as IconProps
 
 							switch (renderProps.type) {
-								case 'icon':
-									iconProps = {
-										icon: renderProps.iconMap[record]
-									}
+								case 'icon': {
+									iconProps = getIconProps(
+										record,
+										'icon',
+										renderProps.iconMap
+									)
 									break
+								}
 
-								case 'iconKey':
-									iconProps = { iconKey: record as IconName }
+								case 'iconKey': {
+									iconProps = getIconProps(record, 'iconKey')
 									break
+								}
 
-								case 'iconUrl':
-									iconProps = { icon: record }
+								case 'iconUrl': {
+									iconProps = getIconProps(record, 'iconUrl')
 									break
+								}
 							}
 
 							if (renderProps.type === 'icon' && !iconProps.icon)
