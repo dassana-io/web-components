@@ -1,4 +1,5 @@
 import Color from 'color'
+import { JSONPath } from 'jsonpath-plus'
 import mapValues from 'lodash/mapValues'
 import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
@@ -22,6 +23,12 @@ export const placementOptions: TooltipPlacement[] = [
 export const TAG = 'data-test'
 
 /* ------------ Utilities related to colors ------------ */
+
+type RGB = {
+	r: number
+	g: number
+	b: number
+}
 
 const rgbToHex = (rgb: RGB) => Color(rgb).hex()
 
@@ -82,6 +89,11 @@ export const fakeApiCallSuccess: () => Promise<void> = async (
 	timeoutDuration = 1000
 ) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
 
+export const generatePopupSelector = (
+	popupContainerSelector: string
+) => (): HTMLElement =>
+	document.querySelector(popupContainerSelector) as HTMLElement
+
 export const getDataTestAttributeProp = (
 	cmpName: string,
 	dataTag?: string
@@ -89,16 +101,11 @@ export const getDataTestAttributeProp = (
 	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
 })
 
-export const generatePopupSelector = (
-	popupContainerSelector: string
-) => (): HTMLElement =>
-	document.querySelector(popupContainerSelector) as HTMLElement
-
-type RGB = {
-	r: number
-	g: number
-	b: number
-}
+export const getJSONPathValue = (path: string, obj: Record<string, any>) =>
+	JSONPath({
+		json: obj,
+		path
+	})
 
 export const getPopupContainerProps = (
 	popupContainerSelector = ''

@@ -31,6 +31,7 @@ interface PartialColumnType {
 	dataIndex: string
 	/**
 	 * Whether to truncate text width ellipsis and show a tooltip on hover. Currently only works with string type
+	 * @default true
 	 */
 	ellipsis?: boolean
 	title: string

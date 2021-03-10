@@ -35,9 +35,7 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 				onMouseEnter={(e: SyntheticEvent) => {
 					const el = e.currentTarget as HTMLElement
 
-					el.scrollWidth > el.offsetWidth
-						? setHasTooltip(true)
-						: setHasTooltip(false)
+					setHasTooltip(el.scrollWidth > el.offsetWidth)
 				}}
 			>
 				{hasTooltip ? (

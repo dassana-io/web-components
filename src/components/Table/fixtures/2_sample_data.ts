@@ -18,7 +18,6 @@ export interface Client {
 const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
-		ellipsis: true,
 		title: 'Name',
 		type: string
 	},

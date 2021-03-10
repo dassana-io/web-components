@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { defaultIconHeight } from './utils'
 import { styleguide } from 'components/assets/styles'
@@ -58,8 +59,10 @@ export const MultipleIcons: FC<Props> = ({
 					<Icon
 						{...iconProps}
 						classes={[
-							classes.icon,
-							isInsideTooltip ? classes.iconInTooltip : ''
+							cn({
+								[classes.icon]: true,
+								[classes.iconInTooltip]: isInsideTooltip
+							})
 						]}
 						height={height}
 						key={i}

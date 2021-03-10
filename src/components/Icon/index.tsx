@@ -59,15 +59,10 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 		)
 	}
 
-	const { altText = '' } = props as IconPath
+	const { altText = '', icon } = props
 
 	return (
-		<img
-			alt={altText}
-			className={cn(classes)}
-			height={height}
-			src={props.icon}
-		/>
+		<img alt={altText} className={cn(classes)} height={height} src={icon} />
 	)
 }
 
