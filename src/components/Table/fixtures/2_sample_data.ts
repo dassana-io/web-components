@@ -20,8 +20,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'name',
 		ellipsis: true,
 		title: 'Name',
-		type: string,
-		width: 100
+		type: string
 	},
 	{
 		dataIndex: 'start_date',
