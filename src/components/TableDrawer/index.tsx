@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface TableDrawerProps<DataType> {
+export interface TableDrawerProps<DataType> {
 	columns: ColumnType[]
 	data: DataType[]
 	loading: boolean

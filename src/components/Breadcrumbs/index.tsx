@@ -25,12 +25,15 @@ export interface BreadcrumbConfig {
 	onClick?: () => void
 }
 
-interface Props {
+export interface BreadCrumbProps {
 	classes?: string[]
 	config: BreadcrumbConfig[]
 }
 
-export const Breadcrumbs: FC<Props> = ({ classes = [], config }: Props) => {
+export const Breadcrumbs: FC<BreadCrumbProps> = ({
+	classes = [],
+	config
+}: BreadCrumbProps) => {
 	const breadCrumbsClasses = useStyles()
 
 	const renderBreadcrumb = ({ label, onClick }: BreadcrumbConfig) =>
