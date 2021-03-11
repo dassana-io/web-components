@@ -24,19 +24,21 @@ const useStyles = createUseStyles({
 			'& > .ant-tooltip-content > .ant-tooltip-inner': {
 				padding: `${spacing.s}px 0 0 ${spacing.s}px`
 			},
-			maxWidth: 250 - spacing.s
+			maxWidth: 140
 		}
 	}
 })
 
 interface Props {
 	iconPropsArr: IconProps[]
+
 	height?: number
 	truncateLength?: number
 }
 
 export const MultipleIcons: FC<Props> = ({
 	iconPropsArr = [],
+
 	height = defaultIconHeight,
 	truncateLength = 2
 }: Props) => {
@@ -71,12 +73,13 @@ export const MultipleIcons: FC<Props> = ({
 			})
 
 	return (
-		<>
+		<div className='table-cell-icon'>
 			{renderIcons({ sliceEndIndex: truncateLength, sliceStartIndex: 0 })}
 			{truncateLength < iconPropsArr.length && (
 				<Tooltip
 					classes={[classes.tooltip]}
 					placement='bottom'
+					popupContainerSelector={'.table-cell-icon'}
 					renderWithoutDataTag
 					title={renderIcons({
 						isInsideTooltip: true,
@@ -95,6 +98,6 @@ export const MultipleIcons: FC<Props> = ({
 					</span>
 				</Tooltip>
 			)}
-		</>
+		</div>
 	)
 }
