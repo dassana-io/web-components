@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss'
 import { defaultIconHeight } from './utils'
 import { styleguide } from 'components/assets/styles'
 import { Tooltip } from 'components/Tooltip'
+import { useTableContext } from './TableContext'
 import { Icon, IconProps } from '../Icon'
 import React, { FC } from 'react'
 
@@ -24,25 +25,29 @@ const useStyles = createUseStyles({
 			'& > .ant-tooltip-content > .ant-tooltip-inner': {
 				padding: `${spacing.s}px 0 0 ${spacing.s}px`
 			},
-			maxWidth: 140
+			maxWidth: ({ isMobile }) => (isMobile ? 140 : 250 - spacing.s)
 		}
+	},
+	wrapper: {
+		display: 'flex',
+		flexWrap: 'no-wrap'
 	}
 })
 
 interface Props {
 	iconPropsArr: IconProps[]
-
 	height?: number
 	truncateLength?: number
 }
 
 export const MultipleIcons: FC<Props> = ({
 	iconPropsArr = [],
-
 	height = defaultIconHeight,
 	truncateLength = 2
 }: Props) => {
-	const classes = useStyles()
+	const { isMobile } = useTableContext()
+
+	const classes = useStyles({ isMobile })
 
 	interface RenderIcons {
 		sliceStartIndex: number
@@ -73,13 +78,13 @@ export const MultipleIcons: FC<Props> = ({
 			})
 
 	return (
-		<div className='table-cell-icon'>
+		<div className={classes.wrapper}>
 			{renderIcons({ sliceEndIndex: truncateLength, sliceStartIndex: 0 })}
 			{truncateLength < iconPropsArr.length && (
 				<Tooltip
 					classes={[classes.tooltip]}
 					placement='bottom'
-					popupContainerSelector={'.table-cell-icon'}
+					popupContainerSelector={`.${classes.wrapper}`}
 					renderWithoutDataTag
 					title={renderIcons({
 						isInsideTooltip: true,

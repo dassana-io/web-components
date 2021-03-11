@@ -8,6 +8,7 @@ import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
+import { TableCtxProvider } from './TableContext'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
 import { useWindowSize } from './useWindowSize'
@@ -239,32 +240,37 @@ export const Table = <Data,>({
 		throw new Error('skeletonRowCount must be a positive integer')
 
 	return (
-		<div className={cn(tableClasses.tableContainer, classes)}>
-			{search && (
-				<div className={tableClasses.searchBarWrapper}>
-					<Input
-						dataTag='table-search'
-						loading={loading}
-						onChange={handleChange}
-						placeholder={searchProps.placeholder}
+		<TableCtxProvider value={{ isMobile }}>
+			<div className={cn(tableClasses.tableContainer, classes)}>
+				{search && (
+					<div className={tableClasses.searchBarWrapper}>
+						<Input
+							dataTag='table-search'
+							loading={loading}
+							onChange={handleChange}
+							placeholder={searchProps.placeholder}
+						/>
+					</div>
+				)}
+				{loading ? (
+					<TableSkeleton
+						columns={columns}
+						rowCount={skeletonRowCount}
 					/>
-				</div>
-			)}
-			{loading ? (
-				<TableSkeleton columns={columns} rowCount={skeletonRowCount} />
-			) : (
-				<AntDTable
-					columns={processedColumns}
-					dataSource={searchTerm ? filteredData : processedData}
-					pagination={pagination}
-					rowClassName={getRowClassName}
-					rowKey={getRowKey}
-					{...getDataTestAttributeProp('table', dataTag)}
-					{...optionalProps}
-					{...scrollProps}
-				/>
-			)}
-		</div>
+				) : (
+					<AntDTable
+						columns={processedColumns}
+						dataSource={searchTerm ? filteredData : processedData}
+						pagination={pagination}
+						rowClassName={getRowClassName}
+						rowKey={getRowKey}
+						{...getDataTestAttributeProp('table', dataTag)}
+						{...optionalProps}
+						{...scrollProps}
+					/>
+				)}
+			</div>
+		</TableCtxProvider>
 	)
 }
 

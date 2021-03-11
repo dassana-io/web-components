@@ -57,6 +57,7 @@ export function processColumns<TableData extends DataId>(
 ) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
+
 		const antDColumn: AntDColumnType<TableData> = {
 			dataIndex,
 			showSorterTooltip: false,
