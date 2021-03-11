@@ -101,11 +101,14 @@ export const getDataTestAttributeProp = (
 	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
 })
 
-export const getJSONPathValue = (path: string, obj: Record<string, any>) =>
-	JSONPath({
+export const getJSONPathValue = (path: string, obj: Record<string, any>) => {
+	const value = JSONPath({
 		json: obj,
 		path
 	})
+
+	if (value && Array.isArray(value)) return value[0]
+}
 
 export const getPopupContainerProps = (
 	popupContainerSelector = ''

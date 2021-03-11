@@ -103,8 +103,8 @@ export function processData<TableData extends DataId>(
 
 			const value = getJSONPathValue(`$.${dataIndex}`, item)
 
-			if (value.length) {
-				partialData[dataIndex as keyof TableData] = value[0]
+			if (value) {
+				partialData[dataIndex as keyof TableData] = value
 			}
 
 			//@ts-ignore
@@ -186,9 +186,9 @@ const compareIcons = (column: ComponentIconType) => (
 
 	const jsonPath = iconKey ? `$.${dataIndex}.${iconKey}` : `$.${dataIndex}`
 
-	const compareValA = getJSONPathValue(jsonPath, a)[0] || ''
+	const compareValA = getJSONPathValue(jsonPath, a) || ''
 
-	const compareValB = getJSONPathValue(jsonPath, b)[0] || ''
+	const compareValB = getJSONPathValue(jsonPath, b) || ''
 
 	return compareValA.localeCompare(compareValB)
 }
@@ -396,7 +396,7 @@ function applyRender<TableData extends DataId>(
 						if (typeof record === 'object') {
 							const value = getJSONPathValue(jsonPath, record)
 
-							if (value && value.length) return value[0]
+							if (value) return value
 						} else return record
 					}
 
