@@ -6,6 +6,7 @@ import { Input as AntDInput, Table as AntDTable } from 'antd'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData1, { File } from '../fixtures/4_sample_data'
+import mockData2, { JSONPathData } from '../fixtures/7_sample_data'
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
 import { Table, TableProps } from '..'
 
@@ -108,7 +109,42 @@ describe('Table', () => {
 			toggle: false
 		}
 
-		expect(expected).toMatchObject(renderedData(wrapper)[0])
+		expect(expected).toEqual(renderedData(wrapper)[0])
+	})
+
+	it('renders all types and formats of data if col dataIndex is a JSONPath', () => {
+		const { columns, data } = mockData2
+
+		wrapper = mount(
+			createTable<JSONPathData>({
+				columns: columns,
+				data: [data[0]]
+			})
+		)
+
+		const expected = {
+			_FORMATTED_DATA: [
+				formatDate({
+					displayFormat: dateFormat,
+					unixTS: 1519782342212
+				})
+			],
+			company: { id: 'c1', name: 'azure', value: 'azure' },
+			id: 0,
+			key: 0,
+			name: { id: 'n1', value: 'Lorem ipsum' },
+			'name.value': 'Lorem ipsum',
+			start_date: { date: 1519782342212, id: 'sd1' },
+			'start_date.date': 1519782342212,
+			vendors: [
+				{
+					id: 'v1',
+					value: 'https://dummyimage.com/300x300/a92323/fff&text=C'
+				}
+			]
+		}
+
+		expect(expected).toEqual(renderedData(wrapper)[0])
 	})
 })
 

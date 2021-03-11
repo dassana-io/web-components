@@ -1,24 +1,32 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
+import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
+import { getJSONPathValue } from 'components/utils'
 import isUndefined from 'lodash/isUndefined'
+import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
+import { MultipleIcons } from './MultipleIcons'
 import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
 	ComponentActionType,
+	ComponentIconType,
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
-	NumberDateType
+	NumberDateType,
+	RenderPropsIcon
 } from './types'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
+
+export const defaultIconHeight = 25
 
 /* ------- Exported Functions ------- */
 
@@ -65,6 +73,13 @@ export function processColumns<TableData extends DataId>(
 	})
 }
 
+// ------------------------------------------------
+
+type ProcessedData<T> = T & {
+	_FORMATTED_DATA: (string | null)[]
+	key: Key
+}
+
 /*
 Takes data prop passed to Table and returns data:
   1. formatted to satisfy antD requirements
@@ -74,14 +89,37 @@ Takes data prop passed to Table and returns data:
 export function processData<TableData extends DataId>(
 	data: TableData[],
 	columns: ColumnType[]
-) {
+): ProcessedData<TableData>[] {
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
-	return data.map(item => ({
-		...item,
-		_FORMATTED_DATA: createFormattedData(mappedFormat, item),
-		key: item.id
-	}))
+	return data.map(item => {
+		const partialData: ProcessedData<TableData> = {
+			id: item.id,
+			key: item.id
+		} as ProcessedData<TableData>
+
+		columns.forEach(col => {
+			const { dataIndex } = col
+
+			const value = getJSONPathValue(`$.${dataIndex}`, item)
+
+			if (value) {
+				partialData[dataIndex as keyof TableData] = value
+			}
+
+			//@ts-ignore
+			const pathArr: string[] = JSONPath.toPathArray(`$.${dataIndex}`)
+
+			if (pathArr && pathArr.length) {
+				partialData[pathArr[0] as keyof TableData] = item[pathArr[0]]
+			}
+		})
+
+		return {
+			...partialData,
+			_FORMATTED_DATA: createFormattedData(mappedFormat, partialData)
+		}
+	})
 }
 
 /*
@@ -101,11 +139,23 @@ export function mapFilterKeys(columns: ColumnType[]) {
 		switch (column.type) {
 			case component:
 				switch (column.format) {
-					case icon:
 					case coloredDot:
 					case link:
 						keysArr.push(dataIndex)
 						break
+
+					case icon: {
+						const {
+							renderProps: { filterKey, iconKey }
+						} = column
+
+						if (iconKey && filterKey) {
+							keysArr.push(`${dataIndex}.${filterKey}`)
+						} else if (!iconKey) {
+							keysArr.push(dataIndex)
+						}
+						break
+					}
 
 					case tag:
 						keysArr.push([dataIndex, 'name'])
@@ -124,6 +174,24 @@ export function mapFilterKeys(columns: ColumnType[]) {
 }
 
 /* -*-*-*-*-*- Helpers for parsing columns -*-*-*-*-*- */
+
+const compareIcons = (column: ComponentIconType) => (
+	a: Record<string, any>,
+	b: Record<string, any>
+) => {
+	const {
+		dataIndex,
+		renderProps: { iconKey }
+	} = column
+
+	const jsonPath = iconKey ? `$.${dataIndex}.${iconKey}` : `$.${dataIndex}`
+
+	const compareValA = getJSONPathValue(jsonPath, a) || ''
+
+	const compareValB = getJSONPathValue(jsonPath, b) || ''
+
+	return compareValA.localeCompare(compareValB)
+}
 
 /* 
   Compare functions used by applySort to pass a custom sorter
@@ -187,10 +255,13 @@ function applySort<TableData extends DataId>(
 	switch (column.type) {
 		case component:
 			switch (column.format) {
-				case icon:
 				case coloredDot:
 				case link:
 					antDColumn.sorter = compareStrings(column)
+					break
+
+				case icon:
+					antDColumn.sorter = compareIcons(column)
 					break
 
 				case tag:
@@ -239,9 +310,11 @@ function applyRender<TableData extends DataId>(
 
 	switch (column.type) {
 		case string: {
-			if (column.editConfig) {
+			const { editConfig, ellipsis = true } = column
+
+			if (editConfig) {
 				const { input, select } = EditableCellTypes
-				const { onSave, type } = column.editConfig
+				const { onSave, type } = editConfig
 
 				const commonProps = {
 					dataIndex: column.dataIndex,
@@ -266,7 +339,7 @@ function applyRender<TableData extends DataId>(
 						break
 
 					case select: {
-						const { options = [] } = column.editConfig
+						const { options = [] } = editConfig
 
 						antDColumn.render = (
 							record: string,
@@ -284,9 +357,14 @@ function applyRender<TableData extends DataId>(
 						break
 					}
 				}
+			} else if (ellipsis) {
+				antDColumn.render = (record: string) => (
+					<CellWithTooltip text={record} />
+				)
 			}
 			break
 		}
+
 		case component:
 			switch (column.format) {
 				case action: {
@@ -303,29 +381,89 @@ function applyRender<TableData extends DataId>(
 					}
 					break
 				}
+
 				case icon: {
-					antDColumn.render = (record: IconName | string) => {
-						if (record === undefined) return ''
+					type IconRecord = IconName | string | Record<string, any>
 
-						const renderProps = column.renderProps
-						const { height = 25 } = renderProps
+					const renderProps = column.renderProps
+					const { iconKey, height = defaultIconHeight } = renderProps
 
-						const iconProps: IconProps =
-							renderProps.type === 'icon'
-								? { icon: renderProps.iconMap[record] }
-								: { iconKey: record as IconName }
+					const jsonPath = iconKey ? `$.${iconKey}` : ''
 
-						if (renderProps.type === 'icon' && !iconProps.icon)
-							return record
-						/* Custom icons are defined as a map of key and url in the Column object.
-              E.g. { renderProps: {iconMap: { example-icon: 'https://dummyimage.com/600x400/0072c6/fff&text=A' }, ...}, ...}
-              Then in the data object, you reference the iconMap key - 'example-icon'.
-              E.g. { demo_icon: 'example-icon', ... }
-              If this mapping doesn't exist in the column object, the table renders just the key (or record).
-              In this example, it will be 'example-icon'.
-            */
+					const getIconOrIconKey = (
+						record: IconRecord
+					): string | IconName | undefined => {
+						if (typeof record === 'object') {
+							const value = getJSONPathValue(jsonPath, record)
 
-						return <Icon {...iconProps} height={height} />
+							if (value) return value
+						} else return record
+					}
+
+					type GetIconProps = (
+						record: IconRecord,
+						renderProps: ComponentIconType['renderProps']
+					) => IconProps
+
+					const getIconProps: GetIconProps = (
+						record,
+						renderProps
+					) => {
+						const val = getIconOrIconKey(record)
+
+						if (!val) return {} as IconProps
+
+						const { type } = renderProps
+
+						switch (type) {
+							case 'icon': {
+								const {
+									iconMap
+								} = renderProps as RenderPropsIcon
+
+								return { icon: iconMap[val] }
+							}
+
+							case 'iconUrl':
+								return { icon: val }
+
+							case 'iconKey':
+								return { iconKey: val as IconName }
+						}
+					}
+
+					antDColumn.render = (
+						record?: IconRecord | IconRecord[]
+					) => {
+						if (!record) return ''
+
+						if (Array.isArray(record)) {
+							const iconPropsArr = record.map(icon =>
+								getIconProps(icon, renderProps)
+							)
+
+							return (
+								<MultipleIcons
+									height={height}
+									iconPropsArr={iconPropsArr}
+								/>
+							)
+						} else {
+							const iconProps = getIconProps(record, renderProps)
+
+							if (renderProps.type === 'icon' && !iconProps.icon)
+								return record
+
+							/**
+							 * Custom icons are defined as a map of key and url in the Column object.
+							 * E.g. { renderProps: {iconMap: { example-icon: 'https://dummyimage.com/600x400/0072c6/fff&text=A' }, ...}, ...}
+							 * Then in the data object, you reference the iconMap key - 'example-icon'.
+							 * E.g. { demo_icon: 'example-icon', ... }
+							 * If this mapping doesn't exist in the column object, the table renders just the key (or record).
+							 * In this example, it will be 'example-icon'.
+							 */
+							return <Icon {...iconProps} height={height} />
+						}
 					}
 					break
 				}
@@ -433,7 +571,6 @@ function createFormattedData<TableData extends DataId>(
 	mappedFormat: Record<string, NumFormatterFunction>,
 	item: TableData
 ) {
-	// @ts-ignore
 	return Object.keys(mappedFormat).map(key => mappedFormat[key](item[key]))
 }
 

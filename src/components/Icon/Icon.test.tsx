@@ -50,6 +50,7 @@ describe('Predefined Icon', () => {
 
 describe('Custom Icon', () => {
 	const mockProps: IconProps = {
+		altText: 'foo',
 		height: 64,
 		icon: 'https://dummyimage.com/600x400/000/fff&text=Dassana'
 	}
@@ -69,9 +70,7 @@ describe('Custom Icon', () => {
 	})
 
 	it('has the correct alt attribute', () => {
-		expect(wrapper.getDOMNode().getAttribute('alt')).toBe(
-			'https://dummyimage.com/600x400/000/fff&text=Dassana'
-		)
+		expect(wrapper.getDOMNode().getAttribute('alt')).toBe('foo')
 	})
 
 	it('has the correct height', () => {
