@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles as createJssUseStyles } from 'react-jss'
 import { ThemeType } from 'components/assets/styles'
-import { Tooltip } from 'antd'
+import { Tooltip } from 'components/Tooltip'
 import React, { FC } from 'react'
 
 const { light, dark } = ThemeType
@@ -49,7 +49,7 @@ export const ColoredDot: FC<ColoredDotProps> = ({
 	const showTooltip = colors && tooltipText
 
 	return showTooltip ? (
-		<Tooltip title={tooltipText}>
+		<Tooltip placement='top' renderWithoutDataTag title={tooltipText}>
 			<span className={dotClasss}></span>
 		</Tooltip>
 	) : (
