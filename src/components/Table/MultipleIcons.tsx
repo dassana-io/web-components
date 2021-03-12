@@ -1,6 +1,5 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { defaultIconHeight } from './utils'
 import { styleguide } from 'components/assets/styles'
 import { Tooltip } from 'components/Tooltip'
 import { useTableContext } from './TableContext'
@@ -8,6 +7,8 @@ import { Icon, IconProps } from '../Icon'
 import React, { FC } from 'react'
 
 const { spacing } = styleguide
+
+export const defaultIconHeight = 25
 
 const useStyles = createUseStyles({
 	count: { borderBottom: '1px solid', marginLeft: spacing.s },

@@ -243,14 +243,15 @@ export const Table = <Data,>({
 		<TableCtxProvider value={{ isMobile }}>
 			<div className={cn(tableClasses.tableContainer, classes)}>
 				{search && (
-					<Input
-						classes={[tableClasses.searchBar]}
-						dataTag='table-search'
-						fullWidth={isMobile}
-						loading={loading}
-						onChange={handleChange}
-						placeholder={searchProps.placeholder}
-					/>
+					<div className={tableClasses.searchBarWrapper}>
+						<Input
+							dataTag='table-search'
+							fullWidth={isMobile}
+							loading={loading}
+							onChange={handleChange}
+							placeholder={searchProps.placeholder}
+						/>
+					</div>
 				)}
 				{loading ? (
 					<TableSkeleton

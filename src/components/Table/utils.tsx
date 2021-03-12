@@ -7,7 +7,6 @@ import { getJSONPathValue } from 'components/utils'
 import isUndefined from 'lodash/isUndefined'
 import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
-import { MultipleIcons } from './MultipleIcons'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -20,13 +19,12 @@ import {
 	NumberDateType,
 	RenderPropsIcon
 } from './types'
+import { defaultIconHeight, MultipleIcons } from './MultipleIcons'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
-
-export const defaultIconHeight = 25
 
 /* ------- Exported Functions ------- */
 
