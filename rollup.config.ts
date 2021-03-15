@@ -43,6 +43,7 @@ export default {
 		'fuse.js',
 		'jsonpath-plus',
 		'lodash',
+		'mark.js',
 		'moment',
 		'prismjs',
 		'react',

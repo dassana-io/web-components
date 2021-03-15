@@ -13,7 +13,7 @@ export default {
 const Template: Story<CodeProps> = args => <Code {...args} />
 
 /* eslint-disable sort-keys */
-const testJson = {
+const sampleJSON = {
 	dassana: {
 		context: {
 			attachedResources: {
@@ -53,5 +53,15 @@ const testJson = {
 
 export const Default = Template.bind({})
 Default.args = {
-	code: testJson
+	code: sampleJSON,
+	search: { placeholder: 'Search...' }
+}
+
+export const HTML = Template.bind({})
+HTML.args = {
+	code: `<div>
+  <p>Lorem Ipsum</p>
+  <span>dolor sit amet</span>
+</div>`,
+	language: 'html'
 }
