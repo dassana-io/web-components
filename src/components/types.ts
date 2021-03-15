@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react'
 
-export interface BaseFormElementProps extends CommonComponentProps {
+export interface BaseFormElementProps<Element> extends CommonComponentProps {
 	/**
 	 * Array of classes to pass to element
 	 * @default []
@@ -30,12 +30,12 @@ export interface BaseFormElementProps extends CommonComponentProps {
 	 * Callback that runs when element loses focus
 	 * @default () => {}
 	 */
-	onBlur?: ChangeEventHandler
+	onBlur?: ChangeEventHandler<Element>
 	/**
 	 * Callback that runs when element is updated
 	 * @default () => {}
 	 */
-	onChange?: ChangeEventHandler<HTMLSelectElement>
+	onChange?: ChangeEventHandler<Element>
 	/**
 	 * Describes expected value of element
 	 */

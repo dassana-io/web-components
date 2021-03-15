@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface InputProps extends BaseFormElementProps {
+export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonAfter?: string
 	addonBefore?: string
 	inputRef?: RefObject<AntDInput>

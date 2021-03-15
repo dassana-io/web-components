@@ -7,7 +7,10 @@ export interface MultipleChoiceItemConfig {
 }
 
 export interface SharedProps
-	extends Pick<BaseFormElementProps, 'classes' | 'dataTag' | 'loading'> {
+	extends Pick<
+		BaseFormElementProps<HTMLSelectElement>,
+		'classes' | 'dataTag' | 'loading'
+	> {
 	/**
 	 * Optional callback that returns ref of element to which attach event listener to. By default, it's attached to the window
 	 */

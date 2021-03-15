@@ -14,7 +14,7 @@ export interface SelectOptionsConfig {
 	style?: CSSProperties
 }
 
-export interface SelectProps extends BaseFormElementProps {
+export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	/**
 	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
 	 */
