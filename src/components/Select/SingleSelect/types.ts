@@ -1,14 +1,17 @@
 import { BaseFormElementProps } from '../../types'
+import { CSSProperties, ReactNode } from 'react'
 import { IconName } from '../../Icon'
 
 export interface SelectOption {
 	iconKey?: IconName
+	style?: CSSProperties
 	text: string
 	value: string
 }
 
 export interface SelectOptionsConfig {
 	iconMap?: Record<string, string>
+	style?: CSSProperties
 }
 
 export interface SelectProps extends BaseFormElementProps {

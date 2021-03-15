@@ -138,7 +138,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				{...multiSelectProps}
 				{...singleSelectProps}
 			>
-				{options.map(({ iconKey, text, value }) => (
+				{options.map(({ iconKey, text, style, value }) => (
 					<Option
 						className={componentClasses.option}
 						key={value}
@@ -155,7 +155,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 						<OptionChildren
 							iconKey={iconKey}
 							key={value}
-							optionsConfig={optionsConfig}
+							optionsConfig={{ ...optionsConfig, style }}
 							text={text}
 						/>
 					</Option>

@@ -40,6 +40,7 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 }: OptionChildrenProps) => {
 	const [hasTooltip, setHasTooltip] = useState(false)
 	const classes = useOptionChildrenStyles()
+	const { style = {} } = optionsConfig
 
 	const renderIcon = (
 		iconKey: IconName,
@@ -63,7 +64,7 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 	}
 
 	return (
-		<div className={classes.option}>
+		<div className={classes.option} style={style}>
 			{children && children}
 			{iconKey && renderIcon(iconKey, optionsConfig)}
 			<span

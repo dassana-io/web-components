@@ -52,7 +52,16 @@ export const styleguide = {
 		h1: { fontSize: 32, lineHeight: '40px' }
 	},
 	fontWeight: { light: 300, regular: 400, bold: 500 },
-	spacing: { xs: 4, s: 8, m: 16, l: 24, xl: 32 },
+	spacing: {
+		xs: 4,
+		s: 8,
+		's+': 12,
+		m: 16,
+		'm+': 20,
+		l: 24,
+		'l+': 28,
+		xl: 32
+	},
 	/* eslint-enable sort-keys */
 	topNavHeight: 64
 }

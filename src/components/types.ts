@@ -35,7 +35,7 @@ export interface BaseFormElementProps extends CommonComponentProps {
 	 * Callback that runs when element is updated
 	 * @default () => {}
 	 */
-	onChange?: ChangeEventHandler
+	onChange?: ChangeEventHandler<HTMLSelectElement>
 	/**
 	 * Describes expected value of element
 	 */
