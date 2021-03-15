@@ -89,7 +89,7 @@ const data: JSONPathData[] = [
 	{
 		company: { id: 'c2', value: 'dassana' },
 		id: 2,
-		name: { id: 'n2', value: 'Amet Consectetur' },
+		name: { id: 'n2', value: 'Amet Consectetur Adipiscing Elit' },
 		start_date: { date: 1553932342212, id: 'sd3' },
 		vendors: [
 			{

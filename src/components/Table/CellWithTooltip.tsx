@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import { Tooltip } from 'components/Tooltip'
+import { useTableContext } from './TableContext'
 import React, { FC, SyntheticEvent, useState } from 'react'
 
 const useStyles = createUseStyles({
@@ -26,9 +27,13 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 }: CellWithTooltipProps) => {
 	const [hasTooltip, setHasTooltip] = useState(false)
 
+	const { isMobile } = useTableContext()
+
 	const classes = useStyles()
 
-	return (
+	return isMobile ? (
+		<>{text}</>
+	) : (
 		<div className={classes.container}>
 			<div
 				className={classes.wrapper}

@@ -3,6 +3,7 @@ import random from 'lodash/random'
 import { Skeleton } from '../Skeleton'
 import { tablePalette } from './styles'
 import times from 'lodash/times'
+import { useTableContext } from './TableContext'
 import { ColumnFormats, ColumnType, ColumnTypes } from './types'
 import React, { FC } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
@@ -127,13 +128,17 @@ export const TableSkeleton: FC<TableSkeletonProps> = ({
 	columns,
 	rowCount
 }: TableSkeletonProps) => {
+	const { isMobile } = useTableContext()
+
 	const classes = useStyles()
+
+	const columnCount = isMobile ? 2 : columns.length
 
 	return (
 		<table className={classes.table}>
 			<thead>
 				<tr>
-					{times(columns.length, (j: number) => (
+					{times(columnCount, (j: number) => (
 						<THeaderCellSkeleton key={j} />
 					))}
 				</tr>
@@ -141,7 +146,7 @@ export const TableSkeleton: FC<TableSkeletonProps> = ({
 			<tbody>
 				{times(rowCount, (i: number) => (
 					<tr key={i}>
-						{times(columns.length, (j: number) => (
+						{times(columnCount, (j: number) => (
 							<TDataCellSkeleton
 								columns={columns}
 								index={j}

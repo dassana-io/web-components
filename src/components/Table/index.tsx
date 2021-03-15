@@ -8,8 +8,10 @@ import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
+import { TableCtxProvider } from './TableContext'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
+import { useWindowSize } from './useWindowSize'
 import { ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, {
@@ -22,6 +24,15 @@ import React, {
 
 export interface OnRowClick<TableData> {
 	(data: TableData, rowIndex: number): void
+}
+
+export interface ScrollConfig {
+	/**
+	 * whether the table is scrollable on mobile only
+	 * @default true
+	 */
+	mobileOnly?: boolean
+	x: number
 }
 
 export interface SearchProps {
@@ -60,6 +71,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional callback that runs when a table row is clicked
 	 */
 	onRowClick?: OnRowClick<TableData<Data>>
+	scrollConfig?: ScrollConfig
 	/**
 	 * Optional prop to enable/disable table search
 	 */
@@ -86,6 +98,7 @@ export const Table = <Data,>({
 	dataTag,
 	loading = false,
 	onRowClick,
+	scrollConfig,
 	search = true,
 	skeletonRowCount = 5,
 	searchProps = {} as SearchProps
@@ -93,6 +106,8 @@ export const Table = <Data,>({
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
 	const [pagination, setPagination] = useState<Pagination>(false)
+
+	const { isMobile } = useWindowSize()
 
 	const tableClasses = useStyles({
 		onRowClick,
@@ -205,35 +220,58 @@ export const Table = <Data,>({
 		})
 	}
 
+	let scrollProps = {}
+
+	if (scrollConfig && !scrollConfig.mobileOnly) {
+		scrollProps = {
+			scroll: {
+				x: scrollConfig.x
+			}
+		}
+	} else if (isMobile) {
+		scrollProps = {
+			scroll: {
+				x: scrollConfig ? scrollConfig.x : columns.length * 150
+			}
+		}
+	}
+
 	if (skeletonRowCount < 1)
 		throw new Error('skeletonRowCount must be a positive integer')
 
 	return (
-		<div className={cn(tableClasses.tableContainer, classes)}>
-			{search && (
-				<div className={tableClasses.searchBarWrapper}>
-					<Input
-						dataTag='table-search'
-						loading={loading}
-						onChange={handleChange}
-						placeholder={searchProps.placeholder}
+		<TableCtxProvider value={{ isMobile }}>
+			<div className={cn(tableClasses.tableContainer, classes)}>
+				{search && (
+					<div className={tableClasses.searchBarWrapper}>
+						<Input
+							dataTag='table-search'
+							fullWidth={isMobile}
+							loading={loading}
+							onChange={handleChange}
+							placeholder={searchProps.placeholder}
+						/>
+					</div>
+				)}
+				{loading ? (
+					<TableSkeleton
+						columns={columns}
+						rowCount={skeletonRowCount}
 					/>
-				</div>
-			)}
-			{loading ? (
-				<TableSkeleton columns={columns} rowCount={skeletonRowCount} />
-			) : (
-				<AntDTable
-					columns={processedColumns}
-					dataSource={searchTerm ? filteredData : processedData}
-					pagination={pagination}
-					rowClassName={getRowClassName}
-					rowKey={getRowKey}
-					{...getDataTestAttributeProp('table', dataTag)}
-					{...optionalProps}
-				/>
-			)}
-		</div>
+				) : (
+					<AntDTable
+						columns={processedColumns}
+						dataSource={searchTerm ? filteredData : processedData}
+						pagination={pagination}
+						rowClassName={getRowClassName}
+						rowKey={getRowKey}
+						{...getDataTestAttributeProp('table', dataTag)}
+						{...optionalProps}
+						{...scrollProps}
+					/>
+				)}
+			</div>
+		</TableCtxProvider>
 	)
 }
 

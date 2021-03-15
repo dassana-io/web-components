@@ -1,12 +1,14 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { defaultIconHeight } from './utils'
 import { styleguide } from 'components/assets/styles'
 import { Tooltip } from 'components/Tooltip'
+import { useTableContext } from './TableContext'
 import { Icon, IconProps } from '../Icon'
 import React, { FC } from 'react'
 
 const { spacing } = styleguide
+
+export const defaultIconHeight = 25
 
 const useStyles = createUseStyles({
 	count: { borderBottom: '1px solid', marginLeft: spacing.s },
@@ -24,8 +26,12 @@ const useStyles = createUseStyles({
 			'& > .ant-tooltip-content > .ant-tooltip-inner': {
 				padding: `${spacing.s}px 0 0 ${spacing.s}px`
 			},
-			maxWidth: 250 - spacing.s
+			maxWidth: ({ isMobile }) => (isMobile ? 140 : 250 - spacing.s)
 		}
+	},
+	wrapper: {
+		display: 'flex',
+		flexWrap: 'no-wrap'
 	}
 })
 
@@ -40,7 +46,9 @@ export const MultipleIcons: FC<Props> = ({
 	height = defaultIconHeight,
 	truncateLength = 2
 }: Props) => {
-	const classes = useStyles()
+	const { isMobile } = useTableContext()
+
+	const classes = useStyles({ isMobile })
 
 	interface RenderIcons {
 		sliceStartIndex: number
@@ -71,12 +79,13 @@ export const MultipleIcons: FC<Props> = ({
 			})
 
 	return (
-		<>
+		<div className={classes.wrapper}>
 			{renderIcons({ sliceEndIndex: truncateLength, sliceStartIndex: 0 })}
 			{truncateLength < iconPropsArr.length && (
 				<Tooltip
 					classes={[classes.tooltip]}
 					placement='bottom'
+					popupContainerSelector={`.${classes.wrapper}`}
 					renderWithoutDataTag
 					title={renderIcons({
 						isInsideTooltip: true,
@@ -95,6 +104,6 @@ export const MultipleIcons: FC<Props> = ({
 					</span>
 				</Tooltip>
 			)}
-		</>
+		</div>
 	)
 }
