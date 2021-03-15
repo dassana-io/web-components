@@ -1,5 +1,5 @@
 import { BaseFormElementProps } from '../../types'
-import { CSSProperties, ReactNode } from 'react'
+import { CSSProperties } from 'react'
 import { IconName } from '../../Icon'
 
 export interface SelectOption {
