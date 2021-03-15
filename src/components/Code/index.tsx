@@ -1,22 +1,12 @@
 import './prism.css'
 import cn from 'classnames'
-import { createUseStyles } from 'react-jss'
 import Mark from 'mark.js'
 import Prism from 'prismjs'
-import { styleguide } from 'components/assets/styles'
+import { useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
 import React, { ChangeEvent, FC, useEffect, useRef } from 'react'
 require('prismjs/plugins/line-numbers/prism-line-numbers')
 require('prismjs/components/prism-json')
-
-const { spacing } = styleguide
-
-// overwriting default styles react example https://github.com/reactjs/reactjs.org/blob/master/src/prism-styles.js#L11
-const useStyles = createUseStyles({
-	search: {
-		marginBottom: spacing.m
-	}
-})
 
 export interface CodeProps {
 	code: string | Record<string, any>
