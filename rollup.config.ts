@@ -44,6 +44,7 @@ export default {
 		'jsonpath-plus',
 		'lodash',
 		'moment',
+		'prismjs',
 		'react',
 		'react-dom',
 		'react-hook-form',
