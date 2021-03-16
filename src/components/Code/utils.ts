@@ -8,12 +8,35 @@ const {
 	spacing
 } = styleguide
 
+const codePalette = {
+	[dark]: {
+		background: blacks['darken-20']
+	},
+	[light]: {
+		background: grays['lighten-70']
+	}
+}
+
 const generateThemedCodeStyles = (themeType: ThemeType) => {
+	const { background } = codePalette[themeType]
+
+	const {
+		base: { borderColor }
+	} = themedStyles[themeType]
+
+	return {
+		background,
+		border: `1px solid ${borderColor}`
+	}
+}
+
+const generateThemedPreCodeStyles = (themeType: ThemeType) => {
+	const { background } = codePalette[themeType]
+
 	const {
 		base: { color }
 	} = themedStyles[themeType]
 
-	// overwriting prismjs default styles react example https://github.com/reactjs/reactjs.org/blob/master/src/prism-styles.js#L11
 	const prismColors = {
 		boolean: color,
 		char: color,
@@ -37,33 +60,63 @@ const generateThemedCodeStyles = (themeType: ThemeType) => {
 		...Object.entries(prismColors).reduce(
 			(acc, [key, val]) => ({
 				...acc,
-				[`& .token.${key}`]: { color: val }
+				[`& .token.${key}`]: {
+					background: 'none',
+					color: val
+				}
 			}),
 			{}
 		),
+		background,
 		color
 	}
 }
 
+const generateThemedLineNumStyles = (themeType: ThemeType) => {
+	const { background } = codePalette[themeType]
+
+	const {
+		base: { borderColor, color }
+	} = themedStyles[themeType]
+
+	return {
+		'& > span:before': {
+			color
+		},
+		background,
+		borderRight: `1px solid ${borderColor}`
+	}
+}
+
+/* eslint-disable quotes */
+const codeSelector = "& code[class*='language-']"
+const preCodeSelector = "pre[class*='language-']"
+/* eslint-enable quotes */
+
 export const useStyles = createUseStyles({
 	'@global': {
-		// eslint-disable-next-line quotes
-		"pre[class*='language-']": {
+		[preCodeSelector]: {
 			'& .line-numbers-rows': {
-				'& > span:before': generateThemedCodeStyles(light),
-				background: grays['lighten-70'],
-				borderRight: `1px solid ${grays.base}`
+				...generateThemedLineNumStyles(light),
+				textShadow: 'none'
 			},
-			// eslint-disable-next-line quotes
-			"& code[class*='language-']": {
-				...generateThemedCodeStyles(light),
-				background: grays['lighten-70'],
-				fontFamily: 'Fira Code, monospace'
+			[codeSelector]: {
+				...generateThemedPreCodeStyles(light),
+				fontFamily: 'Fira Code, monospace',
+				textShadow: 'none'
 			},
-			background: grays['lighten-70'],
-			border: `1px solid ${grays.base}`,
+			...generateThemedCodeStyles(light),
 			fontFamily: 'Fira Code, monospace',
 			margin: 0
+		},
+		[`.${dark}`]: {
+			[`& ${preCodeSelector}`]: {
+				'& .line-numbers-rows': generateThemedLineNumStyles(dark),
+				[codeSelector]: {
+					...generateThemedPreCodeStyles(dark)
+				},
+				...generateThemedCodeStyles(dark)
+			}
 		}
 	},
 	search: {

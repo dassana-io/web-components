@@ -9,6 +9,7 @@ require('prismjs/plugins/line-numbers/prism-line-numbers')
 require('prismjs/components/prism-json')
 
 export interface CodeProps {
+	classes?: string[]
 	code: string | Record<string, any>
 	language?: 'css' | 'html' | 'javascript' | 'json'
 	lineNumbers?: boolean
@@ -19,6 +20,7 @@ export interface CodeProps {
 }
 
 export const Code: FC<CodeProps> = ({
+	classes = [],
 	code,
 	language = 'json',
 	lineNumbers = true,
@@ -61,7 +63,7 @@ export const Code: FC<CodeProps> = ({
 		<>
 			{search && <Input {...searchProps} onChange={onSearch} />}
 			<pre
-				className={cn({ 'line-numbers': lineNumbers })}
+				className={cn({ 'line-numbers': lineNumbers }, classes)}
 				contentEditable={!readOnly}
 			>
 				<code className={`language-${language}`} ref={codeRef}>
