@@ -5,6 +5,7 @@ const { dark, light } = ThemeType
 
 const {
 	colors: { blacks, grays },
+	fontWeight,
 	spacing
 } = styleguide
 
@@ -103,10 +104,12 @@ export const useStyles = createUseStyles({
 			[codeSelector]: {
 				...generateThemedPreCodeStyles(light),
 				fontFamily: 'Fira Code, monospace',
+				fontWeight: fontWeight.light,
 				textShadow: 'none'
 			},
 			...generateThemedCodeStyles(light),
 			fontFamily: 'Fira Code, monospace',
+			fontWeight: fontWeight.light,
 			margin: 0
 		},
 		[`.${dark}`]: {
