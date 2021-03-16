@@ -115,9 +115,7 @@ export const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			[`& ${preCodeSelector}`]: {
 				'& .line-numbers-rows': generateThemedLineNumStyles(dark),
-				[codeSelector]: {
-					...generateThemedPreCodeStyles(dark)
-				},
+				[codeSelector]: generateThemedPreCodeStyles(dark),
 				...generateThemedCodeStyles(dark)
 			}
 		}
