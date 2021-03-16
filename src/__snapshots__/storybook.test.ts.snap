@@ -2370,7 +2370,7 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-2-123"
+              className="option-0-2-126"
               style={Object {}}
             >
               <span
@@ -2480,7 +2480,7 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-2-123"
+              className="option-0-2-126"
               style={Object {}}
             >
               <span
