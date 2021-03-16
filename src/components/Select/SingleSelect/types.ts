@@ -1,17 +1,20 @@
 import { BaseFormElementProps } from '../../types'
+import { CSSProperties } from 'react'
 import { IconName } from '../../Icon'
 
 export interface SelectOption {
 	iconKey?: IconName
+	style?: CSSProperties
 	text: string
 	value: string
 }
 
 export interface SelectOptionsConfig {
 	iconMap?: Record<string, string>
+	style?: CSSProperties
 }
 
-export interface SelectProps extends BaseFormElementProps {
+export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	/**
 	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
 	 */

@@ -32,7 +32,8 @@ const useInputStyles = createUseStyles({
 	}
 })
 
-interface InputSkeletonProps extends Pick<BaseFormElementProps, 'fullWidth'> {
+interface InputSkeletonProps
+	extends Pick<BaseFormElementProps<HTMLInputElement>, 'fullWidth'> {
 	width?: string | number
 }
 
