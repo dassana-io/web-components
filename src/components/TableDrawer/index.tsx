@@ -48,9 +48,11 @@ const useStyles = createUseStyles({
 export interface TableDrawerProps<DataType> {
 	columns: ColumnType[]
 	data: DataType[]
+	drawerContainerClasses?: string[]
 	loading: boolean
 	renderDrawerCmp: (id: Key, rowData: DataType) => ReactNode
 	renderTableControls?: () => ReactNode
+	tableContainerClasses?: string[]
 }
 
 export const TableDrawer = <DataType extends DataId>({

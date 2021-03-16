@@ -10,7 +10,10 @@ const useStyles = createUseStyles({
 	}
 })
 
-export type SelectSkeletonProps = Pick<BaseFormElementProps, 'fullWidth'>
+export type SelectSkeletonProps = Pick<
+	BaseFormElementProps<HTMLSelectElement>,
+	'fullWidth'
+>
 
 export const SelectSkeleton: FC<SelectSkeletonProps> = (
 	props: SelectSkeletonProps

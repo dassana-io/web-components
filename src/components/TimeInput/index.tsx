@@ -14,7 +14,10 @@ import React, { FC, FocusEvent } from 'react'
 export type TimeFormat = 'unix' | 'hours'
 
 export interface TimeInputProps
-	extends Omit<BaseFormElementProps, 'fullWidth' | 'onChange' | 'value'> {
+	extends Omit<
+		BaseFormElementProps<HTMLElement>,
+		'fullWidth' | 'onChange' | 'value'
+	> {
 	defaultValue?: number
 	/** moment display format to format date. Defaults to 'hh:mm A' which will display 08:54 PM
 	 * @default 'hh:mm A'
@@ -102,6 +105,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			minuteStep={minuteStep}
 			onBlur={onBlur}
 			onFocus={(e: FocusEvent<HTMLInputElement>) => {
+				1
 				onTimeInputFocus(e)
 				onFocus(e)
 			}}

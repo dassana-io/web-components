@@ -2273,6 +2273,7 @@ exports[`Storyshots Select Full Width 1`] = `
           >
             <div
               className="option-0-2-123"
+              style={Object {}}
             >
               <span
                 className="optionText-0-2-124"
@@ -2382,6 +2383,7 @@ exports[`Storyshots Select Icon 1`] = `
           >
             <div
               className="option-0-2-123"
+              style={Object {}}
             >
               <span
                 className="icon-0-2-122"
