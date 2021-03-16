@@ -26,8 +26,14 @@ export enum EditableCellTypes {
 	input = 'input',
 	select = 'select'
 }
+
 interface PartialColumnType {
 	dataIndex: string
+	/**
+	 * Whether to truncate text width ellipsis and show a tooltip on hover. Currently only works with string type
+	 * @default true
+	 */
+	ellipsis?: boolean
 	title: string
 	sort?: boolean
 }
@@ -78,15 +84,29 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
-interface RenderPropsIcon extends SharedIconProps {
+interface SharedCompIcontype extends SharedIconProps {
+	filterKey?: string
+	iconKey?: string
+}
+
+export interface RenderPropsIcon extends SharedCompIcontype {
 	type: 'icon'
 	iconMap: {
 		[key: string]: string
 	}
 }
 
-interface RenderPropsIconKey extends SharedIconProps {
+interface RenderPropsIconKey extends SharedCompIcontype {
 	type: 'iconKey'
+}
+
+interface RenderPropsIconUrl extends SharedCompIcontype {
+	type: 'iconUrl'
+}
+
+export interface ComponentIconType extends PartialComponentType {
+	format: ColumnFormats.icon
+	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
 }
 
 export interface ComponentActionType extends PartialComponentType {
@@ -99,11 +119,6 @@ export interface ComponentActionType extends PartialComponentType {
 		) => ReactNode
 	}
 	title: ''
-}
-
-interface ComponentIconType extends PartialComponentType {
-	format: ColumnFormats.icon
-	renderProps: RenderPropsIcon | RenderPropsIconKey
 }
 
 interface ComponentColoredDotType extends PartialComponentType {

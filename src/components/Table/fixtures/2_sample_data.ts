@@ -72,7 +72,7 @@ const data: Client[] = [
 		company: 'azure',
 		id: 0,
 		linked_in: 'lorem-i',
-		name: 'Lorem Ipsum',
+		name: 'Lorem ipsum',
 		role: { color: 'blue', name: 'CEO' },
 		start_date: 1519782342212
 	},

@@ -241,7 +241,8 @@ export const useStyles = createUseStyles({
 	searchBarWrapper: {
 		alignSelf: props =>
 			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
-		marginBottom: spacing.m
+		marginBottom: spacing.m,
+		width: '100%'
 	},
 	tableContainer: generateTableStyles(light),
 	// eslint-disable-next-line sort-keys

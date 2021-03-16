@@ -1,21 +1,9 @@
 import Color from 'color'
+import { JSONPath } from 'jsonpath-plus'
 import mapValues from 'lodash/mapValues'
 import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
-
-export const TAG = 'data-test'
-
-export const fakeApiCallSuccess: () => Promise<void> = async (
-	timeoutDuration = 1000
-) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
-
-export const getDataTestAttributeProp = (
-	cmpName: string,
-	dataTag?: string
-): { [TAG]: string } => ({
-	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
-})
 
 export const placementOptions: TooltipPlacement[] = [
 	'bottom',
@@ -32,29 +20,14 @@ export const placementOptions: TooltipPlacement[] = [
 	'topRight'
 ]
 
-export const generatePopupSelector = (
-	popupContainerSelector: string
-) => (): HTMLElement =>
-	document.querySelector(popupContainerSelector) as HTMLElement
+export const TAG = 'data-test'
+
+/* ------------ Utilities related to colors ------------ */
 
 type RGB = {
 	r: number
 	g: number
 	b: number
-}
-
-export const getPopupContainerProps = (
-	popupContainerSelector = ''
-): PopupContainerProps => {
-	let popupContainerProps = {}
-
-	if (popupContainerSelector) {
-		popupContainerProps = {
-			getPopupContainer: generatePopupSelector(popupContainerSelector)
-		}
-	}
-
-	return popupContainerProps
 }
 
 const rgbToHex = (rgb: RGB) => Color(rgb).hex()
@@ -76,7 +49,6 @@ export enum ColorManipulationTypes {
 	tint = 'tint'
 }
 
-/* eslint-disable sort-keys */
 export const manipulateColor = (
 	color: string,
 	percent: number,
@@ -109,6 +81,47 @@ export const manipulateColor = (
 			return rgbToHex(shade)
 		}
 	}
+}
+
+/* ---------------------------------------------------- */
+
+export const fakeApiCallSuccess: () => Promise<void> = async (
+	timeoutDuration = 1000
+) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
+
+export const generatePopupSelector = (
+	popupContainerSelector: string
+) => (): HTMLElement =>
+	document.querySelector(popupContainerSelector) as HTMLElement
+
+export const getDataTestAttributeProp = (
+	cmpName: string,
+	dataTag?: string
+): { [TAG]: string } => ({
+	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
+})
+
+export const getJSONPathValue = (path: string, obj: Record<string, any>) => {
+	const value = JSONPath({
+		json: obj,
+		path
+	})
+
+	if (value && Array.isArray(value)) return value[0]
+}
+
+export const getPopupContainerProps = (
+	popupContainerSelector = ''
+): PopupContainerProps => {
+	let popupContainerProps = {}
+
+	if (popupContainerSelector) {
+		popupContainerProps = {
+			getPopupContainer: generatePopupSelector(popupContainerSelector)
+		}
+	}
+
+	return popupContainerProps
 }
 
 // Appends a div to the document, usually for use with React portals
