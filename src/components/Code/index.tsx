@@ -31,16 +31,25 @@ export const Code: FC<CodeProps> = ({
 	const codeRef = useRef<HTMLElement>(null)
 
 	useEffect(() => {
+		/**
+		 * We want to highlight the code after it is rendered onto the page,
+		 * which is why Prism.highlightAll() is wrapped inside a useEffect hook
+		 */
 		Prism.highlightAll()
 	}, [])
 
+	// TODO: Add "jump to matches" https://jsfiddle.net/julmot/973gdh8g/
+	/**
+	 * When input in search bar changes, create a new Mark instance and "mark" the matches
+	 */
 	const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		const markInstance = new Mark(codeRef.current as HTMLElement)
 
+		/**
+		 * Remove previous marked elements and mark the new keyword inside the context
+		 */
 		markInstance.unmark({
-			done: () => {
-				markInstance.mark(e.target.value)
-			}
+			done: () => markInstance.mark(e.target.value)
 		})
 	}
 
