@@ -84,12 +84,12 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 								dynamicSearchVal={dynamicSearchVal}
 								filtersList={filtersList}
 								id={filterItem.id}
+								index={i}
 								key={filterItem.id}
 								onDelete={onDelete}
 								onFilterChange={onFilterChange}
 								onSearchWrapper={onSearchWrapper}
 								pending={pending}
-								selectedFilterKey={filtersList[i].selectedKey}
 							/>
 						))}
 					</div>

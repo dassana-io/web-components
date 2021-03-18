@@ -17,20 +17,21 @@ import { MultiSelect, Select, SelectOption } from 'components/Select'
 import React, { FC } from 'react'
 
 interface FilterUnitProps {
-	id: string
 	allFilters: ProcessedFilters
 	dynamicOptions?: SelectOption[]
 	dynamicSearchVal: string
+	id: string
+	index: number
 	onDelete: (selectedId: string) => void
 	onFilterChange: (selectedId: string, selection: string | string[]) => void
 	filtersList: FiltersList
 	onSearchWrapper: OnSearchWrapper
 	pending: boolean
-	selectedFilterKey?: string
 }
 
 const FilterUnit: FC<FilterUnitProps> = ({
 	id,
+	index,
 	allFilters = {},
 	dynamicOptions,
 	dynamicSearchVal,
@@ -38,10 +39,11 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	onDelete,
 	onFilterChange,
 	onSearchWrapper,
-	pending,
-	selectedFilterKey = ''
+	pending
 }: FilterUnitProps) => {
 	const classes = useFilterUnitStyles()
+
+	const selectedFilterKey = filtersList[index].selectedKey
 
 	const renderKey = () => (
 		<Select
@@ -55,11 +57,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			)}
 			placeholder='Select Value'
 			showSearch
+			value={selectedFilterKey}
 		/>
 	)
 
 	const renderValues = () => {
-		const filterOption: FilterOption = allFilters[selectedFilterKey]
+		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
 
 		let options: SelectOption[] = []
 		let dynamicFilterProps = {}
@@ -117,6 +120,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 				placeholder='Select field'
 				searchPlaceholder='Search'
 				showSearch
+				values={filtersList[index].selectedValues || []}
 				{...dynamicFilterProps}
 			/>
 		)

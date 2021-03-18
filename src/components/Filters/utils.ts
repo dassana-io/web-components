@@ -19,7 +19,7 @@ import {
 	mockDynamicFilterOptions,
 	mockFilterOptions
 } from './fixtures/0_sample_data'
-import { styleguide, ThemeType } from 'components/assets/styles'
+import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 import { useEffect, useState } from 'react'
 
 const {
@@ -212,7 +212,7 @@ export const useFilters = (
 		await setAsyncTimeout(() => {
 			setDynamicOptions(formatDynamicOptions(mockDynamicFilterOptions))
 			setPending(false)
-		}, 400)
+		}, 0)
 		// -----------------
 	}
 
@@ -255,8 +255,6 @@ export const useFilters = (
 
 // --------------------------------------
 
-const filterItemPadding = 3 * spacing.xs
-
 export const useFilterUnitStyles = createUseStyles({
 	container: {
 		...flexAlignCenter,
@@ -265,14 +263,14 @@ export const useFilterUnitStyles = createUseStyles({
 		borderRadius,
 		marginBottom: spacing.s,
 		marginRight: spacing.s,
-		padding: `${spacing.xs}px ${filterItemPadding}px ${spacing.xs}px ${spacing.xs}px`
+		padding: `${spacing.xs}px ${spacing['s+']}px ${spacing.xs}px ${spacing.xs}px`
 	},
 	multiSelectContainer: {
-		paddingLeft: filterItemPadding,
-		paddingRight: filterItemPadding
+		paddingLeft: spacing['s+'],
+		paddingRight: spacing['s+']
 	},
 	singleSelectContainer: {
-		paddingRight: filterItemPadding
+		paddingRight: spacing['s+']
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -297,9 +295,19 @@ export const useFilterStyles = createUseStyles({
 		marginRight: spacing.l
 	},
 	selectedFiltersText: {
+		...font.body,
+		color: themedStyles[light].base.color,
 		cursor: 'pointer',
 		fontStyle: 'italic',
 		fontWeight: fontWeight.light
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $selectedFiltersText': {
+				color: themedStyles[dark].base.color
+			}
+		}
 	}
 })
 
