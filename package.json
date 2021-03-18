@@ -37,7 +37,7 @@
 	},
 	"scripts": {
 		"api-models:generate": "rm -rf src/api/$npm_config_outputFolder; mkdir -p src/api; cp -R $npm_config_inputFolder/model src/api/$npm_config_outputFolder; rm -rf $npm_config_inputFolder; cd src/api/$npm_config_outputFolder; mv models.ts index.ts; prettier --write .",
-		"api-models:global": "npm run api-models:generate --path=globalJson/swagger.json --outputFolder=globalTemp; npm run api-models:cleanup --inputFolder=globalTemp --outputFolder=global --swaggerFolder=globalJson",
+		"api-models:global": "npm run api-models:generate --inputFolder=globalApi --outputFolder=global",
 		"codegen": "node codegen.js",
 		"start": "npm run storybook",
 		"build": "rollup -c rollup.config.ts",
