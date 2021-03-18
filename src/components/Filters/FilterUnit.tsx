@@ -2,17 +2,14 @@ import { faEquals } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
 import uniq from 'lodash/uniq'
+import { useFilterUnitStyles } from './styles'
 import {
 	FilterOption,
 	FiltersList,
 	OnSearchWrapper,
 	ProcessedFilters
 } from './types'
-import {
-	formatFilterOptions,
-	getFilterKeysOptions,
-	useFilterUnitStyles
-} from './utils'
+import { formatFilterOptions, getFilterKeysOptions } from './utils'
 import { MultiSelect, Select, SelectOption } from 'components/Select'
 import React, { FC } from 'react'
 

@@ -6,14 +6,10 @@ import find from 'lodash/find'
 import { IconButton } from 'components/IconButton'
 import { Skeleton } from 'components/Skeleton'
 import { styleguide } from 'components/assets/styles'
+import { useFilterStyles } from './styles'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
-import {
-	filtersListToString,
-	formatSelectedFilters,
-	useFilters,
-	useFilterStyles
-} from './utils'
+import { filtersListToString, formatSelectedFilters, useFilters } from './utils'
 import React, { FC, useState } from 'react'
 
 const { spacing } = styleguide
