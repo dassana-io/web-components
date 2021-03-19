@@ -2,11 +2,7 @@ import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
-import {
-	getSortedAndFilteredValues,
-	useDropdownStyles,
-	useStyles
-} from './utils'
+import { getOptionsFromValues, getSortedAndFilteredValues } from './utils'
 import React, {
 	ChangeEvent,
 	FC,
@@ -15,6 +11,7 @@ import React, {
 	useEffect,
 	useState
 } from 'react'
+import { useDropdownStyles, useStyles } from './styles'
 
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const {
@@ -42,6 +39,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		showSearch = false,
 		values
 	} = props
+
 	const [localValues, setLocalValues] = useState(values || defaultValues)
 
 	useEffect(() => {
@@ -84,10 +82,10 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		threshold: 0.1
 	})
 
-	const onChangeAntD = (values?: string[]) => {
+	const onChangeAntD = (values: string[]) => {
 		const vals = values ? values : []
 
-		if (onChange) onChange(vals)
+		if (onChange) onChange(vals, getOptionsFromValues(options, values))
 
 		setLocalValues(vals)
 	}

@@ -1,4 +1,4 @@
-import { SelectProps } from '../SingleSelect/types'
+import { SelectOption, SelectProps } from '../SingleSelect/types'
 
 export interface MultiSelectProps
 	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {
@@ -13,10 +13,7 @@ export interface MultiSelectProps
 	 */
 	maxTagCount?: number
 	maxTagTextLength?: number
-	/**
-	 * Array of options to be rendered in the dropdown
-	 */
-	onChange?: (values: string[]) => void
+	onChange?: (values: string[], options: SelectOption[]) => void
 	onFocus?: () => void
 	onSearch?: (value: string) => void
 	/**
@@ -27,7 +24,7 @@ export interface MultiSelectProps
 	pending?: boolean
 	searchPlaceholder?: string
 	/**
-	 * Selected values for if component is controlled. Requires an onChange to be passed
+	 * Selected values if component is controlled. Requires an onChange to be passed
 	 */
 	values?: string[]
 }
