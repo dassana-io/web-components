@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { filterMap } from 'components/utils'
 import { MultipleChoiceItemConfig } from './types'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -13,30 +14,6 @@ const {
 	spacing,
 	fontWeight
 } = styleguide
-
-// -*-*-*-*-*- filterMap -*-*-*-*-*-
-// TODO: move this into web-utils
-
-interface FilterMapConfig<T, U> {
-	filterConditionFn: (item: T) => boolean
-	items: T[]
-	mapFn: (item: T) => U
-}
-
-export const filterMap = <T, U>({
-	filterConditionFn,
-	items,
-	mapFn
-}: FilterMapConfig<T, U>) =>
-	items.reduce((filterAndMapped: U[], item: T) => {
-		if (filterConditionFn(item)) {
-			filterAndMapped.push(mapFn(item))
-		}
-
-		return filterAndMapped
-	}, [])
-
-//  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 
 export interface MultipleSelectedValues {
 	[value: string]: boolean

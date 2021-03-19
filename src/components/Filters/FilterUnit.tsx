@@ -1,15 +1,15 @@
 import { faEquals } from '@fortawesome/free-solid-svg-icons'
+import { FilterOption } from 'api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
 import uniq from 'lodash/uniq'
 import { useFilterUnitStyles } from './styles'
+import { FiltersList, OnSearchWrapper, ProcessedFilters } from './types'
 import {
-	FilterOption,
-	FiltersList,
-	OnSearchWrapper,
-	ProcessedFilters
-} from './types'
-import { formatFilterOptions, getFilterKeysOptions } from './utils'
+	formatFilterKeyOptions,
+	formatFilterOptions,
+	getFilterKeysOptions
+} from './utils'
 import { MultiSelect, Select, SelectOption } from 'components/Select'
 import React, { FC } from 'react'
 
@@ -20,7 +20,10 @@ interface FilterUnitProps {
 	id: string
 	index: number
 	onDelete: (selectedId: string) => void
-	onFilterChange: (selectedId: string, selection: string | string[]) => void
+	onFilterChange: (
+		selectedId: string,
+		selection: string | SelectOption[]
+	) => void
 	filtersList: FiltersList
 	onSearchWrapper: OnSearchWrapper
 	pending: boolean
@@ -49,7 +52,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			onChange={selectedValue =>
 				onFilterChange(id, (selectedValue as unknown) as string)
 			}
-			options={formatFilterOptions(
+			options={formatFilterKeyOptions(
 				getFilterKeysOptions(allFilters, filtersList)
 			)}
 			placeholder='Select Value'
@@ -64,16 +67,16 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		let options: SelectOption[] = []
 		let dynamicFilterProps = {}
 
-		if (selectedFilterKey && filterOption.options) {
+		if (selectedFilterKey && filterOption.values) {
 			// if filter is static, options will be the opts that BE initially gave
 			if (filterOption.staticFilter) {
-				options = formatFilterOptions(filterOption.options)
+				options = formatFilterOptions(filterOption.values)
 			} else {
 				// if filter is dynamic & state is pending, data is still being fetched so options will be empty []. So only get options if status isn't pending
 				if (!pending) {
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
 					if (!dynamicOptions) {
-						options = formatFilterOptions(filterOption.options)
+						options = formatFilterOptions(filterOption.values)
 					} else {
 						// if you send empty string to BE (e.g. after typing something and clearing it), it'll send back an empty [] but if there's no search val, we want to display the list of options that BE initially gave so only show the dynamic opts if search val exists
 						if (dynamicSearchVal) options = dynamicOptions
@@ -83,7 +86,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 								item => item.selectedKey === selectedFilterKey
 							)
 
-							let selectedVals: string[] = []
+							let selectedVals: SelectOption[] = []
 
 							if (
 								filtersListItem &&
@@ -91,9 +94,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 							)
 								selectedVals = filtersListItem.selectedValues
 
-							options = formatFilterOptions(
-								uniq([...filterOption.options, ...selectedVals])
-							)
+							options = [
+								...formatFilterOptions(
+									uniq([...filterOption.values])
+								),
+								...selectedVals
+							]
 						}
 					}
 				}
@@ -112,12 +118,16 @@ const FilterUnit: FC<FilterUnitProps> = ({
 				disabled={!options.length && !pending}
 				matchSelectedContentWidth={225}
 				maxTagCount={5}
-				onChange={(values: string[]) => onFilterChange(id, values)}
+				onChange={(_, options) => onFilterChange(id, options)}
 				options={options}
 				placeholder='Select field'
 				searchPlaceholder='Search'
 				showSearch
-				values={filtersList[index].selectedValues || []}
+				values={
+					filtersList[index].selectedValues?.map(
+						values => values.value
+					) || []
+				}
 				{...dynamicFilterProps}
 			/>
 		)

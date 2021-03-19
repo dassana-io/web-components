@@ -1,23 +1,11 @@
-import { MultiSelectProps } from '../Select'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
-
-export interface Filter {
-	key?: string
-	value?: string
-}
-
-export interface FilterOption {
-	filterKey?: string
-	staticFilter?: boolean
-	options?: Array<string>
-}
-
-export type FilterOptions = FilterOption[]
+import { FilterOption, Filters } from 'api'
+import { MultiSelectProps, SelectOption } from '../Select'
 
 export interface FiltersListItem {
 	id: string
 	selectedKey?: string
-	selectedValues?: string[]
+	selectedValues?: SelectOption[]
 }
 
 type SelectedValsFilter = Required<FiltersListItem>
@@ -34,7 +22,7 @@ export interface FiltersProps {
 	api: AxiosInstance
 	emitter: Emitter
 	endpoint: string
-	onSelectedFiltersChange: (selectedFilters: Filter[]) => void
+	onSelectedFiltersChange: (selectedFilters: Filters) => void
 }
 
 export interface OnSearchWrapper {

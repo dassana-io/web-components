@@ -1,46 +1,54 @@
-import { FilterOptions } from '../types'
+import { FilterOptions, FilterValues } from 'api'
 
-export const mockDynamicFilterOptions = [
+export const mockDynamicFilterOptions: FilterValues = [
 	{
 		id: '5391d028-d5fe-4c33-a4c9-8719191aaeb1',
-		name: 'Ingestion Dev Account'
+		value: 'Ingestion Dev Account'
 	},
 	{
 		id: '5391d028-d5fe-4c33-a4c9-8719191aaeb8',
-		name: 'Ingestion Prod Account'
+		value: 'Ingestion Prod Account'
 	}
 ]
 
 export const mockFilterOptions: FilterOptions = [
 	{
-		filterKey: 'name',
-		options: [
-			'Dev account',
-			'Prod account 1',
-			'Prod account 2',
-			'Test account'
-		],
-		staticFilter: false
+		key: 'name',
+		staticFilter: false,
+		values: [
+			{ id: '1', value: 'Dev account' },
+			{ id: '2', value: 'Prod account 1' },
+			{ id: '3', value: 'Prod account 2' },
+			{ id: '4', value: 'Test account' }
+		]
 	},
 	{
-		filterKey: 'service',
-		options: [
-			'EC2',
-			'S3',
-			'RDS',
-			'Amazon Keyspaces (for Apache Cassandra)',
-			'EKS'
-		],
-		staticFilter: true
+		key: 'service',
+		staticFilter: true,
+		values: [
+			{ id: '1', value: 'EC2' },
+			{ id: '2', value: 'S3' },
+			{ id: '3', value: 'RDS' },
+			{ id: '4', value: 'Amazon Keyspaces (for Apache Cassandra)' },
+			{ id: '5', value: 'EKS' }
+		]
 	},
 	{
-		filterKey: 'model',
-		options: ['instance', 'bucket', 'table'],
-		staticFilter: true
+		key: 'model',
+		staticFilter: true,
+		values: [
+			{ id: '1', value: 'instance' },
+			{ id: '2', value: 'bucket' },
+			{ id: '3', value: 'table' }
+		]
 	},
 	{
-		filterKey: 'region',
-		options: ['us-west-1', 'us-east-2', 'ap-south-1'],
-		staticFilter: true
+		key: 'region',
+		staticFilter: true,
+		values: [
+			{ id: '1', value: 'us-west-1' },
+			{ id: '2', value: 'us-east-2' },
+			{ id: '3', value: 'ap-south-1' }
+		]
 	}
 ]

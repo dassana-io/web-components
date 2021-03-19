@@ -6,9 +6,8 @@ import truncate from 'lodash/truncate'
 import { v4 as uuidV4 } from 'uuid'
 import xor from 'lodash/xor'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
+import { Filter, FilterOptions, FilterValues } from 'api'
 import {
-	Filter,
-	FilterOptions,
 	FiltersList,
 	OnSearchWrapper,
 	ProcessedFilters,
@@ -19,6 +18,7 @@ import {
 	mockFilterOptions
 } from './fixtures/0_sample_data'
 import { useEffect, useState } from 'react'
+// import { FilterSuggestions } from 'api'
 
 const filterSelectedFilters: (
 	filtersList: FiltersList
@@ -38,7 +38,7 @@ export const filtersListToString = (filtersList: FiltersList) => {
 			const keyStr = startCase(selectedKey)
 
 			const valuesStr = selectedValues
-				.map(val => truncate(val, { length: 15 }))
+				.map(val => truncate(val.text, { length: 15 }))
 				.join(', ')
 
 			return `[ ${keyStr} = ${valuesStr} ]`
@@ -50,14 +50,17 @@ export const filtersListToString = (filtersList: FiltersList) => {
 
 // --------------------------------------
 
-const formatDynamicOptions = (dynamicOptions: DynamicOption[]) =>
-	dynamicOptions.map(
-		option => ({ text: option.name, value: option.name } as SelectOption)
-	)
+const formatDynamicOptions = (dynamicOptions: FilterValues): SelectOption[] =>
+	dynamicOptions.map(option => ({ text: option.value, value: option.id }))
 
 // --------------------------------------
 
-export const formatFilterOptions = (options: string[]) =>
+export const formatFilterOptions = (options: FilterValues): SelectOption[] =>
+	options.map(({ id, value }) => ({ text: value, value: id }))
+
+// --------------------------------------
+
+export const formatFilterKeyOptions = (options: string[]) =>
 	options.map(option => ({ text: option, value: option } as SelectOption))
 
 // --------------------------------------
@@ -73,7 +76,7 @@ export const formatSelectedFilters: (
 		filterItem.selectedValues.forEach(val => {
 			formattedFilters.push({
 				key: filterItem.selectedKey,
-				value: val
+				value: [val.value]
 			})
 		})
 	})
@@ -104,11 +107,11 @@ export const processFilters = (filterOptions: FilterOptions) => {
 	const processedFilters: ProcessedFilters = {}
 
 	filterOptions.forEach(filterOption => {
-		const { filterKey, staticFilter } = filterOption
+		const { key, staticFilter } = filterOption
 
-		processedFilters[(filterKey as unknown) as string] = {
+		processedFilters[(key as unknown) as string] = {
 			...filterOption,
-			filterKey: (filterKey as unknown) as string,
+			key: (key as unknown) as string,
 			staticFilter: (staticFilter as unknown) as boolean
 		}
 	})
@@ -163,12 +166,14 @@ export const useFilters = (
 		setPending(true)
 
 		// try {
-		// 	const result = await api.post<DynamicOption[]>(endpoint, {
-		// 		filterKey: selectedFilterKey,
-		// 		filters: formatSelectedFilters(filtersList),
-		// 		search: searchVal,
-		// 	})
 
+		// const dataToSend: FilterSuggestions = {
+		//   filterKey: selectedFilterKey,
+		//   operator: '=',
+		//   filters: formatSelectedFilters(filtersList),
+		//   search: searchVal
+		// }
+		// 	const result = await api.post<FilterValues[]>(endpoint, dataToSend)
 		//   setDynamicOptions(result.data)
 		// } catch (error) {
 		// 	handleAjaxErrors(error, emitter)

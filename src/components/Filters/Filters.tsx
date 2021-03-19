@@ -4,6 +4,7 @@ import { FilterPopover } from './FilterPopover'
 import { FiltersProps } from './types'
 import find from 'lodash/find'
 import { IconButton } from 'components/IconButton'
+import { SelectOption } from 'components/Select'
 import { Skeleton } from 'components/Skeleton'
 import { styleguide } from 'components/assets/styles'
 import { useFilterStyles } from './styles'
@@ -57,7 +58,7 @@ export const Filters: FC<FiltersProps> = ({
 
 	const onFilterChange = (
 		selectedId: string,
-		selection: string | string[]
+		selection: string | SelectOption[]
 	) => {
 		const clonedFilters = cloneDeep(filtersList)
 

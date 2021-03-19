@@ -19,7 +19,10 @@ interface FilterPopoverProps {
 	onVisibleChange: (visible: boolean) => void
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void
-	onFilterChange: (selectedId: string, selection: string | string[]) => void
+	onFilterChange: (
+		selectedId: string,
+		selection: string | SelectOption[]
+	) => void
 	onSearchWrapper: OnSearchWrapper
 	pending: boolean
 	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>
