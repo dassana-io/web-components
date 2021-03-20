@@ -60,6 +60,7 @@ Default.args = {
 
 export const Search = Template.bind({})
 Search.args = {
+	defaultValues: ['0'],
 	options: basicOptions,
 	searchPlaceholder: 'Search...',
 	showSearch: true

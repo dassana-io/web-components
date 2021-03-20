@@ -13,7 +13,7 @@ export interface MultiSelectProps
 	 */
 	maxTagCount?: number
 	maxTagTextLength?: number
-	onChange?: (values: string[], options: SelectOption[]) => void
+	onChange?: (values: string[], options?: SelectOption[]) => void
 	onFocus?: () => void
 	onSearch?: (value: string) => void
 	/**

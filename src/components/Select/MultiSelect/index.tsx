@@ -2,6 +2,8 @@ import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
+import { SelectOption } from '../SingleSelect'
+import uniqBy from 'lodash/uniqBy'
 import { getOptionsFromValues, getSortedAndFilteredValues } from './utils'
 import React, {
 	ChangeEvent,
@@ -41,6 +43,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	} = props
 
 	const [localValues, setLocalValues] = useState(values || defaultValues)
+	// This is for when options change but values don't (used in dynamic Filters)
+	const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
 		if (values) setLocalValues(values)
@@ -85,9 +89,16 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const onChangeAntD = (values: string[]) => {
 		const vals = values ? values : []
 
-		if (onChange) onChange(vals, getOptionsFromValues(options, values))
+		if (onChange) {
+			const selectedOpts = uniqBy(
+				[...selectedOptions, ...getOptionsFromValues(options, values)],
+				'value'
+			)
+			onChange(vals, selectedOpts)
+		}
 
 		setLocalValues(vals)
+		setSelectedOptions(getOptionsFromValues(options, vals))
 	}
 
 	let optionalProps = {}

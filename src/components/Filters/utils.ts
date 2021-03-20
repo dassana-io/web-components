@@ -6,7 +6,7 @@ import truncate from 'lodash/truncate'
 import { v4 as uuidV4 } from 'uuid'
 import xor from 'lodash/xor'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
-import { Filter, FilterOptions, FilterValues } from 'api'
+import { FilterOptions, Filters, FilterValues } from 'api'
 import {
 	FiltersList,
 	OnSearchWrapper,
@@ -67,21 +67,15 @@ export const formatFilterKeyOptions = (options: string[]) =>
 
 export const formatSelectedFilters: (
 	filtersList: FiltersList
-) => Filter[] = filtersList => {
+) => Filters = filtersList => {
 	const filtersWithSelectedVals = filterSelectedFilters(filtersList)
 
-	const formattedFilters: Filter[] = []
-
-	filtersWithSelectedVals.forEach(filterItem => {
-		filterItem.selectedValues.forEach(val => {
-			formattedFilters.push({
-				key: filterItem.selectedKey,
-				value: [val.value]
-			})
-		})
-	})
-
-	return formattedFilters
+	return filtersWithSelectedVals.map(filterItem => ({
+		key: filterItem.selectedKey,
+		value: filterItem.selectedValues?.map(
+			selectedValue => selectedValue.value
+		)
+	}))
 }
 
 // --------------------------------------

@@ -2,7 +2,7 @@ import { faEquals } from '@fortawesome/free-solid-svg-icons'
 import { FilterOption } from 'api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
-import uniq from 'lodash/uniq'
+import uniqBy from 'lodash/uniqBy'
 import { useFilterUnitStyles } from './styles'
 import { FiltersList, OnSearchWrapper, ProcessedFilters } from './types'
 import {
@@ -94,12 +94,15 @@ const FilterUnit: FC<FilterUnitProps> = ({
 							)
 								selectedVals = filtersListItem.selectedValues
 
-							options = [
-								...formatFilterOptions(
-									uniq([...filterOption.values])
-								),
-								...selectedVals
-							]
+							options = uniqBy(
+								[
+									...formatFilterOptions([
+										...filterOption.values
+									]),
+									...selectedVals
+								],
+								'value'
+							)
 						}
 					}
 				}
@@ -118,7 +121,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 				disabled={!options.length && !pending}
 				matchSelectedContentWidth={225}
 				maxTagCount={5}
-				onChange={(_, options) => onFilterChange(id, options)}
+				onChange={(_, options) => onFilterChange(id, options || [])}
 				options={options}
 				placeholder='Select field'
 				searchPlaceholder='Search'
