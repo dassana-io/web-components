@@ -2,6 +2,8 @@ import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
+import { SelectOption } from '../SingleSelect'
+import uniqBy from 'lodash/uniqBy'
 import { getOptionsFromValues, getSortedAndFilteredValues } from './utils'
 import React, {
 	ChangeEvent,
@@ -41,6 +43,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	} = props
 
 	const [localValues, setLocalValues] = useState(values || defaultValues)
+	// This is for when options change but selected values don't (used in dynamic Filters)
+	const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
 		if (values) setLocalValues(values)
@@ -85,9 +89,25 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const onChangeAntD = (values: string[]) => {
 		const vals = values ? values : []
 
-		if (onChange) onChange(vals, getOptionsFromValues(options, vals))
+		// because the new options don't include the old selected options,
+		// we need to get all the selected options - the new ones and old ones.
+		// uniqBy 'value' ensures that options aren't repeated
+		const allSelectedOpts = uniqBy(
+			[...selectedOptions, ...getOptionsFromValues(options, vals)],
+			'value'
+		)
 
+		// we filter out the new selected options (using the vals) from the combined opts we just got
+		const currSelectedOpts = allSelectedOpts.filter(({ value }) =>
+			vals.includes(value)
+		)
+
+		// then call the onChange callback with the current selected vals and current selected opts
+		if (onChange) onChange(vals, currSelectedOpts)
+
+		// save both the current selected vals and current selected opts to state
 		setLocalValues(vals)
+		setSelectedOptions(currSelectedOpts)
 	}
 
 	let optionalProps = {}
