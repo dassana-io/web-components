@@ -6,6 +6,7 @@ export interface MenuContextProps {
 	onClick: (menuKey: Key) => void
 }
 
-export const [useMenuContext, MenuContextProvider] = createCtx<
-	MenuContextProps
->()
+export const [
+	useMenuContext,
+	MenuContextProvider
+] = createCtx<MenuContextProps>()
