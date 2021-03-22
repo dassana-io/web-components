@@ -1,13 +1,16 @@
-import { faEquals } from '@fortawesome/free-solid-svg-icons'
 import { FilterOption } from 'api'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
 import uniqBy from 'lodash/uniqBy'
 import { useFilterUnitStyles } from './styles'
-import { FiltersList, OnSearchWrapper, ProcessedFilters } from './types'
 import {
-	formatFilterKeyOptions,
-	formatFilterOptions,
+	FiltersList,
+	FiltersListItem,
+	OnSearchWrapper,
+	ProcessedFilters
+} from './types'
+import {
+	formatFilterStrToSelectOpts,
+	formatFilterValsToSelectOpts,
 	getFilterKeysOptions
 } from './utils'
 import { MultiSelect, Select, SelectOption } from 'components/Select'
@@ -20,10 +23,7 @@ interface FilterUnitProps {
 	id: string
 	index: number
 	onDelete: (selectedId: string) => void
-	onFilterChange: (
-		selectedId: string,
-		selection: string | SelectOption[]
-	) => void
+	onFilterChange: (filtersListItem: FiltersListItem) => void
 	filtersList: FiltersList
 	onSearchWrapper: OnSearchWrapper
 	pending: boolean
@@ -45,14 +45,38 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 	const selectedFilterKey = filtersList[index].selectedKey
 
+	const renderOperators = () => {
+		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
+		const operators = filterOption?.operator || ['=']
+
+		return (
+			<Select
+				disabled={operators.length === 1}
+				matchSelectedContentWidth={50}
+				onChange={selectedOperator =>
+					onFilterChange({
+						id,
+						selectedOperator: (selectedOperator as unknown) as string
+					})
+				}
+				options={formatFilterStrToSelectOpts(operators)}
+				showSearch
+				value={filtersList[index]?.selectedOperator || operators[0]}
+			/>
+		)
+	}
+
 	const renderKey = () => (
 		<Select
 			disabled={!!selectedFilterKey}
 			matchSelectedContentWidth={125}
-			onChange={selectedValue =>
-				onFilterChange(id, (selectedValue as unknown) as string)
+			onChange={selectedKey =>
+				onFilterChange({
+					id,
+					selectedKey: (selectedKey as unknown) as string
+				})
 			}
-			options={formatFilterKeyOptions(
+			options={formatFilterStrToSelectOpts(
 				getFilterKeysOptions(allFilters, filtersList)
 			)}
 			placeholder='Select Value'
@@ -70,13 +94,15 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		if (selectedFilterKey && filterOption.values) {
 			// if filter is static, options will be the opts that BE initially gave
 			if (filterOption.staticFilter) {
-				options = formatFilterOptions(filterOption.values)
+				options = formatFilterValsToSelectOpts(filterOption.values)
 			} else {
 				// if filter is dynamic & state is pending, data is still being fetched so options will be empty []. So only get options if status isn't pending
 				if (!pending) {
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
 					if (!dynamicOptions) {
-						options = formatFilterOptions(filterOption.values)
+						options = formatFilterValsToSelectOpts(
+							filterOption.values
+						)
 					} else {
 						// if you send empty string to BE (e.g. after typing something and clearing it), it'll send back an empty [] but if there's no search val, we want to display the list of options that BE initially gave so only show the dynamic opts if search val exists
 						if (dynamicSearchVal) options = dynamicOptions
@@ -96,7 +122,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 							options = uniqBy(
 								[
-									...formatFilterOptions([
+									...formatFilterValsToSelectOpts([
 										...filterOption.values
 									]),
 									...selectedVals
@@ -121,7 +147,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 				disabled={!options.length && !pending}
 				matchSelectedContentWidth={225}
 				maxTagCount={5}
-				onChange={(_, options) => onFilterChange(id, options || [])}
+				onChange={(_, options) =>
+					onFilterChange({
+						id,
+						selectedValues: options
+					})
+				}
 				options={options}
 				placeholder='Select field'
 				searchPlaceholder='Search'
@@ -139,7 +170,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	return (
 		<div className={classes.container}>
 			<div className={classes.singleSelectContainer}>{renderKey()}</div>
-			<FontAwesomeIcon icon={faEquals} size='xs' />
+			<div>{renderOperators()}</div>
 			<div className={classes.multiSelectContainer}>{renderValues()}</div>
 			<IconButton onClick={() => onDelete(id)} />
 		</div>

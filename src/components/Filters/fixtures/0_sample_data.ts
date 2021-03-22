@@ -47,6 +47,7 @@ export const mockFilterOptions: FilterOptions = [
 	},
 	{
 		key: 'region',
+		operator: ['!=', '='],
 		staticFilter: true,
 		values: [
 			{ id: 'region1', value: 'us-west-1' },

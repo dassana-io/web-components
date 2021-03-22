@@ -4,6 +4,7 @@ import { MultiSelectProps, SelectOption } from '../Select'
 
 export interface FiltersListItem {
 	id: string
+	selectedOperator?: string
 	selectedKey?: string
 	selectedValues?: SelectOption[]
 }

@@ -6,7 +6,12 @@ import { Link } from 'components/Link'
 import { Popover } from 'components/Popover'
 import { SelectOption } from 'components/Select'
 import { usePopoverStyles } from './styles'
-import { FiltersList, OnSearchWrapper, ProcessedFilters } from './types'
+import {
+	FiltersList,
+	FiltersListItem,
+	OnSearchWrapper,
+	ProcessedFilters
+} from './types'
 import { IconButton, IconSizes } from 'components/IconButton'
 import React, { FC } from 'react'
 
@@ -19,10 +24,7 @@ interface FilterPopoverProps {
 	onVisibleChange: (visible: boolean) => void
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void
-	onFilterChange: (
-		selectedId: string,
-		selection: string | SelectOption[]
-	) => void
+	onFilterChange: (filtersListItem: FiltersListItem) => void
 	onSearchWrapper: OnSearchWrapper
 	pending: boolean
 	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>

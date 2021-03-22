@@ -50,17 +50,14 @@ export const filtersListToString = (filtersList: FiltersList) => {
 
 // --------------------------------------
 
-const formatDynamicOptions = (dynamicOptions: FilterValues): SelectOption[] =>
-	dynamicOptions.map(option => ({ text: option.value, value: option.id }))
-
-// --------------------------------------
-
-export const formatFilterOptions = (options: FilterValues): SelectOption[] =>
+export const formatFilterValsToSelectOpts = (
+	options: FilterValues
+): SelectOption[] =>
 	options.map(({ id, value }) => ({ text: value, value: id }))
 
 // --------------------------------------
 
-export const formatFilterKeyOptions = (options: string[]) =>
+export const formatFilterStrToSelectOpts = (options: string[]) =>
 	options.map(option => ({ text: option, value: option } as SelectOption))
 
 // --------------------------------------
@@ -72,6 +69,7 @@ export const formatSelectedFilters: (
 
 	return filtersWithSelectedVals.map(filterItem => ({
 		key: filterItem.selectedKey,
+		operator: filterItem.selectedOperator || '=',
 		value: filterItem.selectedValues?.map(
 			selectedValue => selectedValue.value
 		)
@@ -114,11 +112,6 @@ export const processFilters = (filterOptions: FilterOptions) => {
 }
 
 // --------------------------------------
-
-export interface DynamicOption {
-	id: string
-	name: string
-}
 
 export const useFilters = (
 	endpoint: string,
@@ -183,9 +176,11 @@ export const useFilters = (
 			})
 
 		await setAsyncTimeout(() => {
-			setDynamicOptions(formatDynamicOptions(mockDynamicFilterOptions))
+			setDynamicOptions(
+				formatFilterValsToSelectOpts(mockDynamicFilterOptions)
+			)
 			setPending(false)
-		}, 0)
+		}, 200)
 		// -----------------
 	}
 
