@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions'
+import { filtersConfig } from './fixtures/0_sample_data'
 import React from 'react'
 import { api as createAxiosInstance, Emitter } from '@dassana-io/web-utils'
 import { Filters, FiltersProps } from '.'
@@ -19,6 +20,7 @@ const Template: Story<FiltersProps> = args => <Filters {...args} />
 export const Default = Template.bind({})
 Default.args = {
 	api: createAxiosInstance(''),
+	config: filtersConfig,
 	emitter: new Emitter(),
 	endpoint: 'https://mockendpoint.com'
 }

@@ -1,8 +1,6 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
 import isEmpty from 'lodash/isEmpty'
-import { SelectOption } from 'components/Select'
-import startCase from 'lodash/startCase'
-import truncate from 'lodash/truncate'
+import { SelectOption } from '../Select'
 import { v4 as uuidV4 } from 'uuid'
 import xor from 'lodash/xor'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
@@ -20,7 +18,7 @@ import {
 import { useEffect, useState } from 'react'
 // import { FilterSuggestions } from 'api'
 
-const filterSelectedFilters: (
+export const filterSelectedFilters: (
 	filtersList: FiltersList
 ) => SelectedValsFilters = filtersList =>
 	filtersList.filter(
@@ -30,30 +28,21 @@ const filterSelectedFilters: (
 
 // --------------------------------------
 
-export const filtersListToString = (filtersList: FiltersList) => {
-	const filtersWithSelectedVals = filterSelectedFilters(filtersList)
-
-	const formattedFilters = filtersWithSelectedVals.map(
-		({ selectedKey, selectedValues = [] }) => {
-			const keyStr = startCase(selectedKey)
-
-			const valuesStr = selectedValues
-				.map(val => truncate(val.text, { length: 15 }))
-				.join(', ')
-
-			return `[ ${keyStr} = ${valuesStr} ]`
-		}
-	)
-
-	return formattedFilters.join(' + ')
-}
-
-// --------------------------------------
-
 export const formatFilterValsToSelectOpts = (
-	options: FilterValues
+	options: FilterValues,
+	isIcon?: boolean
 ): SelectOption[] =>
-	options.map(({ id, value }) => ({ text: value, value: id }))
+	options.map(({ id, value }) => {
+		let optionalProps
+
+		if (isIcon) optionalProps = { iconKey: id }
+
+		return {
+			text: value,
+			value: id,
+			...optionalProps
+		}
+	})
 
 // --------------------------------------
 

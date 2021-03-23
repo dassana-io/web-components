@@ -3,6 +3,7 @@ import { IconButton } from 'components/IconButton'
 import uniqBy from 'lodash/uniqBy'
 import { useFilterUnitStyles } from './styles'
 import {
+	FiltersConfig,
 	FiltersList,
 	FiltersListItem,
 	OnSearchWrapper,
@@ -18,6 +19,7 @@ import React, { FC } from 'react'
 
 interface FilterUnitProps {
 	allFilters: ProcessedFilters
+	config?: FiltersConfig
 	dynamicOptions?: SelectOption[]
 	dynamicSearchVal: string
 	id: string
@@ -33,6 +35,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	id,
 	index,
 	allFilters = {},
+	config,
 	dynamicOptions,
 	dynamicSearchVal,
 	filtersList = [],
@@ -86,6 +89,16 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	)
 
 	const renderValues = () => {
+		const iconConfig = config?.iconConfig
+
+		let optionsConfig
+
+		if (iconConfig && selectedFilterKey === iconConfig.filterKey) {
+			optionsConfig = {
+				iconMap: iconConfig.iconMap
+			}
+		}
+
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
 
 		let options: SelectOption[] = []
@@ -94,7 +107,10 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		if (selectedFilterKey && filterOption.values) {
 			// if filter is static, options will be the opts that BE initially gave
 			if (filterOption.staticFilter) {
-				options = formatFilterValsToSelectOpts(filterOption.values)
+				options = formatFilterValsToSelectOpts(
+					filterOption.values,
+					!!optionsConfig
+				)
 			} else {
 				// if filter is dynamic & state is pending, data is still being fetched so options will be empty []. So only get options if status isn't pending
 				if (!pending) {
@@ -154,6 +170,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 					})
 				}
 				options={options}
+				optionsConfig={optionsConfig}
 				placeholder='Select field'
 				searchPlaceholder='Search'
 				showSearch

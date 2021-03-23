@@ -1,3 +1,4 @@
+import { FiltersConfig } from '../types'
 import { FilterOptions, FilterValues } from 'api'
 
 export const mockDynamicFilterOptions: FilterValues = [
@@ -54,5 +55,24 @@ export const mockFilterOptions: FilterOptions = [
 			{ id: 'region2', value: 'us-east-2' },
 			{ id: 'region3', value: 'ap-south-1' }
 		]
+	},
+	{
+		key: 'vendors',
+		staticFilter: true,
+		values: [
+			{ id: 'aws', value: 'Aws' },
+			{ id: 'azure', value: 'Azure' },
+			{ id: 'dassana', value: 'Dassana' }
+		]
 	}
 ]
+
+export const filtersConfig: FiltersConfig = {
+	iconConfig: {
+		filterKey: 'vendors',
+		iconMap: {
+			aws: 'https://dummyimage.com/400x400/ff9900/fff&text=A',
+			azure: 'https://dummyimage.com/400x400/0072c6/fff&text=A'
+		}
+	}
+}

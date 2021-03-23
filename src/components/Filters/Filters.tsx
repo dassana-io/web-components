@@ -4,18 +4,25 @@ import { FilterPopover } from './FilterPopover'
 import find from 'lodash/find'
 import { IconButton } from 'components/IconButton'
 import { Skeleton } from 'components/Skeleton'
+import startCase from 'lodash/startCase'
 import { styleguide } from 'components/assets/styles'
+import truncate from 'lodash/truncate'
 import { useFilterStyles } from './styles'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
+import {
+	filterSelectedFilters,
+	formatSelectedFilters,
+	useFilters
+} from './utils'
 import { FiltersListItem, FiltersProps } from './types'
-import { filtersListToString, formatSelectedFilters, useFilters } from './utils'
 import React, { FC, useState } from 'react'
 
 const { spacing } = styleguide
 
 export const Filters: FC<FiltersProps> = ({
 	api,
+	config,
 	emitter,
 	endpoint,
 	onSelectedFiltersChange
@@ -80,6 +87,24 @@ export const Filters: FC<FiltersProps> = ({
 		}
 	}
 
+	const renderFiltersSummary = () => {
+		const filtersWithSelectedVals = filterSelectedFilters(filtersList)
+
+		const formattedFilters = filtersWithSelectedVals.map(
+			({ selectedKey, selectedValues = [] }) => {
+				const keyStr = startCase(selectedKey)
+
+				const valuesStr = selectedValues
+					.map(val => truncate(val.text, { length: 15 }))
+					.join(', ')
+
+				return `[ ${keyStr} = ${valuesStr} ]`
+			}
+		)
+
+		return formattedFilters.join(' + ')
+	}
+
 	return (
 		<div className={classes.container} id='filters-popup-wrapper'>
 			{loading ? (
@@ -91,6 +116,7 @@ export const Filters: FC<FiltersProps> = ({
 					<FilterPopover
 						allFilters={allFilters}
 						closePopover={closePopover}
+						config={config}
 						dynamicOptions={dynamicOptions}
 						dynamicSearchVal={dynamicSearchVal}
 						filtersList={filtersList}
@@ -114,7 +140,7 @@ export const Filters: FC<FiltersProps> = ({
 							className={classes.selectedFiltersText}
 							onClick={openPopover}
 						>
-							{filtersListToString(filtersList)}
+							{renderFiltersSummary()}
 						</div>
 					</div>
 				</>

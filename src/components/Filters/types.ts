@@ -19,8 +19,18 @@ export interface ProcessedFilters {
 	[key: string]: FilterOption
 }
 
+export interface FiltersConfig {
+	iconConfig?: {
+		filterKey: string
+		iconMap: {
+			[key: string]: string
+		}
+	}
+}
+
 export interface FiltersProps {
 	api: AxiosInstance
+	config?: FiltersConfig
 	emitter: Emitter
 	endpoint: string
 	onSelectedFiltersChange: (selectedFilters: Filters) => void

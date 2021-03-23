@@ -7,6 +7,7 @@ import { Popover } from 'components/Popover'
 import { SelectOption } from 'components/Select'
 import { usePopoverStyles } from './styles'
 import {
+	FiltersConfig,
 	FiltersList,
 	FiltersListItem,
 	OnSearchWrapper,
@@ -18,6 +19,7 @@ import React, { FC } from 'react'
 interface FilterPopoverProps {
 	allFilters: ProcessedFilters
 	closePopover: () => void
+	config?: FiltersConfig
 	dynamicOptions?: SelectOption[]
 	dynamicSearchVal: string
 	filtersList: FiltersList
@@ -34,6 +36,7 @@ interface FilterPopoverProps {
 export const FilterPopover: FC<FilterPopoverProps> = ({
 	allFilters,
 	closePopover,
+	config,
 	dynamicOptions,
 	dynamicSearchVal,
 	filtersList,
@@ -85,6 +88,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 						{filtersList.map((filterItem, i) => (
 							<FilterUnit
 								allFilters={allFilters}
+								config={config}
 								dynamicOptions={dynamicOptions}
 								dynamicSearchVal={dynamicSearchVal}
 								filtersList={filtersList}
