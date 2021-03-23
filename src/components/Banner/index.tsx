@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
@@ -43,7 +44,9 @@ export const Banner: FC<BannerProps> = ({
 					)}
 					<p>{title}</p>
 				</div>
-				<div onClick={() => toggleRender()}>close</div>
+				<div onClick={() => toggleRender()}>
+					<FontAwesomeIcon icon={faTimes} />
+				</div>
 			</div>
 			<div>{children}</div>
 		</div>
