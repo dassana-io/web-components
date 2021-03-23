@@ -2,6 +2,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FilterPopover } from './FilterPopover'
 import find from 'lodash/find'
+import { Icon } from 'components/Icon'
 import { IconButton } from 'components/IconButton'
 import { Skeleton } from 'components/Skeleton'
 import startCase from 'lodash/startCase'
@@ -16,7 +17,7 @@ import {
 	useFilters
 } from './utils'
 import { FiltersListItem, FiltersProps } from './types'
-import React, { FC, useState } from 'react'
+import React, { FC, Fragment, ReactNode, useState } from 'react'
 
 const { spacing } = styleguide
 
@@ -92,17 +93,55 @@ export const Filters: FC<FiltersProps> = ({
 
 		const formattedFilters = filtersWithSelectedVals.map(
 			({ selectedKey, selectedValues = [] }) => {
+				let values: string[] | ReactNode[]
+
+				if (
+					config &&
+					config.iconConfig &&
+					config.iconConfig.filterKey === selectedKey
+				) {
+					const iconMap = config.iconConfig.iconMap
+
+					values = selectedValues.map(({ text, value }) =>
+						iconMap[value] ? (
+							<Icon
+								height={15}
+								icon={iconMap[value]}
+								key={value}
+							/>
+						) : (
+							text
+						)
+					)
+				} else {
+					values = selectedValues.map(({ text }) =>
+						truncate(text, { length: 15 })
+					)
+				}
+
 				const keyStr = startCase(selectedKey)
 
-				const valuesStr = selectedValues
-					.map(val => truncate(val.text, { length: 15 }))
-					.join(', ')
-
-				return `[ ${keyStr} = ${valuesStr} ]`
+				return (
+					<>
+						<span className={classes.bracket}>[</span> {keyStr} ={' '}
+						{values.map((val: string | ReactNode, i: number) => (
+							<Fragment key={i}>
+								{val}
+								{i === values.length - 1 ? '' : ', '}
+							</Fragment>
+						))}
+						<span className={classes.bracket}> ]</span>
+					</>
+				)
 			}
 		)
 
-		return formattedFilters.join(' + ')
+		return formattedFilters.map((filter, i) => (
+			<Fragment key={i}>
+				{filter}
+				{i === formattedFilters.length - 1 ? '' : ' + '}
+			</Fragment>
+		))
 	}
 
 	return (
@@ -137,7 +176,7 @@ export const Filters: FC<FiltersProps> = ({
 							onClick={openPopover}
 						/>
 						<div
-							className={classes.selectedFiltersText}
+							className={classes.filtersSummary}
 							onClick={openPopover}
 						>
 							{renderFiltersSummary()}

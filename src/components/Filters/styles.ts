@@ -40,6 +40,7 @@ const generateThemedFilterContainerStyles = (themeType: ThemeType) => {
 // --------------------------------------
 
 export const useFilterStyles = createUseStyles({
+	bracket: { ...font.body, fontStyle: 'normal' },
 	container: {
 		width: '100%'
 	},
@@ -49,10 +50,10 @@ export const useFilterStyles = createUseStyles({
 	},
 	filterIcon: {
 		...font.label,
-		marginRight: spacing.l
+		marginRight: spacing.m
 	},
-	selectedFiltersText: {
-		...font.body,
+	filtersSummary: {
+		...font.label,
 		color: themedStyles[light].base.color,
 		cursor: 'pointer',
 		fontStyle: 'italic',
@@ -61,7 +62,7 @@ export const useFilterStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $selectedFiltersText': {
+			'& $filtersSummary': {
 				color: themedStyles[dark].base.color
 			}
 		}

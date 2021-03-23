@@ -47,6 +47,8 @@ export default {
 		'lodash',
 		'mark.js',
 		'moment',
+		'npm',
+		'prettier',
 		'prismjs',
 		'react',
 		'react-dom',
