@@ -1,7 +1,7 @@
-import Close from '../assets/icons/close.svg'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import { styleguide } from 'components/assets/styles'
@@ -76,12 +76,10 @@ export const Banner: FC<BannerProps> = ({
 					)}
 					<div className={componentClasses.title}>{title}</div>
 				</div>
-				<div
-					className={componentClasses.closeBtn}
-					onClick={() => toggleRender()}
-				>
-					<img alt='Close banner' src={Close} />
-				</div>
+				<IconButton
+					classes={[componentClasses.closeBtn]}
+					onClick={toggleRender}
+				/>
 			</div>
 			<div>{children}</div>
 		</div>
