@@ -28,13 +28,29 @@ export interface FiltersConfig {
 	}
 }
 
-export interface FiltersProps {
-	api: AxiosInstance
+export interface SharedFiltersProps {
 	config?: FiltersConfig
-	emitter: Emitter
-	endpoint: string
 	onSelectedFiltersChange: (selectedFilters: Filters) => void
 }
+
+export type ClientSideFilterOption = Omit<
+	FilterOption,
+	'operator' | 'staticFilter'
+>
+
+export interface ClientSideFiltersProps extends SharedFiltersProps {
+	filterOptions: ClientSideFilterOption[]
+	type: 'frontend'
+}
+
+export interface ServerSideFiltersProps extends SharedFiltersProps {
+	api: AxiosInstance
+	emitter: Emitter
+	endpoint: string
+	type: 'backend'
+}
+
+export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
 
 export interface OnSearchWrapper {
 	(selectedFilterKey: string): MultiSelectProps['onSearch']

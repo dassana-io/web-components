@@ -17,32 +17,39 @@ import {
 import { MultiSelect, Select, SelectOption } from 'components/Select'
 import React, { FC } from 'react'
 
-interface FilterUnitProps {
+interface SharedProps {
 	allFilters: ProcessedFilters
 	config?: FiltersConfig
-	dynamicOptions?: SelectOption[]
-	dynamicSearchVal: string
 	id: string
 	index: number
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
 	filtersList: FiltersList
-	onSearchWrapper: OnSearchWrapper
-	pending: boolean
 }
+
+interface ClientProps extends SharedProps {
+	type: 'frontend'
+}
+
+interface ServerProps extends SharedProps {
+	dynamicOptions?: SelectOption[]
+	dynamicSearchVal?: string
+	onSearchWrapper: OnSearchWrapper
+	pending?: boolean
+	type: 'backend'
+}
+
+type FilterUnitProps = ClientProps | ServerProps
 
 const FilterUnit: FC<FilterUnitProps> = ({
 	id,
 	index,
 	allFilters = {},
 	config,
-	dynamicOptions,
-	dynamicSearchVal,
 	filtersList = [],
 	onDelete,
 	onFilterChange,
-	onSearchWrapper,
-	pending
+	...rest
 }: FilterUnitProps) => {
 	const classes = useFilterUnitStyles()
 
@@ -106,12 +113,18 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 		if (selectedFilterKey && filterOption.values) {
 			// if filter is static, options will be the opts that BE initially gave
-			if (filterOption.staticFilter) {
+			if (filterOption.staticFilter || rest.type === 'frontend') {
 				options = formatFilterValsToSelectOpts(
 					filterOption.values,
 					!!optionsConfig
 				)
 			} else {
+				const {
+					dynamicOptions,
+					dynamicSearchVal,
+					onSearchWrapper,
+					pending
+				} = rest
 				// if filter is dynamic & state is pending, data is still being fetched so options will be empty []. So only get options if status isn't pending
 				if (!pending) {
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
@@ -160,7 +173,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 		return (
 			<MultiSelect
-				disabled={!options.length && !pending}
+				disabled={!options.length}
 				matchSelectedContentWidth={225}
 				maxTagCount={5}
 				onChange={(_, options) =>

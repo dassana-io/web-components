@@ -1,8 +1,9 @@
 import { action } from '@storybook/addon-actions'
-import { filtersConfig } from './fixtures/0_sample_data'
+import omit from 'lodash/omit'
 import React from 'react'
 import { api as createAxiosInstance, Emitter } from '@dassana-io/web-utils'
 import { Filters, FiltersProps } from '.'
+import { filtersConfig, mockFilterOptions } from './fixtures/0_sample_data'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
@@ -22,5 +23,15 @@ Default.args = {
 	api: createAxiosInstance(''),
 	config: filtersConfig,
 	emitter: new Emitter(),
-	endpoint: 'https://mockendpoint.com'
+	endpoint: 'https://mockendpoint.com',
+	type: 'backend'
+}
+
+export const ClientSide = Template.bind({})
+ClientSide.args = {
+	config: filtersConfig,
+	filterOptions: mockFilterOptions.map(filter =>
+		omit(filter, ['staticFilter', 'operator'])
+	),
+	type: 'frontend'
 }

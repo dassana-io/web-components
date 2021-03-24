@@ -16,40 +16,79 @@ import {
 import { IconButton, IconSizes } from 'components/IconButton'
 import React, { FC } from 'react'
 
-interface FilterPopoverProps {
+interface SharedProps {
 	allFilters: ProcessedFilters
 	closePopover: () => void
 	config?: FiltersConfig
-	dynamicOptions?: SelectOption[]
-	dynamicSearchVal: string
 	filtersList: FiltersList
 	onVisibleChange: (visible: boolean) => void
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
-	onSearchWrapper: OnSearchWrapper
-	pending: boolean
 	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>
 	visible?: boolean
 }
+
+interface ClientProps extends SharedProps {
+	type: 'frontend'
+}
+
+interface ServerProps extends SharedProps {
+	dynamicOptions?: SelectOption[]
+	dynamicSearchVal?: string
+	onSearchWrapper: OnSearchWrapper
+	pending?: boolean
+	type: 'backend'
+}
+
+type FilterPopoverProps = ClientProps | ServerProps
 
 export const FilterPopover: FC<FilterPopoverProps> = ({
 	allFilters,
 	closePopover,
 	config,
-	dynamicOptions,
-	dynamicSearchVal,
 	filtersList,
 	onVisibleChange,
 	onClickAddFilter,
 	onDelete,
 	onFilterChange,
-	onSearchWrapper,
-	pending,
 	setFiltersList,
-	visible = false
+	visible = false,
+	...rest
 }: FilterPopoverProps) => {
 	const classes = usePopoverStyles()
+
+	let conditionalProps:
+		| Pick<ClientProps, 'type'>
+		| Pick<
+				ServerProps,
+				| 'dynamicOptions'
+				| 'dynamicSearchVal'
+				| 'onSearchWrapper'
+				| 'pending'
+				| 'type'
+				// eslint-disable-next-line no-mixed-spaces-and-tabs
+		  >
+
+	if (rest.type === 'backend') {
+		const {
+			dynamicOptions,
+			dynamicSearchVal,
+			onSearchWrapper,
+			pending,
+			type
+		} = rest
+
+		conditionalProps = {
+			dynamicOptions,
+			dynamicSearchVal,
+			onSearchWrapper,
+			pending,
+			type
+		}
+	} else {
+		conditionalProps = { type: rest.type }
+	}
 
 	return (
 		<Popover
@@ -89,16 +128,13 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 							<FilterUnit
 								allFilters={allFilters}
 								config={config}
-								dynamicOptions={dynamicOptions}
-								dynamicSearchVal={dynamicSearchVal}
 								filtersList={filtersList}
 								id={filterItem.id}
 								index={i}
 								key={filterItem.id}
 								onDelete={onDelete}
 								onFilterChange={onFilterChange}
-								onSearchWrapper={onSearchWrapper}
-								pending={pending}
+								{...conditionalProps}
 							/>
 						))}
 					</div>
