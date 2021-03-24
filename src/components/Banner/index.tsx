@@ -1,29 +1,60 @@
+import Close from '../assets/icons/close.svg'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
+import { styleguide } from 'components/assets/styles'
 import React, { FC, ReactNode, useState } from 'react'
 
+const {
+	colors: { blacks, grays },
+	flexSpaceBetween,
+	flexCenter,
+	font,
+	fontWeight: { light },
+	spacing
+} = styleguide
+
 const useStyles = createUseStyles({
+	closeBtn: {
+		cursor: 'pointer',
+		padding: spacing['s+']
+	},
 	container: {
-		border: '1px solid black'
+		...font.body,
+		backgroundColor: grays['lighten-40'],
+		color: blacks['lighten-30'],
+		fontWeight: light,
+		padding: spacing.l
+	},
+	header: {
+		...flexCenter,
+		...font.bodyLarge,
+		'& > p': {
+			color: 'black'
+		}
+	},
+	headerContainer: {
+		...flexSpaceBetween
+	},
+	icon: {
+		marginRight: spacing.s
 	}
 })
 
 export interface BannerProps {
 	children?: ReactNode
 	classes?: string[]
-	showIcon: boolean
+	showIcon?: boolean
 	title: ReactNode
-	type: NotificationTypes
+	type?: NotificationTypes
 }
 
 export const Banner: FC<BannerProps> = ({
 	children,
 	classes = [],
-	showIcon = true,
+	showIcon = false,
 	title,
 	type
 }: BannerProps) => {
@@ -35,17 +66,25 @@ export const Banner: FC<BannerProps> = ({
 	return (
 		<div
 			className={cn(componentClasses.container, classes)}
-			style={{ display: !renderBanner ? 'none' : '' }}
+			style={{
+				display: !renderBanner ? 'none' : ''
+			}}
 		>
-			<div>
-				<div>
-					{showIcon && (
-						<FontAwesomeIcon icon={mappedTypesToIcons[type].icon} />
+			<div className={componentClasses.headerContainer}>
+				<div className={componentClasses.header}>
+					{showIcon && type && (
+						<FontAwesomeIcon
+							className={componentClasses.icon}
+							icon={mappedTypesToIcons[type].icon}
+						/>
 					)}
 					<p>{title}</p>
 				</div>
-				<div onClick={() => toggleRender()}>
-					<FontAwesomeIcon icon={faTimes} />
+				<div
+					className={componentClasses.closeBtn}
+					onClick={() => toggleRender()}
+				>
+					<img alt='Close banner' src={Close} />
 				</div>
 			</div>
 			<div>{children}</div>
