@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
-import { styleguide } from 'components/assets/styles'
 import React, { FC, ReactNode, useState } from 'react'
+import { styleguide, themedStyles } from 'components/assets/styles'
 
 const {
-	colors: { blacks, grays },
+	colors: { blacks, grays, greens, oranges, reds },
 	flexSpaceBetween,
 	flexCenter,
 	font,
@@ -29,6 +29,9 @@ const useStyles = createUseStyles({
 		fontWeight: light,
 		padding: spacing.l
 	},
+	error: {
+		color: reds.base
+	},
 	header: {
 		...flexCenter,
 		...font.bodyLarge
@@ -39,8 +42,17 @@ const useStyles = createUseStyles({
 	icon: {
 		marginRight: spacing.s
 	},
+	info: {
+		color: themedStyles.light.base.color
+	},
+	success: {
+		color: greens.base
+	},
 	title: {
-		color: blacks.base
+		color: '#282A35'
+	},
+	warning: {
+		color: oranges.base
 	}
 })
 
@@ -49,7 +61,7 @@ export interface BannerProps {
 	classes?: string[]
 	showIcon?: boolean
 	title: ReactNode
-	type?: NotificationTypes
+	type: NotificationTypes
 }
 
 export const Banner: FC<BannerProps> = ({
@@ -60,7 +72,11 @@ export const Banner: FC<BannerProps> = ({
 	type
 }: BannerProps) => {
 	const [renderBanner, setRenderBanner] = useState<boolean>(true)
-	const componentClasses = useStyles({ renderBanner })
+	const componentClasses = useStyles({ renderBanner, type })
+	const iconClasses = cn({
+		[componentClasses.icon]: true,
+		[componentClasses[type]]: true
+	})
 
 	const toggleRender = () => setRenderBanner(renderBanner => !renderBanner)
 
@@ -68,9 +84,9 @@ export const Banner: FC<BannerProps> = ({
 		<div className={cn(componentClasses.container, classes)}>
 			<div className={componentClasses.headerContainer}>
 				<div className={componentClasses.header}>
-					{showIcon && type && (
+					{showIcon && (
 						<FontAwesomeIcon
-							className={componentClasses.icon}
+							className={iconClasses}
 							icon={mappedTypesToIcons[type].icon}
 						/>
 					)}
