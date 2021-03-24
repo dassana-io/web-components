@@ -25,21 +25,22 @@ const useStyles = createUseStyles({
 		...font.body,
 		backgroundColor: grays['lighten-40'],
 		color: blacks['lighten-30'],
+		display: ({ renderBanner }) => (renderBanner ? 'block' : 'none'),
 		fontWeight: light,
 		padding: spacing.l
 	},
 	header: {
 		...flexCenter,
-		...font.bodyLarge,
-		'& > p': {
-			color: 'black'
-		}
+		...font.bodyLarge
 	},
 	headerContainer: {
 		...flexSpaceBetween
 	},
 	icon: {
 		marginRight: spacing.s
+	},
+	title: {
+		color: blacks.base
 	}
 })
 
@@ -59,17 +60,12 @@ export const Banner: FC<BannerProps> = ({
 	type
 }: BannerProps) => {
 	const [renderBanner, setRenderBanner] = useState<boolean>(true)
-	const componentClasses = useStyles()
+	const componentClasses = useStyles({ renderBanner })
 
-	const toggleRender = () => setRenderBanner(!renderBanner)
+	const toggleRender = () => setRenderBanner(renderBanner => !renderBanner)
 
 	return (
-		<div
-			className={cn(componentClasses.container, classes)}
-			style={{
-				display: !renderBanner ? 'none' : ''
-			}}
-		>
+		<div className={cn(componentClasses.container, classes)}>
 			<div className={componentClasses.headerContainer}>
 				<div className={componentClasses.header}>
 					{showIcon && type && (
@@ -78,7 +74,7 @@ export const Banner: FC<BannerProps> = ({
 							icon={mappedTypesToIcons[type].icon}
 						/>
 					)}
-					<p>{title}</p>
+					<div className={componentClasses.title}>{title}</div>
 				</div>
 				<div
 					className={componentClasses.closeBtn}
