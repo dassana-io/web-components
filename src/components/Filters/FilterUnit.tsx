@@ -1,7 +1,7 @@
 import { FilterOption } from 'api'
 import { IconButton } from 'components/IconButton'
-import uniqBy from 'lodash/uniqBy'
 import { useFilterUnitStyles } from './styles'
+import { ClientSide, ServerSide } from './FilterUnitValues'
 import {
 	FiltersConfig,
 	FiltersList,
@@ -9,13 +9,9 @@ import {
 	OnSearchWrapper,
 	ProcessedFilters
 } from './types'
-import {
-	formatFilterStrToSelectOpts,
-	formatFilterValsToSelectOpts,
-	getFilterKeysOptions
-} from './utils'
-import { MultiSelect, Select, SelectOption } from 'components/Select'
-import React, { FC } from 'react'
+import { formatFilterStrToSelectOpts, getFilterKeysOptions } from './utils'
+import { MultiSelectProps, Select, SelectOption } from 'components/Select'
+import React, { FC, useEffect, useState } from 'react'
 
 interface SharedProps {
 	allFilters: ProcessedFilters
@@ -53,7 +49,29 @@ const FilterUnit: FC<FilterUnitProps> = ({
 }: FilterUnitProps) => {
 	const classes = useFilterUnitStyles()
 
-	const selectedFilterKey = filtersList[index].selectedKey
+	const [optionsConfig, setOptionsConfig] = useState<
+		MultiSelectProps['optionsConfig']
+	>()
+	const [selectedFilterKey, setSelectedFilterKey] = useState<string>()
+
+	useEffect(() => {
+		if (filtersList[index] && filtersList[index].selectedKey)
+			setSelectedFilterKey(filtersList[index].selectedKey as string)
+	}, [filtersList, index])
+
+	useEffect(() => {
+		const iconConfig = config?.iconConfig
+
+		let optionsConfig
+
+		if (iconConfig && selectedFilterKey === iconConfig.filterKey) {
+			optionsConfig = {
+				iconMap: iconConfig.iconMap
+			}
+		}
+
+		setOptionsConfig(optionsConfig)
+	}, [config, selectedFilterKey])
 
 	const renderOperators = () => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
@@ -91,109 +109,25 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			)}
 			placeholder='Select Value'
 			showSearch
-			value={selectedFilterKey}
 		/>
 	)
 
 	const renderValues = () => {
-		const iconConfig = config?.iconConfig
-
-		let optionsConfig
-
-		if (iconConfig && selectedFilterKey === iconConfig.filterKey) {
-			optionsConfig = {
-				iconMap: iconConfig.iconMap
-			}
+		const commonProps = {
+			allFilters,
+			config,
+			filtersList,
+			id,
+			index,
+			onFilterChange,
+			optionsConfig,
+			selectedFilterKey
 		}
 
-		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
-
-		let options: SelectOption[] = []
-		let dynamicFilterProps = {}
-
-		if (selectedFilterKey && filterOption.values) {
-			// if filter is static, options will be the opts that BE initially gave
-			if (filterOption.staticFilter || rest.type === 'frontend') {
-				options = formatFilterValsToSelectOpts(
-					filterOption.values,
-					!!optionsConfig
-				)
-			} else {
-				const {
-					dynamicOptions,
-					dynamicSearchVal,
-					onSearchWrapper,
-					pending
-				} = rest
-				// if filter is dynamic & state is pending, data is still being fetched so options will be empty []. So only get options if status isn't pending
-				if (!pending) {
-					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
-					if (!dynamicOptions) {
-						options = formatFilterValsToSelectOpts(
-							filterOption.values
-						)
-					} else {
-						// if you send empty string to BE (e.g. after typing something and clearing it), it'll send back an empty [] but if there's no search val, we want to display the list of options that BE initially gave so only show the dynamic opts if search val exists
-						if (dynamicSearchVal) options = dynamicOptions
-						// if there is no search val but dynamic options exist - along with options that BE initially gave, make sure to add the selected values(if they exist)
-						else {
-							const filtersListItem = filtersList.find(
-								item => item.selectedKey === selectedFilterKey
-							)
-
-							let selectedVals: SelectOption[] = []
-
-							if (
-								filtersListItem &&
-								filtersListItem.selectedValues
-							)
-								selectedVals = filtersListItem.selectedValues
-
-							options = uniqBy(
-								[
-									...formatFilterValsToSelectOpts([
-										...filterOption.values
-									]),
-									...selectedVals
-								],
-								'value'
-							)
-						}
-					}
-				}
-
-				// these dynamic filter props should be there for all dynamic filters
-				dynamicFilterProps = {
-					onSearch: onSearchWrapper(selectedFilterKey),
-					pending,
-					searchPlaceholder: 'This one hits BE...'
-				}
-			}
-		}
-
-		return (
-			<MultiSelect
-				disabled={!options.length}
-				matchSelectedContentWidth={225}
-				maxTagCount={5}
-				onChange={(_, options) =>
-					onFilterChange({
-						id,
-						selectedValues: options
-					})
-				}
-				options={options}
-				optionsConfig={optionsConfig}
-				placeholder='Select field'
-				searchPlaceholder='Search'
-				showSearch
-				values={
-					filtersList[index].selectedValues?.map(
-						values => values.value
-					) || []
-				}
-				{...dynamicFilterProps}
-			/>
+		return rest.type === 'frontend' ? (
+			<ClientSide {...commonProps} />
+		) : (
+			<ServerSide {...commonProps} {...rest} />
 		)
 	}
 
