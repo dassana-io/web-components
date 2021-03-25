@@ -16,6 +16,12 @@ export default {
 	argTypes: {
 		onChange: { defaultValue: action('onChange') },
 		popupContainerSelector: { control: { disable: true } },
+		size: {
+			control: {
+				options: ['small', 'medium', 'large'],
+				type: 'inline-radio'
+			}
+		},
 		value: { control: { disable: true } }
 	},
 	component: Select,

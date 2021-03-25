@@ -1,6 +1,7 @@
 import { BaseFormElementProps } from '../../types'
 import { CSSProperties } from 'react'
 import { IconName } from '../../Icon'
+import { SizeType } from 'antd/lib/config-provider/SizeContext'
 
 export interface SelectOption {
 	iconKey?: IconName
@@ -16,14 +17,19 @@ export interface SelectOptionsConfig {
 
 export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	/**
-	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
+	 * Array of classes to pass to element's container
+	 * @default []
 	 */
-	defaultValue?: string
+	containerClasses?: string[]
 	/**
 	 * Whether or not to menu is open by default
 	 * @default false
 	 */
 	defaultOpen?: boolean
+	/**
+	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
+	 */
+	defaultValue?: string
 	focused?: boolean
 	/**
 	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
@@ -48,6 +54,11 @@ export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	 * @default false
 	 */
 	showSearch?: boolean
+	/**
+	 * Select size — small, medium, large
+	 * @default undefined
+	 */
+	size?: SizeType
 	/**
 	 * Input content value for controlled inputs. Requires an onChange to be passed
 	 */
