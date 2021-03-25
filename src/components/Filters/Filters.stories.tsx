@@ -24,7 +24,7 @@ Default.args = {
 	config: filtersConfig,
 	emitter: new Emitter(),
 	endpoint: 'https://mockendpoint.com',
-	type: 'backend'
+	mode: 'backend'
 }
 
 export const ClientSide = Template.bind({})
@@ -33,5 +33,5 @@ ClientSide.args = {
 	filterOptions: mockFilterOptions.map(filter =>
 		omit(filter, ['staticFilter', 'operator'])
 	),
-	type: 'frontend'
+	mode: 'frontend'
 }

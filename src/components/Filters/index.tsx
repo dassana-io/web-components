@@ -5,10 +5,10 @@ import { ServerSideFilters } from './ServerSideFilters'
 import React, { FC } from 'react'
 
 export const Filters: FC<FiltersProps> = (props: FiltersProps) =>
-	props.type === 'frontend' ? (
-		<ClientSideFilters {...omit(props, 'type')} />
+	props.mode === 'frontend' ? (
+		<ClientSideFilters {...omit(props, 'mode')} />
 	) : (
-		<ServerSideFilters {...omit(props, 'type')} />
+		<ServerSideFilters {...omit(props, 'mode')} />
 	)
 
 export * from './types'

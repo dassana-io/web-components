@@ -1,51 +1,27 @@
 import { FilterOption } from 'api'
+import { FiltersListItem } from './types'
 import { IconButton } from 'components/IconButton'
+import { useFiltersContext } from './FiltersContext'
 import { useFilterUnitStyles } from './styles'
 import { ClientSide, ServerSide } from './FilterUnitValues'
-import {
-	FiltersConfig,
-	FiltersList,
-	FiltersListItem,
-	OnSearchWrapper,
-	ProcessedFilters
-} from './types'
 import { formatFilterStrToSelectOpts, getFilterKeysOptions } from './utils'
-import { MultiSelectProps, Select, SelectOption } from 'components/Select'
+import { MultiSelectProps, Select } from 'components/Select'
 import React, { FC, useEffect, useState } from 'react'
 
-interface SharedProps {
-	allFilters: ProcessedFilters
-	config?: FiltersConfig
+interface FilterUnitProps {
 	id: string
 	index: number
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
-	filtersList: FiltersList
+	mode: 'backend' | 'frontend'
 }
-
-interface ClientProps extends SharedProps {
-	type: 'frontend'
-}
-
-interface ServerProps extends SharedProps {
-	dynamicOptions?: SelectOption[]
-	dynamicSearchVal?: string
-	onSearchWrapper: OnSearchWrapper
-	pending?: boolean
-	type: 'backend'
-}
-
-type FilterUnitProps = ClientProps | ServerProps
 
 const FilterUnit: FC<FilterUnitProps> = ({
 	id,
 	index,
-	allFilters = {},
-	config,
-	filtersList = [],
 	onDelete,
 	onFilterChange,
-	...rest
+	mode
 }: FilterUnitProps) => {
 	const classes = useFilterUnitStyles()
 
@@ -53,6 +29,8 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		MultiSelectProps['optionsConfig']
 	>()
 	const [selectedFilterKey, setSelectedFilterKey] = useState<string>()
+
+	const { allFilters, config, filtersList } = useFiltersContext()
 
 	useEffect(() => {
 		if (filtersList[index] && filtersList[index].selectedKey)
@@ -109,14 +87,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			)}
 			placeholder='Select Value'
 			showSearch
+			value={selectedFilterKey}
 		/>
 	)
 
 	const renderValues = () => {
 		const commonProps = {
-			allFilters,
-			config,
-			filtersList,
 			id,
 			index,
 			onFilterChange,
@@ -124,10 +100,10 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			selectedFilterKey
 		}
 
-		return rest.type === 'frontend' ? (
+		return mode === 'frontend' ? (
 			<ClientSide {...commonProps} />
 		) : (
-			<ServerSide {...commonProps} {...rest} />
+			<ServerSide {...commonProps} />
 		)
 	}
 

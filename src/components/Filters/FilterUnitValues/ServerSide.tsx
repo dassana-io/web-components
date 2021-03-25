@@ -1,47 +1,39 @@
 import { FilterOption } from 'api'
+import { FiltersListItem } from '../types'
 import { formatFilterValsToSelectOpts } from '../utils'
 import uniqBy from 'lodash/uniqBy'
-import {
-	FiltersList,
-	FiltersListItem,
-	OnSearchWrapper,
-	ProcessedFilters
-} from '../types'
+import { useFiltersContext } from '../FiltersContext'
 import { MultiSelect, MultiSelectProps, SelectOption } from 'components/Select'
 import React, { FC, useEffect, useState } from 'react'
 
 interface Props {
-	allFilters: ProcessedFilters
 	id: string
 	index: number
 	onFilterChange: (filtersListItem: FiltersListItem) => void
 	optionsConfig?: MultiSelectProps['optionsConfig']
-	filtersList: FiltersList
 	selectedFilterKey?: string
-
-	dynamicOptions?: SelectOption[]
-	dynamicSearchVal?: string
-	onSearchWrapper: OnSearchWrapper
-	pending?: boolean
 }
 
 export const ServerSide: FC<Props> = ({
-	allFilters,
-	filtersList,
 	id,
 	index,
 	onFilterChange,
 	selectedFilterKey,
-	dynamicOptions,
-	dynamicSearchVal,
-	onSearchWrapper,
-	optionsConfig,
-	pending
+	optionsConfig
 }: Props) => {
 	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
 	const [dynamicFilterProps, setDynamicFilterProps] = useState<
 		Pick<MultiSelectProps, 'searchPlaceholder' | 'onSearch' | 'pending'>
 	>({})
+
+	const {
+		allFilters,
+		dynamicOptions,
+		dynamicSearchVal,
+		filtersList,
+		onSearchWrapper,
+		pending
+	} = useFiltersContext()
 
 	useEffect(() => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
@@ -100,7 +92,9 @@ export const ServerSide: FC<Props> = ({
 
 				// these dynamic filter props should be there for all dynamic filters
 				setDynamicFilterProps({
-					onSearch: onSearchWrapper(selectedFilterKey),
+					onSearch: onSearchWrapper
+						? onSearchWrapper(selectedFilterKey)
+						: undefined,
 					searchPlaceholder: 'This one hits BE...'
 				})
 			}

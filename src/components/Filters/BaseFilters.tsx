@@ -1,62 +1,41 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FilterPopover } from './FilterPopover'
+import { FiltersListItem } from './types'
 import find from 'lodash/find'
 import { Icon } from 'components/Icon'
 import { IconButton } from 'components/IconButton'
-import { SelectOption } from 'components/Select'
 import { Skeleton } from 'components/Skeleton'
 import startCase from 'lodash/startCase'
 import { styleguide } from 'components/assets/styles'
 import truncate from 'lodash/truncate'
+import { useFiltersContext } from './FiltersContext'
 import { useFilterStyles } from './styles'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { filterSelectedFilters, formatSelectedFilters } from './utils'
-import {
-	FiltersList,
-	FiltersListItem,
-	OnSearchWrapper,
-	ProcessedFilters,
-	SharedFiltersProps
-} from './types'
 import React, { FC, Fragment, ReactNode, useState } from 'react'
 
 const { spacing } = styleguide
 
-interface SharedBaseProps extends SharedFiltersProps {
-	allFilters: ProcessedFilters
-	filtersList: FiltersList
-	loading?: boolean
-	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>
+interface BaseFiltersProps {
+	mode: 'backend' | 'frontend'
 }
-
-interface ClientProps extends SharedBaseProps {
-	type: 'frontend'
-}
-
-interface ServerProps extends SharedBaseProps {
-	dynamicOptions?: SelectOption[]
-	dynamicSearchVal?: string
-	onSearchWrapper: OnSearchWrapper
-	pending?: boolean
-	type: 'backend'
-}
-
-type BaseFiltersProps = ClientProps | ServerProps
 
 export const BaseFilters: FC<BaseFiltersProps> = ({
-	allFilters = {},
-	config,
-	filtersList = [],
-	loading,
-	onSelectedFiltersChange,
-	setFiltersList,
-	...rest
+	mode
 }: BaseFiltersProps) => {
 	const [visible, setVisible] = useState(false)
 
 	const classes = useFilterStyles()
+
+	const {
+		config,
+		filtersList,
+		loading,
+		onSelectedFiltersChange,
+		setFiltersList
+	} = useFiltersContext()
 
 	const closePopover = () => setVisible(false)
 	const openPopover = () => setVisible(true)
@@ -159,38 +138,6 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 		))
 	}
 
-	let conditionalProps:
-		| Pick<ClientProps, 'type'>
-		| Pick<
-				ServerProps,
-				| 'dynamicOptions'
-				| 'dynamicSearchVal'
-				| 'onSearchWrapper'
-				| 'pending'
-				| 'type'
-				// eslint-disable-next-line no-mixed-spaces-and-tabs
-		  >
-
-	if (rest.type === 'backend') {
-		const {
-			dynamicOptions,
-			dynamicSearchVal,
-			onSearchWrapper,
-			pending,
-			type
-		} = rest
-
-		conditionalProps = {
-			dynamicOptions,
-			dynamicSearchVal,
-			onSearchWrapper,
-			pending,
-			type
-		}
-	} else {
-		conditionalProps = { type: rest.type }
-	}
-
 	return (
 		<div className={classes.container} id='filters-popup-wrapper'>
 			{loading ? (
@@ -200,17 +147,13 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 			) : (
 				<>
 					<FilterPopover
-						allFilters={allFilters}
 						closePopover={closePopover}
-						config={config}
-						filtersList={filtersList}
+						mode={mode}
 						onClickAddFilter={onClickAddFilter}
 						onDelete={onDelete}
 						onFilterChange={onFilterChange}
 						onVisibleChange={onVisibleChange}
-						setFiltersList={setFiltersList}
 						visible={visible}
-						{...conditionalProps}
 					/>
 					<div className={classes.filterControls}>
 						<IconButton

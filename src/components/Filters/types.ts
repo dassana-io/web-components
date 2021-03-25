@@ -40,14 +40,14 @@ export type ClientSideFilterOption = Omit<
 
 export interface ClientSideFiltersProps extends SharedFiltersProps {
 	filterOptions: ClientSideFilterOption[]
-	type: 'frontend'
+	mode: 'frontend'
 }
 
 export interface ServerSideFiltersProps extends SharedFiltersProps {
 	api: AxiosInstance
 	emitter: Emitter
 	endpoint: string
-	type: 'backend'
+	mode: 'backend'
 }
 
 export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
