@@ -1,25 +1,17 @@
 import { FilterOption } from 'api'
-import { FiltersListItem } from '../types'
-import { formatFilterValsToSelectOpts } from '../utils'
-import { useFiltersContext } from '../FiltersContext'
-import { MultiSelect, MultiSelectProps, SelectOption } from 'components/Select'
+import { formatFilterValsToSelectOpts } from '../../utils'
+import { useFiltersContext } from '../../FiltersContext'
+import { ValuesMultiselectProps } from './types'
+import { MultiSelect, SelectOption } from '../../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
-interface Props {
-	id: string
-	index: number
-	onFilterChange: (filtersListItem: FiltersListItem) => void
-	optionsConfig?: MultiSelectProps['optionsConfig']
-	selectedFilterKey?: string
-}
-
-export const ClientSide: FC<Props> = ({
+export const ClientSideValuesMS: FC<ValuesMultiselectProps> = ({
 	id,
 	index,
 	onFilterChange,
 	optionsConfig,
 	selectedFilterKey
-}: Props) => {
+}: ValuesMultiselectProps) => {
 	const { allFilters, filtersList } = useFiltersContext()
 
 	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])

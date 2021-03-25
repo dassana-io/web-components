@@ -1,10 +1,10 @@
 import { FilterOption } from 'api'
-import { FiltersListItem } from './types'
+import { FiltersListItem } from '../types'
 import { IconButton } from 'components/IconButton'
-import { useFiltersContext } from './FiltersContext'
-import { useFilterUnitStyles } from './styles'
-import { ClientSide, ServerSide } from './FilterUnitValues'
-import { formatFilterStrToSelectOpts, getFilterKeysOptions } from './utils'
+import { useFiltersContext } from '../FiltersContext'
+import { useFilterUnitStyles } from '../styles'
+import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiselect'
+import { formatFilterStrToSelectOpts, getFilterKeysOptions } from '../utils'
 import { MultiSelectProps, Select } from 'components/Select'
 import React, { FC, useEffect, useState } from 'react'
 
@@ -101,9 +101,9 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		}
 
 		return mode === 'frontend' ? (
-			<ClientSide {...commonProps} />
+			<ClientSideValuesMS {...commonProps} />
 		) : (
-			<ServerSide {...commonProps} />
+			<ServerSideValuesMS {...commonProps} />
 		)
 	}
 
