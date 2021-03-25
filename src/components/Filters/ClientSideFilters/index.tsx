@@ -1,6 +1,7 @@
 import { BaseFilters } from '../BaseFilters'
 import { FiltersCtxProvider } from '../FiltersContext'
 import { processFilters } from '../utils'
+import { v4 as uuidV4 } from 'uuid'
 import { ClientSideFiltersProps, FiltersList, ProcessedFilters } from '../types'
 import React, { FC, useEffect, useState } from 'react'
 
@@ -12,7 +13,9 @@ export const ClientSideFilters: FC<ClientSide> = ({
 	onSelectedFiltersChange
 }: ClientSide) => {
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
-	const [filtersList, setFiltersList] = useState<FiltersList>([])
+	const [filtersList, setFiltersList] = useState<FiltersList>([
+		{ id: uuidV4() }
+	])
 
 	useEffect(() => {
 		setAllFilters(processFilters(filterOptions))

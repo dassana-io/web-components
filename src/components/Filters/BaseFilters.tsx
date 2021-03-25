@@ -1,30 +1,24 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FilterPopover } from './FilterPopover'
-import { FiltersListItem } from './types'
 import find from 'lodash/find'
-import { Icon } from 'components/Icon'
-import { IconButton } from 'components/IconButton'
-import { Skeleton } from 'components/Skeleton'
+import { Icon } from '../Icon'
+import { IconButton } from '../IconButton'
+import { Skeleton } from '../Skeleton'
 import startCase from 'lodash/startCase'
-import { styleguide } from 'components/assets/styles'
+import { styleguide } from '../assets/styles'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
 import { useFilterStyles } from './styles'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { filterSelectedFilters, formatSelectedFilters } from './utils'
+import { FiltersListItem, FiltersMode } from './types'
 import React, { FC, Fragment, ReactNode, useState } from 'react'
 
 const { spacing } = styleguide
 
-interface BaseFiltersProps {
-	mode: 'backend' | 'frontend'
-}
-
-export const BaseFilters: FC<BaseFiltersProps> = ({
-	mode
-}: BaseFiltersProps) => {
+export const BaseFilters: FC<FiltersMode> = ({ mode }: FiltersMode) => {
 	const {
 		config,
 		filtersList,

@@ -55,3 +55,5 @@ export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
 export interface OnSearchWrapper {
 	(selectedFilterKey: string): MultiSelectProps['onSearch']
 }
+
+export type FiltersMode = Pick<FiltersProps, 'mode'>

@@ -1,19 +1,18 @@
 import { FilterOption } from 'api'
-import { FiltersListItem } from '../types'
-import { IconButton } from 'components/IconButton'
+import { IconButton } from '../../IconButton'
 import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiselect'
+import { FiltersListItem, FiltersMode } from '../types'
 import { formatFilterStrToSelectOpts, getFilterKeysOptions } from '../utils'
-import { MultiSelectProps, Select } from 'components/Select'
+import { MultiSelectProps, Select } from '../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
-interface FilterUnitProps {
+interface FilterUnitProps extends FiltersMode {
 	id: string
 	index: number
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
-	mode: 'backend' | 'frontend'
 }
 
 const FilterUnit: FC<FilterUnitProps> = ({

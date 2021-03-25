@@ -1,18 +1,17 @@
-import { Button } from 'components/Button'
+import { Button } from '../Button'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { FiltersListItem } from './types'
 import FilterUnit from './FilterUnit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'components/Link'
-import { Popover } from 'components/Popover'
+import { Link } from '../Link'
+import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
-import { IconButton, IconSizes } from 'components/IconButton'
+import { FiltersListItem, FiltersMode } from './types'
+import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
 
-interface FilterPopoverProps {
+interface FilterPopoverProps extends FiltersMode {
 	closePopover: () => void
-	mode: 'backend' | 'frontend'
 	onVisibleChange: (visible: boolean) => void
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void

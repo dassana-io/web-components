@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
+import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
 	borderRadius,
