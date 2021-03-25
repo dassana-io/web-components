@@ -29,9 +29,9 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 	onFilterChange,
 	visible = false
 }: FilterPopoverProps) => {
-	const classes = usePopoverStyles()
-
 	const { allFilters, filtersList, setFiltersList } = useFiltersContext()
+
+	const classes = usePopoverStyles()
 
 	return (
 		<Popover

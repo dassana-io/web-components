@@ -23,14 +23,14 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	onFilterChange,
 	mode
 }: FilterUnitProps) => {
+	const { allFilters, config, filtersList } = useFiltersContext()
+
 	const classes = useFilterUnitStyles()
 
 	const [optionsConfig, setOptionsConfig] = useState<
 		MultiSelectProps['optionsConfig']
 	>()
 	const [selectedFilterKey, setSelectedFilterKey] = useState<string>()
-
-	const { allFilters, config, filtersList } = useFiltersContext()
 
 	useEffect(() => {
 		if (filtersList[index] && filtersList[index].selectedKey)

@@ -21,11 +21,6 @@ export const ServerSide: FC<Props> = ({
 	selectedFilterKey,
 	optionsConfig
 }: Props) => {
-	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
-	const [dynamicFilterProps, setDynamicFilterProps] = useState<
-		Pick<MultiSelectProps, 'searchPlaceholder' | 'onSearch' | 'pending'>
-	>({})
-
 	const {
 		allFilters,
 		dynamicOptions,
@@ -34,6 +29,11 @@ export const ServerSide: FC<Props> = ({
 		onSearchWrapper,
 		pending
 	} = useFiltersContext()
+
+	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
+	const [dynamicFilterProps, setDynamicFilterProps] = useState<
+		Pick<MultiSelectProps, 'searchPlaceholder' | 'onSearch' | 'pending'>
+	>({})
 
 	useEffect(() => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']

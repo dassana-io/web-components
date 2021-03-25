@@ -25,10 +25,6 @@ interface BaseFiltersProps {
 export const BaseFilters: FC<BaseFiltersProps> = ({
 	mode
 }: BaseFiltersProps) => {
-	const [visible, setVisible] = useState(false)
-
-	const classes = useFilterStyles()
-
 	const {
 		config,
 		filtersList,
@@ -36,6 +32,10 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 		onSelectedFiltersChange,
 		setFiltersList
 	} = useFiltersContext()
+
+	const [visible, setVisible] = useState(false)
+
+	const classes = useFilterStyles()
 
 	const closePopover = () => setVisible(false)
 	const openPopover = () => setVisible(true)

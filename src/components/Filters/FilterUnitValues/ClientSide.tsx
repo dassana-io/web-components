@@ -20,9 +20,9 @@ export const ClientSide: FC<Props> = ({
 	optionsConfig,
 	selectedFilterKey
 }: Props) => {
-	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
-
 	const { allFilters, filtersList } = useFiltersContext()
+
+	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
