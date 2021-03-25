@@ -101,7 +101,9 @@ exports[`Storyshots Banner Error 1`] = `
         </svg>
       </span>
     </div>
-    <div />
+    <div>
+      Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
+    </div>
   </div>
 </div>
 `;
@@ -165,12 +167,14 @@ exports[`Storyshots Banner Info 1`] = `
         </svg>
       </span>
     </div>
-    <div />
+    <div>
+      Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
+    </div>
   </div>
 </div>
 `;
 
-exports[`Storyshots Banner No Icon With Children 1`] = `
+exports[`Storyshots Banner No Icon 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
@@ -278,7 +282,9 @@ exports[`Storyshots Banner Success 1`] = `
         </svg>
       </span>
     </div>
-    <div />
+    <div>
+      Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
+    </div>
   </div>
 </div>
 `;
@@ -342,7 +348,9 @@ exports[`Storyshots Banner Warning 1`] = `
         </svg>
       </span>
     </div>
-    <div />
+    <div>
+      Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
+    </div>
   </div>
 </div>
 `;
