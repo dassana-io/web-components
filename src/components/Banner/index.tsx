@@ -49,7 +49,7 @@ const useStyles = createUseStyles({
 		color: greens.base
 	},
 	title: {
-		color: '#282A35'
+		color: blacks.base
 	},
 	warning: {
 		color: oranges.base

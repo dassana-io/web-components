@@ -14,7 +14,15 @@ export default {
 	title: 'Banner'
 } as Meta
 
-const Template: Story<BannerProps> = args => <Banner {...args} />
+const Template: Story<BannerProps> = args => (
+	<Banner {...args}>
+		Once we receive an alert we scan it against policy risk rules. The rules
+		are evaluated in order from top to bottom. The first rule that matches
+		determines the risk of the alert. Updating a rule will not impact the
+		past alerts. However you can use past alerts as a reference to edit
+		rules such that future alerts get your desired risk classification.
+	</Banner>
+)
 
 export const Error = Template.bind({})
 Error.args = {
@@ -44,10 +52,8 @@ Warning.args = {
 	type: warning
 }
 
-export const NoIconWithChildren = Template.bind({})
-NoIconWithChildren.args = {
-	children:
-		'Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.',
+export const NoIcon = Template.bind({})
+NoIcon.args = {
 	showIcon: false,
 	title: 'Policy Risk Rules',
 	type: success
