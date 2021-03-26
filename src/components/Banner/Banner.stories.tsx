@@ -7,7 +7,7 @@ const { error, info, success, warning } = NotificationTypes
 
 export default {
 	argTypes: {
-		children: { control: 'text' },
+		children: { control: { disable: true } },
 		classes: { control: 'array' }
 	},
 	component: Banner,

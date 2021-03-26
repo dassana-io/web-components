@@ -19,7 +19,10 @@ const {
 const useStyles = createUseStyles({
 	closeBtn: {
 		cursor: 'pointer',
-		padding: spacing['s+']
+		padding: spacing['s+'],
+		position: 'absolute',
+		right: 0,
+		top: 0
 	},
 	container: {
 		...font.body,
@@ -27,7 +30,8 @@ const useStyles = createUseStyles({
 		color: blacks['lighten-30'],
 		display: ({ renderBanner }) => (renderBanner ? 'block' : 'none'),
 		fontWeight: light,
-		padding: spacing.l
+		padding: spacing.l,
+		position: 'relative'
 	},
 	error: {
 		color: reds.base
