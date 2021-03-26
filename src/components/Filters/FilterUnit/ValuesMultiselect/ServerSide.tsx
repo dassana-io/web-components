@@ -40,7 +40,7 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 
 				setValuesOptions(options)
 			} else {
-				// if filter is dynamic & state is pending, data is still being fetched so options will be empty []. So only get options if status isn't pending
+				// if filter is dynamic & state is pending, data is still being fetched. So only get options if status isn't pending
 				if (!pending) {
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
 					if (!dynamicOptions) {
@@ -87,6 +87,7 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 					onSearch: onSearchWrapper
 						? onSearchWrapper(selectedFilterKey)
 						: undefined,
+					pending,
 					searchPlaceholder: 'This one hits BE...'
 				})
 			}
@@ -115,7 +116,6 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 			}
 			options={valuesOptions}
 			optionsConfig={optionsConfig}
-			pending={pending}
 			placeholder='Select field'
 			searchPlaceholder='Search'
 			showSearch

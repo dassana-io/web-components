@@ -78,7 +78,7 @@ export const useFilters = (
 				formatFilterValsToSelectOpts(mockDynamicFilterOptions)
 			)
 			setPending(false)
-		}, 200)
+		}, 400)
 		// -----------------
 	}
 
