@@ -43,6 +43,7 @@ type BaseSelectProps = CommonBaseSelectProps &
 export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 	const {
 		classes = [],
+		containerClasses = [],
 		dataTag,
 		defaultOpen = false,
 		disabled = false,
@@ -56,6 +57,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		placeholder = '',
 		popupContainerSelector,
 		showSearch = false,
+		size,
 		useStyles
 	} = props
 
@@ -122,7 +124,12 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 	return loading ? (
 		<SelectSkeleton {...props} />
 	) : (
-		<div className={componentClasses.container}>
+		<div
+			className={cn(
+				{ [componentClasses.container]: true },
+				containerClasses
+			)}
+		>
 			<AntDSelect
 				autoFocus={focused}
 				className={inputClasses}
@@ -134,6 +141,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				placeholder={placeholder}
 				showArrow
 				showSearch={showSearch}
+				size={size}
 				{...getPopupContainerProps(popupContainerSelector)}
 				{...multiSelectProps}
 				{...singleSelectProps}

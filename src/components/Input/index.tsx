@@ -36,6 +36,7 @@ const useStyles = createUseStyles({
 export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonAfter?: string
 	addonBefore?: string
+	defaultValue?: string
 	inputRef?: RefObject<AntDInput>
 	focused?: boolean
 	onFocus?: () => void
@@ -53,6 +54,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		addonBefore,
 		classes = [],
 		dataTag,
+		defaultValue,
 		disabled = false,
 		focused = false,
 		inputRef,
@@ -97,6 +99,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 			addonBefore={addonBefore}
 			autoFocus={focused}
 			className={cn(componentClasses.container, inputClasses)}
+			defaultValue={defaultValue}
 			disabled={disabled}
 			onBlur={onBlur}
 			onFocus={onFocus}

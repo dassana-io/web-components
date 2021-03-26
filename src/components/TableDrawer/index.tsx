@@ -60,7 +60,8 @@ export const TableDrawer = <DataType extends DataId>({
 	data,
 	loading,
 	renderDrawerCmp,
-	renderTableControls
+	renderTableControls,
+	tableContainerClasses
 }: TableDrawerProps<DataType>) => {
 	const [rowData, setRowData] = useState({} as DataType)
 	const resetRowData = () => setRowData({} as DataType)
@@ -80,7 +81,12 @@ export const TableDrawer = <DataType extends DataId>({
 
 	return (
 		<div className={classes.container}>
-			<div className={classes.tableContainer}>
+			<div
+				className={cn(
+					{ [classes.tableContainer]: true },
+					tableContainerClasses
+				)}
+			>
 				{renderTableControls && renderTableControls()}
 				<Table<DataType>
 					activeRowKey={rowData.id}
