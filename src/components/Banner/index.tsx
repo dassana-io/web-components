@@ -1,20 +1,23 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { generateThemedBannerStyles } from './util'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React, { FC, ReactNode, useState } from 'react'
-import { styleguide, themedStyles } from 'components/assets/styles'
+import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
-	colors: { blacks, grays, greens, oranges, reds },
+	colors: { blacks, greens, oranges, reds },
 	flexSpaceBetween,
 	flexCenter,
 	font,
-	fontWeight: { light },
+	fontWeight,
 	spacing
 } = styleguide
+
+const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	closeBtn: {
@@ -26,10 +29,9 @@ const useStyles = createUseStyles({
 	},
 	container: {
 		...font.body,
-		backgroundColor: grays['lighten-40'],
-		color: blacks['lighten-30'],
+		...generateThemedBannerStyles(light),
 		display: ({ renderBanner }) => (renderBanner ? 'block' : 'none'),
-		fontWeight: light,
+		fontWeight: fontWeight.light,
 		padding: spacing.l,
 		position: 'relative'
 	},
@@ -57,6 +59,15 @@ const useStyles = createUseStyles({
 	},
 	warning: {
 		color: oranges.base
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $container': generateThemedBannerStyles(dark),
+			'& $title': {
+				color: themedStyles.light.base.color
+			}
+		}
 	}
 })
 
