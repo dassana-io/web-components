@@ -1,5 +1,6 @@
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React from 'react'
+import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { Banner, BannerProps } from '.'
 import { Meta, Story } from '@storybook/react'
 
@@ -11,6 +12,7 @@ export default {
 		classes: { control: 'array' }
 	},
 	component: Banner,
+	decorators: [SecondaryBgDecorator],
 	title: 'Banner'
 } as Meta
 
