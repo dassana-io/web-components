@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.10.6",
+	"version": "0.10.7",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
