@@ -38,6 +38,14 @@ export const styleguide = {
 		display: 'flex',
 		justifyContent: 'flex-end'
 	},
+	flexJustifyStart: {
+		display: 'flex',
+		justifyContent: 'flex-start'
+	},
+	flexSpaceAround: {
+		display: 'flex',
+		justifyContent: 'space-around'
+	},
 	flexSpaceBetween: {
 		display: 'flex',
 		justifyContent: 'space-between'
