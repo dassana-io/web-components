@@ -5,8 +5,9 @@ export interface NotificationContextProps {
 	generateNotification: (notification: NotificationConfig) => void
 }
 
-const [useNotificationContext, NotificationCtxProvider] = createCtx<
-	NotificationContextProps
->()
+const [
+	useNotificationContext,
+	NotificationCtxProvider
+] = createCtx<NotificationContextProps>()
 
 export { NotificationCtxProvider, useNotificationContext as useNotification }
