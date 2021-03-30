@@ -39,7 +39,7 @@ const generateThemedFilterContainerStyles = (themeType: ThemeType) => {
 
 // --------------------------------------
 
-export const useFilterStyles = createUseStyles({
+export const useBaseFilterStyles = createUseStyles({
 	bracket: { ...font.body, fontStyle: 'normal' },
 	container: {
 		width: '100%'

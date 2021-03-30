@@ -3,12 +3,12 @@ import { IconButton } from '../../IconButton'
 import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiselect'
-import { FiltersListItem, FiltersMode } from '../types'
+import { FiltersListItem, FiltersModeProps } from '../types'
 import { formatFilterStrToSelectOpts, getFilterKeysOptions } from '../utils'
 import { MultiSelectProps, Select } from '../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
-interface FilterUnitProps extends FiltersMode {
+interface FilterUnitProps extends FiltersModeProps {
 	id: string
 	index: number
 	onDelete: (selectedId: string) => void
@@ -32,26 +32,29 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	const [selectedFilterKey, setSelectedFilterKey] = useState<string>()
 
 	useEffect(() => {
-		if (filtersList[index] && filtersList[index].selectedKey)
-			setSelectedFilterKey(filtersList[index].selectedKey as string)
+		if (filtersList[index] && 'selectedKey' in filtersList[index]) {
+			setSelectedFilterKey(filtersList[index].selectedKey)
+		}
 	}, [filtersList, index])
 
 	useEffect(() => {
 		const iconConfig = config?.iconConfig
 
-		let optionsConfig
-
+		// if iconConfig exists in FiltersConfig and the filterKey in the
+		// iconConfig matches the selectedFilterKey, use iconConfig.iconMap
+		// to define optionsConfig and save it to state. It'll be passed to
+		// Filter Values MultiSelect (rendered in renderValues()).
 		if (iconConfig && selectedFilterKey === iconConfig.filterKey) {
-			optionsConfig = {
+			setOptionsConfig({
 				iconMap: iconConfig.iconMap
-			}
+			})
 		}
-
-		setOptionsConfig(optionsConfig)
 	}, [config, selectedFilterKey])
 
-	const renderOperators = () => {
+	const renderOperator = () => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
+		// If BE doesn't provide an operator array, the operator will be '='.
+		// The operator will also be '=' for Client Side filters.
 		const operators = filterOption?.operator || ['=']
 
 		return (
@@ -109,7 +112,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	return (
 		<div className={classes.container}>
 			<div className={classes.singleSelectContainer}>{renderKey()}</div>
-			<div>{renderOperators()}</div>
+			<div>{renderOperator()}</div>
 			<div className={classes.multiSelectContainer}>{renderValues()}</div>
 			<IconButton onClick={() => onDelete(id)} />
 		</div>

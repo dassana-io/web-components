@@ -6,27 +6,27 @@ import { Link } from '../Link'
 import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
-import { FiltersListItem, FiltersMode } from './types'
+import { FiltersListItem, FiltersModeProps } from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
 
-interface FilterPopoverProps extends FiltersMode {
+interface FilterPopoverProps extends FiltersModeProps {
 	closePopover: () => void
-	onVisibleChange: (visible: boolean) => void
+	isPopoverOpen?: boolean
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
-	visible?: boolean
+	togglePopoverVisibility: (isPopoverOpen: boolean) => void
 }
 
 export const FilterPopover: FC<FilterPopoverProps> = ({
 	closePopover,
+	isPopoverOpen = false,
 	mode,
-	onVisibleChange,
 	onClickAddFilter,
 	onDelete,
 	onFilterChange,
-	visible = false
+	togglePopoverVisibility
 }: FilterPopoverProps) => {
 	const { allFilters, filtersList, setFiltersList } = useFiltersContext()
 
@@ -79,13 +79,18 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 					</div>
 				</div>
 			}
-			onVisibleChange={onVisibleChange}
+			onVisibleChange={togglePopoverVisibility}
 			placement='bottomLeft'
 			popupContainerSelector='#filters-popup-wrapper'
 			popupTriggerClasses={[classes.popoverTrigger]}
 			trigger='click'
-			visible={visible}
+			visible={isPopoverOpen}
 		>
+			{/* <i /> is just a placeholder. The filter controls that triggers
+      the popover lives in ./BaseFilters. This was done because positioning
+      the Popover to cover the controls is easier when it's not a child of the
+      Popover.
+      */}
 			<i />
 		</Popover>
 	)

@@ -38,16 +38,23 @@ export type ClientSideFilterOption = Omit<
 	'operator' | 'staticFilter'
 >
 
+export enum FiltersMode {
+	backend = 'backend',
+	frontend = 'frontend'
+}
+
+export type FiltersModeProps = Pick<FiltersProps, 'mode'>
+
 export interface ClientSideFiltersProps extends SharedFiltersProps {
 	filterOptions: ClientSideFilterOption[]
-	mode: 'frontend'
+	mode: FiltersMode.frontend
 }
 
 export interface ServerSideFiltersProps extends SharedFiltersProps {
 	api: AxiosInstance
 	emitter: Emitter
 	endpoint: string
-	mode: 'backend'
+	mode: FiltersMode.backend
 }
 
 export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
@@ -55,5 +62,3 @@ export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
 export interface OnSearchWrapper {
 	(selectedFilterKey: string): MultiSelectProps['onSearch']
 }
-
-export type FiltersMode = Pick<FiltersProps, 'mode'>

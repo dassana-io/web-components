@@ -22,10 +22,10 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 		pending
 	} = useFiltersContext()
 
-	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
 	const [dynamicFilterProps, setDynamicFilterProps] = useState<
 		Pick<MultiSelectProps, 'searchPlaceholder' | 'onSearch' | 'pending'>
 	>({})
+	const [options, setOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
@@ -33,25 +33,25 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 		if (selectedFilterKey && filterOption.values) {
 			// if filter is static, options will be the opts that BE initially gave
 			if (filterOption.staticFilter) {
-				const options = formatFilterValsToSelectOpts(
+				const formattedOpts = formatFilterValsToSelectOpts(
 					filterOption.values,
 					!!optionsConfig
 				)
 
-				setValuesOptions(options)
+				setOptions(formattedOpts)
 			} else {
 				// if filter is dynamic & state is pending, data is still being fetched. So only get options if status isn't pending
 				if (!pending) {
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
 					if (!dynamicOptions) {
-						const options = formatFilterValsToSelectOpts(
+						const formattedOpts = formatFilterValsToSelectOpts(
 							filterOption.values
 						)
 
-						setValuesOptions(options)
+						setOptions(formattedOpts)
 					} else {
 						// if you send empty string to BE (e.g. after typing something and clearing it), it'll send back an empty [] but if there's no search val, we want to display the list of options that BE initially gave so only show the dynamic opts if search val exists
-						if (dynamicSearchVal) setValuesOptions(dynamicOptions)
+						if (dynamicSearchVal) setOptions(dynamicOptions)
 						// if there is no search val but dynamic options exist - along with options that BE initially gave, make sure to add the selected values(if they exist)
 						else {
 							const filtersListItem = filtersList.find(
@@ -67,7 +67,7 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 								selectedVals = filtersListItem.selectedValues
 							}
 
-							const options = uniqBy(
+							const formattedOpts = uniqBy(
 								[
 									...formatFilterValsToSelectOpts([
 										...filterOption.values
@@ -77,7 +77,7 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 								'value'
 							)
 
-							setValuesOptions(options)
+							setOptions(formattedOpts)
 						}
 					}
 				}
@@ -105,7 +105,7 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 
 	return (
 		<MultiSelect
-			disabled={!valuesOptions.length}
+			disabled={!options.length}
 			matchSelectedContentWidth={225}
 			maxTagCount={5}
 			onChange={(_, options) =>
@@ -114,7 +114,7 @@ export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
 					selectedValues: options
 				})
 			}
-			options={valuesOptions}
+			options={options}
 			optionsConfig={optionsConfig}
 			placeholder='Select field'
 			searchPlaceholder='Search'

@@ -14,23 +14,25 @@ export const ClientSideValuesMS: FC<ValuesMultiselectProps> = ({
 }: ValuesMultiselectProps) => {
 	const { allFilters, filtersList } = useFiltersContext()
 
-	const [valuesOptions, setValuesOptions] = useState<SelectOption[]>([])
+	const [options, setOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
 		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
-
+		// if a filter key has been selected and the filter values exist,
+		// format it and save it to state as options
 		if (selectedFilterKey && filterOption.values) {
-			const options = formatFilterValsToSelectOpts(
+			const formattedOpts = formatFilterValsToSelectOpts(
 				filterOption.values,
 				!!optionsConfig
 			)
-			setValuesOptions(options)
+
+			setOptions(formattedOpts)
 		}
 	}, [allFilters, optionsConfig, selectedFilterKey])
 
 	return (
 		<MultiSelect
-			disabled={!valuesOptions.length}
+			disabled={!options.length}
 			matchSelectedContentWidth={225}
 			maxTagCount={5}
 			onChange={(_, options) =>
@@ -39,7 +41,7 @@ export const ClientSideValuesMS: FC<ValuesMultiselectProps> = ({
 					selectedValues: options
 				})
 			}
-			options={valuesOptions}
+			options={options}
 			optionsConfig={optionsConfig}
 			placeholder='Select field'
 			searchPlaceholder='Search'

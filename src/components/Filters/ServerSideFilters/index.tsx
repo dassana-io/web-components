@@ -1,7 +1,7 @@
 import { BaseFilters } from '../BaseFilters'
 import { FiltersCtxProvider } from '../FiltersContext'
-import { ServerSideFiltersProps } from '../types'
 import { useFilters } from './utils'
+import { FiltersMode, ServerSideFiltersProps } from '../types'
 import React, { FC } from 'react'
 
 type ServerSide = Omit<ServerSideFiltersProps, 'mode'>
@@ -13,6 +13,8 @@ export const ServerSideFilters: FC<ServerSide> = ({
 	endpoint,
 	onSelectedFiltersChange
 }: ServerSide) => {
+	// useFilters is where all the related data will be held.
+	// API calls will also be handled in useFilters.
 	const {
 		allFilters,
 		dynamicOptions,
@@ -39,7 +41,7 @@ export const ServerSideFilters: FC<ServerSide> = ({
 				setFiltersList
 			}}
 		>
-			<BaseFilters mode='backend' />
+			<BaseFilters mode={FiltersMode.backend} />
 		</FiltersCtxProvider>
 	)
 }
