@@ -1,11 +1,27 @@
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Accordion, AccordionProps, Panel } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 const mockPanels: Panel[] = [
-	{ content: 'Content1', key: 1, title: 'Title 1' },
-	{ content: 'Content2', key: 2, title: 'Title 2' },
-	{ content: 'Content3', key: 3, title: 'Title 3' }
+	{
+		content: 'Lorem ipsum dolor sit amet.',
+		key: 1,
+		title: '1. Identify Vendor'
+	},
+	{
+		content: 'Consectetur adipiscing elit.',
+		headerRightContent: <FontAwesomeIcon icon={faCheckCircle} />,
+		key: 2,
+		title: '2. Map Policy'
+	},
+	{
+		content:
+			'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+		key: 3,
+		title: '3. Extract Resource Information'
+	}
 ]
 
 export default {
@@ -28,7 +44,8 @@ export const Default = Template.bind({})
 
 export const Exclusive = Template.bind({})
 Exclusive.args = {
-	exclusive: true
+	defaultExpandedKeys: [1],
+	expandMultiple: false
 }
 
 export const ExpandAll = Template.bind({})

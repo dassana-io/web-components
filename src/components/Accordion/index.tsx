@@ -1,108 +1,72 @@
-import { CollapseIndicator } from './CollapseIndicator'
+import { AccordionProps } from './types'
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { generateAccordionPanelStyles } from './utils'
+import { Header } from './Header'
 import { PanelContent } from './PanelContent'
-import React, { FC, Key, ReactNode, useState } from 'react'
-import { styleguide, themes, ThemeType } from '../assets/styles'
+import { ThemeType } from '../assets/styles'
+import {
+	generateAccordionPanelStyles,
+	getInitialExpandedKeys,
+	getUpdatedExpandedKeys
+} from './utils'
+import React, { FC, Key, useState } from 'react'
 
-const { flexSpaceBetween, font, spacing } = styleguide
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
-	header: {
-		...font.bodyLarge,
-		...flexSpaceBetween,
-		cursor: 'pointer',
-		padding: spacing.m
-	},
 	panel: generateAccordionPanelStyles(light),
-	title: {
-		color: themes[light].primary
-	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $panel': generateAccordionPanelStyles(dark),
-			'& $title': { color: themes[dark].state.hover }
+			'& $panel': generateAccordionPanelStyles(dark)
 		}
 	}
 })
 
-export interface Panel {
-	content: ReactNode
-	key: Key
-	title: string
-}
-
-interface SharedAccordionProps {
-	defaultActiveKey?: Key
-	panels: Panel[]
-}
-
-interface ExclusiveAccordionProps extends SharedAccordionProps {
-	exclusive: true
-	expandAllOnMount?: never
-}
-
-interface NonExclusiveAccordionProps extends SharedAccordionProps {
-	exclusive: false
-	expandAllOnMount?: boolean
-}
-
-export type AccordionProps =
-	| ExclusiveAccordionProps
-	| NonExclusiveAccordionProps
-
 export const Accordion: FC<AccordionProps> = ({
-	defaultActiveKey,
-	exclusive = false,
+	defaultExpandedKeys = [],
+	expandMultiple = true,
 	expandAllOnMount = false,
 	panels
 }: AccordionProps) => {
-	const getInitialActiveKeys = () => {
-		const defaultActiveKeys: Key[] = [panels[0].key]
-
-		if (defaultActiveKey) return [defaultActiveKey]
-		else if (expandAllOnMount) return panels.map(({ key }) => key)
-
-		return defaultActiveKeys
-	}
-
-	const [activeKeys, setActiveKeys] = useState<Key[]>(getInitialActiveKeys())
+	const [expandedKeys, setExpandedKeys] = useState<Key[]>(
+		getInitialExpandedKeys(panels, defaultExpandedKeys, expandAllOnMount)
+	)
 	const classes = useStyles()
-
-	const togglePanel = (panelKey: Key) => {
-		let newActiveKeys = [...activeKeys, panelKey]
-
-		// Close panel if it is open
-		if (activeKeys.includes(panelKey))
-			newActiveKeys = activeKeys.filter(key => panelKey !== key)
-		// If accordion is exclusive, only one panel can be open at a time
-		else if (exclusive) newActiveKeys = [panelKey]
-
-		setActiveKeys(newActiveKeys)
-	}
 
 	return (
 		<div>
-			{panels.map(({ content, key, title }) => {
-				const isActivePanel = activeKeys.includes(key)
+			{panels.map(
+				({ classes: panelClasses = [], content, key, ...rest }) => {
+					const isExpanded = expandedKeys.includes(key)
 
-				return (
-					<div className={classes.panel} key={key}>
+					return (
 						<div
-							className={classes.header}
-							onClick={() => togglePanel(key)}
+							className={cn(classes.panel, panelClasses)}
+							key={key}
 						>
-							<div className={classes.title}>{title}</div>
-							<CollapseIndicator isCollapsed={!isActivePanel} />
+							<Header
+								isExpanded={isExpanded}
+								onHeaderClick={() =>
+									setExpandedKeys(
+										getUpdatedExpandedKeys(
+											key,
+											expandedKeys,
+											expandMultiple
+										)
+									)
+								}
+								{...rest}
+							/>
+							<PanelContent isExpanded={isExpanded}>
+								{content}
+							</PanelContent>
 						</div>
-						<PanelContent isActive={isActivePanel}>
-							{content}
-						</PanelContent>
-					</div>
-				)
-			})}
+					)
+				}
+			)}
 		</div>
 	)
 }
+
+export type { AccordionProps, Panel } from './types'
