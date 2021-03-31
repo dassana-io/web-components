@@ -1,34 +1,23 @@
-import { Key, ReactNode } from 'react'
+import {
+	ExpandMultipleProps,
+	ExpandSingleProps,
+	Panel,
+	SharedAccordionProps
+} from '../Accordion/types'
 
 export enum TimelineState {
-	active = 'active',
-	default = 'default',
-	uncollapsible = 'uncollapsible'
+	alwaysExpanded = 'alwaysExpanded',
+	collapsed = 'collapsed',
+	expanded = 'expanded'
 }
 
-export interface TimelineConfig {
-	classes?: string[]
-	content: ReactNode
-	key: Key
-	title: ReactNode
-	headerExtra?: ReactNode
-	uncollapsible?: boolean
+export interface TimelineConfig extends Panel {
+	alwaysExpanded?: boolean
 }
 
-interface SharedTimelineProps {
-	classes?: string[]
-	defaultActiveKey?: Key
+interface SharedTimelineProps extends Omit<SharedAccordionProps, 'panels'> {
 	timelineConfig: TimelineConfig[]
 }
 
-interface ExclusiveTimelineProps extends SharedTimelineProps {
-	exclusive: true
-	expandAllOnMount?: never
-}
-
-interface NonExclusiveTimelineProps extends SharedTimelineProps {
-	exclusive: false
-	expandAllOnMount?: boolean
-}
-
-export type TimelineProps = ExclusiveTimelineProps | NonExclusiveTimelineProps
+export type TimelineProps = (ExpandSingleProps | ExpandMultipleProps) &
+	SharedTimelineProps

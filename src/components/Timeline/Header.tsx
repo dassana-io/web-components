@@ -17,15 +17,21 @@ const useStyles = createUseStyles({
 	header: {
 		...font.body,
 		...flexSpaceBetween,
+		alignItems: 'center',
 		background: grays['lighten-40'],
 		borderRadius: getHeaderBorderRadius,
 		cursor: ({ state }) =>
-			state === TimelineState.uncollapsible ? 'auto' : 'pointer',
+			state === TimelineState.alwaysExpanded ? 'auto' : 'pointer',
 		fontWeight: fontWeight.light,
-		padding: `${spacing.s}px ${spacing['s+']}px`
+		padding: {
+			left: spacing['s+'],
+			right: spacing['s+']
+		}
 	},
 	title: {
-		color: themes[light].primary
+		color: themes[light].primary,
+		padding: spacing.s,
+		paddingLeft: 0
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -38,23 +44,24 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface Props extends Pick<TimelineConfig, 'title' | 'headerExtra'> {
+interface HeaderProps
+	extends Pick<TimelineConfig, 'title' | 'headerRightContent'> {
 	onClick?: () => void
 	state?: TimelineState
 }
 
-export const TimelineHeader: FC<Props> = ({
+export const Header: FC<HeaderProps> = ({
 	onClick,
 	state,
-	headerExtra,
+	headerRightContent,
 	title
-}: Props) => {
+}: HeaderProps) => {
 	const classes = useStyles({ state })
 
 	return (
 		<div className={classes.header} onClick={onClick}>
 			<div className={classes.title}>{title}</div>
-			{headerExtra && <div>{headerExtra}</div>}
+			{headerRightContent && headerRightContent}
 		</div>
 	)
 }

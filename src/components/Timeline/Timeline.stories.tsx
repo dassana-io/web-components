@@ -24,26 +24,24 @@ const Content: FC<Props> = ({ children }: Props) => (
 	<div style={{ padding: `${18}px ${12}px` }}>{children}</div>
 )
 
-const headerIcon = <FontAwesomeIcon icon={faCheckCircle} />
-
 const mockTimelineConfig: TimelineConfig[] = [
 	{
 		content: <Content>Content1</Content>,
-		headerExtra: headerIcon,
+		headerRightContent: <FontAwesomeIcon icon={faCheckCircle} />,
 		key: 1,
 		title: 'Title 1'
 	},
 	{
 		content: <Content>Content2</Content>,
-		headerExtra: '2 hours ago',
+		headerRightContent: '2 hours ago',
 		key: 2,
 		title: 'Title 2'
 	},
 	{
+		alwaysExpanded: true,
 		content: <Content>Content3</Content>,
 		key: 3,
-		title: 'Title 3',
-		uncollapsible: true
+		title: 'Title 3'
 	}
 ]
 

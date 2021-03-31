@@ -18,7 +18,7 @@ const separatorPalette = {
 
 export const getHeaderBorderRadius = ({ state }: { state: TimelineState }) => {
 	const borderBottomRadius =
-		state === TimelineState.default ? borderRadius : 0
+		state === TimelineState.collapsed ? borderRadius : 0
 
 	return `${borderRadius}px ${borderRadius}px ${borderBottomRadius}px ${borderBottomRadius}px`
 }

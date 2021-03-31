@@ -1,12 +1,16 @@
 import cn from 'classnames'
+import { Content } from './Content'
 import { createUseStyles } from 'react-jss'
-import { TimelineContent } from './TimelineContent'
-import { TimelineHeader } from './TimelineHeader'
-import { TimelineSeparator } from './TimelineSeparator'
+import { Header } from './Header'
+import { Separator } from './Separator'
 import {
 	generateThemedTimelineItemStyles,
 	generateThemedWrapperStyles
 } from './utils'
+import {
+	getInitialExpandedKeys,
+	getUpdatedExpandedKeys
+} from '../Accordion/utils'
 import React, { FC, Key, useState } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 import { TimelineProps, TimelineState } from './types'
@@ -38,34 +42,21 @@ const useStyles = createUseStyles({
 
 export const Timeline: FC<TimelineProps> = ({
 	classes = [],
-	defaultActiveKey,
-	exclusive = false,
+	defaultExpandedKeys = [],
+	expandMultiple = true,
 	expandAllOnMount = false,
 	timelineConfig
 }: TimelineProps) => {
-	const getInitialActiveKeys = () => {
-		const defaultActiveKeys: Key[] = [timelineConfig[0].key]
+	const { expanded, collapsed } = TimelineState
 
-		if (defaultActiveKey) return [defaultActiveKey]
-		else if (expandAllOnMount) return timelineConfig.map(({ key }) => key)
-
-		return defaultActiveKeys
-	}
-
-	const [activeKeys, setActiveKeys] = useState<Key[]>(getInitialActiveKeys())
+	const [expandedKeys, setExpandedKeys] = useState<Key[]>(
+		getInitialExpandedKeys(
+			timelineConfig,
+			defaultExpandedKeys,
+			expandAllOnMount
+		)
+	)
 	const compClasses = useStyles()
-
-	const toggleTimelineContent = (itemKey: Key) => {
-		let newActiveKeys = [...activeKeys, itemKey]
-
-		// Close timeline content if it is open
-		if (activeKeys.includes(itemKey))
-			newActiveKeys = activeKeys.filter(key => itemKey !== key)
-		// If timeline is exclusive, only one can be open at a time
-		else if (exclusive) newActiveKeys = [itemKey]
-
-		setActiveKeys(newActiveKeys)
-	}
 
 	return (
 		<div className={cn(classes)}>
@@ -75,33 +66,39 @@ export const Timeline: FC<TimelineProps> = ({
 						classes: itemClasses = [],
 						content,
 						key,
-						headerExtra,
-						title,
-						uncollapsible = false
+						alwaysExpanded = false,
+						...rest
 					},
 					i
 				) => {
-					const isActive = activeKeys.includes(key)
+					const isExpanded = expandedKeys.includes(key)
 
-					let state: TimelineState = TimelineState.default
+					let state: TimelineState = collapsed
 
-					if (uncollapsible) {
-						state = TimelineState.uncollapsible
-					} else if (isActive) {
-						state = TimelineState.active
+					if (alwaysExpanded) {
+						state = TimelineState.alwaysExpanded
+					} else if (isExpanded) {
+						state = expanded
 					}
 
 					let conditionalProps = {}
 
-					if (state !== TimelineState.uncollapsible) {
+					if (state !== TimelineState.alwaysExpanded) {
 						conditionalProps = {
-							onClick: () => toggleTimelineContent(key)
+							onClick: () =>
+								setExpandedKeys(
+									getUpdatedExpandedKeys(
+										key,
+										expandedKeys,
+										expandMultiple
+									)
+								)
 						}
 					}
 
 					return (
 						<div className={compClasses.wrapper} key={key}>
-							<TimelineSeparator
+							<Separator
 								isLastItem={i === timelineConfig.length - 1}
 								state={state}
 								{...conditionalProps}
@@ -111,16 +108,14 @@ export const Timeline: FC<TimelineProps> = ({
 									compClasses.timelineItem,
 									itemClasses
 								)}
+								key={key}
 							>
-								<TimelineHeader
-									headerExtra={headerExtra}
+								<Header
 									state={state}
-									title={title}
 									{...conditionalProps}
+									{...rest}
 								/>
-								<TimelineContent state={state}>
-									{content}
-								</TimelineContent>
+								<Content state={state}>{content}</Content>
 							</div>
 						</div>
 					)

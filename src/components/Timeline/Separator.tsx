@@ -1,8 +1,7 @@
 import { createUseStyles } from 'react-jss'
-import { faChevronDown } from '@fortawesome/pro-regular-svg-icons'
-import { faPlusCircle } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TimelineState } from './types'
+import { faChevronDown, faPlusCircle } from '@fortawesome/pro-regular-svg-icons'
 import { faCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import {
 	generateThemedChevronStyles,
@@ -31,7 +30,7 @@ const useStyles = createUseStyles({
 	icon: {
 		...font.body,
 		cursor: ({ state }) =>
-			state === TimelineState.uncollapsible ? 'auto' : 'pointer',
+			state === TimelineState.alwaysExpanded ? 'auto' : 'pointer',
 		margin: `${14}px 0px`
 	},
 	separator: {
@@ -48,22 +47,22 @@ const useStyles = createUseStyles({
 })
 
 const iconMap = {
-	[TimelineState.default]: faPlusCircle,
-	[TimelineState.active]: faMinusCircle,
-	[TimelineState.uncollapsible]: faCircle
+	[TimelineState.alwaysExpanded]: faCircle,
+	[TimelineState.collapsed]: faPlusCircle,
+	[TimelineState.expanded]: faMinusCircle
 }
 
-interface Props {
+interface SeparatorProps {
 	isLastItem?: boolean
 	onClick?: () => void
 	state?: TimelineState
 }
 
-export const TimelineSeparator: FC<Props> = ({
+export const Separator: FC<SeparatorProps> = ({
 	isLastItem = false,
 	onClick,
-	state = TimelineState.default
-}: Props) => {
+	state = TimelineState.collapsed
+}: SeparatorProps) => {
 	const classes = useStyles({ state })
 
 	return (
