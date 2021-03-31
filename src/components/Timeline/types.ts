@@ -10,8 +10,8 @@ export interface TimelineConfig {
 	classes?: string[]
 	content: ReactNode
 	key: Key
-	timestamp?: number
-	title: string
+	title: ReactNode
+	headerExtra?: ReactNode
 	uncollapsible?: boolean
 }
 

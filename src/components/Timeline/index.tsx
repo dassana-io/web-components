@@ -75,7 +75,7 @@ export const Timeline: FC<TimelineProps> = ({
 						classes: itemClasses = [],
 						content,
 						key,
-						timestamp,
+						headerExtra,
 						title,
 						uncollapsible = false
 					},
@@ -113,8 +113,8 @@ export const Timeline: FC<TimelineProps> = ({
 								)}
 							>
 								<TimelineHeader
+									headerExtra={headerExtra}
 									state={state}
-									timestamp={timestamp}
 									title={title}
 									{...conditionalProps}
 								/>

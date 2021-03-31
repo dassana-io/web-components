@@ -73,15 +73,17 @@ export const TimelineSeparator: FC<Props> = ({
 				icon={iconMap[state]}
 				onClick={onClick}
 			/>
-			<span className={classes.connector} />
 			{!isLastItem && (
-				<span className={classes.chevronWrapper}>
-					<FontAwesomeIcon
-						className={classes.chevron}
-						icon={faChevronDown}
-						size='xs'
-					/>
-				</span>
+				<>
+					<span className={classes.connector} />
+					<span className={classes.chevronWrapper}>
+						<FontAwesomeIcon
+							className={classes.chevron}
+							icon={faChevronDown}
+							size='xs'
+						/>
+					</span>
+				</>
 			)}
 		</div>
 	)

@@ -1,6 +1,5 @@
 import { createUseStyles } from 'react-jss'
 import { getHeaderBorderRadius } from './utils'
-import moment from 'moment'
 import React, { FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 import { TimelineConfig, TimelineState } from './types'
@@ -39,7 +38,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface Props extends Pick<TimelineConfig, 'title' | 'timestamp'> {
+interface Props extends Pick<TimelineConfig, 'title' | 'headerExtra'> {
 	onClick?: () => void
 	state?: TimelineState
 }
@@ -47,7 +46,7 @@ interface Props extends Pick<TimelineConfig, 'title' | 'timestamp'> {
 export const TimelineHeader: FC<Props> = ({
 	onClick,
 	state,
-	timestamp,
+	headerExtra,
 	title
 }: Props) => {
 	const classes = useStyles({ state })
@@ -55,7 +54,7 @@ export const TimelineHeader: FC<Props> = ({
 	return (
 		<div className={classes.header} onClick={onClick}>
 			<div className={classes.title}>{title}</div>
-			{timestamp && <div>{moment(timestamp).fromNow()}</div>}
+			{headerExtra && <div>{headerExtra}</div>}
 		</div>
 	)
 }
