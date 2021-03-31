@@ -17,10 +17,12 @@ jobs:
                   rm -rf tsconfig.rollup.json
                   npm install
               env:
+                  FONT_AWESOME_AUTH_TOKEN: ${{ secrets.FONT_AWESOME_AUTH_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
             - uses: chromaui/action@v1
               # options required to the GitHub chromatic action
               env:
+                  FONT_AWESOME_AUTH_TOKEN: ${{ secrets.FONT_AWESOME_AUTH_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               with:
                   # our project token, to see how to obtain it
