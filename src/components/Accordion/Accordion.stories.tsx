@@ -1,28 +1,11 @@
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import { styleguide } from 'components/assets/styles'
 import { Accordion, AccordionProps, Panel } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
+import React, { FC, ReactNode } from 'react'
 
-const mockPanels: Panel[] = [
-	{
-		content: 'Lorem ipsum dolor sit amet.',
-		key: 1,
-		title: '1. Identify Vendor'
-	},
-	{
-		content: 'Consectetur adipiscing elit.',
-		headerRightContent: <FontAwesomeIcon icon={faCheckCircle} />,
-		key: 2,
-		title: '2. Map Policy'
-	},
-	{
-		content:
-			'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		key: 3,
-		title: '3. Extract Resource Information'
-	}
-]
+const { font, spacing } = styleguide
 
 export default {
 	argTypes: {
@@ -36,14 +19,54 @@ export default {
 	title: 'Accordion'
 } as Meta
 
+interface Props {
+	children: ReactNode
+}
+
+const Content: FC<Props> = ({ children }: Props) => (
+	<div
+		style={{
+			...font.body,
+			padding: spacing.m,
+			paddingTop: 0
+		}}
+	>
+		{children}
+	</div>
+)
+
+const mockPanels: Panel[] = [
+	{
+		content: <Content>Lorem ipsum dolor sit amet.</Content>,
+		key: 1,
+		title: '1. Identify Vendor'
+	},
+	{
+		content: <Content>Consectetur adipiscing elit.</Content>,
+		headerRightContent: <FontAwesomeIcon icon={faCheckCircle} />,
+		key: 2,
+		title: '2. Map Policy'
+	},
+	{
+		content: (
+			<Content>
+				Sed do eiusmod tempor incididunt ut labore et dolore magna
+				aliqua.
+			</Content>
+		),
+		key: 3,
+		title: '3. Extract Resource Information'
+	}
+]
+
 const Template: Story<AccordionProps> = args => (
 	<Accordion {...args} panels={mockPanels} />
 )
 
 export const Default = Template.bind({})
 
-export const Exclusive = Template.bind({})
-Exclusive.args = {
+export const ExpandOneAtATime = Template.bind({})
+ExpandOneAtATime.args = {
 	defaultExpandedKeys: [1],
 	expandMultiple: false
 }

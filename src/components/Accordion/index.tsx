@@ -24,6 +24,7 @@ const useStyles = createUseStyles({
 })
 
 export const Accordion: FC<AccordionProps> = ({
+	classes = [],
 	defaultExpandedKeys = [],
 	expandMultiple = true,
 	expandAllOnMount = false,
@@ -32,17 +33,17 @@ export const Accordion: FC<AccordionProps> = ({
 	const [expandedKeys, setExpandedKeys] = useState<Key[]>(
 		getInitialExpandedKeys(panels, defaultExpandedKeys, expandAllOnMount)
 	)
-	const classes = useStyles()
+	const compClasses = useStyles()
 
 	return (
-		<div>
+		<div className={cn(classes)}>
 			{panels.map(
 				({ classes: panelClasses = [], content, key, ...rest }) => {
 					const isExpanded = expandedKeys.includes(key)
 
 					return (
 						<div
-							className={cn(classes.panel, panelClasses)}
+							className={cn(compClasses.panel, panelClasses)}
 							key={key}
 						>
 							<Header

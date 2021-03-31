@@ -8,7 +8,8 @@ export interface Panel {
 	title: ReactNode
 }
 
-interface SharedAccordionProps {
+export interface SharedAccordionProps {
+	classes?: string[]
 	defaultExpandedKeys?: Key[]
 	panels: Panel[]
 }

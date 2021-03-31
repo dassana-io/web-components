@@ -14,11 +14,16 @@ const useStyles = createUseStyles({
 		alignItems: 'center',
 		cursor: 'pointer',
 		fontWeight: fontWeight.light,
-		padding: `${spacing['s+']}px ${spacing.m}px`
+		padding: {
+			left: spacing['s+'],
+			right: spacing['s+']
+		}
 	},
 	title: { color: themes[light].primary, marginLeft: spacing['s+'] },
 	titleWrapper: {
-		display: 'flex'
+		display: 'flex',
+		padding: spacing.s,
+		paddingLeft: 0
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
