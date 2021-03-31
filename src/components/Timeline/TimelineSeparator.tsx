@@ -12,7 +12,7 @@ import React, { FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType
-const { flexDown, font, spacing } = styleguide
+const { flexDown, font } = styleguide
 
 const useStyles = createUseStyles({
 	chevron: {
@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
 		...font.body,
 		cursor: ({ state }) =>
 			state === TimelineState.uncollapsible ? 'auto' : 'pointer',
-		margin: `${spacing.xs + spacing.s}px 0px`
+		margin: `${14}px 0px`
 	},
 	separator: {
 		...flexDown,
