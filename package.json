@@ -14,6 +14,7 @@
 		"@dassana-io/web-utils": "^0.8.0",
 		"@fortawesome/fontawesome-svg-core": "^1.2.32",
 		"@fortawesome/free-solid-svg-icons": "^5.15.1",
+		"@fortawesome/pro-light-svg-icons": "^5.15.3",
 		"@fortawesome/react-fontawesome": "^0.1.14",
 		"antd": "~4.12.3",
 		"bytes": "^3.1.0",
