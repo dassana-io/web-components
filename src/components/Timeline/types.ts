@@ -7,6 +7,7 @@ export enum TimelineState {
 }
 
 export interface TimelineConfig {
+	classes?: string[]
 	content: ReactNode
 	key: Key
 	timestamp?: number
@@ -15,6 +16,7 @@ export interface TimelineConfig {
 }
 
 interface SharedTimelineProps {
+	classes?: string[]
 	defaultActiveKey?: Key
 	timelineConfig: TimelineConfig[]
 }

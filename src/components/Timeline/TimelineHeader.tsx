@@ -1,19 +1,29 @@
 import { createUseStyles } from 'react-jss'
+import { getHeaderBorderRadius } from './utils'
 import moment from 'moment'
 import React, { FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 import { TimelineConfig, TimelineState } from './types'
 
 const { dark, light } = ThemeType
-const { flexSpaceBetween, font, spacing } = styleguide
+const {
+	colors: { blacks, grays },
+	flexSpaceBetween,
+	font,
+	fontWeight,
+	spacing
+} = styleguide
 
 const useStyles = createUseStyles({
 	header: {
-		...font.bodyLarge,
+		...font.body,
 		...flexSpaceBetween,
+		background: grays['lighten-40'],
+		borderRadius: getHeaderBorderRadius,
 		cursor: ({ state }) =>
 			state === TimelineState.uncollapsible ? 'auto' : 'pointer',
-		padding: spacing.m
+		fontWeight: fontWeight.light,
+		padding: `${spacing.s}px ${spacing['s+']}px`
 	},
 	title: {
 		color: themes[light].primary
@@ -21,6 +31,9 @@ const useStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
+			'& $header': {
+				background: blacks['darken-10']
+			},
 			'& $title': { color: themes[dark].state.hover }
 		}
 	}

@@ -1,15 +1,61 @@
-import { themedStyles, ThemeType } from '../assets/styles'
+import { TimelineState } from './types'
+import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
-export const generateTimelinePanelStyles = (themeType: ThemeType) => {
-	const { base } = themedStyles[themeType]
+const { dark, light } = ThemeType
+const {
+	borderRadius,
+	colors: { blacks }
+} = styleguide
 
-	const borderStyles = `1px solid ${base.borderColor}`
+const separatorPalette = {
+	[dark]: {
+		base: blacks['lighten-20']
+	},
+	[light]: {
+		base: blacks['lighten-80']
+	}
+}
+
+export const getHeaderBorderRadius = ({ state }: { state: TimelineState }) => {
+	const borderBottomRadius =
+		state === TimelineState.default ? borderRadius : 0
+
+	return `${borderRadius}px ${borderRadius}px ${borderBottomRadius}px ${borderBottomRadius}px`
+}
+
+export const generateThemedChevronStyles = (themeType: ThemeType) => {
+	const { base } = separatorPalette[themeType]
 
 	return {
-		'&:first-of-type': {
-			borderTop: borderStyles
-		},
-		borderBottom: borderStyles,
-		color: base.color
+		color: base
+	}
+}
+
+export const generateThemedConnectorStyles = (themeType: ThemeType) => {
+	const { base } = separatorPalette[themeType]
+
+	return {
+		background: base
+	}
+}
+
+export const generateThemedWrapperStyles = (themeType: ThemeType) => {
+	const {
+		base: { color }
+	} = themedStyles[themeType]
+
+	return {
+		color: color
+	}
+}
+
+export const generateThemedTimelineItemStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor, color }
+	} = themedStyles[themeType]
+
+	return {
+		border: `1px solid ${borderColor}`,
+		color: color
 	}
 }

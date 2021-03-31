@@ -1,12 +1,8 @@
-import React from 'react'
+import { createUseStyles } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
+import React, { FC, ReactNode } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
 import { Timeline, TimelineConfig, TimelineProps } from './index'
-
-const mockTimelineConfig: TimelineConfig[] = [
-	{ content: 'Content1', key: 1, title: 'Title 1' },
-	{ content: 'Content2', key: 2, timestamp: 1617130453798, title: 'Title 2' },
-	{ content: 'Content3', key: 3, title: 'Title 3', uncollapsible: true }
-]
 
 export default {
 	argTypes: {
@@ -20,18 +16,73 @@ export default {
 	title: 'Timeline'
 } as Meta
 
-const Template: Story<TimelineProps> = args => (
-	<Timeline {...args} timelineConfig={mockTimelineConfig} />
+const { dark } = ThemeType
+
+const {
+	colors: { blacks }
+} = styleguide
+
+interface Props {
+	children: ReactNode
+}
+
+const Content: FC<Props> = ({ children }: Props) => (
+	<div style={{ padding: `${18}px ${12}px` }}>{children}</div>
 )
 
-export const Default = Template.bind({})
+const mockTimelineConfig: TimelineConfig[] = [
+	{ content: <Content>Content1</Content>, key: 1, title: 'Title 1' },
+	{ content: <Content>Content2</Content>, key: 2, title: 'Title 2' },
+	{
+		content: <Content>Content3</Content>,
+		key: 3,
+		title: 'Title 3',
+		uncollapsible: true
+	}
+]
 
-export const Exclusive = Template.bind({})
-Exclusive.args = {
-	exclusive: true
+const useStyles = createUseStyles({
+	tim: {
+		border: `1px solid ${blacks['lighten-30']}`
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $tim': {
+				border: `1px solid ${blacks['lighten-50']}`
+			}
+		}
+	}
+})
+
+const Template: Story<TimelineProps> = args => {
+	const classes = useStyles()
+
+	return (
+		<Timeline
+			{...args}
+			timelineConfig={[
+				...args.timelineConfig.slice(0, 2),
+				{ ...args.timelineConfig[2], classes: [classes.tim] }
+			]}
+		/>
+	)
+}
+
+export const Default = Template.bind({})
+Default.args = {
+	timelineConfig: [
+		{
+			...mockTimelineConfig[0],
+			classes: ['timeline-test'],
+			timestamp: 1617130453798
+		},
+		...mockTimelineConfig.slice(1)
+	]
 }
 
 export const ExpandAll = Template.bind({})
 ExpandAll.args = {
-	expandAllOnMount: true
+	expandAllOnMount: true,
+	timelineConfig: mockTimelineConfig
 }

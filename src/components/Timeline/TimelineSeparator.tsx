@@ -1,28 +1,38 @@
 import { createUseStyles } from 'react-jss'
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons'
 import { faPlusCircle } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TimelineState } from './types'
 import { faCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
+import {
+	generateThemedChevronStyles,
+	generateThemedConnectorStyles
+} from './utils'
 import React, { FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
-const { dark } = ThemeType
-const {
-	colors: { blacks },
-	flexDown,
-	font
-} = styleguide
+const { dark, light } = ThemeType
+const { flexDown, font, spacing } = styleguide
 
 const useStyles = createUseStyles({
+	chevron: {
+		...generateThemedChevronStyles(light),
+		fontSize: 10,
+		left: -4,
+		position: 'absolute',
+		top: -7
+	},
+	chevronWrapper: { position: 'relative' },
 	connector: {
-		backgroundColor: blacks['lighten-80'],
+		...generateThemedConnectorStyles(light),
 		flexGrow: 1,
 		width: 1
 	},
 	icon: {
 		...font.body,
 		cursor: ({ state }) =>
-			state === TimelineState.uncollapsible ? 'auto' : 'pointer'
+			state === TimelineState.uncollapsible ? 'auto' : 'pointer',
+		margin: `${spacing.xs + spacing.s}px 0px`
 	},
 	separator: {
 		...flexDown,
@@ -31,15 +41,11 @@ const useStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $connector': { backgroundColor: blacks['lighten-20'] }
+			'& $chevron': generateThemedChevronStyles(dark),
+			'& $connector': generateThemedConnectorStyles(dark)
 		}
 	}
 })
-
-interface Props {
-	onClick?: () => void
-	state?: TimelineState
-}
 
 const iconMap = {
 	[TimelineState.default]: faPlusCircle,
@@ -47,7 +53,14 @@ const iconMap = {
 	[TimelineState.uncollapsible]: faCircle
 }
 
+interface Props {
+	isLastItem?: boolean
+	onClick?: () => void
+	state?: TimelineState
+}
+
 export const TimelineSeparator: FC<Props> = ({
+	isLastItem = false,
 	onClick,
 	state = TimelineState.default
 }: Props) => {
@@ -61,6 +74,15 @@ export const TimelineSeparator: FC<Props> = ({
 				onClick={onClick}
 			/>
 			<span className={classes.connector} />
+			{!isLastItem && (
+				<span className={classes.chevronWrapper}>
+					<FontAwesomeIcon
+						className={classes.chevron}
+						icon={faChevronDown}
+						size='xs'
+					/>
+				</span>
+			)}
 		</div>
 	)
 }

@@ -1,26 +1,43 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { generateTimelinePanelStyles } from './utils'
-import { ThemeType } from '../assets/styles'
 import { TimelineContent } from './TimelineContent'
 import { TimelineHeader } from './TimelineHeader'
 import { TimelineSeparator } from './TimelineSeparator'
+import {
+	generateThemedTimelineItemStyles,
+	generateThemedWrapperStyles
+} from './utils'
 import React, { FC, Key, useState } from 'react'
+import { styleguide, ThemeType } from '../assets/styles'
 import { TimelineProps, TimelineState } from './types'
 
+const { borderRadius, spacing } = styleguide
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	timelineItem: {
-		flexGrow: 1
+		...generateThemedTimelineItemStyles(light),
+		borderRadius,
+		flexGrow: 1,
+		marginLeft: spacing['m+']
 	},
-	wrapper: { ...generateTimelinePanelStyles(light), display: 'flex' },
+	wrapper: {
+		...generateThemedWrapperStyles(light),
+		'&:not(:last-child) $timelineItem': { marginBottom: spacing['m+'] },
+		display: 'flex',
+		position: 'relative'
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
-		[`.${dark}`]: { '& $wrapper': generateTimelinePanelStyles(dark) }
+		[`.${dark}`]: {
+			'& $timelineItem': generateThemedTimelineItemStyles(dark),
+			'& $wrapper': generateThemedWrapperStyles(dark)
+		}
 	}
 })
 
 export const Timeline: FC<TimelineProps> = ({
+	classes = [],
 	defaultActiveKey,
 	exclusive = false,
 	expandAllOnMount = false,
@@ -36,7 +53,7 @@ export const Timeline: FC<TimelineProps> = ({
 	}
 
 	const [activeKeys, setActiveKeys] = useState<Key[]>(getInitialActiveKeys())
-	const classes = useStyles()
+	const compClasses = useStyles()
 
 	const toggleTimelineContent = (itemKey: Key) => {
 		let newActiveKeys = [...activeKeys, itemKey]
@@ -51,9 +68,19 @@ export const Timeline: FC<TimelineProps> = ({
 	}
 
 	return (
-		<div>
+		<div className={cn(classes)}>
 			{timelineConfig.map(
-				({ content, key, timestamp, title, uncollapsible = false }) => {
+				(
+					{
+						classes: itemClasses = [],
+						content,
+						key,
+						timestamp,
+						title,
+						uncollapsible = false
+					},
+					i
+				) => {
 					const isActive = activeKeys.includes(key)
 
 					let state: TimelineState = TimelineState.default
@@ -73,12 +100,18 @@ export const Timeline: FC<TimelineProps> = ({
 					}
 
 					return (
-						<div className={classes.wrapper} key={key}>
+						<div className={compClasses.wrapper} key={key}>
 							<TimelineSeparator
+								isLastItem={i === timelineConfig.length - 1}
 								state={state}
 								{...conditionalProps}
 							/>
-							<div className={classes.timelineItem}>
+							<div
+								className={cn(
+									compClasses.timelineItem,
+									itemClasses
+								)}
+							>
 								<TimelineHeader
 									state={state}
 									timestamp={timestamp}
