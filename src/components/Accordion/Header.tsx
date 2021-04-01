@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
 	title: { color: themes[light].primary, marginLeft: spacing['s+'] },
 	titleWrapper: {
 		display: 'flex',
-		padding: spacing.s,
+		padding: spacing['s+'],
 		paddingLeft: 0
 	},
 	// eslint-disable-next-line sort-keys
