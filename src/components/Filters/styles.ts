@@ -77,9 +77,12 @@ export const useFilterUnitStyles = createUseStyles({
 		...generateThemedFilterContainerStyles(light),
 		border: '1px solid',
 		borderRadius,
-		marginBottom: spacing.s,
-		marginRight: spacing.s,
-		padding: `${spacing.xs}px ${spacing['s+']}px ${spacing.xs}px ${spacing.xs}px`
+		margin: {
+			bottom: spacing.s,
+			right: spacing.s
+		},
+		padding: spacing.xs,
+		paddingRight: spacing['s+']
 	},
 	multiSelectContainer: {
 		paddingLeft: spacing['s+'],

@@ -93,7 +93,7 @@ export const BaseFilters: FC<FiltersModeProps> = ({
 		const truncateLength = 15
 
 		const formattedFilters = filtersWithSelectedVals.map(
-			({ selectedKey, selectedValues = [] }) => {
+			({ selectedKey, selectedOperator = '=', selectedValues = [] }) => {
 				let values: string[] | ReactNode[]
 
 				const iconConfig = config?.iconConfig
@@ -127,7 +127,8 @@ export const BaseFilters: FC<FiltersModeProps> = ({
 
 				return (
 					<>
-						<span className={classes.bracket}>[</span> {keyStr} ={' '}
+						<span className={classes.bracket}>[</span> {keyStr}{' '}
+						{selectedOperator}{' '}
 						{values.map((val: string | ReactNode, i: number) => (
 							<Fragment key={i}>
 								{val}

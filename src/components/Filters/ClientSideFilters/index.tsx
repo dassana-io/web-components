@@ -21,6 +21,10 @@ export const ClientSideFilters: FC<ClientSide> = ({
 	// related data will live in this component instead of
 	// a custom useFilters hook like in ServerSideFilters.
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
+
+	// filtersList is initialized with an object with just the ID so
+	// that when users open the filter popover there is a blank filter
+	// and they don't have to manually press the Add Filter button
 	const [filtersList, setFiltersList] = useState<FiltersList>([
 		{ id: uuidV4() }
 	])

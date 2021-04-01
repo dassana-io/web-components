@@ -43,13 +43,13 @@ export const formatSelectedFilters: (
 ) => Filters = filtersList => {
 	const filtersWithSelectedVals = filterSelectedFilters(filtersList)
 
-	return filtersWithSelectedVals.map(filterItem => ({
-		key: filterItem.selectedKey,
-		operator: filterItem.selectedOperator || '=',
-		value: filterItem.selectedValues?.map(
-			selectedValue => selectedValue.value
-		)
-	}))
+	return filtersWithSelectedVals.map(
+		({ selectedKey, selectedOperator = '=', selectedValues = [] }) => ({
+			key: selectedKey,
+			operator: selectedOperator || '=',
+			value: selectedValues?.map(selectedValue => selectedValue.value)
+		})
+	)
 }
 
 // --------------------------------------

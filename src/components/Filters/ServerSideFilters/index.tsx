@@ -15,30 +15,14 @@ export const ServerSideFilters: FC<ServerSide> = ({
 }: ServerSide) => {
 	// useFilters is where all the related data will be held.
 	// API calls will also be handled in useFilters.
-	const {
-		allFilters,
-		dynamicOptions,
-		dynamicSearchVal,
-		filtersList,
-		loading,
-		onSearchWrapper,
-		pending,
-		setFiltersList
-	} = useFilters(endpoint, api, emitter)
+	const filterMethods = useFilters(endpoint, api, emitter)
 
 	return (
 		<FiltersCtxProvider
 			value={{
-				allFilters,
 				config,
-				dynamicOptions,
-				dynamicSearchVal,
-				filtersList,
-				loading,
-				onSearchWrapper,
 				onSelectedFiltersChange,
-				pending,
-				setFiltersList
+				...filterMethods
 			}}
 		>
 			<BaseFilters mode={FiltersMode.backend} />

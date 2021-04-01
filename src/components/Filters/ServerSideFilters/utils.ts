@@ -24,6 +24,9 @@ export const useFilters = (
 
 	const [dynamicSearchVal, setDynamicSearchVal] = useState('')
 
+	// filtersList is initialized with an object with just the ID so
+	// that when users open the filter popover there is a blank filter
+	// and they don't have to manually press the Add Filter button
 	const [filtersList, setFiltersList] = useState<FiltersList>([
 		{ id: uuidV4() }
 	])

@@ -2,17 +2,17 @@ import { FilterOption } from 'api'
 import { formatFilterValsToSelectOpts } from '../../utils'
 import uniqBy from 'lodash/uniqBy'
 import { useFiltersContext } from '../../FiltersContext'
-import { ValuesMultiselectProps } from './types'
+import { ValuesMultiSelectProps } from './types'
 import { MultiSelect, MultiSelectProps, SelectOption } from '../../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
-export const ServerSideValuesMS: FC<ValuesMultiselectProps> = ({
+export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	id,
 	index,
 	onFilterChange,
 	selectedFilterKey,
 	optionsConfig
-}: ValuesMultiselectProps) => {
+}: ValuesMultiSelectProps) => {
 	const {
 		allFilters,
 		dynamicOptions,
