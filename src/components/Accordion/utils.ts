@@ -1,5 +1,7 @@
 import { Key } from 'react'
-import { themedStyles, ThemeType } from '../assets/styles'
+import { styleguide, themedStyles, ThemeType } from '../assets/styles'
+
+const { flexSpaceBetween, font, fontWeight, spacing } = styleguide
 
 export const generateAccordionPanelStyles = (themeType: ThemeType) => {
 	const { base } = themedStyles[themeType]
@@ -14,6 +16,18 @@ export const generateAccordionPanelStyles = (themeType: ThemeType) => {
 		color: base.color
 	}
 }
+
+export const generateHeaderStyles = () => ({
+	...font.body,
+	...flexSpaceBetween,
+	alignItems: 'center',
+	cursor: 'pointer',
+	fontWeight: fontWeight.light,
+	padding: {
+		left: spacing['s+'],
+		right: spacing['s+']
+	}
+})
 
 export const getInitialExpandedKeys = <T extends { key: Key }>(
 	items: T[],

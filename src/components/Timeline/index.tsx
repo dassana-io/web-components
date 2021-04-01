@@ -15,6 +15,8 @@ import React, { FC, Key, useState } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 import { TimelineProps, TimelineState } from './types'
 
+const { alwaysExpanded, expanded, collapsed } = TimelineState
+
 const { borderRadius, spacing } = styleguide
 const { dark, light } = ThemeType
 
@@ -47,8 +49,6 @@ export const Timeline: FC<TimelineProps> = ({
 	expandAllOnMount = false,
 	timelineConfig
 }: TimelineProps) => {
-	const { expanded, collapsed } = TimelineState
-
 	const [expandedKeys, setExpandedKeys] = useState<Key[]>(
 		getInitialExpandedKeys(
 			timelineConfig,
@@ -66,7 +66,7 @@ export const Timeline: FC<TimelineProps> = ({
 						classes: itemClasses = [],
 						content,
 						key,
-						alwaysExpanded = false,
+						alwaysExpanded: itemAlwaysExpanded = false,
 						...rest
 					},
 					i
@@ -75,15 +75,15 @@ export const Timeline: FC<TimelineProps> = ({
 
 					let state: TimelineState = collapsed
 
-					if (alwaysExpanded) {
-						state = TimelineState.alwaysExpanded
+					if (itemAlwaysExpanded) {
+						state = alwaysExpanded
 					} else if (isExpanded) {
 						state = expanded
 					}
 
 					let conditionalProps = {}
 
-					if (state !== TimelineState.alwaysExpanded) {
+					if (state !== alwaysExpanded) {
 						conditionalProps = {
 							onClick: () =>
 								setExpandedKeys(

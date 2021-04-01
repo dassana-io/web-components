@@ -10,6 +10,8 @@ import {
 import React, { FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
+const { alwaysExpanded, collapsed, expanded } = TimelineState
+
 const { dark, light } = ThemeType
 const { flexDown, font } = styleguide
 
@@ -29,9 +31,11 @@ const useStyles = createUseStyles({
 	},
 	icon: {
 		...font.body,
-		cursor: ({ state }) =>
-			state === TimelineState.alwaysExpanded ? 'auto' : 'pointer',
-		margin: `${14}px 0px`
+		cursor: ({ state }) => (state === alwaysExpanded ? 'auto' : 'pointer'),
+		margin: {
+			bottom: 14,
+			top: 14
+		}
 	},
 	separator: {
 		...flexDown,
@@ -47,9 +51,9 @@ const useStyles = createUseStyles({
 })
 
 const iconMap = {
-	[TimelineState.alwaysExpanded]: faCircle,
-	[TimelineState.collapsed]: faPlusCircle,
-	[TimelineState.expanded]: faMinusCircle
+	[alwaysExpanded]: faCircle,
+	[collapsed]: faPlusCircle,
+	[expanded]: faMinusCircle
 }
 
 interface SeparatorProps {
@@ -61,7 +65,7 @@ interface SeparatorProps {
 export const Separator: FC<SeparatorProps> = ({
 	isLastItem = false,
 	onClick,
-	state = TimelineState.collapsed
+	state = collapsed
 }: SeparatorProps) => {
 	const classes = useStyles({ state })
 

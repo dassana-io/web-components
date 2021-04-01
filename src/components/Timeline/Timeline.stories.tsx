@@ -21,7 +21,7 @@ interface Props {
 }
 
 const Content: FC<Props> = ({ children }: Props) => (
-	<div style={{ padding: `${18}px ${12}px` }}>{children}</div>
+	<div style={{ padding: '18px 12px' }}>{children}</div>
 )
 
 const mockTimelineConfig: TimelineConfig[] = [

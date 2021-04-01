@@ -1,24 +1,15 @@
 import { CollapseIndicator } from './CollapseIndicator'
 import { createUseStyles } from 'react-jss'
+import { generateHeaderStyles } from './utils'
 import { Panel } from './types'
 import React, { FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
-const { flexSpaceBetween, font, fontWeight, spacing } = styleguide
 const { dark, light } = ThemeType
+const { spacing } = styleguide
 
 const useStyles = createUseStyles({
-	header: {
-		...font.body,
-		...flexSpaceBetween,
-		alignItems: 'center',
-		cursor: 'pointer',
-		fontWeight: fontWeight.light,
-		padding: {
-			left: spacing['s+'],
-			right: spacing['s+']
-		}
-	},
+	header: generateHeaderStyles(),
 	title: { color: themes[light].primary, marginLeft: spacing['s+'] },
 	titleWrapper: {
 		display: 'flex',
