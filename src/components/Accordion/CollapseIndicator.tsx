@@ -1,4 +1,4 @@
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from 'framer-motion'
 import React, { FC } from 'react'
@@ -12,11 +12,11 @@ export const CollapseIndicator: FC<CollapseIndicatorProps> = ({
 }: CollapseIndicatorProps) => (
 	<motion.div
 		animate={{
-			rotate: isCollapsed ? 0 : 180
+			rotate: isCollapsed ? -90 : 0
 		}}
 		transition={{ duration: 0.5 }}
 		whileHover={{ scale: 1.1 }}
 	>
-		<FontAwesomeIcon icon={faChevronDown} />
+		<FontAwesomeIcon icon={faChevronDown} size='sm' />
 	</motion.div>
 )

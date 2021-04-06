@@ -34,6 +34,8 @@ export default {
 		'@dassana-io/web-utils',
 		'@fortawesome/fontawesome-svg-core',
 		'@fortawesome/free-solid-svg-icons',
+		'@fortawesome/pro-light-svg-icons',
+		'@fortawesome/pro-regular-svg-icons',
 		'@fortawesome/react-fontawesome',
 		'antd',
 		'bytes',
