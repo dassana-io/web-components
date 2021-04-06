@@ -43,8 +43,6 @@ export enum FiltersMode {
 	frontend = 'frontend'
 }
 
-export type FiltersModeProps = Pick<FiltersProps, 'mode'>
-
 export interface ClientSideFiltersProps extends SharedFiltersProps {
 	filterOptions: ClientSideFilterOption[]
 	mode: FiltersMode.frontend

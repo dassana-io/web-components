@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from 'react'
 import {
 	FiltersConfig,
 	FiltersList,
+	FiltersMode,
 	FiltersProps,
 	OnSearchWrapper,
 	ProcessedFilters
@@ -16,6 +17,7 @@ export interface FiltersContextProps {
 	dynamicSearchVal?: string
 	filtersList: FiltersList
 	loading?: boolean
+	mode: FiltersMode
 	onSearchWrapper?: OnSearchWrapper
 	onSelectedFiltersChange: FiltersProps['onSelectedFiltersChange']
 	pending?: boolean

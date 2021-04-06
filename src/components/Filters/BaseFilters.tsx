@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FilterPopover } from './FilterPopover'
+import { FiltersListItem } from './types'
 import find from 'lodash/find'
 import { Icon } from '../Icon'
 import { IconButton } from '../IconButton'
@@ -13,14 +14,11 @@ import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { filterSelectedFilters, formatSelectedFilters } from './utils'
-import { FiltersListItem, FiltersModeProps } from './types'
-import React, { FC, Fragment, ReactNode, useState } from 'react'
+import React, { Fragment, ReactNode, useState } from 'react'
 
 const { spacing } = styleguide
 
-export const BaseFilters: FC<FiltersModeProps> = ({
-	mode
-}: FiltersModeProps) => {
+export const BaseFilters = () => {
 	const {
 		config,
 		filtersList,
@@ -176,7 +174,6 @@ export const BaseFilters: FC<FiltersModeProps> = ({
 					<FilterPopover
 						closePopover={closePopover}
 						isPopoverOpen={isPopoverOpen}
-						mode={mode}
 						onClickAddFilter={onClickAddFilter}
 						onDelete={onDelete}
 						onFilterChange={onFilterChange}

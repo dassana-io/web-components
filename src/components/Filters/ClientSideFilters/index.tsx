@@ -2,21 +2,13 @@ import { BaseFilters } from '../BaseFilters'
 import { FiltersCtxProvider } from '../FiltersContext'
 import { processFilters } from '../utils'
 import { v4 as uuidV4 } from 'uuid'
-import {
-	ClientSideFiltersProps,
-	FiltersList,
-	FiltersMode,
-	ProcessedFilters
-} from '../types'
+import { ClientSideFiltersProps, FiltersList, ProcessedFilters } from '../types'
 import React, { FC, useEffect, useState } from 'react'
 
-type ClientSide = Omit<ClientSideFiltersProps, 'mode'>
-
-export const ClientSideFilters: FC<ClientSide> = ({
-	config,
+export const ClientSideFilters: FC<ClientSideFiltersProps> = ({
 	filterOptions = [],
-	onSelectedFiltersChange
-}: ClientSide) => {
+	...rest
+}: ClientSideFiltersProps) => {
 	// Since there are no API calls in a frontend filter,
 	// related data will live in this component instead of
 	// a custom useFilters hook like in ServerSideFilters.
@@ -37,13 +29,12 @@ export const ClientSideFilters: FC<ClientSide> = ({
 		<FiltersCtxProvider
 			value={{
 				allFilters,
-				config,
 				filtersList,
-				onSelectedFiltersChange,
-				setFiltersList
+				setFiltersList,
+				...rest
 			}}
 		>
-			<BaseFilters mode={FiltersMode.frontend} />
+			<BaseFilters />
 		</FiltersCtxProvider>
 	)
 }

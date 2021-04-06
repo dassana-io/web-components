@@ -1,16 +1,16 @@
 import { Button } from '../Button'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import { FiltersListItem } from './types'
 import FilterUnit from './FilterUnit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from '../Link'
 import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
-import { FiltersListItem, FiltersModeProps } from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
 
-interface FilterPopoverProps extends FiltersModeProps {
+interface FilterPopoverProps {
 	closePopover: () => void
 	isPopoverOpen?: boolean
 	onClickAddFilter: () => void
@@ -22,7 +22,6 @@ interface FilterPopoverProps extends FiltersModeProps {
 export const FilterPopover: FC<FilterPopoverProps> = ({
 	closePopover,
 	isPopoverOpen = false,
-	mode,
 	onClickAddFilter,
 	onDelete,
 	onFilterChange,
@@ -71,7 +70,6 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 								id={id}
 								index={i}
 								key={id}
-								mode={mode}
 								onDelete={onDelete}
 								onFilterChange={onFilterChange}
 							/>
