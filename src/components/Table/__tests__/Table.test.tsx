@@ -296,6 +296,7 @@ describe('Table pagination', () => {
 		)
 
 		expect(wrapper.find(AntDTable).props().pagination).toEqual({
+			defaultPageSize: 10,
 			showSizeChanger: false
 		})
 
