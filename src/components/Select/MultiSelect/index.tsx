@@ -86,9 +86,9 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		threshold: 0.1
 	})
 
-	const onChangeAntD = (values: string[]) => {
-		const vals = values ? values : []
+	type OnChangeAntD = (vals?: string[]) => void
 
+	const onChangeAntD: OnChangeAntD = (vals = []) => {
 		// because the new options don't include the old selected options,
 		// we need to get all the selected options - the new ones and old ones.
 		// uniqBy 'value' ensures that options aren't repeated

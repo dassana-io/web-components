@@ -77,9 +77,11 @@ export const BaseFilters: FC<FiltersModeProps> = ({
 				selectedItem.selectedKey = selectedKey
 			} else if (selectedOperator) {
 				selectedItem.selectedOperator = selectedOperator
+
 				onSelectedFiltersChange(formatSelectedFilters(clonedFilters))
 			} else {
 				selectedItem.selectedValues = selectedValues
+
 				onSelectedFiltersChange(formatSelectedFilters(clonedFilters))
 			}
 

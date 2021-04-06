@@ -26,6 +26,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 	const classes = useFilterUnitStyles()
 
+	const [operators, setOperators] = useState(['='])
 	const [optionsConfig, setOptionsConfig] = useState<
 		MultiSelectProps['optionsConfig']
 	>()
@@ -36,6 +37,25 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			setSelectedFilterKey(filtersList[index].selectedKey)
 		}
 	}, [filtersList, index])
+
+	useEffect(() => {
+		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
+		// When the selectedFilterKey changes, get operators
+		const operatorArr = filterOption?.operator
+
+		// If BE provides operators, update the operators saved in state
+		if (operatorArr && operatorArr.length) {
+			setOperators(operatorArr)
+		}
+
+		// When selectedFilterKey changes, the first item in operators should be selected
+		// We need to call onFilterChange so we can keep track of the selected operator
+		onFilterChange({
+			id,
+			selectedOperator: operatorArr ? operatorArr[0] : operators[0]
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [allFilters, id, selectedFilterKey])
 
 	useEffect(() => {
 		const iconConfig = config?.iconConfig
@@ -51,28 +71,21 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		}
 	}, [config, selectedFilterKey])
 
-	const renderOperator = () => {
-		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
-		// If BE doesn't provide an operator array, the operator will be '='.
-		// The operator will also be '=' for Client Side filters.
-		const operators = filterOption?.operator || ['=']
-
-		return (
-			<Select
-				disabled={operators.length === 1}
-				matchSelectedContentWidth={50}
-				onChange={selectedOperator =>
-					onFilterChange({
-						id,
-						selectedOperator: (selectedOperator as unknown) as string
-					})
-				}
-				options={formatFilterStrToSelectOpts(operators)}
-				showSearch
-				value={filtersList[index]?.selectedOperator || operators[0]}
-			/>
-		)
-	}
+	const renderOperator = () => (
+		<Select
+			disabled={operators.length === 1}
+			matchSelectedContentWidth={50}
+			onChange={selectedOperator =>
+				onFilterChange({
+					id,
+					selectedOperator: (selectedOperator as unknown) as string
+				})
+			}
+			options={formatFilterStrToSelectOpts(operators)}
+			showSearch
+			value={filtersList[index]?.selectedOperator || operators[0]}
+		/>
+	)
 
 	const renderKey = () => (
 		<Select
