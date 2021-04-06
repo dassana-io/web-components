@@ -71,6 +71,10 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional callback that runs when a table row is clicked
 	 */
 	onRowClick?: OnRowClick<TableData<Data>>
+	/**
+	 * Optional Table Pagination config that determines the numbers of table rows to render per page
+	 */
+	paginationConfig?: { rowCount?: number }
 	scrollConfig?: ScrollConfig
 	/**
 	 * Optional prop to enable/disable table search
@@ -86,8 +90,8 @@ export interface TableProps<Data> extends CommonComponentProps {
 	searchProps?: SearchProps
 }
 
-/* TODO: Add Table props to allow customization of pagination. */
-type Pagination = false | { showSizeChanger: false }
+/* Pagination config props type that gets passed to AntDTable  */
+type Pagination = false | { defaultPageSize?: number; showSizeChanger: false }
 
 // eslint-disable-next-line comma-spacing
 export const Table = <Data,>({
@@ -97,6 +101,7 @@ export const Table = <Data,>({
 	data,
 	dataTag,
 	loading = false,
+	paginationConfig = {},
 	onRowClick,
 	scrollConfig,
 	search = true,
@@ -105,7 +110,12 @@ export const Table = <Data,>({
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
-	const [pagination, setPagination] = useState<Pagination>(false)
+
+	const { rowCount = 10 } = paginationConfig
+	const [pagination, setPagination] = useState<Pagination>({
+		defaultPageSize: rowCount,
+		showSizeChanger: false
+	})
 
 	const { isMobile } = useWindowSize()
 
@@ -159,10 +169,22 @@ export const Table = <Data,>({
 
 	useEffect(() => {
 		setMappedData(mapData<TableData<Data>>(data))
-
-		if (data.length > 10) setPagination({ showSizeChanger: false })
-		else setPagination(false)
 	}, [data])
+
+	useEffect(() => {
+		/**
+		 * If the number of rows is greater than number of rows per
+		 * page(paginationConfig.rowCount), render a Table with pagination.
+		 * Otherwise there aren't enough items to paginate so don't render
+		 * pagination.
+		 */
+		if (data.length > rowCount) {
+			setPagination({
+				defaultPageSize: rowCount,
+				showSizeChanger: false
+			})
+		} else setPagination(false)
+	}, [data.length, rowCount])
 
 	useEffect(() => {
 		setProcessedColumns(
