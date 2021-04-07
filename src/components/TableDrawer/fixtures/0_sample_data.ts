@@ -271,7 +271,7 @@ const tableData0: TableDrawerProps<Policy> = {
 	columns,
 	data,
 	loading: false,
-	renderDrawerCmp: () => 'Drawer rende test'
+	renderDrawerCmp: () => 'Drawer render test'
 }
 
 export default tableData0
