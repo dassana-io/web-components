@@ -10,19 +10,21 @@ import { MultiSelectProps, Select } from '../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
 interface FilterUnitProps
-	extends Pick<FiltersListItem, 'id' | 'selectedKey' | 'selectedOperator'> {
-	index: number
+	extends Pick<
+		FiltersListItem,
+		'id' | 'selectedKey' | 'selectedOperator' | 'selectedValues'
+	> {
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
 }
 
 const FilterUnit: FC<FilterUnitProps> = ({
 	id,
-	index,
 	onDelete,
 	onFilterChange,
 	selectedKey,
-	selectedOperator
+	selectedOperator,
+	selectedValues
 }: FilterUnitProps) => {
 	const { allFilters, config, filtersList, mode } = useFiltersContext()
 
@@ -104,10 +106,10 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	const renderValues = () => {
 		const commonProps: ValuesMultiSelectProps = {
 			id,
-			index,
 			onFilterChange,
 			optionsConfig,
-			selectedFilterKey: selectedKey
+			selectedKey,
+			selectedValues
 		}
 
 		return mode === 'frontend' ? (

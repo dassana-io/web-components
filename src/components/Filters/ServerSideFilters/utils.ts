@@ -85,7 +85,11 @@ export const useFilters = (
 		// -----------------
 	}
 
-	const resetDynamicSearchVal = () => setDynamicSearchVal('')
+	const resetDynamicProps = () => {
+		setDynamicSearchVal('')
+		setDynamicOptions(undefined)
+		setPending(false)
+	}
 
 	useEffect(() => {
 		// const getFilters = async () => {
@@ -120,7 +124,7 @@ export const useFilters = (
 		loading,
 		onSearchWrapper,
 		pending,
-		resetDynamicSearchVal,
+		resetDynamicProps,
 		setFiltersList
 	}
 }

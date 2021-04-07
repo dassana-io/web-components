@@ -24,15 +24,15 @@ export const BaseFilters = () => {
 		filtersList,
 		loading,
 		onSelectedFiltersChange,
-		resetDynamicSearchVal,
+		resetDynamicProps,
 		setFiltersList
 	} = useFiltersContext()
 
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
 	useEffect(() => {
-		if (!isPopoverOpen && resetDynamicSearchVal) resetDynamicSearchVal()
-	}, [isPopoverOpen, resetDynamicSearchVal])
+		if (!isPopoverOpen && resetDynamicProps) resetDynamicProps()
+	}, [isPopoverOpen, resetDynamicProps])
 
 	const classes = useBaseFilterStyles()
 

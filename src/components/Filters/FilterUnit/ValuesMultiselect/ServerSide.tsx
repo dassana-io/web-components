@@ -8,10 +8,10 @@ import React, { FC, useEffect, useState } from 'react'
 
 export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	id,
-	index,
 	onFilterChange,
-	selectedFilterKey,
-	optionsConfig
+	selectedKey,
+	optionsConfig,
+	selectedValues = []
 }: ValuesMultiSelectProps) => {
 	const {
 		allFilters,
@@ -28,9 +28,9 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	const [options, setOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
-		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
+		const filterOption: FilterOption = allFilters[selectedKey || '']
 
-		if (selectedFilterKey && filterOption.values) {
+		if (selectedKey && filterOption.values) {
 			// if filter is static, options will be the opts that BE initially gave
 			if (filterOption.staticFilter) {
 				const formattedOpts = formatFilterValsToSelectOpts(
@@ -56,7 +56,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 						// if there is no search val but dynamic options exist - along with options that BE initially gave, make sure to add the selected values(if they exist)
 						else {
 							const filtersListItem = filtersList.find(
-								item => item.selectedKey === selectedFilterKey
+								item => item.selectedKey === selectedKey
 							)
 
 							let selectedVals: SelectOption[] = []
@@ -87,7 +87,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 				// these dynamic filter props should be there for all dynamic filters
 				setDynamicFilterProps({
 					onSearch: onSearchWrapper
-						? onSearchWrapper(selectedFilterKey)
+						? onSearchWrapper(selectedKey)
 						: undefined,
 					pending,
 					searchPlaceholder: 'This one hits BE...'
@@ -102,7 +102,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		dynamicSearchVal,
 		onSearchWrapper,
 		pending,
-		selectedFilterKey
+		selectedKey
 	])
 
 	return (
@@ -121,11 +121,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 			placeholder='Select field'
 			searchPlaceholder='Search'
 			showSearch
-			values={
-				filtersList[index].selectedValues?.map(
-					values => values.value
-				) || []
-			}
+			values={selectedValues.map(values => values.value)}
 			{...dynamicFilterProps}
 		/>
 	)

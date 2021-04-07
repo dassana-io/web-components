@@ -7,20 +7,20 @@ import React, { FC, useEffect, useState } from 'react'
 
 export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	id,
-	index,
 	onFilterChange,
 	optionsConfig,
-	selectedFilterKey
+	selectedKey,
+	selectedValues = []
 }: ValuesMultiSelectProps) => {
-	const { allFilters, filtersList } = useFiltersContext()
+	const { allFilters } = useFiltersContext()
 
 	const [options, setOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
-		const filterOption: FilterOption = allFilters[selectedFilterKey || '']
+		const filterOption: FilterOption = allFilters[selectedKey || '']
 		// if a filter key has been selected and the filter values exist,
 		// format it and save it to state as options
-		if (selectedFilterKey && filterOption.values) {
+		if (selectedKey && filterOption.values) {
 			const formattedOpts = formatFilterValsToSelectOpts(
 				filterOption.values,
 				!!optionsConfig
@@ -28,7 +28,7 @@ export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 
 			setOptions(formattedOpts)
 		}
-	}, [allFilters, optionsConfig, selectedFilterKey])
+	}, [allFilters, optionsConfig, selectedKey])
 
 	return (
 		<MultiSelect
@@ -46,11 +46,7 @@ export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 			placeholder='Select field'
 			searchPlaceholder='Search'
 			showSearch
-			values={
-				filtersList[index].selectedValues?.map(
-					values => values.value
-				) || []
-			}
+			values={selectedValues.map(values => values.value)}
 		/>
 	)
 }
