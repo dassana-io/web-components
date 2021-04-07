@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import Drawer from './Drawer'
 import isEmpty from 'lodash/isEmpty'
-import { ColumnType, DataId, Table } from '../Table'
+import { DataId, Table, TableProps } from '../Table'
 import React, { Key, ReactNode, useState } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
@@ -45,12 +45,9 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface TableDrawerProps<DataType> {
-	columns: ColumnType[]
-	data: DataType[]
+export interface TableDrawerProps<DataType>
+	extends Omit<TableProps, 'activeRowKey' | 'onRowClick'> {
 	drawerContainerClasses?: string[]
-	loading: boolean
-	paginationConfig?: { rowCount?: number }
 	renderDrawerCmp: (id: Key, rowData: DataType) => ReactNode
 	renderTableControls?: () => ReactNode
 	tableContainerClasses?: string[]
@@ -60,7 +57,7 @@ export const TableDrawer = <DataType extends DataId>({
 	columns,
 	data,
 	loading,
-	paginationConfig = { rowCount: 10 },
+	paginationConfig,
 	renderDrawerCmp,
 	renderTableControls,
 	tableContainerClasses

@@ -11,9 +11,9 @@ export default {
 	title: 'TableDrawer'
 } as Meta
 
-const SimpleTemplate: Story<TableDrawerProps<Policy>> = args => (
+const SimpleDrawerTemplate: Story<TableDrawerProps<Policy>> = args => (
 	<TableDrawer<Policy> {...args} />
 )
 
-export const Simple = SimpleTemplate.bind({})
-Simple.args = tableData0
+export const SimpleDrawer = SimpleDrawerTemplate.bind({})
+SimpleDrawer.args = tableData0

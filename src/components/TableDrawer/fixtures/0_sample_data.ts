@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 import { TableDrawerProps } from '..'
 import { ColumnFormats, ColumnType, ColumnTypes } from 'components/Table/types'
 
@@ -271,6 +272,7 @@ const tableData0: TableDrawerProps<Policy> = {
 	columns,
 	data,
 	loading: false,
+	paginationConfig: { rowCount: 5 },
 	renderDrawerCmp: () => 'Drawer render test'
 }
 
