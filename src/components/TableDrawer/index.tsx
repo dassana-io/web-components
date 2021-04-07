@@ -54,13 +54,10 @@ export interface TableDrawerProps<DataType>
 }
 
 export const TableDrawer = <DataType extends DataId>({
-	columns,
-	data,
-	loading,
-	paginationConfig,
 	renderDrawerCmp,
 	renderTableControls,
-	tableContainerClasses
+	tableContainerClasses,
+	...rest
 }: TableDrawerProps<DataType>) => {
 	const [rowData, setRowData] = useState({} as DataType)
 	const resetRowData = () => setRowData({} as DataType)
@@ -89,11 +86,8 @@ export const TableDrawer = <DataType extends DataId>({
 				{renderTableControls && renderTableControls()}
 				<Table<DataType>
 					activeRowKey={rowData.id}
-					columns={columns}
-					data={data}
-					loading={loading}
 					onRowClick={onRowClick}
-					paginationConfig={paginationConfig}
+					{...rest}
 				/>
 			</div>
 			{!isRowEmpty && (
