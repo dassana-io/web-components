@@ -46,7 +46,7 @@ const useStyles = createUseStyles({
 })
 
 export interface TableDrawerProps<DataType>
-	extends Omit<TableProps, 'activeRowKey' | 'onRowClick'> {
+	extends Omit<TableProps<DataType>, 'activeRowKey' | 'onRowClick'> {
 	drawerContainerClasses?: string[]
 	renderDrawerCmp: (id: Key, rowData: DataType) => ReactNode
 	renderTableControls?: () => ReactNode
