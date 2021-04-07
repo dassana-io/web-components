@@ -65,15 +65,19 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 						)}
 					</div>
 					<div className={classes.filtersList}>
-						{filtersList.map(({ id }, i) => (
-							<FilterUnit
-								id={id}
-								index={i}
-								key={id}
-								onDelete={onDelete}
-								onFilterChange={onFilterChange}
-							/>
-						))}
+						{filtersList.map(
+							({ id, selectedKey, selectedOperator }, i) => (
+								<FilterUnit
+									id={id}
+									index={i}
+									key={id}
+									onDelete={onDelete}
+									onFilterChange={onFilterChange}
+									selectedKey={selectedKey}
+									selectedOperator={selectedOperator}
+								/>
+							)
+						)}
 					</div>
 				</div>
 			}
