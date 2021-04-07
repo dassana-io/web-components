@@ -50,6 +50,7 @@ export interface TableDrawerProps<DataType> {
 	data: DataType[]
 	drawerContainerClasses?: string[]
 	loading: boolean
+	paginationConfig?: { rowCount?: number }
 	renderDrawerCmp: (id: Key, rowData: DataType) => ReactNode
 	renderTableControls?: () => ReactNode
 	tableContainerClasses?: string[]
@@ -59,6 +60,7 @@ export const TableDrawer = <DataType extends DataId>({
 	columns,
 	data,
 	loading,
+	paginationConfig = { rowCount: 10 },
 	renderDrawerCmp,
 	renderTableControls,
 	tableContainerClasses
@@ -94,6 +96,7 @@ export const TableDrawer = <DataType extends DataId>({
 					data={data}
 					loading={loading}
 					onRowClick={onRowClick}
+					paginationConfig={paginationConfig}
 				/>
 			</div>
 			{!isRowEmpty && (
