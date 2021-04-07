@@ -25,7 +25,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	const [dynamicFilterProps, setDynamicFilterProps] = useState<
 		Pick<MultiSelectProps, 'searchPlaceholder' | 'onSearch' | 'pending'>
 	>({})
-	const [options, setOptions] = useState<SelectOption[]>([])
+	const [options, setOptions] = useState<SelectOption[]>(selectedValues)
 
 	useEffect(() => {
 		const filterOption: FilterOption = allFilters[selectedKey || '']
@@ -38,7 +38,9 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 					!!optionsConfig
 				)
 
-				setOptions(formattedOpts)
+				setOptions(
+					uniqBy([...selectedValues, ...formattedOpts], 'value')
+				)
 			} else {
 				// if filter is dynamic & state is pending, data is still being fetched. So only get options if status isn't pending
 				if (!pending) {
@@ -49,10 +51,21 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 							!!optionsConfig
 						)
 
-						setOptions(formattedOpts)
+						setOptions(
+							uniqBy(
+								[...selectedValues, ...formattedOpts],
+								'value'
+							)
+						)
 					} else {
 						// if you send empty string to BE (e.g. after typing something and clearing it), it'll send back an empty [] but if there's no search val, we want to display the list of options that BE initially gave so only show the dynamic opts if search val exists
-						if (dynamicSearchVal) setOptions(dynamicOptions)
+						if (dynamicSearchVal)
+							setOptions(
+								uniqBy(
+									[...selectedValues, ...dynamicOptions],
+									'value'
+								)
+							)
 						// if there is no search val but dynamic options exist - along with options that BE initially gave, make sure to add the selected values(if they exist)
 						else {
 							const filtersListItem = filtersList.find(
@@ -79,7 +92,12 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 								'value'
 							)
 
-							setOptions(formattedOpts)
+							setOptions(
+								uniqBy(
+									[...selectedValues, ...formattedOpts],
+									'value'
+								)
+							)
 						}
 					}
 				}
@@ -94,13 +112,14 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 				})
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		allFilters,
-		filtersList,
-		optionsConfig,
 		dynamicOptions,
 		dynamicSearchVal,
+		filtersList,
 		onSearchWrapper,
+		optionsConfig,
 		pending,
 		selectedKey
 	])
