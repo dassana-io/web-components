@@ -45,7 +45,8 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
 					if (!dynamicOptions) {
 						const formattedOpts = formatFilterValsToSelectOpts(
-							filterOption.values
+							filterOption.values,
+							!!optionsConfig
 						)
 
 						setOptions(formattedOpts)
@@ -69,9 +70,10 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 
 							const formattedOpts = uniqBy(
 								[
-									...formatFilterValsToSelectOpts([
-										...filterOption.values
-									]),
+									...formatFilterValsToSelectOpts(
+										[...filterOption.values],
+										!!optionsConfig
+									),
 									...selectedVals
 								],
 								'value'

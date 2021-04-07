@@ -21,6 +21,7 @@ export interface FiltersContextProps {
 	onSearchWrapper?: OnSearchWrapper
 	onSelectedFiltersChange: FiltersProps['onSelectedFiltersChange']
 	pending?: boolean
+	resetDynamicSearchVal?: () => void
 	setFiltersList: Dispatch<SetStateAction<FiltersList>>
 }
 

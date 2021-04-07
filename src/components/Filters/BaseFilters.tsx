@@ -14,7 +14,7 @@ import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { filterSelectedFilters, formatSelectedFilters } from './utils'
-import React, { Fragment, ReactNode, useState } from 'react'
+import React, { Fragment, ReactNode, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
 
@@ -24,10 +24,15 @@ export const BaseFilters = () => {
 		filtersList,
 		loading,
 		onSelectedFiltersChange,
+		resetDynamicSearchVal,
 		setFiltersList
 	} = useFiltersContext()
 
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+
+	useEffect(() => {
+		if (!isPopoverOpen && resetDynamicSearchVal) resetDynamicSearchVal()
+	}, [isPopoverOpen, resetDynamicSearchVal])
 
 	const classes = useBaseFilterStyles()
 
