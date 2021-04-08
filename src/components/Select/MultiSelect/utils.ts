@@ -1,4 +1,3 @@
-import { filterMap } from 'components/utils'
 import Fuse from 'fuse.js'
 import { MultiSelectProps } from './types'
 import { SelectOption } from '../SingleSelect/types'
@@ -19,18 +18,6 @@ const filterOptions = (
 
 	return filteredOptions
 }
-
-// ----------------------------------------
-
-export const getOptionsFromValues = (
-	options: SelectOption[],
-	values: string[]
-): SelectOption[] =>
-	filterMap<SelectOption, SelectOption>({
-		filterConditionFn: option => values.includes(option.value),
-		items: options,
-		mapFn: item => item
-	})
 
 // ----------------------------------------
 

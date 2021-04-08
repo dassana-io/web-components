@@ -114,10 +114,12 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 			disabled={!options.length}
 			matchSelectedContentWidth={225}
 			maxTagCount={5}
-			onChange={(_, options) =>
+			onChange={vals =>
 				onFilterChange({
 					id,
-					selectedValues: options
+					selectedValues: options.filter(opt =>
+						vals.includes(opt.value)
+					)
 				})
 			}
 			options={options}

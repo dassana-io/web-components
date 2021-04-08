@@ -1,4 +1,4 @@
-import { SelectOption, SelectProps } from '../SingleSelect/types'
+import { SelectProps } from '../SingleSelect/types'
 
 export interface MultiSelectProps
 	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {
@@ -13,7 +13,7 @@ export interface MultiSelectProps
 	 */
 	maxTagCount?: number
 	maxTagTextLength?: number
-	onChange?: (values: string[], options?: SelectOption[]) => void
+	onChange?: (values: string[]) => void
 	onFocus?: () => void
 	onSearch?: (value: string) => void
 	/**
