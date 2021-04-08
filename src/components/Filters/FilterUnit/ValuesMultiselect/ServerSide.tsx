@@ -1,4 +1,3 @@
-import { FilterOption } from 'api'
 import { formatFilterValsToSelectOpts } from '../../utils'
 import uniqBy from 'lodash/uniqBy'
 import { useFiltersContext } from '../../FiltersContext'
@@ -6,15 +5,20 @@ import { ValuesMultiSelectProps } from './types'
 import { MultiSelect, MultiSelectProps, SelectOption } from '../../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
-export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
+interface Props extends ValuesMultiSelectProps {
+	staticFilter?: boolean
+}
+
+export const ServerSideValuesMS: FC<Props> = ({
 	id,
 	onFilterChange,
+	filterOptValues,
 	selectedKey,
 	optionsConfig,
-	selectedValues = []
-}: ValuesMultiSelectProps) => {
+	selectedValues = [],
+	staticFilter
+}: Props) => {
 	const {
-		allFilters,
 		dynamicOptions,
 		dynamicSearchVal,
 		onSearchWrapper,
@@ -27,13 +31,11 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	const [options, setOptions] = useState<SelectOption[]>(selectedValues)
 
 	useEffect(() => {
-		const filterOption: FilterOption = allFilters[selectedKey || '']
-
-		if (selectedKey && filterOption.values) {
+		if (selectedKey && filterOptValues) {
 			// if filter is static, options will be the opts that BE initially gave
-			if (filterOption.staticFilter) {
+			if (staticFilter) {
 				const formattedOpts = formatFilterValsToSelectOpts(
-					filterOption.values,
+					filterOptValues,
 					!!optionsConfig
 				)
 
@@ -46,7 +48,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 					// if dynamic opts don't exist, options will be same as for static with the opts that BE initially gave
 					if (!dynamicOptions) {
 						const formattedOpts = formatFilterValsToSelectOpts(
-							filterOption.values,
+							filterOptValues,
 							!!optionsConfig
 						)
 
@@ -70,7 +72,7 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 							const formattedOpts = uniqBy(
 								[
 									...formatFilterValsToSelectOpts(
-										[...filterOption.values],
+										[...filterOptValues],
 										!!optionsConfig
 									),
 									...selectedValues
@@ -100,7 +102,6 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
-		allFilters,
 		dynamicOptions,
 		dynamicSearchVal,
 		onSearchWrapper,

@@ -75,18 +75,30 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 								selectedKey,
 								selectedOperator,
 								selectedValues
-							}) => (
-								<FilterUnit
-									filtersList={filtersList}
-									id={id}
-									key={id}
-									onDelete={onDelete}
-									onFilterChange={onFilterChange}
-									selectedKey={selectedKey}
-									selectedOperator={selectedOperator}
-									selectedValues={selectedValues}
-								/>
-							)
+							}) => {
+								const filterOption =
+									allFilters[selectedKey || '']
+
+								return (
+									<FilterUnit
+										filterOptOperator={
+											filterOption?.operator
+										}
+										filterOptValues={filterOption?.values}
+										filtersList={filtersList}
+										id={id}
+										key={id}
+										onDelete={onDelete}
+										onFilterChange={onFilterChange}
+										selectedKey={selectedKey}
+										selectedOperator={selectedOperator}
+										selectedValues={selectedValues}
+										staticFilter={
+											filterOption?.staticFilter
+										}
+									/>
+								)
+							}
 						)}
 					</div>
 				</div>

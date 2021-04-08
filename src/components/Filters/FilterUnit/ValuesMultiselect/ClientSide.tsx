@@ -1,34 +1,30 @@
-import { FilterOption } from 'api'
 import { formatFilterValsToSelectOpts } from '../../utils'
-import { useFiltersContext } from '../../FiltersContext'
 import { ValuesMultiSelectProps } from './types'
 import { MultiSelect, SelectOption } from '../../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
 export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	id,
+	filterOptValues,
 	onFilterChange,
 	optionsConfig,
 	selectedKey,
 	selectedValues = []
 }: ValuesMultiSelectProps) => {
-	const { allFilters } = useFiltersContext()
-
 	const [options, setOptions] = useState<SelectOption[]>([])
 
 	useEffect(() => {
-		const filterOption: FilterOption = allFilters[selectedKey || '']
 		// if a filter key has been selected and the filter values exist,
 		// format it and save it to state as options
-		if (selectedKey && filterOption.values) {
+		if (selectedKey && filterOptValues) {
 			const formattedOpts = formatFilterValsToSelectOpts(
-				filterOption.values,
+				filterOptValues,
 				!!optionsConfig
 			)
 
 			setOptions(formattedOpts)
 		}
-	}, [allFilters, optionsConfig, selectedKey])
+	}, [filterOptValues, optionsConfig, selectedKey])
 
 	return (
 		<MultiSelect

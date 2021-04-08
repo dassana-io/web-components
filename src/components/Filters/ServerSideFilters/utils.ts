@@ -102,10 +102,18 @@ export const useFilters = (
 			getFilters()
 		}, 800)
 		// -----------------
+
+		return () => {
+			setAllFilters({})
+		}
 	}, [api, emitter, endpoint])
 
 	useEffect(() => {
 		setLoading(isEmpty(allFilters))
+
+		return () => {
+			setLoading(true)
+		}
 	}, [allFilters])
 
 	return {

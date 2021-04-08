@@ -15,8 +15,11 @@ interface FilterUnitProps
 		'id' | 'selectedKey' | 'selectedOperator' | 'selectedValues'
 	> {
 	filtersList: FiltersList
+	filterOptOperator?: FilterOption['operator']
+	filterOptValues?: FilterOption['values']
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
+	staticFilter?: boolean
 }
 
 const FilterUnit: FC<FilterUnitProps> = ({
@@ -24,9 +27,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	filtersList = [],
 	onDelete,
 	onFilterChange,
+	filterOptOperator,
+	filterOptValues,
 	selectedKey,
 	selectedOperator,
-	selectedValues
+	selectedValues,
+	staticFilter
 }: FilterUnitProps) => {
 	const { allFilters, config, mode } = useFiltersContext()
 
@@ -38,9 +44,8 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	>()
 
 	useEffect(() => {
-		const filterOption: FilterOption = allFilters[selectedKey || '']
 		// When the selectedKey changes, get operators
-		const operatorArr = filterOption?.operator
+		const operatorArr = filterOptOperator
 
 		// If BE provides operators, update the operators saved in state
 		if (operatorArr && operatorArr.length) {
@@ -54,7 +59,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			selectedOperator: operatorArr ? operatorArr[0] : operators[0]
 		})
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [allFilters, id, selectedKey])
+	}, [id, selectedKey])
 
 	useEffect(() => {
 		const iconConfig = config?.iconConfig
@@ -107,6 +112,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 	const renderValues = () => {
 		const commonProps: ValuesMultiSelectProps = {
+			filterOptValues,
 			id,
 			onFilterChange,
 			optionsConfig,
@@ -117,7 +123,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		return mode === 'frontend' ? (
 			<ClientSideValuesMS {...commonProps} />
 		) : (
-			<ServerSideValuesMS {...commonProps} />
+			<ServerSideValuesMS {...commonProps} staticFilter={staticFilter} />
 		)
 	}
 
