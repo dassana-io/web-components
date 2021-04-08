@@ -1,33 +1,37 @@
 import { Button } from '../Button'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { FiltersListItem } from './types'
 import FilterUnit from './FilterUnit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from '../Link'
 import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
+import { FiltersList, FiltersListItem } from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
 
 interface FilterPopoverProps {
 	closePopover: () => void
+	filtersList: FiltersList
 	isPopoverOpen?: boolean
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
+	resetFiltersList: () => void
 	togglePopoverVisibility: (isPopoverOpen: boolean) => void
 }
 
 export const FilterPopover: FC<FilterPopoverProps> = ({
 	closePopover,
+	filtersList = [],
 	isPopoverOpen = false,
 	onClickAddFilter,
 	onDelete,
 	onFilterChange,
+	resetFiltersList,
 	togglePopoverVisibility
 }: FilterPopoverProps) => {
-	const { allFilters, filtersList, setFiltersList } = useFiltersContext()
+	const { allFilters } = useFiltersContext()
 
 	const classes = usePopoverStyles()
 
@@ -58,7 +62,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 						{filtersList.length > 0 && (
 							<Link
 								classes={[classes.popoverControlsChild]}
-								onClick={() => setFiltersList([])}
+								onClick={resetFiltersList}
 							>
 								Clear Filters
 							</Link>
@@ -73,6 +77,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 								selectedValues
 							}) => (
 								<FilterUnit
+									filtersList={filtersList}
 									id={id}
 									key={id}
 									onDelete={onDelete}

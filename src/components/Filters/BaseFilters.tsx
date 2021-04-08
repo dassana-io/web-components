@@ -1,7 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FilterPopover } from './FilterPopover'
-import { FiltersListItem } from './types'
 import find from 'lodash/find'
 import { Icon } from '../Icon'
 import { IconButton } from '../IconButton'
@@ -14,6 +13,7 @@ import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { filterSelectedFilters, formatSelectedFilters } from './utils'
+import { FiltersList, FiltersListItem } from './types'
 import React, { Fragment, ReactNode, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
@@ -21,12 +21,14 @@ const { spacing } = styleguide
 export const BaseFilters = () => {
 	const {
 		config,
-		filtersList,
 		loading,
 		onSelectedFiltersChange,
-		resetDynamicProps,
-		setFiltersList
+		resetDynamicProps
 	} = useFiltersContext()
+
+	const [filtersList, setFiltersList] = useState<FiltersList>([
+		{ id: uuidV4() }
+	])
 
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
@@ -39,6 +41,8 @@ export const BaseFilters = () => {
 	const closePopover = () => setIsPopoverOpen(false)
 	const openPopover = () => setIsPopoverOpen(true)
 
+	const resetFiltersList = () => setFiltersList([])
+
 	const togglePopoverVisibility = (isPopoverOpen: boolean) =>
 		setIsPopoverOpen(isPopoverOpen)
 
@@ -49,7 +53,7 @@ export const BaseFilters = () => {
 	})
 
 	const onClickAddFilter = () =>
-		setFiltersList([...filtersList, { id: uuidV4() }])
+		setFiltersList(oldFiltersList => [...oldFiltersList, { id: uuidV4() }])
 
 	// When a FilterUnit is deleted,
 	// filter out the filtersListItem by id from filtersList
@@ -178,10 +182,12 @@ export const BaseFilters = () => {
 				<>
 					<FilterPopover
 						closePopover={closePopover}
+						filtersList={filtersList}
 						isPopoverOpen={isPopoverOpen}
 						onClickAddFilter={onClickAddFilter}
 						onDelete={onDelete}
 						onFilterChange={onFilterChange}
+						resetFiltersList={resetFiltersList}
 						togglePopoverVisibility={togglePopoverVisibility}
 					/>
 					{renderFilterControls()}

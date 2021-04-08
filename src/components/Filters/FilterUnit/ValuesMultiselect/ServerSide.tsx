@@ -17,7 +17,6 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		allFilters,
 		dynamicOptions,
 		dynamicSearchVal,
-		filtersList,
 		onSearchWrapper,
 		pending
 	} = useFiltersContext()
@@ -68,26 +67,13 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 							)
 						// if there is no search val but dynamic options exist - along with options that BE initially gave, make sure to add the selected values(if they exist)
 						else {
-							const filtersListItem = filtersList.find(
-								item => item.selectedKey === selectedKey
-							)
-
-							let selectedVals: SelectOption[] = []
-
-							if (
-								filtersListItem &&
-								filtersListItem.selectedValues
-							) {
-								selectedVals = filtersListItem.selectedValues
-							}
-
 							const formattedOpts = uniqBy(
 								[
 									...formatFilterValsToSelectOpts(
 										[...filterOption.values],
 										!!optionsConfig
 									),
-									...selectedVals
+									...selectedValues
 								],
 								'value'
 							)
@@ -117,7 +103,6 @@ export const ServerSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		allFilters,
 		dynamicOptions,
 		dynamicSearchVal,
-		filtersList,
 		onSearchWrapper,
 		optionsConfig,
 		pending,

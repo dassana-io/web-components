@@ -1,14 +1,13 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
 import isEmpty from 'lodash/isEmpty'
 import { SelectOption } from '../../Select'
-import { v4 as uuidV4 } from 'uuid'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
-import { FiltersList, OnSearchWrapper, ProcessedFilters } from '../types'
 import { formatFilterValsToSelectOpts, processFilters } from '../utils'
 import {
 	mockDynamicFilterOptions,
 	mockFilterOptions
 } from '../fixtures/0_sample_data'
+import { OnSearchWrapper, ProcessedFilters } from '../types'
 import { useEffect, useState } from 'react'
 
 export const useFilters = (
@@ -23,13 +22,6 @@ export const useFilters = (
 	>(undefined)
 
 	const [dynamicSearchVal, setDynamicSearchVal] = useState('')
-
-	// filtersList is initialized with an object with just the ID so
-	// that when users open the filter popover there is a blank filter
-	// and they don't have to manually press the Add Filter button
-	const [filtersList, setFiltersList] = useState<FiltersList>([
-		{ id: uuidV4() }
-	])
 
 	const [loading, setLoading] = useState(true)
 	const [pending, setPending] = useState(false)
@@ -120,11 +112,9 @@ export const useFilters = (
 		allFilters,
 		dynamicOptions,
 		dynamicSearchVal,
-		filtersList,
 		loading,
 		onSearchWrapper,
 		pending,
-		resetDynamicProps,
-		setFiltersList
+		resetDynamicProps
 	}
 }
