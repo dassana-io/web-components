@@ -3379,20 +3379,20 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-170"
+    className="container-0-2-186"
   >
     <div
-      className="tableContainer-0-2-174"
+      className="tableContainer-0-2-190"
     >
       <div
-        className="tableContainer-0-2-178"
+        className="tableContainer-0-2-194"
       >
         <div
-          className="searchBarWrapper-0-2-177 searchBarWrapper-d1-0-2-180"
+          className="searchBarWrapper-0-2-193 searchBarWrapper-d1-0-2-196"
         >
           <input
             autoFocus={false}
-            className="ant-input container-0-2-50 container-d13-0-2-181"
+            className="ant-input container-0-2-50 container-d13-0-2-197"
             data-test="input-table-search"
             disabled={false}
             onBlur={[Function]}
@@ -3687,7 +3687,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                         className="ant-table-tbody"
                       >
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-176 row-d0-0-2-179"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-192 row-d0-0-2-195"
                           data-row-key={0}
                           onClick={[Function]}
                           style={Object {}}
@@ -3699,10 +3699,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 vpc-flow-logs-are-disabled
@@ -3731,10 +3731,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 FlowLog
@@ -3748,10 +3748,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 visibility
@@ -3760,7 +3760,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-176 row-d0-0-2-179"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-192 row-d0-0-2-195"
                           data-row-key={1}
                           onClick={[Function]}
                           style={Object {}}
@@ -3772,10 +3772,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 instance-is-exposed-to-internet
@@ -3804,10 +3804,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 instance
@@ -3821,10 +3821,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 network
@@ -3833,7 +3833,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-176 row-d0-0-2-179"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-192 row-d0-0-2-195"
                           data-row-key={2}
                           onClick={[Function]}
                           style={Object {}}
@@ -3845,10 +3845,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 default-security-group-should-not-allow-traffic
@@ -3877,10 +3877,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 security-group
@@ -3894,10 +3894,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 networking
@@ -3906,7 +3906,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-176 row-d0-0-2-179"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-192 row-d0-0-2-195"
                           data-row-key={3}
                           onClick={[Function]}
                           style={Object {}}
@@ -3918,10 +3918,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 ssh-from-internet
@@ -3950,10 +3950,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 security-group
@@ -3967,10 +3967,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 network
@@ -3979,7 +3979,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-176 row-d0-0-2-179"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-192 row-d0-0-2-195"
                           data-row-key={4}
                           onClick={[Function]}
                           style={Object {}}
@@ -3991,10 +3991,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 ebs-volume-is-not-encrypted
@@ -4023,10 +4023,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 volume
@@ -4040,10 +4040,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-182"
+                              className="container-0-2-198"
                             >
                               <div
-                                className="wrapper-0-2-184"
+                                className="wrapper-0-2-200"
                                 onMouseEnter={[Function]}
                               >
                                 cryptography
@@ -4175,26 +4175,26 @@ exports[`Storyshots Tabs Default 1`] = `
     className=""
   >
     <div
-      className="tabsList-0-2-186"
+      className="tabsList-0-2-202"
     >
       <li
-        className="tab-0-2-188 activeTab-0-2-187"
+        className="tab-0-2-204 activeTab-0-2-203"
         onClick={[Function]}
       >
         Lorem
       </li>
       <li
-        className="tab-0-2-188"
+        className="tab-0-2-204"
         onClick={[Function]}
       >
         Ipsum
       </li>
     </div>
     <div
-      className="tabPane-0-2-185"
+      className="tabPane-0-2-201"
     >
       <div
-        className="tabPane-0-2-189"
+        className="tabPane-0-2-205"
       >
         Banana mochi muffin
       </div>
@@ -4349,7 +4349,7 @@ exports[`Storyshots TimeInput Error 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="ant-picker error-0-2-191"
+      className="ant-picker error-0-2-207"
       onMouseUp={[Function]}
     >
       <div
