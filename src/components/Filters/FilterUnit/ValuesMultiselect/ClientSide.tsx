@@ -17,9 +17,11 @@ export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		// if a filter key has been selected and the filter values exist,
 		// format it and save it to state as options
 		if (selectedKey && filterOptValues) {
+			const isIcon = !!(optionsConfig && optionsConfig.iconMap)
+
 			const formattedOpts = formatFilterValsToSelectOpts(
 				filterOptValues,
-				!!optionsConfig
+				isIcon
 			)
 
 			setOptions(formattedOpts)

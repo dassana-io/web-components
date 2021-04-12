@@ -39,12 +39,14 @@ export const ServerSideValuesMS: FC<Props> = ({
 	const [options, setOptions] = useState<SelectOption[]>(selectedValues)
 
 	useEffect(() => {
+		const isIcon = !!(optionsConfig && optionsConfig.iconMap)
+
 		if (selectedKey && filterOptValues) {
 			// if filter is static, options will be the opts that BE initially gave
 			if (staticFilter) {
 				const formattedOpts = formatFilterValsToSelectOpts(
 					filterOptValues,
-					!!optionsConfig
+					isIcon
 				)
 
 				setOptions(
@@ -60,7 +62,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 					if (!dynamicOptions) {
 						const formattedOpts = formatFilterValsToSelectOpts(
 							filterOptValues,
-							!!optionsConfig
+							isIcon
 						)
 
 						setOptions(
@@ -96,7 +98,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 								[
 									...formatFilterValsToSelectOpts(
 										[...filterOptValues],
-										!!optionsConfig
+										isIcon
 									),
 									...selectedValues
 								],
