@@ -937,27 +937,30 @@ exports[`Storyshots Code Default 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input container-0-2-50 container-d4-0-2-71 search-0-2-70"
-    data-test="input"
-    disabled={false}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Search..."
-    type="text"
-    value=""
-  />
-  <pre
-    className="line-numbers"
-    contentEditable={false}
+  <div
+    className=""
   >
-    <code
-      className="language-json"
+    <input
+      autoFocus={false}
+      className="ant-input container-0-2-50 container-d4-0-2-71 search-0-2-70"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Search..."
+      type="text"
+      value=""
+    />
+    <pre
+      className="line-numbers"
+      contentEditable={false}
     >
-      {
+      <code
+        className="language-json"
+      >
+        {
 	"dassana": {
 		"context": {
 			"attachedResources": {
@@ -993,8 +996,9 @@ exports[`Storyshots Code Default 1`] = `
 		}
 	}
 }
-    </code>
-  </pre>
+      </code>
+    </pre>
+  </div>
 </div>
 `;
 
@@ -1002,32 +1006,36 @@ exports[`Storyshots Code HTML 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input container-0-2-50 container-d5-0-2-72 search-0-2-70"
-    data-test="input"
-    disabled={false}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder=""
-    type="text"
-    value=""
-  />
-  <pre
-    className="line-numbers"
-    contentEditable={false}
+  <div
+    className=""
   >
-    <code
-      className="language-html"
+    <input
+      autoFocus={false}
+      className="ant-input container-0-2-50 container-d5-0-2-72 search-0-2-70"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+    <pre
+      className="line-numbers"
+      contentEditable={false}
     >
-      &lt;div&gt;
+      <code
+        className="language-html"
+      >
+        &lt;div&gt;
   &lt;p&gt;Lorem Ipsum&lt;/p&gt;
   &lt;span&gt;dolor sit amet&lt;/span&gt;
 &lt;/div&gt;
-    </code>
-  </pre>
+      </code>
+    </pre>
+  </div>
 </div>
 `;
 
@@ -4101,13 +4109,13 @@ exports[`Storyshots Tabs Default 1`] = `
         className="tab-0-2-188 activeTab-0-2-187"
         onClick={[Function]}
       >
-        Foo
+        Lorem
       </li>
       <li
         className="tab-0-2-188"
         onClick={[Function]}
       >
-        Bar
+        Ipsum
       </li>
     </div>
     <div
@@ -4116,7 +4124,7 @@ exports[`Storyshots Tabs Default 1`] = `
       <div
         className="tabPane-0-2-189"
       >
-        Foo content text
+        Banana mochi muffin
       </div>
     </div>
   </div>
