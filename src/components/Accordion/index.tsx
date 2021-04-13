@@ -1,4 +1,3 @@
-import { AccordionProps } from './types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Header } from './Header'
@@ -9,7 +8,7 @@ import {
 	getInitialExpandedKeys,
 	getUpdatedExpandedKeys
 } from './utils'
-import React, { FC, Key, useState } from 'react'
+import React, { FC, Key, ReactNode, useState } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -22,6 +21,33 @@ const useStyles = createUseStyles({
 		}
 	}
 })
+
+export interface Panel {
+	classes?: string[]
+	content: ReactNode
+	headerRightContent?: ReactNode
+	key: Key
+	title: ReactNode
+}
+
+export interface SharedAccordionProps {
+	classes?: string[]
+	defaultExpandedKeys?: Key[]
+	panels: Panel[]
+}
+
+export interface ExpandSingleProps {
+	expandMultiple: false
+	expandAllOnMount?: never
+}
+
+export interface ExpandMultipleProps {
+	expandMultiple: true
+	expandAllOnMount?: boolean
+}
+
+export type AccordionProps = (ExpandSingleProps | ExpandMultipleProps) &
+	SharedAccordionProps
 
 export const Accordion: FC<AccordionProps> = ({
 	classes = [],
@@ -69,5 +95,3 @@ export const Accordion: FC<AccordionProps> = ({
 		</div>
 	)
 }
-
-export type { AccordionProps, Panel } from './types'

@@ -3,7 +3,7 @@ import {
 	ExpandSingleProps,
 	Panel,
 	SharedAccordionProps
-} from '../Accordion/types'
+} from '../Accordion'
 
 export enum TimelineState {
 	alwaysExpanded = 'alwaysExpanded',

@@ -25,6 +25,7 @@ const useStyles = createUseStyles({
 		...generateThemedTimelineItemStyles(light),
 		borderRadius,
 		flexGrow: 1,
+		height: '100%',
 		marginLeft: spacing['m+']
 	},
 	wrapper: {
