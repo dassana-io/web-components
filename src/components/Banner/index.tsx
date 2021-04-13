@@ -5,7 +5,7 @@ import { generateThemedBannerStyles } from './util'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
-import React, { FC, ReactNode, useState } from 'react'
+import React, { FC, ReactNode, useEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -79,6 +79,10 @@ export interface BannerProps {
 	type: NotificationTypes
 }
 
+interface BannerPrefType {
+	[key: string]: { isClosed: boolean }
+}
+
 export const Banner: FC<BannerProps> = ({
 	children,
 	classes = [],
@@ -86,12 +90,27 @@ export const Banner: FC<BannerProps> = ({
 	title,
 	type
 }: BannerProps) => {
+	const localStorage = window.localStorage
+	const [bannerId, setBannerId] = useState<string>(`${type}-0`)
+	const [bannerList, setBannerList] = useState<BannerPrefType>({
+		[`${bannerId}`]: { isClosed: false }
+	})
+
 	const [renderBanner, setRenderBanner] = useState<boolean>(true)
 	const componentClasses = useStyles({ renderBanner, type })
 	const iconClasses = cn({
 		[componentClasses.icon]: true,
 		[componentClasses[type]]: true
 	})
+
+	const bannerSetup = () => {
+		if (!localStorage.getItem('bannerPref'))
+			localStorage.setItem('bannerPref', JSON.stringify(bannerList))
+	}
+
+	useEffect(() => {
+		bannerSetup()
+	}, [bannerId])
 
 	const toggleRender = () => setRenderBanner(renderBanner => !renderBanner)
 
