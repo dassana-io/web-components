@@ -36,6 +36,7 @@ const DecoratedBannerStory = (props: BannerProps) => {
 
 	const onBannerClose = () => setRenderBanner(false)
 
+	// Closed banner is only display for stories
 	return renderBanner ? (
 		<div onClick={onBannerClose}>
 			<Banner {...props}>
@@ -54,21 +55,11 @@ const DecoratedBannerStory = (props: BannerProps) => {
 	)
 }
 
-const Template: Story<BannerProps> = args => (
-	<Banner {...args}>
-		Once we receive an alert we scan it against policy risk rules. The rules
-		are evaluated in order from top to bottom. The first rule that matches
-		determines the risk of the alert. Updating a rule will not impact the
-		past alerts. However you can use past alerts as a reference to edit
-		rules such that future alerts get your desired risk classification.
-	</Banner>
-)
-
-const ErrorTemplate: Story<BannerProps> = args => (
+const BannerTemplate: Story<BannerProps> = args => (
 	<DecoratedBannerStory {...args} />
 )
 
-export const Error = ErrorTemplate.bind({})
+export const Error = BannerTemplate.bind({})
 Error.args = {
 	id: 'sb-error-banner',
 	showIcon: true,
@@ -76,7 +67,7 @@ Error.args = {
 	type: error
 }
 
-export const Info = Template.bind({})
+export const Info = BannerTemplate.bind({})
 Info.args = {
 	id: 'sb-info-banner',
 	showIcon: true,
@@ -84,7 +75,7 @@ Info.args = {
 	type: info
 }
 
-export const Success = Template.bind({})
+export const Success = BannerTemplate.bind({})
 Success.args = {
 	id: 'sb-success-banner',
 	showIcon: true,
@@ -92,7 +83,7 @@ Success.args = {
 	type: success
 }
 
-export const Warning = Template.bind({})
+export const Warning = BannerTemplate.bind({})
 Warning.args = {
 	id: 'sb-warning-banner',
 	showIcon: true,
@@ -100,7 +91,7 @@ Warning.args = {
 	type: warning
 }
 
-export const NoIcon = Template.bind({})
+export const NoIcon = BannerTemplate.bind({})
 NoIcon.args = {
 	id: 'sb-no-icon-banner',
 	showIcon: false,
