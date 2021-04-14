@@ -28,7 +28,7 @@ const Template: Story<BannerProps> = args => (
 
 export const Error = Template.bind({})
 Error.args = {
-	id: 1,
+	id: 'sb-error-banner',
 	showIcon: true,
 	title: 'Error',
 	type: error
@@ -36,7 +36,7 @@ Error.args = {
 
 export const Info = Template.bind({})
 Info.args = {
-	id: 2,
+	id: 'sb-info-banner',
 	showIcon: true,
 	title: 'Info',
 	type: info
@@ -44,7 +44,7 @@ Info.args = {
 
 export const Success = Template.bind({})
 Success.args = {
-	id: 3,
+	id: 'sb-success-banner',
 	showIcon: true,
 	title: 'Success',
 	type: success
@@ -52,7 +52,7 @@ Success.args = {
 
 export const Warning = Template.bind({})
 Warning.args = {
-	id: 4,
+	id: 'sb-warning-banner',
 	showIcon: true,
 	title: 'Warning',
 	type: warning
@@ -60,7 +60,7 @@ Warning.args = {
 
 export const NoIcon = Template.bind({})
 NoIcon.args = {
-	id: 5,
+	id: 'sb-no-icon-banner',
 	showIcon: false,
 	title: 'Policy Risk Rules',
 	type: success
