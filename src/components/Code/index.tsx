@@ -69,10 +69,10 @@ export const Code: FC<CodeProps> = ({
 	}
 
 	return (
-		<>
+		<div className={cn(classes)}>
 			{search && <Input {...searchProps} onChange={onSearch} />}
 			<pre
-				className={cn({ 'line-numbers': lineNumbers }, classes)}
+				className={cn({ 'line-numbers': lineNumbers })}
 				contentEditable={!readOnly}
 			>
 				<code className={`language-${language}`} ref={codeRef}>
@@ -81,6 +81,6 @@ export const Code: FC<CodeProps> = ({
 						: JSON.stringify(code, null, '\t')}
 				</code>
 			</pre>
-		</>
+		</div>
 	)
 }

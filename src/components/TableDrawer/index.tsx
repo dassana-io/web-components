@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import Drawer from './Drawer'
 import isEmpty from 'lodash/isEmpty'
-import { ColumnType, DataId, Table } from '../Table'
+import { DataId, Table, TableProps } from '../Table'
 import React, { Key, ReactNode, useState } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
@@ -45,23 +45,19 @@ const useStyles = createUseStyles({
 	}
 })
 
-export interface TableDrawerProps<DataType> {
-	columns: ColumnType[]
-	data: DataType[]
+export interface TableDrawerProps<DataType>
+	extends Omit<TableProps<DataType>, 'activeRowKey' | 'onRowClick'> {
 	drawerContainerClasses?: string[]
-	loading: boolean
 	renderDrawerCmp: (id: Key, rowData: DataType) => ReactNode
 	renderTableControls?: () => ReactNode
 	tableContainerClasses?: string[]
 }
 
 export const TableDrawer = <DataType extends DataId>({
-	columns,
-	data,
-	loading,
 	renderDrawerCmp,
 	renderTableControls,
-	tableContainerClasses
+	tableContainerClasses,
+	...rest
 }: TableDrawerProps<DataType>) => {
 	const [rowData, setRowData] = useState({} as DataType)
 	const resetRowData = () => setRowData({} as DataType)
@@ -90,10 +86,8 @@ export const TableDrawer = <DataType extends DataId>({
 				{renderTableControls && renderTableControls()}
 				<Table<DataType>
 					activeRowKey={rowData.id}
-					columns={columns}
-					data={data}
-					loading={loading}
 					onRowClick={onRowClick}
+					{...rest}
 				/>
 			</div>
 			{!isRowEmpty && (
