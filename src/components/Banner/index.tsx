@@ -5,7 +5,7 @@ import { generateThemedBannerStyles } from './util'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
-import React, { FC, ReactNode, useEffect, useState } from 'react'
+import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -30,7 +30,6 @@ const useStyles = createUseStyles({
 	container: {
 		...font.body,
 		...generateThemedBannerStyles(light),
-		display: ({ renderBanner }) => (renderBanner ? 'block' : 'none'),
 		fontWeight: fontWeight.light,
 		padding: spacing.l,
 		position: 'relative'
@@ -80,7 +79,7 @@ export interface BannerProps {
 	type: NotificationTypes
 }
 
-interface Banner {
+interface Banners {
 	[key: string]: boolean
 }
 
@@ -92,42 +91,49 @@ export const Banner: FC<BannerProps> = ({
 	title,
 	type
 }: BannerProps) => {
-	const localStorage = window.localStorage
-	const bannerId = `${type}-${id}`
-	const [bannerList, setBannerList] = useState<Banner>({})
-
-	const [renderBanner, setRenderBanner] = useState<boolean>(true)
-	const componentClasses = useStyles({ renderBanner, type })
+	const componentClasses = useStyles({ type })
 	const iconClasses = cn({
 		[componentClasses.icon]: true,
 		[componentClasses[type]]: true
 	})
 
-	useEffect(() => {
-		const localStorageSetup = () => {
-			const bannerPref = localStorage.getItem('bannerPref')
-			if (bannerPref) {
-				setBannerList(JSON.parse(bannerPref))
-				console.log(bannerList)
-			} else {
-				setBannerList([{ id: bannerId, renderBanner: true }])
-				console.log(bannerList)
-			}
+	const getBanners = () => {
+		const bannerPref = localStorage.getItem('bannerPref')
+		return bannerPref ? JSON.parse(bannerPref) : {}
+	}
+
+	const banners: Banners = getBanners()
+
+	const [renderBanner, setRenderBanner] = useState<boolean>(
+		!(id in banners) || banners[id] === true
+	)
+
+	useLayoutEffect(() => {
+		if (banners[id] === false) {
+			setRenderBanner(false)
+		} else if (banners[id] === undefined) {
+			localStorage.setItem(
+				'bannerPref',
+				JSON.stringify({
+					...banners,
+					[id]: true
+				})
+			)
 		}
+	}, [banners, id])
 
-		const bannerSetup = () => {
-			// if (!localStorage.getItem('bannerPref'))
-			// 	localStorage.setItem('bannerPref', JSON.stringify(bannerList))
-			localStorageSetup()
-			console.log('bannerSetup', bannerList)
-		}
-		bannerSetup()
-		console.log('useEffect', bannerList)
-	}, [])
+	const toggleRender = () => {
+		setRenderBanner(false)
+		localStorage.setItem(
+			'bannerPref',
+			JSON.stringify({
+				...banners,
+				[id]: false
+			})
+		)
+	}
 
-	const toggleRender = () => setRenderBanner(renderBanner => !renderBanner)
-
-	return (
+	return renderBanner ? (
 		<div className={cn(componentClasses.container, classes)}>
 			<div className={componentClasses.headerContainer}>
 				<div className={componentClasses.header}>
@@ -146,5 +152,7 @@ export const Banner: FC<BannerProps> = ({
 			</div>
 			<div>{children}</div>
 		</div>
+	) : (
+		<></>
 	)
 }
