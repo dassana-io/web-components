@@ -72,7 +72,7 @@ const useStyles = createUseStyles({
 })
 
 export interface BannerProps {
-	id: number | string
+	id: string
 	children?: ReactNode
 	classes?: string[]
 	showIcon?: boolean
@@ -80,9 +80,8 @@ export interface BannerProps {
 	type: NotificationTypes
 }
 
-interface BannerPrefType {
-	id: string
-	renderBanner: boolean
+interface Banner {
+	[key: string]: boolean
 }
 
 export const Banner: FC<BannerProps> = ({
@@ -95,7 +94,7 @@ export const Banner: FC<BannerProps> = ({
 }: BannerProps) => {
 	const localStorage = window.localStorage
 	const bannerId = `${type}-${id}`
-	const [bannerList, setBannerList] = useState<BannerPrefType[]>([])
+	const [bannerList, setBannerList] = useState<Banner>({})
 
 	const [renderBanner, setRenderBanner] = useState<boolean>(true)
 	const componentClasses = useStyles({ renderBanner, type })
