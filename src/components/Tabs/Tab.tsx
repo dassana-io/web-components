@@ -6,23 +6,29 @@ import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType
 
-const { fontWeight, spacing } = styleguide
+const {
+	colors: { blacks },
+	font,
+	fontWeight,
+	spacing
+} = styleguide
 
 const useStyles = createUseStyles({
-	activeTab: {
-		...generateThemedActiveTabStyles(light),
-		borderBottom: '1px solid'
-	},
+	activeTab: {},
 	tab: {
 		'&$activeTab': {
-			fontWeight: fontWeight.regular
+			...generateThemedActiveTabStyles(light)
 		},
+		...font.body,
+		borderBottom: '1px solid transparent',
+		color: blacks['lighten-50'],
 		cursor: 'pointer',
 		display: 'inline-block',
-		fontWeight: fontWeight.light,
+		fontWeight: fontWeight.regular,
 		listStyle: 'none',
-		marginRight: spacing.m,
-		padding: spacing.s
+		margin: { left: spacing.m, right: spacing.m },
+		padding: { bottom: spacing.m, top: spacing.m },
+		textAlign: 'center'
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

@@ -45,14 +45,14 @@ const TabPane: FC<TabPaneProps> = ({ children }: TabPaneProps) => {
 
 const tabConfig: TabConfig[] = [
 	{
-		key: 'foo',
-		label: 'Foo',
-		render: () => <TabPane>Foo content text</TabPane>
+		key: 'lorem',
+		label: 'Lorem',
+		render: () => <TabPane>Banana mochi muffin</TabPane>
 	},
 	{
-		key: 'bar',
-		label: 'Bar',
-		render: () => <TabPane>Bar content text</TabPane>
+		key: 'ipsum',
+		label: 'Ipsum',
+		render: () => <TabPane>Pineapple upside down cake</TabPane>
 	}
 ]
 

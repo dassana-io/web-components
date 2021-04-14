@@ -1,7 +1,7 @@
 import { CollapseIndicator } from './CollapseIndicator'
 import { createUseStyles } from 'react-jss'
 import { generateHeaderStyles } from './utils'
-import { Panel } from './types'
+import { Panel } from './index'
 import React, { FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
@@ -36,6 +36,7 @@ export const Header: FC<Props> = ({
 	title
 }: Props) => {
 	const classes = useStyles()
+
 	return (
 		<div className={classes.header} onClick={onHeaderClick}>
 			<div className={classes.titleWrapper}>
