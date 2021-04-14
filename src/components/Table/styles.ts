@@ -59,8 +59,7 @@ export const tablePalette = {
 				background: blacks['darken-40']
 			},
 			base: {
-				background: blacks.base,
-				border: blacks['darken-40']
+				background: blacks.base
 			},
 			hover: {
 				background: blacks['darken-20']
@@ -71,7 +70,7 @@ export const tablePalette = {
 		},
 		th: {
 			base: {
-				background: blacks['darken-20']
+				background: blacks['darken-40']
 			},
 			sort: {
 				background: blacks['darken-40']
@@ -88,8 +87,7 @@ export const tablePalette = {
 				background: grays.base
 			},
 			base: {
-				background: whites.base,
-				border: grays.base
+				background: whites.base
 			},
 			hover: {
 				background: grays['lighten-40']
@@ -167,7 +165,7 @@ const rowHoverCellClasses = '&:hover > td'
 
 const generateThemedCellStyles = (themeType: ThemeType) => {
 	const {
-		base: { color }
+		base: { borderColor, color }
 	} = themedStyles[themeType]
 
 	const { td } = tablePalette[themeType]
@@ -178,7 +176,7 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 				background: td.sort.background
 			},
 			background: td.base.background,
-			borderBottom: `1px solid ${td.base.border}`,
+			borderBottom: `1px solid ${borderColor}`,
 			color
 		},
 		[rowHoverCellClasses]: {

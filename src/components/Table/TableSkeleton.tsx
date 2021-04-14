@@ -6,7 +6,7 @@ import times from 'lodash/times'
 import { useTableContext } from './TableContext'
 import { ColumnFormats, ColumnType, ColumnTypes } from './types'
 import React, { FC } from 'react'
-import { styleguide, ThemeType } from 'components/assets/styles'
+import { styleguide, themes, ThemeType } from 'components/assets/styles'
 
 const { spacing } = styleguide
 
@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
 			paddingRight: spacing.l
 		},
 		background: tablePalette[light].td.base.background,
-		borderBottom: `1px solid ${tablePalette[light].td.base.border}`,
+		borderBottom: `1px solid ${themes[light].border}`,
 		height: 54,
 		padding: `0 ${spacing.m}px`
 	},
@@ -52,7 +52,7 @@ const useStyles = createUseStyles({
 			'& $table': {},
 			'& $td': {
 				background: tablePalette[dark].td.base.background,
-				borderBottom: `1px solid ${tablePalette[dark].td.base.border}`
+				borderBottom: `1px solid ${themes[dark].border}`
 			},
 			'& $th': {
 				background: tablePalette[dark].th.base.background
