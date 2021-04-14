@@ -81,7 +81,8 @@ export interface BannerProps {
 }
 
 interface BannerPrefType {
-	[key: string]: { isClosed: boolean }
+	id: string
+	renderBanner: boolean
 }
 
 export const Banner: FC<BannerProps> = ({
@@ -94,9 +95,7 @@ export const Banner: FC<BannerProps> = ({
 }: BannerProps) => {
 	const localStorage = window.localStorage
 	const bannerId = `${type}-${id}`
-	const [bannerList, setBannerList] = useState<BannerPrefType>({
-		[`${bannerId}`]: { isClosed: false }
-	})
+	const [bannerList, setBannerList] = useState<BannerPrefType[]>([])
 
 	const [renderBanner, setRenderBanner] = useState<boolean>(true)
 	const componentClasses = useStyles({ renderBanner, type })
@@ -105,14 +104,27 @@ export const Banner: FC<BannerProps> = ({
 		[componentClasses[type]]: true
 	})
 
-	const bannerSetup = () => {
-		if (!localStorage.getItem('bannerPref'))
-			localStorage.setItem('bannerPref', JSON.stringify(bannerList))
-	}
-
 	useEffect(() => {
+		const localStorageSetup = () => {
+			const bannerPref = localStorage.getItem('bannerPref')
+			if (bannerPref) {
+				setBannerList(JSON.parse(bannerPref))
+				console.log(bannerList)
+			} else {
+				setBannerList([{ id: bannerId, renderBanner: true }])
+				console.log(bannerList)
+			}
+		}
+
+		const bannerSetup = () => {
+			// if (!localStorage.getItem('bannerPref'))
+			// 	localStorage.setItem('bannerPref', JSON.stringify(bannerList))
+			localStorageSetup()
+			console.log('bannerSetup', bannerList)
+		}
 		bannerSetup()
-	}, [bannerId])
+		console.log('useEffect', bannerList)
+	}, [])
 
 	const toggleRender = () => setRenderBanner(renderBanner => !renderBanner)
 
