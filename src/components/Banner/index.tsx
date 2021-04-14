@@ -83,6 +83,11 @@ interface Banners {
 	[key: string]: boolean
 }
 
+export const getBanners = () => {
+	const bannerPref = localStorage.getItem('bannerPref')
+	return bannerPref ? JSON.parse(bannerPref) : {}
+}
+
 export const Banner: FC<BannerProps> = ({
 	id,
 	children,
@@ -96,11 +101,6 @@ export const Banner: FC<BannerProps> = ({
 		[componentClasses.icon]: true,
 		[componentClasses[type]]: true
 	})
-
-	const getBanners = () => {
-		const bannerPref = localStorage.getItem('bannerPref')
-		return bannerPref ? JSON.parse(bannerPref) : {}
-	}
 
 	const banners: Banners = getBanners()
 
