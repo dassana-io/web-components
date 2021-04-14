@@ -14,9 +14,11 @@ import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { filterSelectedFilters, formatSelectedFilters } from './utils'
 import { FiltersList, FiltersListItem } from './types'
-import React, { Fragment, ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
+
+const truncateLength = 15
 
 export const BaseFilters = () => {
 	const {
@@ -96,12 +98,8 @@ export const BaseFilters = () => {
 		}
 	}
 
-	const renderFiltersSummary = () => {
-		const filtersWithSelectedVals = filterSelectedFilters(filtersList)
-
-		const truncateLength = 15
-
-		const formattedFilters = filtersWithSelectedVals.map(
+	const renderFiltersSummary = () =>
+		filterSelectedFilters(filtersList).map(
 			({ selectedKey, selectedOperator = '=', selectedValues = [] }) => {
 				let values: string[] | ReactNode[]
 
@@ -135,28 +133,29 @@ export const BaseFilters = () => {
 				const keyStr = startCase(selectedKey)
 
 				return (
-					<>
-						<span className={classes.bracket}>[</span> {keyStr}{' '}
-						{selectedOperator}{' '}
-						{values.map((val: string | ReactNode, i: number) => (
-							<Fragment key={i}>
-								{val}
-								{i === values.length - 1 ? '' : ', '}
-							</Fragment>
-						))}
-						<span className={classes.bracket}> ]</span>
-					</>
+					<span className={classes.filterReadOnly} key={selectedKey}>
+						<span className={classes.bracket}>[</span>
+						<span className={classes.filterUnitReadOnly}>
+							{keyStr}
+							<span className={classes.operator}>
+								{selectedOperator}
+							</span>
+							{values.map(
+								(val: string | ReactNode, valIndex: number) => (
+									<span
+										className={classes.valuesReadOnly}
+										key={valIndex}
+									>
+										{val}
+									</span>
+								)
+							)}
+						</span>
+						<span className={classes.bracket}>]</span>
+					</span>
 				)
 			}
 		)
-
-		return formattedFilters.map((filter, i) => (
-			<Fragment key={i}>
-				{filter}
-				{i === formattedFilters.length - 1 ? '' : ' + '}
-			</Fragment>
-		))
-	}
 
 	const renderFilterControls = () => (
 		<div className={classes.filterControls}>
