@@ -3,11 +3,11 @@ import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { generateThemedBannerStyles } from './util'
 import { IconButton } from 'components/IconButton'
+import { isUndefined } from 'lodash'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
-import { isUndefined } from 'lodash'
 
 const {
 	colors: { blacks, greens, oranges, reds },

@@ -50,7 +50,7 @@ exports[`Storyshots Banner Error 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      onClick={[Function]}
+      className="decorator-0-2-4"
     >
       <div
         className="container-0-2-6"
@@ -111,6 +111,11 @@ exports[`Storyshots Banner Error 1`] = `
           Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
         </div>
       </div>
+      <button
+        onClick={[Function]}
+      >
+        Reset all banners
+      </button>
     </div>
   </div>
 </div>
@@ -124,7 +129,7 @@ exports[`Storyshots Banner Info 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      onClick={[Function]}
+      className="decorator-0-2-4"
     >
       <div
         className="container-0-2-6"
@@ -185,6 +190,11 @@ exports[`Storyshots Banner Info 1`] = `
           Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
         </div>
       </div>
+      <button
+        onClick={[Function]}
+      >
+        Reset all banners
+      </button>
     </div>
   </div>
 </div>
@@ -198,7 +208,7 @@ exports[`Storyshots Banner No Icon 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      onClick={[Function]}
+      className="decorator-0-2-4"
     >
       <div
         className="container-0-2-6"
@@ -242,6 +252,11 @@ exports[`Storyshots Banner No Icon 1`] = `
           Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
         </div>
       </div>
+      <button
+        onClick={[Function]}
+      >
+        Reset all banners
+      </button>
     </div>
   </div>
 </div>
@@ -255,7 +270,7 @@ exports[`Storyshots Banner Success 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      onClick={[Function]}
+      className="decorator-0-2-4"
     >
       <div
         className="container-0-2-6"
@@ -316,6 +331,11 @@ exports[`Storyshots Banner Success 1`] = `
           Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
         </div>
       </div>
+      <button
+        onClick={[Function]}
+      >
+        Reset all banners
+      </button>
     </div>
   </div>
 </div>
@@ -329,7 +349,7 @@ exports[`Storyshots Banner Warning 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      onClick={[Function]}
+      className="decorator-0-2-4"
     >
       <div
         className="container-0-2-6"
@@ -390,6 +410,11 @@ exports[`Storyshots Banner Warning 1`] = `
           Once we receive an alert we scan it against policy risk rules. The rules are evaluated in order from top to bottom. The first rule that matches determines the risk of the alert. Updating a rule will not impact the past alerts. However you can use past alerts as a reference to edit rules such that future alerts get your desired risk classification.
         </div>
       </div>
+      <button
+        onClick={[Function]}
+      >
+        Reset all banners
+      </button>
     </div>
   </div>
 </div>
