@@ -1,5 +1,10 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
+import {
+	styleguide,
+	themedStyles,
+	themes,
+	ThemeType
+} from 'components/assets/styles'
 
 const { dark, light } = ThemeType
 
@@ -9,6 +14,12 @@ const {
 	fontWeight,
 	spacing
 } = styleguide
+
+interface CopyToClipboard {
+	(str: string, callback?: () => void): void
+}
+export const copyToClipboard: CopyToClipboard = (str, callback) =>
+	navigator.clipboard.writeText(str).then(callback)
 
 const codePalette = {
 	[dark]: {
@@ -28,6 +39,17 @@ const generateThemedCodeStyles = (themeType: ThemeType) => {
 
 	return {
 		background,
+		border: `1px solid ${borderColor}`
+	}
+}
+
+export const generateThemedControlsStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor }
+	} = themedStyles[themeType]
+
+	return {
+		background: themes[themeType].background.secondary,
 		border: `1px solid ${borderColor}`
 	}
 }
@@ -96,6 +118,14 @@ const preCodeSelector = "pre[class*='language-']"
 /* eslint-enable quotes */
 
 export const useStyles = createUseStyles({
+	controls: { opacity: 0 },
+	preCode: {
+		'&:hover': {
+			'& $controls': { opacity: 1 }
+		},
+		position: 'relative'
+	},
+	// eslint-disable-next-line sort-keys
 	'@global': {
 		[preCodeSelector]: {
 			'& .line-numbers-rows': {

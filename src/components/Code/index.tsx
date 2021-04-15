@@ -1,16 +1,20 @@
 import './prism.css'
 import cn from 'classnames'
+import { isObject } from 'lodash'
 import Mark from 'mark.js'
 import Prism from 'prismjs'
-import { useStyles } from './utils'
+import { CodeControls, DisplayCodeControls } from './CodeControls'
+import { copyToClipboard, useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
-import React, { ChangeEvent, FC, useEffect, useRef } from 'react'
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+
 require('prismjs/plugins/line-numbers/prism-line-numbers')
 require('prismjs/components/prism-json')
 
 export interface CodeProps {
 	classes?: string[]
 	code: string | Record<string, any>
+	displayControls?: DisplayCodeControls | false
 	language?: 'css' | 'html' | 'javascript' | 'json'
 	lineNumbers?: boolean
 	readOnly?: boolean
@@ -22,6 +26,7 @@ export interface CodeProps {
 export const Code: FC<CodeProps> = ({
 	classes = [],
 	code,
+	displayControls = {},
 	language = 'json',
 	lineNumbers = true,
 	readOnly = true,
@@ -29,6 +34,20 @@ export const Code: FC<CodeProps> = ({
 }: CodeProps) => {
 	const compClasses = useStyles()
 	const codeRef = useRef<HTMLElement>(null)
+
+	const [isCopied, setIsCopied] = useState(false)
+
+	const copyCode = () => {
+		const stringifiedCode = isObject(code)
+			? JSON.stringify(code, null, '\t')
+			: code
+
+		copyToClipboard(stringifiedCode, () => setIsCopied(true))
+	}
+
+	useEffect(() => {
+		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
+	}, [isCopied])
 
 	useEffect(() => {
 		/**
@@ -72,9 +91,18 @@ export const Code: FC<CodeProps> = ({
 		<div className={cn(classes)}>
 			{search && <Input {...searchProps} onChange={onSearch} />}
 			<pre
-				className={cn({ 'line-numbers': lineNumbers })}
+				className={cn(compClasses.preCode, {
+					'line-numbers': lineNumbers
+				})}
 				contentEditable={!readOnly}
 			>
+				{displayControls && (
+					<CodeControls
+						classes={[compClasses.controls]}
+						isCopied={isCopied}
+						onClickCopyCode={copyCode}
+					/>
+				)}
 				<code className={`language-${language}`} ref={codeRef}>
 					{typeof code === 'string'
 						? code
