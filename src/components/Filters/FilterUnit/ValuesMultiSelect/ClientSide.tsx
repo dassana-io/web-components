@@ -1,4 +1,5 @@
 import { formatFilterValsToSelectOpts } from '../../utils'
+import { getMultiSelectProps } from './utils'
 import { ValuesMultiSelectProps } from './types'
 import { MultiSelect, SelectOption } from '../../../Select'
 import React, { FC, useEffect, useState } from 'react'
@@ -28,23 +29,12 @@ export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 
 	return (
 		<MultiSelect
-			disabled={!options.length}
-			matchSelectedContentWidth={225}
-			maxTagCount={5}
-			onChange={vals =>
-				onFilterChange({
-					id,
-					selectedValues: options.filter(opt =>
-						vals.includes(opt.value)
-					)
-				})
-			}
-			options={options}
-			optionsConfig={optionsConfig}
-			placeholder='Select field'
-			searchPlaceholder='Search'
-			showSearch
-			values={selectedValues.map(values => values.value)}
+			{...getMultiSelectProps({
+				id,
+				multiSelectProps: { options },
+				onFilterChange,
+				selectedValues
+			})}
 		/>
 	)
 }

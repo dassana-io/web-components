@@ -1,6 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import find from 'lodash/find'
 import { formatFilterValsToSelectOpts } from '../../utils'
+import { getMultiSelectProps } from './utils'
 import omit from 'lodash/omit'
 import uniqBy from 'lodash/uniqBy'
 import { useFiltersContext } from '../../FiltersContext'
@@ -138,24 +139,12 @@ export const ServerSideValuesMS: FC<Props> = ({
 
 	return (
 		<MultiSelect
-			disabled={!options.length}
-			matchSelectedContentWidth={225}
-			maxTagCount={5}
-			onChange={vals =>
-				onFilterChange({
-					id,
-					selectedValues: options.filter(opt =>
-						vals.includes(opt.value)
-					)
-				})
-			}
-			options={options}
-			optionsConfig={optionsConfig}
-			placeholder='Select field'
-			searchPlaceholder='Search'
-			showSearch
-			values={selectedValues.map(values => values.value)}
-			{...dynamicFilterProps}
+			{...getMultiSelectProps({
+				id,
+				multiSelectProps: { options, ...dynamicFilterProps },
+				onFilterChange,
+				selectedValues
+			})}
 		/>
 	)
 }
