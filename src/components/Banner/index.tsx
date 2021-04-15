@@ -7,6 +7,7 @@ import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
+import { isUndefined } from 'lodash'
 
 const {
 	colors: { blacks, greens, oranges, reds },
@@ -109,9 +110,7 @@ export const Banner: FC<BannerProps> = ({
 	)
 
 	useLayoutEffect(() => {
-		if (banners[id] === false) {
-			setRenderBanner(false)
-		} else if (banners[id] === undefined) {
+		if (isUndefined(banners[id])) {
 			localStorage.setItem(
 				'bannerPref',
 				JSON.stringify({
@@ -119,10 +118,12 @@ export const Banner: FC<BannerProps> = ({
 					[id]: true
 				})
 			)
+		} else if (!banners[id]) {
+			setRenderBanner(false)
 		}
 	}, [banners, id])
 
-	const toggleRender = () => {
+	const onBannerClose = () => {
 		setRenderBanner(false)
 		localStorage.setItem(
 			'bannerPref',
@@ -147,7 +148,7 @@ export const Banner: FC<BannerProps> = ({
 				</div>
 				<IconButton
 					classes={[componentClasses.closeBtn]}
-					onClick={toggleRender}
+					onClick={onBannerClose}
 				/>
 			</div>
 			<div>{children}</div>
