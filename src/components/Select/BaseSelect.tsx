@@ -146,28 +146,44 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				{...multiSelectProps}
 				{...singleSelectProps}
 			>
-				{options.map(({ iconKey, text, style, value }) => (
-					<Option
-						className={componentClasses.option}
-						key={value}
-						label={text}
-						value={value}
-					>
-						{props.mode === 'multiple' && (
-							<Checkbox
-								checked={props.localValues.indexOf(value) >= 0}
-								classes={[componentClasses.checkbox]}
-								onChange={noop}
-							/>
-						)}
-						<OptionChildren
-							iconKey={iconKey}
-							key={value}
-							optionsConfig={{ ...optionsConfig, style }}
-							text={text}
-						/>
-					</Option>
-				))}
+				{/* if state is pending, options are being fetched outside the component, so don't render options. With no options, `notFoundContent` prop will render a spinning loader */}
+				{!('pending' in props && props.pending) &&
+					options.map(
+						({
+							classes: optClasses = [],
+							iconKey,
+							text,
+							style,
+							value
+						}) => (
+							<Option
+								className={cn(
+									componentClasses.option,
+									optClasses
+								)}
+								key={value}
+								label={text}
+								value={value}
+							>
+								{props.mode === 'multiple' && (
+									<Checkbox
+										checked={
+											props.localValues.indexOf(value) >=
+											0
+										}
+										classes={[componentClasses.checkbox]}
+										onChange={noop}
+									/>
+								)}
+								<OptionChildren
+									iconKey={iconKey}
+									key={value}
+									optionsConfig={{ ...optionsConfig, style }}
+									text={text}
+								/>
+							</Option>
+						)
+					)}
 			</AntDSelect>
 		</div>
 	)

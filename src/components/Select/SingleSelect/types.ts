@@ -4,7 +4,8 @@ import { IconName } from '../../Icon'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
 
 export interface SelectOption {
-	iconKey?: IconName
+	classes?: string[]
+	iconKey?: IconName | string
 	style?: CSSProperties
 	text: string
 	value: string

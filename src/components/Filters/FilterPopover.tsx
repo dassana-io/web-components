@@ -1,46 +1,38 @@
-import { Button } from 'components/Button'
+import { Button } from '../Button'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import FilterUnit from './FilterUnit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'components/Link'
-import { Popover } from 'components/Popover'
-import { SelectOption } from 'components/Select'
-import { usePopoverStyles } from './utils'
-import { FiltersList, OnSearchWrapper, ProcessedFilters } from './types'
-import { IconButton, IconSizes } from 'components/IconButton'
+import { Link } from '../Link'
+import { Popover } from '../Popover'
+import { useFiltersContext } from './FiltersContext'
+import { usePopoverStyles } from './styles'
+import { FiltersList, FiltersListItem } from './types'
+import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
 
 interface FilterPopoverProps {
-	allFilters: ProcessedFilters
 	closePopover: () => void
-	dynamicOptions?: SelectOption[]
-	dynamicSearchVal: string
 	filtersList: FiltersList
-	onVisibleChange: (visible: boolean) => void
+	isPopoverOpen?: boolean
 	onClickAddFilter: () => void
 	onDelete: (selectedId: string) => void
-	onFilterChange: (selectedId: string, selection: string | string[]) => void
-	onSearchWrapper: OnSearchWrapper
-	pending: boolean
-	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>
-	visible?: boolean
+	onFilterChange: (filtersListItem: FiltersListItem) => void
+	resetFiltersList: () => void
+	togglePopoverVisibility: (isPopoverOpen: boolean) => void
 }
 
 export const FilterPopover: FC<FilterPopoverProps> = ({
-	allFilters,
 	closePopover,
-	dynamicOptions,
-	dynamicSearchVal,
-	filtersList,
-	onVisibleChange,
+	filtersList = [],
+	isPopoverOpen = false,
 	onClickAddFilter,
 	onDelete,
 	onFilterChange,
-	onSearchWrapper,
-	pending,
-	setFiltersList,
-	visible = false
+	resetFiltersList,
+	togglePopoverVisibility
 }: FilterPopoverProps) => {
+	const { allFilters } = useFiltersContext()
+
 	const classes = usePopoverStyles()
 
 	return (
@@ -70,38 +62,59 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 						{filtersList.length > 0 && (
 							<Link
 								classes={[classes.popoverControlsChild]}
-								onClick={() => setFiltersList([])}
+								onClick={resetFiltersList}
 							>
 								Clear Filters
 							</Link>
 						)}
 					</div>
 					<div className={classes.filtersList}>
-						{filtersList.map((filterItem, i) => (
-							<FilterUnit
-								allFilters={allFilters}
-								dynamicOptions={dynamicOptions}
-								dynamicSearchVal={dynamicSearchVal}
-								filtersList={filtersList}
-								id={filterItem.id}
-								key={filterItem.id}
-								onDelete={onDelete}
-								onFilterChange={onFilterChange}
-								onSearchWrapper={onSearchWrapper}
-								pending={pending}
-								selectedFilterKey={filtersList[i].selectedKey}
-							/>
-						))}
+						{filtersList.map(
+							({
+								id,
+								selectedKey,
+								selectedOperator,
+								selectedValues
+							}) => {
+								const filterOption =
+									allFilters[selectedKey || '']
+
+								return (
+									<FilterUnit
+										filterOptOperator={
+											filterOption?.operator
+										}
+										filterOptValues={filterOption?.values}
+										filtersList={filtersList}
+										id={id}
+										key={id}
+										onDelete={onDelete}
+										onFilterChange={onFilterChange}
+										selectedKey={selectedKey}
+										selectedOperator={selectedOperator}
+										selectedValues={selectedValues}
+										staticFilter={
+											filterOption?.staticFilter
+										}
+									/>
+								)
+							}
+						)}
 					</div>
 				</div>
 			}
-			onVisibleChange={onVisibleChange}
+			onVisibleChange={togglePopoverVisibility}
 			placement='bottomLeft'
 			popupContainerSelector='#filters-popup-wrapper'
 			popupTriggerClasses={[classes.popoverTrigger]}
 			trigger='click'
-			visible={visible}
+			visible={isPopoverOpen}
 		>
+			{/* <i /> is just a placeholder. The filter controls that triggers
+      the popover lives in ./BaseFilters. This was done because positioning
+      the Popover to cover the controls is easier when it's not a child of the
+      Popover.
+      */}
 			<i />
 		</Popover>
 	)

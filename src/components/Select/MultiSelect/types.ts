@@ -13,9 +13,6 @@ export interface MultiSelectProps
 	 */
 	maxTagCount?: number
 	maxTagTextLength?: number
-	/**
-	 * Array of options to be rendered in the dropdown
-	 */
 	onChange?: (values: string[]) => void
 	onFocus?: () => void
 	onSearch?: (value: string) => void
@@ -27,7 +24,7 @@ export interface MultiSelectProps
 	pending?: boolean
 	searchPlaceholder?: string
 	/**
-	 * Selected values for if component is controlled. Requires an onChange to be passed
+	 * Selected values if component is controlled. Requires an onChange to be passed
 	 */
 	values?: string[]
 }

@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss'
 import { styleguide } from '../assets/styles/styleguide'
 import { Tooltip } from '../Tooltip'
 import { tooltipStyles } from './utils'
-import { Icon, IconName, SharedIconProps } from '../Icon'
+import { Icon, IconName, IconProps, SharedIconProps } from '../Icon'
 import React, { FC, ReactNode, SyntheticEvent, useState } from 'react'
 import {
 	SelectOption,
@@ -43,7 +43,7 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 	const { style = {} } = optionsConfig
 
 	const renderIcon = (
-		iconKey: IconName,
+		iconKey: IconName | string,
 		optionsConfig: SelectOptionsConfig
 	): JSX.Element => {
 		const commonIconProps: SharedIconProps = {
@@ -52,14 +52,20 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 
 		const { iconMap } = optionsConfig
 
-		return (
+		const renderIconWithProps = (props: IconProps) => (
 			<span className={classes.icon}>
-				{iconMap ? (
-					<Icon {...commonIconProps} icon={iconMap[iconKey]} />
-				) : (
-					<Icon {...commonIconProps} iconKey={iconKey} />
-				)}
+				<Icon {...commonIconProps} {...props} />
 			</span>
+		)
+
+		return iconMap ? (
+			iconMap[iconKey] ? (
+				renderIconWithProps({ icon: iconMap[iconKey] })
+			) : (
+				<></>
+			)
+		) : (
+			renderIconWithProps({ iconKey: iconKey as IconName })
 		)
 	}
 
@@ -72,11 +78,7 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 				onMouseEnter={(e: SyntheticEvent) => {
 					const el = e.currentTarget as HTMLElement
 
-					if (el.scrollWidth > el.offsetWidth) {
-						setHasTooltip(true)
-					} else {
-						setHasTooltip(false)
-					}
+					setHasTooltip(el.scrollWidth > el.offsetWidth)
 				}}
 			>
 				{hasTooltip ? (
