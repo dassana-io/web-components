@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 import {
 	styleguide,
 	themedStyles,
@@ -9,7 +10,7 @@ import {
 const { dark, light } = ThemeType
 
 const {
-	colors: { blacks, grays },
+	colors: { blacks, grays, greens, reds, oranges },
 	font,
 	fontWeight,
 	spacing
@@ -54,6 +55,54 @@ export const generateThemedControlsStyles = (themeType: ThemeType) => {
 	}
 }
 
+/* -------------- Prism Colors -------------- */
+
+const darkCommonColor = themedStyles[dark].base.color
+const lightCommonColor = themedStyles[light].base.color
+
+const { shade } = ColorManipulationTypes
+
+const prismColors = {
+	[dark]: {
+		boolean: reds.base,
+		char: darkCommonColor,
+		className: darkCommonColor,
+		comment: darkCommonColor,
+		function: darkCommonColor,
+		keyword: darkCommonColor,
+		lineHighlight: darkCommonColor,
+		method: darkCommonColor,
+		number: reds.base,
+		operator: darkCommonColor,
+		primitive: darkCommonColor,
+		property: oranges.base,
+		punctuation: darkCommonColor,
+		string: manipulateColor(greens.base, 20, shade),
+		tag: darkCommonColor,
+		variable: darkCommonColor
+	},
+	[light]: {
+		boolean: oranges.base,
+		char: lightCommonColor,
+		className: lightCommonColor,
+		comment: lightCommonColor,
+		function: lightCommonColor,
+		keyword: lightCommonColor,
+		lineHighlight: lightCommonColor,
+		method: lightCommonColor,
+		number: oranges.base,
+		operator: lightCommonColor,
+		primitive: lightCommonColor,
+		property: reds.base,
+		punctuation: lightCommonColor,
+		string: manipulateColor(greens.base, 10, shade),
+		tag: lightCommonColor,
+		variable: lightCommonColor
+	}
+}
+
+/* ------------------------------------------ */
+
 const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]
 
@@ -61,27 +110,8 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const prismColors = {
-		boolean: color,
-		char: color,
-		className: color,
-		comment: color,
-		function: color,
-		keyword: color,
-		lineHighlight: color,
-		method: color,
-		number: color,
-		operator: color,
-		primitive: color,
-		property: color,
-		punctuation: color,
-		string: color,
-		tag: color,
-		variable: color
-	}
-
 	return {
-		...Object.entries(prismColors).reduce(
+		...Object.entries(prismColors[themeType]).reduce(
 			(acc, [key, val]) => ({
 				...acc,
 				[`& .token.${key}`]: {
