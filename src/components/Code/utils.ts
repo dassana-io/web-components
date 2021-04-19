@@ -119,12 +119,6 @@ const preCodeSelector = "pre[class*='language-']"
 
 export const useStyles = createUseStyles({
 	controls: { opacity: 0 },
-	preCode: {
-		'&:hover': {
-			'& $controls': { opacity: 1 }
-		},
-		position: 'relative'
-	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[preCodeSelector]: {
@@ -155,5 +149,14 @@ export const useStyles = createUseStyles({
 	},
 	search: {
 		marginBottom: spacing.m
+	},
+	wrapper: {
+		'&:hover': {
+			'& $controls': { opacity: 1 }
+		},
+		height: '100%',
+		overflow: 'auto',
+		position: 'relative',
+		width: '100%'
 	}
 })

@@ -90,12 +90,7 @@ export const Code: FC<CodeProps> = ({
 	return (
 		<div className={cn(classes)}>
 			{search && <Input {...searchProps} onChange={onSearch} />}
-			<pre
-				className={cn(compClasses.preCode, {
-					'line-numbers': lineNumbers
-				})}
-				contentEditable={!readOnly}
-			>
+			<div className={compClasses.wrapper}>
 				{displayControls && (
 					<CodeControls
 						classes={[compClasses.controls]}
@@ -103,12 +98,19 @@ export const Code: FC<CodeProps> = ({
 						onClickCopyCode={copyCode}
 					/>
 				)}
-				<code className={`language-${language}`} ref={codeRef}>
-					{typeof code === 'string'
-						? code
-						: JSON.stringify(code, null, '\t')}
-				</code>
-			</pre>
+				<pre
+					className={cn({
+						'line-numbers': lineNumbers
+					})}
+					contentEditable={!readOnly}
+				>
+					<code className={`language-${language}`} ref={codeRef}>
+						{typeof code === 'string'
+							? code
+							: JSON.stringify(code, null, '\t')}
+					</code>
+				</pre>
+			</div>
 		</div>
 	)
 }
