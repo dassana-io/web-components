@@ -18,6 +18,7 @@ const Template: Story<JSONPathPickerProps> = args => {
 				onChange={e => setPath(e.target.value)}
 				value={path}
 			/>
+			<div style={{ padding: 10 }}></div>
 			<JSONPathPicker
 				{...args}
 				onChange={path => {

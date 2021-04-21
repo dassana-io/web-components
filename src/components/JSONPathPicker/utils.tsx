@@ -1,10 +1,8 @@
+import { Classes } from './styles'
 import isNull from 'lodash/isNull'
 import isUndefined from 'lodash/isUndefined'
-import { Classes, useStyles } from './styles'
-import React, { FC, ReactNode } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { JSONValue } from '.'
+import React, { ReactNode } from 'react'
 
 enum Types {
 	array = 'array',
@@ -23,6 +21,7 @@ interface RenderParams {
 	pickedPath: string
 	isLastItem?: boolean
 	nextPath?: string
+	onClick: (e: any) => void
 	remainingJSON: JSONValue | Record<string, JSONValue>
 }
 
@@ -33,17 +32,53 @@ const renderPicker = ({
 	classes,
 	nextPath
 }: Pick<RenderParams, 'classes' | 'nextPath'>): ReactNode => (
-	<span className={classes.pathPickerIcon} data-json-path={nextPath}></span>
+	// <span className={classes.pathPickerIcon} data-json-path={nextPath}></span>
+	<></>
 )
 
 const renderArray = ({
 	classes,
-	pickedPath,
-	remainingJSON,
 	isLastItem,
-	nextPath
+	onClick,
+	pickedPath,
+	nextPath,
+	remainingJSON
 }: RenderParams): ReactNode => {
-	return <div></div>
+	const arr = remainingJSON as Record<string, JSONValue>[]
+
+	return (
+		<>
+			{renderPicker({ classes, nextPath })}
+			{arr.length === 0 ? (
+				<span>
+					{'[ ]'}
+					{isLastItem ? '' : ','}
+				</span>
+			) : (
+				<>
+					<span>{'['}</span>
+					<ol className={classes.list}>
+						{arr.map((item, i) => (
+							<li key={i}>
+								{recursiveRender({
+									classes,
+									isLastItem: arr.length - 1 === i,
+									nextPath: `${nextPath}[${i}]`,
+									onClick,
+									pickedPath,
+									remainingJSON: item
+								})}
+							</li>
+						))}
+					</ol>
+					<span>
+						{']'}
+						{isLastItem ? '' : ','}
+					</span>
+				</>
+			)}
+		</>
+	)
 }
 
 const renderUndefined = ({
@@ -96,6 +131,7 @@ const renderString = ({
 const renderObject = ({
 	classes,
 	isLastItem,
+	onClick,
 	pickedPath,
 	remainingJSON,
 	nextPath
@@ -107,15 +143,19 @@ const renderObject = ({
 		<>
 			{renderPicker({ classes, nextPath })}
 			<span>{'{'}</span>
-			<ul className={classes.jsonObj}>
+			<ul className={classes.list}>
 				{remainingKeys.map((key, i) => (
 					<li key={i}>
-						<span>{key}</span>
+						<span
+							data-json-path={`${nextPath}.${key}`}
+							onClick={onClick}
+						>{`"${key}"`}</span>
 						<span> : </span>
 						{recursiveRender({
 							classes,
 							isLastItem: remainingKeys.length - 1 === i,
 							nextPath: `${nextPath}.${key}`,
+							onClick,
 							pickedPath,
 							remainingJSON: json[key]
 						})}
@@ -157,12 +197,14 @@ export const recursiveRender = ({
 	pickedPath,
 	isLastItem,
 	nextPath,
+	onClick,
 	remainingJSON
 }: RenderParams): ReactNode =>
 	mappedTypesToRenderFns[getRemainingJSONType(remainingJSON)]({
 		classes,
 		isLastItem,
 		nextPath,
+		onClick,
 		pickedPath,
 		remainingJSON
 	})

@@ -3,12 +3,14 @@ import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
 	colors: { oranges },
+	font,
 	spacing
 } = styleguide
 
 const { light, dark } = ThemeType
 const styles = {
 	container: {
+		...font.body,
 		color: themedStyles[light].base.color,
 		// eslint-disable-next-line sort-keys
 		'& li': {
@@ -17,8 +19,8 @@ const styles = {
 			padding: 0
 		}
 	},
-	jsonObj: {
-		paddingLeft: spacing.l
+	list: {
+		paddingLeft: spacing.m
 	},
 	pathPickerIcon: {
 		background: oranges.base,

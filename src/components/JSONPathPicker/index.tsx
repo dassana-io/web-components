@@ -47,11 +47,12 @@ export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 	}
 
 	return (
-		<div className={classes.container} onClick={onClick}>
+		<div className={classes.container}>
 			{recursiveRender({
 				classes,
 				isLastItem: true,
 				nextPath: '$',
+				onClick,
 				pickedPath: path || '',
 				remainingJSON: json
 			})}
