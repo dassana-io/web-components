@@ -1,11 +1,15 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { generateThemedBannerStyles } from './util'
 import { IconButton } from 'components/IconButton'
 import { isUndefined } from 'lodash'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
+import {
+	Banners,
+	generateThemedBannerStyles,
+	getBannerPreferences
+} from './util'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
@@ -80,15 +84,6 @@ export interface BannerProps {
 	type: NotificationTypes
 }
 
-interface Banners {
-	[key: string]: boolean
-}
-
-export const getBanners = () => {
-	const bannerPref = localStorage.getItem('bannerPref')
-	return bannerPref ? JSON.parse(bannerPref) : {}
-}
-
 export const Banner: FC<BannerProps> = ({
 	id,
 	children,
@@ -103,7 +98,7 @@ export const Banner: FC<BannerProps> = ({
 		[componentClasses[type]]: true
 	})
 
-	const banners: Banners = getBanners()
+	const banners: Banners = getBannerPreferences()
 
 	const [renderBanner, setRenderBanner] = useState<boolean>(
 		!(id in banners) || banners[id] === true
