@@ -63,7 +63,7 @@ const tokenStyles = {
 		'& $operator': { color: tokenColors[dark].operator },
 		'& $property': {
 			'&:hover': {
-				color: manipulateColor(tokenColors[dark].property, 10, shade)
+				borderBottom: `1px solid ${tokenColors[dark].property}`
 			},
 			color: tokenColors[dark].property
 		},
@@ -80,8 +80,7 @@ const tokenStyles = {
 		},
 		property: {
 			'&:hover': {
-				color: manipulateColor(tokenColors[light].property, 10, shade),
-				textDecoration: 'underline'
+				borderBottom: `1px solid ${tokenColors[light].property}`
 			},
 			color: tokenColors[light].property,
 			cursor: 'pointer'

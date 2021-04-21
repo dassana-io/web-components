@@ -172,9 +172,20 @@ const getRemainingJSONType = (remainingJSON: RemainingJSON) => {
 	else {
 		const type = typeof remainingJSON
 
-		if (Object.values(Types).includes(type as Types)) return type as Types
+		switch (type) {
+			case 'number':
+			case 'bigint':
+				return Types.number
+			case 'object':
+				return Types.object
+			case 'string':
+				return Types.string
+			case 'boolean':
+				return Types.boolean
+			default:
+				return Types.null
+		}
 	}
-	return Types.null
 }
 
 export const recursiveRender = ({
