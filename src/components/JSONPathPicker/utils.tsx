@@ -6,8 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { JSONValue } from '.'
 
-const getPathArr = (path = ''): string[] =>
-	path.match(/(\..+?)|(\[.+?\])/g) || []
+enum Types {
+	array = 'array',
+	boolean = 'boolean',
+	null = 'null',
+	number = 'number',
+	object = 'object',
+	string = 'string',
+	undefined = 'undefined'
+}
 
 type RemainingJSON = JSONValue | Record<string, JSONValue>
 
@@ -19,15 +26,15 @@ interface RenderParams {
 	remainingJSON: JSONValue | Record<string, JSONValue>
 }
 
-const renderNumber = ({
+const getPathArr = (path = ''): string[] =>
+	path.match(/(\..+?)|(\[.+?\])/g) || []
+
+const renderPicker = ({
 	classes,
-	pickedPath,
-	remainingJSON,
-	isLastItem,
 	nextPath
-}: RenderParams): ReactNode => {
-	return <div></div>
-}
+}: Pick<RenderParams, 'classes' | 'nextPath'>): ReactNode => (
+	<span className={classes.pathPickerIcon} data-json-path={nextPath}></span>
+)
 
 const renderArray = ({
 	classes,
@@ -42,32 +49,33 @@ const renderArray = ({
 const renderUndefined = ({
 	classes,
 	pickedPath,
-	remainingJSON,
 	isLastItem,
 	nextPath
-}: RenderParams): ReactNode => {
-	return <div></div>
-}
+}: RenderParams): ReactNode => (
+	<>
+		{renderPicker({ classes, nextPath })}
+		<span>
+			{Types.undefined}
+			{isLastItem ? '' : ','}
+		</span>
+	</>
+)
 
-const renderBoolean = ({
+const renderPrimitive = ({
 	classes,
 	pickedPath,
 	remainingJSON,
 	isLastItem,
 	nextPath
-}: RenderParams): ReactNode => {
-	return <div></div>
-}
-
-const renderNull = ({
-	classes,
-	pickedPath,
-	remainingJSON,
-	isLastItem,
-	nextPath
-}: RenderParams): ReactNode => {
-	return <div></div>
-}
+}: RenderParams): ReactNode => (
+	<>
+		{renderPicker({ classes, nextPath })}
+		<span>
+			{JSON.stringify(remainingJSON)}
+			{isLastItem ? '' : ','}
+		</span>
+	</>
+)
 
 const renderString = ({
 	classes,
@@ -75,12 +83,19 @@ const renderString = ({
 	remainingJSON,
 	isLastItem,
 	nextPath
-}: RenderParams): ReactNode => {
-	return <div></div>
-}
+}: RenderParams): ReactNode => (
+	<>
+		{renderPicker({ classes, nextPath })}
+		<span>
+			{`"${remainingJSON}"`}
+			{isLastItem ? '' : ','}
+		</span>
+	</>
+)
 
 const renderObject = ({
 	classes,
+	isLastItem,
 	pickedPath,
 	remainingJSON,
 	nextPath
@@ -90,10 +105,7 @@ const renderObject = ({
 
 	return (
 		<>
-			<span
-				className={classes.pathPickerIcon}
-				data-json-path={nextPath}
-			></span>
+			{renderPicker({ classes, nextPath })}
 			<span>{'{'}</span>
 			<ul className={classes.jsonObj}>
 				{remainingKeys.map((key, i) => (
@@ -110,26 +122,19 @@ const renderObject = ({
 					</li>
 				))}
 			</ul>
-			<span>{'}'}</span>
+			<span>
+				{'}'}
+				{isLastItem ? '' : ','}
+			</span>
 		</>
 	)
 }
 
-enum Types {
-	array = 'array',
-	boolean = 'boolean',
-	null = 'null',
-	number = 'number',
-	object = 'object',
-	string = 'string',
-	undefined = 'undefined'
-}
-
 const mappedTypesToRenderFns = {
 	[Types.array]: renderArray,
-	[Types.boolean]: renderBoolean,
-	[Types.null]: renderNull,
-	[Types.number]: renderNumber,
+	[Types.boolean]: renderPrimitive,
+	[Types.null]: renderPrimitive,
+	[Types.number]: renderPrimitive,
 	[Types.object]: renderObject,
 	[Types.string]: renderString,
 	[Types.undefined]: renderUndefined

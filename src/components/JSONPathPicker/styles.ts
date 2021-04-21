@@ -25,6 +25,7 @@ const styles = {
 		cursor: 'pointer',
 		display: 'inline-block',
 		height: 10,
+		marginRight: 10,
 		width: 10
 	},
 	// eslint-disable-next-line sort-keys
