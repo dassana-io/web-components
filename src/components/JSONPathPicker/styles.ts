@@ -1,9 +1,9 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 import { ColorManipulationTypes, manipulateColor } from 'components/utils'
+import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
-	colors: { blacks, grays, greens, reds, oranges },
+	colors: { greens, reds, oranges },
 	font,
 	fontWeight,
 	spacing
@@ -56,12 +56,26 @@ const tokenColors = {
 }
 
 const tokenStyles = {
+	[dark]: {
+		'& $boolean': { color: tokenColors[dark].boolean },
+		'& $number': { color: tokenColors[dark].number },
+		'& $operator': { color: tokenColors[dark].operator },
+		'& $property': {
+			'&:hover': {
+				color: manipulateColor(tokenColors[dark].property, 10, shade)
+			},
+			color: tokenColors[dark].property
+		},
+		'& $punctuation': { color: tokenColors[light].punctuation },
+		'& $string': { color: tokenColors[light].string }
+	},
 	[light]: {
 		boolean: { color: tokenColors[light].boolean },
+		null: {},
 		number: { color: tokenColors[light].number },
 		operator: {
 			color: tokenColors[light].operator,
-			padding: { left: spacing.xs / 2, right: spacing.s }
+			padding: { left: spacing.xs / 2, right: spacing.xs }
 		},
 		property: {
 			'&:hover': {
@@ -75,21 +89,7 @@ const tokenStyles = {
 			color: tokenColors[light].punctuation,
 			padding: { left: spacing.xs / 2 }
 		},
-		string: { color: tokenColors[light].string },
-		null: {}
-	},
-	[dark]: {
-		'& $boolean': { color: tokenColors[dark].boolean },
-		'& $number': { color: tokenColors[dark].number },
-		'& $operator': { color: tokenColors[dark].operator },
-		'& $property': {
-			'&:hover': {
-				color: manipulateColor(tokenColors[dark].property, 10, shade)
-			},
-			color: tokenColors[dark].property
-		},
-		'& $punctuation': { color: tokenColors[light].punctuation },
-		'& $string': { color: tokenColors[light].string }
+		string: { color: tokenColors[light].string }
 	}
 }
 

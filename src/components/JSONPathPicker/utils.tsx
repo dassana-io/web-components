@@ -26,8 +26,13 @@ interface RenderParams {
 const renderComma = ({
 	classes,
 	isLastItem
-}: Pick<RenderParams, 'classes' | 'isLastItem'>) =>
-	isLastItem ? <></> : <span className={classes.punctuation}>,</span>
+}: Pick<RenderParams, 'classes' | 'isLastItem'>): ReactNode =>
+	isLastItem ? <></> : renderPunctuation(',', classes)
+
+const renderPunctuation = (
+	punctuation: string,
+	classes: RenderParams['classes']
+): ReactNode => <span className={classes.punctuation}>{punctuation}</span>
 
 const renderArray = ({
 	classes,
@@ -43,12 +48,13 @@ const renderArray = ({
 		<>
 			{arr.length === 0 ? (
 				<span>
-					{'[ ]'}
+					{renderPunctuation('[', classes)}
+					{renderPunctuation(']', classes)}
 					{renderComma({ classes, isLastItem })}
 				</span>
 			) : (
 				<>
-					<span>{'['}</span>
+					<span>{renderPunctuation('[', classes)}</span>
 					<ol className={classes.list}>
 						{arr.map((item, i) => (
 							<li key={i}>
@@ -64,7 +70,7 @@ const renderArray = ({
 						))}
 					</ol>
 					<span>
-						{']'}
+						{renderPunctuation(']', classes)}
 						{renderComma({ classes, isLastItem })}
 					</span>
 				</>
@@ -73,10 +79,9 @@ const renderArray = ({
 	)
 }
 
-interface RenderPrimitive extends RenderParams {
+interface RenderPrimitiveParams extends RenderParams {
 	type: Types.boolean | Types.number | Types.null
 }
-
 const renderPrimitive = ({
 	classes,
 	pickedPath,
@@ -84,7 +89,7 @@ const renderPrimitive = ({
 	isLastItem,
 	currPath,
 	type
-}: RenderPrimitive): ReactNode => (
+}: RenderPrimitiveParams): ReactNode => (
 	<>
 		<span className={classes[type]}>
 			{JSON.stringify(remainingJSON)}
@@ -121,7 +126,7 @@ const renderObject = ({
 
 	return (
 		<>
-			<span>{'{'}</span>
+			{renderPunctuation('{', classes)}
 			<ul className={classes.list}>
 				{remainingKeys.map((key, i) => (
 					<li key={i}>
@@ -142,7 +147,7 @@ const renderObject = ({
 				))}
 			</ul>
 			<span>
-				{'}'}
+				{renderPunctuation('}', classes)}
 				{renderComma({ classes, isLastItem })}
 			</span>
 		</>
