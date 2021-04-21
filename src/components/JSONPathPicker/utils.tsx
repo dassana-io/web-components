@@ -55,7 +55,7 @@ const renderArray = ({
 			) : (
 				<>
 					<span>{renderPunctuation('[', classes)}</span>
-					<ol className={classes.list}>
+					<ol>
 						{arr.map((item, i) => (
 							<li key={i}>
 								{recursiveRender({
@@ -127,7 +127,7 @@ const renderObject = ({
 	return (
 		<>
 			{renderPunctuation('{', classes)}
-			<ul className={classes.list}>
+			<ul>
 				{remainingKeys.map((key, i) => (
 					<li key={i}>
 						<span

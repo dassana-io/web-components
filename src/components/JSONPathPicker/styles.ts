@@ -3,7 +3,7 @@ import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
-	colors: { greens, reds, oranges },
+	colors: { blacks, grays, greens, reds, oranges },
 	font,
 	fontWeight,
 	spacing
@@ -23,7 +23,7 @@ const tokenColors = {
 		className: darkCommonColor,
 		comment: darkCommonColor,
 		function: darkCommonColor,
-		keyword: darkCommonColor,
+		keyword: reds.base,
 		lineHighlight: darkCommonColor,
 		method: darkCommonColor,
 		number: reds.base,
@@ -41,7 +41,7 @@ const tokenColors = {
 		className: lightCommonColor,
 		comment: lightCommonColor,
 		function: lightCommonColor,
-		keyword: lightCommonColor,
+		keyword: oranges.base,
 		lineHighlight: lightCommonColor,
 		method: lightCommonColor,
 		number: oranges.base,
@@ -58,6 +58,7 @@ const tokenColors = {
 const tokenStyles = {
 	[dark]: {
 		'& $boolean': { color: tokenColors[dark].boolean },
+		'& $null': { color: tokenColors[dark].keyword },
 		'& $number': { color: tokenColors[dark].number },
 		'& $operator': { color: tokenColors[dark].operator },
 		'& $property': {
@@ -71,7 +72,7 @@ const tokenStyles = {
 	},
 	[light]: {
 		boolean: { color: tokenColors[light].boolean },
-		null: {},
+		null: { color: tokenColors[light].keyword },
 		number: { color: tokenColors[light].number },
 		operator: {
 			color: tokenColors[light].operator,
@@ -93,26 +94,51 @@ const tokenStyles = {
 	}
 }
 
+const palette = {
+	[dark]: {
+		background: blacks['darken-20']
+	},
+	[light]: {
+		background: grays['lighten-70']
+	}
+}
+
+const generateThemedContainerStyles = (themeType: ThemeType) => {
+	const { background } = palette[themeType]
+	const {
+		base: { color }
+	} = themedStyles[themeType]
+
+	const {
+		base: { borderColor }
+	} = themedStyles[themeType]
+
+	return {
+		background,
+		border: `1px solid ${borderColor}`,
+		color
+	}
+}
+
 const styles = {
 	...tokenStyles[light],
 	container: {
-		...font.label,
-		color: themedStyles[light].base.color,
-		fontFamily: 'Fira Code, monospace',
-		fontWeight: fontWeight.light,
-		// eslint-disable-next-line sort-keys
 		'& ul, & ol': {
 			'& li': {
 				listStyle: 'none',
 				margin: 0,
 				padding: 0
 			},
-			'&$list': { paddingLeft: spacing.m },
 			margin: 0,
-			padding: 0
-		}
+			padding: 0,
+			paddingLeft: spacing.m
+		},
+		...font.label,
+		...generateThemedContainerStyles(light),
+		fontFamily: 'Fira Code, monospace',
+		fontWeight: fontWeight.light,
+		padding: spacing.s
 	},
-	list: {},
 	pathPickerIcon: {
 		background: oranges.base,
 		cursor: 'pointer',
@@ -125,9 +151,7 @@ const styles = {
 	'@global': {
 		[`.${dark}`]: {
 			...tokenStyles[dark],
-			'& $container': {
-				color: themedStyles[dark].base.color
-			}
+			'& $container': generateThemedContainerStyles(dark)
 		}
 	}
 }
