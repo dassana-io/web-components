@@ -12,7 +12,7 @@ export const generateThemedBannerStyles = (themeType: ThemeType) => {
 	}
 }
 
-const BANNER_PREFERENCE = 'bannerPref'
+export const BANNER_PREFERENCE = 'bannerPref'
 
 export interface Banners {
 	[key: string]: boolean
@@ -20,6 +20,7 @@ export interface Banners {
 
 export const getBannerPreferences = (): Banners => {
 	const bannerPref = localStorage.getItem(BANNER_PREFERENCE)
+
 	return bannerPref ? JSON.parse(bannerPref) : {}
 }
 

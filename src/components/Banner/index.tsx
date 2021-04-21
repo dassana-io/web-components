@@ -2,14 +2,15 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
-import { isUndefined } from 'lodash'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import {
 	Banners,
 	generateThemedBannerStyles,
-	getBannerPreferences
-} from './util'
+	getBannerPreferences,
+	isNewBanner,
+	updateBannerPreferences
+} from './utils'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
@@ -100,19 +101,11 @@ export const Banner: FC<BannerProps> = ({
 
 	const banners: Banners = getBannerPreferences()
 
-	const [renderBanner, setRenderBanner] = useState<boolean>(
-		!(id in banners) || banners[id] === true
-	)
+	const [renderBanner, setRenderBanner] = useState<boolean>(true)
 
 	useLayoutEffect(() => {
-		if (isUndefined(banners[id])) {
-			localStorage.setItem(
-				'bannerPref',
-				JSON.stringify({
-					...banners,
-					[id]: true
-				})
-			)
+		if (isNewBanner(banners, id)) {
+			updateBannerPreferences(banners, id, true)
 		} else if (!banners[id]) {
 			setRenderBanner(false)
 		}
@@ -120,13 +113,7 @@ export const Banner: FC<BannerProps> = ({
 
 	const onBannerClose = () => {
 		setRenderBanner(false)
-		localStorage.setItem(
-			'bannerPref',
-			JSON.stringify({
-				...banners,
-				[id]: false
-			})
-		)
+		updateBannerPreferences(banners, id, false)
 	}
 
 	return renderBanner ? (
