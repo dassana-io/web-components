@@ -1,10 +1,16 @@
 import { createUseStyles } from 'react-jss'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
-const { spacing } = styleguide
+const {
+	colors: { oranges },
+	spacing
+} = styleguide
 
+const { light, dark } = ThemeType
 const styles = {
 	container: {
+		color: themedStyles[light].base.color,
+		// eslint-disable-next-line sort-keys
 		'& li': {
 			listStyle: 'none',
 			margin: 0,
@@ -15,11 +21,19 @@ const styles = {
 		paddingLeft: spacing.l
 	},
 	pathPickerIcon: {
+		background: oranges.base,
+		cursor: 'pointer',
 		display: 'inline-block',
-		width: 10,
 		height: 10,
-		background: 'red',
-		cursor: 'pointer'
+		width: 10
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $container': {
+				color: themedStyles[dark].base.color
+			}
+		}
 	}
 }
 

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { Input } from 'components/Input'
 import { JSONPathPicker, JSONPathPickerProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
+import React, { useState } from 'react'
 
 export default {
 	component: JSONPathPicker,
@@ -8,17 +9,24 @@ export default {
 } as Meta
 
 const Template: Story<JSONPathPickerProps> = args => {
-	// const [path, setPath] = useState('')
+	const [path, setPath] = useState('')
 
 	return (
-		<JSONPathPicker
-			{...args}
-			onChange={path => {
-				// setPath(path)
-				console.log(path)
-			}}
-			// path={path}
-		/>
+		<div>
+			<Input
+				fullWidth
+				onChange={e => setPath(e.target.value)}
+				value={path}
+			/>
+			<JSONPathPicker
+				{...args}
+				onChange={path => {
+					setPath(path)
+					console.log(path)
+				}}
+				// path={path}
+			/>
+		</div>
 	)
 }
 
