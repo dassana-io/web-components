@@ -1,3 +1,4 @@
+import noop from 'lodash/noop'
 import { recursiveRender } from './utils'
 import { useStyles } from './styles'
 import React, { FC } from 'react'
@@ -19,31 +20,9 @@ export interface JSONPathPickerProps {
 export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 	json,
 	path,
-	onChange
+	onChange = noop
 }: JSONPathPickerProps) => {
 	const classes = useStyles()
-
-	const onClick = (e: any) => {
-		const target = e.target
-
-		if (target.hasAttribute('data-json-path')) {
-			const jsonPath = target.getAttribute('data-json-path')
-			// let choosenPath
-
-			// if (target.hasAttribute('data-choosearr')) {
-			// 	const tmp = getPathArr(path)
-
-			// 	const idx = getPathArr(pathKey).length
-			// 	tmp[idx] = '[*]'
-			// 	choosenPath = tmp.join('')
-			// } else {
-			// choosenPath = pathKey
-			// }
-
-			// onChange && onChange(choosenPath)
-			onChange && onChange(jsonPath)
-		}
-	}
 
 	return (
 		<div className={classes.container}>
@@ -51,7 +30,7 @@ export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 				classes,
 				currPath: '$',
 				isLastItem: true,
-				onClick,
+				onChange,
 				pickedPath: path || '',
 				remainingJSON: json
 			})}

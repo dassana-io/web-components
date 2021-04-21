@@ -1,6 +1,5 @@
 import { Classes } from './styles'
 import isNull from 'lodash/isNull'
-import isUndefined from 'lodash/isUndefined'
 import { JSONValue } from '.'
 import React, { ReactNode } from 'react'
 
@@ -20,12 +19,9 @@ interface RenderParams {
 	pickedPath: string
 	isLastItem?: boolean
 	currPath?: string
-	onClick: (e: any) => void
+	onChange: (pickedPath: string) => void
 	remainingJSON: JSONValue | Record<string, JSONValue>
 }
-
-const getPathArr = (path = ''): string[] =>
-	path.match(/(\..+?)|(\[.+?\])/g) || []
 
 const renderComma = ({
 	classes,
@@ -36,7 +32,7 @@ const renderComma = ({
 const renderArray = ({
 	classes,
 	isLastItem,
-	onClick,
+	onChange,
 	pickedPath,
 	currPath,
 	remainingJSON
@@ -60,7 +56,7 @@ const renderArray = ({
 									classes,
 									currPath: `${currPath}[${i}]`,
 									isLastItem: arr.length - 1 === i,
-									onClick,
+									onChange,
 									pickedPath,
 									remainingJSON: item
 								})}
@@ -115,7 +111,7 @@ const renderString = ({
 const renderObject = ({
 	classes,
 	isLastItem,
-	onClick,
+	onChange,
 	pickedPath,
 	remainingJSON,
 	currPath
@@ -131,15 +127,14 @@ const renderObject = ({
 					<li key={i}>
 						<span
 							className={classes.property}
-							data-json-path={`${currPath}.${key}`}
-							onClick={onClick}
+							onClick={() => onChange(`${currPath}.${key}`)}
 						>{`"${key}"`}</span>
 						<span className={classes.operator}>:</span>
 						{recursiveRender({
 							classes,
 							currPath: `${currPath}.${key}`,
 							isLastItem: remainingKeys.length - 1 === i,
-							onClick,
+							onChange,
 							pickedPath,
 							remainingJSON: json[key]
 						})}
@@ -182,14 +177,14 @@ export const recursiveRender = ({
 	pickedPath,
 	isLastItem,
 	currPath,
-	onClick,
+	onChange,
 	remainingJSON
 }: RenderParams): ReactNode =>
 	mappedTypesToRenderFns[getRemainingJSONType(remainingJSON)]({
 		classes,
 		currPath,
 		isLastItem,
-		onClick,
+		onChange,
 		pickedPath,
 		remainingJSON
 	})
