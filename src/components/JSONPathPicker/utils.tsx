@@ -20,7 +20,7 @@ interface RenderParams {
 	classes: Classes
 	pickedPath: string
 	isLastItem?: boolean
-	nextPath?: string
+	currPath?: string
 	onClick: (e: any) => void
 	remainingJSON: JSONValue | Record<string, JSONValue>
 }
@@ -28,31 +28,28 @@ interface RenderParams {
 const getPathArr = (path = ''): string[] =>
 	path.match(/(\..+?)|(\[.+?\])/g) || []
 
-const renderPicker = ({
+const renderComma = ({
 	classes,
-	nextPath
-}: Pick<RenderParams, 'classes' | 'nextPath'>): ReactNode => (
-	// <span className={classes.pathPickerIcon} data-json-path={nextPath}></span>
-	<></>
-)
+	isLastItem
+}: Pick<RenderParams, 'classes' | 'isLastItem'>) =>
+	isLastItem ? <></> : <span className={classes.punctuation}>,</span>
 
 const renderArray = ({
 	classes,
 	isLastItem,
 	onClick,
 	pickedPath,
-	nextPath,
+	currPath,
 	remainingJSON
 }: RenderParams): ReactNode => {
 	const arr = remainingJSON as Record<string, JSONValue>[]
 
 	return (
 		<>
-			{renderPicker({ classes, nextPath })}
 			{arr.length === 0 ? (
 				<span>
 					{'[ ]'}
-					{isLastItem ? '' : ','}
+					{renderComma({ classes, isLastItem })}
 				</span>
 			) : (
 				<>
@@ -62,8 +59,8 @@ const renderArray = ({
 							<li key={i}>
 								{recursiveRender({
 									classes,
+									currPath: `${currPath}[${i}]`,
 									isLastItem: arr.length - 1 === i,
-									nextPath: `${nextPath}[${i}]`,
 									onClick,
 									pickedPath,
 									remainingJSON: item
@@ -73,7 +70,7 @@ const renderArray = ({
 					</ol>
 					<span>
 						{']'}
-						{isLastItem ? '' : ','}
+						{renderComma({ classes, isLastItem })}
 					</span>
 				</>
 			)}
@@ -85,29 +82,32 @@ const renderUndefined = ({
 	classes,
 	pickedPath,
 	isLastItem,
-	nextPath
+	currPath
 }: RenderParams): ReactNode => (
 	<>
-		{renderPicker({ classes, nextPath })}
 		<span>
 			{Types.undefined}
-			{isLastItem ? '' : ','}
+			{renderComma({ classes, isLastItem })}
 		</span>
 	</>
 )
+
+interface RenderPrimitive extends RenderParams {
+	type: Types.boolean | Types.number | Types.null
+}
 
 const renderPrimitive = ({
 	classes,
 	pickedPath,
 	remainingJSON,
 	isLastItem,
-	nextPath
-}: RenderParams): ReactNode => (
+	currPath,
+	type
+}: RenderPrimitive): ReactNode => (
 	<>
-		{renderPicker({ classes, nextPath })}
-		<span>
+		<span className={classes[type]}>
 			{JSON.stringify(remainingJSON)}
-			{isLastItem ? '' : ','}
+			{renderComma({ classes, isLastItem })}
 		</span>
 	</>
 )
@@ -117,13 +117,12 @@ const renderString = ({
 	pickedPath,
 	remainingJSON,
 	isLastItem,
-	nextPath
+	currPath
 }: RenderParams): ReactNode => (
 	<>
-		{renderPicker({ classes, nextPath })}
-		<span>
+		<span className={classes.string}>
 			{`"${remainingJSON}"`}
-			{isLastItem ? '' : ','}
+			{renderComma({ classes, isLastItem })}
 		</span>
 	</>
 )
@@ -134,27 +133,27 @@ const renderObject = ({
 	onClick,
 	pickedPath,
 	remainingJSON,
-	nextPath
+	currPath
 }: RenderParams): ReactNode => {
 	const json = remainingJSON as Record<string, JSONValue>
 	const remainingKeys = Object.keys(json)
 
 	return (
 		<>
-			{renderPicker({ classes, nextPath })}
 			<span>{'{'}</span>
 			<ul className={classes.list}>
 				{remainingKeys.map((key, i) => (
 					<li key={i}>
 						<span
-							data-json-path={`${nextPath}.${key}`}
+							className={classes.property}
+							data-json-path={`${currPath}.${key}`}
 							onClick={onClick}
 						>{`"${key}"`}</span>
-						<span> : </span>
+						<span className={classes.operator}>:</span>
 						{recursiveRender({
 							classes,
+							currPath: `${currPath}.${key}`,
 							isLastItem: remainingKeys.length - 1 === i,
-							nextPath: `${nextPath}.${key}`,
 							onClick,
 							pickedPath,
 							remainingJSON: json[key]
@@ -164,7 +163,7 @@ const renderObject = ({
 			</ul>
 			<span>
 				{'}'}
-				{isLastItem ? '' : ','}
+				{renderComma({ classes, isLastItem })}
 			</span>
 		</>
 	)
@@ -172,9 +171,12 @@ const renderObject = ({
 
 const mappedTypesToRenderFns = {
 	[Types.array]: renderArray,
-	[Types.boolean]: renderPrimitive,
-	[Types.null]: renderPrimitive,
-	[Types.number]: renderPrimitive,
+	[Types.boolean]: (params: RenderParams) =>
+		renderPrimitive({ ...params, type: Types.boolean }),
+	[Types.null]: (params: RenderParams) =>
+		renderPrimitive({ ...params, type: Types.null }),
+	[Types.number]: (params: RenderParams) =>
+		renderPrimitive({ ...params, type: Types.number }),
 	[Types.object]: renderObject,
 	[Types.string]: renderString,
 	[Types.undefined]: renderUndefined
@@ -196,14 +198,14 @@ export const recursiveRender = ({
 	classes,
 	pickedPath,
 	isLastItem,
-	nextPath,
+	currPath,
 	onClick,
 	remainingJSON
 }: RenderParams): ReactNode =>
 	mappedTypesToRenderFns[getRemainingJSONType(remainingJSON)]({
 		classes,
+		currPath,
 		isLastItem,
-		nextPath,
 		onClick,
 		pickedPath,
 		remainingJSON
