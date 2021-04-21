@@ -10,8 +10,7 @@ enum Types {
 	null = 'null',
 	number = 'number',
 	object = 'object',
-	string = 'string',
-	undefined = 'undefined'
+	string = 'string'
 }
 
 type RemainingJSON = JSONValue | Record<string, JSONValue>
@@ -77,20 +76,6 @@ const renderArray = ({
 		</>
 	)
 }
-
-const renderUndefined = ({
-	classes,
-	pickedPath,
-	isLastItem,
-	currPath
-}: RenderParams): ReactNode => (
-	<>
-		<span>
-			{Types.undefined}
-			{renderComma({ classes, isLastItem })}
-		</span>
-	</>
-)
 
 interface RenderPrimitive extends RenderParams {
 	type: Types.boolean | Types.number | Types.null
@@ -178,20 +163,18 @@ const mappedTypesToRenderFns = {
 	[Types.number]: (params: RenderParams) =>
 		renderPrimitive({ ...params, type: Types.number }),
 	[Types.object]: renderObject,
-	[Types.string]: renderString,
-	[Types.undefined]: renderUndefined
+	[Types.string]: renderString
 }
 
 const getRemainingJSONType = (remainingJSON: RemainingJSON) => {
-	if (isUndefined(remainingJSON)) return Types.undefined
+	if (isNull(remainingJSON)) return Types.null
 	else if (Array.isArray(remainingJSON)) return Types.array
-	else if (isNull(remainingJSON)) return Types.null
 	else {
 		const type = typeof remainingJSON
 
 		if (Object.values(Types).includes(type as Types)) return type as Types
 	}
-	return Types.undefined
+	return Types.null
 }
 
 export const recursiveRender = ({

@@ -34,7 +34,6 @@ const Template: Story<JSONPathPickerProps> = args => {
 /* eslint-disable sort-keys */
 const sampleJSON = {
 	test: null,
-	undef: undefined,
 	num: 1,
 	dassana: {
 		context: {
