@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { isObject } from 'lodash'
 import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 import {
 	styleguide,
@@ -30,6 +31,13 @@ const codePalette = {
 		background: grays['lighten-70']
 	}
 }
+
+export type CodeType = string | Record<string, any>
+
+export const stringifyCode = (code: CodeType): string =>
+	isObject(code) ? JSON.stringify(code, null, '\t') : code
+
+/* -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x- */
 
 const generateThemedCodeStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]

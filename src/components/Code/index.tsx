@@ -1,10 +1,9 @@
 import './prism.css'
 import cn from 'classnames'
-import { isObject } from 'lodash'
 import Mark from 'mark.js'
 import Prism from 'prismjs'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
-import { copyToClipboard, useStyles } from './utils'
+import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 
@@ -13,7 +12,7 @@ require('prismjs/components/prism-json')
 
 export interface CodeProps {
 	classes?: string[]
-	code: string | Record<string, any>
+	code: CodeType
 	displayControls?: DisplayCodeControls | false
 	language?: 'css' | 'html' | 'javascript' | 'json'
 	lineNumbers?: boolean
@@ -38,11 +37,7 @@ export const Code: FC<CodeProps> = ({
 	const [isCopied, setIsCopied] = useState(false)
 
 	const copyCode = () => {
-		const stringifiedCode = isObject(code)
-			? JSON.stringify(code, null, '\t')
-			: code
-
-		copyToClipboard(stringifiedCode, () => setIsCopied(true))
+		copyToClipboard(stringifyCode(code), () => setIsCopied(true))
 	}
 
 	useEffect(() => {
@@ -105,9 +100,7 @@ export const Code: FC<CodeProps> = ({
 					contentEditable={!readOnly}
 				>
 					<code className={`language-${language}`} ref={codeRef}>
-						{typeof code === 'string'
-							? code
-							: JSON.stringify(code, null, '\t')}
+						{stringifyCode(code)}
 					</code>
 				</pre>
 			</div>
