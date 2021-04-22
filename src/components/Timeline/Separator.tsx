@@ -13,7 +13,7 @@ import { styleguide, ThemeType } from '../assets/styles'
 const { alwaysExpanded, collapsed, expanded } = TimelineState
 
 const { dark, light } = ThemeType
-const { flexDown, font } = styleguide
+const { flexDown, font, spacing } = styleguide
 
 const useStyles = createUseStyles({
 	chevron: {
@@ -39,7 +39,8 @@ const useStyles = createUseStyles({
 	},
 	separator: {
 		...flexDown,
-		alignItems: 'center'
+		alignItems: 'center',
+		paddingRight: spacing['m+']
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

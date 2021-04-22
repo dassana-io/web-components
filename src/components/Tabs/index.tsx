@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateThemedTabsListStyles } from './utils'
 import Tab from './Tab'
+import TabPane from './TabPane'
 import React, { FC, ReactNode, useState } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -58,29 +59,13 @@ export const Tabs: FC<TabsProps> = ({
 	const [activeIndex, setActiveIndex] = useState(
 		tabConfig[defaultActiveIndex] ? defaultActiveIndex : 0
 	)
-	const [tabSwitching, setTabSwitching] = useState(false)
 
 	const tabsClasses = useStyles()
-
-	const tabPaneClasses = cn(
-		tabsClasses.tabPane,
-		tabConfig[activeIndex].classes
-	)
 
 	const onClickTab = (tabIndex: number) => {
 		if (onTabChange) onTabChange(tabConfig[tabIndex])
 
-		setTabSwitching(true)
 		setActiveIndex(tabIndex)
-
-		/**
-		 * Toggling the state of tabSwitching ensures a full unmount of the previously rendered component.
-		 * If two tabs render the same component but with different props, React does not unmount the component
-		 * which leads to unexpected behavior and potentially stale state for the newly rendered component.
-		 * This can be also be solved by adding a "key" property to the tab panes rendered with
-		 * tabConfig[activeIndex].render() but because there is no way to enforce this, this is a fallback.
-		 */
-		setTimeout(() => setTabSwitching(false))
 	}
 
 	const renderTabItems = () =>
@@ -94,6 +79,15 @@ export const Tabs: FC<TabsProps> = ({
 			/>
 		))
 
+	const renderTabPanes = () =>
+		tabConfig.map((tabConfigItem, i) => (
+			<TabPane
+				isActive={i === activeIndex}
+				key={i}
+				tabConfigItem={tabConfigItem}
+			/>
+		))
+
 	if (!tabConfig.length) {
 		throw new Error('Tab config should have at least one item in the array')
 	}
@@ -101,9 +95,7 @@ export const Tabs: FC<TabsProps> = ({
 	return (
 		<div className={cn(classes)}>
 			<div className={tabsClasses.tabsList}>{renderTabItems()}</div>
-			<div className={tabPaneClasses}>
-				{!tabSwitching && tabConfig[activeIndex].render()}
-			</div>
+			{renderTabPanes()}
 		</div>
 	)
 }

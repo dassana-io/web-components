@@ -2,15 +2,18 @@ import './prism.css'
 import cn from 'classnames'
 import Mark from 'mark.js'
 import Prism from 'prismjs'
-import { useStyles } from './utils'
+import { CodeControls, DisplayCodeControls } from './CodeControls'
+import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
 import { Input, InputProps } from 'components/Input'
-import React, { ChangeEvent, FC, useEffect, useRef } from 'react'
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+
 require('prismjs/plugins/line-numbers/prism-line-numbers')
 require('prismjs/components/prism-json')
 
 export interface CodeProps {
 	classes?: string[]
-	code: string | Record<string, any>
+	code: CodeType
+	displayControls?: DisplayCodeControls | false
 	language?: 'css' | 'html' | 'javascript' | 'json'
 	lineNumbers?: boolean
 	readOnly?: boolean
@@ -22,6 +25,7 @@ export interface CodeProps {
 export const Code: FC<CodeProps> = ({
 	classes = [],
 	code,
+	displayControls = {},
 	language = 'json',
 	lineNumbers = true,
 	readOnly = true,
@@ -29,6 +33,16 @@ export const Code: FC<CodeProps> = ({
 }: CodeProps) => {
 	const compClasses = useStyles()
 	const codeRef = useRef<HTMLElement>(null)
+
+	const [isCopied, setIsCopied] = useState(false)
+
+	const copyCode = () => {
+		copyToClipboard(stringifyCode(code), () => setIsCopied(true))
+	}
+
+	useEffect(() => {
+		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
+	}, [isCopied])
 
 	useEffect(() => {
 		/**
@@ -71,16 +85,25 @@ export const Code: FC<CodeProps> = ({
 	return (
 		<div className={cn(classes)}>
 			{search && <Input {...searchProps} onChange={onSearch} />}
-			<pre
-				className={cn({ 'line-numbers': lineNumbers })}
-				contentEditable={!readOnly}
-			>
-				<code className={`language-${language}`} ref={codeRef}>
-					{typeof code === 'string'
-						? code
-						: JSON.stringify(code, null, '\t')}
-				</code>
-			</pre>
+			<div className={compClasses.wrapper}>
+				{displayControls && (
+					<CodeControls
+						classes={[compClasses.controls]}
+						isCopied={isCopied}
+						onClickCopyCode={copyCode}
+					/>
+				)}
+				<pre
+					className={cn({
+						'line-numbers': lineNumbers
+					})}
+					contentEditable={!readOnly}
+				>
+					<code className={`language-${language}`} ref={codeRef}>
+						{stringifyCode(code)}
+					</code>
+				</pre>
+			</div>
 		</div>
 	)
 }
