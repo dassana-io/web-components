@@ -36,9 +36,8 @@ export const Code: FC<CodeProps> = ({
 
 	const [isCopied, setIsCopied] = useState(false)
 
-	const copyCode = () => {
+	const copyCode = () =>
 		copyToClipboard(stringifyCode(code), () => setIsCopied(true))
-	}
 
 	useEffect(() => {
 		if (isCopied) setTimeout(() => setIsCopied(false), 1250)

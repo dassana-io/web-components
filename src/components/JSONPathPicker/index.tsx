@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { CodeControls } from 'components/Code/CodeControls'
-import { copyToClipboard } from 'components/Code/utils'
 import { recursiveRender } from './utils'
 import { useStyles } from './styles'
-import React, { FC, useState } from 'react'
+import { copyToClipboard, stringifyCode } from 'components/Code/utils'
+import React, { FC, useEffect, useState } from 'react'
 
 export type JSONValue =
 	| string
@@ -32,11 +32,12 @@ export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 
 	const [isCopied, setIsCopied] = useState(false)
 
-	const copyJSON = () => {
-		copyToClipboard(JSON.stringify(json, null, '\t'), () =>
-			setIsCopied(true)
-		)
-	}
+	const copyJSON = () =>
+		copyToClipboard(stringifyCode(json), () => setIsCopied(true))
+
+	useEffect(() => {
+		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
+	}, [isCopied])
 
 	return (
 		<div className={cn(compClasses.container, classes)}>
