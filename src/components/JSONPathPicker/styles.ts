@@ -124,35 +124,45 @@ const styles = {
 	container: {
 		'& ul, & ol': {
 			'& li': {
-				'&$pickedItem': { backgroundColor: grays.base },
 				listStyle: 'none',
 				margin: 0,
-				padding: 0
+				padding: 0,
+				whiteSpace: 'nowrap'
 			},
+			height: 'min-content',
 			margin: 0,
 			padding: 0,
-			paddingLeft: spacing.m
+			paddingLeft: spacing['m+'],
+			whiteSpace: 'nowrap',
+			width: 'min-content'
+		},
+		'&:hover': {
+			'& $controls': { opacity: 1 }
 		},
 		...font.label,
 		...generateThemedContainerStyles(light),
 		fontFamily: 'Fira Code, monospace',
 		fontWeight: fontWeight.light,
-		padding: spacing.s
+		height: '100%',
+		padding: spacing.s,
+		position: 'relative',
+		width: '100%'
 	},
-	pickedItem: {},
+	controls: { opacity: 0 },
+	pickedItem: { backgroundColor: grays.base },
+	wrapper: {
+		height: '100%',
+		overflow: 'auto',
+		whiteSpace: 'nowrap',
+		width: '100%'
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
 			...tokenStyles[dark],
-			'& $container': {
-				...generateThemedContainerStyles(dark),
-				'& ul, & ol': {
-					'& li': {
-						'&$pickedItem': {
-							backgroundColor: blacks['lighten-10']
-						}
-					}
-				}
+			'& $container': generateThemedContainerStyles(dark),
+			'& $pickedItem': {
+				backgroundColor: blacks['lighten-10']
 			}
 		}
 	}
