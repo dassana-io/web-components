@@ -28,6 +28,9 @@ export default {
 		tabConfig: { control: { disable: true } }
 	},
 	component: Tabs,
+	parameters: {
+		storyshots: { disable: true }
+	},
 	title: 'Tabs'
 } as Meta
 
