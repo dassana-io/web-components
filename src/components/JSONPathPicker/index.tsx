@@ -1,4 +1,3 @@
-import noop from 'lodash/noop'
 import { recursiveRender } from './utils'
 import { useStyles } from './styles'
 import React, { FC } from 'react'
@@ -13,14 +12,14 @@ export type JSONValue =
 
 export interface JSONPathPickerProps {
 	json: Record<string, JSONValue>
-	path?: string
-	onChange?: (path: string) => void
+	path: string
+	onChange: (path: string) => void
 }
 
 export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 	json,
 	path,
-	onChange = noop
+	onChange
 }: JSONPathPickerProps) => {
 	const classes = useStyles()
 
@@ -31,7 +30,7 @@ export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 				currPath: '$',
 				isLastItem: true,
 				onChange,
-				pickedPath: path || '',
+				pickedPath: path,
 				remainingJSON: json
 			})}
 		</div>

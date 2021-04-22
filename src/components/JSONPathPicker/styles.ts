@@ -124,6 +124,7 @@ const styles = {
 	container: {
 		'& ul, & ol': {
 			'& li': {
+				'&$pickedItem': { backgroundColor: grays.base },
 				listStyle: 'none',
 				margin: 0,
 				padding: 0
@@ -138,19 +139,21 @@ const styles = {
 		fontWeight: fontWeight.light,
 		padding: spacing.s
 	},
-	pathPickerIcon: {
-		background: oranges.base,
-		cursor: 'pointer',
-		display: 'inline-block',
-		height: 10,
-		marginRight: 10,
-		width: 10
-	},
+	pickedItem: {},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
 			...tokenStyles[dark],
-			'& $container': generateThemedContainerStyles(dark)
+			'& $container': {
+				...generateThemedContainerStyles(dark),
+				'& ul, & ol': {
+					'& li': {
+						'&$pickedItem': {
+							backgroundColor: blacks['lighten-10']
+						}
+					}
+				}
+			}
 		}
 	}
 }

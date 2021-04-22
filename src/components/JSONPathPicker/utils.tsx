@@ -2,6 +2,14 @@ import { Classes } from './styles'
 import isNull from 'lodash/isNull'
 import { JSONValue } from '.'
 import React, { ReactNode } from 'react'
+import { JSONPath } from 'jsonpath-plus'
+import cn from 'classnames'
+
+enum Relationship {
+	other,
+	self,
+	ancestor
+}
 
 enum Types {
 	array = 'array',
@@ -18,7 +26,7 @@ interface RenderParams {
 	classes: Classes
 	pickedPath: string
 	isLastItem?: boolean
-	currPath?: string
+	currPath: string
 	onChange: (pickedPath: string) => void
 	remainingJSON: JSONValue | Record<string, JSONValue>
 }
@@ -82,6 +90,7 @@ const renderArray = ({
 interface RenderPrimitiveParams extends RenderParams {
 	type: Types.boolean | Types.number | Types.null
 }
+
 const renderPrimitive = ({
 	classes,
 	pickedPath,
@@ -124,12 +133,18 @@ const renderObject = ({
 	const json = remainingJSON as Record<string, JSONValue>
 	const remainingKeys = Object.keys(json)
 
+	const relation = getPathRelationship(currPath, pickedPath)
+
+	const listItemClasses = cn({
+		[classes.pickedItem]: relation === Relationship.self
+	})
+
 	return (
 		<>
 			{renderPunctuation('{', classes)}
 			<ul>
 				{remainingKeys.map((key, i) => (
-					<li key={i}>
+					<li className={listItemClasses} key={i}>
 						<span
 							className={classes.property}
 							onClick={() => onChange(`${currPath}.${key}`)}
@@ -204,3 +219,41 @@ export const recursiveRender = ({
 		pickedPath,
 		remainingJSON
 	})
+
+const getJSONPathArr = (path: string): string[] =>
+	//@ts-ignore
+	JSONPath.toPathArray(path)
+
+/**
+ * Gets the relationship between current path and the picked path
+ */
+const getPathRelationship = (
+	currPath: string,
+	pickedPath: string
+): Relationship => {
+	const { other, self, ancestor } = Relationship
+
+	if (!pickedPath) return 0
+
+	const pickedAttrs = getJSONPathArr(pickedPath) || []
+	const pickedLen = pickedAttrs.length
+
+	const currAttrs = getJSONPathArr(currPath) || []
+	const currLen = currAttrs.length
+
+	if (currLen > pickedLen) return 0
+
+	for (let i = 0; i < currLen; i++) {
+		let isInPath: boolean
+
+		if (currAttrs[i] === pickedAttrs[i] || pickedAttrs[i] === '*') {
+			isInPath = true
+		} else {
+			isInPath = false
+		}
+
+		if (!isInPath) return other
+	}
+
+	return currLen === pickedLen ? self : ancestor
+}
