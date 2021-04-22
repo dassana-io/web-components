@@ -23,7 +23,7 @@ interface CopyToClipboard {
 export const copyToClipboard: CopyToClipboard = (str, callback) =>
 	navigator.clipboard.writeText(str).then(callback)
 
-const codePalette = {
+export const codePalette = {
 	[dark]: {
 		background: blacks['darken-20']
 	},
@@ -70,14 +70,14 @@ const lightCommonColor = themedStyles[light].base.color
 
 const { shade } = ColorManipulationTypes
 
-const prismColors = {
+export const tokenColors = {
 	[dark]: {
 		boolean: reds.base,
 		char: darkCommonColor,
 		className: darkCommonColor,
 		comment: darkCommonColor,
 		function: darkCommonColor,
-		keyword: darkCommonColor,
+		keyword: reds.base,
 		lineHighlight: darkCommonColor,
 		method: darkCommonColor,
 		number: reds.base,
@@ -95,7 +95,7 @@ const prismColors = {
 		className: lightCommonColor,
 		comment: lightCommonColor,
 		function: lightCommonColor,
-		keyword: lightCommonColor,
+		keyword: oranges.base,
 		lineHighlight: lightCommonColor,
 		method: lightCommonColor,
 		number: oranges.base,
@@ -119,7 +119,7 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 	} = themedStyles[themeType]
 
 	return {
-		...Object.entries(prismColors[themeType]).reduce(
+		...Object.entries(tokenColors[themeType]).reduce(
 			(acc, [key, val]) => ({
 				...acc,
 				[`& .token.${key}`]: {
@@ -169,6 +169,7 @@ export const useStyles = createUseStyles({
 				...font.label,
 				fontFamily: 'Fira Code, monospace',
 				fontWeight: fontWeight.light,
+				tabSize: 3,
 				textShadow: 'none'
 			},
 			...generateThemedCodeStyles(light),

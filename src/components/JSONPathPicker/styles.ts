@@ -1,59 +1,15 @@
 import { createUseStyles } from 'react-jss'
-import { ColorManipulationTypes, manipulateColor } from 'components/utils'
+import { codePalette, tokenColors } from '../Code/utils'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
-	colors: { blacks, grays, greens, reds, oranges },
+	colors: { blacks, grays },
 	font,
 	fontWeight,
 	spacing
 } = styleguide
 
 const { light, dark } = ThemeType
-
-const darkCommonColor = themedStyles[dark].base.color
-const lightCommonColor = themedStyles[light].base.color
-
-const { shade } = ColorManipulationTypes
-
-const tokenColors = {
-	[dark]: {
-		boolean: reds.base,
-		char: darkCommonColor,
-		className: darkCommonColor,
-		comment: darkCommonColor,
-		function: darkCommonColor,
-		keyword: reds.base,
-		lineHighlight: darkCommonColor,
-		method: darkCommonColor,
-		number: reds.base,
-		operator: darkCommonColor,
-		primitive: darkCommonColor,
-		property: oranges.base,
-		punctuation: darkCommonColor,
-		string: manipulateColor(greens.base, 20, shade),
-		tag: darkCommonColor,
-		variable: darkCommonColor
-	},
-	[light]: {
-		boolean: oranges.base,
-		char: lightCommonColor,
-		className: lightCommonColor,
-		comment: lightCommonColor,
-		function: lightCommonColor,
-		keyword: oranges.base,
-		lineHighlight: lightCommonColor,
-		method: lightCommonColor,
-		number: oranges.base,
-		operator: lightCommonColor,
-		primitive: lightCommonColor,
-		property: reds.base,
-		punctuation: lightCommonColor,
-		string: manipulateColor(greens.base, 10, shade),
-		tag: lightCommonColor,
-		variable: lightCommonColor
-	}
-}
 
 const tokenStyles = {
 	[dark]: {
@@ -93,17 +49,8 @@ const tokenStyles = {
 	}
 }
 
-const palette = {
-	[dark]: {
-		background: blacks['darken-20']
-	},
-	[light]: {
-		background: grays['lighten-70']
-	}
-}
-
 const generateThemedContainerStyles = (themeType: ThemeType) => {
-	const { background } = palette[themeType]
+	const { background } = codePalette[themeType]
 	const {
 		base: { color }
 	} = themedStyles[themeType]

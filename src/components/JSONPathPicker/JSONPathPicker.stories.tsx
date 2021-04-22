@@ -9,7 +9,7 @@ export default {
 } as Meta
 
 const Template: Story<JSONPathPickerProps> = args => {
-	const [path, setPath] = useState('')
+	const [path, setPath] = useState('$.dassana')
 
 	return (
 		<div>
@@ -18,14 +18,14 @@ const Template: Story<JSONPathPickerProps> = args => {
 				onChange={e => setPath(e.target.value)}
 				value={path}
 			/>
-			<div style={{ padding: 10 }}></div>
+			<div style={{ padding: 8 }}></div>
 			<JSONPathPicker
 				{...args}
 				onChange={path => {
 					setPath(path)
 					console.log(path)
 				}}
-				// path={path}
+				path={path}
 			/>
 		</div>
 	)
@@ -33,14 +33,13 @@ const Template: Story<JSONPathPickerProps> = args => {
 
 /* eslint-disable sort-keys */
 const sampleJSON = {
-	test: null,
-	num: 1,
 	dassana: {
 		context: {
 			attachedResources: {
 				'count-of-attached-eni': 3,
 				'does-any-eni-have-public-ip': true,
-				'are-there-flows-from-internet-in-vpcflows': false
+				'are-there-flows-from-internet-in-vpcflows': false,
+				'a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-reallyreally-really-really-long-key': null
 			}
 		}
 	},
