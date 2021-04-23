@@ -11,41 +11,43 @@ const {
 
 const { light, dark } = ThemeType
 
+const { dark: darkTokenClrs, light: lightTokenClrs } = tokenColors
+
 const tokenStyles = {
 	[dark]: {
-		'& $boolean': { color: tokenColors[dark].boolean },
-		'& $null': { color: tokenColors[dark].keyword },
-		'& $number': { color: tokenColors[dark].number },
-		'& $operator': { color: tokenColors[dark].operator },
+		'& $boolean': { color: darkTokenClrs.boolean },
+		'& $null': { color: darkTokenClrs.keyword },
+		'& $number': { color: darkTokenClrs.number },
+		'& $operator': { color: darkTokenClrs.operator },
 		'& $property': {
 			'&:hover': {
-				borderBottom: `1px solid ${tokenColors[dark].property}`
+				borderBottom: `1px solid ${darkTokenClrs.property}`
 			},
-			color: tokenColors[dark].property
+			color: darkTokenClrs.property
 		},
-		'& $punctuation': { color: tokenColors[light].punctuation },
-		'& $string': { color: tokenColors[light].string }
+		'& $punctuation': { color: darkTokenClrs.punctuation },
+		'& $string': { color: darkTokenClrs.string }
 	},
 	[light]: {
-		boolean: { color: tokenColors[light].boolean },
-		null: { color: tokenColors[light].keyword },
-		number: { color: tokenColors[light].number },
+		boolean: { color: lightTokenClrs.boolean },
+		null: { color: lightTokenClrs.keyword },
+		number: { color: lightTokenClrs.number },
 		operator: {
-			color: tokenColors[light].operator,
+			color: lightTokenClrs.operator,
 			padding: { left: spacing.xs / 2, right: spacing.xs }
 		},
 		property: {
 			'&:hover': {
-				borderBottom: `1px solid ${tokenColors[light].property}`
+				borderBottom: `1px solid ${lightTokenClrs.property}`
 			},
-			color: tokenColors[light].property,
+			color: lightTokenClrs.property,
 			cursor: 'pointer'
 		},
 		punctuation: {
-			color: tokenColors[light].punctuation,
+			color: lightTokenClrs.punctuation,
 			padding: { left: spacing.xs / 2 }
 		},
-		string: { color: tokenColors[light].string }
+		string: { color: lightTokenClrs.string }
 	}
 }
 
