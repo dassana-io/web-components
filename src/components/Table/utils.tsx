@@ -106,8 +106,10 @@ export function processData<TableData extends DataId>(
 			}
 
 			const pathArr: string[] = getJSONPathArr(`$.${dataIndex}`)
+			// Fix for this issue https://github.com/JSONPath-Plus/JSONPath/issues/102
+			if (pathArr[0] === '$') pathArr.shift()
 
-			if (pathArr && pathArr.length) {
+			if (pathArr.length) {
 				partialData[pathArr[0] as keyof TableData] = item[pathArr[0]]
 			}
 		})
