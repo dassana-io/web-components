@@ -134,6 +134,12 @@ export const getJSONPathValue = (path: string, obj: Record<string, any>) => {
 	if (value && Array.isArray(value)) return value[0]
 }
 
+/**
+ * Takes a JSON path as string and converts to an array
+ */
+export const getJSONPathArr = (path: string): string[] =>
+	JSONPath.toPathArray(path)
+
 export const getPopupContainerProps = (
 	popupContainerSelector = ''
 ): PopupContainerProps => {

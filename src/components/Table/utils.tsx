@@ -3,9 +3,7 @@ import bytes from 'bytes'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
-import { getJSONPathValue } from 'components/utils'
 import isUndefined from 'lodash/isUndefined'
-import { JSONPath } from 'jsonpath-plus'
 import moment from 'moment'
 import {
 	ColumnFormats,
@@ -20,6 +18,7 @@ import {
 	RenderPropsIcon
 } from './types'
 import { defaultIconHeight, MultipleIcons } from './MultipleIcons'
+import { getJSONPathArr, getJSONPathValue } from 'components/utils'
 import { Icon, IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
@@ -106,8 +105,7 @@ export function processData<TableData extends DataId>(
 				partialData[dataIndex as keyof TableData] = value
 			}
 
-			//@ts-ignore
-			const pathArr: string[] = JSONPath.toPathArray(`$.${dataIndex}`)
+			const pathArr: string[] = getJSONPathArr(`$.${dataIndex}`)
 
 			if (pathArr && pathArr.length) {
 				partialData[pathArr[0] as keyof TableData] = item[pathArr[0]]

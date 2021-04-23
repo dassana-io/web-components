@@ -1,8 +1,8 @@
 import { Classes } from './styles'
 import cn from 'classnames'
+import { getJSONPathArr } from 'components/utils'
 import isEmpty from 'lodash/isEmpty'
 import isNull from 'lodash/isNull'
-import { JSONPath } from 'jsonpath-plus'
 import { JSONValue } from '.'
 import React, { ReactNode } from 'react'
 
@@ -12,13 +12,7 @@ enum Relationship {
 	ancestor
 }
 
-/**
- * Takes a JSON path as string and converts to an array
- */
-const getJSONPathArr = (path: string): string[] =>
-	//@ts-ignore
-	JSONPath.toPathArray(path)
-
+const { other, self, ancestor } = Relationship
 /**
  * Gets the relationship between current path and the picked path
  * @returns { Relationship } - Can either be "other", "self" or "ancestor"
@@ -27,26 +21,19 @@ const getPathRelationship = (
 	currPath: string,
 	pickedPath: string
 ): Relationship => {
-	const { other, self, ancestor } = Relationship
+	if (!pickedPath) return other
 
-	if (!pickedPath) return 0
-
-	const pickedAttrs = getJSONPathArr(pickedPath) || []
+	const pickedAttrs = getJSONPathArr(pickedPath)
 	const pickedLen = pickedAttrs.length
 
-	const currAttrs = getJSONPathArr(currPath) || []
+	const currAttrs = getJSONPathArr(currPath)
 	const currLen = currAttrs.length
 
-	if (currLen > pickedLen) return 0
+	if (currLen > pickedLen) return other
 
 	for (let i = 0; i < currLen; i++) {
-		let isInPath: boolean
-
-		if (currAttrs[i] === pickedAttrs[i] || pickedAttrs[i] === '*') {
-			isInPath = true
-		} else {
-			isInPath = false
-		}
+		const isInPath =
+			currAttrs[i] === pickedAttrs[i] || pickedAttrs[i] === '*'
 
 		if (!isInPath) return other
 	}
@@ -77,6 +64,8 @@ enum Types {
 	object = 'object',
 	string = 'string'
 }
+
+const { array, boolean, null: nullType, number, object, string } = Types
 
 // -----------------------------------------------------
 
@@ -247,35 +236,35 @@ const renderString = ({
 // -------------------------------------------------
 
 const mappedTypesToRenderFns = {
-	[Types.array]: renderArray,
-	[Types.boolean]: (params: RenderParams) =>
-		renderPrimitive({ ...params, type: Types.boolean }),
-	[Types.null]: (params: RenderParams) =>
-		renderPrimitive({ ...params, type: Types.null }),
-	[Types.number]: (params: RenderParams) =>
-		renderPrimitive({ ...params, type: Types.number }),
-	[Types.object]: renderObject,
-	[Types.string]: renderString
+	[array]: renderArray,
+	[boolean]: (params: RenderParams) =>
+		renderPrimitive({ ...params, type: boolean }),
+	[nullType]: (params: RenderParams) =>
+		renderPrimitive({ ...params, type: nullType }),
+	[number]: (params: RenderParams) =>
+		renderPrimitive({ ...params, type: number }),
+	[object]: renderObject,
+	[string]: renderString
 }
 
 const getRemainingJSONType = (remainingJSON: RemainingJSON) => {
-	if (isNull(remainingJSON)) return Types.null
-	else if (Array.isArray(remainingJSON)) return Types.array
+	if (isNull(remainingJSON)) return nullType
+	else if (Array.isArray(remainingJSON)) return array
 	else {
 		const type = typeof remainingJSON
 
 		switch (type) {
 			case 'number':
 			case 'bigint':
-				return Types.number
+				return number
 			case 'object':
-				return Types.object
+				return object
 			case 'string':
-				return Types.string
+				return string
 			case 'boolean':
-				return Types.boolean
+				return boolean
 			default:
-				return Types.null
+				return nullType
 		}
 	}
 }
@@ -297,4 +286,4 @@ export const recursiveRender = ({
 		remainingJSON
 	})
 
-// -x-x-x-x--x-x-x-x--x-x-x-x--x-x-x-x--x-x-x-x-
+/* -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x- */
