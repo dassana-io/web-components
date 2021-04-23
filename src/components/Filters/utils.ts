@@ -1,7 +1,7 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
 import { SelectOption } from '../Select'
 import xor from 'lodash/xor'
-import { FilterOptions, Filters, FilterValues } from 'api'
+import { FilterOptions, Filters, FilterValues } from '../api'
 import { FiltersList, ProcessedFilters, SelectedValsFilters } from './types'
 // import { FilterSuggestions } from 'api'
 

@@ -33,12 +33,12 @@
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-hook-form": "^6.15.4",
-		"react-jss": "^10.5.1",
+		"react-jss": "~10.5.1",
 		"react-scripts": "^4.0.3",
 		"uuid": "^8.3.2"
 	},
 	"scripts": {
-		"api-models:generate": "rm -rf src/api/$npm_config_outputFolder; mkdir -p src/api; cp -R $npm_config_inputFolder/model src/api/$npm_config_outputFolder; rm -rf $npm_config_inputFolder; cd src/api/$npm_config_outputFolder; mv models.ts index.ts; prettier --write .",
+		"api-models:generate": "rm -rf src/components/api/$npm_config_outputFolder; mkdir -p src/components/api; cp -R $npm_config_inputFolder/model src/components/api/$npm_config_outputFolder; rm -rf $npm_config_inputFolder; cd src/components/api/$npm_config_outputFolder; mv models.ts index.ts; prettier --write .",
 		"api-models:global": "npm run api-models:generate --inputFolder=globalApi --outputFolder=global",
 		"codegen": "node codegen.js",
 		"start": "npm run storybook",
