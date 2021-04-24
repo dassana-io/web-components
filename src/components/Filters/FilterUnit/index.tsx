@@ -1,4 +1,4 @@
-import { FilterOption } from 'api'
+import { FilterOption } from '../../api'
 import { IconButton } from '../../IconButton'
 import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'

@@ -1,4 +1,4 @@
-import { FilterOption } from 'api'
+import { FilterOption } from '../../../api'
 import { FiltersListItem } from '../../types'
 import { SelectOptionsConfig } from '../../../Select'
 

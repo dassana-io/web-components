@@ -1,5 +1,5 @@
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
-import { FilterOption, Filters } from 'api'
+import { FilterOption, Filters } from '../api'
 import { MultiSelectProps, SelectOption } from '../Select'
 
 export interface FiltersListItem {
