@@ -19,7 +19,8 @@ const sampleJSON = {
 			attachedResources: {
 				'count-of-attached-eni': 3,
 				'does-any-eni-have-public-ip': true,
-				'are-there-flows-from-internet-in-vpcflows': false
+				'are-there-flows-from-internet-in-vpcflows': false,
+				'a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-reallyreally-really-really-long-key': null
 			}
 		}
 	},
