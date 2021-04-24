@@ -1,3 +1,4 @@
+import { createUseStyles } from 'react-jss'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React from 'react'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
@@ -5,6 +6,14 @@ import { Banner, BannerProps } from '.'
 import { Meta, Story } from '@storybook/react'
 
 const { error, info, success, warning } = NotificationTypes
+
+const useStyles = createUseStyles({
+	decorator: {
+		'& > button': {
+			marginTop: 20
+		}
+	}
+})
 
 export default {
 	argTypes: {
@@ -16,46 +25,70 @@ export default {
 	title: 'Banner'
 } as Meta
 
-const Template: Story<BannerProps> = args => (
-	<Banner {...args}>
-		Once we receive an alert we scan it against policy risk rules. The rules
-		are evaluated in order from top to bottom. The first rule that matches
-		determines the risk of the alert. Updating a rule will not impact the
-		past alerts. However you can use past alerts as a reference to edit
-		rules such that future alerts get your desired risk classification.
-	</Banner>
+const DecoratedBannerStory = ({ id, ...rest }: BannerProps) => {
+	const classes = useStyles()
+
+	return (
+		<div className={classes.decorator}>
+			<Banner id={id} {...rest}>
+				Once we receive an alert we scan it against policy risk rules.
+				The rules are evaluated in order from top to bottom. The first
+				rule that matches determines the risk of the alert. Updating a
+				rule will not impact the past alerts. However you can use past
+				alerts as a reference to edit rules such that future alerts get
+				your desired risk classification.
+			</Banner>
+			<button
+				onClick={() => {
+					localStorage.setItem('bannerPref', '{}')
+					window.location.reload()
+				}}
+			>
+				Reset all banners
+			</button>
+		</div>
+	)
+}
+
+const BannerTemplate: Story<BannerProps> = args => (
+	<DecoratedBannerStory {...args} />
 )
 
-export const Error = Template.bind({})
+export const Error = BannerTemplate.bind({})
 Error.args = {
+	id: 'sb-error-banner',
 	showIcon: true,
 	title: 'Error',
 	type: error
 }
 
-export const Info = Template.bind({})
+export const Info = BannerTemplate.bind({})
 Info.args = {
+	id: 'sb-info-banner',
 	showIcon: true,
 	title: 'Info',
 	type: info
 }
 
-export const Success = Template.bind({})
+export const Success = BannerTemplate.bind({})
 Success.args = {
+	id: 'sb-success-banner',
 	showIcon: true,
 	title: 'Success',
 	type: success
 }
 
-export const Warning = Template.bind({})
+export const Warning = BannerTemplate.bind({})
 Warning.args = {
+	id: 'sb-warning-banner',
 	showIcon: true,
 	title: 'Warning',
 	type: warning
 }
 
-export const NoIcon = Template.bind({})
+export const NoIcon = BannerTemplate.bind({})
 NoIcon.args = {
+	id: 'sb-no-icon-banner',
 	showIcon: false,
 	title: 'Policy Risk Rules',
 	type: success

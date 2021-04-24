@@ -1,46 +1,78 @@
-import { FilterOptions } from '../types'
+import { FiltersConfig } from '../types'
+import { FilterOptions, FilterValues } from '../../api'
 
-export const mockDynamicFilterOptions = [
+export const mockDynamicFilterOptions: FilterValues = [
 	{
-		id: '5391d028-d5fe-4c33-a4c9-8719191aaeb1',
-		name: 'Ingestion Dev Account'
+		id: 'name4',
+		value: 'Ingestion Dev Account'
 	},
 	{
-		id: '5391d028-d5fe-4c33-a4c9-8719191aaeb8',
-		name: 'Ingestion Prod Account'
+		id: 'name5',
+		value: 'Ingestion Prod Account'
 	}
 ]
 
 export const mockFilterOptions: FilterOptions = [
 	{
-		filterKey: 'name',
-		options: [
-			'Dev account',
-			'Prod account 1',
-			'Prod account 2',
-			'Test account'
-		],
-		staticFilter: false
+		key: 'name',
+		staticFilter: false,
+		values: [
+			{ id: 'name0', value: 'Dev account' },
+			{ id: 'name1', value: 'Prod account 1' },
+			{ id: 'name2', value: 'Prod account 2' },
+			{ id: 'name3', value: 'Test account' }
+		]
 	},
 	{
-		filterKey: 'service',
-		options: [
-			'EC2',
-			'S3',
-			'RDS',
-			'Amazon Keyspaces (for Apache Cassandra)',
-			'EKS'
-		],
-		staticFilter: true
+		key: 'service',
+		staticFilter: true,
+		values: [
+			{ id: 'service0', value: 'EC2' },
+			{ id: 'service1', value: 'S3' },
+			{ id: 'service2', value: 'RDS' },
+			{
+				id: 'service3',
+				value: 'Amazon Keyspaces (for Apache Cassandra)'
+			},
+			{ id: 'service4', value: 'EKS' }
+		]
 	},
 	{
-		filterKey: 'model',
-		options: ['instance', 'bucket', 'table'],
-		staticFilter: true
+		key: 'model',
+		staticFilter: true,
+		values: [
+			{ id: 'model0', value: 'instance' },
+			{ id: 'model1', value: 'bucket' },
+			{ id: 'model2', value: 'table' }
+		]
 	},
 	{
-		filterKey: 'region',
-		options: ['us-west-1', 'us-east-2', 'ap-south-1'],
-		staticFilter: true
+		key: 'region',
+		operator: ['!=', '='],
+		staticFilter: true,
+		values: [
+			{ id: 'region0', value: 'us-west-1' },
+			{ id: 'region1', value: 'us-east-2' },
+			{ id: 'region2', value: 'ap-south-1' }
+		]
+	},
+	{
+		key: 'vendors',
+		staticFilter: true,
+		values: [
+			{ id: 'aws', value: 'Aws' },
+			{ id: 'azure', value: 'Azure' },
+			{ id: 'dassana', value: 'Dassana' }
+		]
 	}
 ]
+
+export const filtersConfig: FiltersConfig = {
+	iconConfig: {
+		filterKey: 'vendors',
+		iconMap: {
+			aws: 'https://dummyimage.com/400x400/ff9900/fff&text=A',
+			azure: 'https://dummyimage.com/400x400/0072c6/fff&text=A'
+		}
+	}
+}

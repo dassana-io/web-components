@@ -1,12 +1,8 @@
 import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
+import { getSortedAndFilteredValues } from './utils'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
-import {
-	getSortedAndFilteredValues,
-	useDropdownStyles,
-	useStyles
-} from './utils'
 import React, {
 	ChangeEvent,
 	FC,
@@ -15,6 +11,7 @@ import React, {
 	useEffect,
 	useState
 } from 'react'
+import { useDropdownStyles, useStyles } from './styles'
 
 export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const {
@@ -84,9 +81,9 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		threshold: 0.1
 	})
 
-	const onChangeAntD = (values?: string[]) => {
-		const vals = values ? values : []
+	type OnChangeAntD = (vals?: string[]) => void
 
+	const onChangeAntD: OnChangeAntD = (vals = []) => {
 		if (onChange) onChange(vals)
 
 		setLocalValues(vals)

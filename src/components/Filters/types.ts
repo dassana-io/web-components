@@ -1,23 +1,12 @@
-import { MultiSelectProps } from '../Select'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
-
-export interface Filter {
-	key?: string
-	value?: string
-}
-
-export interface FilterOption {
-	filterKey?: string
-	staticFilter?: boolean
-	options?: Array<string>
-}
-
-export type FilterOptions = FilterOption[]
+import { FilterOption, Filters } from '../api'
+import { MultiSelectProps, SelectOption } from '../Select'
 
 export interface FiltersListItem {
 	id: string
+	selectedOperator?: string
 	selectedKey?: string
-	selectedValues?: string[]
+	selectedValues?: SelectOption[]
 }
 
 type SelectedValsFilter = Required<FiltersListItem>
@@ -30,12 +19,43 @@ export interface ProcessedFilters {
 	[key: string]: FilterOption
 }
 
-export interface FiltersProps {
+export interface FiltersConfig {
+	iconConfig?: {
+		filterKey: string
+		iconMap: {
+			[key: string]: string
+		}
+	}
+}
+
+export interface SharedFiltersProps {
+	config?: FiltersConfig
+	onSelectedFiltersChange: (selectedFilters: Filters) => void
+}
+
+export type ClientSideFilterOption = Omit<
+	FilterOption,
+	'operator' | 'staticFilter'
+>
+
+export enum FiltersMode {
+	backend = 'backend',
+	frontend = 'frontend'
+}
+
+export interface ClientSideFiltersProps extends SharedFiltersProps {
+	filterOptions: ClientSideFilterOption[]
+	mode: FiltersMode.frontend
+}
+
+export interface ServerSideFiltersProps extends SharedFiltersProps {
 	api: AxiosInstance
 	emitter: Emitter
 	endpoint: string
-	onSelectedFiltersChange: (selectedFilters: Filter[]) => void
+	mode: FiltersMode.backend
 }
+
+export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
 
 export interface OnSearchWrapper {
 	(selectedFilterKey: string): MultiSelectProps['onSearch']

@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.10.14",
+	"version": "0.10.15",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -23,7 +23,7 @@
 		"color": "^3.1.3",
 		"framer-motion": "^2.9.5",
 		"fuse.js": "^6.4.2",
-		"jsonpath-plus": "^5.0.4",
+		"jsonpath-plus": "^5.0.7",
 		"lodash": "^4.17.20",
 		"mark.js": "^8.11.1",
 		"moment": "^2.29.1",
@@ -33,12 +33,12 @@
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-hook-form": "^6.15.4",
-		"react-jss": "^10.5.1",
+		"react-jss": "~10.5.1",
 		"react-scripts": "^4.0.3",
 		"uuid": "^8.3.2"
 	},
 	"scripts": {
-		"api-models:generate": "rm -rf src/api/$npm_config_outputFolder; mkdir -p src/api; cp -R $npm_config_inputFolder/model src/api/$npm_config_outputFolder; rm -rf $npm_config_inputFolder; cd src/api/$npm_config_outputFolder; mv models.ts index.ts; prettier --write .",
+		"api-models:generate": "rm -rf src/components/api/$npm_config_outputFolder; mkdir -p src/components/api; cp -R $npm_config_inputFolder/model src/components/api/$npm_config_outputFolder; rm -rf $npm_config_inputFolder; cd src/components/api/$npm_config_outputFolder; mv models.ts index.ts; prettier --write .",
 		"api-models:global": "npm run api-models:generate --inputFolder=globalApi --outputFolder=global",
 		"codegen": "node codegen.js",
 		"start": "npm run storybook",

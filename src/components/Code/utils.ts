@@ -1,16 +1,29 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
+import { isObject } from 'lodash'
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
+import {
+	styleguide,
+	themedStyles,
+	themes,
+	ThemeType
+} from 'components/assets/styles'
 
 const { dark, light } = ThemeType
 
 const {
-	colors: { blacks, grays },
+	colors: { blacks, grays, greens, reds, oranges },
 	font,
 	fontWeight,
 	spacing
 } = styleguide
 
-const codePalette = {
+interface CopyToClipboard {
+	(str: string, callback?: () => void): void
+}
+export const copyToClipboard: CopyToClipboard = (str, callback) =>
+	navigator.clipboard.writeText(str).then(callback)
+
+export const codePalette = {
 	[dark]: {
 		background: blacks['darken-20']
 	},
@@ -18,6 +31,13 @@ const codePalette = {
 		background: grays['lighten-70']
 	}
 }
+
+export type CodeType = string | Record<string, any>
+
+export const stringifyCode = (code: CodeType): string =>
+	isObject(code) ? JSON.stringify(code, null, '\t') : code
+
+/* -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x- */
 
 const generateThemedCodeStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]
@@ -32,6 +52,65 @@ const generateThemedCodeStyles = (themeType: ThemeType) => {
 	}
 }
 
+export const generateThemedControlsStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor }
+	} = themedStyles[themeType]
+
+	return {
+		background: themes[themeType].background.secondary,
+		border: `1px solid ${borderColor}`
+	}
+}
+
+/* -------------- Prism Colors -------------- */
+
+const darkCommonColor = themedStyles[dark].base.color
+const lightCommonColor = themedStyles[light].base.color
+
+const { shade } = ColorManipulationTypes
+
+export const tokenColors = {
+	[dark]: {
+		boolean: reds.base,
+		char: darkCommonColor,
+		className: darkCommonColor,
+		comment: darkCommonColor,
+		function: darkCommonColor,
+		keyword: reds.base,
+		lineHighlight: darkCommonColor,
+		method: darkCommonColor,
+		number: reds.base,
+		operator: darkCommonColor,
+		primitive: darkCommonColor,
+		property: oranges.base,
+		punctuation: darkCommonColor,
+		string: manipulateColor(greens.base, 20, shade),
+		tag: darkCommonColor,
+		variable: darkCommonColor
+	},
+	[light]: {
+		boolean: oranges.base,
+		char: lightCommonColor,
+		className: lightCommonColor,
+		comment: lightCommonColor,
+		function: lightCommonColor,
+		keyword: oranges.base,
+		lineHighlight: lightCommonColor,
+		method: lightCommonColor,
+		number: oranges.base,
+		operator: lightCommonColor,
+		primitive: lightCommonColor,
+		property: reds.base,
+		punctuation: lightCommonColor,
+		string: manipulateColor(greens.base, 10, shade),
+		tag: lightCommonColor,
+		variable: lightCommonColor
+	}
+}
+
+/* ------------------------------------------ */
+
 const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]
 
@@ -39,27 +118,8 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const prismColors = {
-		boolean: color,
-		char: color,
-		className: color,
-		comment: color,
-		function: color,
-		keyword: color,
-		lineHighlight: color,
-		method: color,
-		number: color,
-		operator: color,
-		primitive: color,
-		property: color,
-		punctuation: color,
-		string: color,
-		tag: color,
-		variable: color
-	}
-
 	return {
-		...Object.entries(prismColors).reduce(
+		...Object.entries(tokenColors[themeType]).reduce(
 			(acc, [key, val]) => ({
 				...acc,
 				[`& .token.${key}`]: {
@@ -96,6 +156,8 @@ const preCodeSelector = "pre[class*='language-']"
 /* eslint-enable quotes */
 
 export const useStyles = createUseStyles({
+	controls: { opacity: 0 },
+	// eslint-disable-next-line sort-keys
 	'@global': {
 		[preCodeSelector]: {
 			'& .line-numbers-rows': {
@@ -107,6 +169,7 @@ export const useStyles = createUseStyles({
 				...font.label,
 				fontFamily: 'Fira Code, monospace',
 				fontWeight: fontWeight.light,
+				tabSize: 3,
 				textShadow: 'none'
 			},
 			...generateThemedCodeStyles(light),
@@ -125,5 +188,14 @@ export const useStyles = createUseStyles({
 	},
 	search: {
 		marginBottom: spacing.m
+	},
+	wrapper: {
+		'&:hover': {
+			'& $controls': { opacity: 1 }
+		},
+		height: '100%',
+		overflow: 'auto',
+		position: 'relative',
+		width: '100%'
 	}
 })

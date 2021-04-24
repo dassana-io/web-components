@@ -1,11 +1,17 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { generateThemedBannerStyles } from './util'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
-import React, { FC, ReactNode, useState } from 'react'
+import {
+	Banners,
+	generateThemedBannerStyles,
+	getBannerPreferences,
+	isNewBanner,
+	updateBannerPreferences
+} from './utils'
+import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -30,7 +36,6 @@ const useStyles = createUseStyles({
 	container: {
 		...font.body,
 		...generateThemedBannerStyles(light),
-		display: ({ renderBanner }) => (renderBanner ? 'block' : 'none'),
 		fontWeight: fontWeight.light,
 		padding: spacing.l,
 		position: 'relative'
@@ -72,6 +77,7 @@ const useStyles = createUseStyles({
 })
 
 export interface BannerProps {
+	id: string
 	children?: ReactNode
 	classes?: string[]
 	showIcon?: boolean
@@ -80,22 +86,37 @@ export interface BannerProps {
 }
 
 export const Banner: FC<BannerProps> = ({
+	id,
 	children,
 	classes = [],
 	showIcon = false,
 	title,
 	type
 }: BannerProps) => {
-	const [renderBanner, setRenderBanner] = useState<boolean>(true)
-	const componentClasses = useStyles({ renderBanner, type })
+	const componentClasses = useStyles({ type })
 	const iconClasses = cn({
 		[componentClasses.icon]: true,
 		[componentClasses[type]]: true
 	})
 
-	const toggleRender = () => setRenderBanner(renderBanner => !renderBanner)
+	const banners: Banners = getBannerPreferences()
 
-	return (
+	const [renderBanner, setRenderBanner] = useState<boolean>(true)
+
+	useLayoutEffect(() => {
+		if (isNewBanner(banners, id)) {
+			updateBannerPreferences(banners, id, true)
+		} else if (!banners[id]) {
+			setRenderBanner(false)
+		}
+	}, [banners, id])
+
+	const onBannerClose = () => {
+		setRenderBanner(false)
+		updateBannerPreferences(banners, id, false)
+	}
+
+	return renderBanner ? (
 		<div className={cn(componentClasses.container, classes)}>
 			<div className={componentClasses.headerContainer}>
 				<div className={componentClasses.header}>
@@ -109,10 +130,12 @@ export const Banner: FC<BannerProps> = ({
 				</div>
 				<IconButton
 					classes={[componentClasses.closeBtn]}
-					onClick={toggleRender}
+					onClick={onBannerClose}
 				/>
 			</div>
 			<div>{children}</div>
 		</div>
+	) : (
+		<></>
 	)
 }

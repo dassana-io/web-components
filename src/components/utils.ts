@@ -89,6 +89,30 @@ export const fakeApiCallSuccess: () => Promise<void> = async (
 	timeoutDuration = 1000
 ) => await new Promise(resolve => setTimeout(resolve, timeoutDuration))
 
+// -*-*-*-*-*- filterMap -*-*-*-*-*-
+// TODO: move this into web-utils
+
+interface FilterMapConfig<T, U> {
+	filterConditionFn: (item: T) => boolean
+	items: T[]
+	mapFn: (item: T) => U
+}
+
+export const filterMap = <T, U>({
+	filterConditionFn,
+	items,
+	mapFn
+}: FilterMapConfig<T, U>) =>
+	items.reduce((filterAndMapped: U[], item: T) => {
+		if (filterConditionFn(item)) {
+			filterAndMapped.push(mapFn(item))
+		}
+
+		return filterAndMapped
+	}, [])
+
+//  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+
 export const generatePopupSelector = (
 	popupContainerSelector: string
 ) => (): HTMLElement =>
@@ -109,6 +133,12 @@ export const getJSONPathValue = (path: string, obj: Record<string, any>) => {
 
 	if (value && Array.isArray(value)) return value[0]
 }
+
+/**
+ * Takes a JSON path as string and converts to an array
+ */
+export const getJSONPathArr = (path: string): string[] =>
+	JSONPath.toPathArray(path)
 
 export const getPopupContainerProps = (
 	popupContainerSelector = ''

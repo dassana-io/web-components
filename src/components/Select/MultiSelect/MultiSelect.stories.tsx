@@ -60,6 +60,7 @@ Default.args = {
 
 export const Search = Template.bind({})
 Search.args = {
+	defaultValues: ['0'],
 	options: basicOptions,
 	searchPlaceholder: 'Search...',
 	showSearch: true
@@ -81,5 +82,11 @@ FullWidth.args = {
 
 export const Icon = Template.bind({})
 Icon.args = {
-	options: iconOptions
+	options: iconOptions,
+	optionsConfig: {
+		iconMap: {
+			aws: 'https://dummyimage.com/400x400/ff9900/fff&text=A',
+			azure: 'https://dummyimage.com/400x400/0072c6/fff&text=A'
+		}
+	}
 }
