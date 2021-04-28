@@ -1,11 +1,13 @@
 import { createUseStyles } from 'react-jss'
-import { codePalette, tokenColors } from '../Code/utils'
-import { styleguide, themedStyles, ThemeType } from '../assets/styles'
+import {
+	commonCodeStyles,
+	generateThemedCodeStyles,
+	tokenColors
+} from '../Code/utils'
+import { styleguide, ThemeType } from '../assets/styles'
 
 const {
 	colors: { blacks, grays },
-	font,
-	fontWeight,
 	spacing
 } = styleguide
 
@@ -51,23 +53,6 @@ const tokenStyles = {
 	}
 }
 
-const generateThemedContainerStyles = (themeType: ThemeType) => {
-	const { background } = codePalette[themeType]
-	const {
-		base: { color }
-	} = themedStyles[themeType]
-
-	const {
-		base: { borderColor }
-	} = themedStyles[themeType]
-
-	return {
-		background,
-		border: `1px solid ${borderColor}`,
-		color
-	}
-}
-
 const styles = {
 	...tokenStyles[light],
 	container: {
@@ -88,10 +73,8 @@ const styles = {
 		'&:hover': {
 			'& $controls': { opacity: 1 }
 		},
-		...font.label,
-		...generateThemedContainerStyles(light),
-		fontFamily: 'Fira Code, monospace',
-		fontWeight: fontWeight.light,
+		...commonCodeStyles,
+		...generateThemedCodeStyles(light),
 		height: '100%',
 		padding: spacing.s,
 		position: 'relative',
@@ -109,7 +92,7 @@ const styles = {
 	'@global': {
 		[`.${dark}`]: {
 			...tokenStyles[dark],
-			'& $container': generateThemedContainerStyles(dark),
+			'& $container': generateThemedCodeStyles(dark),
 			'& $pickedItem': {
 				backgroundColor: blacks['lighten-10']
 			}
