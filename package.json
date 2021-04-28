@@ -34,7 +34,9 @@
 		"react-dom": "^17.0.1",
 		"react-hook-form": "^6.15.4",
 		"react-jss": "~10.5.1",
+		"react-markdown": "^6.0.1",
 		"react-scripts": "^4.0.3",
+		"remark-gfm": "^1.0.0",
 		"uuid": "^8.3.2"
 	},
 	"scripts": {

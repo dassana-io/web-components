@@ -54,6 +54,8 @@ export default {
 		'react-dom',
 		'react-hook-form',
 		'react-jss',
+		'remark-gfm',
+		'react-markdown',
 		'typescript',
 		'uuid'
 	],
