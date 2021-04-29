@@ -14,6 +14,7 @@ import { Input, InputProps } from 'components/Input'
 import React, {
 	ChangeEvent,
 	FC,
+	FocusEvent,
 	KeyboardEvent,
 	useEffect,
 	useLayoutEffect,
@@ -27,7 +28,7 @@ export interface Validate {
 
 export interface ChipInputProps
 	extends Omit<InputProps, 'onChange' | 'onKeyDown' | 'type' | 'value'> {
-	clearErrros?: () => void
+	clearErrors?: () => void
 	defaultValues?: string[]
 	errorMsg?: string
 	fieldErrorClasses?: string[]
@@ -41,7 +42,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	addonAfter,
 	addonBefore,
 	classes = [],
-	clearErrros,
+	clearErrors,
 	dataTag,
 	defaultValues,
 	disabled = false,
@@ -106,13 +107,13 @@ export const ChipInput: FC<ChipInputProps> = ({
 		setLocalErrorMsg('')
 		setLocalError(false)
 
-		if (clearErrros) clearErrros()
+		if (clearErrors) clearErrors()
 	}
 
-	const onInputFocus = () => {
+	const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 		setShowShortcutMicrocopy(true)
 
-		if (onFocus) onFocus()
+		if (onFocus) onFocus(e)
 	}
 
 	const onKeyDown = (e: KeyboardEvent<Element>) => {
@@ -138,7 +139,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 		}
 	}
 
-	const renderSkeletenTags = () => (
+	const renderSkeletonTags = () => (
 		<>
 			<Skeleton height={22} width={70} />
 			<Skeleton
@@ -205,7 +206,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 				)}
 			</div>
 			<div className={componentClasses.tagsWrapper}>
-				{loading ? renderSkeletenTags() : renderTags()}
+				{loading ? renderSkeletonTags() : renderTags()}
 			</div>
 			<FieldError
 				classes={fieldErrorClasses}

@@ -8,7 +8,7 @@ export interface SelectOption {
 	iconKey?: IconName | string
 	style?: CSSProperties
 	text: string
-	value: string
+	value: string | boolean
 }
 
 export interface SelectOptionsConfig {

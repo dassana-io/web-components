@@ -4,6 +4,7 @@ import mapValues from 'lodash/mapValues'
 import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
+import { JSONValue } from './JSONPathPicker'
 
 export const placementOptions: TooltipPlacement[] = [
 	'bottom',
@@ -125,7 +126,10 @@ export const getDataTestAttributeProp = (
 	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
 })
 
-export const getJSONPathValue = (path: string, obj: Record<string, any>) => {
+export const getJSONPathValue = (
+	path: string,
+	obj: Record<string, JSONValue>
+) => {
 	const value = JSONPath({
 		json: obj,
 		path
