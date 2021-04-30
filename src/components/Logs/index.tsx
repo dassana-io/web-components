@@ -23,7 +23,7 @@ const { flexDown, spacing } = styleguide
 
 const commonLogSpanStyles = {
 	display: 'inline-block',
-	padding: { right: spacing.m }
+	paddingRight: spacing.m
 }
 
 export const useStyles = createUseStyles({

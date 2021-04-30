@@ -11,7 +11,7 @@ import { IconButton, IconSizes } from '../IconButton'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { light, dark } = ThemeType
-const { borderRadius, spacing } = styleguide
+const { borderRadius, flexAlignCenter, spacing } = styleguide
 
 export const useLogControlsStyles = createUseStyles({
 	checkIcon: {
@@ -45,10 +45,9 @@ export const useLogControlsStyles = createUseStyles({
 		width: 215
 	},
 	menuItem: {
+		...flexAlignCenter,
 		...generateThemedMenuItemStyles(light),
-		alignItems: 'center',
 		cursor: 'pointer',
-		display: 'flex',
 		padding: spacing.s,
 		paddingLeft: spacing.xl
 	},
