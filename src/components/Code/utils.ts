@@ -12,8 +12,6 @@ const { dark, light } = ThemeType
 
 const {
 	colors: { blacks, grays, greens, reds, oranges },
-	font,
-	fontWeight,
 	spacing
 } = styleguide
 
@@ -23,7 +21,7 @@ interface CopyToClipboard {
 export const copyToClipboard: CopyToClipboard = (str, callback) =>
 	navigator.clipboard.writeText(str).then(callback)
 
-export const codePalette = {
+const codePalette = {
 	[dark]: {
 		background: blacks['darken-20']
 	},
@@ -39,8 +37,19 @@ export const stringifyCode = (code: CodeType): string =>
 
 /* -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x- */
 
-const generateThemedCodeStyles = (themeType: ThemeType) => {
+const { font, fontWeight } = styleguide
+
+export const commonCodeStyles = {
+	...font.label,
+	fontFamily: 'Fira Code, monospace',
+	fontWeight: fontWeight.light
+}
+
+export const generateThemedCodeStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]
+	const {
+		base: { color }
+	} = themedStyles[themeType]
 
 	const {
 		base: { borderColor }
@@ -48,7 +57,8 @@ const generateThemedCodeStyles = (themeType: ThemeType) => {
 
 	return {
 		background,
-		border: `1px solid ${borderColor}`
+		border: `1px solid ${borderColor}`,
+		color
 	}
 }
 
@@ -134,7 +144,7 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 	}
 }
 
-const generateThemedLineNumStyles = (themeType: ThemeType) => {
+export const generateThemedLineNumStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]
 
 	const {
@@ -165,17 +175,13 @@ export const useStyles = createUseStyles({
 				textShadow: 'none'
 			},
 			[codeSelector]: {
+				...commonCodeStyles,
 				...generateThemedPreCodeStyles(light),
-				...font.label,
-				fontFamily: 'Fira Code, monospace',
-				fontWeight: fontWeight.light,
 				tabSize: 3,
 				textShadow: 'none'
 			},
+			...commonCodeStyles,
 			...generateThemedCodeStyles(light),
-			...font.label,
-			fontFamily: 'Fira Code, monospace',
-			fontWeight: fontWeight.light,
 			margin: 0
 		},
 		[`.${dark}`]: {
