@@ -1,5 +1,6 @@
 import Color from 'color'
 import { JSONPath } from 'jsonpath-plus'
+import { JSONValue } from './JSONPathPicker'
 import mapValues from 'lodash/mapValues'
 import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
@@ -125,7 +126,10 @@ export const getDataTestAttributeProp = (
 	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
 })
 
-export const getJSONPathValue = (path: string, obj: Record<string, any>) => {
+export const getJSONPathValue = (
+	path: string,
+	obj: Record<string, JSONValue>
+) => {
 	const value = JSONPath({
 		json: obj,
 		path

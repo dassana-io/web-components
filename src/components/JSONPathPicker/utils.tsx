@@ -56,7 +56,7 @@ interface RenderParams {
 	remainingJSON: RemainingJSON
 }
 
-enum Types {
+export enum JSONDataTypes {
 	array = 'array',
 	boolean = 'boolean',
 	null = 'null',
@@ -65,7 +65,7 @@ enum Types {
 	string = 'string'
 }
 
-const { array, boolean, null: nullType, number, object, string } = Types
+const { array, boolean, null: nullType, number, object, string } = JSONDataTypes
 
 // -----------------------------------------------------
 
@@ -162,7 +162,9 @@ const renderObject = ({
 						<span
 							className={classes.property}
 							onClick={() => onChange(`${currPath}.${key}`)}
-						>{`"${key}"`}</span>
+						>
+							{`"${key}"`}
+						</span>
 						<span className={classes.operator}>:</span>
 						{recursiveRender({
 							classes,
@@ -184,7 +186,7 @@ const renderObject = ({
 }
 
 interface RenderPrimitiveParams extends RenderParams {
-	type: Types.boolean | Types.number | Types.null
+	type: JSONDataTypes.boolean | JSONDataTypes.number | JSONDataTypes.null
 }
 const renderPrimitive = ({
 	classes,
@@ -247,11 +249,11 @@ const mappedTypesToRenderFns = {
 	[string]: renderString
 }
 
-const getRemainingJSONType = (remainingJSON: RemainingJSON) => {
-	if (isNull(remainingJSON)) return nullType
-	else if (Array.isArray(remainingJSON)) return array
+export const getJSONValueType = (json: RemainingJSON) => {
+	if (isNull(json)) return nullType
+	else if (Array.isArray(json)) return array
 	else {
-		const type = typeof remainingJSON
+		const type = typeof json
 
 		switch (type) {
 			case 'number':
@@ -277,7 +279,7 @@ export const recursiveRender = ({
 	onChange,
 	remainingJSON
 }: RenderParams): ReactNode =>
-	mappedTypesToRenderFns[getRemainingJSONType(remainingJSON)]({
+	mappedTypesToRenderFns[getJSONValueType(remainingJSON)]({
 		classes,
 		currPath,
 		isLastItem,

@@ -59,7 +59,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 				name={name}
 				render={({ onChange, value }) => (
 					<ChipInput
-						clearErrros={clearChipInputErrors}
+						clearErrors={clearChipInputErrors}
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}
 						errorMsg={errorMsg}

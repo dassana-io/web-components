@@ -12,7 +12,7 @@ import {
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import { generateAddonStyles, generateInputStyles } from './utils'
-import React, { FC, KeyboardEvent, RefObject } from 'react'
+import React, { FC, FocusEvent, KeyboardEvent, RefObject } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -39,7 +39,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	defaultValue?: string
 	inputRef?: RefObject<AntDInput>
 	focused?: boolean
-	onFocus?: () => void
+	onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	onKeyDown?: (e: KeyboardEvent) => void
 	/**
 	 * Type of input (ex: text, password)

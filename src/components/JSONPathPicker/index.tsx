@@ -1,8 +1,9 @@
 import cn from 'classnames'
 import { CodeControls } from 'components/Code/CodeControls'
-import { recursiveRender } from './utils'
+import { getJSONPathValue } from 'components/utils'
 import { useStyles } from './styles'
 import { copyToClipboard, stringifyCode } from 'components/Code/utils'
+import { getJSONValueType, JSONDataTypes, recursiveRender } from './utils'
 import React, { FC, useEffect, useState } from 'react'
 
 export type JSONValue =
@@ -61,3 +62,5 @@ export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 		</div>
 	)
 }
+
+export { getJSONPathValue, getJSONValueType, JSONDataTypes }

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { styleguide, themes, ThemeType } from '../assets/styles'
+import { styleguide, themedStyles, themes, ThemeType } from '../assets/styles'
 
 const {
 	colors: { blacks, grays }
@@ -35,12 +35,17 @@ const menuItemPalette = {
 }
 
 export const generateThemedMenuItemStyles = (themeType: ThemeType) => {
+	const {
+		base: { color }
+	} = themedStyles[themeType]
+
 	const { hoverBg } = menuItemPalette[themeType]
 
 	return {
 		'&:hover': {
 			backgroundColor: hoverBg
-		}
+		},
+		color
 	}
 }
 

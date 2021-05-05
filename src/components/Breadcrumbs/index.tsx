@@ -1,9 +1,10 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Link } from '../Link'
-import { styleguide } from '../assets/styles'
 import React, { FC, ReactNode } from 'react'
+import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
+const { light, dark } = ThemeType
 const { spacing } = styleguide
 
 const useStyles = createUseStyles({
@@ -16,7 +17,16 @@ const useStyles = createUseStyles({
 		paddingRight: spacing.s
 	},
 	container: {
+		color: themedStyles[light].base.color,
 		display: 'flex'
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $container:': {
+				color: themedStyles[dark].base.color
+			}
+		}
 	}
 })
 
