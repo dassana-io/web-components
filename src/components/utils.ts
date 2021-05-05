@@ -1,10 +1,10 @@
 import Color from 'color'
 import { JSONPath } from 'jsonpath-plus'
+import { JSONValue } from './JSONPathPicker'
 import mapValues from 'lodash/mapValues'
 import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
-import { JSONValue } from './JSONPathPicker'
 
 export const placementOptions: TooltipPlacement[] = [
 	'bottom',

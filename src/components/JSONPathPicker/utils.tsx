@@ -249,11 +249,11 @@ const mappedTypesToRenderFns = {
 	[string]: renderString
 }
 
-export const getRemainingJSONType = (remainingJSON: RemainingJSON) => {
-	if (isNull(remainingJSON)) return nullType
-	else if (Array.isArray(remainingJSON)) return array
+export const getJSONValueType = (json: RemainingJSON) => {
+	if (isNull(json)) return nullType
+	else if (Array.isArray(json)) return array
 	else {
-		const type = typeof remainingJSON
+		const type = typeof json
 
 		switch (type) {
 			case 'number':
@@ -279,7 +279,7 @@ export const recursiveRender = ({
 	onChange,
 	remainingJSON
 }: RenderParams): ReactNode =>
-	mappedTypesToRenderFns[getRemainingJSONType(remainingJSON)]({
+	mappedTypesToRenderFns[getJSONValueType(remainingJSON)]({
 		classes,
 		currPath,
 		isLastItem,
