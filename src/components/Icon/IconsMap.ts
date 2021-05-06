@@ -1,3 +1,4 @@
+import { ReactComponent as ALERT_MANAGER } from '../assets/icons/alert-manager.svg'
 import { ReactComponent as APP_STORE } from '../assets/icons/app-store.svg'
 import { ReactComponent as AWS } from '../assets/icons/aws.svg'
 import { ReactComponent as AZURE } from '../assets/icons/azure.svg'
@@ -15,6 +16,7 @@ NOTE: When you add an svg, make sure it doesn't have a predefined height and wid
 TODO: Find a better rollup plugin that handles importing images as ReactComponent's. 
 */
 const Icons = {
+	alertManager: ALERT_MANAGER,
 	appStore: APP_STORE,
 	aws: AWS,
 	azure: AZURE,
