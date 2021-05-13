@@ -47,10 +47,14 @@ export type IconProps = IconKey | IconPath
 export const Icon: FC<IconProps> = ({ height, width, ...props }: IconProps) => {
 	const { classes = [] } = props
 
+	const areDimensionsUndefined = isUndefined(height) && isUndefined(width)
+
 	const commonProps = {
 		className: cn(classes),
-		height: isUndefined(height) && isUndefined(width) ? 32 : height,
-		width
+		// if both width and height are undefined, default both to 32.
+		// otherwise, let user control the dimensions with either just the height, width or both
+		height: areDimensionsUndefined ? 32 : height,
+		width: areDimensionsUndefined ? 32 : width
 	}
 
 	if (props.iconKey) {

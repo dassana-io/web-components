@@ -34,6 +34,7 @@ exports[`Storyshots Avatar Icon 1`] = `
       className=""
       fill="#7E7F86"
       height={32}
+      width={32}
     >
       dassana.svg
     </svg>
@@ -3879,6 +3880,7 @@ exports[`Storyshots Popover Default 1`] = `
         className=""
         fill="#7E7F86"
         height={32}
+        width={32}
       >
         dassana.svg
       </svg>
@@ -3909,6 +3911,7 @@ exports[`Storyshots Popover Title 1`] = `
         className=""
         fill="#7E7F86"
         height={32}
+        width={32}
       >
         dassana.svg
       </svg>
@@ -6130,6 +6133,7 @@ exports[`Storyshots Tooltip Default 1`] = `
         className=""
         fill="#7E7F86"
         height={32}
+        width={32}
       >
         dassana.svg
       </svg>
