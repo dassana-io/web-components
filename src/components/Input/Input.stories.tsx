@@ -1,5 +1,8 @@
 import { action } from '@storybook/addon-actions'
+import { faCopy } from '@fortawesome/pro-regular-svg-icons'
+import { IconButton } from 'components/IconButton'
 import React from 'react'
+import { Tooltip } from 'components/Tooltip'
 import { Input, InputProps } from './index'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
@@ -16,6 +19,9 @@ export default {
 const Template: Story<InputProps> = args => <Input {...args} />
 
 export const Default = Template.bind({})
+Default.args = {
+	value: 'test'
+}
 
 export const Placeholder = Template.bind({})
 Placeholder.args = { placeholder: 'Search...' }
@@ -37,4 +43,17 @@ Addons.args = {
 	addonAfter: '.com',
 	addonBefore: '@',
 	placeholder: 'yourdomain'
+}
+
+export const Suffix = Template.bind({})
+Suffix.args = {
+	suffix: (
+		<Tooltip placement='bottom' title='Copy'>
+			<IconButton
+				icon={faCopy}
+				onClick={() => console.log('copied')}
+				size={14}
+			/>
+		</Tooltip>
+	)
 }

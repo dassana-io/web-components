@@ -1,5 +1,5 @@
 import { ReactComponent as ALERT_MANAGER } from '../assets/icons/alert-manager.svg'
-import { ReactComponent as APP_STORE } from '../assets/icons/app-store.svg'
+import { ReactComponent as APPS } from '../assets/icons/apps.svg'
 import { ReactComponent as AWS } from '../assets/icons/aws.svg'
 import { ReactComponent as AZURE } from '../assets/icons/azure.svg'
 import { ReactComponent as DASSANA } from '../assets/icons/dassana.svg'
@@ -17,7 +17,7 @@ TODO: Find a better rollup plugin that handles importing images as ReactComponen
 */
 const Icons = {
 	alertManager: ALERT_MANAGER,
-	appStore: APP_STORE,
+	apps: APPS,
 	aws: AWS,
 	azure: AZURE,
 	dassana: DASSANA,

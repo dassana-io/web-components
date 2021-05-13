@@ -217,7 +217,7 @@ describe('Table search and searchProps', () => {
 
 		const style = window.getComputedStyle(searchBarWrapper.getDOMNode())
 
-		expect(style.alignSelf).toBe('flex-start')
+		expect(style.justifyContent).toBe('flex-start')
 	})
 
 	it('it renders the search bar to the right if searchProps.placement is passed as right', async () => {
@@ -233,7 +233,7 @@ describe('Table search and searchProps', () => {
 
 		const style = window.getComputedStyle(searchBarWrapper.getDOMNode())
 
-		expect(style.alignSelf).toBe('flex-end')
+		expect(style.justifyContent).toBe('flex-end')
 	})
 
 	it('correctly passes the placeholder prop to the searchbar input', () => {

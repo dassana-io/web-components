@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import isUndefined from 'lodash/isUndefined'
 import { styleguide } from 'components/assets/styles'
 import Icons, { IconName } from './IconsMap'
 import React, { FC } from 'react'
@@ -14,9 +15,13 @@ export interface SharedIconProps {
 	 */
 	classes?: string[]
 	/**
-	 * The height of the icon, in pixels. Width will be calculated by default.
+	 * The height of the icon, in pixels
 	 */
 	height?: number
+	/**
+	 * The width of the icon, in pixels
+	 */
+	width?: number
 }
 
 interface IconPath extends SharedIconProps {
@@ -39,8 +44,14 @@ interface IconKey extends SharedIconProps {
 
 export type IconProps = IconKey | IconPath
 
-export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
+export const Icon: FC<IconProps> = ({ height, width, ...props }: IconProps) => {
 	const { classes = [] } = props
+
+	const commonProps = {
+		className: cn(classes),
+		height: isUndefined(height) && isUndefined(width) ? 32 : height,
+		width
+	}
 
 	if (props.iconKey) {
 		const { iconKey } = props
@@ -49,21 +60,12 @@ export const Icon: FC<IconProps> = ({ height = 32, ...props }: IconProps) => {
 
 		const { color = blacks['lighten-40'] } = props as IconKey
 
-		return (
-			<Svg
-				className={cn(classes)}
-				fill={color}
-				height={height}
-				width={height}
-			/>
-		)
+		return <Svg {...commonProps} fill={color} />
 	}
 
 	const { altText = '', icon } = props
 
-	return (
-		<img alt={altText} className={cn(classes)} height={height} src={icon} />
-	)
+	return <img {...commonProps} alt={altText} src={icon} />
 }
 
 export type { IconName }

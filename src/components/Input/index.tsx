@@ -12,7 +12,13 @@ import {
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
 import { generateAddonStyles, generateInputStyles } from './utils'
-import React, { FC, FocusEvent, KeyboardEvent, RefObject } from 'react'
+import React, {
+	FC,
+	FocusEvent,
+	KeyboardEvent,
+	ReactNode,
+	RefObject
+} from 'react'
 
 const { dark, light } = ThemeType
 
@@ -41,6 +47,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	focused?: boolean
 	onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	onKeyDown?: (e: KeyboardEvent) => void
+	suffix?: ReactNode
 	/**
 	 * Type of input (ex: text, password)
 	 * @default text
@@ -65,6 +72,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		error = false,
 		loading = false,
 		placeholder = '',
+		suffix,
 		type = 'text',
 		value
 	} = props
@@ -106,6 +114,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 			onKeyDown={onKeyDown}
 			placeholder={placeholder}
 			ref={inputRef}
+			suffix={suffix}
 			type={type}
 			{...controlledCmpProps}
 			{...getDataTestAttributeProp('input', dataTag)}

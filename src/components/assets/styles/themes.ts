@@ -147,13 +147,14 @@ export const themedStyles = {
 	[ThemeType.light]: generateThemedStyles(themes[light])
 }
 
+/* ----- Common Styles and Palettes ----- */
+
 export const dropdownStyles = {
 	[dark]: {
 		base: {
 			background: blacks['darken-40'],
 			boxShadow: '0px 2px 8px rgba(255, 255, 255, 0.08)'
 		},
-
 		hover: {
 			background: blacks['lighten-10']
 		},
@@ -173,6 +174,29 @@ export const dropdownStyles = {
 		selected: {
 			background: grays.base,
 			color: blacks.base
+		}
+	}
+}
+
+export const inputPalette = {
+	[dark]: {
+		base: {
+			background: blacks['darken-40'],
+			borderColor: blacks['lighten-20']
+		},
+		disabled: {
+			background: blacks.base,
+			color: blacks['lighten-30']
+		}
+	},
+	[light]: {
+		base: {
+			background: whites.base,
+			borderColor: blacks['lighten-80']
+		},
+		disabled: {
+			background: grays.base,
+			color: blacks['lighten-70']
 		}
 	}
 }
