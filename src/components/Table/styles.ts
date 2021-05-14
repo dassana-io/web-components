@@ -237,7 +237,8 @@ export const useStyles = createUseStyles({
 		}
 	},
 	searchBarWrapper: {
-		alignSelf: props =>
+		display: 'flex',
+		justifyContent: props =>
 			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
 		marginBottom: spacing.m,
 		width: '100%'

@@ -1,54 +1,18 @@
 import { styleguide } from '../assets/styles/styleguide'
 import {
 	dropdownStyles,
+	inputPalette,
 	themedStyles,
 	ThemeType
 } from '../assets/styles/themes'
 
-const { dark, light } = ThemeType
-
-const {
-	colors: { blacks, grays, whites },
-	fontWeight
-} = styleguide
-
-const selectPalette = {
-	[dark]: {
-		base: {
-			background: blacks['darken-40']
-		},
-		input: {
-			default: {
-				borderColor: blacks['lighten-20']
-			},
-			disabled: {
-				background: blacks['darken-20'],
-				color: blacks['lighten-30']
-			}
-		}
-	},
-	[light]: {
-		base: {
-			background: whites.base
-		},
-		input: {
-			default: {
-				borderColor: blacks['lighten-80']
-			},
-			disabled: {
-				background: grays['lighten-70'],
-				color: blacks['lighten-70']
-			}
-		}
-	}
-}
+const { fontWeight } = styleguide
 
 export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 	const {
-		disabled: { borderColor }
-	} = themedStyles[themeType]
-
-	const { background, color } = selectPalette[themeType].input.disabled
+		base: { borderColor },
+		disabled: { background, color }
+	} = inputPalette[themeType]
 
 	return {
 		'& .ant-select-arrow': { color },
@@ -92,8 +56,9 @@ export const generateThemedInputStyles = (themeType: ThemeType) => {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { background } = selectPalette[themeType].base
-	const { borderColor } = selectPalette[themeType].input.default
+	const {
+		base: { background, borderColor }
+	} = inputPalette[themeType]
 
 	return {
 		'& .ant-select-selection-search > .ant-select-selection-search-input': {

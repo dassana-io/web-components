@@ -9,8 +9,7 @@ export const generateLinkStyles = (themeType: ThemeType) => {
 	return {
 		'&.ant-typography': {
 			'&:hover, &:focus': {
-				color: hover.color,
-				fontWeight: fontWeight.regular
+				color: hover.color
 			},
 			color: base.color,
 			fontWeight: fontWeight.light,

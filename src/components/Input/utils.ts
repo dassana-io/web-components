@@ -1,24 +1,101 @@
+import omit from 'lodash/omit'
 import {
 	fieldErrorStyles,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+import {
+	inputPalette,
+	themedStyles,
+	ThemeType
+} from 'components/assets/styles/themes'
 
 const { borderRadius, fontWeight } = styleguide
 
-export const generateAddonStyles = (themeType: ThemeType) => {
+const generateCommonBaseStyles = (themeType: ThemeType) => {
 	const {
-		base: { backgroundColor, borderColor, color },
-		error
+		base: { color }
+	} = themedStyles[themeType]
+
+	const {
+		base: { background, borderColor }
+	} = inputPalette[themeType]
+
+	return { background, borderColor, borderRadius, color }
+}
+
+const generateCommonDisabledStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor },
+		disabled: { background, color }
+	} = inputPalette[themeType]
+
+	return {
+		'&:hover': {
+			borderColor
+		},
+		background,
+		color
+	}
+}
+
+const generateCommonFocusStyles = (themeType: ThemeType) => {
+	const {
+		focus: { borderColor }
 	} = themedStyles[themeType]
 
 	return {
+		borderColor,
+		boxShadow: 'none'
+	}
+}
+
+const generateCommonHoverStyles = (themeType: ThemeType) => {
+	const {
+		hover: { borderColor }
+	} = themedStyles[themeType]
+
+	return {
+		'&:hover': {
+			borderColor,
+			boxShadow: 'none'
+		}
+	}
+}
+
+const generateCommonErrorStyles = (themeType: ThemeType) => {
+	const {
+		error: { borderColor }
+	} = themedStyles[themeType]
+
+	return {
+		...fieldErrorStyles.error,
+		borderColor
+	}
+}
+export const generateAddonStyles = (themeType: ThemeType) => {
+	const { error } = themedStyles[themeType]
+
+	return {
+		'&.ant-input-affix-wrapper': {
+			'&$error': {
+				'&:hover': { borderColor: error.borderColor },
+				...generateCommonErrorStyles(themeType)
+			},
+			'&.ant-input-affix-wrapper-disabled': generateCommonDisabledStyles(
+				themeType
+			),
+			...generateCommonBaseStyles(themeType),
+			...generateCommonHoverStyles(themeType)
+		},
+		'&.ant-input-affix-wrapper-focused, &.ant-input-affix-wrapper:focus': generateCommonFocusStyles(
+			themeType
+		),
 		'&.ant-input-group-wrapper': {
 			'& .ant-input-wrapper': {
 				'& .ant-input-group-addon': {
-					backgroundColor,
-					borderColor,
-					color,
+					...omit(generateCommonBaseStyles(themeType), [
+						'borderRadius'
+					]),
 					fontWeight: fontWeight.light
 				},
 				'& .ant-input-group-addon:first-child': {
@@ -31,48 +108,33 @@ export const generateAddonStyles = (themeType: ThemeType) => {
 				}
 			},
 			'&$error': {
-				'& .ant-input-wrapper .ant-input': {
-					...fieldErrorStyles.error,
-					borderColor: error.borderColor
-				}
+				'& .ant-input-wrapper .ant-input': generateCommonErrorStyles(
+					themeType
+				)
 			}
 		}
 	}
 }
 
 export const generateInputStyles = (themeType: ThemeType) => {
-	const { base, disabled, error, focus, hover, placeholder } = themedStyles[
-		themeType
-	]
+	const { placeholder } = themedStyles[themeType]
 
 	return {
 		'&.ant-input': {
 			'&$error': {
-				'&$container': {
-					...fieldErrorStyles.error,
-					borderColor: error.borderColor
-				}
+				'&$container': generateCommonErrorStyles(themeType)
 			},
 			'&::placeholder': {
 				color: placeholder.color
 			},
-			'&:hover': {
-				borderColor: hover.borderColor
-			},
-			backgroundColor: base.backgroundColor,
-			borderColor: base.borderColor,
-			borderRadius,
-			color: base.color
+			...generateCommonBaseStyles(themeType),
+			...generateCommonHoverStyles(themeType)
 		},
-		'&.ant-input-disabled, &.ant-input[disabled]': {
-			'&:hover': {
-				borderColor: base.borderColor
-			},
-			backgroundColor: disabled.backgroundColor
-		},
-		'&.ant-input-focused, &.ant-input:focus': {
-			borderColor: focus.borderColor,
-			boxShadow: focus.boxShadow
-		}
+		'&.ant-input-disabled, &.ant-input[disabled]': generateCommonDisabledStyles(
+			themeType
+		),
+		'&.ant-input-focused, &.ant-input:focus': generateCommonFocusStyles(
+			themeType
+		)
 	}
 }
