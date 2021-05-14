@@ -21,8 +21,8 @@ const filterPalette = {
 	},
 	[light]: {
 		container: {
-			background: grays.base,
-			borderColor: grays.base
+			background: grays['lighten-40'],
+			borderColor: grays['lighten-40']
 		}
 	}
 }

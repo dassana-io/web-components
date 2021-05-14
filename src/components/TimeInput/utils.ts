@@ -3,6 +3,7 @@ import { generateButtonStyles } from 'components/Button/utils'
 import isUndefined from 'lodash/isUndefined'
 import {
 	dropdownStyles,
+	inputPalette,
 	themedStyles,
 	ThemeType
 } from 'components/assets/styles/themes'
@@ -104,19 +105,23 @@ const generateDropdownStyles = (themeType: ThemeType) => {
 
 const generateTimeInputStyles = (themeType: ThemeType) => {
 	const {
-		base: { backgroundColor, borderColor, color },
-		disabled,
+		base: { color },
 		error,
 		focus,
 		hover,
 		placeholder
 	} = themedStyles[themeType]
 
+	const {
+		base: { background, borderColor },
+		disabled
+	} = inputPalette[themeType]
+
 	return {
 		'&.ant-picker': {
 			'& .ant-picker-input': {
 				'& .ant-picker-clear': {
-					backgroundColor,
+					background,
 					color: disabled.color
 				},
 				'& .ant-picker-suffix': { color: disabled.color },
@@ -138,7 +143,7 @@ const generateTimeInputStyles = (themeType: ThemeType) => {
 				'&:hover': {
 					borderColor
 				},
-				backgroundColor: disabled.backgroundColor
+				background: disabled.background
 			},
 			'&.ant-picker-focused': {
 				borderColor: focus.borderColor,
@@ -147,8 +152,7 @@ const generateTimeInputStyles = (themeType: ThemeType) => {
 			'&:hover': {
 				borderColor: hover.borderColor
 			},
-
-			backgroundColor: backgroundColor,
+			background,
 			borderColor: borderColor,
 			borderRadius,
 			color
