@@ -29,7 +29,7 @@ export const formatTime: FormatTime = (format, value) => {
 	if (isUndefined(value)) return value
 
 	if (format === 'unix') {
-		return moment.unix(value)
+		return moment(value)
 	}
 
 	return moment(value, hourIntegerFormat)
@@ -46,7 +46,7 @@ export const parseTime: ParseTime = (
 	format: TimeFormat
 ) =>
 	format === 'unix'
-		? moment(momentObj).unix()
+		? moment(momentObj).valueOf()
 		: parseInt(moment(momentObj).format(hourIntegerFormat))
 
 // -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x-
