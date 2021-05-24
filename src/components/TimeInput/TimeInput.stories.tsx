@@ -9,6 +9,7 @@ export default {
 	argTypes: {
 		displayFormat: { control: 'text', defaultValue: 'hh:mm A' },
 		onChange: { defaultValue: action('onChange') },
+		popupContainerSelector: { control: { disable: true } },
 		value: { control: { disable: true } }
 	},
 	component: TimeInput,

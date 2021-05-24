@@ -51,16 +51,56 @@ export const parseTime: ParseTime = (
 
 // -x-x-x-x-x-x-x-x- Styles Related -x-x-x-x-x-x-x-x-
 
-const generateDropdownStyles = (themeType: ThemeType) => {
+export const generateTimePanelColumnStyles = (themeType: ThemeType) => {
 	const {
 		base: { borderColor, color },
 		disabled
 	} = themedStyles[themeType]
 
 	const {
-		base: { background, boxShadow },
+		base: { background },
 		hover,
 		selected
+	} = dropdownStyles[themeType]
+
+	return {
+		'& .ant-picker-time-panel-column': {
+			'& > li.ant-picker-time-panel-cell': {
+				'& .ant-picker-time-panel-cell-inner': {
+					'&:hover': { background: hover.background },
+					background,
+					color
+				},
+				'&.ant-picker-time-panel-cell-disabled': {
+					'& .ant-picker-time-panel-cell-inner': {
+						color: disabled.color
+					},
+					'& .ant-picker-time-panel-cell-inner:hover': {
+						background
+					}
+				},
+				'&.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover': {
+					background: selected.background
+				}
+			},
+			'& > li.ant-picker-time-panel-cell-selected div.ant-picker-time-panel-cell-inner': {
+				background: selected.background,
+				color: selected.color
+			},
+			'&:not(:first-child)': {
+				borderColor
+			}
+		}
+	}
+}
+
+const generateDropdownStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor }
+	} = themedStyles[themeType]
+
+	const {
+		base: { background, boxShadow }
 	} = dropdownStyles[themeType]
 
 	return {
@@ -69,32 +109,7 @@ const generateDropdownStyles = (themeType: ThemeType) => {
 				'& .ant-picker-footer': {
 					borderTopColor: borderColor
 				},
-				'& .ant-picker-time-panel-column': {
-					'& > li.ant-picker-time-panel-cell': {
-						'& .ant-picker-time-panel-cell-inner': {
-							'&:hover': { background: hover.background },
-							color
-						},
-						'&.ant-picker-time-panel-cell-disabled': {
-							'& .ant-picker-time-panel-cell-inner': {
-								color: disabled.color
-							},
-							'& .ant-picker-time-panel-cell-inner:hover': {
-								background
-							}
-						},
-						'&.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover': {
-							background: selected.background
-						}
-					},
-					'& > li.ant-picker-time-panel-cell-selected div.ant-picker-time-panel-cell-inner': {
-						background: selected.background,
-						color: selected.color
-					},
-					'&:not(:first-child)': {
-						borderColor
-					}
-				},
+				...generateTimePanelColumnStyles(themeType),
 				borderColor
 			},
 			backgroundColor: background,
