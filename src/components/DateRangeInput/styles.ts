@@ -1,10 +1,11 @@
-import { generateTimePanelColumnStyles } from '../TimeInput/utils'
 import { generateThemedIconBtnStyles } from '../IconButton/utils'
+import { generateTimePanelColumnStyles } from '../TimeInput/utils'
 import {
 	dropdownStyles,
 	inputPalette,
 	styleguide,
 	themedStyles,
+	themes,
 	ThemeType
 } from 'components/assets/styles'
 
@@ -38,68 +39,176 @@ const generateActiveBarStyles = (themeType: ThemeType) => {
 
 const datePanelPalette = {
 	[dark]: {
-		hover: { selected: { background: blacks['lighten-80'] } },
-		range: { background: grays.base, color: blacks.base },
+		hover: { selected: { background: blacks['lighten-20'] } },
+		prevNextMonth: blacks['lighten-20'],
+		range: {
+			background: dropdownStyles[dark].selected.background,
+			color: blacks.base
+		},
 		selectedDays: {
-			background: blacks['lighten-50'],
+			background: blacks['lighten-30'],
 			color: whites.base,
 			hover: { background: blacks['lighten-40'] }
-		}
+		},
+		weekHeader: blacks['lighten-60']
 	},
 	[light]: {
 		hover: { selected: { background: blacks['lighten-80'] } },
-		range: { background: grays.base, color: blacks.base },
+		prevNextMonth: blacks['lighten-70'],
+		range: {
+			background: dropdownStyles[light].selected.background,
+			color: blacks.base
+		},
 		selectedDays: {
 			background: blacks['lighten-50'],
 			color: whites.base,
 			hover: { background: blacks['lighten-40'] }
-		}
+		},
+		weekHeader: blacks.base
 	}
 }
 
 const generateDatePanelHeaderStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor }
+	} = themedStyles[themeType]
+
 	return {
 		'& .ant-picker-header': {
-			color: 'red !important',
-			'& button': generateThemedIconBtnStyles(themeType)
+			'& button': generateThemedIconBtnStyles(themeType),
+			borderBottomColor: borderColor
 		}
 	}
 }
 
 // #cbe6ff
-// &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before
 const generateDatePanelStyles = (themeType: ThemeType) => {
+	const {
+		base: { borderColor, color },
+		disabled
+	} = themedStyles[themeType]
+
+	const {
+		hover,
+		prevNextMonth,
+		range,
+		selectedDays,
+		weekHeader
+	} = datePanelPalette[themeType]
+
+	return {
+		'& .ant-picker-date-panel': {
+			...generateDatePanelHeaderStyles(themeType),
+			'& .ant-picker-body': {
+				'& .ant-picker-cell': {
+					'&.ant-picker-cell-disabled': {
+						'& .ant-picker-cell-inner': { color: disabled.color },
+						'&::before': { background: disabled.backgroundColor }
+					},
+					'&:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner, &:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner': {
+						background: dropdownStyles[themeType].hover.background
+					},
+					color: prevNextMonth
+				},
+				'& .ant-picker-cell-in-view': {
+					'&.ant-picker-cell-disabled': {
+						'& .ant-picker-cell-inner': { color: disabled.color },
+						'&::before': {
+							background: disabled.backgroundColor
+						}
+					},
+					'&.ant-picker-cell-end.ant-picker-cell-range-hover-edge-end.ant-picker-cell-range-hover-edge-end-near-range::after, &.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after, &.ant-picker-cell-range-hover-end::after': {
+						borderRight: `1px dashed ${selectedDays.background}`
+					},
+					'&.ant-picker-cell-range-hover-end': {
+						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover::after, &.ant-picker-cell-range-end-single::after': {
+							borderBottom: `1px dashed ${selectedDays.background}`,
+							borderTop: `1px dashed ${selectedDays.background}`
+						}
+					},
+					'&.ant-picker-cell-range-hover-start': {
+						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover::after, &.ant-picker-cell-range-start-single::after': {
+							borderBottom: `1px dashed ${selectedDays.background}`,
+							borderTop: `1px dashed ${selectedDays.background}`
+						}
+					},
+					'&.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range)::after': {
+						borderBottom: `1px dashed ${selectedDays.background}`,
+						borderTop: `1px dashed ${selectedDays.background}`
+					},
+					'&.ant-picker-cell-start.ant-picker-cell-range-hover-edge-start.ant-picker-cell-range-hover-edge-start-near-range::after, &.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after, &.ant-picker-cell-range-hover-start::after': {
+						borderLeft: `1px dashed ${selectedDays.background}`
+					},
+					'&.ant-picker-cell-today .ant-picker-cell-inner::before': {
+						border: `1px solid ${disabled.color}`,
+						borderRadius
+					},
+					// '&.ant-picker-cell-in-range.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, & .ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before, &.ant-picker-cell-in-range.ant-picker-cell-range-hover-start::before, &.ant-picker-cell-in-range.ant-picker-cell-range-hover-end::before': {
+					// 	background: hover.selected.background
+					// },
+					// '&.ant-picker-cell-in-range::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before': {
+					// 	background: range.background
+					// },
+					// '&.ant-picker-cell-selected .ant-picker-cell-inner, &.ant-picker-cell-range-start .ant-picker-cell-inner, &.ant-picker-cell-range-end .ant-picker-cell-inner': {
+					// 	background: selectedDays.background
+					// },
+					color
+				},
+				'& .ant-picker-content': {
+					'& th': {
+						color: weekHeader
+					},
+					'& tr > .ant-picker-cell-in-view': {
+						'&.ant-picker-cell-range-hover:first-child::after, &.ant-picker-cell-range-hover-end:first-child::after': {
+							borderLeft: `1px dashed ${selectedDays.background}`
+						},
+						'&.ant-picker-cell-range-hover:last-child::after, &.ant-picker-cell-range-hover-start:last-child::after': {
+							borderRight: `1px dashed ${selectedDays.background}`
+						}
+					}
+				}
+				// '& .ant-picker-cell-in-range.ant-picker-cell-range-hover-start .ant-picker-cell-inner::after, & .ant-picker-cell-in-range.ant-picker-cell-range-hover-end .ant-picker-cell-inner::after': {
+				// 	background: hover.selected.background
+				// },
+			}
+		}
+	}
+}
+
+const generateTimePanelStyles = (themeType: ThemeType) => {
+	const {
+		base: { background }
+	} = dropdownStyles[themeType]
+
 	const {
 		base: { borderColor, color }
 	} = themedStyles[themeType]
 
-	const { hover, range, selectedDays } = datePanelPalette[themeType]
-
 	return {
-		'& .ant-picker-date-panel': {
-			// ...generateDatePanelHeaderStyles(themeType),
-			'& .ant-picker-cell-in-range.ant-picker-cell-range-hover-start .ant-picker-cell-inner::after, & .ant-picker-cell-in-range.ant-picker-cell-range-hover-end .ant-picker-cell-inner::after': {
-				// background: `${range.background} !important`
-				background: hover.selected.background
-				// background: 'red !important'
-			},
-			'& .ant-picker-cell-in-view': {
-				'&.ant-picker-cell-in-range.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, & .ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before, &.ant-picker-cell-in-range.ant-picker-cell-range-hover-start::before, &.ant-picker-cell-in-range.ant-picker-cell-range-hover-end::before': {
-					// background: `${range.background} !important`
-					background: hover.selected.background
-					// background: 'red !important'
-				},
-				'&.ant-picker-cell-in-range::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before': {
-					background: range.background
-				},
-				'&.ant-picker-cell-selected .ant-picker-cell-inner, &.ant-picker-cell-range-start .ant-picker-cell-inner, &.ant-picker-cell-range-end .ant-picker-cell-inner': {
-					background: selectedDays.background
-				},
+		'& .ant-picker-time-panel': {
+			'& .ant-picker-content': generateTimePanelColumnStyles(themeType),
+			'& .ant-picker-header': {
+				borderBottomColor: borderColor,
 				color
 			},
-			'& .ant-picker-header': {
-				borderBottomColor: borderColor
-			}
+			background,
+			borderLeftColor: borderColor
+		}
+	}
+}
+
+const generateCarrotStyles = (themeType: ThemeType) => {
+	const {
+		base: { background }
+	} = dropdownStyles[themeType]
+
+	return {
+		'& .ant-picker-range-arrow': {
+			'&:after': {
+				background,
+				border: `1px solid ${background}`
+			},
+			background
 		}
 	}
 }
@@ -113,27 +222,21 @@ export const generateDropdownStyles = (themeType: ThemeType) => {
 		base: { borderColor, color }
 	} = themedStyles[themeType]
 	return {
-		'&.ant-picker-dropdown.ant-picker-dropdown-range > .ant-picker-range-wrapper': {
-			'& .ant-picker-panel-container': {
-				'& .ant-picker-panels': {
-					'& .ant-picker-panel': {
-						...generateDatePanelStyles(themeType),
-						'& .ant-picker-time-panel': {
-							'& .ant-picker-content': generateTimePanelColumnStyles(
-								themeType
-							),
-							'& .ant-picker-header': {
-								borderBottomColor: borderColor
-							},
-							background,
-							borderLeftColor: borderColor
-						},
-						borderBottomColor: borderColor
-					}
-				},
-				background,
-				boxShadow,
-				color
+		'&.ant-picker-dropdown': {
+			'& .ant-picker-range-wrapper': {
+				...generateCarrotStyles(themeType),
+				'& .ant-picker-panel-container': {
+					'& .ant-picker-panels': {
+						'& .ant-picker-panel': {
+							...generateDatePanelStyles(themeType),
+							...generateTimePanelStyles(themeType),
+							borderBottomColor: borderColor
+						}
+					},
+					background,
+					boxShadow,
+					color
+				}
 			}
 		}
 	}
@@ -170,7 +273,3 @@ export const generateDateRangeInputStyles = (themeType: ThemeType) => {
 		}
 	}
 }
-
-/* 
-& .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover::before, & .ant-picker-cell-in-view.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, & .ant-picker-cell-in-view.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, & .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, & .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before
-*/

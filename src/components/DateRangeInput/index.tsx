@@ -4,10 +4,12 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { DatePicker } from 'antd'
 import { getPopupContainerProps } from '../utils'
-import { MomentInputObject } from 'moment'
+import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
+import { SizeType } from 'antd/lib/config-provider/SizeContext'
 import { ThemeType } from 'components/assets/styles'
 import { formatTime, parseTime } from '../TimeInput/utils'
 import { generateDateRangeInputStyles, generateDropdownStyles } from './styles'
+import { Moment, MomentInputObject } from 'moment'
 import React, { FC } from 'react'
 
 const { dark, light } = ThemeType
@@ -36,25 +38,31 @@ interface TimeProps {
 
 export interface DateRangeInputProps {
 	classes?: string[]
+	disabledDate?: (date: Moment) => boolean
 	displayFormat?: string
 	onChange?: (value: DateRangeInputValue) => void
 	/**
 	 * Whether to include time or not. Can either be boolean or an object
 	 */
 	includeTime?: boolean | TimeProps
+	loading?: boolean
 	/**
 	 * Selector of HTML element inside which to render the dropdown
 	 */
 	popupContainerSelector?: string
+	size?: SizeType
 	value?: DateRangeInputValue
 }
 
 export const DateRangeInput: FC<DateRangeInputProps> = ({
 	classes = [],
 	displayFormat = 'YYYY-MM-DD hh:mm A',
+	disabledDate,
 	onChange,
 	includeTime = { displayFormat: 'hh:mm A' },
+	loading = false,
 	popupContainerSelector,
+	size = 'middle',
 	value
 }: DateRangeInputProps) => {
 	const compClasses = useStyles()
@@ -88,18 +96,23 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 		}
 	}
 
-	return (
+	return loading ? (
+		<SelectSkeleton />
+	) : (
 		<AntDRangePicker
 			allowClear={false}
 			className={cn(classes)}
+			disabledDate={disabledDate}
 			dropdownClassName={compClasses.dropdown}
 			format={displayFormat}
-			open // TODO: DELETE prop before commiting
+			mode={['date', 'date']}
+			open // TODO: Delete
 			showTime={
 				typeof includeTime === 'boolean'
 					? includeTime
 					: { format: includeTime.displayFormat }
 			}
+			size={size}
 			{...controlledCmpProps}
 			{...getPopupContainerProps(popupContainerSelector)}
 		/>
