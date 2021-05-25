@@ -3,9 +3,9 @@ import moment from 'moment'
 import { SbTheme } from '../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { useTheme } from 'react-jss'
-import { DateRangeInput, DateRangeInputProps, DateRangeInputValue } from '.'
+import { DateRangeInput, DateRangeInputProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
 export default {
 	argTypes: {
@@ -37,27 +37,13 @@ const ThemedDateRangeInput: FC<DateRangeInputProps> = (
 	)
 }
 
-const Template: Story<DateRangeInputProps> = args => {
-	const [value, setValue] = useState<DateRangeInputValue>({
-		endTime: 1621374120593,
-		startTime: 1620070035963
-	})
-
-	return (
-		<ThemedDateRangeInput
-			{...args}
-			onChange={value => {
-				console.log(value)
-				setValue(value)
-			}}
-			value={value}
-		/>
-	)
-}
+const Template: Story<DateRangeInputProps> = args => (
+	<ThemedDateRangeInput {...args} />
+)
 
 export const Default = Template.bind({})
 Default.args = {
-	// disabledDate: current => {
-	// 	return current && current > moment().endOf('day')
-	// }
+	disabledDate: current => {
+		return current && current > moment().endOf('day')
+	}
 }

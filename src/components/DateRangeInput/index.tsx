@@ -3,6 +3,7 @@ import 'antd/lib/time-picker/style/index.css'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { DatePicker } from 'antd'
+import { generateButtonStyles } from '../Button/utils'
 import { getPopupContainerProps } from '../utils'
 import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
@@ -19,8 +20,10 @@ const useStyles = createUseStyles({
 	dropdown: generateDropdownStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
+		button: generateButtonStyles(light),
 		div: generateDateRangeInputStyles(light),
 		[`.${dark}`]: {
+			'& $button': generateButtonStyles(dark),
 			'& $div': generateDateRangeInputStyles(dark),
 			'& $dropdown': generateDropdownStyles(dark)
 		}
@@ -106,7 +109,6 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 			dropdownClassName={compClasses.dropdown}
 			format={displayFormat}
 			mode={['date', 'date']}
-			open // TODO: Delete
 			showTime={
 				typeof includeTime === 'boolean'
 					? includeTime

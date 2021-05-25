@@ -5,7 +5,6 @@ import {
 	inputPalette,
 	styleguide,
 	themedStyles,
-	themes,
 	ThemeType
 } from 'components/assets/styles'
 
@@ -46,7 +45,7 @@ const datePanelPalette = {
 			color: blacks.base
 		},
 		selectedDays: {
-			background: blacks['lighten-30'],
+			background: blacks['lighten-40'],
 			color: whites.base,
 			hover: { background: blacks['lighten-40'] }
 		},
@@ -81,10 +80,9 @@ const generateDatePanelHeaderStyles = (themeType: ThemeType) => {
 	}
 }
 
-// #cbe6ff
 const generateDatePanelStyles = (themeType: ThemeType) => {
 	const {
-		base: { borderColor, color },
+		base: { color },
 		disabled
 	} = themedStyles[themeType]
 
@@ -95,6 +93,11 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 		selectedDays,
 		weekHeader
 	} = datePanelPalette[themeType]
+
+	const dashedBorderTopBottom = {
+		borderBottom: `1px dashed ${selectedDays.background}`,
+		borderTop: `1px dashed ${selectedDays.background}`
+	}
 
 	return {
 		'& .ant-picker-date-panel': {
@@ -120,21 +123,26 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 					'&.ant-picker-cell-end.ant-picker-cell-range-hover-edge-end.ant-picker-cell-range-hover-edge-end-near-range::after, &.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after, &.ant-picker-cell-range-hover-end::after': {
 						borderRight: `1px dashed ${selectedDays.background}`
 					},
-					'&.ant-picker-cell-range-hover-end': {
-						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover::after, &.ant-picker-cell-range-end-single::after': {
-							borderBottom: `1px dashed ${selectedDays.background}`,
-							borderTop: `1px dashed ${selectedDays.background}`
+					'&.ant-picker-cell-in-range': {
+						'&.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-hover-start .ant-picker-cell-inner::after, &.ant-picker-cell-range-hover-end .ant-picker-cell-inner::after': {
+							background: hover.selected.background
 						}
+					},
+					'&.ant-picker-cell-in-range::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before': {
+						background: range.background
+					},
+					'&.ant-picker-cell-range-hover-end': {
+						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover::after, &.ant-picker-cell-range-end-single::after': dashedBorderTopBottom
 					},
 					'&.ant-picker-cell-range-hover-start': {
-						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover::after, &.ant-picker-cell-range-start-single::after': {
-							borderBottom: `1px dashed ${selectedDays.background}`,
-							borderTop: `1px dashed ${selectedDays.background}`
-						}
+						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover::after, &.ant-picker-cell-range-start-single::after': dashedBorderTopBottom
 					},
-					'&.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range)::after': {
-						borderBottom: `1px dashed ${selectedDays.background}`,
-						borderTop: `1px dashed ${selectedDays.background}`
+					'&.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range)::after': dashedBorderTopBottom,
+					'&.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before': {
+						background: hover.selected.background
+					},
+					'&.ant-picker-cell-selected .ant-picker-cell-inner, &.ant-picker-cell-range-start .ant-picker-cell-inner, &.ant-picker-cell-range-end .ant-picker-cell-inner': {
+						background: selectedDays.background
 					},
 					'&.ant-picker-cell-start.ant-picker-cell-range-hover-edge-start.ant-picker-cell-range-hover-edge-start-near-range::after, &.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after, &.ant-picker-cell-range-hover-start::after': {
 						borderLeft: `1px dashed ${selectedDays.background}`
@@ -143,15 +151,6 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 						border: `1px solid ${disabled.color}`,
 						borderRadius
 					},
-					// '&.ant-picker-cell-in-range.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, & .ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before, &.ant-picker-cell-in-range.ant-picker-cell-range-hover-start::before, &.ant-picker-cell-in-range.ant-picker-cell-range-hover-end::before': {
-					// 	background: hover.selected.background
-					// },
-					// '&.ant-picker-cell-in-range::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before': {
-					// 	background: range.background
-					// },
-					// '&.ant-picker-cell-selected .ant-picker-cell-inner, &.ant-picker-cell-range-start .ant-picker-cell-inner, &.ant-picker-cell-range-end .ant-picker-cell-inner': {
-					// 	background: selectedDays.background
-					// },
 					color
 				},
 				'& .ant-picker-content': {
@@ -167,9 +166,6 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 						}
 					}
 				}
-				// '& .ant-picker-cell-in-range.ant-picker-cell-range-hover-start .ant-picker-cell-inner::after, & .ant-picker-cell-in-range.ant-picker-cell-range-hover-end .ant-picker-cell-inner::after': {
-				// 	background: hover.selected.background
-				// },
 			}
 		}
 	}
@@ -221,6 +217,7 @@ export const generateDropdownStyles = (themeType: ThemeType) => {
 	const {
 		base: { borderColor, color }
 	} = themedStyles[themeType]
+
 	return {
 		'&.ant-picker-dropdown': {
 			'& .ant-picker-range-wrapper': {
@@ -245,6 +242,7 @@ export const generateDropdownStyles = (themeType: ThemeType) => {
 export const generateDateRangeInputStyles = (themeType: ThemeType) => {
 	const {
 		base: { color },
+		disabled,
 		focus,
 		hover
 	} = themedStyles[themeType]
@@ -259,6 +257,10 @@ export const generateDateRangeInputStyles = (themeType: ThemeType) => {
 		},
 		'&.ant-picker.ant-picker-range': {
 			...generateActiveBarStyles(themeType),
+			'& .ant-picker-separator': { color },
+			'& .ant-picker-suffix': {
+				color: disabled.color
+			},
 			'&.ant-picker-focused, &:focus': {
 				borderColor: focus.borderColor,
 				boxShadow: 'none'
