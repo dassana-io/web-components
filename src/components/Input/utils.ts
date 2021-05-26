@@ -72,6 +72,7 @@ const generateCommonErrorStyles = (themeType: ThemeType) => {
 		borderColor
 	}
 }
+
 export const generateAddonStyles = (themeType: ThemeType) => {
 	const { error } = themedStyles[themeType]
 
