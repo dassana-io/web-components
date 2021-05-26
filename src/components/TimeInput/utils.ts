@@ -41,10 +41,7 @@ interface ParseTime {
 	(momentObj: MomentInputObject, format: TimeFormat): number
 }
 
-export const parseTime: ParseTime = (
-	momentObj: MomentInputObject,
-	format: TimeFormat
-) =>
+export const parseTime: ParseTime = (momentObj, format) =>
 	format === 'unix'
 		? moment(momentObj).valueOf()
 		: parseInt(moment(momentObj).format(hourIntegerFormat))
