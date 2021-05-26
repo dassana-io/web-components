@@ -244,6 +244,7 @@ export const generateDateRangeInputStyles = (themeType: ThemeType) => {
 		base: { color },
 		disabled,
 		focus,
+		placeholder,
 		hover
 	} = themedStyles[themeType]
 
@@ -253,7 +254,12 @@ export const generateDateRangeInputStyles = (themeType: ThemeType) => {
 
 	return {
 		'& .ant-picker-input': {
-			'& > input': { color }
+			'& > input': {
+				'&::placeholder': {
+					color: placeholder.color
+				},
+				color
+			}
 		},
 		'&.ant-picker.ant-picker-range': {
 			...generateActiveBarStyles(themeType),
