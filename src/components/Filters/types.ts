@@ -53,6 +53,7 @@ export interface ServerSideFiltersProps extends SharedFiltersProps {
 	emitter: Emitter
 	endpoint: string
 	mode: FiltersMode.backend
+	omittedFilterKeys?: string[]
 }
 
 export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps

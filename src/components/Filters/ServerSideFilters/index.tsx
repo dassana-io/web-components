@@ -8,11 +8,17 @@ export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 	api,
 	emitter,
 	endpoint,
+	omittedFilterKeys = [],
 	...rest
 }: ServerSideFiltersProps) => {
 	// useFilters is where all the related data will be held.
 	// API calls will also be handled in useFilters.
-	const filterMethods = useFilters(endpoint, api, emitter)
+	const filterMethods = useFilters({
+		api,
+		emitter,
+		endpoint,
+		omittedFilterKeys
+	})
 
 	return (
 		<FiltersCtxProvider
