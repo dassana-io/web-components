@@ -156,10 +156,10 @@ export const dropdownStyles = {
 			boxShadow: '0px 2px 8px rgba(255, 255, 255, 0.08)'
 		},
 		hover: {
-			background: blacks['lighten-10']
+			background: blacks.base
 		},
 		selected: {
-			background: blacks.base,
+			background: blacks['lighten-10'],
 			color: grays.base
 		}
 	},

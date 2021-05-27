@@ -27,7 +27,7 @@ export interface TimeInputProps
 	onChange?: (value: number) => void
 	onFocus?: (event: FocusEvent<HTMLInputElement>) => void
 	/**
-	 * format of time input value. Either a unix timestamp in seconds or hour integer (0 - 24)
+	 * format of time input value. Either a unix timestamp in milliseconds or hour integer (0 - 24)
 	 * @default 'unix'
 	 */
 	format?: TimeFormat
@@ -35,7 +35,6 @@ export interface TimeInputProps
 	 * Interval between minutes in dropdown
 	 * @default 1
 	 * */
-
 	minuteStep?: number
 	/**
 	 * Selector of HTML element inside which to render the dropdown
