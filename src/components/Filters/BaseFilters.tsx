@@ -4,6 +4,7 @@ import { FilterPopover } from './FilterPopover'
 import find from 'lodash/find'
 import { Icon } from '../Icon'
 import { IconButton } from '../IconButton'
+import isEqual from 'lodash/isEqual'
 import { Skeleton } from '../Skeleton'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
@@ -12,9 +13,14 @@ import { useBaseFilterStyles } from './styles'
 import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
-import { filterSelectedFilters, formatSelectedFilters } from './utils'
+import {
+	filterSelectedFilters,
+	filtersPopupWrapperId,
+	formatSelectedFilters,
+	unformatSelectedFilters
+} from './utils'
 import { FiltersList, FiltersListItem } from './types'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
 
@@ -22,17 +28,29 @@ const truncateLength = 15
 
 export const BaseFilters = () => {
 	const {
+		allFilters,
 		config,
 		loading,
 		onSelectedFiltersChange,
-		resetDynamicProps
+		resetDynamicProps,
+		value
 	} = useFiltersContext()
 
-	const [filtersList, setFiltersList] = useState<FiltersList>([
-		{ id: uuidV4() }
-	])
+	const getFiltersList = useCallback(() => {
+		const filtersList = unformatSelectedFilters(allFilters, value)
 
+		return filtersList.length ? filtersList : [{ id: uuidV4() }]
+	}, [allFilters, value])
+
+	const [filtersList, setFiltersList] = useState<FiltersList>(
+		getFiltersList()
+	)
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+
+	useEffect(() => {
+		// TODO: Debug and figure out why this is causing Multiselect to close when option is selected
+		setFiltersList(getFiltersList())
+	}, [allFilters, getFiltersList, value])
 
 	useEffect(() => {
 		if (!isPopoverOpen && resetDynamicProps) resetDynamicProps()
@@ -86,15 +104,20 @@ export const BaseFilters = () => {
 				selectedItem.selectedKey = selectedKey
 			} else if (selectedOperator) {
 				selectedItem.selectedOperator = selectedOperator
-
-				onSelectedFiltersChange(formatSelectedFilters(clonedFilters))
 			} else {
 				selectedItem.selectedValues = selectedValues
-
-				onSelectedFiltersChange(formatSelectedFilters(clonedFilters))
 			}
 
 			setFiltersList(clonedFilters)
+
+			if (
+				!isEqual(
+					formatSelectedFilters(clonedFilters),
+					formatSelectedFilters(filtersList)
+				)
+			) {
+				onSelectedFiltersChange(formatSelectedFilters(clonedFilters))
+			}
 		}
 	}
 
@@ -172,7 +195,7 @@ export const BaseFilters = () => {
 	)
 
 	return (
-		<div className={classes.container} id='filters-popup-wrapper'>
+		<div className={classes.container} id={filtersPopupWrapperId}>
 			{loading ? (
 				<div className={classes.filterControls}>
 					<Skeleton height={spacing.xl} width={spacing.xl} />

@@ -54,6 +54,7 @@ export interface TableDrawerProps<DataType>
 }
 
 export const TableDrawer = <DataType extends DataId>({
+	drawerContainerClasses = [],
 	renderDrawerCmp,
 	renderTableControls,
 	tableContainerClasses,
@@ -65,10 +66,13 @@ export const TableDrawer = <DataType extends DataId>({
 	const isRowEmpty = isEmpty(rowData)
 
 	const classes = useStyles()
-	const drawerClasses = cn({
-		[classes.drawer]: true,
-		[classes.drawerOpen]: !isRowEmpty
-	})
+	const drawerClasses = cn(
+		{
+			[classes.drawer]: true,
+			[classes.drawerOpen]: !isRowEmpty
+		},
+		drawerContainerClasses
+	)
 
 	const onRowClick = (clickedRowData: DataType) =>
 		rowData.id === clickedRowData.id

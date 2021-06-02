@@ -1,11 +1,13 @@
 import { Button } from '../Button'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import { filtersPopupWrapperId } from './utils'
 import FilterUnit from './FilterUnit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from '../Link'
 import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
+import { v4 as uuidV4 } from 'uuid'
 import { FiltersList, FiltersListItem } from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
@@ -31,6 +33,8 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 	resetFiltersList,
 	togglePopoverVisibility
 }: FilterPopoverProps) => {
+	console.log(uuidV4())
+
 	const { allFilters } = useFiltersContext()
 
 	const classes = usePopoverStyles()
@@ -105,7 +109,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 			}
 			onVisibleChange={togglePopoverVisibility}
 			placement='bottomLeft'
-			popupContainerSelector='#filters-popup-wrapper'
+			popupContainerSelector={`#${filtersPopupWrapperId}`}
 			popupTriggerClasses={[classes.popoverTrigger]}
 			trigger='click'
 			visible={isPopoverOpen}

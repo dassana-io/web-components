@@ -1,5 +1,8 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
+import { FiltersContextProps } from './FiltersContext'
+// import { FilterSuggestions } from 'api'
 import { SelectOption } from '../Select'
+import { v4 as uuidV4 } from 'uuid'
 import xor from 'lodash/xor'
 import { FilterOptions, Filters, FilterValues } from '../api'
 import {
@@ -8,7 +11,12 @@ import {
 	SelectedValsFilters,
 	ServerSideFiltersProps
 } from './types'
-// import { FilterSuggestions } from 'api'
+
+// Constants
+
+export const filtersPopupWrapperId = 'filters-popup-wrapper'
+
+// -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
 
 export const filterSelectedFilters: (
 	filtersList: FiltersList
@@ -56,6 +64,30 @@ export const formatSelectedFilters: (
 		})
 	)
 }
+
+// --------------------------------------
+
+type UnformatSelectedFilters = (
+	allFilters: FiltersContextProps['allFilters'],
+	selectedFilters?: Filters
+) => FiltersList
+
+export const unformatSelectedFilters: UnformatSelectedFilters = (
+	allFilters,
+	selectedFilters = []
+) =>
+	selectedFilters.map(({ key, operator, value: values = [] }) => {
+		const allFiltersValues = allFilters[key]?.values || []
+
+		return {
+			id: uuidV4(),
+			selectedKey: key,
+			selectedOperator: operator,
+			selectedValues: allFiltersValues
+				.filter(({ id }) => values.includes(id))
+				.map(({ id, value }) => ({ text: value, value: id }))
+		}
+	})
 
 // --------------------------------------
 

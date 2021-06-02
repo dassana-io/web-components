@@ -31,6 +31,7 @@ export interface FiltersConfig {
 export interface SharedFiltersProps {
 	config?: FiltersConfig
 	onSelectedFiltersChange: (selectedFilters: Filters) => void
+	value?: Filters
 }
 
 export type ClientSideFilterOption = Omit<

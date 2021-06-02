@@ -141,7 +141,7 @@ export const usePopoverStyles = createUseStyles({
 	},
 	popover: {
 		position: 'relative',
-		width: `calc(100% - ${2 * spacing.l}px)`
+		width: '100%'
 	},
 	popoverContent: {
 		padding: spacing.l,
