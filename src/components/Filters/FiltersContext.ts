@@ -19,7 +19,6 @@ export interface FiltersContextProps {
 	onSelectedFiltersChange: FiltersProps['onSelectedFiltersChange']
 	pending?: boolean
 	resetDynamicProps?: () => void
-	value?: FiltersProps['value']
 }
 
 const [useFiltersContext, FiltersCtxProvider] = createCtx<FiltersContextProps>()

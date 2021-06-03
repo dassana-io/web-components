@@ -12,39 +12,22 @@ import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
 import { FiltersList, FiltersListItem } from './types'
-import {
-	filtersPopupWrapperId,
-	formatSelectedFilters,
-	unformatSelectedFilters
-} from './utils'
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import { filtersPopupWrapperId, formatSelectedFilters } from './utils'
+import React, { FC, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
 
 export const BaseFilters: FC = () => {
 	const {
-		allFilters,
 		loading,
 		onSelectedFiltersChange,
-		resetDynamicProps,
-		value
+		resetDynamicProps
 	} = useFiltersContext()
 
-	const getFiltersList = useCallback(() => {
-		const filtersList = unformatSelectedFilters(allFilters, value)
-
-		return filtersList.length ? filtersList : [{ id: uuidV4() }]
-	}, [allFilters, value])
-
-	const [filtersList, setFiltersList] = useState<FiltersList>(
-		getFiltersList()
-	)
+	const [filtersList, setFiltersList] = useState<FiltersList>([
+		{ id: uuidV4() }
+	])
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-
-	useEffect(() => {
-		// TODO: Debug and figure out why this is causing Multiselect to close when option is selected
-		setFiltersList(getFiltersList())
-	}, [allFilters, getFiltersList, value])
 
 	useEffect(() => {
 		if (!isPopoverOpen && resetDynamicProps) resetDynamicProps()
