@@ -1,35 +1,29 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FilterPopover } from './FilterPopover'
+import FiltersSummary from './FiltersSummary'
 import find from 'lodash/find'
-import { Icon } from '../Icon'
 import { IconButton } from '../IconButton'
 import isEqual from 'lodash/isEqual'
 import { Skeleton } from '../Skeleton'
-import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
-import truncate from 'lodash/truncate'
 import { useBaseFilterStyles } from './styles'
 import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
+import { FiltersList, FiltersListItem } from './types'
 import {
-	filterSelectedFilters,
 	filtersPopupWrapperId,
 	formatSelectedFilters,
 	unformatSelectedFilters
 } from './utils'
-import { FiltersList, FiltersListItem } from './types'
-import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 
 const { spacing } = styleguide
 
-const truncateLength = 15
-
-export const BaseFilters = () => {
+export const BaseFilters: FC = () => {
 	const {
 		allFilters,
-		config,
 		loading,
 		onSelectedFiltersChange,
 		resetDynamicProps,
@@ -121,65 +115,6 @@ export const BaseFilters = () => {
 		}
 	}
 
-	const renderFiltersSummary = () =>
-		filterSelectedFilters(filtersList).map(
-			({ selectedKey, selectedOperator = '=', selectedValues = [] }) => {
-				let values: string[] | ReactNode[]
-
-				const iconConfig = config?.iconConfig
-
-				// If config.iconConfig exists and the filterKey in that config
-				// matches the current config, render icons.
-				if (iconConfig && iconConfig.filterKey === selectedKey) {
-					const iconMap = iconConfig.iconMap
-
-					values = selectedValues.map(({ text, value }) =>
-						// If value exists in the iconMap, render the icon.
-						// Otherwise render correctly truncated text (to prevent "undefined" from being displayed).
-						iconMap[value] ? (
-							<Icon
-								height={15}
-								icon={iconMap[value]}
-								key={value}
-							/>
-						) : (
-							truncate(text, { length: truncateLength })
-						)
-					)
-				} else {
-					// For everything that is not an icon, render correctly truncated text.
-					values = selectedValues.map(({ text }) =>
-						truncate(text, { length: truncateLength })
-					)
-				}
-
-				const keyStr = startCase(selectedKey)
-
-				return (
-					<span className={classes.filterReadOnly} key={selectedKey}>
-						<span className={classes.bracket}>[</span>
-						<span className={classes.filterUnitReadOnly}>
-							{keyStr}
-							<span className={classes.operator}>
-								{selectedOperator}
-							</span>
-							{values.map(
-								(val: string | ReactNode, valIndex: number) => (
-									<span
-										className={classes.valuesReadOnly}
-										key={valIndex}
-									>
-										{val}
-									</span>
-								)
-							)}
-						</span>
-						<span className={classes.bracket}>]</span>
-					</span>
-				)
-			}
-		)
-
 	const renderFilterControls = () => (
 		<div className={classes.filterControls}>
 			<IconButton
@@ -189,7 +124,7 @@ export const BaseFilters = () => {
 				onClick={openPopover}
 			/>
 			<div className={classes.filtersSummary} onClick={openPopover}>
-				{renderFiltersSummary()}
+				<FiltersSummary filtersList={filtersList} />
 			</div>
 		</div>
 	)
