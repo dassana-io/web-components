@@ -67,30 +67,6 @@ export const formatSelectedFilters: (
 
 // --------------------------------------
 
-type UnformatSelectedFilters = (
-	allFilters: FiltersContextProps['allFilters'],
-	selectedFilters?: Filters
-) => FiltersList
-
-export const unformatSelectedFilters: UnformatSelectedFilters = (
-	allFilters,
-	selectedFilters = []
-) =>
-	selectedFilters.map(({ key, operator, value: values = [] }) => {
-		const allFiltersValues = allFilters[key]?.values || []
-
-		return {
-			id: uuidV4(),
-			selectedKey: key,
-			selectedOperator: operator,
-			selectedValues: allFiltersValues
-				.filter(({ id }) => values.includes(id))
-				.map(({ id, value }) => ({ text: value, value: id }))
-		}
-	})
-
-// --------------------------------------
-
 export const getFilterKeysOptions = (
 	allFilters: ProcessedFilters,
 	filtersList: FiltersList
