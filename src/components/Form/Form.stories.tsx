@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import { basicOptions } from '../RadioGroup/fixtures/sample_options'
 import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
@@ -8,7 +9,10 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 export default {
 	argTypes: {
 		initialValues: { control: { disable: true } },
-		onSubmit: { control: { disable: true } }
+		onSubmit: {
+			control: { disable: true },
+			defaultValue: action('onSubmit')
+		}
 	},
 	component: Form,
 	parameters: {

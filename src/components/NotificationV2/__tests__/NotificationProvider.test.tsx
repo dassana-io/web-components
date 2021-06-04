@@ -34,13 +34,15 @@ jest.mock('react-dom', () => {
 })
 jest.mock('framer-motion', () => {
 	const AnimatePresence = jest.fn(({ children }) => children)
-	const motion = {
+	const LazyMotion = jest.fn(({ children }) => children)
+	const m = {
 		div: jest.fn(({ children }) => children)
 	}
 
 	return {
 		AnimatePresence,
-		motion
+		LazyMotion,
+		m
 	}
 })
 
