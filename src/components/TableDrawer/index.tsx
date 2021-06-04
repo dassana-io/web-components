@@ -57,7 +57,7 @@ export const TableDrawer = <DataType extends DataId>({
 	drawerContainerClasses = [],
 	renderDrawerCmp,
 	renderTableControls,
-	tableContainerClasses,
+	tableContainerClasses = [],
 	...rest
 }: TableDrawerProps<DataType>) => {
 	const [rowData, setRowData] = useState({} as DataType)
