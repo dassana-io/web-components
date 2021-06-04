@@ -1,5 +1,6 @@
 import { Button } from '../Button'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import { filtersPopupWrapperId } from './utils'
 import FilterUnit from './FilterUnit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from '../Link'
@@ -105,7 +106,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 			}
 			onVisibleChange={togglePopoverVisibility}
 			placement='bottomLeft'
-			popupContainerSelector='#filters-popup-wrapper'
+			popupContainerSelector={`#${filtersPopupWrapperId}`}
 			popupTriggerClasses={[classes.popoverTrigger]}
 			trigger='click'
 			visible={isPopoverOpen}

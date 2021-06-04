@@ -1,6 +1,7 @@
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
 import { FilterOption, Filters } from '../api'
 import { MultiSelectProps, SelectOption } from '../Select'
+import React, { RefObject } from 'react'
 
 export interface FiltersListItem {
 	id: string
@@ -28,9 +29,14 @@ export interface FiltersConfig {
 	}
 }
 
+export interface UseFiltersMethods {
+	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>
+}
+
 export interface SharedFiltersProps {
 	config?: FiltersConfig
 	onSelectedFiltersChange: (selectedFilters: Filters) => void
+	filtersRef?: RefObject<UseFiltersMethods>
 }
 
 export type ClientSideFilterOption = Omit<
@@ -53,6 +59,7 @@ export interface ServerSideFiltersProps extends SharedFiltersProps {
 	emitter: Emitter
 	endpoint: string
 	mode: FiltersMode.backend
+	omittedFilterKeys?: string[]
 }
 
 export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps

@@ -1,9 +1,20 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
+// import { FilterSuggestions } from 'api'
 import { SelectOption } from '../Select'
 import xor from 'lodash/xor'
 import { FilterOptions, Filters, FilterValues } from '../api'
-import { FiltersList, ProcessedFilters, SelectedValsFilters } from './types'
-// import { FilterSuggestions } from 'api'
+import {
+	FiltersList,
+	ProcessedFilters,
+	SelectedValsFilters,
+	ServerSideFiltersProps
+} from './types'
+
+// Constants
+
+export const filtersPopupWrapperId = 'filters-popup-wrapper'
+
+// -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
 
 export const filterSelectedFilters: (
 	filtersList: FiltersList
@@ -70,17 +81,25 @@ export const getFilterKeysOptions = (
 }
 
 // --------------------------------------
-
-export const processFilters = (filterOptions: FilterOptions) => {
+type ProcessFilters = (
+	filterOptions: FilterOptions,
+	omittedFilterKeys?: ServerSideFiltersProps['omittedFilterKeys']
+) => ProcessedFilters
+export const processFilters: ProcessFilters = (
+	filterOptions,
+	omittedFilterKeys = []
+) => {
 	const processedFilters: ProcessedFilters = {}
 
 	filterOptions.forEach(filterOption => {
 		const { key, staticFilter } = filterOption
 
-		processedFilters[(key as unknown) as string] = {
-			...filterOption,
-			key: (key as unknown) as string,
-			staticFilter: (staticFilter as unknown) as boolean
+		if (!omittedFilterKeys.includes(key)) {
+			processedFilters[key] = {
+				...filterOption,
+				key,
+				staticFilter: (staticFilter as unknown) as boolean
+			}
 		}
 	})
 

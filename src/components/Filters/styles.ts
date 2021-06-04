@@ -40,7 +40,6 @@ const generateThemedFilterContainerStyles = (themeType: ThemeType) => {
 // --------------------------------------
 
 export const useBaseFilterStyles = createUseStyles({
-	bracket: { ...font.body, fontStyle: 'normal' },
 	container: {
 		width: '100%'
 	},
@@ -52,39 +51,12 @@ export const useBaseFilterStyles = createUseStyles({
 		...font.label,
 		marginRight: spacing.m
 	},
-	filterReadOnly: {
-		'&:not(:last-of-type)::after': {
-			content: "'+'", // eslint-disable-line quotes
-			padding: {
-				left: spacing.xs,
-				right: spacing.xs
-			}
-		}
-	},
-	filterUnitReadOnly: {
-		padding: {
-			left: spacing.xs,
-			right: spacing.xs
-		}
-	},
 	filtersSummary: {
 		...font.label,
 		color: themedStyles[light].base.color,
 		cursor: 'pointer',
 		fontStyle: 'italic',
 		fontWeight: fontWeight.light
-	},
-	operator: {
-		padding: {
-			left: spacing.xs,
-			right: spacing.xs
-		}
-	},
-	valuesReadOnly: {
-		'&:not(:last-of-type)::after': {
-			content: "','", // eslint-disable-line quotes
-			paddingRight: spacing.xs
-		}
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -141,7 +113,7 @@ export const usePopoverStyles = createUseStyles({
 	},
 	popover: {
 		position: 'relative',
-		width: `calc(100% - ${2 * spacing.l}px)`
+		width: '100%'
 	},
 	popoverContent: {
 		padding: spacing.l,
