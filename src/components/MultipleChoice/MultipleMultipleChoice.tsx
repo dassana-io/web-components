@@ -31,10 +31,11 @@ export const MultipleMultipleChoice: FC<MultipleProps> = (
 				[value]: !selectedValues[value]
 			}
 
-			setSelectedValues(newSelectedValues)
-
-			if (onChange)
+			if (onChange) {
 				onChange(getSelectedValuesArr(items, newSelectedValues))
+			} else {
+				setSelectedValues(newSelectedValues)
+			}
 		},
 		[items, onChange, selectedValues]
 	)

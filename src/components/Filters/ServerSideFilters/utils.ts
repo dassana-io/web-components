@@ -7,14 +7,26 @@ import {
 	mockDynamicFilterOptions,
 	mockFilterOptions
 } from '../fixtures/0_sample_data'
-import { OnSearchWrapper, ProcessedFilters } from '../types'
+import {
+	OnSearchWrapper,
+	ProcessedFilters,
+	ServerSideFiltersProps
+} from '../types'
 import { useEffect, useState } from 'react'
 
-export const useFilters = (
-	endpoint: string,
-	api: AxiosInstance,
+interface UseFiltersParams
+	extends Pick<ServerSideFiltersProps, 'omittedFilterKeys'> {
+	api: AxiosInstance
 	emitter: Emitter
-) => {
+	endpoint: string
+}
+
+export const useFilters = ({
+	api,
+	emitter,
+	endpoint,
+	omittedFilterKeys = []
+}: UseFiltersParams) => {
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
 
 	const [dynamicOptions, setDynamicOptions] = useState<
@@ -96,7 +108,7 @@ export const useFilters = (
 
 		// TODO: Delete and uncomment above lines when API is working
 		const getFilters = () =>
-			setAllFilters(processFilters(mockFilterOptions))
+			setAllFilters(processFilters(mockFilterOptions, omittedFilterKeys))
 
 		setTimeout(() => {
 			getFilters()
@@ -106,7 +118,7 @@ export const useFilters = (
 		return () => {
 			setAllFilters({})
 		}
-	}, [api, emitter, endpoint])
+	}, [api, emitter, endpoint, omittedFilterKeys])
 
 	useEffect(() => {
 		setLoading(isEmpty(allFilters))

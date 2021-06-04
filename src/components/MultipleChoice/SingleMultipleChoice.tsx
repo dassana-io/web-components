@@ -15,9 +15,11 @@ export const SingleMultipleChoice: FC<SingleProps> = (props: SingleProps) => {
 
 	const onSelectedChange = useCallback(
 		(value: string) => {
-			setSelectedValue(value)
-
-			if (onChange) onChange(value)
+			if (onChange) {
+				onChange(value)
+			} else {
+				setSelectedValue(value)
+			}
 		},
 		[onChange]
 	)
