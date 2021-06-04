@@ -6,6 +6,7 @@ import React, { FC } from 'react'
 
 export const ClientSideFilters: FC<ClientSideFiltersProps> = ({
 	filterOptions = [],
+	filtersRef,
 	...rest
 }: ClientSideFiltersProps) => {
 	return (
@@ -15,7 +16,7 @@ export const ClientSideFilters: FC<ClientSideFiltersProps> = ({
 				...rest
 			}}
 		>
-			<BaseFilters />
+			<BaseFilters filtersRef={filtersRef} />
 		</FiltersCtxProvider>
 	)
 }

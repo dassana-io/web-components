@@ -8,6 +8,7 @@ export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 	api,
 	emitter,
 	endpoint,
+	filtersRef,
 	omittedFilterKeys = [],
 	...rest
 }: ServerSideFiltersProps) => {
@@ -27,7 +28,7 @@ export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 				...rest
 			}}
 		>
-			<BaseFilters />
+			<BaseFilters filtersRef={filtersRef} />
 		</FiltersCtxProvider>
 	)
 }

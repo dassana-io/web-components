@@ -11,13 +11,19 @@ import { useBaseFilterStyles } from './styles'
 import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
-import { FiltersList, FiltersListItem } from './types'
+import { FiltersList, FiltersListItem, FiltersProps } from './types'
 import { filtersPopupWrapperId, formatSelectedFilters } from './utils'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useImperativeHandle, useState } from 'react'
 
 const { spacing } = styleguide
 
-export const BaseFilters: FC = () => {
+type BaseFiltersProps = Pick<FiltersProps, 'filtersRef'>
+
+export const BaseFilters: FC<BaseFiltersProps> = ({
+	filtersRef
+}: BaseFiltersProps) => {
+	const classes = useBaseFilterStyles()
+
 	const {
 		loading,
 		onSelectedFiltersChange,
@@ -29,11 +35,13 @@ export const BaseFilters: FC = () => {
 	])
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
+	useImperativeHandle(filtersRef, () => ({
+		setFiltersList
+	}))
+
 	useEffect(() => {
 		if (!isPopoverOpen && resetDynamicProps) resetDynamicProps()
 	}, [isPopoverOpen, resetDynamicProps])
-
-	const classes = useBaseFilterStyles()
 
 	const closePopover = () => setIsPopoverOpen(false)
 	const openPopover = () => setIsPopoverOpen(true)

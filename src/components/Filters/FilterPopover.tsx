@@ -7,7 +7,6 @@ import { Link } from '../Link'
 import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
-import { v4 as uuidV4 } from 'uuid'
 import { FiltersList, FiltersListItem } from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
@@ -33,8 +32,6 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 	resetFiltersList,
 	togglePopoverVisibility
 }: FilterPopoverProps) => {
-	console.log(uuidV4())
-
 	const { allFilters } = useFiltersContext()
 
 	const classes = usePopoverStyles()
