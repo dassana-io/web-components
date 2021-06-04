@@ -1,8 +1,6 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
-import { FiltersContextProps } from './FiltersContext'
 // import { FilterSuggestions } from 'api'
 import { SelectOption } from '../Select'
-import { v4 as uuidV4 } from 'uuid'
 import xor from 'lodash/xor'
 import { FilterOptions, Filters, FilterValues } from '../api'
 import {

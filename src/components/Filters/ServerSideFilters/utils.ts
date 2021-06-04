@@ -27,8 +27,6 @@ export const useFilters = ({
 	endpoint,
 	omittedFilterKeys = []
 }: UseFiltersParams) => {
-	const stringifiedOmittedFilterKeys = JSON.stringify(omittedFilterKeys)
-
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
 
 	const [dynamicOptions, setDynamicOptions] = useState<
@@ -110,12 +108,7 @@ export const useFilters = ({
 
 		// TODO: Delete and uncomment above lines when API is working
 		const getFilters = () =>
-			setAllFilters(
-				processFilters(
-					mockFilterOptions,
-					JSON.parse(stringifiedOmittedFilterKeys)
-				)
-			)
+			setAllFilters(processFilters(mockFilterOptions, omittedFilterKeys))
 
 		setTimeout(() => {
 			getFilters()
@@ -125,7 +118,7 @@ export const useFilters = ({
 		return () => {
 			setAllFilters({})
 		}
-	}, [api, emitter, endpoint, stringifiedOmittedFilterKeys])
+	}, [api, emitter, endpoint, omittedFilterKeys])
 
 	useEffect(() => {
 		setLoading(isEmpty(allFilters))

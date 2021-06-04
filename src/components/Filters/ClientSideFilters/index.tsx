@@ -8,15 +8,13 @@ export const ClientSideFilters: FC<ClientSideFiltersProps> = ({
 	filterOptions = [],
 	filtersRef,
 	...rest
-}: ClientSideFiltersProps) => {
-	return (
-		<FiltersCtxProvider
-			value={{
-				allFilters: processFilters(filterOptions),
-				...rest
-			}}
-		>
-			<BaseFilters filtersRef={filtersRef} />
-		</FiltersCtxProvider>
-	)
-}
+}: ClientSideFiltersProps) => (
+	<FiltersCtxProvider
+		value={{
+			allFilters: processFilters(filterOptions),
+			...rest
+		}}
+	>
+		<BaseFilters filtersRef={filtersRef} />
+	</FiltersCtxProvider>
+)
