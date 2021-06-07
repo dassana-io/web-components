@@ -22,7 +22,11 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 	rules = {},
 	...rest
 }: FormTimeInputProps) => {
-	const { clearErrors, control, errors } = useFormContext()
+	const {
+		clearErrors,
+		control,
+		formState: { errors }
+	} = useFormContext()
 	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const onFocus = () => {
@@ -45,7 +49,7 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<TimeInput
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}

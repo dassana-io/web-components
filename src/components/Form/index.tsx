@@ -26,7 +26,7 @@ import React, {
 } from 'react'
 import {
 	UnpackNestedValue,
-	UseFormMethods
+	UseFormReturn
 } from 'react-hook-form/dist/types/form'
 
 const useStyles = createUseStyles({
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
 
 export interface FormProps<Model extends FieldValues> {
 	children: ReactNode
-	formRef?: RefObject<UseFormMethods<Model>>
+	formRef?: RefObject<UseFormReturn<Model>>
 	initialValues?: UnpackNestedValue<DeepPartial<Model>>
 	loading?: boolean
 	onSubmit: SubmitHandler<FieldValues>
@@ -94,6 +94,6 @@ Form.Tree = FormTree
 
 export type {
 	FormStateProxy,
-	UseFormMethods
+	UseFormReturn
 } from 'react-hook-form/dist/types/form'
 export * from './types'

@@ -23,7 +23,11 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 	rules = {},
 	...rest
 }: FormMultiSelectProps) => {
-	const { clearErrors, control, errors } = useFormContext()
+	const {
+		clearErrors,
+		control,
+		formState: { errors }
+	} = useFormContext()
 	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
@@ -46,7 +50,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<MultiSelect
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}

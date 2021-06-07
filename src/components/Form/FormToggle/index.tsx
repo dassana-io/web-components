@@ -61,7 +61,7 @@ const FormToggle: FC<FormToggleProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<Toggle
 						checked={value}
 						dataTag={getFormFieldDataTag(name)}

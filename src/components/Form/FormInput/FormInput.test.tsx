@@ -1,14 +1,13 @@
+import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { Input } from 'components/Input'
 import React from 'react'
-import { Controller, InputState } from 'react-hook-form'
 import FormInput, { FormInputProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
 const mockFocus = jest.fn()
 const mockClearErrors = jest.fn()
-const mockInputState = {} as InputState
 
 jest.mock('react', () => ({
 	...(jest.requireActual('react') as {}),
@@ -25,7 +24,9 @@ jest.mock('react-hook-form', () => ({
 	useFormContext: () => ({
 		clearErrors: mockClearErrors,
 		control: jest.fn(),
-		errors: { foo: true }
+		formState: {
+			errors: { foo: true }
+		}
 	})
 }))
 
@@ -33,8 +34,10 @@ let wrapper: ReactWrapper<FormInputProps>
 
 const mockOnSubmit = jest.fn()
 const mockRenderArgs = {
-	onChange: jest.fn(),
-	value: 'abc'
+	field: {
+		onChange: jest.fn(),
+		value: 'abc'
+	}
 } as jest.Mocked<any>
 
 const getMountedFormInput = (formInputProps: Partial<FormInputProps> = {}) =>
@@ -63,10 +66,7 @@ describe('FormInput', () => {
 	})
 
 	it('should render an Input component', () => {
-		const input = wrapper.find(Controller).invoke('render')!(
-			mockRenderArgs,
-			mockInputState
-		)
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 
 		expect(input.type).toBe(Input)
 	})
@@ -95,10 +95,7 @@ describe('FormInput', () => {
 	})
 
 	it('prevents default behavior when enter is pressed within the input', () => {
-		const input = wrapper.find(Controller).invoke('render')!(
-			mockRenderArgs,
-			mockInputState
-		)
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 		const mockPreventDefault = jest.fn()
 
 		input.props.onKeyDown({
@@ -110,10 +107,7 @@ describe('FormInput', () => {
 	})
 
 	it('does not prevent default behavior when other keys are pressed within the input', () => {
-		const input = wrapper.find(Controller).invoke('render')!(
-			mockRenderArgs,
-			mockInputState
-		)
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 		const mockPreventDefault = jest.fn()
 
 		input.props.onKeyDown({
@@ -127,10 +121,7 @@ describe('FormInput', () => {
 	it('clears errors on focus if there are any', () => {
 		wrapper = getMountedFormInput()
 
-		const input = wrapper.find(Controller).invoke('render')!(
-			mockRenderArgs,
-			mockInputState
-		)
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 		input.props.onFocus()
 
 		expect(mockClearErrors).toHaveBeenCalled()
@@ -139,10 +130,7 @@ describe('FormInput', () => {
 	it('does not call clearErrors if there are no errors associated with the input', () => {
 		wrapper = getMountedFormInput({ name: 'bar' })
 
-		const input = wrapper.find(Controller).invoke('render')!(
-			mockRenderArgs,
-			{} as InputState
-		)
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
 		input.props.onFocus()
 
 		expect(mockClearErrors).not.toHaveBeenCalled()

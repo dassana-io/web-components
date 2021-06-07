@@ -1,7 +1,7 @@
+import { Controller } from 'react-hook-form'
 import FieldLabel from '../FieldLabel'
 import React from 'react'
 import treeData from 'components/Tree/fixtures/0_sample_data'
-import { Controller, InputState } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import FormTree, { FormTreeProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
@@ -61,13 +61,12 @@ describe('FormTree', () => {
 
 	it('should render a Tree component', () => {
 		const test = {
-			onChange: jest.fn()
+			field: {
+				onChange: jest.fn()
+			}
 		} as jest.Mocked<any>
 
-		const tree = wrapper.find(Controller).invoke('render')!(
-			test,
-			{} as InputState
-		)
+		const tree = wrapper.find(Controller).invoke('render')!(test)
 
 		expect(tree.type).toBe(Tree)
 	})

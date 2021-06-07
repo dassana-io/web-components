@@ -1,8 +1,8 @@
 import FieldContext from '../FieldContext'
-import { FormStateProxy } from 'react-hook-form/dist/types/form'
+import { FormState } from 'react-hook-form/dist/types/form'
 import { getUseShortcutProps } from './utils'
-import { useFormContext } from 'react-hook-form'
 import { Button, ButtonProps } from 'components/Button'
+import { FieldValues, useFormContext } from 'react-hook-form'
 import React, { FC, useContext } from 'react'
 import {
 	ShortcutMicrocopy,
@@ -19,8 +19,8 @@ type DistributiveOmit<T, K extends keyof T> = T extends T ? Omit<T, K> : never
 export interface FormButtonProps
 	extends Omit<ButtonProps, 'loading' | 'onClick'> {
 	isDisabled?: (
-		formState: FormStateProxy,
-		formValues: Record<string, any>
+		formState: FormState<FieldValues>,
+		formValues: FieldValues
 	) => boolean
 	renderShortcutMicrocopy?: boolean
 	shortcutMicrocopyProps?: ShortcutMicrocopyProps

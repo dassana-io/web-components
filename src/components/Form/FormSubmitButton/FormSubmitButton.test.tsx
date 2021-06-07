@@ -18,7 +18,7 @@ const getMockFormContext = (isDirty = true) =>
 		getValues: jest.fn() as any,
 		handleSubmit: (onSubmit: any) => onSubmit(),
 		watch: jest.fn() as any
-	} as reactHookForm.UseFormMethods)
+	} as reactHookForm.UseFormReturn)
 
 const getWrapper = (additionalButtonProps = {}) => (
 	<FieldContext.Provider

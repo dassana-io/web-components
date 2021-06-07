@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils'
 import FieldContext from './FieldContext'
 import FormSubmitButton from './FormSubmitButton'
-import { UseFormMethods } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 import { Form, FormProps } from './index'
 import { mount, shallow, ShallowWrapper } from 'enzyme'
 import React, { createRef } from 'react'
@@ -59,7 +59,7 @@ describe('Form', () => {
 	})
 
 	it('exposes form methods when a ref is passed', () => {
-		const formRef = createRef<UseFormMethods>()
+		const formRef = createRef<UseFormReturn>()
 
 		mount(
 			<Form formRef={formRef} onSubmit={mockOnSubmit}>

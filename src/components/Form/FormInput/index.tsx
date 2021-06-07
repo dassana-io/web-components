@@ -26,7 +26,12 @@ const FormInput: FC<FormInputProps> = ({
 	rules = {},
 	...rest
 }: FormInputProps) => {
-	const { clearErrors, control, errors } = useFormContext()
+	const {
+		clearErrors,
+		control,
+		formState: { errors }
+	} = useFormContext()
+
 	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
@@ -58,7 +63,7 @@ const FormInput: FC<FormInputProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<Input
 						dataTag={getFormFieldDataTag(name)}
 						error={errors[name]}

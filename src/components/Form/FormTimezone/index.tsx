@@ -42,7 +42,7 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<Timezone
 						dataTag={getFormFieldDataTag(name)}
 						loading={loading}
