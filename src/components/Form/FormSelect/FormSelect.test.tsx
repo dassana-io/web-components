@@ -1,9 +1,9 @@
+import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { iconOptions } from 'components/Select/fixtures/sample_options'
 import React from 'react'
 import { Select } from 'components/Select/SingleSelect'
-import { Controller, InputState } from 'react-hook-form'
 import FormSelect, { FormSelectProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
@@ -44,14 +44,13 @@ describe('FormSelect', () => {
 
 	it('should render a Select component', () => {
 		const test = {
-			onChange: jest.fn(),
-			value: 'abc'
+			field: {
+				onChange: jest.fn(),
+				value: 'abc'
+			}
 		} as jest.Mocked<any>
 
-		const select = wrapper.find(Controller).invoke('render')!(
-			test,
-			{} as InputState
-		)
+		const select = wrapper.find(Controller).invoke('render')!(test)
 
 		expect(select.type).toBe(Select)
 	})

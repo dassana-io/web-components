@@ -36,7 +36,7 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<RadioGroup
 						dataTag={getFormFieldDataTag(name)}
 						loading={loading}

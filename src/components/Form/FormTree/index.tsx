@@ -35,7 +35,7 @@ const FormTree: FC<FormTreeProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<Tree
 						dataTag={getFormFieldDataTag(name)}
 						defaultChecked={value}

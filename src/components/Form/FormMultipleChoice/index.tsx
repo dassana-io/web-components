@@ -40,7 +40,7 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<MultipleChoice
 						dataTag={getFormFieldDataTag(name)}
 						loading={loading}

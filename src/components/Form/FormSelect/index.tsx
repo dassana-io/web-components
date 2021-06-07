@@ -42,7 +42,7 @@ const FormSelect: FC<FormSelectProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<Select
 						dataTag={getFormFieldDataTag(name)}
 						loading={loading}

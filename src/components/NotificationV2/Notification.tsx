@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
-import { motion } from 'framer-motion'
+import { domAnimation, LazyMotion, m as motion } from 'framer-motion'
 import {
 	generateNotificationStyles,
 	mappedTypesToIcons,
@@ -56,23 +56,25 @@ export const Notification: FC<NotificationProps> = (
 	})
 
 	return (
-		<motion.div
-			animate={{ opacity: 1, scale: 1, x: 0 }}
-			className={classes.container}
-			exit={{ opacity: 0, scale: 0.8, x: 300 }}
-			initial={{ opacity: 0, scale: 0.8, x: 300 }}
-			transition={{
-				damping: 40,
-				stiffness: 500,
-				type: 'spring'
-			}}
-		>
-			<FontAwesomeIcon
-				className={iconClasses}
-				icon={mappedTypesToIcons[type].icon}
-			/>
-			<div className={classes.message}>{message}</div>
-			<IconButton onClick={onClose} />
-		</motion.div>
+		<LazyMotion features={domAnimation}>
+			<motion.div
+				animate={{ opacity: 1, scale: 1, x: 0 }}
+				className={classes.container}
+				exit={{ opacity: 0, scale: 0.8, x: 300 }}
+				initial={{ opacity: 0, scale: 0.8, x: 300 }}
+				transition={{
+					damping: 40,
+					stiffness: 500,
+					type: 'spring'
+				}}
+			>
+				<FontAwesomeIcon
+					className={iconClasses}
+					icon={mappedTypesToIcons[type].icon}
+				/>
+				<div className={classes.message}>{message}</div>
+				<IconButton onClick={onClose} />
+			</motion.div>
+		</LazyMotion>
 	)
 }

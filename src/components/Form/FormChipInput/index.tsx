@@ -26,7 +26,11 @@ const FormChipInput: FC<FormChipInputProps> = ({
 	...rest
 }: FormChipInputProps) => {
 	const inputRef = useRef<AntDInput>(null)
-	const { clearErrors, control, errors } = useFormContext()
+	const {
+		clearErrors,
+		control,
+		formState: { errors }
+	} = useFormContext()
 	const { loading } = useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
@@ -57,7 +61,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ onChange, value }) => (
+				render={({ field: { onChange, value } }) => (
 					<ChipInput
 						clearErrors={clearChipInputErrors}
 						dataTag={getFormFieldDataTag(name)}
