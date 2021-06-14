@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.11.0",
+	"version": "0.11.1",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -31,6 +31,7 @@
 		"prismjs": "^1.23.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-helmet": "^6.1.0",
 		"react-hook-form": "^7.7.1",
 		"react-jss": "~10.5.1",
 		"react-markdown": "^6.0.2",
@@ -104,6 +105,7 @@
 		"@types/prismjs": "^1.16.5",
 		"@types/react": "^17.0.9",
 		"@types/react-dom": "^17.0.6",
+		"@types/react-helmet": "^6.1.1",
 		"@types/uuid": "^8.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",

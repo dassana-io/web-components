@@ -52,6 +52,7 @@ export default {
 		'prismjs',
 		'react',
 		'react-dom',
+		'react-helmet',
 		'react-hook-form',
 		'react-jss',
 		'remark-gfm',
