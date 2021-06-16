@@ -7,6 +7,7 @@ import { getDataTestAttributeProp } from '../utils'
 import { ThemeType } from '../assets/styles/themes'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
+import { faTireRugged } from '@fortawesome/pro-regular-svg-icons'
 
 const { dark, light } = ThemeType
 
@@ -36,6 +37,10 @@ export interface SharedLinkProps extends CommonComponentProps {
 	 * Where to open the linked url - either in a new tab or the current browsing context.
 	 */
 	target?: LinkTargetType
+	/**
+	 * Whether or not the link is underlined.
+	 */
+	underline?: boolean
 }
 
 interface LinkHref extends SharedLinkProps {
@@ -62,7 +67,8 @@ export const Link: FC<LinkProps> = ({
 	dataTag,
 	href,
 	onClick,
-	target = '_self'
+	target = '_self',
+	underline = true
 }: LinkProps) => {
 	useStyles()
 
@@ -74,7 +80,7 @@ export const Link: FC<LinkProps> = ({
 			href={href}
 			onClick={onClick}
 			target={target}
-			underline={true}
+			underline={underline}
 			{...getDataTestAttributeProp('link', dataTag)}
 		>
 			{children}
