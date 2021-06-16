@@ -7,7 +7,6 @@ import { getDataTestAttributeProp } from '../utils'
 import { ThemeType } from '../assets/styles/themes'
 import { Typography } from 'antd'
 import React, { FC, ReactNode } from 'react'
-import { faTireRugged } from '@fortawesome/pro-regular-svg-icons'
 
 const { dark, light } = ThemeType
 
