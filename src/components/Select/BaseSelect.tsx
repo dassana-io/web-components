@@ -151,6 +151,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 					options.map(
 						({
 							classes: optClasses = [],
+							disabled = false,
 							iconKey,
 							text,
 							style,
@@ -161,6 +162,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 									componentClasses.option,
 									optClasses
 								)}
+								disabled={disabled}
 								key={value}
 								label={text}
 								value={value}

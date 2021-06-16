@@ -1,7 +1,6 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
 // import { FilterSuggestions } from 'api'
 import { SelectOption } from '../Select'
-import xor from 'lodash/xor'
 import { FilterOptions, Filters, FilterValues } from '../api'
 import {
 	FiltersList,
@@ -49,19 +48,18 @@ export const formatFilterStrToSelectOpts = (options: string[]) =>
 
 // --------------------------------------
 
-export const formatSelectedFilters: (
-	filtersList: FiltersList
-) => Filters = filtersList => {
-	const filtersWithSelectedVals = filterSelectedFilters(filtersList)
+export const formatSelectedFilters: (filtersList: FiltersList) => Filters =
+	filtersList => {
+		const filtersWithSelectedVals = filterSelectedFilters(filtersList)
 
-	return filtersWithSelectedVals.map(
-		({ selectedKey, selectedOperator = '=', selectedValues = [] }) => ({
-			key: selectedKey,
-			operator: selectedOperator || '=',
-			value: selectedValues?.map(selectedValue => selectedValue.value)
-		})
-	)
-}
+		return filtersWithSelectedVals.map(
+			({ selectedKey, selectedOperator = '=', selectedValues = [] }) => ({
+				key: selectedKey,
+				operator: selectedOperator || '=',
+				value: selectedValues?.map(selectedValue => selectedValue.value)
+			})
+		)
+	}
 
 // --------------------------------------
 
@@ -69,18 +67,22 @@ export const getFilterKeysOptions = (
 	allFilters: ProcessedFilters,
 	filtersList: FiltersList
 ) => {
-	const unavailableKeysArr = filtersList.reduce((acc: string[], curr) => {
+	// Already selected keys will be disabled
+	const disabledKeysArr = filtersList.reduce((acc: string[], curr) => {
 		if (curr.selectedKey) {
 			return [...acc, curr.selectedKey]
 		} else return acc
 	}, [])
 
-	const allKeysArr = Object.keys(allFilters)
-
-	return xor(unavailableKeysArr, allKeysArr)
+	return Object.entries(allFilters).map(([filterKeyId, item]) => ({
+		disabled: disabledKeysArr.includes(filterKeyId),
+		text: item.key.value,
+		value: filterKeyId
+	}))
 }
 
 // --------------------------------------
+
 type ProcessFilters = (
 	filterOptions: FilterOptions,
 	omittedFilterKeys?: ServerSideFiltersProps['omittedFilterKeys']
@@ -94,11 +96,11 @@ export const processFilters: ProcessFilters = (
 	filterOptions.forEach(filterOption => {
 		const { key, staticFilter } = filterOption
 
-		if (!omittedFilterKeys.includes(key)) {
-			processedFilters[key] = {
+		if (!omittedFilterKeys.includes(key.id)) {
+			processedFilters[key.id] = {
 				...filterOption,
 				key,
-				staticFilter: (staticFilter as unknown) as boolean
+				staticFilter: staticFilter as unknown as boolean
 			}
 		}
 	})

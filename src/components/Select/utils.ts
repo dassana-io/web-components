@@ -34,9 +34,10 @@ export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	} = dropdownStyles[themeType]
 
 	return {
-		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty': {
-			color
-		},
+		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty':
+			{
+				color
+			},
 		background,
 		boxShadow
 	}
@@ -72,7 +73,8 @@ export const generateThemedInputStyles = (themeType: ThemeType) => {
 
 export const generateThemedOptionStyles = (themeType: ThemeType) => {
 	const {
-		base: { color }
+		base: { color },
+		disabled
 	} = themedStyles[themeType]
 
 	const { hover, selected } = dropdownStyles[themeType]
@@ -82,6 +84,7 @@ export const generateThemedOptionStyles = (themeType: ThemeType) => {
 			'&.ant-select-item-option-active': {
 				background: hover.background
 			},
+			'&.ant-select-item-option-disabled': { color: disabled.color },
 			'&.ant-select-item-option-selected': {
 				background: selected.background,
 				color: selected.color,

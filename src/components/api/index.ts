@@ -1,5 +1,9 @@
 // TODO: Setup and integrate swaggerhub so types are generated
-export type FilterKey = string
+// export type FilterKey = string
+export interface FilterKey {
+	id: string
+	value: string
+}
 
 export type FilterOperator = string
 export type FilterOperators = FilterOperator[]
@@ -11,7 +15,7 @@ export interface FilterValue {
 export type FilterValues = FilterValue[]
 
 export interface Filter {
-	key: FilterKey
+	key: FilterKey['id']
 	operator?: FilterOperator
 	value: string[]
 }
