@@ -24,8 +24,11 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 }: BaseFiltersProps) => {
 	const classes = useBaseFilterStyles()
 
-	const { loading, onSelectedFiltersChange, resetDynamicProps } =
-		useFiltersContext()
+	const {
+		loading,
+		onSelectedFiltersChange,
+		resetDynamicProps
+	} = useFiltersContext()
 
 	const [filtersList, setFiltersList] = useState<FiltersList>([
 		{ id: uuidV4() }

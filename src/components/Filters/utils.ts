@@ -48,18 +48,19 @@ export const formatFilterStrToSelectOpts = (options: string[]) =>
 
 // --------------------------------------
 
-export const formatSelectedFilters: (filtersList: FiltersList) => Filters =
-	filtersList => {
-		const filtersWithSelectedVals = filterSelectedFilters(filtersList)
+export const formatSelectedFilters: (
+	filtersList: FiltersList
+) => Filters = filtersList => {
+	const filtersWithSelectedVals = filterSelectedFilters(filtersList)
 
-		return filtersWithSelectedVals.map(
-			({ selectedKey, selectedOperator = '=', selectedValues = [] }) => ({
-				key: selectedKey,
-				operator: selectedOperator || '=',
-				value: selectedValues?.map(selectedValue => selectedValue.value)
-			})
-		)
-	}
+	return filtersWithSelectedVals.map(
+		({ selectedKey, selectedOperator = '=', selectedValues = [] }) => ({
+			key: selectedKey,
+			operator: selectedOperator || '=',
+			value: selectedValues?.map(selectedValue => selectedValue.value)
+		})
+	)
+}
 
 // --------------------------------------
 
@@ -100,7 +101,7 @@ export const processFilters: ProcessFilters = (
 			processedFilters[key.id] = {
 				...filterOption,
 				key,
-				staticFilter: staticFilter as unknown as boolean
+				staticFilter: (staticFilter as unknown) as boolean
 			}
 		}
 	})
