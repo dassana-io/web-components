@@ -43,6 +43,7 @@ export interface TabConfig {
 }
 
 export interface TabsProps {
+	activeTabClasses?: string[]
 	classes?: string[]
 	defaultActiveIndex?: number
 	onTabChange?: (data: TabConfig) => void
@@ -50,6 +51,7 @@ export interface TabsProps {
 }
 
 export const Tabs: FC<TabsProps> = ({
+	activeTabClasses = [],
 	classes = [],
 	defaultActiveIndex = 0,
 	onTabChange,
@@ -71,6 +73,7 @@ export const Tabs: FC<TabsProps> = ({
 	const renderTabItems = () =>
 		tabConfig.map(({ key, label }: TabConfig, i) => (
 			<Tab
+				activeTabClasses={activeTabClasses}
 				isActiveTab={i === activeIndex}
 				key={key}
 				label={label}
