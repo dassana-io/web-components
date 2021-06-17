@@ -29,7 +29,7 @@ const useOptionChildrenStyles = createUseStyles({
 	tooltip: tooltipStyles
 })
 
-type OptionChildrenProps = Omit<SelectOption, 'value'> &
+type OptionChildrenProps = Omit<SelectOption, 'disabled' | 'hidden' | 'value'> &
 	Pick<SelectProps, 'optionsConfig'> & { children?: ReactNode }
 
 export const OptionChildren: FC<OptionChildrenProps> = ({

@@ -72,7 +72,8 @@ export const generateThemedInputStyles = (themeType: ThemeType) => {
 
 export const generateThemedOptionStyles = (themeType: ThemeType) => {
 	const {
-		base: { color }
+		base: { color },
+		disabled
 	} = themedStyles[themeType]
 
 	const { hover, selected } = dropdownStyles[themeType]
@@ -81,6 +82,9 @@ export const generateThemedOptionStyles = (themeType: ThemeType) => {
 		'&.ant-select-item-option': {
 			'&.ant-select-item-option-active': {
 				background: hover.background
+			},
+			'&.ant-select-item-option-disabled': {
+				color: disabled.color
 			},
 			'&.ant-select-item-option-selected': {
 				background: selected.background,

@@ -71,7 +71,9 @@ export const useStyles = createUseStyles({
 	}),
 	dropdown: generateThemedDropdownStyles(light),
 	error: { ...fieldErrorStyles.error },
+	hidden: {},
 	option: {
+		'&$hidden': { display: 'none' },
 		...generateThemedOptionStyles(light)
 	},
 	// eslint-disable-next-line sort-keys
