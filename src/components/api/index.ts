@@ -1,5 +1,5 @@
 // TODO: Setup and integrate swaggerhub so types are generated
-// export type FilterKey = string
+
 export interface FilterKey {
 	id: string
 	value: string
