@@ -152,6 +152,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 						({
 							classes: optClasses = [],
 							disabled = false,
+							hidden = false,
 							iconKey,
 							text,
 							style,
@@ -159,7 +160,10 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 						}) => (
 							<Option
 								className={cn(
-									componentClasses.option,
+									{
+										[componentClasses.option]: true,
+										[componentClasses.hidden]: hidden
+									},
 									optClasses
 								)}
 								disabled={disabled}

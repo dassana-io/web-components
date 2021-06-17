@@ -50,7 +50,7 @@ interface FiltersSummaryProps {
 const FiltersSummary: FC<FiltersSummaryProps> = ({
 	filtersList
 }: FiltersSummaryProps) => {
-	const { config } = useFiltersContext()
+	const { allFilters, config } = useFiltersContext()
 
 	const classes = useStyles()
 
@@ -91,7 +91,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 						)
 					}
 
-					const keyStr = startCase(selectedKey)
+					const keyStr = startCase(allFilters[selectedKey].key.value)
 
 					return (
 						<span

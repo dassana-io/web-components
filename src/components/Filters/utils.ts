@@ -67,15 +67,15 @@ export const getFilterKeysOptions = (
 	allFilters: ProcessedFilters,
 	filtersList: FiltersList
 ) => {
-	// Already selected keys will be disabled
-	const disabledKeysArr = filtersList.reduce((acc: string[], curr) => {
+	// Already selected keys will be hidden from dropdown
+	const hiddenKeysArr = filtersList.reduce((acc: string[], curr) => {
 		if (curr.selectedKey) {
 			return [...acc, curr.selectedKey]
 		} else return acc
 	}, [])
 
 	return Object.entries(allFilters).map(([filterKeyId, item]) => ({
-		disabled: disabledKeysArr.includes(filterKeyId),
+		hidden: hiddenKeysArr.includes(filterKeyId),
 		text: item.key.value,
 		value: filterKeyId
 	}))

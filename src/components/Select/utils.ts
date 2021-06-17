@@ -84,7 +84,9 @@ export const generateThemedOptionStyles = (themeType: ThemeType) => {
 			'&.ant-select-item-option-active': {
 				background: hover.background
 			},
-			'&.ant-select-item-option-disabled': { color: disabled.color },
+			'&.ant-select-item-option-disabled': {
+				color: disabled.color
+			},
 			'&.ant-select-item-option-selected': {
 				background: selected.background,
 				color: selected.color,
