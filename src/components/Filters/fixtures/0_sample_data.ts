@@ -14,7 +14,7 @@ export const mockDynamicFilterOptions: FilterValues = [
 
 export const mockFilterOptions: FilterOptions = [
 	{
-		key: 'name',
+		key: { id: 'key0', value: 'name' },
 		staticFilter: false,
 		values: [
 			{ id: 'name0', value: 'Dev account' },
@@ -24,7 +24,7 @@ export const mockFilterOptions: FilterOptions = [
 		]
 	},
 	{
-		key: 'service',
+		key: { id: 'key1', value: 'service' },
 		staticFilter: true,
 		values: [
 			{ id: 'service0', value: 'EC2' },
@@ -38,7 +38,7 @@ export const mockFilterOptions: FilterOptions = [
 		]
 	},
 	{
-		key: 'model',
+		key: { id: 'key2', value: 'model' },
 		staticFilter: true,
 		values: [
 			{ id: 'model0', value: 'instance' },
@@ -47,7 +47,7 @@ export const mockFilterOptions: FilterOptions = [
 		]
 	},
 	{
-		key: 'region',
+		key: { id: 'key3', value: 'region' },
 		operator: ['!=', '='],
 		staticFilter: true,
 		values: [
@@ -57,7 +57,7 @@ export const mockFilterOptions: FilterOptions = [
 		]
 	},
 	{
-		key: 'vendors',
+		key: { id: 'key4', value: 'vendors' },
 		staticFilter: true,
 		values: [
 			{ id: 'aws', value: 'Aws' },

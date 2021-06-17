@@ -101,9 +101,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 					selectedKey: (selectedKey as unknown) as string
 				})
 			}}
-			options={formatFilterStrToSelectOpts(
-				getFilterKeysOptions(allFilters, filtersList)
-			)}
+			options={getFilterKeysOptions(allFilters, filtersList)}
 			placeholder='Select Value'
 			showSearch
 			value={selectedKey}

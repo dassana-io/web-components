@@ -1,7 +1,6 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
 // import { FilterSuggestions } from 'api'
 import { SelectOption } from '../Select'
-import xor from 'lodash/xor'
 import { FilterOptions, Filters, FilterValues } from '../api'
 import {
 	FiltersList,
@@ -69,18 +68,22 @@ export const getFilterKeysOptions = (
 	allFilters: ProcessedFilters,
 	filtersList: FiltersList
 ) => {
-	const unavailableKeysArr = filtersList.reduce((acc: string[], curr) => {
+	// Already selected keys will be hidden from dropdown
+	const hiddenKeysArr = filtersList.reduce((acc: string[], curr) => {
 		if (curr.selectedKey) {
 			return [...acc, curr.selectedKey]
 		} else return acc
 	}, [])
 
-	const allKeysArr = Object.keys(allFilters)
-
-	return xor(unavailableKeysArr, allKeysArr)
+	return Object.entries(allFilters).map(([filterKeyId, item]) => ({
+		hidden: hiddenKeysArr.includes(filterKeyId),
+		text: item.key.value,
+		value: filterKeyId
+	}))
 }
 
 // --------------------------------------
+
 type ProcessFilters = (
 	filterOptions: FilterOptions,
 	omittedFilterKeys?: ServerSideFiltersProps['omittedFilterKeys']
@@ -94,8 +97,8 @@ export const processFilters: ProcessFilters = (
 	filterOptions.forEach(filterOption => {
 		const { key, staticFilter } = filterOption
 
-		if (!omittedFilterKeys.includes(key)) {
-			processedFilters[key] = {
+		if (!omittedFilterKeys.includes(key.id)) {
+			processedFilters[key.id] = {
 				...filterOption,
 				key,
 				staticFilter: (staticFilter as unknown) as boolean

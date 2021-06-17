@@ -5,6 +5,8 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext'
 
 export interface SelectOption {
 	classes?: string[]
+	disabled?: boolean
+	hidden?: boolean
 	iconKey?: IconName | string
 	style?: CSSProperties
 	text: string
