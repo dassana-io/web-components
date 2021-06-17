@@ -49,14 +49,12 @@ export interface TableDrawerProps<DataType>
 	extends Omit<TableProps<DataType>, 'activeRowKey' | 'onRowClick'> {
 	drawerContainerClasses?: string[]
 	renderDrawerCmp: (id: Key, rowData: DataType) => ReactNode
-	renderTableControls?: () => ReactNode
 	tableContainerClasses?: string[]
 }
 
 export const TableDrawer = <DataType extends DataId>({
 	drawerContainerClasses = [],
 	renderDrawerCmp,
-	renderTableControls,
 	tableContainerClasses = [],
 	...rest
 }: TableDrawerProps<DataType>) => {
@@ -87,7 +85,6 @@ export const TableDrawer = <DataType extends DataId>({
 					tableContainerClasses
 				)}
 			>
-				{renderTableControls && renderTableControls()}
 				<Table<DataType>
 					activeRowKey={rowData.id}
 					onRowClick={onRowClick}
