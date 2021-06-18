@@ -1,5 +1,4 @@
-import { FiltersConfig } from '../types'
-import { FilterOptions, FilterValues } from '../../api'
+import { FilterOptions, FiltersConfig, FilterValues } from '../types'
 
 export const mockDynamicFilterOptions: FilterValues = [
 	{

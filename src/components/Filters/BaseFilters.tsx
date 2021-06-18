@@ -24,11 +24,8 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 }: BaseFiltersProps) => {
 	const classes = useBaseFilterStyles()
 
-	const {
-		loading,
-		onSelectedFiltersChange,
-		resetDynamicProps
-	} = useFiltersContext()
+	const { loading, onSelectedFiltersChange, resetDynamicProps } =
+		useFiltersContext()
 
 	const [filtersList, setFiltersList] = useState<FiltersList>([
 		{ id: uuidV4() }
@@ -46,7 +43,10 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 	const closePopover = () => setIsPopoverOpen(false)
 	const openPopover = () => setIsPopoverOpen(true)
 
-	const resetFiltersList = () => setFiltersList([])
+	const resetFiltersList = () => {
+		setFiltersList([])
+		onSelectedFiltersChange([])
+	}
 
 	const togglePopoverVisibility = (isPopoverOpen: boolean) =>
 		setIsPopoverOpen(isPopoverOpen)
@@ -67,6 +67,7 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 		const filteredItems = filtersList.filter(item => item.id !== selectedId)
 
 		setFiltersList(filteredItems)
+		onSelectedFiltersChange(formatSelectedFilters(filteredItems))
 	}
 
 	// When any of the filter items gets updated — operator, key or values,
