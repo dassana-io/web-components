@@ -50,7 +50,7 @@ interface FiltersSummaryProps {
 const FiltersSummary: FC<FiltersSummaryProps> = ({
 	filtersList
 }: FiltersSummaryProps) => {
-	const { allFilters, config } = useFiltersContext()
+	const { allFilters, config = {} } = useFiltersContext()
 
 	const classes = useStyles()
 
@@ -64,12 +64,9 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 				}) => {
 					let values: string[] | ReactNode[]
 
-					const iconConfig = config?.iconConfig
-
-					// If config.iconConfig exists and the filterKey in that config
-					// matches the current config, render icons.
-					if (iconConfig && iconConfig.filterKey === selectedKey) {
-						const iconMap = iconConfig.iconMap
+					// If selectedKey and config[selectedKey].iconMap exists, render icons
+					if (config[selectedKey] && config[selectedKey].iconMap) {
+						const iconMap = config[selectedKey].iconMap || {}
 
 						values = selectedValues.map(({ text, value }) =>
 							// If value exists in the iconMap, render the icon.

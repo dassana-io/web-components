@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateThemedActiveTabStyles } from './utils'
+import { TabsProps } from '.'
 import React, { FC } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
@@ -38,7 +39,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface TabProps {
+interface TabProps extends Pick<TabsProps, 'activeTabClasses'> {
 	isActiveTab: boolean
 	label: string
 	tabIndex: number
@@ -46,6 +47,7 @@ interface TabProps {
 }
 
 const Tab: FC<TabProps> = ({
+	activeTabClasses = [],
 	isActiveTab,
 	label,
 	onClickTab,
@@ -55,7 +57,8 @@ const Tab: FC<TabProps> = ({
 
 	const tabClasses = cn({
 		[classes.tab]: true,
-		[classes.activeTab]: isActiveTab
+		[classes.activeTab]: isActiveTab,
+		[cn(activeTabClasses)]: isActiveTab
 	})
 
 	return (

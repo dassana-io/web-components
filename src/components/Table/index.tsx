@@ -17,6 +17,7 @@ import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, {
 	ChangeEvent,
 	Key,
+	ReactNode,
 	useCallback,
 	useEffect,
 	useState
@@ -44,6 +45,11 @@ export interface SearchProps {
 	 * Which side of the table to render the search bar in. Defaults to 'right'
 	 */
 	placement?: 'left' | 'right'
+}
+
+export interface TableControlsConfig {
+	classes?: string[]
+	render?: () => ReactNode
 }
 
 export interface TableProps<Data> extends CommonComponentProps {
@@ -75,6 +81,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional Table Pagination config that determines the numbers of table rows to render per page
 	 */
 	paginationConfig?: { rowCount?: number }
+	tableControlsConfig?: TableControlsConfig
 	scrollConfig?: ScrollConfig
 	/**
 	 * Optional prop to enable/disable table search
@@ -103,6 +110,7 @@ export const Table = <Data,>({
 	loading = false,
 	paginationConfig = {},
 	onRowClick,
+	tableControlsConfig = {},
 	scrollConfig,
 	search = true,
 	skeletonRowCount = 5,
@@ -116,6 +124,11 @@ export const Table = <Data,>({
 		defaultPageSize: rowCount,
 		showSizeChanger: false
 	})
+
+	const {
+		classes: tableControlClasses = [],
+		render: renderTableControls
+	} = tableControlsConfig
 
 	const { isMobile } = useWindowSize()
 
@@ -265,7 +278,13 @@ export const Table = <Data,>({
 		<TableCtxProvider value={{ isMobile }}>
 			<div className={cn(tableClasses.tableContainer, classes)}>
 				{search && (
-					<div className={tableClasses.searchBarWrapper}>
+					<div
+						className={cn(
+							tableClasses.tableControls,
+							tableControlClasses
+						)}
+					>
+						{renderTableControls && renderTableControls()}
 						<Input
 							dataTag='table-search'
 							fullWidth={isMobile}

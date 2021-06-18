@@ -236,13 +236,6 @@ export const useStyles = createUseStyles({
 			}
 		}
 	},
-	searchBarWrapper: {
-		display: 'flex',
-		justifyContent: props =>
-			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
-		marginBottom: spacing.m,
-		width: '100%'
-	},
 	tableContainer: generateTableStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -271,5 +264,12 @@ export const useStyles = createUseStyles({
 			},
 			'& $tableContainer': generateTableStyles(dark)
 		}
+	},
+	tableControls: {
+		display: 'flex',
+		justifyContent: props =>
+			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
+		marginBottom: spacing.m,
+		width: '100%'
 	}
 })

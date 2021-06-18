@@ -5102,10 +5102,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
       className="tableContainer-0-2-249"
     >
       <div
-        className="tableContainer-0-2-253"
+        className="tableContainer-0-2-252"
       >
         <div
-          className="searchBarWrapper-0-2-252 searchBarWrapper-d1-0-2-255"
+          className="tableControls-0-2-253 tableControls-d1-0-2-255"
         >
           <input
             autoFocus={false}
