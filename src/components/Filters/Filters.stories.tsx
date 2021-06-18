@@ -45,7 +45,7 @@ const ControlledTemplate: Story<FiltersProps> = args => {
 	const filtersList: FiltersList = [
 		{
 			id: 'some-id',
-			selectedKey: 'service',
+			selectedKey: 'key0',
 			selectedOperator: '=',
 			selectedValues: [{ text: 'EC2', value: 'service0' }]
 		}

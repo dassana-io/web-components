@@ -31,7 +31,7 @@ export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		<MultiSelect
 			{...getMultiSelectProps({
 				id,
-				multiSelectProps: { options },
+				multiSelectProps: { options, optionsConfig },
 				onFilterChange,
 				selectedValues
 			})}

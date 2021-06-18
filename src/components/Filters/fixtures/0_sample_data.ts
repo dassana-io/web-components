@@ -68,8 +68,7 @@ export const mockFilterOptions: FilterOptions = [
 ]
 
 export const filtersConfig: FiltersConfig = {
-	iconConfig: {
-		filterKey: 'vendors',
+	key4: {
 		iconMap: {
 			aws: 'https://dummyimage.com/400x400/ff9900/fff&text=A',
 			azure: 'https://dummyimage.com/400x400/0072c6/fff&text=A'

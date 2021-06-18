@@ -21,9 +21,8 @@ export interface ProcessedFilters {
 }
 
 export interface FiltersConfig {
-	iconConfig?: {
-		filterKey: string
-		iconMap: {
+	[filterKey: string]: {
+		iconMap?: {
 			[key: string]: string
 		}
 	}
