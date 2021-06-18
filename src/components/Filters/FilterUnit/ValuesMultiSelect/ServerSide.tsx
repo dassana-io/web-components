@@ -141,7 +141,11 @@ export const ServerSideValuesMS: FC<Props> = ({
 		<MultiSelect
 			{...getMultiSelectProps({
 				id,
-				multiSelectProps: { options, ...dynamicFilterProps },
+				multiSelectProps: {
+					options,
+					optionsConfig,
+					...dynamicFilterProps
+				},
 				onFilterChange,
 				selectedValues
 			})}

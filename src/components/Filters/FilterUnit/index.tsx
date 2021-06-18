@@ -34,7 +34,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	selectedValues,
 	staticFilter
 }: FilterUnitProps) => {
-	const { allFilters, config, mode } = useFiltersContext()
+	const { allFilters, config = {}, mode } = useFiltersContext()
 
 	const classes = useFilterUnitStyles()
 
@@ -62,15 +62,13 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	}, [id, selectedKey])
 
 	useEffect(() => {
-		const iconConfig = config?.iconConfig
-
-		// if iconConfig exists in FiltersConfig and the filterKey in the
-		// iconConfig matches the selectedKey, use iconConfig.iconMap
-		// to define optionsConfig and save it to state. It'll be passed to
-		// Filter Values MultiSelect (rendered in renderValues()).
-		if (iconConfig && selectedKey === iconConfig.filterKey) {
+		// if  config[selectedKey] and config[selectedKey].iconMap exists,
+		// use config[selectedKey].iconMap  to define optionsConfig
+		// and save it to state. It'll be passed to Filter Values MultiSelect
+		// (rendered in renderValues()).
+		if (selectedKey && config[selectedKey] && config[selectedKey].iconMap) {
 			setOptionsConfig({
-				iconMap: iconConfig.iconMap
+				iconMap: config[selectedKey].iconMap
 			})
 		}
 	}, [config, selectedKey])
