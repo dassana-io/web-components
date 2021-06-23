@@ -174,23 +174,24 @@ export function mapFilterKeys(columns: ColumnType[]) {
 
 /* -*-*-*-*-*- Helpers for parsing columns -*-*-*-*-*- */
 
-const compareIcons = (column: ComponentIconType) => (
-	a: Record<string, any>,
-	b: Record<string, any>
-) => {
-	const {
-		dataIndex,
-		renderProps: { iconKey }
-	} = column
+const compareIcons =
+	(column: ComponentIconType) =>
+	(a: Record<string, any>, b: Record<string, any>) => {
+		const {
+			dataIndex,
+			renderProps: { iconKey }
+		} = column
 
-	const jsonPath = iconKey ? `$.${dataIndex}.${iconKey}` : `$.${dataIndex}`
+		const jsonPath = iconKey
+			? `$.${dataIndex}.${iconKey}`
+			: `$.${dataIndex}`
 
-	const compareValA = getJSONPathValue(jsonPath, a) || ''
+		const compareValA = getJSONPathValue(jsonPath, a) || ''
 
-	const compareValB = getJSONPathValue(jsonPath, b) || ''
+		const compareValB = getJSONPathValue(jsonPath, b) || ''
 
-	return compareValA.localeCompare(compareValB)
-}
+		return compareValA.localeCompare(compareValB)
+	}
 
 /* 
   Compare functions used by applySort to pass a custom sorter
@@ -295,16 +296,8 @@ function applyRender<TableData extends DataId>(
 	tableMethods: TableMethods<TableData>
 ) {
 	const { component, number, string } = ColumnTypes
-	const {
-		action,
-		byte,
-		date,
-		icon,
-		coloredDot,
-		link,
-		tag,
-		toggle
-	} = ColumnFormats
+	const { action, byte, date, icon, coloredDot, link, tag, toggle } =
+		ColumnFormats
 	const { updateRowData } = tableMethods
 
 	switch (column.type) {
@@ -356,11 +349,17 @@ function applyRender<TableData extends DataId>(
 						break
 					}
 				}
-			} else if (ellipsis) {
-				antDColumn.render = (record: string) => (
-					<CellWithTooltip text={record} />
+			} else {
+				antDColumn.render = (record: string | string[]) => (
+					<CellWithTooltip
+						showTooltip={ellipsis}
+						text={
+							Array.isArray(record) ? record.join(', ') : record
+						}
+					/>
 				)
 			}
+
 			break
 		}
 
@@ -416,9 +415,8 @@ function applyRender<TableData extends DataId>(
 
 						switch (type) {
 							case 'icon': {
-								const {
-									iconMap
-								} = renderProps as RenderPropsIcon
+								const { iconMap } =
+									renderProps as RenderPropsIcon
 
 								return { icon: iconMap[val] }
 							}
