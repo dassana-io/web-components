@@ -19,10 +19,12 @@ const useStyles = createUseStyles({
 })
 
 interface CellWithTooltipProps {
+	showTooltip?: boolean
 	text: string
 }
 
 export const CellWithTooltip: FC<CellWithTooltipProps> = ({
+	showTooltip = true,
 	text
 }: CellWithTooltipProps) => {
 	const [hasTooltip, setHasTooltip] = useState(false)
@@ -31,7 +33,7 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 
 	const classes = useStyles()
 
-	return isMobile ? (
+	return isMobile || !showTooltip ? (
 		<>{text}</>
 	) : (
 		<div className={classes.container}>
