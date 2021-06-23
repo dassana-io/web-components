@@ -75,6 +75,28 @@ describe('Table sort: Column type - "string', () => {
 		])
 	})
 
+	it('sorts columns with array values in correct ascending and correct descending order', () => {
+		const sorter = wrapper.find('thead').find('th').at(2)
+
+		const ascendingOrder = [
+			['apples, bananas'],
+			['blueberries, peaches'],
+			['mangoes, papayas'],
+			['nectarines, plums, raspberries'],
+			['oranges, pears']
+		]
+
+		// ascending order
+		sorter.simulate('click')
+		expect(renderedData(wrapper, 'description')).toEqual(ascendingOrder)
+
+		// descending order
+		sorter.simulate('click')
+		expect(renderedData(wrapper, 'description')).toEqual(
+			ascendingOrder.reverse()
+		)
+	})
+
 	it('sorts columns with missing cells in correct ascending and correct descending order', () => {
 		wrapper = mount(createTable<Client1>(mockData3))
 		const sorter = wrapper.find('.ant-table-column-has-sorters').first()

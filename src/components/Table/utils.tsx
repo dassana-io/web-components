@@ -193,16 +193,22 @@ const compareIcons =
 		return compareValA.localeCompare(compareValB)
 	}
 
+const getStrVal = (value?: string | string[]) => {
+	if (!value) return ''
+
+	return Array.isArray(value) ? value.join(', ') : value
+}
+
 /* 
   Compare functions used by applySort to pass a custom sorter
   based on data type and format.
  */
 function compareStrings(column: ColumnType) {
 	return (a: Record<string, any>, b: Record<string, any>) => {
-		const compareValA: string = a[column.dataIndex] || ''
-		const compareValB: string = b[column.dataIndex] || ''
+		const valA = getStrVal(a[column.dataIndex])
+		const valB = getStrVal(b[column.dataIndex])
 
-		return compareValA.localeCompare(compareValB)
+		return valA.localeCompare(valB)
 	}
 }
 
