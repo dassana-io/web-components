@@ -64,6 +64,12 @@ describe('processColumns', () => {
 				showSorterTooltip: false,
 				sorter: expect.any(Function),
 				title: 'Age'
+			},
+			{
+				dataIndex: 'description',
+				showSorterTooltip: false,
+				sorter: expect.any(Function),
+				title: 'Description'
 			}
 		]
 
@@ -168,7 +174,12 @@ describe('processData', () => {
 
 describe('mapFilterKeys', () => {
 	it('returns all column keys that should be searched or filtered on', () => {
-		const mockFilteredKeys0 = ['_FORMATTED_DATA', 'name', 'age']
+		const mockFilteredKeys0 = [
+			'_FORMATTED_DATA',
+			'name',
+			'age',
+			'description'
+		]
 		const mockFilteredKeys2 = [
 			'_FORMATTED_DATA',
 			'name',

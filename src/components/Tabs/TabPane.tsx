@@ -11,6 +11,7 @@ const useStyles = createUseStyles({
 	tabPane: {
 		...font.body,
 		display: ({ isActive }) => (isActive ? 'block' : 'none'),
+		height: '100%',
 		padding: `${spacing.m}px ${spacing.l}px`
 	}
 })
@@ -30,18 +31,17 @@ const TabPane: FC<TabPaneProps> = ({
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<motion.section
+			<motion.div
 				animate={isActive ? ACTIVE : INACTIVE}
+				className={cn(compClasses.tabPane, classes)}
 				transition={{ duration: 0.5 }}
 				variants={{
 					[ACTIVE]: { opacity: 1 },
 					[INACTIVE]: { opacity: 0 }
 				}}
 			>
-				<div className={cn(compClasses.tabPane, classes)}>
-					{render()}
-				</div>
-			</motion.section>
+				{render()}
+			</motion.div>
 		</LazyMotion>
 	)
 }
