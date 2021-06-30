@@ -1,4 +1,6 @@
+import { Breakpoints } from '@dassana-io/web-utils'
 import { createUseStyles } from 'react-jss'
+import { mediaSelectorsWithBreakpoints } from 'components/utils'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
@@ -11,6 +13,9 @@ const {
 } = styleguide
 
 const { dark, light } = ThemeType
+
+const { mobile } = Breakpoints
+const { max } = mediaSelectorsWithBreakpoints
 
 const filterPalette = {
 	[dark]: {
@@ -72,6 +77,12 @@ export const useBaseFilterStyles = createUseStyles({
 
 export const useFilterUnitStyles = createUseStyles({
 	container: {
+		[max[mobile]]: {
+			alignItems: 'flex-start',
+			flexDirection: 'column',
+			margin: 0,
+			width: '100%'
+		},
 		...flexAlignCenter,
 		...generateThemedFilterContainerStyles(light),
 		border: '1px solid',
@@ -84,10 +95,22 @@ export const useFilterUnitStyles = createUseStyles({
 		paddingRight: spacing['s+']
 	},
 	multiSelectContainer: {
+		[max[mobile]]: {
+			padding: 0
+		},
 		paddingLeft: spacing['s+'],
 		paddingRight: spacing['s+']
 	},
+	operator: {
+		[max[mobile]]: {
+			marginBottom: spacing.xs
+		}
+	},
 	singleSelectContainer: {
+		[max[mobile]]: {
+			marginBottom: spacing.xs,
+			padding: 0
+		},
 		paddingRight: spacing['s+']
 	},
 	// eslint-disable-next-line sort-keys
@@ -112,10 +135,20 @@ export const usePopoverStyles = createUseStyles({
 		paddingTop: spacing.m
 	},
 	popover: {
+		[max[mobile]]: {
+			'& .ant-popover-inner': { borderRadius: '0px !important' },
+			paddingTop: '0px !important',
+			position: 'static'
+		},
 		position: 'relative',
 		width: '100%'
 	},
 	popoverContent: {
+		[max[mobile]]: {
+			height: '100vh',
+			padding: spacing.m,
+			width: '100vw'
+		},
 		padding: spacing.l,
 		paddingBottom: spacing.m,
 		position: 'relative'
