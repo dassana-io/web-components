@@ -125,10 +125,8 @@ export const Table = <Data,>({
 		showSizeChanger: false
 	})
 
-	const {
-		classes: tableControlClasses = [],
-		render: renderTableControls
-	} = tableControlsConfig
+	const { classes: tableControlClasses = [], render: renderTableControls } =
+		tableControlsConfig
 
 	const { isMobile } = useWindowSize()
 
@@ -303,7 +301,7 @@ export const Table = <Data,>({
 					<AntDTable
 						columns={processedColumns}
 						dataSource={searchTerm ? filteredData : processedData}
-						pagination={pagination}
+						pagination={{ ...pagination, responsive: true }}
 						rowClassName={getRowClassName}
 						rowKey={getRowKey}
 						{...getDataTestAttributeProp('table', dataTag)}
