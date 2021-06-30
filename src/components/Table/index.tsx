@@ -301,7 +301,11 @@ export const Table = <Data,>({
 					<AntDTable
 						columns={processedColumns}
 						dataSource={searchTerm ? filteredData : processedData}
-						pagination={{ ...pagination, responsive: true }}
+						pagination={
+							!pagination
+								? pagination
+								: { ...pagination, responsive: true }
+						}
 						rowClassName={getRowClassName}
 						rowKey={getRowKey}
 						{...getDataTestAttributeProp('table', dataTag)}

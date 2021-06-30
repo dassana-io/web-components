@@ -190,9 +190,7 @@ describe('Table search and searchProps', () => {
 	})
 
 	it('does not render if search prop is set to false', () => {
-		wrapper = mount(
-			createTable<Person>({ ...mockData0, search: false })
-		)
+		wrapper = mount(createTable<Person>({ ...mockData0, search: false }))
 
 		const table = wrapper.find(Table)
 		const searchBar = table.find('input')
@@ -297,6 +295,7 @@ describe('Table pagination', () => {
 
 		expect(wrapper.find(AntDTable).props().pagination).toEqual({
 			defaultPageSize: 10,
+			responsive: true,
 			showSizeChanger: false
 		})
 
