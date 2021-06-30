@@ -132,7 +132,10 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			<div className={classes.singleSelectContainer}>{renderKey()}</div>
 			<div>{renderOperator()}</div>
 			<div className={classes.multiSelectContainer}>{renderValues()}</div>
-			<IconButton onClick={() => onDelete(id)} />
+			<IconButton
+				classes={[classes.closeIcon]}
+				onClick={() => onDelete(id)}
+			/>
 		</div>
 	)
 }

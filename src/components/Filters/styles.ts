@@ -76,11 +76,19 @@ export const useBaseFilterStyles = createUseStyles({
 // --------------------------------------
 
 export const useFilterUnitStyles = createUseStyles({
+	closeIcon: {
+		[max[mobile]]: {
+			position: 'absolute',
+			right: spacing.s
+		}
+	},
 	container: {
 		[max[mobile]]: {
 			alignItems: 'flex-start',
 			flexDirection: 'column',
-			margin: 0,
+			marginRight: 0,
+			padding: spacing.s,
+			position: 'relative',
 			width: '100%'
 		},
 		...flexAlignCenter,
