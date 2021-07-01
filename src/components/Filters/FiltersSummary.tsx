@@ -64,7 +64,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 
 		return selectedFiltersCount ? (
 			<span className={classes.filterReadOnly}>
-				{selectedFiltersCount}
+				{selectedFiltersCount} filters
 			</span>
 		) : (
 			<></>

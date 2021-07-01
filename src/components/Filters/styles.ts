@@ -157,8 +157,9 @@ export const usePopoverStyles = createUseStyles({
 	popover: {
 		[max[mobile]]: {
 			'& .ant-popover-inner': { borderRadius: '0px !important' },
+			overflow: 'auto',
 			paddingTop: '0px !important',
-			position: 'absolute'
+			position: 'fixed'
 		},
 		position: 'relative',
 		width: '100%',
