@@ -5097,6 +5097,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
 >
   <div
     className="container-0-2-245"
+    id="table-drawer-wrapper"
   >
     <div
       className="tableContainer-0-2-249"
