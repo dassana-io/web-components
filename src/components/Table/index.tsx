@@ -11,7 +11,7 @@ import { Input } from '../Input'
 import { TableCtxProvider } from './TableContext'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
-import { useWindowSize } from './useWindowSize'
+import { useWindowSize } from '@dassana-io/web-utils'
 import { ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, {
@@ -125,10 +125,8 @@ export const Table = <Data,>({
 		showSizeChanger: false
 	})
 
-	const {
-		classes: tableControlClasses = [],
-		render: renderTableControls
-	} = tableControlsConfig
+	const { classes: tableControlClasses = [], render: renderTableControls } =
+		tableControlsConfig
 
 	const { isMobile } = useWindowSize()
 
