@@ -44,12 +44,12 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 			classes={[classes.popover]}
 			content={
 				<div className={classes.popoverContent}>
-					<IconButton
-						classes={[classes.closeButton]}
-						onClick={closePopover}
-						size={IconSizes.sm}
-					/>
 					<div className={classes.popoverControls}>
+						<IconButton
+							classes={[classes.closeButton]}
+							onClick={closePopover}
+							size={IconSizes.sm}
+						/>
 						<div className={classes.popoverControlsChild}>
 							<FontAwesomeIcon icon={faFilter} />
 						</div>

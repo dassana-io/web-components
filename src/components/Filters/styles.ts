@@ -1,6 +1,7 @@
 import { Breakpoints } from '@dassana-io/web-utils'
 import { createUseStyles } from 'react-jss'
 import { mediaSelectorsWithBreakpoints } from 'components/utils'
+import { popoverPalette } from '../Popover/utils'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const {
@@ -53,6 +54,9 @@ export const useBaseFilterStyles = createUseStyles({
 		paddingTop: spacing.s
 	},
 	filterIcon: {
+		[max[mobile]]: {
+			marginRight: spacing.s
+		},
 		...font.label,
 		marginRight: spacing.m
 	},
@@ -131,6 +135,8 @@ export const useFilterUnitStyles = createUseStyles({
 
 // --------------------------------------
 
+const popoverControlsHeight = 48
+
 export const usePopoverStyles = createUseStyles({
 	closeButton: {
 		position: 'absolute',
@@ -138,6 +144,12 @@ export const usePopoverStyles = createUseStyles({
 		top: 10
 	},
 	filtersList: {
+		[max[mobile]]: {
+			display: 'block',
+			height: `calc(100vh - ${popoverControlsHeight}px)`,
+			overflow: 'auto',
+			padding: spacing.m
+		},
 		display: 'flex',
 		flexWrap: 'wrap',
 		paddingTop: spacing.m
@@ -149,22 +161,43 @@ export const usePopoverStyles = createUseStyles({
 			position: 'static'
 		},
 		position: 'relative',
-		width: '100%'
+		width: '100%',
+		zIndex: 10
 	},
 	popoverContent: {
 		[max[mobile]]: {
 			height: '100vh',
-			padding: spacing.m,
+			padding: 0,
 			width: '100vw'
 		},
 		padding: spacing.l,
 		paddingBottom: spacing.m,
 		position: 'relative'
 	},
-	popoverControls: flexAlignCenter,
+	popoverControls: {
+		...flexAlignCenter,
+		[max[mobile]]: {
+			background: popoverPalette[light].background,
+			height: popoverControlsHeight,
+			padding: `${spacing.s}px ${spacing.m}px`,
+			position: 'sticky',
+			top: 0,
+			zIndex: 10
+		}
+	},
 	popoverControlsChild: { marginRight: spacing.m },
 	popoverTrigger: {
 		position: 'absolute',
 		top: spacing.xs / 2
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $popoverControls': {
+				[max[mobile]]: {
+					background: popoverPalette[dark].background
+				}
+			}
+		}
 	}
 })
