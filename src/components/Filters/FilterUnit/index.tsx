@@ -1,4 +1,3 @@
-import { IconButton } from '../../IconButton'
 import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'
 import { useWindowSize } from '@dassana-io/web-utils'
@@ -6,6 +5,7 @@ import { ValuesMultiSelectProps } from './ValuesMultiSelect/types'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiSelect'
 import { FilterOption, FiltersList, FiltersListItem } from '../types'
 import { formatFilterStrToSelectOpts, getFilterKeysOptions } from '../utils'
+import { IconButton, IconSizes } from '../../IconButton'
 import { MultiSelectProps, Select } from '../../Select'
 import React, { FC, useEffect, useState } from 'react'
 
@@ -41,9 +41,8 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	const classes = useFilterUnitStyles()
 
 	const [operators, setOperators] = useState(['='])
-	const [optionsConfig, setOptionsConfig] = useState<
-		MultiSelectProps['optionsConfig']
-	>()
+	const [optionsConfig, setOptionsConfig] =
+		useState<MultiSelectProps['optionsConfig']>()
 
 	useEffect(() => {
 		// When the selectedKey changes, get operators
@@ -83,7 +82,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			onChange={selectedOperator =>
 				onFilterChange({
 					id,
-					selectedOperator: (selectedOperator as unknown) as string
+					selectedOperator: selectedOperator as unknown as string
 				})
 			}
 			options={formatFilterStrToSelectOpts(operators)}
@@ -99,7 +98,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			onChange={selectedKey => {
 				onFilterChange({
 					id,
-					selectedKey: (selectedKey as unknown) as string
+					selectedKey: selectedKey as unknown as string
 				})
 			}}
 			options={getFilterKeysOptions(allFilters, filtersList)}
@@ -135,6 +134,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			<IconButton
 				classes={[classes.closeIcon]}
 				onClick={() => onDelete(id)}
+				size={IconSizes.sm}
 			/>
 		</div>
 	)

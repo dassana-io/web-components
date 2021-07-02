@@ -47,6 +47,7 @@ const generateThemedFilterContainerStyles = (themeType: ThemeType) => {
 
 export const useBaseFilterStyles = createUseStyles({
 	container: {
+		position: 'relative',
 		width: '100%'
 	},
 	filterControls: {
@@ -141,7 +142,8 @@ export const usePopoverStyles = createUseStyles({
 	closeButton: {
 		position: 'absolute',
 		right: 13,
-		top: 10
+		top: 10,
+		zIndex: 100
 	},
 	filtersList: {
 		[max[mobile]]: {
@@ -155,12 +157,6 @@ export const usePopoverStyles = createUseStyles({
 		paddingTop: spacing.m
 	},
 	popover: {
-		[max[mobile]]: {
-			'& .ant-popover-inner': { borderRadius: '0px !important' },
-			overflow: 'auto',
-			paddingTop: '0px !important',
-			position: 'fixed'
-		},
 		position: 'relative',
 		width: '100%',
 		zIndex: 10
@@ -189,7 +185,7 @@ export const usePopoverStyles = createUseStyles({
 	popoverControlsChild: { marginRight: spacing.m },
 	popoverTrigger: {
 		position: 'absolute',
-		top: spacing.xs / 2
+		top: -spacing.s
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
