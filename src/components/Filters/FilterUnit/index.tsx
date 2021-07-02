@@ -41,8 +41,9 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	const classes = useFilterUnitStyles()
 
 	const [operators, setOperators] = useState(['='])
-	const [optionsConfig, setOptionsConfig] =
-		useState<MultiSelectProps['optionsConfig']>()
+	const [optionsConfig, setOptionsConfig] = useState<
+		MultiSelectProps['optionsConfig']
+	>()
 
 	useEffect(() => {
 		// When the selectedKey changes, get operators
@@ -82,7 +83,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			onChange={selectedOperator =>
 				onFilterChange({
 					id,
-					selectedOperator: selectedOperator as unknown as string
+					selectedOperator: (selectedOperator as unknown) as string
 				})
 			}
 			options={formatFilterStrToSelectOpts(operators)}
@@ -98,7 +99,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			onChange={selectedKey => {
 				onFilterChange({
 					id,
-					selectedKey: selectedKey as unknown as string
+					selectedKey: (selectedKey as unknown) as string
 				})
 			}}
 			options={getFilterKeysOptions(allFilters, filtersList)}

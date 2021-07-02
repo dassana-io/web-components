@@ -125,8 +125,10 @@ export const Table = <Data,>({
 		showSizeChanger: false
 	})
 
-	const { classes: tableControlClasses = [], render: renderTableControls } =
-		tableControlsConfig
+	const {
+		classes: tableControlClasses = [],
+		render: renderTableControls
+	} = tableControlsConfig
 
 	const { isMobile } = useWindowSize()
 

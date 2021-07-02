@@ -38,12 +38,10 @@ interface Props {
 	isPopoverOpen?: boolean
 }
 
-const FILTER_MODAL_ROOT_ID = 'filters-modal-root'
-
 export const FilterModal: FC<Props> = ({ children, isPopoverOpen }: Props) => {
 	const classes = useStyles({ isPopoverOpen })
 
-	const rootElement = useCreateDomElement(FILTER_MODAL_ROOT_ID)
+	const rootElement = useCreateDomElement('filters-modal-root')
 
 	return (
 		rootElement &&
