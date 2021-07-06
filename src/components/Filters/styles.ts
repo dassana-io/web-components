@@ -50,10 +50,7 @@ export const useBaseFilterStyles = createUseStyles({
 		position: 'relative',
 		width: '100%'
 	},
-	filterControls: {
-		...flexAlignCenter,
-		paddingTop: spacing.s
-	},
+	filterControls: flexAlignCenter,
 	filterIcon: {
 		[max[mobile]]: {
 			marginRight: spacing.s
@@ -185,7 +182,7 @@ export const usePopoverStyles = createUseStyles({
 	popoverControlsChild: { marginRight: spacing.m },
 	popoverTrigger: {
 		position: 'absolute',
-		top: -spacing.s
+		top: -spacing.m
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

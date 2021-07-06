@@ -95,6 +95,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional props for search input
 	 */
 	searchProps?: SearchProps
+	tableRef?: React.Ref<HTMLDivElement>
 }
 
 /* Pagination config props type that gets passed to AntDTable  */
@@ -111,6 +112,7 @@ export const Table = <Data,>({
 	paginationConfig = {},
 	onRowClick,
 	tableControlsConfig = {},
+	tableRef,
 	scrollConfig,
 	search = true,
 	skeletonRowCount = 5,
@@ -125,10 +127,8 @@ export const Table = <Data,>({
 		showSizeChanger: false
 	})
 
-	const {
-		classes: tableControlClasses = [],
-		render: renderTableControls
-	} = tableControlsConfig
+	const { classes: tableControlClasses = [], render: renderTableControls } =
+		tableControlsConfig
 
 	const { isMobile } = useWindowSize()
 
@@ -276,7 +276,10 @@ export const Table = <Data,>({
 
 	return (
 		<TableCtxProvider value={{ isMobile }}>
-			<div className={cn(tableClasses.tableContainer, classes)}>
+			<div
+				className={cn(tableClasses.tableContainer, classes)}
+				ref={tableRef}
+			>
 				{search && (
 					<div
 						className={cn(

@@ -36,7 +36,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 }: FilterPopoverProps) => {
 	const { isMobile } = useWindowSize()
 
-	const { allFilters } = useFiltersContext()
+	const { allFilters, popoverClasses = [] } = useFiltersContext()
 
 	const classes = usePopoverStyles()
 
@@ -101,7 +101,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 		</FilterModal>
 	) : (
 		<Popover
-			classes={[classes.popover]}
+			classes={[classes.popover, ...popoverClasses]}
 			content={renderContent()}
 			onVisibleChange={togglePopoverVisibility}
 			placement='bottomLeft'
