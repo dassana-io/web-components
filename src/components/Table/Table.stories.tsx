@@ -250,9 +250,8 @@ export const EditableCells = EditableCellsTemplate.bind({})
 EditableCells.args = tableData6
 EditableCells.argTypes = commonArgTypes
 
-const MultipleIconsAndJSONPathTemplate: Story<
-	TableProps<JSONPathData>
-> = args => <DecoratedTableStory<JSONPathData> {...args} />
+const MultipleIconsAndJSONPathTemplate: Story<TableProps<JSONPathData>> =
+	args => <DecoratedTableStory<JSONPathData> {...args} />
 export const MultipleIconsAndJSONPath = MultipleIconsAndJSONPathTemplate.bind(
 	{}
 )

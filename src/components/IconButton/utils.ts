@@ -84,11 +84,8 @@ export const generateThemedPrimaryStyles = (themeType: ThemeType) => {
 	const {
 		disabled: { color: disabledColor }
 	} = themedStyles[themeType]
-	const {
-		disabledBgColor,
-		primaryBackgroundColor,
-		primaryHoverBgColor
-	} = buttonPalette[themeType]
+	const { disabledBgColor, primaryBackgroundColor, primaryHoverBgColor } =
+		buttonPalette[themeType]
 
 	return {
 		'&$circle': {

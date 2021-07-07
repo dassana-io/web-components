@@ -40,11 +40,10 @@ export const useFilters = ({
 
 	// TODO: Delete eslint-disable when API is working
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
-	const onSearchWrapper: OnSearchWrapper = selectedFilterKey => async (
-		searchVal: string
-	) => {
-		// Uncomment this to test if it's working.
-		/* 
+	const onSearchWrapper: OnSearchWrapper =
+		selectedFilterKey => async (searchVal: string) => {
+			// Uncomment this to test if it's working.
+			/* 
     // TODO: Delete and write tests
     console.log({
 			filterKey: selectedFilterKey,
@@ -53,41 +52,41 @@ export const useFilters = ({
     })
     */
 
-		setDynamicSearchVal(searchVal)
+			setDynamicSearchVal(searchVal)
 
-		setPending(true)
+			setPending(true)
 
-		// try {
+			// try {
 
-		// const dataToSend: FilterSuggestions = {
-		//   filterKey: selectedFilterKey,
-		//   operator: '=',
-		//   filters: formatSelectedFilters(filtersList),
-		//   search: searchVal
-		// }
-		// 	const result = await api.post<FilterValues[]>(endpoint, dataToSend)
-		//   setDynamicOptions(result.data)
-		// } catch (error) {
-		// 	handleAjaxErrors(error, emitter)
-		// }
+			// const dataToSend: FilterSuggestions = {
+			//   filterKey: selectedFilterKey,
+			//   operator: '=',
+			//   filters: formatSelectedFilters(filtersList),
+			//   search: searchVal
+			// }
+			// 	const result = await api.post<FilterValues[]>(endpoint, dataToSend)
+			//   setDynamicOptions(result.data)
+			// } catch (error) {
+			// 	handleAjaxErrors(error, emitter)
+			// }
 
-		// TODO: Delete and uncomment above lines when API is working
-		const setAsyncTimeout = (cb: any, timeout = 0) =>
-			new Promise<void>(resolve => {
-				setTimeout(() => {
-					cb()
-					resolve()
-				}, timeout)
-			})
+			// TODO: Delete and uncomment above lines when API is working
+			const setAsyncTimeout = (cb: any, timeout = 0) =>
+				new Promise<void>(resolve => {
+					setTimeout(() => {
+						cb()
+						resolve()
+					}, timeout)
+				})
 
-		await setAsyncTimeout(() => {
-			setDynamicOptions(
-				formatFilterValsToSelectOpts(mockDynamicFilterOptions)
-			)
-			setPending(false)
-		}, 400)
-		// -----------------
-	}
+			await setAsyncTimeout(() => {
+				setDynamicOptions(
+					formatFilterValsToSelectOpts(mockDynamicFilterOptions)
+				)
+				setPending(false)
+			}, 400)
+			// -----------------
+		}
 
 	const resetDynamicProps = () => {
 		setDynamicSearchVal('')

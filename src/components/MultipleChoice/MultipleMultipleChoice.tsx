@@ -13,12 +13,10 @@ export const MultipleMultipleChoice: FC<MultipleProps> = (
 ) => {
 	const { defaultValues, items, onChange, values } = props
 
-	const [
-		selectedValues,
-		setSelectedValues
-	] = useState<MultipleSelectedValues>(
-		getInitialSelectedValues(values ? values : defaultValues)
-	)
+	const [selectedValues, setSelectedValues] =
+		useState<MultipleSelectedValues>(
+			getInitialSelectedValues(values ? values : defaultValues)
+		)
 
 	useEffect(() => {
 		if (values) setSelectedValues(selectedValsArrToObj(values))

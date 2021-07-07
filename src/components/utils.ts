@@ -115,10 +115,9 @@ export const filterMap = <T, U>({
 
 //  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 
-export const generatePopupSelector = (
-	popupContainerSelector: string
-) => (): HTMLElement =>
-	document.querySelector(popupContainerSelector) as HTMLElement
+export const generatePopupSelector =
+	(popupContainerSelector: string) => (): HTMLElement =>
+		document.querySelector(popupContainerSelector) as HTMLElement
 
 export const getDataTestAttributeProp = (
 	cmpName: string,

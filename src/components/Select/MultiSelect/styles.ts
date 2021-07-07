@@ -117,9 +117,8 @@ export const useStyles = createUseStyles({
 				'& .ant-select': {
 					'&.ant-select-multiple': {
 						...generateErrorStyles(dark),
-						'&.ant-select-disabled': generateThemedDisabledStyles(
-							dark
-						),
+						'&.ant-select-disabled':
+							generateThemedDisabledStyles(dark),
 						...generateThemedSelectStyles(dark),
 						...generateThemedTagStyles(dark),
 						'& .ant-select-selector': {

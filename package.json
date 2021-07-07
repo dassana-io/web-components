@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.11.7",
+	"version": "0.11.8",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -13,6 +13,7 @@
 		"@ant-design/icons": "^4.6.2",
 		"@dassana-io/web-utils": "^0.8.5",
 		"@fortawesome/fontawesome-svg-core": "^1.2.32",
+		"@fortawesome/free-brands-svg-icons": "^5.15.3",
 		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"@fortawesome/pro-light-svg-icons": "^5.15.3",
 		"@fortawesome/pro-regular-svg-icons": "^5.15.3",
@@ -35,7 +36,9 @@
 		"react-hook-form": "^7.7.1",
 		"react-jss": "~10.5.1",
 		"react-markdown": "^6.0.2",
+		"react-router": "^5.2.0",
 		"react-scripts": "^4.0.3",
+		"react-scroll": "^1.8.2",
 		"remark-gfm": "^1.0.0",
 		"uuid": "^8.3.2"
 	},
@@ -106,6 +109,8 @@
 		"@types/react": "^17.0.9",
 		"@types/react-dom": "^17.0.6",
 		"@types/react-helmet": "^6.1.1",
+		"@types/react-router-dom": "^5.1.8",
+		"@types/react-scroll": "^1.8.3",
 		"@types/uuid": "^8.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",

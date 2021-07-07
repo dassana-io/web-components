@@ -69,10 +69,13 @@ export const Code: FC<CodeProps> = ({
 	let searchProps = {}
 
 	if (search) {
-		const { classes = [], fullWidth = true, placeholder = '' } =
-			typeof search === 'object'
-				? search
-				: { classes: [], fullWidth: true, placeholder: '' }
+		const {
+			classes = [],
+			fullWidth = true,
+			placeholder = ''
+		} = typeof search === 'object'
+			? search
+			: { classes: [], fullWidth: true, placeholder: '' }
 
 		searchProps = {
 			classes: [compClasses.search, ...classes],

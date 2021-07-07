@@ -86,13 +86,8 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 		disabled
 	} = themedStyles[themeType]
 
-	const {
-		hover,
-		prevNextMonth,
-		range,
-		selectedDays,
-		weekHeader
-	} = datePanelPalette[themeType]
+	const { hover, prevNextMonth, range, selectedDays, weekHeader } =
+		datePanelPalette[themeType]
 
 	const dashedBorderTopBottom = {
 		borderBottom: `1px dashed ${selectedDays.background}`,
@@ -108,9 +103,11 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 						'& .ant-picker-cell-inner': { color: disabled.color },
 						'&::before': { background: disabled.backgroundColor }
 					},
-					'&:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner, &:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner': {
-						background: dropdownStyles[themeType].hover.background
-					},
+					'&:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner, &:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner':
+						{
+							background:
+								dropdownStyles[themeType].hover.background
+						},
 					color: prevNextMonth
 				},
 				'& .ant-picker-cell-in-view': {
@@ -120,33 +117,42 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 							background: disabled.backgroundColor
 						}
 					},
-					'&.ant-picker-cell-end.ant-picker-cell-range-hover-edge-end.ant-picker-cell-range-hover-edge-end-near-range::after, &.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after, &.ant-picker-cell-range-hover-end::after': {
-						borderRight: `1px dashed ${selectedDays.background}`
-					},
+					'&.ant-picker-cell-end.ant-picker-cell-range-hover-edge-end.ant-picker-cell-range-hover-edge-end-near-range::after, &.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after, &.ant-picker-cell-range-hover-end::after':
+						{
+							borderRight: `1px dashed ${selectedDays.background}`
+						},
 					'&.ant-picker-cell-in-range': {
-						'&.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-hover-start .ant-picker-cell-inner::after, &.ant-picker-cell-range-hover-end .ant-picker-cell-inner::after': {
-							background: hover.selected.background
-						}
+						'&.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-hover-start .ant-picker-cell-inner::after, &.ant-picker-cell-range-hover-end .ant-picker-cell-inner::after':
+							{
+								background: hover.selected.background
+							}
 					},
-					'&.ant-picker-cell-in-range::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before': {
-						background: range.background
-					},
+					'&.ant-picker-cell-in-range::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before':
+						{
+							background: range.background
+						},
 					'&.ant-picker-cell-range-hover-end': {
-						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover::after, &.ant-picker-cell-range-end-single::after': dashedBorderTopBottom
+						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover::after, &.ant-picker-cell-range-end-single::after':
+							dashedBorderTopBottom
 					},
 					'&.ant-picker-cell-range-hover-start': {
-						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover::after, &.ant-picker-cell-range-start-single::after': dashedBorderTopBottom
+						'&:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after, &.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover::after, &.ant-picker-cell-range-start-single::after':
+							dashedBorderTopBottom
 					},
-					'&.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range)::after': dashedBorderTopBottom,
-					'&.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before': {
-						background: hover.selected.background
-					},
-					'&.ant-picker-cell-selected .ant-picker-cell-inner, &.ant-picker-cell-range-start .ant-picker-cell-inner, &.ant-picker-cell-range-end .ant-picker-cell-inner': {
-						background: selectedDays.background
-					},
-					'&.ant-picker-cell-start.ant-picker-cell-range-hover-edge-start.ant-picker-cell-range-hover-edge-start-near-range::after, &.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after, &.ant-picker-cell-range-hover-start::after': {
-						borderLeft: `1px dashed ${selectedDays.background}`
-					},
+					'&.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range)::after':
+						dashedBorderTopBottom,
+					'&.ant-picker-cell-range-start.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-end.ant-picker-cell-range-hover::before, &.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start::before, &.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end::before':
+						{
+							background: hover.selected.background
+						},
+					'&.ant-picker-cell-selected .ant-picker-cell-inner, &.ant-picker-cell-range-start .ant-picker-cell-inner, &.ant-picker-cell-range-end .ant-picker-cell-inner':
+						{
+							background: selectedDays.background
+						},
+					'&.ant-picker-cell-start.ant-picker-cell-range-hover-edge-start.ant-picker-cell-range-hover-edge-start-near-range::after, &.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after, &.ant-picker-cell-range-hover-start::after':
+						{
+							borderLeft: `1px dashed ${selectedDays.background}`
+						},
 					'&.ant-picker-cell-today .ant-picker-cell-inner::before': {
 						border: `1px solid ${disabled.color}`,
 						borderRadius
@@ -158,12 +164,14 @@ const generateDatePanelStyles = (themeType: ThemeType) => {
 						color: weekHeader
 					},
 					'& tr > .ant-picker-cell-in-view': {
-						'&.ant-picker-cell-range-hover:first-child::after, &.ant-picker-cell-range-hover-end:first-child::after': {
-							borderLeft: `1px dashed ${selectedDays.background}`
-						},
-						'&.ant-picker-cell-range-hover:last-child::after, &.ant-picker-cell-range-hover-start:last-child::after': {
-							borderRight: `1px dashed ${selectedDays.background}`
-						}
+						'&.ant-picker-cell-range-hover:first-child::after, &.ant-picker-cell-range-hover-end:first-child::after':
+							{
+								borderLeft: `1px dashed ${selectedDays.background}`
+							},
+						'&.ant-picker-cell-range-hover:last-child::after, &.ant-picker-cell-range-hover-start:last-child::after':
+							{
+								borderRight: `1px dashed ${selectedDays.background}`
+							}
 					}
 				}
 			}
