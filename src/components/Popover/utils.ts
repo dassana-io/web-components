@@ -12,7 +12,7 @@ const { dark, light } = ThemeType
 
 const { fade } = ColorManipulationTypes
 
-const popoverPalette = {
+export const popoverPalette = {
 	[dark]: {
 		accent: manipulateColor(blacks['darken-40'], 72, fade),
 		background: blacks['lighten-10'],

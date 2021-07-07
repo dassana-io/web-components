@@ -11,7 +11,7 @@ import { Input } from '../Input'
 import { TableCtxProvider } from './TableContext'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
-import { useWindowSize } from './useWindowSize'
+import { useWindowSize } from '@dassana-io/web-utils'
 import { ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, {
@@ -95,6 +95,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional props for search input
 	 */
 	searchProps?: SearchProps
+	tableRef?: React.Ref<HTMLDivElement>
 }
 
 /* Pagination config props type that gets passed to AntDTable  */
@@ -111,6 +112,7 @@ export const Table = <Data,>({
 	paginationConfig = {},
 	onRowClick,
 	tableControlsConfig = {},
+	tableRef,
 	scrollConfig,
 	search = true,
 	skeletonRowCount = 5,
@@ -276,7 +278,10 @@ export const Table = <Data,>({
 
 	return (
 		<TableCtxProvider value={{ isMobile }}>
-			<div className={cn(tableClasses.tableContainer, classes)}>
+			<div
+				className={cn(tableClasses.tableContainer, classes)}
+				ref={tableRef}
+			>
 				{search && (
 					<div
 						className={cn(
@@ -303,7 +308,11 @@ export const Table = <Data,>({
 					<AntDTable
 						columns={processedColumns}
 						dataSource={searchTerm ? filteredData : processedData}
-						pagination={pagination}
+						pagination={
+							!pagination
+								? pagination
+								: { ...pagination, responsive: true }
+						}
 						rowClassName={getRowClassName}
 						rowKey={getRowKey}
 						{...getDataTestAttributeProp('table', dataTag)}

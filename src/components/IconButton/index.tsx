@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/pro-regular-svg-icons'
 import {
 	FontAwesomeIcon,
 	FontAwesomeIconProps

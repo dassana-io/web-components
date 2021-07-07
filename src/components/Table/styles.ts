@@ -21,6 +21,10 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 
 	return {
 		'& .ant-pagination.ant-table-pagination > li': {
+			'& .ant-pagination-item-ellipsis': {
+				color: disabled.color
+			},
+			'& .ant-pagination-item-link-icon': { color },
 			'&.ant-pagination-disabled, &.ant-pagination-disabled:hover': {
 				'& button.ant-pagination-item-link': {
 					backgroundColor: disabled.backgroundColor,

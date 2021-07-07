@@ -6,6 +6,7 @@ import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
+import { useWindowSize } from '@dassana-io/web-utils'
 import React, { FC, ReactNode } from 'react'
 
 const { font, spacing } = styleguide
@@ -50,11 +51,29 @@ interface FiltersSummaryProps {
 const FiltersSummary: FC<FiltersSummaryProps> = ({
 	filtersList
 }: FiltersSummaryProps) => {
+	const { isMobile } = useWindowSize()
+
 	const { allFilters, config = {} } = useFiltersContext()
 
 	const classes = useStyles()
 
-	return (
+	const renderMobileSummary = () => {
+		const selectedFiltersCount = filtersList.filter(
+			filtersListItem => !!filtersListItem.selectedValues
+		).length
+
+		return selectedFiltersCount ? (
+			<span className={classes.filterReadOnly}>
+				{selectedFiltersCount} filters
+			</span>
+		) : (
+			<></>
+		)
+	}
+
+	return isMobile ? (
+		renderMobileSummary()
+	) : (
 		<>
 			{filterSelectedFilters(filtersList).map(
 				({
@@ -78,7 +97,9 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 									key={value}
 								/>
 							) : (
-								truncate(text, { length: truncateLength })
+								truncate(text, {
+									length: truncateLength
+								})
 							)
 						)
 					} else {

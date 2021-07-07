@@ -1,3 +1,4 @@
+import { Breakpoints } from '@dassana-io/web-utils'
 import Color from 'color'
 import { JSONPath } from 'jsonpath-plus'
 import { JSONValue } from './JSONPathPicker'
@@ -181,4 +182,24 @@ export const useCreateDomElement = (
 	}, [divId, root])
 
 	return domElement
+}
+
+/* ----------- Responsive styles related utils ----------- */
+
+const getMediaSelector = (breakpoint: Breakpoints, isMax?: boolean) =>
+	`@media screen and (${isMax ? 'max' : 'min'}-width: ${breakpoint}px)`
+
+const { largeScreen, mobile, tablet } = Breakpoints
+
+export const mediaSelectorsWithBreakpoints = {
+	max: {
+		[largeScreen]: getMediaSelector(largeScreen, true),
+		[mobile]: getMediaSelector(mobile, true),
+		[tablet]: getMediaSelector(tablet, true)
+	},
+	min: {
+		[largeScreen]: getMediaSelector(largeScreen),
+		[mobile]: getMediaSelector(mobile),
+		[tablet]: getMediaSelector(tablet)
+	}
 }
