@@ -6,6 +6,7 @@ import React, { FC, useEffect, useState } from 'react'
 
 export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	id,
+	isMobile,
 	filterOptValues,
 	onFilterChange,
 	optionsConfig,
@@ -31,6 +32,7 @@ export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 		<MultiSelect
 			{...getMultiSelectProps({
 				id,
+				isMobile,
 				multiSelectProps: { options, optionsConfig },
 				onFilterChange,
 				selectedValues

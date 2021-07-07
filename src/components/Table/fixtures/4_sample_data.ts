@@ -11,6 +11,14 @@ const paginatedData = [
 	...cloneDeep(tableData1.data.slice(0, 2)),
 	...cloneDeep(tableData1.data.slice(0, 2)),
 	...cloneDeep(tableData1.data.slice(0, 2)),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
+	...cloneDeep(tableData1.data),
 	...cloneDeep(tableData1.data)
 ]
 

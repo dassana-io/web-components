@@ -40,7 +40,7 @@ const useStyles = createUseStyles({
 })
 
 interface ModalProps {
-	emitter: Emitter
+	emitter?: Emitter
 	modalConfig: ModalConfig
 	unsetModal: () => void
 }
@@ -70,9 +70,10 @@ const Modal: FC<ModalProps> = ({
 	})
 
 	useEffect(() => {
-		emitter.on(EmitterEventTypes.loggedOut, unsetModal)
+		emitter && emitter.on(EmitterEventTypes.loggedOut, unsetModal)
 
-		return () => emitter.off(EmitterEventTypes.loggedOut, unsetModal)
+		return () =>
+			emitter && emitter.off(EmitterEventTypes.loggedOut, unsetModal)
 	})
 
 	return (

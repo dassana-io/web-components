@@ -19,6 +19,7 @@ interface Props extends ValuesMultiSelectProps {
 
 export const ServerSideValuesMS: FC<Props> = ({
 	id,
+	isMobile,
 	onFilterChange,
 	filterOptValues,
 	selectedKey,
@@ -141,6 +142,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 		<MultiSelect
 			{...getMultiSelectProps({
 				id,
+				isMobile,
 				multiSelectProps: {
 					options,
 					optionsConfig,

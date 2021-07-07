@@ -75,6 +75,7 @@ export interface SharedFiltersProps {
 	config?: FiltersConfig
 	onSelectedFiltersChange: (selectedFilters: Filters) => void
 	filtersRef?: RefObject<UseFiltersMethods>
+	popoverClasses?: string[]
 }
 
 export type ClientSideFilterOption = Omit<

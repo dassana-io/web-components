@@ -8,7 +8,7 @@ import React, { FC, ReactNode } from 'react'
 
 export interface Props {
 	children: ReactNode
-	emitter: Emitter
+	emitter?: Emitter
 	popupContainerSelector?: string
 }
 

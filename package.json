@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.11.6",
+	"version": "0.11.7",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.6.2",
-		"@dassana-io/web-utils": "^0.8.0",
+		"@dassana-io/web-utils": "^0.8.5",
 		"@fortawesome/fontawesome-svg-core": "^1.2.32",
 		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"@fortawesome/pro-light-svg-icons": "^5.15.3",

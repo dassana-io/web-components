@@ -6,4 +6,5 @@ export interface ValuesMultiSelectProps
 	onFilterChange: (filtersListItem: FiltersListItem) => void
 	filterOptValues?: FilterOption['values']
 	optionsConfig?: SelectOptionsConfig
+	isMobile?: boolean
 }
