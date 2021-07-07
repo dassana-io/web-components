@@ -199,12 +199,6 @@ const getStrVal = (value?: string | string[]) => {
 	return Array.isArray(value) ? value.join(', ') : value
 }
 
-const getStrVal = (value?: string | string[]) => {
-	if (!value) return ''
-
-	return Array.isArray(value) ? value.join(', ') : value
-}
-
 /* 
   Compare functions used by applySort to pass a custom sorter
   based on data type and format.
