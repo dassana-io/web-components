@@ -174,22 +174,29 @@ export function mapFilterKeys(columns: ColumnType[]) {
 
 /* -*-*-*-*-*- Helpers for parsing columns -*-*-*-*-*- */
 
-const compareIcons = (column: ComponentIconType) => (
-	a: Record<string, any>,
-	b: Record<string, any>
-) => {
-	const {
-		dataIndex,
-		renderProps: { iconKey }
-	} = column
+const compareIcons =
+	(column: ComponentIconType) =>
+	(a: Record<string, any>, b: Record<string, any>) => {
+		const {
+			dataIndex,
+			renderProps: { iconKey }
+		} = column
 
-	const jsonPath = iconKey ? `$.${dataIndex}.${iconKey}` : `$.${dataIndex}`
+		const jsonPath = iconKey
+			? `$.${dataIndex}.${iconKey}`
+			: `$.${dataIndex}`
 
-	const compareValA = getJSONPathValue(jsonPath, a) || ''
+		const compareValA = getJSONPathValue(jsonPath, a) || ''
 
-	const compareValB = getJSONPathValue(jsonPath, b) || ''
+		const compareValB = getJSONPathValue(jsonPath, b) || ''
 
-	return compareValA.localeCompare(compareValB)
+		return compareValA.localeCompare(compareValB)
+	}
+
+const getStrVal = (value?: string | string[]) => {
+	if (!value) return ''
+
+	return Array.isArray(value) ? value.join(', ') : value
 }
 
 const getStrVal = (value?: string | string[]) => {
@@ -301,16 +308,8 @@ function applyRender<TableData extends DataId>(
 	tableMethods: TableMethods<TableData>
 ) {
 	const { component, number, string } = ColumnTypes
-	const {
-		action,
-		byte,
-		date,
-		icon,
-		coloredDot,
-		link,
-		tag,
-		toggle
-	} = ColumnFormats
+	const { action, byte, date, icon, coloredDot, link, tag, toggle } =
+		ColumnFormats
 	const { updateRowData } = tableMethods
 
 	switch (column.type) {
@@ -428,9 +427,8 @@ function applyRender<TableData extends DataId>(
 
 						switch (type) {
 							case 'icon': {
-								const {
-									iconMap
-								} = renderProps as RenderPropsIcon
+								const { iconMap } =
+									renderProps as RenderPropsIcon
 
 								return { icon: iconMap[val] }
 							}
