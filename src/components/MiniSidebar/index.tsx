@@ -3,12 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'components/Link'
 import { styleguide } from 'components/assets/styles'
 import { Tooltip } from 'components/Tooltip'
+import { capitalize, filter } from 'lodash'
 import { faFileEdit, faFileWord } from '@fortawesome/pro-regular-svg-icons'
-import {
-	faGithub,
-	faSlack,
-	IconDefinition
-} from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faSlack } from '@fortawesome/free-brands-svg-icons'
 import React, { FC } from 'react'
 
 const {
@@ -45,39 +42,62 @@ const useStyles = createUseStyles({
 	}
 })
 
+export enum SocialLinks {
+	github = 'github',
+	blog = 'blog',
+	docs = 'docs',
+	slack = 'slack'
+}
+
+const { github, blog, docs, slack } = SocialLinks
+
 export interface MiniSidebarProps {
-	config: SidebarConfig[]
+	socialLinksToOmit?: SocialLinks[]
 }
 
-export interface SidebarConfig {
-	href: string
-	label: string
-}
+const MiniSidebarConfig = [
+	{
+		href: '',
+		icon: faGithub,
+		label: github
+	},
+	{
+		href: '',
+		icon: faFileWord,
+		label: docs
+	},
+	{
+		href: '',
+		icon: faSlack,
+		label: slack
+	},
+	{
+		href: '',
+		icon: faFileEdit,
+		label: blog
+	}
+]
 
-interface SidebarIconMapProps {
-	[icon: string]: IconDefinition
-}
-
-const SidebarIconMap: SidebarIconMapProps = {
-	Blog: faFileEdit,
-	Docs: faFileWord,
-	Github: faGithub,
-	Slack: faSlack
-}
-
-const MiniSidebar: FC<MiniSidebarProps> = ({ config }: MiniSidebarProps) => {
+const MiniSidebar: FC<MiniSidebarProps> = ({
+	socialLinksToOmit = []
+}: MiniSidebarProps) => {
 	const classes = useStyles()
+
+	const filteredSocials = filter(
+		MiniSidebarConfig,
+		({ label }) => !socialLinksToOmit.includes(label)
+	)
 
 	return (
 		<div className={classes.container}>
-			{config.map(({ href, label }, i) => (
+			{filteredSocials.map(({ label, href, icon }, i) => (
 				<Tooltip
 					key={i}
-					title={label}
+					title={capitalize(label)}
 					tooltipTriggerClasses={[classes.faIcon]}
 				>
 					<Link href={href} target='_blank'>
-						<FontAwesomeIcon icon={SidebarIconMap[label]} />
+						<FontAwesomeIcon icon={icon} />
 					</Link>
 				</Tooltip>
 			))}

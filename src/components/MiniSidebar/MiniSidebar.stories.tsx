@@ -1,8 +1,6 @@
 import React from 'react'
-import { sidebarConfig1 } from './_fixtures_/01_sample_data'
-import { sidebarConfig2 } from './_fixtures_/02_sample_data'
 import { Meta, Story } from '@storybook/react'
-import MiniSidebar, { MiniSidebarProps } from '.'
+import MiniSidebar, { MiniSidebarProps, SocialLinks } from '.'
 
 export default {
 	component: MiniSidebar,
@@ -13,12 +11,11 @@ const MiniSidebarTemplate: Story<MiniSidebarProps> = args => (
 	<MiniSidebar {...args} />
 )
 
+const { blog, slack } = SocialLinks
+
 export const AllIcons = MiniSidebarTemplate.bind({})
-AllIcons.args = {
-	config: sidebarConfig1
-}
 
 export const SomeIcons = MiniSidebarTemplate.bind({})
 SomeIcons.args = {
-	config: sidebarConfig2
+	socialLinksToOmit: [blog, slack]
 }
