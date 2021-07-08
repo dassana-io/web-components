@@ -6,7 +6,6 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import random from 'lodash/random'
 import { styleguide } from 'components/assets/styles'
-import { useHistory } from 'react-router'
 import React, { FC } from 'react'
 
 const {
@@ -27,8 +26,7 @@ const useStyles = createUseStyles({
 		...font.body,
 		backgroundColor: `${blues.base} !important`,
 		color: `${blacks['lighten-80']} !important`,
-		fontWeight: light,
-		height: 40
+		fontWeight: light
 	},
 	btnIcon: {
 		marginLeft: spacing.s
@@ -56,6 +54,10 @@ const useStyles = createUseStyles({
 	}
 })
 
+interface Error404Props {
+	historyOnClick: () => void
+}
+
 const error404Config = [
 	{
 		bg: Error1,
@@ -77,9 +79,8 @@ const error404Config = [
 	}
 ]
 
-const Error404: FC = () => {
+const Error404: FC<Error404Props> = ({ historyOnClick }: Error404Props) => {
 	const classes = useStyles()
-	const history = useHistory()
 
 	const errorConfigIndex = random(error404Config.length - 1)
 	const { title, msg, bg, renderButton } = error404Config[errorConfigIndex]
@@ -89,10 +90,7 @@ const Error404: FC = () => {
 			<div className={classes.details}>
 				<div className={classes.title}>{title}</div>
 				<div className={classes.msg}>{msg}</div>
-				<Button
-					classes={[classes.btn]}
-					onClick={() => history.push('/')}
-				>
+				<Button classes={[classes.btn]} onClick={historyOnClick}>
 					{renderButton(classes.btnIcon)}
 				</Button>
 			</div>
