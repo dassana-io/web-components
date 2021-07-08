@@ -7,6 +7,8 @@ export default {
 	title: 'Error 404 Page'
 } as Meta
 
-const Template: Story = () => <Error404 />
+const Template: Story = () => (
+	<Error404 onBtnClick={() => console.log('Clicked!')} />
+)
 
 export const Error = Template.bind({})
