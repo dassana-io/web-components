@@ -109,7 +109,7 @@ export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
 	const stopEdit = () => setIsEditing(false)
 
 	const handleOnSubmit = async (editedValues: Record<string, any>) => {
-		const data = (editedValues as unknown) as T
+		const data = editedValues as unknown as T
 
 		await onSave(rowData, data)
 

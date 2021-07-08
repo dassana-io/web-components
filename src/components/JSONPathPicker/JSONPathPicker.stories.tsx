@@ -66,7 +66,8 @@ const sampleJSON = {
 				}
 			]
 		},
-		'a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-reallyreally-really-really-long-key': null
+		'a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-reallyreally-really-really-long-key':
+			null
 	}
 }
 /* eslint-enable sort-keys */

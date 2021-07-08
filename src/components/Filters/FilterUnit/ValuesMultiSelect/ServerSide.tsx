@@ -27,12 +27,8 @@ export const ServerSideValuesMS: FC<Props> = ({
 	selectedValues = [],
 	staticFilter
 }: Props) => {
-	const {
-		dynamicOptions,
-		dynamicSearchVal,
-		onSearchWrapper,
-		pending
-	} = useFiltersContext()
+	const { dynamicOptions, dynamicSearchVal, onSearchWrapper, pending } =
+		useFiltersContext()
 
 	const classes = useStyles()
 	const [dynamicFilterProps, setDynamicFilterProps] = useState<
@@ -50,10 +46,9 @@ export const ServerSideValuesMS: FC<Props> = ({
 				)
 
 				setOptions(
-					uniqBy(
-						[...selectedValues, ...formattedOpts],
-						'value'
-					).map(option => omit(option, 'classes'))
+					uniqBy([...selectedValues, ...formattedOpts], 'value').map(
+						option => omit(option, 'classes')
+					)
 				)
 			} else {
 				// if filter is dynamic & state is pending, data is still being fetched. So only get options if status isn't pending
@@ -107,10 +102,9 @@ export const ServerSideValuesMS: FC<Props> = ({
 
 							setOptions(
 								uniqBy(
-									[
-										...selectedValues,
-										...formattedOpts
-									].map(option => omit(option, 'classes')),
+									[...selectedValues, ...formattedOpts].map(
+										option => omit(option, 'classes')
+									),
 									'value'
 								)
 							)
