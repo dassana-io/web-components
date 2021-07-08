@@ -57,22 +57,22 @@ export interface MiniSidebarProps {
 
 const MiniSidebarConfig = [
 	{
-		href: '',
+		href: 'https://github.com/dassana-io/dassana-engine',
 		icon: faGithub,
 		label: github
 	},
 	{
-		href: '',
+		href: 'https://docs.dassana.io',
 		icon: faFileWord,
 		label: docs
 	},
 	{
-		href: '',
+		href: 'https://picsum.photos/200/300',
 		icon: faSlack,
 		label: slack
 	},
 	{
-		href: '',
+		href: 'https://blog.dassana.io',
 		icon: faFileEdit,
 		label: blog
 	}

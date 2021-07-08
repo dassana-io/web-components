@@ -55,7 +55,7 @@ const useStyles = createUseStyles({
 })
 
 interface Error404Props {
-	historyOnClick: () => void
+	onBtnClick: () => void
 }
 
 const error404Config = [
@@ -79,7 +79,7 @@ const error404Config = [
 	}
 ]
 
-const Error404: FC<Error404Props> = ({ historyOnClick }: Error404Props) => {
+const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
 	const classes = useStyles()
 
 	const errorConfigIndex = random(error404Config.length - 1)
@@ -90,7 +90,7 @@ const Error404: FC<Error404Props> = ({ historyOnClick }: Error404Props) => {
 			<div className={classes.details}>
 				<div className={classes.title}>{title}</div>
 				<div className={classes.msg}>{msg}</div>
-				<Button classes={[classes.btn]} onClick={historyOnClick}>
+				<Button classes={[classes.btn]} onClick={onBtnClick}>
 					{renderButton(classes.btnIcon)}
 				</Button>
 			</div>
