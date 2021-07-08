@@ -15,6 +15,9 @@ export default {
 		images
 	},
 	component: Carousel,
+	parameters: {
+		storyshots: { disable: true }
+	},
 	title: 'Carousel'
 } as Meta
 
