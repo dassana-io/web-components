@@ -34,9 +34,10 @@ export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	} = dropdownStyles[themeType]
 
 	return {
-		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty': {
-			color
-		},
+		'&.ant-select-dropdown-empty .ant-select-item-empty, .ant-select-item-empty':
+			{
+				color
+			},
 		background,
 		boxShadow
 	}

@@ -39,14 +39,15 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 				borderRadius,
 				color
 			},
-			'&.ant-pagination-item.ant-pagination-item-active, &.ant-pagination-item:hover, &:hover': {
-				'& a': { color: hover.color },
-				'& button.ant-pagination-item-link': {
-					borderColor: hover.borderColor,
-					color: hover.color
+			'&.ant-pagination-item.ant-pagination-item-active, &.ant-pagination-item:hover, &:hover':
+				{
+					'& a': { color: hover.color },
+					'& button.ant-pagination-item-link': {
+						borderColor: hover.borderColor,
+						color: hover.color
+					},
+					borderColor: hover.borderColor
 				},
-				borderColor: hover.borderColor
-			},
 			borderRadius
 		}
 	}
@@ -126,12 +127,13 @@ const generateTableStyles = (themeType: ThemeType) => {
 				'& > .ant-table-container': {
 					'& table': {
 						'& .ant-table-thead > tr > th': {
-							'& > .ant-table-column-sorters > .ant-table-column-sorter': {
-								'& .active': {
-									color: arrow.active
+							'& > .ant-table-column-sorters > .ant-table-column-sorter':
+								{
+									'& .active': {
+										color: arrow.active
+									},
+									color: arrow.base
 								},
-								color: arrow.base
-							},
 							'&.ant-table-column-sort': {
 								background: th.sort.background
 							},
@@ -144,18 +146,19 @@ const generateTableStyles = (themeType: ThemeType) => {
 					},
 					cursor: 'default'
 				},
-				'&.ant-table-empty .ant-table-tbody > tr.ant-table-placeholder': {
-					'& .ant-empty-image': {
-						display: 'none'
+				'&.ant-table-empty .ant-table-tbody > tr.ant-table-placeholder':
+					{
+						'& .ant-empty-image': {
+							display: 'none'
+						},
+						'& .ant-table-cell': {
+							borderBottom: 'none'
+						},
+						'& > .ant-table-cell': {
+							background: td.base.background
+						},
+						color: td.base.background
 					},
-					'& .ant-table-cell': {
-						borderBottom: 'none'
-					},
-					'& > .ant-table-cell': {
-						background: td.base.background
-					},
-					color: td.base.background
-				},
 				background: td.base.background
 			}
 		}
@@ -260,9 +263,8 @@ export const useStyles = createUseStyles({
 					},
 					[rowHoverCellClasses]: {
 						...generateThemedCellStyles(dark)[rowHoverCellClasses],
-						[lastCellAfterClasses]: generateThemedRowIconStyles(
-							dark
-						)
+						[lastCellAfterClasses]:
+							generateThemedRowIconStyles(dark)
 					}
 				}
 			},

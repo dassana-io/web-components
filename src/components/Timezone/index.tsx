@@ -32,7 +32,7 @@ export const Timezone: FC<TimezoneProps> = ({
 	return (
 		<Select
 			{...rest}
-			onChange={(onChange as unknown) as ChangeEventHandler}
+			onChange={onChange as unknown as ChangeEventHandler}
 			options={mappedTimezoneOpts()}
 			showSearch
 			value={isNull(value) ? getTimezoneDefaultValue(value) : value}

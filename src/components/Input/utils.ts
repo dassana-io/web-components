@@ -82,15 +82,13 @@ export const generateAddonStyles = (themeType: ThemeType) => {
 				'&:hover': { borderColor: error.borderColor },
 				...generateCommonErrorStyles(themeType)
 			},
-			'&.ant-input-affix-wrapper-disabled': generateCommonDisabledStyles(
-				themeType
-			),
+			'&.ant-input-affix-wrapper-disabled':
+				generateCommonDisabledStyles(themeType),
 			...generateCommonBaseStyles(themeType),
 			...generateCommonHoverStyles(themeType)
 		},
-		'&.ant-input-affix-wrapper-focused, &.ant-input-affix-wrapper:focus': generateCommonFocusStyles(
-			themeType
-		),
+		'&.ant-input-affix-wrapper-focused, &.ant-input-affix-wrapper:focus':
+			generateCommonFocusStyles(themeType),
 		'&.ant-input-group-wrapper': {
 			'& .ant-input-wrapper': {
 				'& .ant-input-group-addon': {
@@ -109,9 +107,8 @@ export const generateAddonStyles = (themeType: ThemeType) => {
 				}
 			},
 			'&$error': {
-				'& .ant-input-wrapper .ant-input': generateCommonErrorStyles(
-					themeType
-				)
+				'& .ant-input-wrapper .ant-input':
+					generateCommonErrorStyles(themeType)
 			}
 		}
 	}
@@ -131,11 +128,9 @@ export const generateInputStyles = (themeType: ThemeType) => {
 			...generateCommonBaseStyles(themeType),
 			...generateCommonHoverStyles(themeType)
 		},
-		'&.ant-input-disabled, &.ant-input[disabled]': generateCommonDisabledStyles(
-			themeType
-		),
-		'&.ant-input-focused, &.ant-input:focus': generateCommonFocusStyles(
-			themeType
-		)
+		'&.ant-input-disabled, &.ant-input[disabled]':
+			generateCommonDisabledStyles(themeType),
+		'&.ant-input-focused, &.ant-input:focus':
+			generateCommonFocusStyles(themeType)
 	}
 }

@@ -24,9 +24,10 @@ const generateThemedSelectedItemStyles = (themeType: ThemeType) => {
 	} = themedStyles[themeType]
 
 	return {
-		'&.ant-select-single .ant-select-selector .ant-select-selection-item > div:first-child': {
-			paddingLeft: '0 !important'
-		},
+		'&.ant-select-single .ant-select-selector .ant-select-selection-item > div:first-child':
+			{
+				paddingLeft: '0 !important'
+			},
 		'&.ant-select-single.ant-select-open .ant-select-selection-item': {
 			color
 		}

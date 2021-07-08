@@ -76,14 +76,16 @@ export const generateTimePanelColumnStyles = (themeType: ThemeType) => {
 						background
 					}
 				},
-				'&.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover': {
-					background: selected.background
-				}
+				'&.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover':
+					{
+						background: selected.background
+					}
 			},
-			'& > li.ant-picker-time-panel-cell-selected div.ant-picker-time-panel-cell-inner': {
-				background: selected.background,
-				color: selected.color
-			},
+			'& > li.ant-picker-time-panel-cell-selected div.ant-picker-time-panel-cell-inner':
+				{
+					background: selected.background,
+					color: selected.color
+				},
 			'&:not(:first-child)': {
 				borderColor
 			}
