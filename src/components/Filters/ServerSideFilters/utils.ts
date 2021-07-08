@@ -39,8 +39,8 @@ export const useFilters = ({
 	const [pending, setPending] = useState(false)
 
 	// TODO: Delete eslint-disable when API is working
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 	const onSearchWrapper: OnSearchWrapper =
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 		selectedFilterKey => async (searchVal: string) => {
 			// Uncomment this to test if it's working.
 			/* 
