@@ -1,4 +1,4 @@
-import MadeWithLove from './MadeWithLove'
+import { MadeWithLove } from './MadeWithLove'
 import React from 'react'
 import { Meta, Story } from '@storybook/react'
 

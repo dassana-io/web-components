@@ -68,7 +68,7 @@ export interface ScrollableSectionProps {
 	sections: string[]
 }
 
-const ScrollableSection: FC<ScrollableSectionProps> = ({
+export const ScrollableSection: FC<ScrollableSectionProps> = ({
 	arrowUp = true,
 	arrowDown = true,
 	children,
@@ -123,5 +123,3 @@ const ScrollableSection: FC<ScrollableSectionProps> = ({
 		</Element>
 	)
 }
-
-export default ScrollableSection

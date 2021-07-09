@@ -62,7 +62,7 @@ export interface CarouselProps {
 	titleClasses?: string[]
 }
 
-const Carousel: FC<CarouselProps> = ({
+export const Carousel: FC<CarouselProps> = ({
 	autoplayInterval = 0,
 	bulletClasses = [],
 	containerClasses = [],
@@ -158,5 +158,3 @@ const Carousel: FC<CarouselProps> = ({
 		</div>
 	)
 }
-
-export default Carousel
