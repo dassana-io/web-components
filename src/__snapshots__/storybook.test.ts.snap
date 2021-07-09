@@ -4783,6 +4783,244 @@ exports[`Storyshots SVGImage Default 1`] = `
 </div>
 `;
 
+exports[`Storyshots ScrollableSection Multiple 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div>
+    <div
+      className="container-0-2-245 multiContainer-0-2-253"
+      name="apple"
+    >
+      <div
+        className="children-0-2-244"
+      >
+        <div
+          className="children-0-2-252"
+        >
+          apple
+        </div>
+      </div>
+      <div
+        className="arrowDown-0-2-241"
+        style={Object {}}
+      >
+        <span
+          className="iconButton-0-2-19 arrowIcon-0-2-242"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d50-0-2-257"
+            data-icon="arrow-down"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div
+      className="container-0-2-245 multiContainer-0-2-253"
+      name="pineapple"
+    >
+      <div
+        className="arrowUp-0-2-243"
+        style={Object {}}
+      >
+        <span
+          className="iconButton-0-2-19 arrowIcon-0-2-242"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d53-0-2-260"
+            data-icon="arrow-up"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="children-0-2-244"
+      >
+        <div
+          className="children-0-2-252"
+        >
+          pineapple
+        </div>
+      </div>
+      <div
+        className="arrowDown-0-2-241"
+        style={Object {}}
+      >
+        <span
+          className="iconButton-0-2-19 arrowIcon-0-2-242"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d56-0-2-263"
+            data-icon="arrow-down"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div
+      className="container-0-2-245 multiContainer-0-2-253"
+      name="mango"
+    >
+      <div
+        className="arrowUp-0-2-243"
+        style={Object {}}
+      >
+        <span
+          className="iconButton-0-2-19 arrowIcon-0-2-242"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d59-0-2-266"
+            data-icon="arrow-up"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="children-0-2-244"
+      >
+        <div
+          className="children-0-2-252"
+        >
+          mango
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots ScrollableSection Scroll Without Arrow 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="multiContainer-0-2-253"
+  >
+    <div
+      className="container-0-2-245 multiContainer-0-2-253"
+      name="apple"
+    >
+      <div
+        className="children-0-2-244"
+      >
+        <div
+          className="children-0-2-252"
+        >
+          <button
+            autoFocus={false}
+            className="ant-btn ant-btn-default"
+            data-test="button"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <span>
+              Next Section
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="container-0-2-245 multiContainer-0-2-253"
+      name="pineapple"
+    >
+      <div
+        className="arrowUp-0-2-243"
+        style={Object {}}
+      >
+        <span
+          className="iconButton-0-2-19 arrowIcon-0-2-242"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d62-0-2-269"
+            data-icon="arrow-up"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="children-0-2-244"
+      >
+        <div
+          className="children-0-2-252"
+        >
+          <div>
+            pineapple
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots ScrollableSection Single 1`] = `
 <div
   className="light storyWrapper-0-2-2"
@@ -4864,7 +5102,7 @@ exports[`Storyshots Select Default 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-252 container-d0-0-2-257"
+      className="container-0-2-270 container-d0-0-2-275"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -4964,7 +5202,7 @@ exports[`Storyshots Select Full Width 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-252 container-d2-0-2-263"
+      className="container-0-2-270 container-d2-0-2-281"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -5016,11 +5254,11 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-2-260"
+              className="option-0-2-278"
               style={Object {}}
             >
               <span
-                className="optionText-0-2-261"
+                className="optionText-0-2-279"
                 onMouseEnter={[Function]}
               >
                 Lorem
@@ -5074,7 +5312,7 @@ exports[`Storyshots Select Icon 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-252 container-d1-0-2-258"
+      className="container-0-2-270 container-d1-0-2-276"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -5126,11 +5364,11 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-2-260"
+              className="option-0-2-278"
               style={Object {}}
             >
               <span
-                className="icon-0-2-259"
+                className="icon-0-2-277"
               >
                 <svg
                   className=""
@@ -5141,7 +5379,7 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-2-261"
+                className="optionText-0-2-279"
                 onMouseEnter={[Function]}
               >
                 AWS
@@ -5195,7 +5433,7 @@ exports[`Storyshots Select Search 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-252 container-d3-0-2-264"
+      className="container-0-2-270 container-d3-0-2-282"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -5295,7 +5533,7 @@ exports[`Storyshots Select Selected Option Width 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-252 container-d4-0-2-265"
+      className="container-0-2-270 container-d4-0-2-283"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -5392,24 +5630,24 @@ exports[`Storyshots ShortcutMicrocopy Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-269"
+    className="shortcutMicrocopy-0-2-287"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-270"
+      className="wrapper-0-2-288"
     >
       <span
-        className="label-0-2-268"
+        className="label-0-2-286"
       >
         press 
       </span>
       <span
-        className="keyName-0-2-267"
+        className="keyName-0-2-285"
       >
         enter 
       </span>
       <span
-        className="icon-0-2-266"
+        className="icon-0-2-284"
       >
         ↵
       </span>
@@ -5423,19 +5661,19 @@ exports[`Storyshots ShortcutMicrocopy Icon Only 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-269"
+    className="shortcutMicrocopy-0-2-287"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-270"
+      className="wrapper-0-2-288"
     >
       <span
-        className="label-0-2-268"
+        className="label-0-2-286"
       >
         press 
       </span>
       <span
-        className="icon-0-2-266"
+        className="icon-0-2-284"
       >
         ⌘
       </span>
@@ -5449,24 +5687,24 @@ exports[`Storyshots ShortcutMicrocopy Mixed 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-269"
+    className="shortcutMicrocopy-0-2-287"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-270"
+      className="wrapper-0-2-288"
     >
       <span
-        className="label-0-2-268"
+        className="label-0-2-286"
       >
         press 
       </span>
       <span
-        className="keyName-0-2-267"
+        className="keyName-0-2-285"
       >
         cmd 
       </span>
       <span
-        className="icon-0-2-266"
+        className="icon-0-2-284"
       >
         ⌘
       </span>
@@ -5474,12 +5712,12 @@ exports[`Storyshots ShortcutMicrocopy Mixed 1`] = `
          + 
       </span>
       <span
-        className="keyName-0-2-267"
+        className="keyName-0-2-285"
       >
         Enter 
       </span>
       <span
-        className="icon-0-2-266"
+        className="icon-0-2-284"
       >
         <span
           aria-label="enter"
@@ -5511,24 +5749,24 @@ exports[`Storyshots ShortcutMicrocopy Predefined Keys 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-269"
+    className="shortcutMicrocopy-0-2-287"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-270"
+      className="wrapper-0-2-288"
     >
       <span
-        className="label-0-2-268"
+        className="label-0-2-286"
       >
         press 
       </span>
       <span
-        className="keyName-0-2-267"
+        className="keyName-0-2-285"
       >
         cmd 
       </span>
       <span
-        className="icon-0-2-266"
+        className="icon-0-2-284"
       >
         ⌘
       </span>
@@ -5536,12 +5774,12 @@ exports[`Storyshots ShortcutMicrocopy Predefined Keys 1`] = `
          + 
       </span>
       <span
-        className="keyName-0-2-267"
+        className="keyName-0-2-285"
       >
         enter 
       </span>
       <span
-        className="icon-0-2-266"
+        className="icon-0-2-284"
       >
         ↵
       </span>
@@ -5555,7 +5793,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-39 container-d11-0-2-272"
+    className="container-0-2-39 container-d11-0-2-290"
   >
      
   </span>
@@ -5567,27 +5805,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-39 container-d12-0-2-273"
+    className="container-0-2-39 container-d12-0-2-291"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-273"
+    className="container-0-2-39 container-d12-0-2-291"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-273"
+    className="container-0-2-39 container-d12-0-2-291"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-273"
+    className="container-0-2-39 container-d12-0-2-291"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-273"
+    className="container-0-2-39 container-d12-0-2-291"
   >
      
   </span>
@@ -5599,7 +5837,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-39 container-d10-0-2-271"
+    className="container-0-2-39 container-d10-0-2-289"
   >
      
   </span>
@@ -5611,21 +5849,21 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-274"
+    className="container-0-2-292"
     id="table-drawer-wrapper"
   >
     <div
-      className="tableContainer-0-2-278"
+      className="tableContainer-0-2-296"
     >
       <div
-        className="tableContainer-0-2-281"
+        className="tableContainer-0-2-299"
       >
         <div
-          className="tableControls-0-2-282 tableControls-d1-0-2-284"
+          className="tableControls-0-2-300 tableControls-d1-0-2-302"
         >
           <input
             autoFocus={false}
-            className="ant-input container-0-2-48 container-d16-0-2-285"
+            className="ant-input container-0-2-48 container-d16-0-2-303"
             data-test="input-table-search"
             disabled={false}
             onBlur={[Function]}
@@ -5928,7 +6166,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                         className="ant-table-tbody"
                       >
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-280 row-d0-0-2-283"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-298 row-d0-0-2-301"
                           data-row-key={0}
                           onClick={[Function]}
                           style={Object {}}
@@ -5940,10 +6178,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 vpc-flow-logs-are-disabled
@@ -5971,10 +6209,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 FlowLog
@@ -5988,10 +6226,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 visibility
@@ -6000,7 +6238,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-280 row-d0-0-2-283"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-298 row-d0-0-2-301"
                           data-row-key={1}
                           onClick={[Function]}
                           style={Object {}}
@@ -6012,10 +6250,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 instance-is-exposed-to-internet
@@ -6043,10 +6281,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 instance
@@ -6060,10 +6298,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 network
@@ -6072,7 +6310,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-280 row-d0-0-2-283"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-298 row-d0-0-2-301"
                           data-row-key={2}
                           onClick={[Function]}
                           style={Object {}}
@@ -6084,10 +6322,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 default-security-group-should-not-allow-traffic
@@ -6115,10 +6353,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 security-group
@@ -6132,10 +6370,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 networking
@@ -6144,7 +6382,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-280 row-d0-0-2-283"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-298 row-d0-0-2-301"
                           data-row-key={3}
                           onClick={[Function]}
                           style={Object {}}
@@ -6156,10 +6394,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 ssh-from-internet
@@ -6187,10 +6425,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 security-group
@@ -6204,10 +6442,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 network
@@ -6216,7 +6454,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-280 row-d0-0-2-283"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-298 row-d0-0-2-301"
                           data-row-key={4}
                           onClick={[Function]}
                           style={Object {}}
@@ -6228,10 +6466,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 ebs-volume-is-not-encrypted
@@ -6259,10 +6497,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 volume
@@ -6276,10 +6514,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-286"
+                              className="container-0-2-304"
                             >
                               <div
-                                className="wrapper-0-2-288"
+                                className="wrapper-0-2-306"
                                 onMouseEnter={[Function]}
                               >
                                 cryptography
@@ -6542,7 +6780,7 @@ exports[`Storyshots TimeInput Error 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="ant-picker error-0-2-290"
+    className="ant-picker error-0-2-308"
     onMouseUp={[Function]}
   >
     <div
@@ -6816,22 +7054,22 @@ exports[`Storyshots Wizard Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-291"
+    className="container-0-2-309"
   >
     <div
-      className="header-0-2-292"
+      className="header-0-2-310"
     >
       <div
-        className="title-0-2-296"
+        className="title-0-2-314"
       >
         Foo
         <span
-          className="iconButton-0-2-19 iconArrow-0-2-293 iconLeftArrow-0-2-294"
+          className="iconButton-0-2-19 iconArrow-0-2-311 iconLeftArrow-0-2-312"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d50-0-2-299"
+            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d65-0-2-317"
             data-icon="arrow-right"
             data-prefix="fas"
             focusable="false"
