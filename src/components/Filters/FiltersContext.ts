@@ -2,6 +2,7 @@ import { createCtx } from '@dassana-io/web-utils'
 import { SelectOption } from '../Select'
 import {
 	FiltersConfig,
+	FiltersList,
 	FiltersMode,
 	FiltersProps,
 	OnSearchWrapper,
@@ -11,6 +12,7 @@ import {
 export interface FiltersContextProps {
 	allFilters: ProcessedFilters
 	config?: FiltersConfig
+	defaultFilters?: FiltersList
 	dynamicOptions?: SelectOption[]
 	dynamicSearchVal?: string
 	loading?: boolean
