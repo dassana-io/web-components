@@ -2,14 +2,13 @@ import { Bounce } from './Bounce'
 import { Breakpoints } from '@dassana-io/web-utils'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { Element } from 'react-scroll'
 import { IconButton } from 'components/IconButton'
-import indexOf from 'lodash/indexOf'
 import { mediaSelectorsWithBreakpoints } from '../Pages/utils'
-import { ScrollDirections } from './utils'
 import { styleguide } from 'components/assets/styles'
-import { Element, scroller } from 'react-scroll'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import React, { FC, ReactNode } from 'react'
+import { ScrollDirections, scrollOnClick } from './utils'
 
 const { tablet } = Breakpoints
 const { min } = mediaSelectorsWithBreakpoints
@@ -77,24 +76,6 @@ export const ScrollableSection: FC<ScrollableSectionProps> = ({
 	sections = []
 }: ScrollableSectionProps) => {
 	const componentClasses = useStyles()
-
-	const scrollOnClick = (
-		sections: string[],
-		dir: ScrollDirections,
-		currentSection: string
-	) => {
-		let idx = indexOf(sections, currentSection)
-
-		if (dir === up && idx !== 0) {
-			idx -= 1
-		} else if (dir === down && idx < sections.length) {
-			idx += 1
-		}
-
-		scroller.scrollTo(sections[idx], {
-			smooth: true
-		})
-	}
 
 	return (
 		<Element
