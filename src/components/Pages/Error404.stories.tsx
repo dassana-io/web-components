@@ -1,4 +1,4 @@
-import Error404 from './Error404'
+import { Error404 } from './Error404'
 import React from 'react'
 import { Meta, Story } from '@storybook/react'
 

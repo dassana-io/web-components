@@ -79,7 +79,7 @@ const error404Config = [
 	}
 ]
 
-const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
+export const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
 	const classes = useStyles()
 
 	const errorConfigIndex = random(error404Config.length - 1)
@@ -98,5 +98,3 @@ const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
 		</div>
 	)
 }
-
-export default Error404

@@ -101,7 +101,7 @@ const loveIconsConfig = [
 	}
 ]
 
-const MadeWithLove: FC = () => {
+export const MadeWithLove: FC = () => {
 	const classes = useStyles()
 
 	const renderLoveIcons = () =>
@@ -133,5 +133,3 @@ const MadeWithLove: FC = () => {
 		</div>
 	)
 }
-
-export default MadeWithLove
