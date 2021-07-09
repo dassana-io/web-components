@@ -73,8 +73,9 @@ export interface UseFiltersMethods {
 
 export interface SharedFiltersProps {
 	config?: FiltersConfig
-	onSelectedFiltersChange: (selectedFilters: Filters) => void
+	defaultFilters?: FiltersList
 	filtersRef?: RefObject<UseFiltersMethods>
+	onSelectedFiltersChange: (selectedFilters: Filters) => void
 	popoverClasses?: string[]
 }
 
