@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss'
 import { filterSelectedFilters } from './utils'
 import { FiltersList } from './types'
 import { Icon } from '../Icon'
+import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
 import truncate from 'lodash/truncate'
@@ -71,7 +72,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 		)
 	}
 
-	return isMobile ? (
+	return isMobile || isEmpty(allFilters) ? (
 		renderMobileSummary()
 	) : (
 		<>

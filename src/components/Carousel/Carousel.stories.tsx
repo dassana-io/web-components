@@ -1,6 +1,6 @@
 import { images } from './_fixtures_/image-data'
 import React from 'react'
-import Carousel, { CarouselProps } from '.'
+import { Carousel, CarouselProps } from '.'
 import { Meta, Story } from '@storybook/react'
 
 export default {

@@ -25,14 +25,13 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 	const classes = useBaseFilterStyles()
 
 	const {
+		defaultFilters = [{ id: uuidV4() }],
 		loading,
 		onSelectedFiltersChange,
 		resetDynamicProps
 	} = useFiltersContext()
 
-	const [filtersList, setFiltersList] = useState<FiltersList>([
-		{ id: uuidV4() }
-	])
+	const [filtersList, setFiltersList] = useState<FiltersList>(defaultFilters)
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
 	useImperativeHandle(filtersRef, () => ({

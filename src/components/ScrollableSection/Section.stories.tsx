@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react'
-import ScrollableSection, { ScrollableSectionProps } from '.'
+import { ScrollableSection, ScrollableSectionProps } from '.'
 
 const sectionsMockData = ['apple', 'pineapple', 'mango']
 

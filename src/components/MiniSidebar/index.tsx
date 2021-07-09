@@ -78,7 +78,7 @@ const MiniSidebarConfig = [
 	}
 ]
 
-const MiniSidebar: FC<MiniSidebarProps> = ({
+export const MiniSidebar: FC<MiniSidebarProps> = ({
 	socialLinksToOmit = []
 }: MiniSidebarProps) => {
 	const classes = useStyles()
@@ -104,5 +104,3 @@ const MiniSidebar: FC<MiniSidebarProps> = ({
 		</div>
 	)
 }
-
-export default MiniSidebar
