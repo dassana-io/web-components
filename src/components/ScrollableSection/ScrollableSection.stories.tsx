@@ -80,7 +80,6 @@ const multiConfig = [
 	}
 ]
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 const DecoratedMultipleTemplate = () => {
 	const decoratedClasses = useStyles()
 
