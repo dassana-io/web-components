@@ -104,3 +104,5 @@ export const ScrollableSection: FC<ScrollableSectionProps> = ({
 		</Element>
 	)
 }
+
+export { scrollOnClick, ScrollDirections } from './utils'

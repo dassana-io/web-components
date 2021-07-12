@@ -56,6 +56,7 @@ export const useBaseFilterStyles = createUseStyles({
 			marginRight: spacing.s
 		},
 		...font.label,
+		background: themedStyles[light].base.backgroundColor,
 		marginRight: spacing.m
 	},
 	filtersSummary: {
@@ -68,6 +69,9 @@ export const useBaseFilterStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
+			'& $filterIcon': {
+				background: themedStyles[dark].base.backgroundColor
+			},
 			'& $filtersSummary': {
 				color: themedStyles[dark].base.color
 			}
