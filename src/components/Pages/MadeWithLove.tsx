@@ -53,7 +53,8 @@ const useStyles = createUseStyles({
 		padding: '56px 0px'
 	},
 	loveContent: {
-		paddingBottom: spacing['l+']
+		paddingBottom: spacing['l+'],
+		textAlign: 'center'
 	},
 	loveIcon: {
 		width: 80
