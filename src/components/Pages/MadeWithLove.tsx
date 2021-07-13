@@ -4,9 +4,17 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HighChews from '../assets/images/with_love_high_chews.svg'
+import { Link } from 'components/Link'
 import Momos from '../assets/images/with_love_momos.svg'
 import { styleguide } from 'components/assets/styles'
 import { Breakpoints, ThemeType } from '@dassana-io/web-utils'
+import {
+	faAws,
+	faGithub,
+	faLinkedin,
+	faSlack,
+	faTwitterSquare
+} from '@fortawesome/free-brands-svg-icons'
 import {
 	generateThemedMadeWithLoveStyles,
 	mediaSelectorsWithBreakpoints
@@ -102,6 +110,29 @@ const loveIconsConfig = [
 	}
 ]
 
+const footerLinksConfig = [
+	{
+		href: 'google.com',
+		icon: faTwitterSquare
+	},
+	{
+		href: 'google.com',
+		icon: faLinkedin
+	},
+	{
+		href: 'google.com',
+		icon: faGithub
+	},
+	{
+		href: 'google.com',
+		icon: faSlack
+	},
+	{
+		href: 'google.com',
+		icon: faAws
+	}
+]
+
 export const MadeWithLove: FC = () => {
 	const classes = useStyles()
 
@@ -127,9 +158,24 @@ export const MadeWithLove: FC = () => {
 					in San Jose...in addition to lots of
 				</div>
 				<div className={classes.loveIcons}>{renderLoveIcons()}</div>
+				<div>
+					<div>
+						Are you into momos, gourment coffees and high chews?
+					</div>
+					<div>We’re hiring!</div>
+				</div>
 			</div>
-			<div className={classes.copyright}>
-				© {new Date().getFullYear()} Dassana.io, All Rights Reserved
+			<div>
+				<div>
+					{footerLinksConfig.map(({ icon, href }, i) => (
+						<Link href={href} key={i}>
+							<FontAwesomeIcon icon={icon} />
+						</Link>
+					))}
+				</div>
+				<div className={classes.copyright}>
+					© {new Date().getFullYear()} Dassana.io, All Rights Reserved
+				</div>
 			</div>
 		</div>
 	)
