@@ -1,3 +1,4 @@
+import { createUseStyles } from 'react-jss'
 import { MadeWithLove } from './MadeWithLove'
 import React from 'react'
 import { Meta, Story } from '@storybook/react'
@@ -7,6 +8,22 @@ export default {
 	title: 'Made With Love'
 } as Meta
 
-const Template: Story = () => <MadeWithLove />
+const useStyles = createUseStyles({
+	container: {
+		height: '100vh'
+	}
+})
+
+const DecoratedTemplate = () => {
+	const classes = useStyles()
+
+	return (
+		<div className={classes.container}>
+			<MadeWithLove />
+		</div>
+	)
+}
+
+const Template: Story = () => <DecoratedTemplate />
 
 export const WithLove = Template.bind({})
