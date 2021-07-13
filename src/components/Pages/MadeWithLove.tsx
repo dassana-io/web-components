@@ -21,7 +21,7 @@ import {
 } from './utils'
 import React, { FC } from 'react'
 
-const { tablet } = Breakpoints
+const { mobile, tablet } = Breakpoints
 const { min } = mediaSelectorsWithBreakpoints
 
 const { dark } = ThemeType
@@ -38,18 +38,24 @@ const {
 
 const useStyles = createUseStyles({
 	container: {
-		// height: '100vh',
 		...font.body,
 		...generateThemedMadeWithLoveStyles(dark),
-		[min[tablet]]: {
+		[min[mobile]]: {
+			...flexCenter,
+			...flexDown,
+			height: '100vh'
+			// position: 'relative',
 			// ...flexSpaceBetween
 			// height: '100%',
 			// paddingTop: 256
+			// backgroundColor: 'blue'
+		},
+		[min[tablet]]: {
+			backgroundColor: 'yellow'
 		},
 		// ...flexAlignCenter,
 		// ...flexCenter,
 		// ...flexDown,
-		// position: 'relative',
 		padding: '62px 0',
 		textAlign: 'center'
 		// padding: '56px 0px'
@@ -58,6 +64,11 @@ const useStyles = createUseStyles({
 	content: {
 		// paddingBottom: spacing['l+'],
 		// textAlign: 'center'
+		// ...flexAlignCenter,
+		...flexCenter,
+		...flexDown,
+		// backgroundColor: 'purple',
+		flex: 1
 	},
 	copyright: {
 		[min[tablet]]: {
@@ -67,9 +78,13 @@ const useStyles = createUseStyles({
 		paddingTop: spacing.m
 	},
 	footer: {
+		// backgroundColor: 'red',
+		[min[mobile]]: {
+			// bottom: 60,
+			// position: 'absolute',
+			paddingTop: 0
+		},
 		paddingTop: 62
-		// position: 'absolute',
-		// bottom: 60
 	},
 	footerIcon: {
 		fontSize: 24,
