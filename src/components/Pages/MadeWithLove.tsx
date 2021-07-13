@@ -39,10 +39,10 @@ const {
 const useStyles = createUseStyles({
 	copyright: {
 		[min[tablet]]: {
-			paddingBottom: 124
+			// paddingBottom: 124
 		},
 		...font.label,
-		paddingTop: 56
+		paddingTop: 60
 	},
 	heart: {
 		color: reds.base,
@@ -50,18 +50,22 @@ const useStyles = createUseStyles({
 		marginRight: spacing.s
 	},
 	love: {
+		height: '100vh',
 		...generateThemedMadeWithLoveStyles(dark),
 		[min[tablet]]: {
-			...flexSpaceBetween,
-			height: '100%',
-			paddingTop: 256
+			// ...flexSpaceBetween
+			// height: '100%',
+			// paddingTop: 256
 		},
-		...flexAlignCenter,
+		// ...flexAlignCenter,
+		...flexCenter,
 		...flexDown,
-		padding: '56px 0px'
+		position: 'relative',
+		textAlign: 'center'
+		// padding: '56px 0px'
 	},
 	loveContent: {
-		paddingBottom: spacing['l+'],
+		// paddingBottom: spacing['l+'],
 		textAlign: 'center'
 	},
 	loveIcon: {
@@ -76,8 +80,8 @@ const useStyles = createUseStyles({
 		textAlign: 'center'
 	},
 	loveIconTag: {
-		...font.label,
-		paddingTop: spacing.s
+		...font.label
+		// paddingTop: spacing.s
 	},
 	loveIcons: {
 		[min[tablet]]: {
@@ -85,13 +89,34 @@ const useStyles = createUseStyles({
 		},
 		...flexCenter,
 		...flexDown,
-		paddingTop: 52
+		paddingTop: 52,
+		paddingBottom: 92
 	},
 	plus: {
 		[min[tablet]]: {
-			margin: `0px ${spacing['l+']}px`
-		},
-		margin: `${spacing['l+']}px 0px`
+			// margin: `0px ${spacing['l+']}px`
+		}
+		// margin: `${spacing['l+']}px 0px`
+	},
+	hiring: {
+		...font.label
+	},
+	hiringTagline: {
+		paddingBottom: 8
+	},
+	footer: {
+		position: 'absolute',
+		bottom: 60
+	},
+	footerIcon: {
+		// width: 40
+		fontSize: 24
+	},
+	footerIcons: {
+		...flexCenter,
+		'& > :not(:last-child)': {
+			marginRight: 20
+		}
 	}
 })
 
@@ -110,6 +135,7 @@ const loveIconsConfig = [
 	}
 ]
 
+// TODO: update placeholder hrefs later
 const footerLinksConfig = [
 	{
 		href: 'google.com',
@@ -159,16 +185,23 @@ export const MadeWithLove: FC = () => {
 				</div>
 				<div className={classes.loveIcons}>{renderLoveIcons()}</div>
 				<div>
-					<div>
+					<div className={classes.hiringTagline}>
 						Are you into momos, gourment coffees and high chews?
 					</div>
-					<div>We’re hiring!</div>
+					{/* TODO: update placeholder */}
+					<Link classes={[classes.hiring]} href='www.linkedin.com'>
+						We’re hiring!
+					</Link>
 				</div>
 			</div>
-			<div>
-				<div>
+			<div className={classes.footer}>
+				<div className={classes.footerIcons}>
 					{footerLinksConfig.map(({ icon, href }, i) => (
-						<Link href={href} key={i}>
+						<Link
+							classes={[classes.footerIcon]}
+							href={href}
+							key={i}
+						>
 							<FontAwesomeIcon icon={icon} />
 						</Link>
 					))}
