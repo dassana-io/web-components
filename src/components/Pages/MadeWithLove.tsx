@@ -37,20 +37,9 @@ const {
 } = styleguide
 
 const useStyles = createUseStyles({
-	copyright: {
-		[min[tablet]]: {
-			// paddingBottom: 124
-		},
-		...font.label,
-		paddingTop: 60
-	},
-	heart: {
-		color: reds.base,
-		marginLeft: spacing.s,
-		marginRight: spacing.s
-	},
-	love: {
-		height: '100vh',
+	container: {
+		// height: '100vh',
+		...font.body,
 		...generateThemedMadeWithLoveStyles(dark),
 		[min[tablet]]: {
 			// ...flexSpaceBetween
@@ -58,65 +47,85 @@ const useStyles = createUseStyles({
 			// paddingTop: 256
 		},
 		// ...flexAlignCenter,
-		...flexCenter,
-		...flexDown,
-		position: 'relative',
+		// ...flexCenter,
+		// ...flexDown,
+		// position: 'relative',
+		padding: '62px 0',
 		textAlign: 'center'
 		// padding: '56px 0px'
+		// mobile
 	},
-	loveContent: {
+	content: {
 		// paddingBottom: spacing['l+'],
-		textAlign: 'center'
+		// textAlign: 'center'
+	},
+	copyright: {
+		[min[tablet]]: {
+			// paddingBottom: 124
+		},
+		...font.label,
+		paddingTop: spacing.m
+	},
+	footer: {
+		paddingTop: 62
+		// position: 'absolute',
+		// bottom: 60
+	},
+	footerIcon: {
+		fontSize: 24,
+		width: 40
+	},
+	footerIcons: {
+		// ...flexCenter,
+		'& > :not(:last-child)': {
+			marginRight: 20
+		}
+	},
+	heart: {
+		color: reds.base,
+		marginLeft: spacing.s,
+		marginRight: spacing.s
+	},
+	hiring: {
+		paddingTop: spacing.xl
+		// paddingBottom: 8
+	},
+	hiringLink: {
+		...font.label
+	},
+	hiringTag: {
+		// paddingBottom: 8
 	},
 	loveIcon: {
 		width: 80
 	},
-	loveIconContainer: {
-		...flexCenter,
-		...flexDown,
-		[min[tablet]]: {
-			flexDirection: 'row'
-		},
-		textAlign: 'center'
-	},
 	loveIconTag: {
-		...font.label
-		// paddingTop: spacing.s
+		...font.label,
+		paddingTop: spacing.s
+	},
+	loveIconWrap: {
+		// ...flexCenter,
+		// ...flexDown,
+		[min[tablet]]: {
+			// flexDirection: 'row'
+		}
+		// textAlign: 'center'
 	},
 	loveIcons: {
 		[min[tablet]]: {
-			flexDirection: 'row'
+			// flexDirection: 'row'
+			// paddingTop: 52
 		},
-		...flexCenter,
-		...flexDown,
-		paddingTop: 52,
-		paddingBottom: 92
+		paddingTop: spacing['l+']
+		// ...flexCenter,
+		// ...flexDown,
+		// paddingBottom: 92
 	},
 	plus: {
 		[min[tablet]]: {
 			// margin: `0px ${spacing['l+']}px`
-		}
-		// margin: `${spacing['l+']}px 0px`
-	},
-	hiring: {
-		...font.label
-	},
-	hiringTagline: {
-		paddingBottom: 8
-	},
-	footer: {
-		position: 'absolute',
-		bottom: 60
-	},
-	footerIcon: {
-		// width: 40
-		fontSize: 24
-	},
-	footerIcons: {
-		...flexCenter,
-		'& > :not(:last-child)': {
-			marginRight: 20
-		}
+		},
+		margin: `${spacing.m}px 0px`
 	}
 })
 
@@ -164,7 +173,7 @@ export const MadeWithLove: FC = () => {
 
 	const renderLoveIcons = () =>
 		loveIconsConfig.map(({ icon, tag }, i) => (
-			<div className={classes.loveIconContainer} key={i}>
+			<div className={classes.loveIconWrap} key={i}>
 				<div>
 					<img alt={tag} className={classes.loveIcon} src={icon} />
 					<div className={classes.loveIconTag}>{tag}</div>
@@ -176,20 +185,23 @@ export const MadeWithLove: FC = () => {
 		))
 
 	return (
-		<div className={classes.love}>
-			<div className={classes.loveContent}>
+		<div className={classes.container}>
+			<div className={classes.content}>
 				<div>
 					Made with
 					<FontAwesomeIcon className={classes.heart} icon={faHeart} />
 					in San Jose...in addition to lots of
 				</div>
 				<div className={classes.loveIcons}>{renderLoveIcons()}</div>
-				<div>
-					<div className={classes.hiringTagline}>
+				<div className={classes.hiring}>
+					<div className={classes.hiringTag}>
 						Are you into momos, gourment coffees and high chews?
 					</div>
 					{/* TODO: update placeholder */}
-					<Link classes={[classes.hiring]} href='www.linkedin.com'>
+					<Link
+						classes={[classes.hiringLink]}
+						href='www.linkedin.com'
+					>
 						We’re hiring!
 					</Link>
 				</div>
