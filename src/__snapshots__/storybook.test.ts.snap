@@ -3128,7 +3128,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           <a
             className="ant-typography hiringLink-0-2-224"
             data-test="link"
-            href="www.linkedin.com"
+            href="http://www.linkedin.com"
             style={
               Object {
                 "WebkitLineClamp": undefined,
@@ -3151,7 +3151,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           <a
             className="ant-typography footerIcon-0-2-220"
             data-test="link"
-            href="google.com"
+            href="http://www.twitter.com"
             style={
               Object {
                 "WebkitLineClamp": undefined,
@@ -3182,7 +3182,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           <a
             className="ant-typography footerIcon-0-2-220"
             data-test="link"
-            href="google.com"
+            href="http://www.linkedin.com"
             style={
               Object {
                 "WebkitLineClamp": undefined,
@@ -3213,7 +3213,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           <a
             className="ant-typography footerIcon-0-2-220"
             data-test="link"
-            href="google.com"
+            href="https://github.com/dassana-io/dassana"
             style={
               Object {
                 "WebkitLineClamp": undefined,
@@ -3244,7 +3244,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           <a
             className="ant-typography footerIcon-0-2-220"
             data-test="link"
-            href="google.com"
+            href="https://www.slack.com"
             style={
               Object {
                 "WebkitLineClamp": undefined,
@@ -3275,7 +3275,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           <a
             className="ant-typography footerIcon-0-2-220"
             data-test="link"
-            href="google.com"
+            href="https://github.com/dassana-io/dassana"
             style={
               Object {
                 "WebkitLineClamp": undefined,

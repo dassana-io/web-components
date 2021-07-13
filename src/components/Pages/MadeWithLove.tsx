@@ -132,23 +132,23 @@ const loveIconsConfig = [
 // TODO: update placeholder hrefs later
 const footerLinksConfig = [
 	{
-		href: 'google.com',
+		href: 'http://www.twitter.com',
 		icon: faTwitterSquare
 	},
 	{
-		href: 'google.com',
+		href: 'http://www.linkedin.com',
 		icon: faLinkedin
 	},
 	{
-		href: 'google.com',
+		href: 'https://github.com/dassana-io/dassana',
 		icon: faGithub
 	},
 	{
-		href: 'google.com',
+		href: 'https://www.slack.com',
 		icon: faSlack
 	},
 	{
-		href: 'google.com',
+		href: 'https://github.com/dassana-io/dassana',
 		icon: faAws
 	}
 ]
@@ -185,7 +185,7 @@ export const MadeWithLove: FC = () => {
 					{/* TODO: update placeholder */}
 					<Link
 						classes={[classes.hiringLink]}
-						href='www.linkedin.com'
+						href='http://www.linkedin.com'
 					>
 						We’re hiring!
 					</Link>
