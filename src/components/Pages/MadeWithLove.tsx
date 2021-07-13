@@ -31,7 +31,6 @@ const {
 	flexAlignCenter,
 	flexCenter,
 	flexDown,
-	flexSpaceBetween,
 	font,
 	spacing
 } = styleguide
@@ -43,45 +42,25 @@ const useStyles = createUseStyles({
 		[min[mobile]]: {
 			...flexCenter,
 			...flexDown,
-			height: '100vh'
-			// position: 'relative',
-			// ...flexSpaceBetween
-			// height: '100%',
-			// paddingTop: 256
-			// backgroundColor: 'blue'
+			height: '100%'
 		},
-		[min[tablet]]: {
-			backgroundColor: 'yellow'
-		},
-		// ...flexAlignCenter,
-		// ...flexCenter,
-		// ...flexDown,
 		padding: '62px 0',
 		textAlign: 'center'
-		// padding: '56px 0px'
-		// mobile
 	},
 	content: {
-		// paddingBottom: spacing['l+'],
-		// textAlign: 'center'
-		// ...flexAlignCenter,
 		...flexCenter,
 		...flexDown,
-		// backgroundColor: 'purple',
 		flex: 1
 	},
 	copyright: {
 		[min[tablet]]: {
-			// paddingBottom: 124
+			paddingTop: 60
 		},
 		...font.label,
 		paddingTop: spacing.m
 	},
 	footer: {
-		// backgroundColor: 'red',
 		[min[mobile]]: {
-			// bottom: 60,
-			// position: 'absolute',
 			paddingTop: 0
 		},
 		paddingTop: 62
@@ -91,7 +70,6 @@ const useStyles = createUseStyles({
 		width: 40
 	},
 	footerIcons: {
-		// ...flexCenter,
 		'& > :not(:last-child)': {
 			marginRight: 20
 		}
@@ -103,14 +81,11 @@ const useStyles = createUseStyles({
 	},
 	hiring: {
 		paddingTop: spacing.xl
-		// paddingBottom: 8
 	},
 	hiringLink: {
 		...font.label
 	},
-	hiringTag: {
-		// paddingBottom: 8
-	},
+	hiringTag: {},
 	loveIcon: {
 		width: 80
 	},
@@ -119,26 +94,21 @@ const useStyles = createUseStyles({
 		paddingTop: spacing.s
 	},
 	loveIconWrap: {
-		// ...flexCenter,
-		// ...flexDown,
 		[min[tablet]]: {
-			// flexDirection: 'row'
+			...flexAlignCenter
 		}
-		// textAlign: 'center'
 	},
 	loveIcons: {
 		[min[tablet]]: {
-			// flexDirection: 'row'
-			// paddingTop: 52
+			display: 'flex',
+			paddingBottom: 92,
+			paddingTop: spacing.xl
 		},
 		paddingTop: spacing['l+']
-		// ...flexCenter,
-		// ...flexDown,
-		// paddingBottom: 92
 	},
 	plus: {
 		[min[tablet]]: {
-			// margin: `0px ${spacing['l+']}px`
+			margin: `0px ${spacing.l}px`
 		},
 		margin: `${spacing.m}px 0px`
 	}
