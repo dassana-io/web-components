@@ -136,12 +136,13 @@ const loveIconsConfig = [
 	}
 ]
 
+export interface FooterLinksConfig {
+	href: string
+	icon: IconDefinition
+}
 export interface MadeWithLoveProps {
 	classes?: string[]
-	footerLinksConfig?: {
-		href: string
-		icon: IconDefinition
-	}[]
+	footerLinksConfig?: FooterLinksConfig[]
 }
 
 const defaultFooterLinksConfig = [

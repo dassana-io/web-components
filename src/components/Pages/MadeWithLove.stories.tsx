@@ -1,5 +1,4 @@
 import { createUseStyles } from 'react-jss'
-import { MadeWithLove } from './MadeWithLove'
 import React from 'react'
 import {
 	faAws,
@@ -8,6 +7,7 @@ import {
 	faSlack,
 	faTwitterSquare
 } from '@fortawesome/free-brands-svg-icons'
+import { FooterLinksConfig, MadeWithLove } from './MadeWithLove'
 import { Meta, Story } from '@storybook/react'
 
 export default {
@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-const footerLinksConfig = [
+const footerLinksConfig: FooterLinksConfig[] = [
 	{
 		href: 'http://www.twitter.com',
 		icon: faTwitterSquare
