@@ -207,7 +207,7 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 				<div className={compClasses.loveIcons}>{renderLoveIcons()}</div>
 				<div className={compClasses.hiring}>
 					<div className={compClasses.hiringTag}>
-						Are you into momos, gourmet coffees and high chews?
+						Are you into momos, gourmet coffees, and high chews?
 					</div>
 					{/* TODO: update placeholder */}
 					<Link
