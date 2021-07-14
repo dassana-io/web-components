@@ -145,7 +145,7 @@ export interface MadeWithLoveProps {
 	footerLinksConfig?: FooterLinksConfig[]
 }
 
-const defaultFooterLinksConfig = [
+const defaultFooterLinksConfig: FooterLinksConfig[] = [
 	{
 		href: 'http://www.twitter.com',
 		icon: faTwitterSquare
