@@ -1,20 +1,13 @@
 import Coffee from '../assets/images/with_love_coffee.svg'
 import { createUseStyles } from 'react-jss'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { faPlus } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HighChews from '../assets/images/with_love_high_chews.svg'
 import { Link } from 'components/Link'
 import Momos from '../assets/images/with_love_momos.svg'
 import { styleguide } from 'components/assets/styles'
 import { Breakpoints, ThemeType } from '@dassana-io/web-utils'
-import {
-	faAws,
-	faGithub,
-	faLinkedin,
-	faSlack,
-	faTwitterSquare
-} from '@fortawesome/free-brands-svg-icons'
+import { faPlus, IconDefinition } from '@fortawesome/pro-regular-svg-icons'
 import {
 	generateThemedMadeWithLoveStyles,
 	mediaSelectorsWithBreakpoints
@@ -129,31 +122,16 @@ const loveIconsConfig = [
 	}
 ]
 
-// TODO: update placeholder hrefs later
-const footerLinksConfig = [
-	{
-		href: 'http://www.twitter.com',
-		icon: faTwitterSquare
-	},
-	{
-		href: 'http://www.linkedin.com',
-		icon: faLinkedin
-	},
-	{
-		href: 'https://github.com/dassana-io/dassana',
-		icon: faGithub
-	},
-	{
-		href: 'https://www.slack.com',
-		icon: faSlack
-	},
-	{
-		href: 'https://github.com/dassana-io/dassana',
-		icon: faAws
-	}
-]
+export interface MadeWithLoveProps {
+	footerLinksConfig: {
+		href: string
+		icon: IconDefinition
+	}[]
+}
 
-export const MadeWithLove: FC = () => {
+export const MadeWithLove: FC<MadeWithLoveProps> = ({
+	footerLinksConfig
+}: MadeWithLoveProps) => {
 	const classes = useStyles()
 
 	const renderLoveIcons = () =>
