@@ -17,7 +17,7 @@ import React, { FC } from 'react'
 const { mobile, tablet } = Breakpoints
 const { min } = mediaSelectorsWithBreakpoints
 
-const { dark } = ThemeType
+const { dark, light } = ThemeType
 
 const {
 	colors: { reds },
@@ -104,6 +104,12 @@ const useStyles = createUseStyles({
 			margin: `0px ${spacing.l}px`
 		},
 		margin: `${spacing.m}px 0px`
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${light}`]: {
+			'& $container': generateThemedMadeWithLoveStyles(light)
+		}
 	}
 })
 
