@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import Coffee from '../assets/images/with_love_coffee.svg'
 import { createUseStyles } from 'react-jss'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +8,13 @@ import { Link } from 'components/Link'
 import Momos from '../assets/images/with_love_momos.svg'
 import { styleguide } from 'components/assets/styles'
 import { Breakpoints, ThemeType } from '@dassana-io/web-utils'
+import {
+	faAws,
+	faGithub,
+	faLinkedin,
+	faSlack,
+	faTwitterSquare
+} from '@fortawesome/free-brands-svg-icons'
 import { faPlus, IconDefinition } from '@fortawesome/pro-regular-svg-icons'
 import {
 	generateThemedMadeWithLoveStyles,
@@ -129,57 +137,92 @@ const loveIconsConfig = [
 ]
 
 export interface MadeWithLoveProps {
-	footerLinksConfig: {
+	classes?: string[]
+	footerLinksConfig?: {
 		href: string
 		icon: IconDefinition
 	}[]
 }
 
+const defaultFooterLinksConfig = [
+	{
+		href: 'http://www.twitter.com',
+		icon: faTwitterSquare
+	},
+	{
+		href: 'http://www.linkedin.com',
+		icon: faLinkedin
+	},
+	{
+		href: 'https://github.com/dassana-io/dassana',
+		icon: faGithub
+	},
+	{
+		href: 'https://www.slack.com',
+		icon: faSlack
+	},
+	{
+		href: 'https://github.com/dassana-io/dassana',
+		icon: faAws
+	}
+]
+
 export const MadeWithLove: FC<MadeWithLoveProps> = ({
-	footerLinksConfig
+	classes = [],
+	footerLinksConfig = defaultFooterLinksConfig
 }: MadeWithLoveProps) => {
-	const classes = useStyles()
+	const compClasses = useStyles()
 
 	const renderLoveIcons = () =>
 		loveIconsConfig.map(({ icon, tag }, i) => (
-			<div className={classes.loveIconWrap} key={i}>
+			<div className={compClasses.loveIconWrap} key={i}>
 				<div>
-					<img alt={tag} className={classes.loveIcon} src={icon} />
-					<div className={classes.loveIconTag}>{tag}</div>
+					<img
+						alt={tag}
+						className={compClasses.loveIcon}
+						src={icon}
+					/>
+					<div className={compClasses.loveIconTag}>{tag}</div>
 				</div>
 				{i < loveIconsConfig.length - 1 && (
-					<FontAwesomeIcon className={classes.plus} icon={faPlus} />
+					<FontAwesomeIcon
+						className={compClasses.plus}
+						icon={faPlus}
+					/>
 				)}
 			</div>
 		))
 
 	return (
-		<div className={classes.container}>
-			<div className={classes.content}>
+		<div className={cn(compClasses.container, classes)}>
+			<div className={compClasses.content}>
 				<div>
 					Made with
-					<FontAwesomeIcon className={classes.heart} icon={faHeart} />
+					<FontAwesomeIcon
+						className={compClasses.heart}
+						icon={faHeart}
+					/>
 					in San Jose...in addition to lots of
 				</div>
-				<div className={classes.loveIcons}>{renderLoveIcons()}</div>
-				<div className={classes.hiring}>
-					<div className={classes.hiringTag}>
+				<div className={compClasses.loveIcons}>{renderLoveIcons()}</div>
+				<div className={compClasses.hiring}>
+					<div className={compClasses.hiringTag}>
 						Are you into momos, gourment coffees and high chews?
 					</div>
 					{/* TODO: update placeholder */}
 					<Link
-						classes={[classes.hiringLink]}
+						classes={[compClasses.hiringLink]}
 						href='http://www.linkedin.com'
 					>
 						We’re hiring!
 					</Link>
 				</div>
 			</div>
-			<div className={classes.footer}>
-				<div className={classes.footerIcons}>
+			<div className={compClasses.footer}>
+				<div className={compClasses.footerIcons}>
 					{footerLinksConfig.map(({ icon, href }, i) => (
 						<Link
-							classes={[classes.footerIcon]}
+							classes={[compClasses.footerIcon]}
 							href={href}
 							key={i}
 						>
@@ -187,7 +230,7 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 						</Link>
 					))}
 				</div>
-				<div className={classes.copyright}>
+				<div className={compClasses.copyright}>
 					© {new Date().getFullYear()} Dassana.io, All Rights Reserved
 				</div>
 			</div>
