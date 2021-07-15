@@ -1,12 +1,9 @@
 import React from 'react'
-import { ThemeType } from 'components/assets/styles'
 import { Tooltip } from 'antd'
 import { ColoredDot, ColoredDotProps } from '.'
 import { mount, ReactWrapper } from 'enzyme'
 
-const { light, dark } = ThemeType
-
-const MOCK_COLORS = { [dark]: 'red', [light]: 'red' }
+const MOCK_COLOR = 'red'
 const MOCK_TOOLTIP_TEXT = 'Hi I am color'
 
 let wrapper: ReactWrapper
@@ -33,7 +30,7 @@ describe('ColoredDot', () => {
 
 	it('renders with a tooltip if both tooltip text and colors provided', () => {
 		mountWrapper({
-			colors: MOCK_COLORS,
+			color: MOCK_COLOR,
 			tooltipText: MOCK_TOOLTIP_TEXT
 		})
 
@@ -50,7 +47,7 @@ describe('ColoredDot', () => {
 
 	it('renders a dot with correct background color if colors are provided', () => {
 		mountWrapper({
-			colors: MOCK_COLORS
+			color: MOCK_COLOR
 		})
 
 		const dot = wrapper.find(ColoredDot)

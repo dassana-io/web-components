@@ -1,58 +1,42 @@
 import cn from 'classnames'
-import { createUseStyles as createJssUseStyles } from 'react-jss'
-import { ThemeType } from 'components/assets/styles'
+import { createUseStyles } from 'react-jss'
 import { Tooltip } from 'components/Tooltip'
 import React, { FC } from 'react'
 
-const { light, dark } = ThemeType
-
-const createUseStyles = ({ colors }: Pick<ColoredDotProps, 'colors'>) =>
-	createJssUseStyles({
-		coloredDot: {
-			background: colors && colors[light] ? colors[light] : 'transparent',
-			borderRadius: '50%',
-			display: 'block',
-			height: 10,
-			width: 10
-		},
-		// eslint-disable-next-line sort-keys
-		'@global': {
-			[`.${dark}`]: {
-				'& $coloredDot': {
-					background:
-						colors && colors[dark] ? colors[dark] : 'transparent'
-				}
-			}
-		}
-	})
+const useStyles = createUseStyles({
+	coloredDot: {
+		background: ({ color }) => (color ? color : 'transparent'),
+		borderRadius: '50%',
+		display: 'block',
+		height: 10,
+		width: 10
+	}
+})
 
 export interface ColoredDotProps {
 	classes?: string[]
-	colors?: {
-		[ThemeType.light]: string
-		[ThemeType.dark]: string
-	}
+	color?: string
 	tooltipText?: string
 }
 
 export const ColoredDot: FC<ColoredDotProps> = ({
 	classes = [],
-	colors,
+	color,
 	tooltipText
 }: ColoredDotProps) => {
-	const componentClasses = createUseStyles({
-		colors
-	})()
+	const componentClasses = useStyles({
+		color
+	})
 
-	const dotClasss = cn(componentClasses.coloredDot, classes)
+	const dotClass = cn(componentClasses.coloredDot, classes)
 
-	const showTooltip = colors && tooltipText
+	const showTooltip = color && tooltipText
 
 	return showTooltip ? (
 		<Tooltip placement='top' renderWithoutDataTag title={tooltipText}>
-			<span className={dotClasss}></span>
+			<span className={dotClass}></span>
 		</Tooltip>
 	) : (
-		<span className={dotClasss}></span>
+		<span className={dotClass}></span>
 	)
 }
