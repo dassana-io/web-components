@@ -1,6 +1,5 @@
 import { ColumnFormats } from '../types'
 import { styleguide } from 'components/assets/styles'
-import { ThemeType } from 'components'
 import { ColumnType, ColumnTypes, TableProps } from '..'
 
 const {
@@ -29,17 +28,11 @@ const columns: ColumnType[] = [
 			colorMap: {
 				disabled: null,
 				hasIssues: {
-					colors: {
-						[ThemeType.light]: oranges.base,
-						[ThemeType.dark]: oranges.base
-					},
+					color: oranges.base,
 					tooltipText: 'Test'
 				},
 				needsConfig: {
-					colors: {
-						[ThemeType.light]: blacks['lighten-40'],
-						[ThemeType.dark]: blacks['lighten-70']
-					},
+					color: blacks['lighten-40'],
 					tooltipText: 'Needs Config'
 				},
 				ok: null
