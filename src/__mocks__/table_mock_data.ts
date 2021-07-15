@@ -1,5 +1,4 @@
 import { fakeApiCallSuccess } from '../components/utils'
-import { ThemeType } from 'components'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -105,10 +104,7 @@ const columns: ColumnType[] = [
 		renderProps: {
 			colorMap: {
 				test: {
-					colors: {
-						[ThemeType.light]: 'red',
-						[ThemeType.dark]: 'red'
-					},
+					color: 'red',
 					tooltipText: 'Hi I am colored'
 				}
 			}

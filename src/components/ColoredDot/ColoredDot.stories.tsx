@@ -8,14 +8,15 @@ const { light, dark } = ThemeType
 
 export default {
 	argTypes: {
-		classes: { control: { disable: true } }
+		classes: { control: { disable: true } },
+		color: { control: { type: 'color' } }
 	},
 	component: ColoredDot,
 	title: 'ColoredDot'
 } as Meta
 
 const {
-	colors: { oranges, greens },
+	colors: { greens },
 	font,
 	spacing
 } = styleguide
@@ -43,7 +44,7 @@ const Template: Story<ColoredDotProps> = args => <DecoratedStory {...args} />
 
 export const Colored = Template.bind({})
 Colored.args = {
-	colors: { [dark]: oranges.base, [light]: greens.base },
+	color: greens.base,
 	tooltipText: 'Colored Dot'
 }
 
