@@ -35,6 +35,7 @@ const columns: ColumnType[] = [
 		format: icon,
 		renderProps: {
 			iconKey: 'value',
+			label: { labelKey: 'value', type: 'tooltip' },
 			type: 'iconKey'
 		},
 		title: 'Company',

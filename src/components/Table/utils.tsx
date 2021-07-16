@@ -5,6 +5,7 @@ import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
+import { Tooltip } from 'components/Tooltip'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -390,7 +391,12 @@ function applyRender<TableData extends DataId>(
 					type IconRecord = IconName | string | Record<string, any>
 
 					const renderProps = column.renderProps
-					const { iconKey, height = defaultIconHeight } = renderProps
+
+					const {
+						iconKey,
+						height = defaultIconHeight,
+						label
+					} = renderProps
 
 					const jsonPath = iconKey ? `$.${iconKey}` : ''
 
@@ -457,15 +463,46 @@ function applyRender<TableData extends DataId>(
 							if (renderProps.type === 'icon' && !iconProps.icon)
 								return record
 
-							/**
-							 * Custom icons are defined as a map of key and url in the Column object.
-							 * E.g. { renderProps: {iconMap: { example-icon: 'https://dummyimage.com/600x400/0072c6/fff&text=A' }, ...}, ...}
-							 * Then in the data object, you reference the iconMap key - 'example-icon'.
-							 * E.g. { demo_icon: 'example-icon', ... }
-							 * If this mapping doesn't exist in the column object, the table renders just the key (or record).
-							 * In this example, it will be 'example-icon'.
-							 */
-							return <Icon {...iconProps} height={height} />
+							const iconComp = (
+								<Icon {...iconProps} height={height} />
+							)
+
+							if (!label) return iconComp
+
+							const labelKey =
+								!label.labelKey && typeof record === 'string'
+									? record
+									: label.labelKey
+
+							if (!labelKey) return iconComp
+							else {
+								const jsonPath = `$.${labelKey}`
+
+								const labelVal =
+									typeof record === 'string'
+										? labelKey
+										: getJSONPathValue(jsonPath, record)
+
+								switch (label.type) {
+									case 'inline':
+										return (
+											<div>
+												{iconComp}
+												{labelVal}
+											</div>
+										)
+
+									default:
+										return (
+											<Tooltip
+												placement='top'
+												title={labelVal}
+											>
+												{iconComp}
+											</Tooltip>
+										)
+								}
+							}
 						}
 					}
 					break

@@ -59,6 +59,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'company',
 		format: icon,
 		renderProps: {
+			label: { type: 'inline' },
 			type: 'iconKey'
 		},
 		title: 'Company',

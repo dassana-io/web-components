@@ -84,23 +84,28 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
-interface SharedCompIcontype extends SharedIconProps {
+interface SharedCompIconType extends SharedIconProps {
 	filterKey?: string
 	iconKey?: string
+	/**
+	 * Whether to render a label with the icon or not.
+	 * @default 'tooltip'
+	 */
+	label?: { labelKey?: string; type: 'inline' | 'tooltip' }
 }
 
-export interface RenderPropsIcon extends SharedCompIcontype {
+export interface RenderPropsIcon extends SharedCompIconType {
 	type: 'icon'
 	iconMap: {
 		[key: string]: string
 	}
 }
 
-interface RenderPropsIconKey extends SharedCompIcontype {
+interface RenderPropsIconKey extends SharedCompIconType {
 	type: 'iconKey'
 }
 
-interface RenderPropsIconUrl extends SharedCompIcontype {
+interface RenderPropsIconUrl extends SharedCompIconType {
 	type: 'iconUrl'
 }
 

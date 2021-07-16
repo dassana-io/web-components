@@ -63,6 +63,7 @@ const columns: ColumnType[] = [
 				googleCloudService:
 					'https://dummyimage.com/600x400/EA4335/fff&text=G'
 			},
+			label: { type: 'tooltip' },
 			type: 'icon'
 		},
 		title: 'Company',
