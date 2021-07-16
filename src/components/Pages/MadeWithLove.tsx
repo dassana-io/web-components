@@ -62,7 +62,7 @@ const useStyles = createUseStyles({
 	},
 	footer: {
 		[min[mobile]]: {
-			paddingTop: 0
+			paddingTop: 50
 		},
 		paddingTop: 62
 	},
@@ -95,23 +95,20 @@ const useStyles = createUseStyles({
 		paddingTop: spacing.s
 	},
 	loveIconWrap: {
-		[min[tablet]]: {
+		[min[mobile]]: {
 			...flexAlignCenter
 		}
 	},
 	loveIcons: {
-		[min[tablet]]: {
+		[min[mobile]]: {
 			display: 'flex',
-			paddingBottom: 92,
+			paddingBottom: spacing.xl,
 			paddingTop: spacing.xl
 		},
 		paddingTop: spacing['l+']
 	},
 	plus: {
-		[min[tablet]]: {
-			margin: `0px ${spacing.l}px`
-		},
-		margin: `${spacing.m}px 0px`
+		margin: spacing.l
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -147,11 +144,11 @@ export interface MadeWithLoveProps {
 
 const defaultFooterLinksConfig: FooterLinksConfig[] = [
 	{
-		href: 'http://www.twitter.com',
+		href: 'https://twitter.com/DassanaSecurity',
 		icon: faTwitterSquare
 	},
 	{
-		href: 'http://www.linkedin.com',
+		href: 'https://www.linkedin.com/company/dassana-inc',
 		icon: faLinkedin
 	},
 	{
