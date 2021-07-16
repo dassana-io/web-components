@@ -91,7 +91,6 @@ interface SharedCompIconType extends SharedIconProps {
 	iconKey?: string
 	/**
 	 * Whether to render a label with the icon or not.
-	 * @default 'tooltip'
 	 */
 	label?: { labelKey?: string; type: TableIconLabelType }
 }
