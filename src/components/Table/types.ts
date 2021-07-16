@@ -84,6 +84,8 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
+export type TableIconLabelType = 'inline' | 'tooltip'
+
 interface SharedCompIconType extends SharedIconProps {
 	filterKey?: string
 	iconKey?: string
@@ -91,7 +93,7 @@ interface SharedCompIconType extends SharedIconProps {
 	 * Whether to render a label with the icon or not.
 	 * @default 'tooltip'
 	 */
-	label?: { labelKey?: string; type: 'inline' | 'tooltip' }
+	label?: { labelKey?: string; type: TableIconLabelType }
 }
 
 export interface RenderPropsIconMap extends SharedCompIconType {

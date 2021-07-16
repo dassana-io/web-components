@@ -3,9 +3,9 @@ import bytes from 'bytes'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
+import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
-import { Tooltip } from 'components/Tooltip'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -15,12 +15,11 @@ import {
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
-	NumberDateType,
-	RenderPropsIconMap
+	NumberDateType
 } from './types'
 import { defaultIconHeight, MultipleIcons } from './MultipleIcons'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
-import { Icon, IconName, IconProps } from '../Icon'
+import { IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
@@ -461,23 +460,24 @@ function applyRender<TableData extends DataId>(
 								/>
 							)
 						} else {
-							const iconProps = getIconProps(record, renderProps)
+							const iconProps = {
+								...getIconProps(record, renderProps),
+								height
+							}
 
 							if (renderProps.type === 'icon' && !iconProps.icon)
 								return record
 
-							const iconComp = (
-								<Icon {...iconProps} height={height} />
-							)
-
-							if (!label) return iconComp
+							if (!label)
+								return <IconCell iconProps={iconProps} />
 
 							const labelKey =
 								!label.labelKey && typeof record === 'string'
 									? record
 									: label.labelKey
 
-							if (!labelKey) return iconComp
+							if (!labelKey)
+								return <IconCell iconProps={iconProps} />
 							else {
 								const jsonPath = `$.${labelKey}`
 
@@ -486,25 +486,13 @@ function applyRender<TableData extends DataId>(
 										? labelKey
 										: getJSONPathValue(jsonPath, record)
 
-								switch (label.type) {
-									case 'inline':
-										return (
-											<div>
-												{iconComp}
-												{labelVal}
-											</div>
-										)
-
-									default:
-										return (
-											<Tooltip
-												placement='top'
-												title={labelVal}
-											>
-												{iconComp}
-											</Tooltip>
-										)
-								}
+								return (
+									<IconCell
+										iconProps={iconProps}
+										label={labelVal}
+										labelType={label.type}
+									/>
+								)
 							}
 						}
 					}
