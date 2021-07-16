@@ -1,6 +1,6 @@
 import { ColoredDotProps } from '../ColoredDot'
+import { LinkProps } from '../Link'
 import { SharedIconProps } from '../Icon'
-import { SharedLinkProps } from '../Link'
 import { TableMethods } from './utils'
 import { Key, ReactNode } from 'react'
 
@@ -128,7 +128,7 @@ interface ComponentColoredDotType extends PartialComponentType {
 	}
 }
 
-interface RenderPropsLink extends Pick<SharedLinkProps, 'target'> {
+interface RenderPropsLink extends Pick<LinkProps, 'target'> {
 	buildHref: (record?: string, data?: Record<string, any>) => string
 	isDisabled?: (record?: string, data?: Record<string, any>) => boolean
 }
