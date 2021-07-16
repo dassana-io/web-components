@@ -483,19 +483,24 @@ function applyRender<TableData extends DataId>(
 				}
 
 				case link: {
-					antDColumn.render = (record: string) => {
+					antDColumn.render = (record: string, data: TableData) => {
 						if (record === undefined) return ''
 
 						const {
-							target = '_blank',
-							buildHref = (r: string) => r
+							buildHref = (r: string, _data: TableData) => r,
+							isDisabled = (_r: string, _data: TableData) =>
+								false,
+							target = '_blank'
 						} = column.renderProps || {}
 
 						const linkProps: LinkProps = {
 							children: record,
-							href: buildHref(record),
+							href: buildHref(record, data),
 							target
 						}
+
+						if (isDisabled(record, data))
+							return <CellWithTooltip text={record} />
 
 						return <Link {...linkProps} />
 					}
