@@ -94,11 +94,16 @@ interface SharedCompIconType extends SharedIconProps {
 	label?: { labelKey?: string; type: 'inline' | 'tooltip' }
 }
 
-export interface RenderPropsIcon extends SharedCompIconType {
+export interface RenderPropsIconMap extends SharedCompIconType {
 	type: 'icon'
 	iconMap: {
 		[key: string]: string
 	}
+}
+
+export interface RenderPropsIconBuildHref extends SharedCompIconType {
+	type: 'icon'
+	buildHref: (record?: string) => string
 }
 
 interface RenderPropsIconKey extends SharedCompIconType {
@@ -111,7 +116,11 @@ interface RenderPropsIconUrl extends SharedCompIconType {
 
 export interface ComponentIconType extends PartialComponentType {
 	format: ColumnFormats.icon
-	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
+	renderProps:
+		| RenderPropsIconMap
+		| RenderPropsIconBuildHref
+		| RenderPropsIconKey
+		| RenderPropsIconUrl
 }
 
 export interface ComponentActionType extends PartialComponentType {

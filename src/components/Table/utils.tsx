@@ -16,7 +16,7 @@ import {
 	DateDisplayFormat,
 	EditableCellTypes,
 	NumberDateType,
-	RenderPropsIcon
+	RenderPropsIconMap
 } from './types'
 import { defaultIconHeight, MultipleIcons } from './MultipleIcons'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
@@ -423,14 +423,17 @@ function applyRender<TableData extends DataId>(
 
 						if (!val) return {} as IconProps
 
-						const { type } = renderProps
-
-						switch (type) {
+						switch (renderProps.type) {
 							case 'icon': {
-								const { iconMap } =
-									renderProps as RenderPropsIcon
+								if ('iconMap' in renderProps) {
+									const { iconMap } = renderProps
 
-								return { icon: iconMap[val] }
+									return { icon: iconMap[val] }
+								} else {
+									const { buildHref } = renderProps
+
+									return { icon: buildHref(val) }
+								}
 							}
 
 							case 'iconUrl':
