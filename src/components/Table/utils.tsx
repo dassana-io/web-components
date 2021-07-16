@@ -524,6 +524,7 @@ function applyRender<TableData extends DataId>(
 						const linkProps: LinkProps = {
 							children: record,
 							href: buildHref(record, data),
+							onClick: e => e.stopPropagation(),
 							target
 						}
 
