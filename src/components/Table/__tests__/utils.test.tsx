@@ -186,6 +186,7 @@ describe('mapFilterKeys', () => {
 			'start_date',
 			['role', 'name'],
 			'linked_in',
+			'company',
 			'company'
 		]
 
