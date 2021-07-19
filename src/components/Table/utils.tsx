@@ -290,6 +290,61 @@ function applySort<TableData extends DataId>(
 	}
 }
 
+/* -------- applyRender helper functions for icon -------- */
+
+type IconRecord = IconName | string | Record<string, any>
+
+const getIconOrIconKey = (
+	record: IconRecord,
+	jsonPath: string
+): string | IconName | undefined => {
+	if (typeof record === 'object') {
+		const value = getJSONPathValue(jsonPath, record)
+
+		if (value) return value
+	} else return record
+}
+
+interface GetIconPropsParams<TableData> {
+	data?: TableData
+	jsonPath: string
+	record: IconRecord
+	renderProps: ComponentIconType['renderProps']
+}
+
+const getIconProps = <TableData, _>({
+	data,
+	jsonPath,
+	record,
+	renderProps
+}: GetIconPropsParams<TableData>): IconProps => {
+	const val = getIconOrIconKey(record, jsonPath)
+
+	if (!val) return {} as IconProps
+
+	switch (renderProps.type) {
+		case 'icon': {
+			if ('iconMap' in renderProps) {
+				const { iconMap } = renderProps
+
+				return { icon: iconMap[val] }
+			} else {
+				const { buildHref } = renderProps
+
+				return { icon: buildHref(val, data) }
+			}
+		}
+
+		case 'iconUrl':
+			return { icon: val }
+
+		case 'iconKey':
+			return { iconKey: val as IconName }
+	}
+}
+
+/* ------------------------------------------------------- */
+
 /*
 Sets antD column render prop as appropriate render function
 depending on data type and format. Render function takes
@@ -387,8 +442,6 @@ function applyRender<TableData extends DataId>(
 				}
 
 				case icon: {
-					type IconRecord = IconName | string | Record<string, any>
-
 					const renderProps = column.renderProps
 
 					const {
@@ -399,52 +452,6 @@ function applyRender<TableData extends DataId>(
 
 					const jsonPath = iconKey ? `$.${iconKey}` : ''
 
-					const getIconOrIconKey = (
-						record: IconRecord
-					): string | IconName | undefined => {
-						if (typeof record === 'object') {
-							const value = getJSONPathValue(jsonPath, record)
-
-							if (value) return value
-						} else return record
-					}
-
-					type GetIconProps = (
-						record: IconRecord,
-						renderProps: ComponentIconType['renderProps'],
-						data?: TableData
-					) => IconProps
-
-					const getIconProps: GetIconProps = (
-						record,
-						renderProps,
-						data
-					) => {
-						const val = getIconOrIconKey(record)
-
-						if (!val) return {} as IconProps
-
-						switch (renderProps.type) {
-							case 'icon': {
-								if ('iconMap' in renderProps) {
-									const { iconMap } = renderProps
-
-									return { icon: iconMap[val] }
-								} else {
-									const { buildHref } = renderProps
-
-									return { icon: buildHref(val, data) }
-								}
-							}
-
-							case 'iconUrl':
-								return { icon: val }
-
-							case 'iconKey':
-								return { iconKey: val as IconName }
-						}
-					}
-
 					antDColumn.render = (
 						record?: IconRecord | IconRecord[],
 						data?: TableData
@@ -453,7 +460,12 @@ function applyRender<TableData extends DataId>(
 
 						if (Array.isArray(record)) {
 							const iconPropsArr = record.map(icon =>
-								getIconProps(icon, renderProps, data)
+								getIconProps({
+									data,
+									jsonPath,
+									record: icon,
+									renderProps
+								})
 							)
 
 							return (
@@ -464,7 +476,12 @@ function applyRender<TableData extends DataId>(
 							)
 						} else {
 							const iconProps = {
-								...getIconProps(record, renderProps, data),
+								...getIconProps({
+									data,
+									jsonPath,
+									record,
+									renderProps
+								}),
 								height
 							}
 
