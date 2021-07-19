@@ -99,7 +99,10 @@ export function processData<TableData extends DataId>(
 		columns.forEach(col => {
 			const { dataIndex } = col
 
-			const value = getJSONPathValue(`$.${dataIndex}`, item)
+			const value = getJSONPathValue(
+				`$.${dataIndex}`,
+				item
+			) as ProcessedData<TableData>[keyof TableData]
 
 			if (value) {
 				partialData[dataIndex as keyof TableData] = value
@@ -186,9 +189,9 @@ const compareIcons =
 			? `$.${dataIndex}.${iconKey}`
 			: `$.${dataIndex}`
 
-		const compareValA = getJSONPathValue(jsonPath, a) || ''
+		const compareValA = getJSONPathValue(jsonPath, a)?.toString() || ''
 
-		const compareValB = getJSONPathValue(jsonPath, b) || ''
+		const compareValB = getJSONPathValue(jsonPath, b)?.toString() || ''
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -299,7 +302,7 @@ const getIconOrIconKey = (
 	jsonPath: string
 ): string | IconName | undefined => {
 	if (typeof record === 'object') {
-		const value = getJSONPathValue(jsonPath, record)
+		const value = getJSONPathValue(jsonPath, record)?.toString()
 
 		if (value) return value
 	} else return record
@@ -505,7 +508,10 @@ function applyRender<TableData extends DataId>(
 								const labelVal =
 									typeof record === 'string'
 										? labelKey
-										: getJSONPathValue(jsonPath, record)
+										: (getJSONPathValue(
+												jsonPath,
+												record
+										  ) as string) // eslint-disable-line no-mixed-spaces-and-tabs
 
 								return (
 									<IconCell
