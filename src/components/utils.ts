@@ -126,16 +126,27 @@ export const getDataTestAttributeProp = (
 	[TAG]: dataTag ? `${cmpName}-${dataTag}` : cmpName
 })
 
-export const getJSONPathValue = (
+export const getJSONPathValue = <T = string>(
 	path: string,
 	obj: Record<string, JSONValue>
 ) => {
-	const value = JSONPath({
+	const value = JSONPath<T>({
 		json: obj,
 		path
 	})
 
-	if (value && Array.isArray(value)) return value[0]
+	if (Array.isArray(value)) {
+		switch (value.length) {
+			case 0:
+				return undefined
+			case 1:
+				return value[0] as T
+			default:
+				return value as T[]
+		}
+	}
+
+	return value
 }
 
 /**

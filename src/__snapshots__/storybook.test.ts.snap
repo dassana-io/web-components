@@ -3041,7 +3041,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt=" momos"
                 className="loveIcon-0-2-227"
-                src="with_love_momos.svg"
+                src="momo.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
@@ -3074,7 +3074,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt="gourmet coffees"
                 className="loveIcon-0-2-227"
-                src="with_love_coffee.svg"
+                src="coffee.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
@@ -3107,7 +3107,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt="high chews"
                 className="loveIcon-0-2-227"
-                src="with_love_high_chews.svg"
+                src="candy.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
@@ -6328,13 +6328,17 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             rowSpan={null}
                             style={Object {}}
                           >
-                            <svg
-                              className=""
-                              fill="#7E7F86"
-                              height={25}
+                            <div
+                              className="iconWrapper-0-2-308"
                             >
-                              aws.svg
-                            </svg>
+                              <svg
+                                className=""
+                                fill="#7E7F86"
+                                height={25}
+                              >
+                                aws.svg
+                              </svg>
+                            </div>
                           </td>
                           <td
                             className="ant-table-cell"
@@ -6400,13 +6404,17 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             rowSpan={null}
                             style={Object {}}
                           >
-                            <svg
-                              className=""
-                              fill="#7E7F86"
-                              height={25}
+                            <div
+                              className="iconWrapper-0-2-308"
                             >
-                              aws.svg
-                            </svg>
+                              <svg
+                                className=""
+                                fill="#7E7F86"
+                                height={25}
+                              >
+                                aws.svg
+                              </svg>
+                            </div>
                           </td>
                           <td
                             className="ant-table-cell"
@@ -6472,13 +6480,17 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             rowSpan={null}
                             style={Object {}}
                           >
-                            <svg
-                              className=""
-                              fill="#7E7F86"
-                              height={25}
+                            <div
+                              className="iconWrapper-0-2-308"
                             >
-                              aws.svg
-                            </svg>
+                              <svg
+                                className=""
+                                fill="#7E7F86"
+                                height={25}
+                              >
+                                aws.svg
+                              </svg>
+                            </div>
                           </td>
                           <td
                             className="ant-table-cell"
@@ -6544,13 +6556,17 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             rowSpan={null}
                             style={Object {}}
                           >
-                            <svg
-                              className=""
-                              fill="#7E7F86"
-                              height={25}
+                            <div
+                              className="iconWrapper-0-2-308"
                             >
-                              aws.svg
-                            </svg>
+                              <svg
+                                className=""
+                                fill="#7E7F86"
+                                height={25}
+                              >
+                                aws.svg
+                              </svg>
+                            </div>
                           </td>
                           <td
                             className="ant-table-cell"
@@ -6616,13 +6632,17 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             rowSpan={null}
                             style={Object {}}
                           >
-                            <svg
-                              className=""
-                              fill="#7E7F86"
-                              height={25}
+                            <div
+                              className="iconWrapper-0-2-308"
                             >
-                              aws.svg
-                            </svg>
+                              <svg
+                                className=""
+                                fill="#7E7F86"
+                                height={25}
+                              >
+                                aws.svg
+                              </svg>
+                            </div>
                           </td>
                           <td
                             className="ant-table-cell"
@@ -6914,7 +6934,7 @@ exports[`Storyshots TimeInput Error 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="ant-picker error-0-2-309"
+    className="ant-picker error-0-2-312"
     onMouseUp={[Function]}
   >
     <div
@@ -7188,22 +7208,22 @@ exports[`Storyshots Wizard Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-310"
+    className="container-0-2-313"
   >
     <div
-      className="header-0-2-311"
+      className="header-0-2-314"
     >
       <div
-        className="title-0-2-315"
+        className="title-0-2-318"
       >
         Foo
         <span
-          className="iconButton-0-2-19 iconArrow-0-2-312 iconLeftArrow-0-2-313"
+          className="iconButton-0-2-19 iconArrow-0-2-315 iconLeftArrow-0-2-316"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d65-0-2-318"
+            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d65-0-2-321"
             data-icon="arrow-right"
             data-prefix="fas"
             focusable="false"

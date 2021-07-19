@@ -1,6 +1,6 @@
 import { ColoredDotProps } from '../ColoredDot'
+import { LinkProps } from '../Link'
 import { SharedIconProps } from '../Icon'
-import { SharedLinkProps } from '../Link'
 import { TableMethods } from './utils'
 import { Key, ReactNode } from 'react'
 
@@ -84,29 +84,47 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
-interface SharedCompIcontype extends SharedIconProps {
-	filterKey?: string
-	iconKey?: string
+export enum TableIconLabelType {
+	inline = 'inline',
+	tooltip = 'tooltip'
 }
 
-export interface RenderPropsIcon extends SharedCompIcontype {
+interface SharedCompIconType extends SharedIconProps {
+	filterKey?: string
+	iconKey?: string
+	/**
+	 * Whether to render a label with the icon or not.
+	 */
+	label?: { labelKey?: string; type: TableIconLabelType }
+}
+
+export interface RenderPropsIconMap extends SharedCompIconType {
 	type: 'icon'
 	iconMap: {
 		[key: string]: string
 	}
 }
 
-interface RenderPropsIconKey extends SharedCompIcontype {
+export interface RenderPropsIconBuildHref extends SharedCompIconType {
+	type: 'icon'
+	buildHref: (record?: string, data?: Record<string, any>) => string
+}
+
+interface RenderPropsIconKey extends SharedCompIconType {
 	type: 'iconKey'
 }
 
-interface RenderPropsIconUrl extends SharedCompIcontype {
+interface RenderPropsIconUrl extends SharedCompIconType {
 	type: 'iconUrl'
 }
 
 export interface ComponentIconType extends PartialComponentType {
 	format: ColumnFormats.icon
-	renderProps: RenderPropsIcon | RenderPropsIconKey | RenderPropsIconUrl
+	renderProps:
+		| RenderPropsIconMap
+		| RenderPropsIconBuildHref
+		| RenderPropsIconKey
+		| RenderPropsIconUrl
 }
 
 export interface ComponentActionType extends PartialComponentType {
@@ -128,7 +146,7 @@ interface ComponentColoredDotType extends PartialComponentType {
 	}
 }
 
-interface RenderPropsLink extends Pick<SharedLinkProps, 'target'> {
+interface RenderPropsLink extends Pick<LinkProps, 'target'> {
 	buildHref: (record?: string, data?: Record<string, any>) => string
 	isDisabled?: (record?: string, data?: Record<string, any>) => boolean
 }

@@ -129,7 +129,12 @@ describe('Table', () => {
 					unixTS: 1519782342212
 				})
 			],
+			buildHrefIconJSONPath: {
+				id: 'H',
+				label: 'H'
+			},
 			company: { id: 'c1', name: 'azure', value: 'azure' },
+			icon: 'A',
 			id: 0,
 			key: 0,
 			name: { id: 'n1', value: 'Lorem ipsum' },
