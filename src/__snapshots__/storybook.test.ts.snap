@@ -3041,7 +3041,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt=" momos"
                 className="loveIcon-0-2-227"
-                src="Momo.svg"
+                src="momo.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
@@ -3107,7 +3107,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt="high chews"
                 className="loveIcon-0-2-227"
-                src="Candy.svg"
+                src="candy.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
