@@ -312,7 +312,8 @@ interface GetIconPropsParams<TableData> {
 	renderProps: ComponentIconType['renderProps']
 }
 
-const getIconProps = <TableData, _>({
+// eslint-disable-next-line comma-spacing
+const getIconProps = <TableData,>({
 	data,
 	jsonPath,
 	record,
