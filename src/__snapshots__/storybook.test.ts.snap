@@ -3041,7 +3041,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt=" momos"
                 className="loveIcon-0-2-227"
-                src="with_love_momos.svg"
+                src="Momo.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
@@ -3074,7 +3074,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt="gourmet coffees"
                 className="loveIcon-0-2-227"
-                src="with_love_coffee.svg"
+                src="coffee.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
@@ -3107,7 +3107,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
               <img
                 alt="high chews"
                 className="loveIcon-0-2-227"
-                src="with_love_high_chews.svg"
+                src="Candy.svg"
               />
               <div
                 className="loveIconTag-0-2-228"
