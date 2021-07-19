@@ -1,5 +1,11 @@
 import { fakeApiCallSuccess } from 'components/utils'
-import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	TableIconLabelType,
+	TableProps
+} from '..'
 
 const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
@@ -63,6 +69,7 @@ const columns: ColumnType[] = [
 				googleCloudService:
 					'https://dummyimage.com/600x400/EA4335/fff&text=G'
 			},
+			label: { type: TableIconLabelType.tooltip },
 			type: 'icon'
 		},
 		title: 'Company',

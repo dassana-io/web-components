@@ -3,6 +3,7 @@ import bytes from 'bytes'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
+import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import {
@@ -14,12 +15,11 @@ import {
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
-	NumberDateType,
-	RenderPropsIcon
+	NumberDateType
 } from './types'
 import { defaultIconHeight, MultipleIcons } from './MultipleIcons'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
-import { Icon, IconName, IconProps } from '../Icon'
+import { IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
@@ -290,6 +290,62 @@ function applySort<TableData extends DataId>(
 	}
 }
 
+/* -------- applyRender helper functions for icon -------- */
+
+type IconRecord = IconName | string | Record<string, any>
+
+const getIconOrIconKey = (
+	record: IconRecord,
+	jsonPath: string
+): string | IconName | undefined => {
+	if (typeof record === 'object') {
+		const value = getJSONPathValue(jsonPath, record)
+
+		if (value) return value
+	} else return record
+}
+
+interface GetIconPropsParams<TableData> {
+	data?: TableData
+	jsonPath: string
+	record: IconRecord
+	renderProps: ComponentIconType['renderProps']
+}
+
+// eslint-disable-next-line comma-spacing
+const getIconProps = <TableData,>({
+	data,
+	jsonPath,
+	record,
+	renderProps
+}: GetIconPropsParams<TableData>): IconProps => {
+	const val = getIconOrIconKey(record, jsonPath)
+
+	if (!val) return {} as IconProps
+
+	switch (renderProps.type) {
+		case 'icon': {
+			if ('iconMap' in renderProps) {
+				const { iconMap } = renderProps
+
+				return { icon: iconMap[val] }
+			} else {
+				const { buildHref } = renderProps
+
+				return { icon: buildHref(val, data) }
+			}
+		}
+
+		case 'iconUrl':
+			return { icon: val }
+
+		case 'iconKey':
+			return { iconKey: val as IconName }
+	}
+}
+
+/* ------------------------------------------------------- */
+
 /*
 Sets antD column render prop as appropriate render function
 depending on data type and format. Render function takes
@@ -387,62 +443,30 @@ function applyRender<TableData extends DataId>(
 				}
 
 				case icon: {
-					type IconRecord = IconName | string | Record<string, any>
-
 					const renderProps = column.renderProps
-					const { iconKey, height = defaultIconHeight } = renderProps
+
+					const {
+						iconKey,
+						height = defaultIconHeight,
+						label
+					} = renderProps
 
 					const jsonPath = iconKey ? `$.${iconKey}` : ''
 
-					const getIconOrIconKey = (
-						record: IconRecord
-					): string | IconName | undefined => {
-						if (typeof record === 'object') {
-							const value = getJSONPathValue(jsonPath, record)
-
-							if (value) return value
-						} else return record
-					}
-
-					type GetIconProps = (
-						record: IconRecord,
-						renderProps: ComponentIconType['renderProps']
-					) => IconProps
-
-					const getIconProps: GetIconProps = (
-						record,
-						renderProps
-					) => {
-						const val = getIconOrIconKey(record)
-
-						if (!val) return {} as IconProps
-
-						const { type } = renderProps
-
-						switch (type) {
-							case 'icon': {
-								const { iconMap } =
-									renderProps as RenderPropsIcon
-
-								return { icon: iconMap[val] }
-							}
-
-							case 'iconUrl':
-								return { icon: val }
-
-							case 'iconKey':
-								return { iconKey: val as IconName }
-						}
-					}
-
 					antDColumn.render = (
-						record?: IconRecord | IconRecord[]
+						record?: IconRecord | IconRecord[],
+						data?: TableData
 					) => {
 						if (!record) return ''
 
 						if (Array.isArray(record)) {
 							const iconPropsArr = record.map(icon =>
-								getIconProps(icon, renderProps)
+								getIconProps({
+									data,
+									jsonPath,
+									record: icon,
+									renderProps
+								})
 							)
 
 							return (
@@ -452,20 +476,45 @@ function applyRender<TableData extends DataId>(
 								/>
 							)
 						} else {
-							const iconProps = getIconProps(record, renderProps)
+							const iconProps = {
+								...getIconProps({
+									data,
+									jsonPath,
+									record,
+									renderProps
+								}),
+								height
+							}
 
 							if (renderProps.type === 'icon' && !iconProps.icon)
 								return record
 
-							/**
-							 * Custom icons are defined as a map of key and url in the Column object.
-							 * E.g. { renderProps: {iconMap: { example-icon: 'https://dummyimage.com/600x400/0072c6/fff&text=A' }, ...}, ...}
-							 * Then in the data object, you reference the iconMap key - 'example-icon'.
-							 * E.g. { demo_icon: 'example-icon', ... }
-							 * If this mapping doesn't exist in the column object, the table renders just the key (or record).
-							 * In this example, it will be 'example-icon'.
-							 */
-							return <Icon {...iconProps} height={height} />
+							if (!label)
+								return <IconCell iconProps={iconProps} />
+
+							const labelKey =
+								!label.labelKey && typeof record === 'string'
+									? record
+									: label.labelKey
+
+							if (!labelKey)
+								return <IconCell iconProps={iconProps} />
+							else {
+								const jsonPath = `$.${labelKey}`
+
+								const labelVal =
+									typeof record === 'string'
+										? labelKey
+										: getJSONPathValue(jsonPath, record)
+
+								return (
+									<IconCell
+										iconProps={iconProps}
+										label={labelVal}
+										labelType={label.type}
+									/>
+								)
+							}
 						}
 					}
 					break
@@ -496,6 +545,7 @@ function applyRender<TableData extends DataId>(
 						const linkProps: LinkProps = {
 							children: record,
 							href: buildHref(record, data),
+							onClick: e => e.stopPropagation(),
 							target
 						}
 

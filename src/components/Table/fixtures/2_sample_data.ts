@@ -1,6 +1,12 @@
 import { fakeApiCallSuccess } from 'components/utils'
 import { IconName } from 'components/Icon'
-import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	TableIconLabelType,
+	TableProps
+} from '..'
 
 const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
@@ -53,6 +59,16 @@ const columns: ColumnType[] = [
 			onSave: () => fakeApiCallSuccess()
 		},
 		title: 'Has Admin Access',
+		type: component
+	},
+	{
+		dataIndex: 'company',
+		format: icon,
+		renderProps: {
+			label: { type: TableIconLabelType.inline },
+			type: 'iconKey'
+		},
+		title: 'Company',
 		type: component
 	},
 	{

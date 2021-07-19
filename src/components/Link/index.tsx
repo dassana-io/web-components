@@ -23,7 +23,7 @@ const AntDLink = Typography.Link
 
 export type LinkTargetType = '_self' | '_blank'
 
-export interface SharedLinkProps extends CommonComponentProps {
+export interface LinkProps extends CommonComponentProps {
 	/**
 	 * Array of classes to pass to element
 	 */
@@ -40,25 +40,15 @@ export interface SharedLinkProps extends CommonComponentProps {
 	 * Whether or not the link is underlined.
 	 */
 	underline?: boolean
-}
-
-interface LinkHref extends SharedLinkProps {
 	/**
 	 * The URL the link goes to.
 	 */
-	href: string
+	href?: string
 	/**
 	 * Click handler. **Note**: Either an `onClick` or `href` is required.
 	 */
-	onClick?: never
+	onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
-
-interface LinkClick extends SharedLinkProps {
-	href?: never
-	onClick: () => void
-}
-
-export type LinkProps = LinkHref | LinkClick
 
 export const Link: FC<LinkProps> = ({
 	classes = [],
