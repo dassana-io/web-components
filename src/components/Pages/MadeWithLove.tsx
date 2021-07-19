@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import Candy from '../assets/images/candy.svg'
 import cn from 'classnames'
 import Coffee from '../assets/images/coffee.svg'
@@ -119,20 +118,20 @@ const useStyles = createUseStyles({
 	}
 })
 
-// const loveIconsConfig = [
-// 	{
-// 		icon: Momos,
-// 		tag: ' momos'
-// 	},
-// 	{
-// 		icon: Coffee,
-// 		tag: 'gourmet coffees'
-// 	},
-// 	{
-// 		icon: Candy,
-// 		tag: 'high chews'
-// 	}
-// ]
+const loveIconsConfig = [
+	{
+		icon: Momos,
+		tag: ' momos'
+	},
+	{
+		icon: Coffee,
+		tag: 'gourmet coffees'
+	},
+	{
+		icon: Candy,
+		tag: 'high chews'
+	}
+]
 
 export interface FooterLinksConfig {
 	href: string
@@ -172,25 +171,25 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 }: MadeWithLoveProps) => {
 	const compClasses = useStyles()
 
-	// const renderLoveIcons = () =>
-	// 	loveIconsConfig.map(({ icon, tag }, i) => (
-	// 		<div className={compClasses.loveIconWrap} key={i}>
-	// 			<div>
-	// 				<img
-	// 					alt={tag}
-	// 					className={compClasses.loveIcon}
-	// 					src={icon}
-	// 				/>
-	// 				<div className={compClasses.loveIconTag}>{tag}</div>
-	// 			</div>
-	// 			{i < loveIconsConfig.length - 1 && (
-	// 				<FontAwesomeIcon
-	// 					className={compClasses.plus}
-	// 					icon={faPlus}
-	// 				/>
-	// 			)}
-	// 		</div>
-	// 	))
+	const renderLoveIcons = () =>
+		loveIconsConfig.map(({ icon, tag }, i) => (
+			<div className={compClasses.loveIconWrap} key={i}>
+				<div>
+					<img
+						alt={tag}
+						className={compClasses.loveIcon}
+						src={icon}
+					/>
+					<div className={compClasses.loveIconTag}>{tag}</div>
+				</div>
+				{i < loveIconsConfig.length - 1 && (
+					<FontAwesomeIcon
+						className={compClasses.plus}
+						icon={faPlus}
+					/>
+				)}
+			</div>
+		))
 
 	return (
 		<div className={cn(compClasses.container, classes)}>
@@ -203,7 +202,7 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 					/>
 					in San Jose...in addition to lots of
 				</div>
-				{/* <div className={compClasses.loveIcons}>{renderLoveIcons()}</div> */}
+				<div className={compClasses.loveIcons}>{renderLoveIcons()}</div>
 				<div className={compClasses.hiring}>
 					<div className={compClasses.hiringTag}>
 						Are you into momos, gourmet coffees, and high chews?
