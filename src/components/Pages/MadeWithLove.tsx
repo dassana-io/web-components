@@ -1,9 +1,9 @@
+import Candy from '../assets/images/candy.svg'
 import cn from 'classnames'
 import Coffee from '../assets/images/coffee.svg'
 import { createUseStyles } from 'react-jss'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import HighChews from '../assets/images/candy.svg'
 import { Link } from 'components/Link'
 import Momos from '../assets/images/momo.svg'
 import { styleguide } from 'components/assets/styles'
@@ -128,7 +128,7 @@ const loveIconsConfig = [
 		tag: 'gourmet coffees'
 	},
 	{
-		icon: HighChews,
+		icon: Candy,
 		tag: 'high chews'
 	}
 ]
