@@ -70,8 +70,8 @@ const columns: ColumnType[] = [
 		dataIndex: 'buildHrefIconJSONPath',
 		format: icon,
 		renderProps: {
-			buildHref: name =>
-				`https://dummyimage.com/300x300/${name}848CF/fff&text=${name}`,
+			buildHref: (name, data = {}) =>
+				`https://dummyimage.com/300x300/${name}848CF/fff&text=${name}${data.icon}`,
 			iconKey: 'id',
 			label: { labelKey: 'label', type: 'tooltip' },
 			type: 'icon'

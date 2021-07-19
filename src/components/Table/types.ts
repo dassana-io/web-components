@@ -104,7 +104,7 @@ export interface RenderPropsIconMap extends SharedCompIconType {
 
 export interface RenderPropsIconBuildHref extends SharedCompIconType {
 	type: 'icon'
-	buildHref: (record?: string) => string
+	buildHref: (record?: string, data?: Record<string, any>) => string
 }
 
 interface RenderPropsIconKey extends SharedCompIconType {

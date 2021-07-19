@@ -411,12 +411,14 @@ function applyRender<TableData extends DataId>(
 
 					type GetIconProps = (
 						record: IconRecord,
-						renderProps: ComponentIconType['renderProps']
+						renderProps: ComponentIconType['renderProps'],
+						data?: TableData
 					) => IconProps
 
 					const getIconProps: GetIconProps = (
 						record,
-						renderProps
+						renderProps,
+						data
 					) => {
 						const val = getIconOrIconKey(record)
 
@@ -431,7 +433,7 @@ function applyRender<TableData extends DataId>(
 								} else {
 									const { buildHref } = renderProps
 
-									return { icon: buildHref(val) }
+									return { icon: buildHref(val, data) }
 								}
 							}
 
@@ -444,13 +446,14 @@ function applyRender<TableData extends DataId>(
 					}
 
 					antDColumn.render = (
-						record?: IconRecord | IconRecord[]
+						record?: IconRecord | IconRecord[],
+						data?: TableData
 					) => {
 						if (!record) return ''
 
 						if (Array.isArray(record)) {
 							const iconPropsArr = record.map(icon =>
-								getIconProps(icon, renderProps)
+								getIconProps(icon, renderProps, data)
 							)
 
 							return (
@@ -461,7 +464,7 @@ function applyRender<TableData extends DataId>(
 							)
 						} else {
 							const iconProps = {
-								...getIconProps(record, renderProps),
+								...getIconProps(record, renderProps, data),
 								height
 							}
 
