@@ -55,6 +55,7 @@ export default {
 		'react-helmet',
 		'react-hook-form',
 		'react-jss',
+		'react-scroll',
 		'remark-gfm',
 		'react-markdown',
 		'typescript',
