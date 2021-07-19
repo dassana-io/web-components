@@ -28,8 +28,10 @@ export const IconCell: FC<IconCellProps> = ({
 }: IconCellProps) => {
 	const classes = useStyles()
 
+	const { inline, tooltip } = TableIconLabelType
+
 	switch (labelType) {
-		case 'inline':
+		case inline:
 			return (
 				<div className={classes.iconWrapper}>
 					<Icon {...iconProps} />
@@ -37,7 +39,7 @@ export const IconCell: FC<IconCellProps> = ({
 				</div>
 			)
 
-		case 'tooltip':
+		case tooltip:
 			return (
 				<Tooltip
 					title={label}

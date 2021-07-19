@@ -84,7 +84,10 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
-export type TableIconLabelType = 'inline' | 'tooltip'
+export enum TableIconLabelType {
+	inline = 'inline',
+	tooltip = 'tooltip'
+}
 
 interface SharedCompIconType extends SharedIconProps {
 	filterKey?: string

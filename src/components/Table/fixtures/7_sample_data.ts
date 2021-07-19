@@ -1,6 +1,12 @@
 import { dateFormat } from '__mocks__/table_mock_data'
 import { IconName } from 'components/Icon'
-import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	TableIconLabelType,
+	TableProps
+} from '..'
 
 // This file contains table data with col dataIndex as a JSONPath instead of string
 
@@ -37,7 +43,7 @@ const columns: ColumnType[] = [
 		format: icon,
 		renderProps: {
 			iconKey: 'value',
-			label: { labelKey: 'value', type: 'tooltip' },
+			label: { labelKey: 'value', type: TableIconLabelType.tooltip },
 			type: 'iconKey'
 		},
 		title: 'Company',
@@ -60,7 +66,7 @@ const columns: ColumnType[] = [
 		renderProps: {
 			buildHref: name =>
 				`https://dummyimage.com/300x300/${name}1DB3C/fff&text=${name}`,
-			label: { type: 'tooltip' },
+			label: { type: TableIconLabelType.tooltip },
 			type: 'icon'
 		},
 		title: 'Icon',
@@ -73,7 +79,7 @@ const columns: ColumnType[] = [
 			buildHref: (name, data = {}) =>
 				`https://dummyimage.com/300x300/${name}848CF/fff&text=${name}${data.icon}`,
 			iconKey: 'id',
-			label: { labelKey: 'label', type: 'tooltip' },
+			label: { labelKey: 'label', type: TableIconLabelType.tooltip },
 			type: 'icon'
 		},
 		title: 'Build Icon Link',

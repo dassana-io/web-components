@@ -1,6 +1,12 @@
 import { fakeApiCallSuccess } from 'components/utils'
 import { IconName } from 'components/Icon'
-import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+import {
+	ColumnFormats,
+	ColumnType,
+	ColumnTypes,
+	TableIconLabelType,
+	TableProps
+} from '..'
 
 const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
@@ -59,7 +65,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'company',
 		format: icon,
 		renderProps: {
-			label: { type: 'inline' },
+			label: { type: TableIconLabelType.inline },
 			type: 'iconKey'
 		},
 		title: 'Company',
