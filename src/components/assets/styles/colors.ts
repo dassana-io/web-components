@@ -20,10 +20,10 @@ const baseColors = {
 	[blue]: '#2F54EB',
 	[gray]: '#EAEAEB',
 	[green]: '#59C93D',
-	[orange]: '#FF8A00',
-	[red]: '#FF3333',
+	[orange]: '#EE9747',
+	[red]: '#EE4747',
 	[white]: '#FEFEFE',
-	[yellow]: '#FFD600'
+	[yellow]: '#EEB547'
 }
 
 interface Base {
@@ -55,7 +55,7 @@ interface Grays extends Base {
 }
 
 interface Reds extends Base {
-	'darken-30': string
+	'darken-20': string
 }
 
 const percentages: Record<string, any> = {
@@ -64,7 +64,7 @@ const percentages: Record<string, any> = {
 		lighten: [10, 20, 30, 40, 50, 60, 70, 80]
 	},
 	[gray]: { lighten: [40, 70] },
-	[red]: { darken: [30] }
+	[red]: { darken: [20] }
 }
 
 interface GenerateColors {
