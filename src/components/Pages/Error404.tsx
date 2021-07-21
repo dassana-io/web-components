@@ -6,7 +6,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import random from 'lodash/random'
 import { styleguide } from 'components/assets/styles'
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 
 const {
 	colors: { blacks, blues },
@@ -81,6 +81,13 @@ const error404Config = [
 
 export const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
 	const classes = useStyles()
+
+	useEffect(() => {
+		const s = document.createElement('script')
+		s.innerHTML =
+			'window.plausible && window.plausible("404",{ props: { path: document.location.pathname } })'
+		document.body.appendChild(s)
+	}, [])
 
 	const errorConfigIndex = random(error404Config.length - 1)
 	const { title, msg, bg, renderButton } = error404Config[errorConfigIndex]
