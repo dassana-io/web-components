@@ -3129,12 +3129,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
             className="ant-typography hiringLink-0-2-225"
             data-test="link"
             href="http://www.linkedin.com"
+            rel="noopener noreferrer"
             style={
               Object {
                 "WebkitLineClamp": undefined,
               }
             }
-            target="_self"
+            target="_blank"
           >
             <u>
               We’re hiring!
@@ -3152,12 +3153,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
             className="ant-typography footerIcon-0-2-221"
             data-test="link"
             href="http://www.twitter.com"
+            rel="noopener noreferrer"
             style={
               Object {
                 "WebkitLineClamp": undefined,
               }
             }
-            target="_self"
+            target="_blank"
           >
             <u>
               <svg
@@ -3183,12 +3185,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
             className="ant-typography footerIcon-0-2-221"
             data-test="link"
             href="http://www.linkedin.com"
+            rel="noopener noreferrer"
             style={
               Object {
                 "WebkitLineClamp": undefined,
               }
             }
-            target="_self"
+            target="_blank"
           >
             <u>
               <svg
@@ -3214,12 +3217,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
             className="ant-typography footerIcon-0-2-221"
             data-test="link"
             href="https://github.com/dassana-io/dassana"
+            rel="noopener noreferrer"
             style={
               Object {
                 "WebkitLineClamp": undefined,
               }
             }
-            target="_self"
+            target="_blank"
           >
             <u>
               <svg
@@ -3245,12 +3249,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
             className="ant-typography footerIcon-0-2-221"
             data-test="link"
             href="https://www.slack.com"
+            rel="noopener noreferrer"
             style={
               Object {
                 "WebkitLineClamp": undefined,
               }
             }
-            target="_self"
+            target="_blank"
           >
             <u>
               <svg
@@ -3276,12 +3281,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
             className="ant-typography footerIcon-0-2-221"
             data-test="link"
             href="https://github.com/dassana-io/dassana"
+            rel="noopener noreferrer"
             style={
               Object {
                 "WebkitLineClamp": undefined,
               }
             }
-            target="_self"
+            target="_blank"
           >
             <u>
               <svg

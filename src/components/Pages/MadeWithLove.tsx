@@ -211,6 +211,7 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 					<Link
 						classes={[compClasses.hiringLink]}
 						href='http://www.linkedin.com'
+						target='_blank'
 					>
 						We’re hiring!
 					</Link>
@@ -223,6 +224,7 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 							classes={[compClasses.footerIcon]}
 							href={href}
 							key={i}
+							target='_blank'
 						>
 							<FontAwesomeIcon icon={icon} />
 						</Link>
