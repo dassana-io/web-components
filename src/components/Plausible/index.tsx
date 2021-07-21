@@ -43,7 +43,7 @@ const useStyles = createUseStyles({
 		paddingTop: spacing.s
 	},
 	title: {
-		fontSize: spacing['m+'] * 3,
+		fontSize: spacing.l * 2,
 		fontWeight: fontWeight.bold
 	}
 })
