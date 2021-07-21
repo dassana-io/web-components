@@ -1,14 +1,12 @@
-import './plausible-exclusion.css'
 import { Button } from 'components/Button'
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
 import React, { FC, useState } from 'react'
 
 const {
-	colors: { greens, reds },
+	colors: { blacks, blues, grays, greens, reds },
 	flexCenter,
 	flexDown,
-	font,
 	fontWeight,
 	spacing
 } = styleguide
@@ -18,26 +16,34 @@ interface ReactJssProps {
 }
 
 const useStyles = createUseStyles({
+	btn: {
+		backgroundColor: `${blues.base} !important`,
+		borderColor: `${blues.base} !important`,
+		color: `${grays.base} !important`
+	},
 	container: {
 		...flexCenter,
 		...flexDown,
+		backgroundColor: blacks.base,
+		color: grays.base,
 		height: '100%',
 		textAlign: 'center'
 	},
 	desc: {
-		padding: `${spacing.m}px 0`
+		padding: `${spacing.xl}px 0`
 	},
 	exclude: {
 		color: ({ isExcluded }: ReactJssProps) =>
 			isExcluded ? greens.base : reds.base,
-		fontWeight: 700,
+		fontWeight: fontWeight.regular * 2,
 		padding: `0 ${spacing.xs}px`
 	},
 	status: {
-		paddingBottom: spacing.m
+		paddingBottom: spacing['m+'],
+		paddingTop: spacing.s
 	},
 	title: {
-		...font.h1,
+		fontSize: spacing['m+'] * 3,
 		fontWeight: fontWeight.bold
 	}
 })
@@ -66,15 +72,15 @@ export const Plausible: FC = () => {
 			<div className={classes.desc}>
 				Click the button below to toggle your exclusion in analytics for
 				this site
+				<div className={classes.status}>
+					You currently
+					<span className={classes.exclude}>
+						{isExcluded ? 'are' : 'are not'}
+					</span>
+					excluding your visits.
+				</div>
 			</div>
-			<div className={classes.status}>
-				You currently
-				<span className={classes.exclude}>
-					{isExcluded ? 'are' : 'are not'}
-				</span>
-				excluding your visits.
-			</div>
-			<Button onClick={() => toggleExclusion()}>
+			<Button classes={[classes.btn]} onClick={() => toggleExclusion()}>
 				{isExcluded ? 'Stop excluding my visits' : 'Exclude my visits'}
 			</Button>
 		</div>
