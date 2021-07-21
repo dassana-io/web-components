@@ -49,20 +49,18 @@ const useStyles = createUseStyles({
 })
 
 export const Plausible: FC = () => {
-	const [isExcluded, setIsExcluded] = useState(
-		window.localStorage.plausible_ignore
-	)
+	const [isExcluded, setIsExcluded] = useState(localStorage.plausible_ignore)
 	const classes = useStyles({ isExcluded })
 
 	const toggleExclusion = () => {
-		const exclusionState = window.localStorage.plausible_ignore === 'true'
+		const exclusionState = localStorage.plausible_ignore === 'true'
 
 		if (exclusionState) {
 			setIsExcluded(false)
-			delete window.localStorage.plausible_ignore
+			delete localStorage.plausible_ignore
 		} else {
 			setIsExcluded(true)
-			window.localStorage.plausible_ignore = 'true'
+			localStorage.plausible_ignore = 'true'
 		}
 	}
 
@@ -80,7 +78,7 @@ export const Plausible: FC = () => {
 					excluding your visits.
 				</div>
 			</div>
-			<Button classes={[classes.btn]} onClick={() => toggleExclusion()}>
+			<Button classes={[classes.btn]} onClick={toggleExclusion}>
 				{isExcluded ? 'Stop excluding my visits' : 'Exclude my visits'}
 			</Button>
 		</div>
