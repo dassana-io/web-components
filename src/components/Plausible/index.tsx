@@ -6,6 +6,9 @@ import React, { FC, useEffect } from 'react'
 const { spacing } = styleguide
 
 const useStyles = createUseStyles({
+	container: {
+		height: '100%'
+	},
 	exclude: {
 		padding: `0 ${spacing.xs}px`
 	}
@@ -64,7 +67,7 @@ export const Plausible: FC = () => {
 	}
 
 	return (
-		<div>
+		<div className={classes.container}>
 			<div className='container text-center mt-24'>
 				<h1 className='text-5xl font-black dark:text-gray-100'>
 					Plausible Exclude

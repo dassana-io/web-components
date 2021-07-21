@@ -1,3 +1,4 @@
+import { createUseStyles } from 'react-jss'
 import { Plausible } from '.'
 import React from 'react'
 import { Meta, Story } from '@storybook/react'
@@ -7,6 +8,22 @@ export default {
 	title: 'Plausible'
 } as Meta
 
-const Template: Story = () => <Plausible />
+const useStyles = createUseStyles({
+	container: {
+		height: '100vh'
+	}
+})
+
+const DecoratedTemplate = () => {
+	const decoratedStyles = useStyles()
+
+	return (
+		<div className={decoratedStyles.container}>
+			<Plausible />
+		</div>
+	)
+}
+
+const Template: Story = () => <DecoratedTemplate />
 
 export const DisablePlausible = Template.bind({})
