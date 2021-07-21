@@ -9,19 +9,21 @@ enum Colors {
 	green = 'green',
 	orange = 'orange',
 	red = 'red',
-	white = 'white'
+	white = 'white',
+	yellow = 'yellow'
 }
 
-const { black, blue, gray, green, orange, red, white } = Colors
+const { black, blue, gray, green, orange, red, white, yellow } = Colors
 
 const baseColors = {
 	[black]: '#282A35',
 	[blue]: '#2F54EB',
 	[gray]: '#EAEAEB',
 	[green]: '#59C93D',
-	[orange]: '#EEAB47',
-	[red]: '#EE5C47',
-	[white]: '#FEFEFE'
+	[orange]: '#EE9747',
+	[red]: '#EE4747',
+	[white]: '#FEFEFE',
+	[yellow]: '#EEB547'
 }
 
 interface Base {
@@ -52,12 +54,17 @@ interface Grays extends Base {
 	'lighten-40': string
 }
 
+interface Reds extends Base {
+	'darken-20': string
+}
+
 const percentages: Record<string, any> = {
 	[black]: {
 		darken: [10, 20, 40],
 		lighten: [10, 20, 30, 40, 50, 60, 70, 80]
 	},
-	[gray]: { lighten: [40, 70] }
+	[gray]: { lighten: [40, 70] },
+	[red]: { darken: [20] }
 }
 
 interface GenerateColors {
@@ -89,12 +96,13 @@ const generateTintsAndShades = (color: Colors) => ({
 
 export interface ColorsType {
 	blacks: Blacks
-	blues: { base: string }
+	blues: Base
 	grays: Grays
-	greens: { base: string }
-	oranges: { base: string }
-	reds: { base: string }
-	whites: { base: string }
+	greens: Base
+	oranges: Base
+	reds: Reds
+	whites: Base
+	yellows: Base
 }
 
 const colors: ColorsType = {
@@ -103,8 +111,9 @@ const colors: ColorsType = {
 	grays: generateTintsAndShades(gray) as Grays,
 	greens: { base: baseColors[green] },
 	oranges: { base: baseColors[orange] },
-	reds: { base: baseColors[red] },
-	whites: { base: baseColors[white] }
+	reds: generateTintsAndShades(red) as Reds,
+	whites: { base: baseColors[white] },
+	yellows: { base: baseColors[yellow] }
 }
 
 export default colors
