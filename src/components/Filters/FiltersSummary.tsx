@@ -5,6 +5,7 @@ import { Icon } from '../Icon'
 import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
+import { Tooltip } from '../Tooltip'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
 import { useWindowSize } from '@dassana-io/web-utils'
@@ -92,11 +93,13 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 							// If value exists in the iconMap, render the icon.
 							// Otherwise render correctly truncated text (to prevent "undefined" from being displayed).
 							iconMap[value] ? (
-								<Icon
-									height={15}
-									icon={iconMap[value]}
-									key={value}
-								/>
+								<Tooltip placement='top' title={text}>
+									<Icon
+										height={15}
+										icon={iconMap[value]}
+										key={value}
+									/>
+								</Tooltip>
 							) : (
 								truncate(text, {
 									length: truncateLength
