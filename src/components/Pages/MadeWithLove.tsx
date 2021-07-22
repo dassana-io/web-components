@@ -158,7 +158,7 @@ const defaultFooterLinksConfig: FooterLinksConfig[] = [
 		icon: faTwitterSquare
 	},
 	{
-		href: 'https://www.linkedin.com/company/dassana-inc',
+		href: 'https://www.linkedin.com/company/dassana-inc/',
 		icon: faLinkedin
 	},
 	{
@@ -223,7 +223,7 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 					{/* TODO: update placeholder */}
 					<Link
 						classes={[compClasses.hiringLink]}
-						href='http://www.linkedin.com'
+						href='https://dassanaio.notion.site/Job-Board-0a01b48e2ef8462bb3d12e50b8b21c9b'
 						target='_blank'
 					>
 						We’re hiring!
