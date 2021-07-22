@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
 		background: popoverPalette[light].background,
 		bottom: 0,
 		display: ({ isPopoverOpen }) => (isPopoverOpen ? 'flex' : 'none'),
-		height: '100%',
+		height: '100vh',
 		left: 0,
 		position: 'fixed',
 		right: 0,
