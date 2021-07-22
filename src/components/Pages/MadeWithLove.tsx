@@ -23,7 +23,7 @@ import {
 import React, { FC } from 'react'
 
 const { mobile, tablet } = Breakpoints
-const { min } = mediaSelectorsWithBreakpoints
+const { max, min } = mediaSelectorsWithBreakpoints
 
 const { dark, light } = ThemeType
 
@@ -81,6 +81,9 @@ const useStyles = createUseStyles({
 		marginRight: spacing.s
 	},
 	hiring: {
+		[max[mobile]]: {
+			width: '60%'
+		},
 		paddingTop: spacing.xl
 	},
 	hiringLink: {
@@ -106,6 +109,13 @@ const useStyles = createUseStyles({
 			paddingTop: spacing.xl
 		},
 		paddingTop: spacing['l+']
+	},
+	madeWith: {
+		[max[mobile]]: {
+			width: '60%'
+		},
+		...flexCenter,
+		flexWrap: 'wrap'
 	},
 	plus: {
 		margin: spacing.l
@@ -194,13 +204,16 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 	return (
 		<div className={cn(compClasses.container, classes)}>
 			<div className={compClasses.content}>
-				<div>
-					Made with
-					<FontAwesomeIcon
-						className={compClasses.heart}
-						icon={faHeart}
-					/>
-					in San Jose...in addition to lots of
+				<div className={compClasses.madeWith}>
+					<div>
+						Made with
+						<FontAwesomeIcon
+							className={compClasses.heart}
+							icon={faHeart}
+						/>
+						in San Jose...
+					</div>
+					<div>in addition to lots of</div>
 				</div>
 				<div className={compClasses.loveIcons}>{renderLoveIcons()}</div>
 				<div className={compClasses.hiring}>
