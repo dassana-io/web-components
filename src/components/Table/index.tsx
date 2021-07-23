@@ -130,7 +130,10 @@ export const Table = <Data,>({
 	const { classes: tableControlClasses = [], render: renderTableControls } =
 		tableControlsConfig
 
-	const { isMobile } = useWindowSize()
+	const {
+		isMobile,
+		windowSize: { width }
+	} = useWindowSize()
 
 	const tableClasses = useStyles({
 		onRowClick,
@@ -263,7 +266,7 @@ export const Table = <Data,>({
 				x: scrollConfig.x
 			}
 		}
-	} else if (isMobile) {
+	} else if (width <= 768) {
 		scrollProps = {
 			scroll: {
 				x: scrollConfig ? scrollConfig.x : columns.length * 150
