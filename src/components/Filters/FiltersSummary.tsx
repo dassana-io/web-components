@@ -1,11 +1,10 @@
 import { createUseStyles } from 'react-jss'
 import { filterSelectedFilters } from './utils'
 import { FiltersList } from './types'
-import { Icon } from '../Icon'
+import { IconCell } from 'components/Table/IconCell'
 import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
-import { Tooltip } from '../Tooltip'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
 import { useWindowSize } from '@dassana-io/web-utils'
@@ -32,6 +31,12 @@ const useStyles = createUseStyles({
 			right: spacing.xs
 		}
 	},
+	iconWrapper: {
+		display: 'inline'
+	},
+	label: {
+		marginLeft: spacing.xs
+	},
 	operator: {
 		padding: {
 			left: spacing.xs,
@@ -41,7 +46,7 @@ const useStyles = createUseStyles({
 	valuesReadOnly: {
 		'&:not(:last-of-type)::after': {
 			content: "','", // eslint-disable-line quotes
-			paddingRight: spacing.xs
+			paddingRight: spacing.s
 		}
 	}
 })
@@ -93,13 +98,17 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 							// If value exists in the iconMap, render the icon.
 							// Otherwise render correctly truncated text (to prevent "undefined" from being displayed).
 							iconMap[value] ? (
-								<Tooltip placement='top' title={text}>
-									<Icon
-										height={15}
-										icon={iconMap[value]}
-										key={value}
-									/>
-								</Tooltip>
+								<IconCell
+									iconProps={{
+										height: 15,
+										icon: iconMap[value]
+									}}
+									key={value}
+									label={text}
+									labelClasses={[classes.label]}
+									labelType={config[selectedKey].type}
+									wrapperClasses={[classes.iconWrapper]}
+								/>
 							) : (
 								truncate(text, {
 									length: truncateLength
