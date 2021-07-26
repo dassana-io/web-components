@@ -9,7 +9,6 @@ import Momos from '../assets/images/momo.svg'
 import { styleguide } from 'components/assets/styles'
 import { Breakpoints, ThemeType } from '@dassana-io/web-utils'
 import {
-	faAws,
 	faGithub,
 	faLinkedin,
 	faSlack,
