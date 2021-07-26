@@ -166,12 +166,8 @@ const defaultFooterLinksConfig: FooterLinksConfig[] = [
 		icon: faGithub
 	},
 	{
-		href: 'https://www.slack.com',
+		href: 'https://dassanacommunity.slack.com/join/shared_invite/zt-teo6d5ed-xkWDNSaH4m6pC8PAJnrD8g#/shared-invite/email',
 		icon: faSlack
-	},
-	{
-		href: 'https://github.com/dassana-io/dassana',
-		icon: faAws
 	}
 ]
 
