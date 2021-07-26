@@ -149,6 +149,7 @@ interface ComponentColoredDotType extends PartialComponentType {
 interface RenderPropsLink extends Pick<LinkProps, 'target'> {
 	buildHref: (record?: string, data?: Record<string, any>) => string
 	isDisabled?: (record?: string, data?: Record<string, any>) => boolean
+	sortBy?: ColumnTypes.string | ColumnTypes.number
 }
 
 interface ComponentLinkType extends PartialComponentType {
