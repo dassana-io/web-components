@@ -239,7 +239,13 @@ export const MadeWithLove: FC<MadeWithLoveProps> = ({
 					))}
 				</div>
 				<div className={compClasses.copyright}>
-					© {new Date().getFullYear()} Dassana.io, All Rights Reserved
+					© {new Date().getFullYear()} Dassana Inc /{' '}
+					<Link
+						href='https://dassanaio.notion.site/Privacy-Policy-ed4f1a5d498846c0b7a3edb02119a384'
+						target='_blank'
+					>
+						Privacy
+					</Link>
 				</div>
 			</div>
 		</div>

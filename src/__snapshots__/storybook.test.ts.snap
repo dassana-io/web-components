@@ -3290,7 +3290,24 @@ exports[`Storyshots Made With Love With Love 1`] = `
         >
           © 
           2021
-           Dassana.io, All Rights Reserved
+           Dassana Inc /
+           
+          <a
+            className="ant-typography"
+            data-test="link"
+            href="https://dassanaio.notion.site/Privacy-Policy-ed4f1a5d498846c0b7a3edb02119a384"
+            rel="noopener noreferrer"
+            style={
+              Object {
+                "WebkitLineClamp": undefined,
+              }
+            }
+            target="_blank"
+          >
+            <u>
+              Privacy
+            </u>
+          </a>
         </div>
       </div>
     </div>
