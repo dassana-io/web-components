@@ -1,3 +1,4 @@
+import { IconCellLabelType } from 'components/Table'
 import { FilterOptions, FiltersConfig, FilterValues } from '../types'
 
 export const mockDynamicFilterOptions: FilterValues = [
@@ -71,6 +72,7 @@ export const filtersConfig: FiltersConfig = {
 		iconMap: {
 			aws: 'https://dummyimage.com/400x400/ff9900/fff&text=A',
 			azure: 'https://dummyimage.com/400x400/0072c6/fff&text=A'
-		}
+		},
+		type: IconCellLabelType.tooltip
 	}
 }

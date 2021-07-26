@@ -4,7 +4,7 @@ import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
-	TableIconLabelType,
+	IconCellLabelType,
 	TableProps
 } from '..'
 
@@ -65,7 +65,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'company',
 		format: icon,
 		renderProps: {
-			label: { type: TableIconLabelType.inline },
+			label: { type: IconCellLabelType.inline },
 			type: 'iconKey'
 		},
 		title: 'Company',

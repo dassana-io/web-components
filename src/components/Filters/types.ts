@@ -1,3 +1,4 @@
+import { IconCellLabelType } from 'components/Table'
 import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
 import { MultiSelectProps, SelectOption } from '../Select'
 import React, { RefObject } from 'react'
@@ -64,6 +65,7 @@ export interface FiltersConfig {
 		iconMap?: {
 			[key: string]: string
 		}
+		type?: IconCellLabelType
 	}
 }
 
