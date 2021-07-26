@@ -265,13 +265,23 @@ function applySort<TableData extends DataId>(
 		case component:
 			switch (column.format) {
 				case coloredDot:
-				case link:
 					antDColumn.sorter = compareStrings(column)
 					break
 
 				case icon:
 					antDColumn.sorter = compareIcons(column)
 					break
+
+				case link: {
+					const { renderProps = { sortBy: ColumnTypes.string } } =
+						column
+
+					antDColumn.sorter =
+						renderProps.sortBy === ColumnTypes.number
+							? compareNumbers(column)
+							: compareStrings(column)
+					break
+				}
 
 				case tag:
 					antDColumn.sorter = compareTags(column)
