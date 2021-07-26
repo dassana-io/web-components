@@ -4,7 +4,7 @@ import {
 	ColumnFormats,
 	ColumnType,
 	ColumnTypes,
-	TableIconLabelType,
+	IconCellLabelType,
 	TableProps
 } from '..'
 
@@ -43,7 +43,7 @@ const columns: ColumnType[] = [
 		format: icon,
 		renderProps: {
 			iconKey: 'value',
-			label: { labelKey: 'value', type: TableIconLabelType.tooltip },
+			label: { labelKey: 'value', type: IconCellLabelType.tooltip },
 			type: 'iconKey'
 		},
 		title: 'Company',
@@ -66,7 +66,7 @@ const columns: ColumnType[] = [
 		renderProps: {
 			buildHref: name =>
 				`https://dummyimage.com/300x300/${name}1DB3C/fff&text=${name}`,
-			label: { type: TableIconLabelType.tooltip },
+			label: { type: IconCellLabelType.tooltip },
 			type: 'icon'
 		},
 		title: 'Icon',
@@ -79,7 +79,7 @@ const columns: ColumnType[] = [
 			buildHref: (name, data = {}) =>
 				`https://dummyimage.com/300x300/${name}848CF/fff&text=${name}${data.icon}`,
 			iconKey: 'id',
-			label: { labelKey: 'label', type: TableIconLabelType.tooltip },
+			label: { labelKey: 'label', type: IconCellLabelType.tooltip },
 			type: 'icon'
 		},
 		title: 'Build Icon Link',

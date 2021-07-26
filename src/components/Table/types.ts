@@ -84,7 +84,7 @@ interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
 }
 
-export enum TableIconLabelType {
+export enum IconCellLabelType {
 	inline = 'inline',
 	tooltip = 'tooltip'
 }
@@ -95,7 +95,7 @@ interface SharedCompIconType extends SharedIconProps {
 	/**
 	 * Whether to render a label with the icon or not.
 	 */
-	label?: { labelKey?: string; type: TableIconLabelType }
+	label?: { labelKey?: string; type: IconCellLabelType }
 }
 
 export interface RenderPropsIconMap extends SharedCompIconType {
