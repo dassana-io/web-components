@@ -45,8 +45,7 @@ const styles = {
 		}
 	},
 	valuesReadOnly: {
-		'&:not(:last-of-type)::after': {
-			content: "','", // eslint-disable-line quotes
+		'&:not(:last-of-type)': {
 			paddingRight: spacing.xs
 		}
 	}
@@ -84,6 +83,7 @@ const renderValuesStr = (values: string[] | ReactNode[], classes: Classes) => {
 				(val: string | ReactNode, valIndex: number) => (
 					<span className={classes.valuesReadOnly} key={valIndex}>
 						{val}
+						{valIndex < valuesToDisplay.length - 1 ? ',' : <></>}
 					</span>
 				)
 			)}
@@ -124,8 +124,10 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 	const renderSummary = () => {
 		const filteredFiltersList = filterSelectedFilters(filtersList)
 
-		const filtersToDisplay = filteredFiltersList.slice(0, 3)
-		const filtersListToHide = filteredFiltersList.slice(3)
+		const sliceLength = width > Breakpoints.largeScreen ? 4 : 2
+
+		const filtersToDisplay = filteredFiltersList.slice(0, sliceLength)
+		const filtersListToHide = filteredFiltersList.slice(sliceLength)
 
 		return (
 			<>
