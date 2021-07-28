@@ -19,13 +19,13 @@ interface Props extends ValuesMultiSelectProps {
 
 export const ServerSideValuesMS: FC<Props> = ({
 	id,
-	isMobile,
 	onFilterChange,
 	filterOptValues,
 	selectedKey,
 	optionsConfig,
 	selectedValues = [],
-	staticFilter
+	staticFilter,
+	windowWidth
 }: Props) => {
 	const { dynamicOptions, dynamicSearchVal, onSearchWrapper, pending } =
 		useFiltersContext()
@@ -136,14 +136,14 @@ export const ServerSideValuesMS: FC<Props> = ({
 		<MultiSelect
 			{...getMultiSelectProps({
 				id,
-				isMobile,
 				multiSelectProps: {
 					options,
 					optionsConfig,
 					...dynamicFilterProps
 				},
 				onFilterChange,
-				selectedValues
+				selectedValues,
+				windowWidth
 			})}
 		/>
 	)

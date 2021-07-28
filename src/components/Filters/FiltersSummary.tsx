@@ -5,14 +5,15 @@ import { IconCell } from 'components/Table/IconCell'
 import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
+import { Tooltip } from 'components/Tooltip'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
-import { useWindowSize } from '@dassana-io/web-utils'
+import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
 import React, { FC, ReactNode } from 'react'
 
 const { font, spacing } = styleguide
 
-const truncateLength = 15
+const truncateLength = 12
 
 const useStyles = createUseStyles({
 	bracket: { ...font.body, fontStyle: 'normal' },
@@ -55,10 +56,26 @@ interface FiltersSummaryProps {
 	filtersList: FiltersList
 }
 
+const renderConditionallyTruncatedText = (text: string) => {
+	const truncatedText = truncate(text, {
+		length: truncateLength
+	})
+
+	return truncatedText === text ? (
+		text
+	) : (
+		<Tooltip placement='top' title={text}>
+			{truncatedText}
+		</Tooltip>
+	)
+}
+
 const FiltersSummary: FC<FiltersSummaryProps> = ({
 	filtersList
 }: FiltersSummaryProps) => {
-	const { isMobile } = useWindowSize()
+	const {
+		windowSize: { width }
+	} = useWindowSize()
 
 	const { allFilters, config = {} } = useFiltersContext()
 
@@ -78,7 +95,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 		)
 	}
 
-	return isMobile || isEmpty(allFilters) ? (
+	return width <= Breakpoints.tablet || isEmpty(allFilters) ? (
 		renderMobileSummary()
 	) : (
 		<>
@@ -110,15 +127,13 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 									wrapperClasses={[classes.iconWrapper]}
 								/>
 							) : (
-								truncate(text, {
-									length: truncateLength
-								})
+								renderConditionallyTruncatedText(text)
 							)
 						)
 					} else {
 						// For everything that is not an icon, render correctly truncated text.
 						values = selectedValues.map(({ text }) =>
-							truncate(text, { length: truncateLength })
+							renderConditionallyTruncatedText(text)
 						)
 					}
 

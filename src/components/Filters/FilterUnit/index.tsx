@@ -36,7 +36,9 @@ const FilterUnit: FC<FilterUnitProps> = ({
 }: FilterUnitProps) => {
 	const { allFilters, config = {}, mode } = useFiltersContext()
 
-	const { isMobile } = useWindowSize()
+	const {
+		windowSize: { width }
+	} = useWindowSize()
 
 	const classes = useFilterUnitStyles()
 
@@ -112,11 +114,11 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		const commonProps: ValuesMultiSelectProps = {
 			filterOptValues,
 			id,
-			isMobile,
 			onFilterChange,
 			optionsConfig,
 			selectedKey,
-			selectedValues
+			selectedValues,
+			windowWidth: width
 		}
 
 		return mode === 'frontend' ? (
