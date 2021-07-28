@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
 	valuesReadOnly: {
 		'&:not(:last-of-type)::after': {
 			content: "','", // eslint-disable-line quotes
-			paddingRight: spacing.s
+			paddingRight: spacing.xs
 		}
 	}
 })
@@ -67,6 +67,31 @@ const renderConditionallyTruncatedText = (text: string) => {
 		<Tooltip placement='top' title={text}>
 			{truncatedText}
 		</Tooltip>
+	)
+}
+
+const renderValuesStr = (
+	values: string[] | ReactNode[],
+	classes: Record<string, string>
+) => {
+	const valuesToDisplay = values.slice(0, 2)
+	const valuesToHideLength = values.slice(2).length
+
+	return (
+		<>
+			{valuesToDisplay.map(
+				(val: string | ReactNode, valIndex: number) => (
+					<span className={classes.valuesReadOnly} key={valIndex}>
+						{val}
+					</span>
+				)
+			)}
+			{valuesToHideLength ? (
+				<span>& {valuesToHideLength} more</span>
+			) : (
+				<></>
+			)}
+		</>
 	)
 }
 
@@ -150,19 +175,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 								<span className={classes.operator}>
 									{selectedOperator}
 								</span>
-								{values.map(
-									(
-										val: string | ReactNode,
-										valIndex: number
-									) => (
-										<span
-											className={classes.valuesReadOnly}
-											key={valIndex}
-										>
-											{val}
-										</span>
-									)
-								)}
+								{renderValuesStr(values, classes)}
 							</span>
 							<span className={classes.bracket}>]</span>
 						</span>
