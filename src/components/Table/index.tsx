@@ -218,6 +218,7 @@ export const Table = <Data,>({
 	const delayedSearch = debounce(q => searchTable(q), 250)
 
 	const fuse = new Fuse(processedData, {
+		ignoreLocation: true,
 		isCaseSensitive: false,
 		keys: mapFilterKeys(columns),
 		threshold: 0.1
