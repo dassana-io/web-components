@@ -151,7 +151,8 @@ export const usePopoverStyles = createUseStyles({
 	filtersList: {
 		[max[tablet]]: {
 			display: 'block',
-			height: `calc(100vh - ${popoverControlsHeight}px)`,
+			height: ({ windowHeight }) =>
+				`calc(${windowHeight}px - ${popoverControlsHeight}px)`,
 			overflow: 'auto',
 			padding: spacing.m
 		},

@@ -35,12 +35,12 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 	togglePopoverVisibility
 }: FilterPopoverProps) => {
 	const {
-		windowSize: { width }
+		windowSize: { height, width }
 	} = useWindowSize()
 
 	const { allFilters, popoverClasses = [] } = useFiltersContext()
 
-	const classes = usePopoverStyles()
+	const classes = usePopoverStyles({ windowHeight: height })
 
 	const renderContent = () => (
 		<div className={classes.popoverContent}>
