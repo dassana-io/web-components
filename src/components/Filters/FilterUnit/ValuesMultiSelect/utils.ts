@@ -1,3 +1,4 @@
+import { Breakpoints } from '@dassana-io/web-utils'
 import { MultiSelectProps } from '../../../Select'
 import { ValuesMultiSelectProps } from './types'
 
@@ -21,7 +22,7 @@ const defaultCommonProps: DefaultCommonProps = {
 interface Params
 	extends Pick<
 		ValuesMultiSelectProps,
-		'id' | 'isMobile' | 'onFilterChange' | 'selectedValues'
+		'id' | 'windowWidth' | 'onFilterChange' | 'selectedValues'
 	> {
 	multiSelectProps: Omit<MultiSelectProps, 'disabled' | 'onChange' | 'values'>
 }
@@ -29,20 +30,24 @@ interface Params
 export const getMultiSelectProps = ({
 	multiSelectProps,
 	id,
-	isMobile,
+	windowWidth = 0,
 	onFilterChange,
 	selectedValues = []
 }: Params): MultiSelectProps => {
 	const { options, ...rest } = multiSelectProps
 
-	const optionalMobileProps: Pick<MultiSelectProps, 'maxTagCount'> = {}
+	const optionalResponsiveProps: Pick<MultiSelectProps, 'maxTagCount'> = {}
 
-	if (isMobile) optionalMobileProps.maxTagCount = 1
+	if (windowWidth <= Breakpoints.tablet) {
+		optionalResponsiveProps.maxTagCount = 4
+	} else if (windowWidth <= Breakpoints.mobile) {
+		optionalResponsiveProps.maxTagCount = 1
+	}
 
 	return {
 		...defaultCommonProps,
 		...rest,
-		...optionalMobileProps,
+		...optionalResponsiveProps,
 		disabled: !options.length,
 		onChange: vals =>
 			onFilterChange({

@@ -14,8 +14,12 @@ const useStyles = createUseStyles({
 	'@global': {
 		'.markdown-body': {
 			'& a': generateLinkStyles(light)['&.ant-typography'],
-			'& code': {
-				backgroundColor: themes[light].state.disabled
+			'& pre': {
+				'& code': {
+					backgroundColor: themes[light].state.disabled,
+					color: 'unset',
+					textShadow: 'none'
+				}
 			},
 			...font.body,
 			color: themes[light].text.primary,
@@ -24,8 +28,10 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& .markdown-body': {
 				'& a': generateLinkStyles(dark)['&.ant-typography'],
-				'& code': {
-					backgroundColor: themes[dark].state.disabled
+				'& pre': {
+					'& code': {
+						backgroundColor: themes[dark].state.disabled
+					}
 				},
 				color: themes[dark].text.primary
 			}
