@@ -15,7 +15,7 @@ const {
 
 const { dark, light } = ThemeType
 
-const { mobile } = Breakpoints
+const { tablet } = Breakpoints
 const { max } = mediaSelectorsWithBreakpoints
 
 const filterPalette = {
@@ -52,12 +52,14 @@ export const useBaseFilterStyles = createUseStyles({
 	},
 	filterControls: flexAlignCenter,
 	filterIcon: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			marginRight: spacing.s
 		},
 		...font.label,
 		background: themedStyles[light].base.backgroundColor,
-		marginRight: spacing.m
+		marginRight: spacing.m,
+		minHeight: 26,
+		minWidth: 26
 	},
 	filtersSummary: {
 		...font.label,
@@ -83,13 +85,13 @@ export const useBaseFilterStyles = createUseStyles({
 
 export const useFilterUnitStyles = createUseStyles({
 	closeIcon: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			position: 'absolute',
 			right: spacing.s
 		}
 	},
 	container: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			alignItems: 'flex-start',
 			flexDirection: 'column',
 			marginRight: 0,
@@ -109,19 +111,19 @@ export const useFilterUnitStyles = createUseStyles({
 		paddingRight: spacing['s+']
 	},
 	multiSelectContainer: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			padding: 0
 		},
 		paddingLeft: spacing['s+'],
 		paddingRight: spacing['s+']
 	},
 	operator: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			marginBottom: spacing.xs
 		}
 	},
 	singleSelectContainer: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			marginBottom: spacing.xs,
 			padding: 0
 		},
@@ -147,9 +149,10 @@ export const usePopoverStyles = createUseStyles({
 		zIndex: 100
 	},
 	filtersList: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			display: 'block',
-			height: `calc(100vh - ${popoverControlsHeight}px)`,
+			height: ({ windowHeight }) =>
+				`calc(${windowHeight}px - ${popoverControlsHeight}px)`,
 			overflow: 'auto',
 			padding: spacing.m
 		},
@@ -163,7 +166,7 @@ export const usePopoverStyles = createUseStyles({
 		zIndex: 10
 	},
 	popoverContent: {
-		[max[mobile]]: {
+		[max[tablet]]: {
 			height: '100vh',
 			padding: 0,
 			width: '100vw'
@@ -174,7 +177,7 @@ export const usePopoverStyles = createUseStyles({
 	},
 	popoverControls: {
 		...flexAlignCenter,
-		[max[mobile]]: {
+		[max[tablet]]: {
 			background: popoverPalette[light].background,
 			height: popoverControlsHeight,
 			padding: `${spacing.s}px ${spacing.m}px`,
@@ -192,7 +195,7 @@ export const usePopoverStyles = createUseStyles({
 	'@global': {
 		[`.${dark}`]: {
 			'& $popoverControls': {
-				[max[mobile]]: {
+				[max[tablet]]: {
 					background: popoverPalette[dark].background
 				}
 			}

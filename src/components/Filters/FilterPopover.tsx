@@ -8,7 +8,7 @@ import { Link } from '../Link'
 import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
-import { useWindowSize } from '@dassana-io/web-utils'
+import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
 import { FiltersList, FiltersListItem } from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { FC } from 'react'
@@ -34,11 +34,13 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 	resetFiltersList,
 	togglePopoverVisibility
 }: FilterPopoverProps) => {
-	const { isMobile } = useWindowSize()
+	const {
+		windowSize: { height, width }
+	} = useWindowSize()
 
 	const { allFilters, popoverClasses = [] } = useFiltersContext()
 
-	const classes = usePopoverStyles()
+	const classes = usePopoverStyles({ windowHeight: height })
 
 	const renderContent = () => (
 		<div className={classes.popoverContent}>
@@ -95,7 +97,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 		</div>
 	)
 
-	return isMobile ? (
+	return width <= Breakpoints.tablet ? (
 		<FilterModal isPopoverOpen={isPopoverOpen}>
 			{renderContent()}
 		</FilterModal>

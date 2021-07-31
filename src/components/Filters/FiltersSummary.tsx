@@ -5,16 +5,17 @@ import { IconCell } from 'components/Table/IconCell'
 import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
+import { Tooltip } from 'components/Tooltip'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
-import { useWindowSize } from '@dassana-io/web-utils'
+import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
 import React, { FC, ReactNode } from 'react'
 
 const { font, spacing } = styleguide
 
-const truncateLength = 15
+const truncateLength = 12
 
-const useStyles = createUseStyles({
+const styles = {
 	bracket: { ...font.body, fontStyle: 'normal' },
 	filterReadOnly: {
 		'&:not(:last-of-type)::after': {
@@ -44,21 +45,63 @@ const useStyles = createUseStyles({
 		}
 	},
 	valuesReadOnly: {
-		'&:not(:last-of-type)::after': {
-			content: "','", // eslint-disable-line quotes
-			paddingRight: spacing.s
+		'&:not(:last-of-type)': {
+			paddingRight: spacing.xs
 		}
 	}
-})
+}
+
+type Classes = Record<keyof typeof styles, string>
+
+const useStyles = createUseStyles(styles)
 
 interface FiltersSummaryProps {
 	filtersList: FiltersList
 }
 
+const renderConditionallyTruncatedText = (text: string) => {
+	const truncatedText = truncate(text, {
+		length: truncateLength
+	})
+
+	return truncatedText === text ? (
+		text
+	) : (
+		<Tooltip placement='top' title={text}>
+			{truncatedText}
+		</Tooltip>
+	)
+}
+
+const renderValuesStr = (values: string[] | ReactNode[], classes: Classes) => {
+	const valuesToDisplay = values.slice(0, 2)
+	const valuesToHideLength = values.slice(2).length
+
+	return (
+		<>
+			{valuesToDisplay.map(
+				(val: string | ReactNode, valIndex: number) => (
+					<span className={classes.valuesReadOnly} key={valIndex}>
+						{val}
+						{valIndex < valuesToDisplay.length - 1 ? ',' : <></>}
+					</span>
+				)
+			)}
+			{valuesToHideLength ? (
+				<span>& {valuesToHideLength} more</span>
+			) : (
+				<></>
+			)}
+		</>
+	)
+}
+
 const FiltersSummary: FC<FiltersSummaryProps> = ({
 	filtersList
 }: FiltersSummaryProps) => {
-	const { isMobile } = useWindowSize()
+	const {
+		windowSize: { width }
+	} = useWindowSize()
 
 	const { allFilters, config = {} } = useFiltersContext()
 
@@ -78,84 +121,93 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 		)
 	}
 
-	return isMobile || isEmpty(allFilters) ? (
-		renderMobileSummary()
-	) : (
-		<>
-			{filterSelectedFilters(filtersList).map(
-				({
-					selectedKey,
-					selectedOperator = '=',
-					selectedValues = []
-				}) => {
-					let values: string[] | ReactNode[]
+	const renderSummary = () => {
+		const filteredFiltersList = filterSelectedFilters(filtersList)
 
-					// If selectedKey and config[selectedKey].iconMap exists, render icons
-					if (config[selectedKey] && config[selectedKey].iconMap) {
-						const iconMap = config[selectedKey].iconMap || {}
+		const sliceLength = width > Breakpoints.largeScreen ? 4 : 2
 
-						values = selectedValues.map(({ text, value }) =>
-							// If value exists in the iconMap, render the icon.
-							// Otherwise render correctly truncated text (to prevent "undefined" from being displayed).
-							iconMap[value] ? (
-								<IconCell
-									iconProps={{
-										height: 15,
-										icon: iconMap[value]
-									}}
-									key={value}
-									label={text}
-									labelClasses={[classes.label]}
-									labelType={config[selectedKey].type}
-									wrapperClasses={[classes.iconWrapper]}
-								/>
-							) : (
-								truncate(text, {
-									length: truncateLength
-								})
+		const filtersToDisplay = filteredFiltersList.slice(0, sliceLength)
+		const filtersListToHide = filteredFiltersList.slice(sliceLength)
+
+		return (
+			<>
+				{filtersToDisplay.map(
+					({
+						selectedKey,
+						selectedOperator = '=',
+						selectedValues = []
+					}) => {
+						let values: string[] | ReactNode[]
+
+						// If selectedKey and config[selectedKey].iconMap exists, render icons
+						if (
+							config[selectedKey] &&
+							config[selectedKey].iconMap
+						) {
+							const iconMap = config[selectedKey].iconMap || {}
+
+							values = selectedValues.map(({ text, value }) =>
+								// If value exists in the iconMap, render the icon.
+								// Otherwise render correctly truncated text (to prevent "undefined" from being displayed).
+								iconMap[value] ? (
+									<IconCell
+										iconProps={{
+											height: 15,
+											icon: iconMap[value]
+										}}
+										key={value}
+										label={text}
+										labelClasses={[classes.label]}
+										labelType={config[selectedKey].type}
+										wrapperClasses={[classes.iconWrapper]}
+									/>
+								) : (
+									renderConditionallyTruncatedText(text)
+								)
 							)
+						} else {
+							// For everything that is not an icon, render correctly truncated text.
+							values = selectedValues.map(({ text }) =>
+								renderConditionallyTruncatedText(text)
+							)
+						}
+
+						const keyStr = startCase(
+							allFilters[selectedKey].key.value
 						)
-					} else {
-						// For everything that is not an icon, render correctly truncated text.
-						values = selectedValues.map(({ text }) =>
-							truncate(text, { length: truncateLength })
+
+						return (
+							<span
+								className={classes.filterReadOnly}
+								key={selectedKey}
+							>
+								<span className={classes.bracket}>[</span>
+								<span className={classes.filterUnitReadOnly}>
+									{keyStr}
+									<span className={classes.operator}>
+										{selectedOperator}
+									</span>
+									{renderValuesStr(values, classes)}
+								</span>
+								<span className={classes.bracket}>]</span>
+							</span>
 						)
 					}
+				)}
+				{filtersListToHide.length ? (
+					<span className={classes.filterReadOnly}>
+						{filtersListToHide.length} more
+					</span>
+				) : (
+					<></>
+				)}
+			</>
+		)
+	}
 
-					const keyStr = startCase(allFilters[selectedKey].key.value)
-
-					return (
-						<span
-							className={classes.filterReadOnly}
-							key={selectedKey}
-						>
-							<span className={classes.bracket}>[</span>
-							<span className={classes.filterUnitReadOnly}>
-								{keyStr}
-								<span className={classes.operator}>
-									{selectedOperator}
-								</span>
-								{values.map(
-									(
-										val: string | ReactNode,
-										valIndex: number
-									) => (
-										<span
-											className={classes.valuesReadOnly}
-											key={valIndex}
-										>
-											{val}
-										</span>
-									)
-								)}
-							</span>
-							<span className={classes.bracket}>]</span>
-						</span>
-					)
-				}
-			)}
-		</>
-	)
+	return width <= Breakpoints.tablet || isEmpty(allFilters)
+		? renderMobileSummary()
+		: renderSummary()
 }
 
 export default FiltersSummary
