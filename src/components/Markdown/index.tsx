@@ -18,7 +18,8 @@ const useStyles = createUseStyles({
 				'& code': {
 					backgroundColor: themes[light].state.disabled,
 					color: 'unset',
-					textShadow: 'none'
+					textShadow: 'none',
+					whiteSpace: 'break-spaces'
 				},
 				backgroundColor: themes[light].background.secondary,
 				padding: 10
