@@ -19,7 +19,9 @@ const useStyles = createUseStyles({
 					backgroundColor: themes[light].state.disabled,
 					color: 'unset',
 					textShadow: 'none'
-				}
+				},
+				backgroundColor: themes[light].background.secondary,
+				padding: 10
 			},
 			...font.body,
 			color: themes[light].text.primary,
@@ -31,7 +33,8 @@ const useStyles = createUseStyles({
 				'& pre': {
 					'& code': {
 						backgroundColor: themes[dark].state.disabled
-					}
+					},
+					backgroundColor: themes[dark].background.secondary
 				},
 				color: themes[dark].text.primary
 			}
