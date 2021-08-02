@@ -38,14 +38,12 @@ const useStyles = createUseStyles({
 				const defaultWidth = height * 6 + iconSpacing * 6 + iconSpacing
 				const mobileWidth = height * 4 + iconSpacing * 4 + iconSpacing
 
-				let width = mobileWidth
+				let width = defaultWidth
 
 				if (totalWidth < mobileWidth) {
 					width = totalWidth
 				} else if (isMobile) {
 					width = mobileWidth
-				} else {
-					width = defaultWidth
 				}
 
 				return width
