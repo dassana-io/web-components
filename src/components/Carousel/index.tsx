@@ -154,6 +154,7 @@ export const Carousel: FC<CarouselProps> = ({
 				count={images.length}
 				offsetTop={imageContainerHeight}
 				onClick={i => setPage([i, i > imageIndex ? 1 : -1])}
+				paginate={paginate}
 			/>
 		</div>
 	)
