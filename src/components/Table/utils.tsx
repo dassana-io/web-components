@@ -6,6 +6,7 @@ import { EditableCell } from './EditableCell'
 import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
+import { MultipleIcons } from './MultipleIcons'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -17,7 +18,6 @@ import {
 	EditableCellTypes,
 	NumberDateType
 } from './types'
-import { defaultIconHeight, MultipleIcons } from './MultipleIcons'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
 import { IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
@@ -357,6 +357,60 @@ const getIconProps = <TableData,>({
 	}
 }
 
+interface RenderIconProps<TableData> {
+	data: TableData
+	record: IconRecord
+	renderProps: ComponentIconType['renderProps']
+}
+
+const defaultIconHeight = 25
+
+// eslint-disable-next-line comma-spacing
+const renderIcon = <TableData,>({
+	data,
+	record,
+	renderProps
+}: RenderIconProps<TableData>) => {
+	const { iconKey, height = defaultIconHeight, label } = renderProps
+
+	const jsonPath = iconKey ? `$.${iconKey}` : ''
+
+	const iconProps = {
+		...getIconProps({
+			data,
+			jsonPath,
+			record,
+			renderProps
+		}),
+		height
+	}
+
+	if (renderProps.type === 'icon' && !iconProps.icon) return record
+
+	if (!label) return <IconCell iconProps={iconProps} />
+
+	const labelKey =
+		!label.labelKey && typeof record === 'string' ? record : label.labelKey
+
+	if (!labelKey) return <IconCell iconProps={iconProps} />
+	else {
+		const jsonPath = `$.${labelKey}`
+
+		const labelVal =
+			typeof record === 'string'
+				? labelKey
+				: (getJSONPathValue(jsonPath, record) as string) // eslint-disable-line no-mixed-spaces-and-tabs
+
+		return (
+			<IconCell
+				iconProps={iconProps}
+				label={labelVal}
+				labelType={label.type}
+			/>
+		)
+	}
+}
+
 /* ------------------------------------------------------- */
 
 /*
@@ -458,13 +512,7 @@ function applyRender<TableData extends DataId>(
 				case icon: {
 					const renderProps = column.renderProps
 
-					const {
-						iconKey,
-						height = defaultIconHeight,
-						label
-					} = renderProps
-
-					const jsonPath = iconKey ? `$.${iconKey}` : ''
+					const { height = defaultIconHeight } = renderProps
 
 					antDColumn.render = (
 						record?: IconRecord | IconRecord[],
@@ -473,64 +521,20 @@ function applyRender<TableData extends DataId>(
 						if (!record) return ''
 
 						if (Array.isArray(record)) {
-							const iconPropsArr = record.map(icon =>
-								getIconProps({
-									data,
-									jsonPath,
-									record: icon,
-									renderProps
-								})
-							)
-
 							return (
 								<MultipleIcons
 									height={height}
-									iconPropsArr={iconPropsArr}
+									icons={record.map(icon =>
+										renderIcon({
+											data,
+											record: icon,
+											renderProps
+										})
+									)}
 								/>
 							)
 						} else {
-							const iconProps = {
-								...getIconProps({
-									data,
-									jsonPath,
-									record,
-									renderProps
-								}),
-								height
-							}
-
-							if (renderProps.type === 'icon' && !iconProps.icon)
-								return record
-
-							if (!label)
-								return <IconCell iconProps={iconProps} />
-
-							const labelKey =
-								!label.labelKey && typeof record === 'string'
-									? record
-									: label.labelKey
-
-							if (!labelKey)
-								return <IconCell iconProps={iconProps} />
-							else {
-								const jsonPath = `$.${labelKey}`
-
-								const labelVal =
-									typeof record === 'string'
-										? labelKey
-										: (getJSONPathValue(
-												jsonPath,
-												record
-										  ) as string) // eslint-disable-line no-mixed-spaces-and-tabs
-
-								return (
-									<IconCell
-										iconProps={iconProps}
-										label={labelVal}
-										labelType={label.type}
-									/>
-								)
-							}
+							return renderIcon({ data, record, renderProps })
 						}
 					}
 					break

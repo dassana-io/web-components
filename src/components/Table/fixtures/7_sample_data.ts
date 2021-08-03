@@ -54,6 +54,7 @@ const columns: ColumnType[] = [
 		format: icon,
 		renderProps: {
 			iconKey: 'value',
+			label: { labelKey: 'name', type: IconCellLabelType.tooltip },
 			type: 'iconUrl'
 		},
 		sort: false,
@@ -98,6 +99,7 @@ const data: JSONPathData[] = [
 		vendors: [
 			{
 				id: 'v1',
+				name: 'C',
 				value: 'https://dummyimage.com/300x300/a92323/fff&text=C'
 			}
 		]
@@ -112,14 +114,17 @@ const data: JSONPathData[] = [
 		vendors: [
 			{
 				id: 'v1',
+				name: 'T',
 				value: 'https://dummyimage.com/300x300/bbdcf2/fff&text=T'
 			},
 			{
 				id: 'v2',
+				name: 'B',
 				value: 'https://dummyimage.com/300x300/003366/fff&text=B'
 			},
 			{
 				id: 'v3',
+				name: 'M',
 				value: 'https://dummyimage.com/300x300/5848CF/fff&text=M'
 			}
 		]
@@ -134,58 +139,72 @@ const data: JSONPathData[] = [
 		vendors: [
 			{
 				id: 'v1',
+				name: 'A',
 				value: 'https://dummyimage.com/300x300/0072c6/fff&text=A'
 			},
 			{
 				id: 'v2',
+				name: 'G',
 				value: 'https://dummyimage.com/300x300/EA4335/fff&text=G'
 			},
 			{
 				id: 'v3',
+				name: 'S',
 				value: 'https://dummyimage.com/300x300/C1DB3C/fff&text=S'
 			},
 			{
 				id: 'v4',
+				name: 'M',
 				value: 'https://dummyimage.com/300x300/5848CF/fff&text=M'
 			},
 			{
 				id: 'v5',
+				name: 'T',
 				value: 'https://dummyimage.com/300x300/bbdcf2/fff&text=T'
 			},
 			{
 				id: 'v6',
+				name: 'Q',
 				value: 'https://dummyimage.com/300x300/4b46cd/fff&text=Q'
 			},
 			{
 				id: 'v7',
+				name: 'B',
 				value: 'https://dummyimage.com/300x300/003366/fff&text=B'
 			},
 			{
 				id: 'v8',
+				name: 'C',
 				value: 'https://dummyimage.com/300x300/a92323/fff&text=C'
 			},
 			{
 				id: 'v9',
+				name: 'A',
 				value: 'https://dummyimage.com/300x300/0072c6/fff&text=A'
 			},
 			{
 				id: 'v10',
+				name: 'G',
 				value: 'https://dummyimage.com/300x300/EA4335/fff&text=G'
 			},
 			{
 				id: 'v11',
+				name: 'S',
 				value: 'https://dummyimage.com/300x300/C1DB3C/fff&text=S'
 			},
 			{
 				id: 'v12',
+				name: 'M',
 				value: 'https://dummyimage.com/300x300/5848CF/fff&text=M'
 			},
 			{
 				id: 'v13',
+				name: 'T',
 				value: 'https://dummyimage.com/300x300/bbdcf2/fff&text=T'
 			},
 			{
 				id: 'v14',
+				name: 'Q',
 				value: 'https://dummyimage.com/300x300/4b46cd/fff&text=Q'
 			}
 		]
@@ -200,6 +219,7 @@ const data: JSONPathData[] = [
 		vendors: [
 			{
 				id: 'v1',
+				name: 'S',
 				value: 'https://dummyimage.com/300x300/C1DB3C/fff&text=S'
 			},
 			{
