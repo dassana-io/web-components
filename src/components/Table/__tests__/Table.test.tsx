@@ -144,6 +144,7 @@ describe('Table', () => {
 			vendors: [
 				{
 					id: 'v1',
+					name: 'C',
 					value: 'https://dummyimage.com/300x300/a92323/fff&text=C'
 				}
 			]

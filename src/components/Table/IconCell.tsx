@@ -24,6 +24,7 @@ interface IconCellProps {
 	labelType?: IconCellLabelType
 	wrapperClasses?: string[]
 }
+
 export const IconCell: FC<IconCellProps> = ({
 	label,
 	labelClasses = [],
@@ -56,6 +57,7 @@ export const IconCell: FC<IconCellProps> = ({
 		case tooltip:
 			return (
 				<Tooltip
+					placement='top'
 					title={label}
 					tooltipTriggerClasses={[
 						classes.tooltipTrigger,
