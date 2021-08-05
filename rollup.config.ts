@@ -50,7 +50,6 @@ export default {
 		'moment',
 		'npm',
 		'prettier',
-		'prismjs',
 		'react',
 		'react-ace',
 		'react-dom',
