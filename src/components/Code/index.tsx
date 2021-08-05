@@ -1,111 +1,88 @@
-import './prism.css'
 import cn from 'classnames'
-import Mark from 'mark.js'
-import Prism from 'prismjs'
+import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
 import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
-import { Input, InputProps } from 'components/Input'
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
-require('prismjs/plugins/line-numbers/prism-line-numbers')
-require('prismjs/components/prism-json')
+// eslint-disable-next-line sort-imports
+import 'ace-builds/src-min-noconflict/ext-searchbox'
+import 'ace-builds/src-min-noconflict/mode-jsx'
+require('ace-builds/src-noconflict/theme-monokai')
 
-export interface CodeProps {
+const languages = [
+	'html',
+	'javascript',
+	'java',
+	'markdown',
+	'json',
+	'yaml'
+] as const
+
+languages.forEach(lang => {
+	require(`ace-builds/src-noconflict/mode-${lang}`)
+	require(`ace-builds/src-noconflict/snippets/${lang}`)
+})
+
+export interface CodeProps
+	extends Pick<
+		IAceEditorProps,
+		'height' | 'tabSize' | 'width' | 'wrapEnabled'
+	> {
 	classes?: string[]
-	code: CodeType
+	code?: CodeType
 	displayControls?: DisplayCodeControls | false
-	language?: 'css' | 'html' | 'javascript' | 'json'
-	lineNumbers?: boolean
+	language?: typeof languages[number]
 	readOnly?: boolean
-	search?:
-		| boolean
-		| Omit<InputProps, 'addonAfter' | 'addonBefore' | 'onChange' | 'type'>
+	onChange?: (val: string) => void
 }
 
 export const Code: FC<CodeProps> = ({
 	classes = [],
 	code,
 	displayControls = {},
+	onChange,
 	language = 'json',
-	lineNumbers = true,
 	readOnly = true,
-	search = true
+	tabSize = 2,
+	wrapEnabled = false,
+	...rest
 }: CodeProps) => {
+	if (code && !readOnly && !onChange) {
+		throw new Error('Controlled Code component requires an onChange prop')
+	}
+
 	const compClasses = useStyles()
-	const codeRef = useRef<HTMLElement>(null)
 
 	const [isCopied, setIsCopied] = useState(false)
 
-	const copyCode = () =>
-		copyToClipboard(stringifyCode(code), () => setIsCopied(true))
+	const copyCode = () => {
+		if (code) copyToClipboard(stringifyCode(code), () => setIsCopied(true))
+	}
 
 	useEffect(() => {
 		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
 	}, [isCopied])
 
-	useEffect(() => {
-		/**
-		 * We want to highlight the code after it is rendered onto the page,
-		 * which is why Prism.highlightAll() is wrapped inside a useEffect hook
-		 */
-		Prism.highlightAll()
-	}, [])
-
-	// TODO: Add "jump to matches" https://jsfiddle.net/julmot/973gdh8g/
-	/**
-	 * When input in search bar changes, create a new Mark instance and "mark" the matches
-	 */
-	const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
-		const markInstance = new Mark(codeRef.current as HTMLElement)
-
-		/**
-		 * Remove previous marked elements and mark the new keyword inside the context
-		 */
-		markInstance.unmark({
-			done: () => markInstance.mark(e.target.value)
-		})
-	}
-
-	let searchProps = {}
-
-	if (search) {
-		const {
-			classes = [],
-			fullWidth = true,
-			placeholder = ''
-		} = typeof search === 'object'
-			? search
-			: { classes: [], fullWidth: true, placeholder: '' }
-
-		searchProps = {
-			classes: [compClasses.search, ...classes],
-			fullWidth,
-			placeholder
-		}
-	}
-
 	return (
-		<div className={cn(classes)}>
-			{search && <Input {...searchProps} onChange={onSearch} />}
-			<div className={compClasses.wrapper}>
-				{displayControls && (
-					<CodeControls
-						classes={[compClasses.controls]}
-						isCopied={isCopied}
-						onClickCopyCode={copyCode}
-					/>
-				)}
-				<pre
-					className={cn({
-						'line-numbers': lineNumbers
-					})}
-					contentEditable={!readOnly}
-				>
-					<code className={`language-${language}`} ref={codeRef}>
-						{stringifyCode(code)}
-					</code>
-				</pre>
-			</div>
+		<div className={cn(compClasses.wrapper, classes)}>
+			{displayControls && (
+				<CodeControls
+					classes={[compClasses.controls]}
+					isCopied={isCopied}
+					onClickCopyCode={copyCode}
+				/>
+			)}
+			<AceEditor
+				editorProps={{ $blockScrolling: true }}
+				mode={language}
+				onChange={onChange}
+				readOnly={readOnly}
+				tabSize={tabSize}
+				theme='monokai'
+				value={code && stringifyCode(code)}
+				wrapEnabled={wrapEnabled}
+				{...rest}
+			/>
 		</div>
 	)
 }

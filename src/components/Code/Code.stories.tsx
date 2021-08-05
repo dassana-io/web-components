@@ -3,9 +3,6 @@ import { Code, CodeProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
-	argTypes: {
-		height: { defaultValue: 64 }
-	},
 	component: Code,
 	title: 'Code'
 } as Meta
@@ -55,8 +52,7 @@ const sampleJSON = {
 
 export const Default = Template.bind({})
 Default.args = {
-	code: sampleJSON,
-	search: { placeholder: 'Search...' }
+	code: sampleJSON
 }
 
 export const HTML = Template.bind({})
@@ -64,6 +60,6 @@ HTML.args = {
 	code: `<div>
   <p>Lorem Ipsum</p>
   <span>dolor sit amet</span>
-</div>`,
+  </div>`,
 	language: 'html'
 }

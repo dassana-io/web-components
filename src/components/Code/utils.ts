@@ -11,8 +11,7 @@ import {
 const { dark, light } = ThemeType
 
 const {
-	colors: { blacks, grays, greens, reds, oranges },
-	spacing
+	colors: { blacks, grays, greens, reds, oranges }
 } = styleguide
 
 interface CopyToClipboard {
@@ -169,6 +168,7 @@ export const useStyles = createUseStyles({
 	controls: { opacity: 0 },
 	// eslint-disable-next-line sort-keys
 	'@global': {
+		'.ace_print-margin': { visibility: 'hidden !important' },
 		[preCodeSelector]: {
 			'& .line-numbers-rows': {
 				...generateThemedLineNumStyles(light),
@@ -192,9 +192,6 @@ export const useStyles = createUseStyles({
 			}
 		}
 	},
-	search: {
-		marginBottom: spacing.m
-	},
 	wrapper: {
 		'&:hover': {
 			'& $controls': { opacity: 1 }
@@ -202,6 +199,6 @@ export const useStyles = createUseStyles({
 		height: '100%',
 		overflow: 'auto',
 		position: 'relative',
-		width: '100%'
+		width: 'max-content'
 	}
 })
