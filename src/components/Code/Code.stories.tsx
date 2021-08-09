@@ -8,6 +8,9 @@ export default {
 		onChange: { defaultValue: action('onChange') }
 	},
 	component: Code,
+	parameters: {
+		storyshots: { disable: true }
+	},
 	title: 'Code'
 } as Meta
 
