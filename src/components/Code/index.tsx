@@ -9,14 +9,7 @@ import 'ace-builds/src-min-noconflict/ext-searchbox'
 import 'ace-builds/src-min-noconflict/mode-jsx'
 require('ace-builds/src-noconflict/theme-monokai')
 
-const languages = [
-	'html',
-	'javascript',
-	'java',
-	'markdown',
-	'json',
-	'yaml'
-] as const
+const languages = ['markdown', 'json', 'yaml'] as const
 
 languages.forEach(lang => {
 	require(`ace-builds/src-noconflict/mode-${lang}`)
@@ -73,12 +66,13 @@ export const Code: FC<CodeProps> = ({
 				/>
 			)}
 			<AceEditor
+				className={compClasses.aceEditor}
 				editorProps={{ $blockScrolling: true }}
 				mode={language}
 				onChange={onChange}
 				readOnly={readOnly}
 				tabSize={tabSize}
-				theme='monokai'
+				// theme='monokai'
 				value={code && stringifyCode(code)}
 				wrapEnabled={wrapEnabled}
 				{...rest}

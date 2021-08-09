@@ -52,14 +52,43 @@ const sampleJSON = {
 
 export const Default = Template.bind({})
 Default.args = {
-	code: sampleJSON
+	code: sampleJSON,
+	height: '900px',
+	width: '900px'
 }
 
-export const HTML = Template.bind({})
-HTML.args = {
-	code: `<div>
-  <p>Lorem Ipsum</p>
-  <span>dolor sit amet</span>
-  </div>`,
-	language: 'html'
+export const Yaml = Template.bind({})
+Yaml.args = {
+	code: `schema: 1.0
+  type: normalize
+  vendor-name: foo-cloud
+  id: foo-cloud-normalize
+  
+  filter:
+    match-type: all
+    rules:
+      - .badThingJustHappened and .badThingJustHappened.description
+      - .badThingJustHappened.description | contains ("fubar")
+  
+  steps:
+    - id: demo-resource-info
+      uses: DemoCloudNormalizer
+  
+  normalized-output:
+    step-id: demo-resource-info
+    output:
+      alertId: ."demo-resource-info".alertId
+      canonicalId: ."demo-resource-info".canonicalId
+      vendorPolicy: ."demo-resource-info".vendorPolicy
+      csp: ."demo-resource-info".csp
+      resourceContainer: ."demo-resource-info".resourceContainer
+      region: ."demo-resource-info".region
+      service: ."demo-resource-info".service
+      resourceType: ."demo-resource-info".resourceType
+      resourceId: ."demo-resource-info".resourceId
+  
+  output-queue:
+    enabled: true
+  `,
+	language: 'yaml'
 }

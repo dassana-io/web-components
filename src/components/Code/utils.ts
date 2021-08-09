@@ -95,7 +95,7 @@ export const tokenColors = {
 		property: oranges.base,
 		punctuation: darkCommonColor,
 		string: manipulateColor(greens.base, 20, shade),
-		tag: darkCommonColor,
+		tag: reds.base,
 		variable: darkCommonColor
 	},
 	[light]: {
@@ -113,14 +113,24 @@ export const tokenColors = {
 		property: reds.base,
 		punctuation: lightCommonColor,
 		string: manipulateColor(greens.base, 10, shade),
-		tag: lightCommonColor,
+		tag: oranges.base,
 		variable: lightCommonColor
 	}
 }
 
+const aceColorsNormalizer = {
+	boolean: 'boolean',
+	tag: 'tag',
+	keyword: 'keyword',
+	number: 'numeric',
+	property: 'variable',
+	string: 'string'
+	// meta:
+}
+
 /* ------------------------------------------ */
 
-const generateThemedPreCodeStyles = (themeType: ThemeType) => {
+const generateThemedAceCodeStyles = (themeType: ThemeType) => {
 	const { background } = codePalette[themeType]
 
 	const {
@@ -128,16 +138,17 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 	} = themedStyles[themeType]
 
 	return {
-		...Object.entries(tokenColors[themeType]).reduce(
-			(acc, [key, val]) => ({
+		...Object.entries(aceColorsNormalizer).reduce((acc, [key, val]) => {
+			return {
 				...acc,
-				[`& .token.${key}`]: {
+				[`& .ace_${val}`]: {
 					background: 'none',
-					color: val
+					color: tokenColors[themeType][
+						key as keyof typeof tokenColors[ThemeType]
+					]
 				}
-			}),
-			{}
-		),
+			}
+		}, {}),
 		background,
 		color
 	}
@@ -159,39 +170,17 @@ export const generateThemedLineNumStyles = (themeType: ThemeType) => {
 	}
 }
 
-/* eslint-disable quotes */
-const codeSelector = "& code[class*='language-']"
-const preCodeSelector = "pre[class*='language-']"
-/* eslint-enable quotes */
-
 export const useStyles = createUseStyles({
-	controls: { opacity: 0 },
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		'.ace_print-margin': { visibility: 'hidden !important' },
-		[preCodeSelector]: {
-			'& .line-numbers-rows': {
-				...generateThemedLineNumStyles(light),
-				textShadow: 'none'
+	aceEditor: {
+		'&.ace-tm': {
+			'& .ace_indent-guide': {
+				background:
+					'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAVSURBVHgBAQoA9f8A+fn5/wLb294AJR8GgZJTUkoAAAAASUVORK5CYII=) right repeat-y'
 			},
-			[codeSelector]: {
-				...commonCodeStyles,
-				...generateThemedPreCodeStyles(light),
-				tabSize: 3,
-				textShadow: 'none'
-			},
-			...commonCodeStyles,
-			...generateThemedCodeStyles(light),
-			margin: 0
-		},
-		[`.${dark}`]: {
-			[`& ${preCodeSelector}`]: {
-				'& .line-numbers-rows': generateThemedLineNumStyles(dark),
-				[codeSelector]: generateThemedPreCodeStyles(dark),
-				...generateThemedCodeStyles(dark)
-			}
+			...generateThemedAceCodeStyles(light)
 		}
 	},
+	controls: { opacity: 0 },
 	wrapper: {
 		'&:hover': {
 			'& $controls': { opacity: 1 }
@@ -200,5 +189,20 @@ export const useStyles = createUseStyles({
 		overflow: 'auto',
 		position: 'relative',
 		width: 'max-content'
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		'.ace_print-margin': { visibility: 'hidden !important' },
+		[`.${dark}`]: {
+			'& $aceEditor': {
+				'&.ace-tm': {
+					'& .ace_indent-guide': {
+						background:
+							'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAVSURBVHgBAQoA9f8AICIq/wIzMzMACy8CB8kkVegAAAAASUVORK5CYII=) right repeat-y'
+					},
+					...generateThemedAceCodeStyles(dark)
+				}
+			}
+		}
 	}
 })
