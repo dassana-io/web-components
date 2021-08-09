@@ -1,8 +1,12 @@
+import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { Code, CodeProps } from '.'
 import { Meta, Story } from '@storybook/react/types-6-0'
 
 export default {
+	argTypes: {
+		onChange: { defaultValue: action('onChange') }
+	},
 	component: Code,
 	title: 'Code'
 } as Meta

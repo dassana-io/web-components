@@ -7,7 +7,6 @@ import React, { FC, useEffect, useState } from 'react'
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
 import 'ace-builds/src-min-noconflict/mode-jsx'
-require('ace-builds/src-noconflict/theme-monokai')
 
 const languages = ['markdown', 'json', 'yaml'] as const
 
@@ -19,7 +18,7 @@ languages.forEach(lang => {
 export interface CodeProps
 	extends Pick<
 		IAceEditorProps,
-		'height' | 'tabSize' | 'width' | 'wrapEnabled'
+		'debounceChangePeriod' | 'height' | 'tabSize' | 'width' | 'wrapEnabled'
 	> {
 	classes?: string[]
 	code?: CodeType
@@ -72,7 +71,6 @@ export const Code: FC<CodeProps> = ({
 				onChange={onChange}
 				readOnly={readOnly}
 				tabSize={tabSize}
-				// theme='monokai'
 				value={code && stringifyCode(code)}
 				wrapEnabled={wrapEnabled}
 				{...rest}

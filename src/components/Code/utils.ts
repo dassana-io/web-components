@@ -88,6 +88,7 @@ export const tokenColors = {
 		function: darkCommonColor,
 		keyword: reds.base,
 		lineHighlight: darkCommonColor,
+		list: darkCommonColor,
 		method: darkCommonColor,
 		number: reds.base,
 		operator: darkCommonColor,
@@ -95,7 +96,7 @@ export const tokenColors = {
 		property: oranges.base,
 		punctuation: darkCommonColor,
 		string: manipulateColor(greens.base, 20, shade),
-		tag: reds.base,
+		tag: oranges.base,
 		variable: darkCommonColor
 	},
 	[light]: {
@@ -106,6 +107,7 @@ export const tokenColors = {
 		function: lightCommonColor,
 		keyword: oranges.base,
 		lineHighlight: lightCommonColor,
+		list: lightCommonColor,
 		method: lightCommonColor,
 		number: oranges.base,
 		operator: lightCommonColor,
@@ -113,19 +115,19 @@ export const tokenColors = {
 		property: reds.base,
 		punctuation: lightCommonColor,
 		string: manipulateColor(greens.base, 10, shade),
-		tag: oranges.base,
+		tag: reds.base,
 		variable: lightCommonColor
 	}
 }
 
 const aceColorsNormalizer = {
 	boolean: 'boolean',
-	tag: 'tag',
 	keyword: 'keyword',
+	list: 'list',
 	number: 'numeric',
 	property: 'variable',
-	string: 'string'
-	// meta:
+	string: 'string',
+	tag: 'tag'
 }
 
 /* ------------------------------------------ */
@@ -173,6 +175,9 @@ export const generateThemedLineNumStyles = (themeType: ThemeType) => {
 export const useStyles = createUseStyles({
 	aceEditor: {
 		'&.ace-tm': {
+			'& .ace_gutter': {
+				background: grays.base
+			},
 			'& .ace_indent-guide': {
 				background:
 					'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAVSURBVHgBAQoA9f8A+fn5/wLb294AJR8GgZJTUkoAAAAASUVORK5CYII=) right repeat-y'
@@ -196,9 +201,22 @@ export const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $aceEditor': {
 				'&.ace-tm': {
+					'& .ace_cursor': {
+						color: blacks['lighten-60']
+					},
+					'& .ace_gutter': {
+						background: blacks.base,
+						color: blacks['lighten-60']
+					},
+					'& .ace_gutter-active-line': {
+						background: blacks['lighten-10']
+					},
 					'& .ace_indent-guide': {
 						background:
 							'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAVSURBVHgBAQoA9f8AICIq/wIzMzMACy8CB8kkVegAAAAASUVORK5CYII=) right repeat-y'
+					},
+					'& .ace_marker-layer .ace_active-line': {
+						background: 'rgba(255,255,255,0.07)'
 					},
 					...generateThemedAceCodeStyles(dark)
 				}
