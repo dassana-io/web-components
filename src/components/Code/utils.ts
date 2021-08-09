@@ -11,7 +11,7 @@ import {
 const { dark, light } = ThemeType
 
 const {
-	colors: { blacks, grays, greens, reds, oranges }
+	colors: { blacks, blues, grays, greens, reds, oranges }
 } = styleguide
 
 interface CopyToClipboard {
@@ -217,6 +217,37 @@ export const useStyles = createUseStyles({
 					},
 					'& .ace_marker-layer .ace_active-line': {
 						background: 'rgba(255,255,255,0.07)'
+					},
+					'& .ace_search': {
+						'& .ace_button': {
+							'&.checked': {
+								borderColor: blues.base,
+								color: blacks['lighten-80']
+							},
+							'&:hover': {
+								background: blacks['lighten-20'],
+								color: blacks['lighten-80']
+							},
+							borderColor: blacks['lighten-30'],
+							color: grays.base
+						},
+						'& .ace_search_field': {
+							'&::placeholder': {
+								color: blacks['lighten-20']
+							},
+							background: blacks['darken-20'],
+							borderColor: blacks['lighten-30'],
+							color: blacks['lighten-70']
+						},
+						'& .ace_searchbtn': {
+							'&:hover': { background: blacks['lighten-10'] },
+							background: blacks['darken-20'],
+							borderColor: blacks['lighten-30'],
+							color: themedStyles[dark].base.color
+						},
+						background: blacks['lighten-10'],
+						borderColor: blacks['lighten-30'],
+						color: themedStyles[dark].base.color
 					},
 					...generateThemedAceCodeStyles(dark)
 				}
