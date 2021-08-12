@@ -2,7 +2,7 @@ import cn from 'classnames'
 import isUndefined from 'lodash/isUndefined'
 import { styleguide } from 'components/assets/styles'
 import Icons, { IconName } from './IconsMap'
-import React, { FC } from 'react'
+import React, { FC, SyntheticEvent } from 'react'
 
 const {
 	colors: { blacks }
@@ -69,7 +69,20 @@ export const Icon: FC<IconProps> = ({ height, width, ...props }: IconProps) => {
 
 	const { altText = '', icon } = props
 
-	return <img {...commonProps} alt={altText} src={icon} />
+	const useDefaultSrc = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+		const span = document.createElement('span')
+		span.innerText = altText
+		e.currentTarget.replaceWith(span)
+	}
+
+	return (
+		<img
+			{...commonProps}
+			alt={altText}
+			onError={useDefaultSrc}
+			src={icon}
+		/>
+	)
 }
 
 export type { IconName }
