@@ -1,11 +1,9 @@
 import { createUseStyles } from 'react-jss'
 import { generateHeaderStyles } from 'components/Accordion/utils'
 import { getHeaderBorderRadius } from './utils'
+import { TimelineConfig } from './types'
 import React, { FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
-import { TimelineConfig, TimelineState } from './types'
-
-const { alwaysExpanded } = TimelineState
 
 const { dark, light } = ThemeType
 const {
@@ -18,7 +16,8 @@ const useStyles = createUseStyles({
 		...generateHeaderStyles(),
 		background: grays['lighten-40'],
 		borderRadius: getHeaderBorderRadius,
-		cursor: ({ state }) => (state === alwaysExpanded ? 'auto' : 'pointer')
+		cursor: ({ expandWithHeader }) =>
+			expandWithHeader ? 'pointer' : 'default'
 	},
 	title: {
 		color: themes[light].primary,
@@ -38,17 +37,17 @@ const useStyles = createUseStyles({
 
 interface HeaderProps
 	extends Pick<TimelineConfig, 'title' | 'headerRightContent'> {
+	expandWithHeader?: boolean
 	onClick?: () => void
-	state?: TimelineState
 }
 
 export const Header: FC<HeaderProps> = ({
-	onClick,
-	state,
+	expandWithHeader = false,
 	headerRightContent,
+	onClick,
 	title
 }: HeaderProps) => {
-	const classes = useStyles({ state })
+	const classes = useStyles({ expandWithHeader })
 
 	return (
 		<div className={classes.header} onClick={onClick}>

@@ -17,6 +17,8 @@ export interface TimelineConfig extends Panel {
 
 interface SharedTimelineProps extends Omit<SharedAccordionProps, 'panels'> {
 	timelineConfig: TimelineConfig[]
+	expandWithHeader?: boolean
+	onClick?: () => void
 }
 
 export type TimelineProps = (ExpandSingleProps | ExpandMultipleProps) &

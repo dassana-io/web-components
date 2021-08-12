@@ -32,7 +32,7 @@ const mockTimelineConfig: TimelineConfig[] = [
 		title: 'Title 1'
 	},
 	{
-		alwaysExpanded: true,
+		// alwaysExpanded: true,
 		content: <Content>Content2</Content>,
 		headerRightContent: '2 hours ago',
 		key: 2,
@@ -50,8 +50,19 @@ const Template: Story<TimelineProps> = args => (
 )
 
 export const Default = Template.bind({})
+Default.args = {
+	onClick: () => console.log('content onClick')
+}
+
+export const ExpandWithHeader = Template.bind({})
+ExpandWithHeader.args = {
+	expandMultiple: false,
+	expandWithHeader: true
+}
 
 export const ExpandAll = Template.bind({})
 ExpandAll.args = {
-	expandAllOnMount: true
+	expandAllOnMount: true,
+	expandWithHeader: true,
+	onClick: () => console.log('expanded with header onClick')
 }

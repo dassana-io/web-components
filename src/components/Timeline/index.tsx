@@ -5,7 +5,8 @@ import { Header } from './Header'
 import { Separator } from './Separator'
 import {
 	generateThemedTimelineItemStyles,
-	generateThemedWrapperStyles
+	generateThemedWrapperStyles,
+	sharedTimelineItemStyles
 } from './utils'
 import {
 	getInitialExpandedKeys,
@@ -17,15 +18,16 @@ import { TimelineProps, TimelineState } from './types'
 
 const { alwaysExpanded, expanded, collapsed } = TimelineState
 
-const { borderRadius, spacing } = styleguide
+const {
+	colors: { blacks },
+	spacing
+} = styleguide
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	timelineItem: {
 		...generateThemedTimelineItemStyles(light),
-		borderRadius,
-		flexGrow: 1,
-		height: '100%'
+		...sharedTimelineItemStyles
 	},
 	wrapper: {
 		...generateThemedWrapperStyles(light),
@@ -39,6 +41,10 @@ const useStyles = createUseStyles({
 			'& $timelineItem': generateThemedTimelineItemStyles(dark),
 			'& $wrapper': generateThemedWrapperStyles(dark)
 		}
+	},
+	focusedTimelineItem: {
+		...sharedTimelineItemStyles,
+		border: `1px solid ${blacks['lighten-70']} !important`
 	}
 })
 
@@ -47,6 +53,8 @@ export const Timeline: FC<TimelineProps> = ({
 	defaultExpandedKeys = [],
 	expandMultiple = true,
 	expandAllOnMount = false,
+	expandWithHeader = false,
+	onClick,
 	timelineConfig
 }: TimelineProps) => {
 	const [expandedKeys, setExpandedKeys] = useState<Key[]>(
@@ -57,6 +65,7 @@ export const Timeline: FC<TimelineProps> = ({
 		)
 	)
 	const compClasses = useStyles()
+	const [focusedItem, setFocusedItem] = useState<React.Key>()
 
 	return (
 		<div className={cn(classes)}>
@@ -81,41 +90,55 @@ export const Timeline: FC<TimelineProps> = ({
 						state = expanded
 					}
 
-					let conditionalProps = {}
+					let seperatorProps = {}
+					let headerProps = {}
 
-					if (state !== alwaysExpanded) {
-						conditionalProps = {
-							onClick: () =>
-								setExpandedKeys(
-									getUpdatedExpandedKeys(
-										key,
-										expandedKeys,
-										expandMultiple
-									)
+					const sharedExpandProps = {
+						onClick: () =>
+							setExpandedKeys(
+								getUpdatedExpandedKeys(
+									key,
+									expandedKeys,
+									expandMultiple
 								)
-						}
+							)
 					}
+
+					if (state !== alwaysExpanded)
+						seperatorProps = sharedExpandProps
+
+					if (expandWithHeader)
+						headerProps = {
+							...sharedExpandProps,
+							expandWithHeader: expandWithHeader
+						}
+
+					const timelineItemClasses = cn({
+						[compClasses.timelineItem]: true,
+						[cn(itemClasses)]: true,
+						[compClasses.focusedTimelineItem]: focusedItem === key
+					})
 
 					return (
 						<div className={compClasses.wrapper} key={key}>
 							<Separator
 								isLastItem={i === timelineConfig.length - 1}
 								state={state}
-								{...conditionalProps}
+								{...seperatorProps}
 							/>
-							<div
-								className={cn(
-									compClasses.timelineItem,
-									itemClasses
-								)}
-								key={key}
-							>
-								<Header
+							<div className={timelineItemClasses} key={key}>
+								<Header {...headerProps} {...rest} />
+								<Content
+									onClick={() => {
+										if (onClick) {
+											setFocusedItem(key)
+											onClick()
+										}
+									}}
 									state={state}
-									{...conditionalProps}
-									{...rest}
-								/>
-								<Content state={state}>{content}</Content>
+								>
+									{content}
+								</Content>
 							</div>
 						</div>
 					)

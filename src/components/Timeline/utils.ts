@@ -59,3 +59,9 @@ export const generateThemedTimelineItemStyles = (themeType: ThemeType) => {
 		color: color
 	}
 }
+
+export const sharedTimelineItemStyles = {
+	borderRadius,
+	flexGrow: 1,
+	height: '100%'
+}
