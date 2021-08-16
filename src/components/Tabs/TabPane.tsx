@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
 })
 
 interface TabPaneProps {
+	forceRender: boolean
 	isActive: boolean
 	tabConfigItem: TabConfig
 }
@@ -24,10 +25,17 @@ interface TabPaneProps {
 const [ACTIVE, INACTIVE] = ['active', 'inactive']
 
 const TabPane: FC<TabPaneProps> = ({
+	forceRender,
 	isActive,
 	tabConfigItem: { classes = [], render }
 }: TabPaneProps) => {
 	const compClasses = useStyles({ isActive })
+
+	/**
+	 * Lazy load content unless forceRender is set as true, then only render content
+	 * if current tab is active.
+	 */
+	const showContent = !forceRender || (forceRender && isActive)
 
 	return (
 		<LazyMotion features={domAnimation}>
@@ -40,7 +48,7 @@ const TabPane: FC<TabPaneProps> = ({
 					[INACTIVE]: { opacity: 0 }
 				}}
 			>
-				{render()}
+				{showContent && render()}
 			</motion.div>
 		</LazyMotion>
 	)
