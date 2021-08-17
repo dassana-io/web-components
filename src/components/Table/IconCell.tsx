@@ -45,7 +45,7 @@ export const IconCell: FC<IconCellProps> = ({
 		case inline:
 			return (
 				<div className={iconWrapperClasses}>
-					<Icon {...iconProps} />
+					<Icon {...iconProps} handleErrors={false} />
 					<span
 						className={cn({ [classes.label]: true }, labelClasses)}
 					>

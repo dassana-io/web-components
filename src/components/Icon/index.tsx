@@ -14,6 +14,7 @@ export interface SharedIconProps {
 	 * @default []
 	 */
 	classes?: string[]
+	handleErrors?: boolean
 	/**
 	 * The height of the icon, in pixels
 	 */
@@ -44,7 +45,12 @@ interface IconKey extends SharedIconProps {
 
 export type IconProps = IconKey | IconPath
 
-export const Icon: FC<IconProps> = ({ height, width, ...props }: IconProps) => {
+export const Icon: FC<IconProps> = ({
+	handleErrors = true,
+	height,
+	width,
+	...props
+}: IconProps) => {
 	const { classes = [] } = props
 
 	const areDimensionsUndefined = isUndefined(height) && isUndefined(width)
@@ -70,9 +76,11 @@ export const Icon: FC<IconProps> = ({ height, width, ...props }: IconProps) => {
 	const { altText = '', icon } = props
 
 	const useDefaultSrc = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-		const span = document.createElement('span')
-		span.innerText = altText
-		e.currentTarget.replaceWith(span)
+		if (handleErrors) {
+			const span = document.createElement('span')
+			span.innerText = altText
+			e.currentTarget.replaceWith(span)
+		}
 	}
 
 	return (
