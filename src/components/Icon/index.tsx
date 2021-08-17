@@ -76,11 +76,13 @@ export const Icon: FC<IconProps> = ({
 	const { altText = '', icon } = props
 
 	const useDefaultSrc = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+		const span = document.createElement('span')
+
 		if (handleErrors) {
-			const span = document.createElement('span')
 			span.innerText = altText
-			e.currentTarget.replaceWith(span)
 		}
+
+		e.currentTarget.replaceWith(span)
 	}
 
 	return (
