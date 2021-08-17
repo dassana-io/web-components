@@ -48,7 +48,7 @@ const useStyles = createUseStyles({
 		paddingBottom: spacing.xl
 	},
 	title: {
-		color: blacks.base,
+		color: blacks['lighten-50'],
 		fontSize: 64,
 		fontWeight: 700
 	}
