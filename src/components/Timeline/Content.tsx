@@ -19,6 +19,6 @@ export const Content: FC<ContentProps> = ({
 		<Animate isExpanded={state === expanded}>
 			<div onClick={onClick}>{children}</div>
 		</Animate>
-		{state === alwaysExpanded && children}
+		{state === alwaysExpanded && <div onClick={onClick}>{children}</div>}
 	</>
 )

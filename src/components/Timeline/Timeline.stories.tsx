@@ -32,7 +32,7 @@ const mockTimelineConfig: TimelineConfig[] = [
 		title: 'Title 1'
 	},
 	{
-		// alwaysExpanded: true,
+		alwaysExpanded: true,
 		content: <Content>Content2</Content>,
 		headerRightContent: '2 hours ago',
 		key: 2,
