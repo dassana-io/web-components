@@ -22,10 +22,12 @@ export const copyToClipboard: CopyToClipboard = (str, callback) =>
 
 const codePalette = {
 	[dark]: {
-		background: blacks['darken-20']
+		background: blacks['darken-20'],
+		color: blacks['lighten-60']
 	},
 	[light]: {
-		background: grays['lighten-70']
+		background: grays['lighten-70'],
+		color: blacks['lighten-20']
 	}
 }
 
@@ -84,7 +86,7 @@ export const tokenColors = {
 		boolean: reds.base,
 		char: darkCommonColor,
 		className: darkCommonColor,
-		comment: darkCommonColor,
+		comment: blacks['lighten-40'],
 		function: darkCommonColor,
 		keyword: reds.base,
 		lineHighlight: darkCommonColor,
@@ -103,7 +105,7 @@ export const tokenColors = {
 		boolean: oranges.base,
 		char: lightCommonColor,
 		className: lightCommonColor,
-		comment: lightCommonColor,
+		comment: blacks['lighten-40'],
 		function: lightCommonColor,
 		keyword: oranges.base,
 		lineHighlight: lightCommonColor,
@@ -122,6 +124,7 @@ export const tokenColors = {
 
 const aceColorsNormalizer = {
 	boolean: 'boolean',
+	comment: 'comment',
 	keyword: 'keyword',
 	list: 'list',
 	number: 'numeric',
@@ -133,11 +136,7 @@ const aceColorsNormalizer = {
 /* ------------------------------------------ */
 
 const generateThemedAceCodeStyles = (themeType: ThemeType) => {
-	const { background } = codePalette[themeType]
-
-	const {
-		base: { color }
-	} = themedStyles[themeType]
+	const { background, color } = codePalette[themeType]
 
 	return {
 		...Object.entries(aceColorsNormalizer).reduce((acc, [key, val]) => {

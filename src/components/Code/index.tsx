@@ -18,7 +18,12 @@ languages.forEach(lang => {
 export interface CodeProps
 	extends Pick<
 		IAceEditorProps,
-		'debounceChangePeriod' | 'height' | 'tabSize' | 'width' | 'wrapEnabled'
+		| 'debounceChangePeriod'
+		| 'height'
+		| 'showGutter'
+		| 'tabSize'
+		| 'width'
+		| 'wrapEnabled'
 	> {
 	classes?: string[]
 	code?: CodeType
@@ -70,6 +75,9 @@ export const Code: FC<CodeProps> = ({
 				mode={language}
 				onChange={onChange}
 				readOnly={readOnly}
+				setOptions={{
+					useWorker: false
+				}} // To fix this issue --> https://github.com/securingsincity/react-ace/issues/725#issuecomment-546711308
 				tabSize={tabSize}
 				value={code && stringifyCode(code)}
 				wrapEnabled={wrapEnabled}

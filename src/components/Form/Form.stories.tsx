@@ -30,21 +30,23 @@ interface UserModel {
 	isProduction?: boolean
 	lastName?: string
 	persona?: string[]
-	timeInput?: number
 	severity?: string
 	timezone?: string
 	workStart?: number
 }
 
 const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
-	<Form
+	<Form<UserModel>
 		{...args}
 		initialValues={{
 			cloudAccounts: [5],
 			cloudType: 'azure',
 			domains: ['@lorem.com'],
 			firstName: 'First Name',
+			isProduction: false,
+			lastName: '',
 			persona: ['other'],
+			severity: 'low',
 			timezone: 'Asia/Kathmandu',
 			workStart: 9
 		}}
