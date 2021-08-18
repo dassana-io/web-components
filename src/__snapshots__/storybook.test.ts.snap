@@ -1438,6 +1438,7 @@ exports[`Storyshots Icon Custom 1`] = `
     alt=""
     className=""
     height={64}
+    onError={[Function]}
     src="https://dummyimage.com/600x400/000/fff&text=Dassana"
   />
 </div>

@@ -85,6 +85,16 @@ const columns: ColumnType[] = [
 		},
 		title: 'Build Icon Link',
 		type: component
+	},
+	{
+		dataIndex: 'icon',
+		format: icon,
+		renderProps: {
+			buildHref: () => 'https://',
+			type: 'icon'
+		},
+		title: 'Broken Icon',
+		type: component
 	}
 ]
 

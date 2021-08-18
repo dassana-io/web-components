@@ -152,6 +152,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 								iconMap[value] ? (
 									<IconCell
 										iconProps={{
+											altText: text,
 											height: 15,
 											icon: iconMap[value]
 										}}

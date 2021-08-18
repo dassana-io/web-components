@@ -345,7 +345,10 @@ const getIconProps = <TableData,>({
 			} else {
 				const { buildHref } = renderProps
 
-				return { icon: buildHref(val, data) }
+				return {
+					altText: val,
+					icon: buildHref(val, data)
+				}
 			}
 		}
 
