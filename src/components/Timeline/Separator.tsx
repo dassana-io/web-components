@@ -40,7 +40,7 @@ const useStyles = createUseStyles({
 	separator: {
 		...flexDown,
 		alignItems: 'center',
-		paddingRight: spacing['m+']
+		paddingRight: spacing.s
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

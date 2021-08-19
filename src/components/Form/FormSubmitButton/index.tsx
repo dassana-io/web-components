@@ -24,7 +24,6 @@ export interface FormButtonProps
 	) => boolean
 	renderShortcutMicrocopy?: boolean
 	shortcutMicrocopyProps?: ShortcutMicrocopyProps
-
 	useShortcutProps?: DistributiveOmit<
 		UseShortcutConfig,
 		'additionalConditionalFn' | 'callback'
