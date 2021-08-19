@@ -1013,199 +1013,18 @@ exports[`Storyshots ChipInput Validated With Addon 1`] = `
 </div>
 `;
 
-exports[`Storyshots Code Default 1`] = `
-<div
-  className="light storyWrapper-0-2-2"
->
-  <div
-    className=""
-  >
-    <input
-      autoFocus={false}
-      className="ant-input container-0-2-48 container-d4-0-2-71 search-0-2-69"
-      data-test="input"
-      disabled={false}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder="Search..."
-      type="text"
-      value=""
-    />
-    <div
-      className="wrapper-0-2-70"
-    >
-      <div
-        className="codeControls-0-2-72 controls-0-2-68"
-      >
-        <span
-          className=""
-          data-test="tooltip-trigger"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <span
-            className="iconButton-0-2-19 iconButton-0-2-73"
-            onClick={[Function]}
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d17-0-2-76"
-              data-icon="copy"
-              data-prefix="far"
-              focusable="false"
-              role="img"
-              style={Object {}}
-              viewBox="0 0 448 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </span>
-        </span>
-      </div>
-      <pre
-        className="line-numbers"
-        contentEditable={false}
-      >
-        <code
-          className="language-json"
-        >
-          {
-	"dassana": {
-		"context": {
-			"attachedResources": {
-				"count-of-attached-eni": 3,
-				"does-any-eni-have-public-ip": true,
-				"are-there-flows-from-internet-in-vpcflows": false,
-				"a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-reallyreally-really-really-long-key": null
-			}
-		}
-	},
-	"resourceConfig": {
-		"configuration": {
-			"description": "ssh-from-world",
-			"groupName": "prod-cache",
-			"ipPermissions": [
-				{
-					"fromPort": 22,
-					"ipProtocol": "tcp",
-					"ipv6Ranges": [
-						{
-							"cidrIpv6": "::/0"
-						}
-					],
-					"prefixListIds": [],
-					"toPort": 22,
-					"userIdGroupPairs": [],
-					"ipv4Ranges": [
-						{
-							"cidrIp": "0.0.0.0/0"
-						}
-					]
-				}
-			]
-		}
-	}
-}
-        </code>
-      </pre>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Code HTML 1`] = `
-<div
-  className="light storyWrapper-0-2-2"
->
-  <div
-    className=""
-  >
-    <input
-      autoFocus={false}
-      className="ant-input container-0-2-48 container-d5-0-2-77 search-0-2-69"
-      data-test="input"
-      disabled={false}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      type="text"
-      value=""
-    />
-    <div
-      className="wrapper-0-2-70"
-    >
-      <div
-        className="codeControls-0-2-72 controls-0-2-68"
-      >
-        <span
-          className=""
-          data-test="tooltip-trigger"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <span
-            className="iconButton-0-2-19 iconButton-0-2-73"
-            onClick={[Function]}
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d20-0-2-80"
-              data-icon="copy"
-              data-prefix="far"
-              focusable="false"
-              role="img"
-              style={Object {}}
-              viewBox="0 0 448 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </span>
-        </span>
-      </div>
-      <pre
-        className="line-numbers"
-        contentEditable={false}
-      >
-        <code
-          className="language-html"
-        >
-          &lt;div&gt;
-  &lt;p&gt;Lorem Ipsum&lt;/p&gt;
-  &lt;span&gt;dolor sit amet&lt;/span&gt;
-&lt;/div&gt;
-        </code>
-      </pre>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Storyshots ColoredDot Colored 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-81"
+    className="container-0-2-68"
   >
     <p>
       Hover over colored dot to show tooltip.
     </p>
     <span
-      className="coloredDot-0-2-83 coloredDot-d0-0-2-84 dot-0-2-82"
+      className="coloredDot-0-2-70 coloredDot-d0-0-2-71 dot-0-2-69"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     />
@@ -1330,11 +1149,11 @@ exports[`Storyshots Filters Client Side 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-86"
+    className="container-0-2-73"
     id="filters-popup-wrapper"
   >
     <span
-      className="popoverTrigger-0-2-97"
+      className="popoverTrigger-0-2-84"
       data-test="popover-trigger"
       onClick={[Function]}
       onMouseDown={[Function]}
@@ -1343,15 +1162,15 @@ exports[`Storyshots Filters Client Side 1`] = `
       <i />
     </span>
     <div
-      className="filterControls-0-2-87"
+      className="filterControls-0-2-74"
     >
       <span
-        className="iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d22-0-2-100 filterIcon-0-2-88"
+        className="iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d16-0-2-87 filterIcon-0-2-75"
         onClick={[Function]}
       >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-filter fa-w-16 icon-0-2-18 icon-d23-0-2-101"
+          className="svg-inline--fa fa-filter fa-w-16 icon-0-2-18 icon-d17-0-2-88"
           data-icon="filter"
           data-prefix="fas"
           focusable="false"
@@ -1368,7 +1187,7 @@ exports[`Storyshots Filters Client Side 1`] = `
         </svg>
       </span>
       <div
-        className="filtersSummary-0-2-89"
+        className="filtersSummary-0-2-76"
         onClick={[Function]}
       />
     </div>
@@ -1393,14 +1212,14 @@ exports[`Storyshots Filters Controlled 1`] = `
     </span>
   </button>
   <div
-    className="container-0-2-86"
+    className="container-0-2-73"
     id="filters-popup-wrapper"
   >
     <div
-      className="filterControls-0-2-87"
+      className="filterControls-0-2-74"
     >
       <span
-        className="container-0-2-39 container-d5-0-2-109"
+        className="container-0-2-39 container-d5-0-2-96"
       >
          
       </span>
@@ -1414,14 +1233,14 @@ exports[`Storyshots Filters Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-86"
+    className="container-0-2-73"
     id="filters-popup-wrapper"
   >
     <div
-      className="filterControls-0-2-87"
+      className="filterControls-0-2-74"
     >
       <span
-        className="container-0-2-39 container-d4-0-2-90"
+        className="container-0-2-39 container-d4-0-2-77"
       >
          
       </span>
@@ -1463,12 +1282,12 @@ exports[`Storyshots IconButton Circle 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="circle-0-2-15 circle-d27-0-2-113 iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d28-0-2-114"
+    className="circle-0-2-15 circle-d21-0-2-100 iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d22-0-2-101"
     onClick={[Function]}
   >
     <svg
       aria-hidden="true"
-      className="svg-inline--fa fa-times fa-w-10 icon-0-2-18 icon-d29-0-2-115"
+      className="svg-inline--fa fa-times fa-w-10 icon-0-2-18 icon-d23-0-2-102"
       data-icon="times"
       data-prefix="far"
       focusable="false"
@@ -1497,7 +1316,7 @@ exports[`Storyshots IconButton Default 1`] = `
   >
     <svg
       aria-hidden="true"
-      className="svg-inline--fa fa-times fa-w-10 icon-0-2-18 icon-d26-0-2-112"
+      className="svg-inline--fa fa-times fa-w-10 icon-0-2-18 icon-d20-0-2-99"
       data-icon="times"
       data-prefix="far"
       focusable="false"
@@ -1521,7 +1340,7 @@ exports[`Storyshots IconButton Pending 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="circle-0-2-15 circle-d30-0-2-116 disabled-0-2-16 iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d31-0-2-117"
+    className="circle-0-2-15 circle-d24-0-2-103 disabled-0-2-16 iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d25-0-2-104"
     onClick={[Function]}
   >
     <span
@@ -1529,7 +1348,7 @@ exports[`Storyshots IconButton Pending 1`] = `
     />
     <svg
       aria-hidden="true"
-      className="svg-inline--fa fa-times fa-w-10 icon-0-2-18 icon-d32-0-2-118"
+      className="svg-inline--fa fa-times fa-w-10 icon-0-2-18 icon-d26-0-2-105"
       data-icon="times"
       data-prefix="far"
       focusable="false"
@@ -1553,7 +1372,7 @@ exports[`Storyshots Input Addons 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="ant-input-group-wrapper container-0-2-48 container-d12-0-2-127"
+    className="ant-input-group-wrapper container-0-2-48 container-d10-0-2-114"
   >
     <span
       className="ant-input-wrapper ant-input-group"
@@ -1593,7 +1412,7 @@ exports[`Storyshots Input Default 1`] = `
 >
   <input
     autoFocus={false}
-    className="ant-input container-0-2-48 container-d6-0-2-119"
+    className="ant-input container-0-2-48 container-d4-0-2-106"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -1613,7 +1432,7 @@ exports[`Storyshots Input Disabled 1`] = `
 >
   <input
     autoFocus={false}
-    className="ant-input ant-input-disabled container-0-2-48 container-d11-0-2-126"
+    className="ant-input ant-input-disabled container-0-2-48 container-d9-0-2-113"
     data-test="input"
     disabled={true}
     onBlur={[Function]}
@@ -1633,7 +1452,7 @@ exports[`Storyshots Input Error 1`] = `
 >
   <input
     autoFocus={false}
-    className="ant-input container-0-2-48 container-d10-0-2-125 error-0-2-49"
+    className="ant-input container-0-2-48 container-d8-0-2-112 error-0-2-49"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -1653,7 +1472,7 @@ exports[`Storyshots Input Full Width 1`] = `
 >
   <input
     autoFocus={false}
-    className="ant-input container-0-2-48 container-d9-0-2-124"
+    className="ant-input container-0-2-48 container-d7-0-2-111"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -1672,13 +1491,13 @@ exports[`Storyshots Input Loading 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-61 container-d1-0-2-122"
+    className="container-0-2-61 container-d1-0-2-109"
   >
     <div
       className="inputSkeleton-0-2-62"
     >
       <span
-        className="container-0-2-39 container-d6-0-2-123"
+        className="container-0-2-39 container-d6-0-2-110"
       >
          
       </span>
@@ -1693,7 +1512,7 @@ exports[`Storyshots Input Placeholder 1`] = `
 >
   <input
     autoFocus={false}
-    className="ant-input container-0-2-48 container-d7-0-2-120"
+    className="ant-input container-0-2-48 container-d5-0-2-107"
     data-test="input"
     disabled={false}
     onBlur={[Function]}
@@ -1712,7 +1531,7 @@ exports[`Storyshots Input Suffix 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="ant-input-affix-wrapper container-0-2-48 container-d13-0-2-128"
+    className="ant-input-affix-wrapper container-0-2-48 container-d11-0-2-115"
     onMouseUp={[Function]}
   >
     <input
@@ -1744,7 +1563,7 @@ exports[`Storyshots Input Suffix 1`] = `
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d35-0-2-131"
+            className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d29-0-2-118"
             data-icon="copy"
             data-prefix="far"
             focusable="false"
@@ -1773,7 +1592,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
   <div>
     <input
       autoFocus={false}
-      className="ant-input container-0-2-48 container-d14-0-2-132"
+      className="ant-input container-0-2-48 container-d12-0-2-119"
       data-test="input"
       disabled={false}
       onBlur={[Function]}
@@ -1792,10 +1611,10 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
       }
     />
     <div
-      className="container-0-2-140"
+      className="container-0-2-127"
     >
       <div
-        className="codeControls-0-2-72 controls-0-2-141"
+        className="codeControls-0-2-131 controls-0-2-128"
       >
         <span
           className=""
@@ -1804,12 +1623,12 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
           onMouseLeave={[Function]}
         >
           <span
-            className="iconButton-0-2-19 iconButton-0-2-73"
+            className="iconButton-0-2-19 iconButton-0-2-132"
             onClick={[Function]}
           >
             <svg
               aria-hidden="true"
-              className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d38-0-2-146"
+              className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d32-0-2-135"
               data-icon="copy"
               data-prefix="far"
               focusable="false"
@@ -1828,10 +1647,10 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
         </span>
       </div>
       <div
-        className="wrapper-0-2-143"
+        className="wrapper-0-2-130"
       >
         <span
-          className="punctuation-0-2-138"
+          className="punctuation-0-2-125"
         >
           {
         </span>
@@ -1840,38 +1659,38 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
             className=""
           >
             <span
-              className="property-0-2-137"
+              className="property-0-2-124"
               onClick={[Function]}
             >
               "dassana"
             </span>
             <span
-              className="operator-0-2-136"
+              className="operator-0-2-123"
             >
               :
             </span>
             <span
-              className="punctuation-0-2-138"
+              className="punctuation-0-2-125"
             >
               {
             </span>
             <ul>
               <li
-                className="pickedItem-0-2-142"
+                className="pickedItem-0-2-129"
               >
                 <span
-                  className="property-0-2-137"
+                  className="property-0-2-124"
                   onClick={[Function]}
                 >
                   "context"
                 </span>
                 <span
-                  className="operator-0-2-136"
+                  className="operator-0-2-123"
                 >
                   :
                 </span>
                 <span
-                  className="punctuation-0-2-138"
+                  className="punctuation-0-2-125"
                 >
                   {
                 </span>
@@ -1880,18 +1699,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                     className=""
                   >
                     <span
-                      className="property-0-2-137"
+                      className="property-0-2-124"
                       onClick={[Function]}
                     >
                       "attachedResources"
                     </span>
                     <span
-                      className="operator-0-2-136"
+                      className="operator-0-2-123"
                     >
                       :
                     </span>
                     <span
-                      className="punctuation-0-2-138"
+                      className="punctuation-0-2-125"
                     >
                       {
                     </span>
@@ -1900,23 +1719,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                         className=""
                       >
                         <span
-                          className="property-0-2-137"
+                          className="property-0-2-124"
                           onClick={[Function]}
                         >
                           "count-of-attached-eni"
                         </span>
                         <span
-                          className="operator-0-2-136"
+                          className="operator-0-2-123"
                         >
                           :
                         </span>
                         <span
-                          className="number-0-2-135"
+                          className="number-0-2-122"
                         >
                           3
                         </span>
                         <span
-                          className="punctuation-0-2-138"
+                          className="punctuation-0-2-125"
                         >
                           ,
                         </span>
@@ -1925,23 +1744,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                         className=""
                       >
                         <span
-                          className="property-0-2-137"
+                          className="property-0-2-124"
                           onClick={[Function]}
                         >
                           "does-any-eni-have-public-ip"
                         </span>
                         <span
-                          className="operator-0-2-136"
+                          className="operator-0-2-123"
                         >
                           :
                         </span>
                         <span
-                          className="boolean-0-2-133"
+                          className="boolean-0-2-120"
                         >
                           true
                         </span>
                         <span
-                          className="punctuation-0-2-138"
+                          className="punctuation-0-2-125"
                         >
                           ,
                         </span>
@@ -1950,18 +1769,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                         className=""
                       >
                         <span
-                          className="property-0-2-137"
+                          className="property-0-2-124"
                           onClick={[Function]}
                         >
                           "are-there-flows-from-internet-in-vpcflows"
                         </span>
                         <span
-                          className="operator-0-2-136"
+                          className="operator-0-2-123"
                         >
                           :
                         </span>
                         <span
-                          className="boolean-0-2-133"
+                          className="boolean-0-2-120"
                         >
                           false
                         </span>
@@ -1969,7 +1788,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                     </ul>
                     <span>
                       <span
-                        className="punctuation-0-2-138"
+                        className="punctuation-0-2-125"
                       >
                         }
                       </span>
@@ -1978,7 +1797,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                 </ul>
                 <span>
                   <span
-                    className="punctuation-0-2-138"
+                    className="punctuation-0-2-125"
                   >
                     }
                   </span>
@@ -1987,12 +1806,12 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
             </ul>
             <span>
               <span
-                className="punctuation-0-2-138"
+                className="punctuation-0-2-125"
               >
                 }
               </span>
               <span
-                className="punctuation-0-2-138"
+                className="punctuation-0-2-125"
               >
                 ,
               </span>
@@ -2002,18 +1821,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
             className=""
           >
             <span
-              className="property-0-2-137"
+              className="property-0-2-124"
               onClick={[Function]}
             >
               "resourceConfig"
             </span>
             <span
-              className="operator-0-2-136"
+              className="operator-0-2-123"
             >
               :
             </span>
             <span
-              className="punctuation-0-2-138"
+              className="punctuation-0-2-125"
             >
               {
             </span>
@@ -2022,18 +1841,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                 className=""
               >
                 <span
-                  className="property-0-2-137"
+                  className="property-0-2-124"
                   onClick={[Function]}
                 >
                   "configuration"
                 </span>
                 <span
-                  className="operator-0-2-136"
+                  className="operator-0-2-123"
                 >
                   :
                 </span>
                 <span
-                  className="punctuation-0-2-138"
+                  className="punctuation-0-2-125"
                 >
                   {
                 </span>
@@ -2042,23 +1861,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                     className=""
                   >
                     <span
-                      className="property-0-2-137"
+                      className="property-0-2-124"
                       onClick={[Function]}
                     >
                       "description"
                     </span>
                     <span
-                      className="operator-0-2-136"
+                      className="operator-0-2-123"
                     >
                       :
                     </span>
                     <span
-                      className="string-0-2-139"
+                      className="string-0-2-126"
                     >
                       "ssh-from-world"
                     </span>
                     <span
-                      className="punctuation-0-2-138"
+                      className="punctuation-0-2-125"
                     >
                       ,
                     </span>
@@ -2067,23 +1886,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                     className=""
                   >
                     <span
-                      className="property-0-2-137"
+                      className="property-0-2-124"
                       onClick={[Function]}
                     >
                       "groupName"
                     </span>
                     <span
-                      className="operator-0-2-136"
+                      className="operator-0-2-123"
                     >
                       :
                     </span>
                     <span
-                      className="string-0-2-139"
+                      className="string-0-2-126"
                     >
                       "prod-cache"
                     </span>
                     <span
-                      className="punctuation-0-2-138"
+                      className="punctuation-0-2-125"
                     >
                       ,
                     </span>
@@ -2092,19 +1911,19 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                     className=""
                   >
                     <span
-                      className="property-0-2-137"
+                      className="property-0-2-124"
                       onClick={[Function]}
                     >
                       "ipPermissions"
                     </span>
                     <span
-                      className="operator-0-2-136"
+                      className="operator-0-2-123"
                     >
                       :
                     </span>
                     <span>
                       <span
-                        className="punctuation-0-2-138"
+                        className="punctuation-0-2-125"
                       >
                         [
                       </span>
@@ -2114,7 +1933,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                         className=""
                       >
                         <span
-                          className="punctuation-0-2-138"
+                          className="punctuation-0-2-125"
                         >
                           {
                         </span>
@@ -2123,23 +1942,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "fromPort"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
                             <span
-                              className="number-0-2-135"
+                              className="number-0-2-122"
                             >
                               22
                             </span>
                             <span
-                              className="punctuation-0-2-138"
+                              className="punctuation-0-2-125"
                             >
                               ,
                             </span>
@@ -2148,23 +1967,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "ipProtocol"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
                             <span
-                              className="string-0-2-139"
+                              className="string-0-2-126"
                             >
                               "tcp"
                             </span>
                             <span
-                              className="punctuation-0-2-138"
+                              className="punctuation-0-2-125"
                             >
                               ,
                             </span>
@@ -2173,19 +1992,19 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "ipv6Ranges"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
                             <span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 [
                               </span>
@@ -2195,7 +2014,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                                 className=""
                               >
                                 <span
-                                  className="punctuation-0-2-138"
+                                  className="punctuation-0-2-125"
                                 >
                                   {
                                 </span>
@@ -2204,18 +2023,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                                     className=""
                                   >
                                     <span
-                                      className="property-0-2-137"
+                                      className="property-0-2-124"
                                       onClick={[Function]}
                                     >
                                       "cidrIpv6"
                                     </span>
                                     <span
-                                      className="operator-0-2-136"
+                                      className="operator-0-2-123"
                                     >
                                       :
                                     </span>
                                     <span
-                                      className="string-0-2-139"
+                                      className="string-0-2-126"
                                     >
                                       "::/0"
                                     </span>
@@ -2223,7 +2042,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                                 </ul>
                                 <span>
                                   <span
-                                    className="punctuation-0-2-138"
+                                    className="punctuation-0-2-125"
                                   >
                                     }
                                   </span>
@@ -2232,12 +2051,12 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             </ol>
                             <span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ]
                               </span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ,
                               </span>
@@ -2247,13 +2066,13 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "prefixListIds"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
@@ -2261,17 +2080,17 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                               className=""
                             >
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 [
                               </span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ]
                               </span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ,
                               </span>
@@ -2281,23 +2100,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "toPort"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
                             <span
-                              className="number-0-2-135"
+                              className="number-0-2-122"
                             >
                               22
                             </span>
                             <span
-                              className="punctuation-0-2-138"
+                              className="punctuation-0-2-125"
                             >
                               ,
                             </span>
@@ -2306,13 +2125,13 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "userIdGroupPairs"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
@@ -2320,17 +2139,17 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                               className=""
                             >
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 [
                               </span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ]
                               </span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ,
                               </span>
@@ -2340,19 +2159,19 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             className=""
                           >
                             <span
-                              className="property-0-2-137"
+                              className="property-0-2-124"
                               onClick={[Function]}
                             >
                               "ipv4Ranges"
                             </span>
                             <span
-                              className="operator-0-2-136"
+                              className="operator-0-2-123"
                             >
                               :
                             </span>
                             <span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 [
                               </span>
@@ -2362,7 +2181,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                                 className=""
                               >
                                 <span
-                                  className="punctuation-0-2-138"
+                                  className="punctuation-0-2-125"
                                 >
                                   {
                                 </span>
@@ -2371,18 +2190,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                                     className=""
                                   >
                                     <span
-                                      className="property-0-2-137"
+                                      className="property-0-2-124"
                                       onClick={[Function]}
                                     >
                                       "cidrIp"
                                     </span>
                                     <span
-                                      className="operator-0-2-136"
+                                      className="operator-0-2-123"
                                     >
                                       :
                                     </span>
                                     <span
-                                      className="string-0-2-139"
+                                      className="string-0-2-126"
                                     >
                                       "0.0.0.0/0"
                                     </span>
@@ -2390,7 +2209,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                                 </ul>
                                 <span>
                                   <span
-                                    className="punctuation-0-2-138"
+                                    className="punctuation-0-2-125"
                                   >
                                     }
                                   </span>
@@ -2399,7 +2218,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                             </ol>
                             <span>
                               <span
-                                className="punctuation-0-2-138"
+                                className="punctuation-0-2-125"
                               >
                                 ]
                               </span>
@@ -2408,7 +2227,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                         </ul>
                         <span>
                           <span
-                            className="punctuation-0-2-138"
+                            className="punctuation-0-2-125"
                           >
                             }
                           </span>
@@ -2417,7 +2236,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                     </ol>
                     <span>
                       <span
-                        className="punctuation-0-2-138"
+                        className="punctuation-0-2-125"
                       >
                         ]
                       </span>
@@ -2426,12 +2245,12 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                 </ul>
                 <span>
                   <span
-                    className="punctuation-0-2-138"
+                    className="punctuation-0-2-125"
                   >
                     }
                   </span>
                   <span
-                    className="punctuation-0-2-138"
+                    className="punctuation-0-2-125"
                   >
                     ,
                   </span>
@@ -2441,18 +2260,18 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
                 className=""
               >
                 <span
-                  className="property-0-2-137"
+                  className="property-0-2-124"
                   onClick={[Function]}
                 >
                   "a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-reallyreally-really-really-long-key"
                 </span>
                 <span
-                  className="operator-0-2-136"
+                  className="operator-0-2-123"
                 >
                   :
                 </span>
                 <span
-                  className="null-0-2-134"
+                  className="null-0-2-121"
                 >
                   null
                 </span>
@@ -2460,7 +2279,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
             </ul>
             <span>
               <span
-                className="punctuation-0-2-138"
+                className="punctuation-0-2-125"
               >
                 }
               </span>
@@ -2469,7 +2288,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
         </ul>
         <span>
           <span
-            className="punctuation-0-2-138"
+            className="punctuation-0-2-125"
           >
             }
           </span>
@@ -2529,11 +2348,11 @@ exports[`Storyshots Logs Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-147"
+    className="container-0-2-136"
   >
     <input
       autoFocus={false}
-      className="ant-input container-0-2-48 container-d15-0-2-154 search-0-2-151"
+      className="ant-input container-0-2-48 container-d13-0-2-143 search-0-2-140"
       data-test="input"
       disabled={false}
       onBlur={[Function]}
@@ -2545,10 +2364,10 @@ exports[`Storyshots Logs Default 1`] = `
       value=""
     />
     <div
-      className="wrapper-0-2-153"
+      className="wrapper-0-2-142"
     >
       <div
-        className="container-0-2-156"
+        className="container-0-2-145"
       >
         <span
           className=""
@@ -2558,12 +2377,12 @@ exports[`Storyshots Logs Default 1`] = `
           onTouchStart={[Function]}
         >
           <span
-            className="iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d40-0-2-161 iconButton-0-2-157"
+            className="iconButton-0-2-19 hasBorder-0-2-17 hasBorder-d34-0-2-150 iconButton-0-2-146"
             onClick={[Function]}
           >
             <svg
               aria-hidden="true"
-              className="svg-inline--fa fa-ellipsis-v fa-w-4 icon-0-2-18 icon-d41-0-2-162"
+              className="svg-inline--fa fa-ellipsis-v fa-w-4 icon-0-2-18 icon-d35-0-2-151"
               data-icon="ellipsis-v"
               data-prefix="far"
               focusable="false"
@@ -2582,412 +2401,412 @@ exports[`Storyshots Logs Default 1`] = `
         </span>
       </div>
       <div
-        className="logsWrapper-0-2-149"
+        className="logsWrapper-0-2-138"
       >
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             1
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Lorem ipsum dolor sit amet
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             2
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             consectetur adipiscing elit sed do
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             3
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             eiusmod tempor
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             4
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             incididunt ut labore et dolore magna aliqua
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             5
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Ut enim ad minim veniam
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             6
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Duis aute irure dolor
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             7
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             8
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Excepteur sint occaecat
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             9
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Sed ut perspiciatis unde omnis iste
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             10
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             11
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             12
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             et quasi architecto beatae vitae dicta sunt explicabo.
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             13
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Sed ut perspiciatis unde omnis iste natus error
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             14
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Nemo enim ipsam voluptatem quia voluptas sit
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             15
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             sed quia consequuntur magni dolores eos
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             16
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             qui ratione voluptatem sequi nesciunt.
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             17
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Neque porro quisquam est, qui dolorem
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             18
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             19
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             eius modi tempora incidunt ut labore et
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             20
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             dolore magnam aliquam quaerat voluptatem.
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             21
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Ut enim ad minima veniam, quis nostrum exercitationem
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             22
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             ullam corporis suscipit laboriosam
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             23
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             nisi ut aliquid ex ea commodi consequatur?
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             24
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Quis autem vel eum iure reprehenderit qui in ea voluptate
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             25
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             26
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             27
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             praesentium voluptatum deleniti atque corrupti
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             28
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             29
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             similique sunt in culpa qui officia deserunt mollitia animi
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             30
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Et harum quidem rerum facilis est et expedita distinctio.
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             31
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Nam libero tempore, cum soluta nobis est eligendi optio cumque
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             32
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             33
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             ut et voluptates repudiandae sint et molestiae non recusandae.
           </span>
         </div>
         <div>
           <span
-            className="lineNumber-0-2-148"
+            className="lineNumber-0-2-137"
           >
             34
           </span>
           <span
-            className="message-0-2-150"
+            className="message-0-2-139"
           >
             Itaque earum rerum hic tenetur a sapiente delectus
           </span>
@@ -3003,22 +2822,22 @@ exports[`Storyshots Made With Love With Love 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-219"
+    className="container-0-2-208"
   >
     <div
-      className="container-0-2-220"
+      className="container-0-2-209"
     >
       <div
-        className="content-0-2-221"
+        className="content-0-2-210"
       >
         <div
-          className="madeWith-0-2-234"
+          className="madeWith-0-2-223"
         >
           <div>
             Made with
             <svg
               aria-hidden="true"
-              className="svg-inline--fa fa-heart fa-w-16 heart-0-2-226"
+              className="svg-inline--fa fa-heart fa-w-16 heart-0-2-215"
               data-icon="heart"
               data-prefix="fas"
               focusable="false"
@@ -3040,26 +2859,26 @@ exports[`Storyshots Made With Love With Love 1`] = `
           </div>
         </div>
         <div
-          className="loveIcons-0-2-233"
+          className="loveIcons-0-2-222"
         >
           <div
-            className="loveIconWrap-0-2-232"
+            className="loveIconWrap-0-2-221"
           >
             <div>
               <img
                 alt=" momos"
-                className="loveIcon-0-2-230"
+                className="loveIcon-0-2-219"
                 src="momo.svg"
               />
               <div
-                className="loveIconTag-0-2-231"
+                className="loveIconTag-0-2-220"
               >
                  momos
               </div>
             </div>
             <svg
               aria-hidden="true"
-              className="svg-inline--fa fa-plus fa-w-12 plus-0-2-235"
+              className="svg-inline--fa fa-plus fa-w-12 plus-0-2-224"
               data-icon="plus"
               data-prefix="far"
               focusable="false"
@@ -3076,23 +2895,23 @@ exports[`Storyshots Made With Love With Love 1`] = `
             </svg>
           </div>
           <div
-            className="loveIconWrap-0-2-232"
+            className="loveIconWrap-0-2-221"
           >
             <div>
               <img
                 alt="gourmet coffees"
-                className="loveIcon-0-2-230"
+                className="loveIcon-0-2-219"
                 src="coffee.svg"
               />
               <div
-                className="loveIconTag-0-2-231"
+                className="loveIconTag-0-2-220"
               >
                 gourmet coffees
               </div>
             </div>
             <svg
               aria-hidden="true"
-              className="svg-inline--fa fa-plus fa-w-12 plus-0-2-235"
+              className="svg-inline--fa fa-plus fa-w-12 plus-0-2-224"
               data-icon="plus"
               data-prefix="far"
               focusable="false"
@@ -3109,16 +2928,16 @@ exports[`Storyshots Made With Love With Love 1`] = `
             </svg>
           </div>
           <div
-            className="loveIconWrap-0-2-232"
+            className="loveIconWrap-0-2-221"
           >
             <div>
               <img
                 alt="high chews"
-                className="loveIcon-0-2-230"
+                className="loveIcon-0-2-219"
                 src="candy.svg"
               />
               <div
-                className="loveIconTag-0-2-231"
+                className="loveIconTag-0-2-220"
               >
                 high chews
               </div>
@@ -3126,15 +2945,15 @@ exports[`Storyshots Made With Love With Love 1`] = `
           </div>
         </div>
         <div
-          className="hiring-0-2-227"
+          className="hiring-0-2-216"
         >
           <div
-            className="hiringTag-0-2-229"
+            className="hiringTag-0-2-218"
           >
             Are you into momos, gourmet coffees, and high chews?
           </div>
           <a
-            className="ant-typography hiringLink-0-2-228"
+            className="ant-typography hiringLink-0-2-217"
             data-test="link"
             href="https://dassanaio.notion.site/Job-Board-0a01b48e2ef8462bb3d12e50b8b21c9b"
             rel="noopener noreferrer"
@@ -3152,13 +2971,13 @@ exports[`Storyshots Made With Love With Love 1`] = `
         </div>
       </div>
       <div
-        className="footer-0-2-223"
+        className="footer-0-2-212"
       >
         <div
-          className="footerIcons-0-2-225"
+          className="footerIcons-0-2-214"
         >
           <a
-            className="ant-typography footerIcon-0-2-224"
+            className="ant-typography footerIcon-0-2-213"
             data-test="link"
             href="https://twitter.com/DassanaSecurity"
             rel="noopener noreferrer"
@@ -3190,7 +3009,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
             </u>
           </a>
           <a
-            className="ant-typography footerIcon-0-2-224"
+            className="ant-typography footerIcon-0-2-213"
             data-test="link"
             href="https://www.linkedin.com/company/dassana-inc/"
             rel="noopener noreferrer"
@@ -3222,7 +3041,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
             </u>
           </a>
           <a
-            className="ant-typography footerIcon-0-2-224"
+            className="ant-typography footerIcon-0-2-213"
             data-test="link"
             href="https://github.com/dassana-io/dassana"
             rel="noopener noreferrer"
@@ -3254,7 +3073,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
             </u>
           </a>
           <a
-            className="ant-typography footerIcon-0-2-224"
+            className="ant-typography footerIcon-0-2-213"
             data-test="link"
             href="https://dassanacommunity.slack.com/join/shared_invite/zt-teo6d5ed-xkWDNSaH4m6pC8PAJnrD8g#/shared-invite/email"
             rel="noopener noreferrer"
@@ -3287,7 +3106,7 @@ exports[`Storyshots Made With Love With Love 1`] = `
           </a>
         </div>
         <div
-          className="copyright-0-2-222"
+          className="copyright-0-2-211"
         >
           © 
           2021
@@ -3401,27 +3220,27 @@ exports[`Storyshots Menu Default 1`] = `
       }
     >
       <ul
-        className="menu-0-2-163"
+        className="menu-0-2-152"
       >
         <li
           className=""
         >
           <div
-            className="name-0-2-165"
+            className="name-0-2-154"
           >
             Lorem
           </div>
           <ul
-            className="menuItems-0-2-164"
+            className="menuItems-0-2-153"
           >
             <li
-              className="menuItem-0-2-167"
+              className="menuItem-0-2-156"
               onClick={[Function]}
             >
               Ipsum
             </li>
             <li
-              className="menuItem-0-2-167 active-0-2-166"
+              className="menuItem-0-2-156 active-0-2-155"
               onClick={[Function]}
             >
               Dolor
@@ -3432,21 +3251,21 @@ exports[`Storyshots Menu Default 1`] = `
           className=""
         >
           <div
-            className="name-0-2-165"
+            className="name-0-2-154"
           >
             Sit
           </div>
           <ul
-            className="menuItems-0-2-164"
+            className="menuItems-0-2-153"
           >
             <li
-              className="menuItem-0-2-167"
+              className="menuItem-0-2-156"
               onClick={[Function]}
             >
               Amet
             </li>
             <li
-              className="menuItem-0-2-167"
+              className="menuItem-0-2-156"
               onClick={[Function]}
             >
               Consectetur
@@ -3464,10 +3283,10 @@ exports[`Storyshots Mini Sidebar All Icons 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-168"
+    className="container-0-2-157"
   >
     <span
-      className="faIcon-0-2-169"
+      className="faIcon-0-2-158"
       data-test="tooltip-trigger"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -3506,7 +3325,7 @@ exports[`Storyshots Mini Sidebar All Icons 1`] = `
       </a>
     </span>
     <span
-      className="faIcon-0-2-169"
+      className="faIcon-0-2-158"
       data-test="tooltip-trigger"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -3545,7 +3364,7 @@ exports[`Storyshots Mini Sidebar All Icons 1`] = `
       </a>
     </span>
     <span
-      className="faIcon-0-2-169"
+      className="faIcon-0-2-158"
       data-test="tooltip-trigger"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -3584,7 +3403,7 @@ exports[`Storyshots Mini Sidebar All Icons 1`] = `
       </a>
     </span>
     <span
-      className="faIcon-0-2-169"
+      className="faIcon-0-2-158"
       data-test="tooltip-trigger"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -3631,10 +3450,10 @@ exports[`Storyshots Mini Sidebar Some Icons 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-168"
+    className="container-0-2-157"
   >
     <span
-      className="faIcon-0-2-169"
+      className="faIcon-0-2-158"
       data-test="tooltip-trigger"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -3673,7 +3492,7 @@ exports[`Storyshots Mini Sidebar Some Icons 1`] = `
       </a>
     </span>
     <span
-      className="faIcon-0-2-169"
+      className="faIcon-0-2-158"
       data-test="tooltip-trigger"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -3739,24 +3558,24 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <h3
-    className="heading-0-2-171 heading-d1-0-2-174"
+    className="heading-0-2-160 heading-d1-0-2-163"
   >
     Click on the bordered box to use keyboard shortcuts
   </h3>
   <p
-    className="info-0-2-172 info-d2-0-2-175"
+    className="info-0-2-161 info-d2-0-2-164"
   >
     Press Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
   </p>
   <div
-    className="eventTarget-0-2-170 eventTarget-d0-0-2-173"
+    className="eventTarget-0-2-159 eventTarget-d0-0-2-162"
     tabIndex={0}
   >
     <div
-      className="container-0-2-176 container-d0-0-2-177"
+      className="container-0-2-165 container-d0-0-2-166"
     >
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d0-0-2-184"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d0-0-2-173"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3766,18 +3585,18 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           A
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           CISO
         </span>
       </div>
       <div
-        className="activeItem-0-2-178 multipleChoiceItem-0-2-183 multipleChoiceItem-d1-0-2-185"
+        className="activeItem-0-2-167 multipleChoiceItem-0-2-172 multipleChoiceItem-d1-0-2-174"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3787,17 +3606,17 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           B
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Sr Leadership
         </span>
         <span
-          className="checkmark-0-2-179"
+          className="checkmark-0-2-168"
         >
           <svg
             aria-hidden="true"
@@ -3819,7 +3638,7 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d2-0-2-186"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d2-0-2-175"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3829,18 +3648,18 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           C
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           SecOps
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d3-0-2-187"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d3-0-2-176"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3850,18 +3669,18 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           D
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Cloud Architect
         </span>
       </div>
       <div
-        className="activeItem-0-2-178 multipleChoiceItem-0-2-183 multipleChoiceItem-d4-0-2-188"
+        className="activeItem-0-2-167 multipleChoiceItem-0-2-172 multipleChoiceItem-d4-0-2-177"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3871,17 +3690,17 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           E
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           DevOps
         </span>
         <span
-          className="checkmark-0-2-179"
+          className="checkmark-0-2-168"
         >
           <svg
             aria-hidden="true"
@@ -3903,7 +3722,7 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d5-0-2-189"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d5-0-2-178"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3913,18 +3732,18 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           F
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           NetSec
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d6-0-2-190"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d6-0-2-179"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3934,18 +3753,18 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           G
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           AppDev
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d7-0-2-191"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d7-0-2-180"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3955,18 +3774,18 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           H
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Compliance
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d8-0-2-192"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d8-0-2-181"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -3976,12 +3795,12 @@ exports[`Storyshots MultipleChoice Multiple 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           I
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Other
         </span>
@@ -3996,24 +3815,24 @@ exports[`Storyshots MultipleChoice Single 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <h3
-    className="heading-0-2-171 heading-d4-0-2-194"
+    className="heading-0-2-160 heading-d4-0-2-183"
   >
     Click on the bordered box to use keyboard shortcuts
   </h3>
   <p
-    className="info-0-2-172 info-d5-0-2-195"
+    className="info-0-2-161 info-d5-0-2-184"
   >
     Press Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
   </p>
   <div
-    className="eventTarget-0-2-170 eventTarget-d3-0-2-193"
+    className="eventTarget-0-2-159 eventTarget-d3-0-2-182"
     tabIndex={0}
   >
     <div
-      className="container-0-2-176 container-d1-0-2-196"
+      className="container-0-2-165 container-d1-0-2-185"
     >
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d9-0-2-197"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d9-0-2-186"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4023,18 +3842,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           A
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           CISO
         </span>
       </div>
       <div
-        className="activeItem-0-2-178 multipleChoiceItem-0-2-183 multipleChoiceItem-d10-0-2-198"
+        className="activeItem-0-2-167 multipleChoiceItem-0-2-172 multipleChoiceItem-d10-0-2-187"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4044,17 +3863,17 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           B
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Sr Leadership
         </span>
         <span
-          className="checkmark-0-2-179"
+          className="checkmark-0-2-168"
         >
           <svg
             aria-hidden="true"
@@ -4076,7 +3895,7 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d11-0-2-199"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d11-0-2-188"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4086,18 +3905,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           C
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           SecOps
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d12-0-2-200"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d12-0-2-189"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4107,18 +3926,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           D
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Cloud Architect
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d13-0-2-201"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d13-0-2-190"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4128,18 +3947,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           E
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           DevOps
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d14-0-2-202"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d14-0-2-191"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4149,18 +3968,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           F
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           NetSec
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d15-0-2-203"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d15-0-2-192"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4170,18 +3989,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           G
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           AppDev
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d16-0-2-204"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d16-0-2-193"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4191,18 +4010,18 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           H
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Compliance
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d17-0-2-205"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d17-0-2-194"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4212,12 +4031,12 @@ exports[`Storyshots MultipleChoice Single 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           I
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Other
         </span>
@@ -4232,24 +4051,24 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <h3
-    className="heading-0-2-171 heading-d7-0-2-207"
+    className="heading-0-2-160 heading-d7-0-2-196"
   >
     Click on the bordered box to use keyboard shortcuts
   </h3>
   <p
-    className="info-0-2-172 info-d8-0-2-208"
+    className="info-0-2-161 info-d8-0-2-197"
   >
     Press Up, Down, Left, Right arrow keys to navigate. Press enter or alphabet keys to select/deselect.
   </p>
   <div
-    className="eventTarget-0-2-170 eventTarget-d6-0-2-206"
+    className="eventTarget-0-2-159 eventTarget-d6-0-2-195"
     tabIndex={0}
   >
     <div
-      className="container-0-2-176 container-d2-0-2-209"
+      className="container-0-2-165 container-d2-0-2-198"
     >
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d18-0-2-210"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d18-0-2-199"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4259,18 +4078,18 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           A
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           SecOps
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d19-0-2-211"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d19-0-2-200"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4280,18 +4099,18 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           B
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Cloud Architect
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d20-0-2-212"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d20-0-2-201"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4301,18 +4120,18 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           C
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           DevOps
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d21-0-2-213"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d21-0-2-202"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4322,18 +4141,18 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           D
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           NetSec
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d22-0-2-214"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d22-0-2-203"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4343,18 +4162,18 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           E
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           AppDev
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d23-0-2-215"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d23-0-2-204"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4364,18 +4183,18 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           F
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Compliance
         </span>
       </div>
       <div
-        className="multipleChoiceItem-0-2-183 multipleChoiceItem-d24-0-2-216"
+        className="multipleChoiceItem-0-2-172 multipleChoiceItem-d24-0-2-205"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -4385,12 +4204,12 @@ exports[`Storyshots MultipleChoice Single Column 1`] = `
         tabIndex={-1}
       >
         <div
-          className="key-0-2-181"
+          className="key-0-2-170"
         >
           G
         </div>
         <span
-          className="label-0-2-182"
+          className="label-0-2-171"
         >
           Other
         </span>
@@ -4417,7 +4236,7 @@ exports[`Storyshots Notification Error 1`] = `
     </span>
   </button>
   <div
-    className="container-0-2-217"
+    className="container-0-2-206"
   />
 </div>
 `;
@@ -4439,7 +4258,7 @@ exports[`Storyshots Notification Info 1`] = `
     </span>
   </button>
   <div
-    className="container-0-2-217"
+    className="container-0-2-206"
   />
 </div>
 `;
@@ -4461,7 +4280,7 @@ exports[`Storyshots Notification Success 1`] = `
     </span>
   </button>
   <div
-    className="container-0-2-217"
+    className="container-0-2-206"
   />
 </div>
 `;
@@ -4483,7 +4302,7 @@ exports[`Storyshots Notification Warning 1`] = `
     </span>
   </button>
   <div
-    className="container-0-2-217"
+    className="container-0-2-206"
   />
 </div>
 `;
@@ -4569,7 +4388,7 @@ exports[`Storyshots PageLoader Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-218"
+    className="container-0-2-207"
   >
     <svg>
       loading_lightbulb.svg
@@ -4583,26 +4402,26 @@ exports[`Storyshots Plausible Disable Plausible 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-236"
+    className="container-0-2-225"
   >
     <div
-      className="container-0-2-238"
+      className="container-0-2-227"
     >
       <div
-        className="title-0-2-242"
+        className="title-0-2-231"
       >
         Plausible Exclude
       </div>
       <div
-        className="desc-0-2-239"
+        className="desc-0-2-228"
       >
         Click the button below to toggle your exclusion in analytics for this site
         <div
-          className="status-0-2-241"
+          className="status-0-2-230"
         >
           You currently
           <span
-            className="exclude-0-2-240 exclude-d0-0-2-243"
+            className="exclude-0-2-229 exclude-d0-0-2-232"
           >
             are not
           </span>
@@ -4611,7 +4430,7 @@ exports[`Storyshots Plausible Disable Plausible 1`] = `
       </div>
       <button
         autoFocus={false}
-        className="ant-btn ant-btn-default btn-0-2-237"
+        className="ant-btn ant-btn-default btn-0-2-226"
         data-test="button"
         disabled={false}
         onClick={[Function]}
@@ -4700,17 +4519,17 @@ exports[`Storyshots ProgressBar Default 1`] = `
     }
   >
     <div
-      className="container-0-2-244"
+      className="container-0-2-233"
     >
       <div
-        className="progressBarContainer-0-2-247"
+        className="progressBarContainer-0-2-236"
       >
         <div
-          className="progressBar-0-2-246"
+          className="progressBar-0-2-235"
         />
       </div>
       <div
-        className="percentage-0-2-245"
+        className="percentage-0-2-234"
       />
     </div>
   </div>
@@ -4820,31 +4639,31 @@ exports[`Storyshots Radio Group Loading 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-248"
+    className="container-0-2-237"
   >
     <div
-      className="skeletonButton-0-2-250"
+      className="skeletonButton-0-2-239"
     >
       <span
-        className="container-0-2-39 container-d7-0-2-251 skeleton-0-2-249"
+        className="container-0-2-39 container-d7-0-2-240 skeleton-0-2-238"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-2-250"
+      className="skeletonButton-0-2-239"
     >
       <span
-        className="container-0-2-39 container-d8-0-2-252 skeleton-0-2-249"
+        className="container-0-2-39 container-d8-0-2-241 skeleton-0-2-238"
       >
          
       </span>
     </div>
     <div
-      className="skeletonButton-0-2-250"
+      className="skeletonButton-0-2-239"
     >
       <span
-        className="container-0-2-39 container-d9-0-2-253 skeleton-0-2-249"
+        className="container-0-2-39 container-d9-0-2-242 skeleton-0-2-238"
       >
          
       </span>
@@ -4970,29 +4789,29 @@ exports[`Storyshots ScrollableSection Multiple 1`] = `
 >
   <div>
     <div
-      className="container-0-2-258 multiContainer-0-2-266"
+      className="container-0-2-250 multiContainer-0-2-244"
       name="apple"
     >
       <div
-        className="children-0-2-257"
+        className="children-0-2-249"
       >
         <div
-          className="children-0-2-265"
+          className="children-0-2-243"
         >
           apple
         </div>
       </div>
       <div
-        className="arrowDown-0-2-254"
+        className="arrowDown-0-2-246"
         style={Object {}}
       >
         <span
-          className="iconButton-0-2-19 arrowIcon-0-2-255"
+          className="iconButton-0-2-19 arrowIcon-0-2-247"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d50-0-2-270"
+            className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d44-0-2-259"
             data-icon="arrow-down"
             data-prefix="fas"
             focusable="false"
@@ -5011,20 +4830,20 @@ exports[`Storyshots ScrollableSection Multiple 1`] = `
       </div>
     </div>
     <div
-      className="container-0-2-258 multiContainer-0-2-266"
+      className="container-0-2-250 multiContainer-0-2-244"
       name="pineapple"
     >
       <div
-        className="arrowUp-0-2-256"
+        className="arrowUp-0-2-248"
         style={Object {}}
       >
         <span
-          className="iconButton-0-2-19 arrowIcon-0-2-255"
+          className="iconButton-0-2-19 arrowIcon-0-2-247"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d53-0-2-273"
+            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d47-0-2-262"
             data-icon="arrow-up"
             data-prefix="fas"
             focusable="false"
@@ -5042,25 +4861,25 @@ exports[`Storyshots ScrollableSection Multiple 1`] = `
         </span>
       </div>
       <div
-        className="children-0-2-257"
+        className="children-0-2-249"
       >
         <div
-          className="children-0-2-265"
+          className="children-0-2-243"
         >
           pineapple
         </div>
       </div>
       <div
-        className="arrowDown-0-2-254"
+        className="arrowDown-0-2-246"
         style={Object {}}
       >
         <span
-          className="iconButton-0-2-19 arrowIcon-0-2-255"
+          className="iconButton-0-2-19 arrowIcon-0-2-247"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d56-0-2-276"
+            className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d50-0-2-265"
             data-icon="arrow-down"
             data-prefix="fas"
             focusable="false"
@@ -5079,20 +4898,20 @@ exports[`Storyshots ScrollableSection Multiple 1`] = `
       </div>
     </div>
     <div
-      className="container-0-2-258 multiContainer-0-2-266"
+      className="container-0-2-250 multiContainer-0-2-244"
       name="mango"
     >
       <div
-        className="arrowUp-0-2-256"
+        className="arrowUp-0-2-248"
         style={Object {}}
       >
         <span
-          className="iconButton-0-2-19 arrowIcon-0-2-255"
+          className="iconButton-0-2-19 arrowIcon-0-2-247"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d59-0-2-279"
+            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d53-0-2-268"
             data-icon="arrow-up"
             data-prefix="fas"
             focusable="false"
@@ -5110,10 +4929,10 @@ exports[`Storyshots ScrollableSection Multiple 1`] = `
         </span>
       </div>
       <div
-        className="children-0-2-257"
+        className="children-0-2-249"
       >
         <div
-          className="children-0-2-265"
+          className="children-0-2-243"
         >
           mango
         </div>
@@ -5128,17 +4947,17 @@ exports[`Storyshots ScrollableSection Scroll Without Arrow 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="multiContainer-0-2-266"
+    className="multiContainer-0-2-244"
   >
     <div
-      className="container-0-2-258 multiContainer-0-2-266"
+      className="container-0-2-250 multiContainer-0-2-244"
       name="apple"
     >
       <div
-        className="children-0-2-257"
+        className="children-0-2-249"
       >
         <div
-          className="children-0-2-265"
+          className="children-0-2-243"
         >
           <button
             autoFocus={false}
@@ -5156,20 +4975,20 @@ exports[`Storyshots ScrollableSection Scroll Without Arrow 1`] = `
       </div>
     </div>
     <div
-      className="container-0-2-258 multiContainer-0-2-266"
+      className="container-0-2-250 multiContainer-0-2-244"
       name="pineapple"
     >
       <div
-        className="arrowUp-0-2-256"
+        className="arrowUp-0-2-248"
         style={Object {}}
       >
         <span
-          className="iconButton-0-2-19 arrowIcon-0-2-255"
+          className="iconButton-0-2-19 arrowIcon-0-2-247"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d62-0-2-282"
+            className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d56-0-2-271"
             data-icon="arrow-up"
             data-prefix="fas"
             focusable="false"
@@ -5187,10 +5006,10 @@ exports[`Storyshots ScrollableSection Scroll Without Arrow 1`] = `
         </span>
       </div>
       <div
-        className="children-0-2-257"
+        className="children-0-2-249"
       >
         <div
-          className="children-0-2-265"
+          className="children-0-2-243"
         >
           <div>
             pineapple
@@ -5207,20 +5026,20 @@ exports[`Storyshots ScrollableSection Single 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-258"
+    className="container-0-2-250 singleContainer-0-2-245"
     name="apple"
   >
     <div
-      className="arrowUp-0-2-256"
+      className="arrowUp-0-2-248"
       style={Object {}}
     >
       <span
-        className="iconButton-0-2-19 arrowIcon-0-2-255"
+        className="iconButton-0-2-19 arrowIcon-0-2-247"
         onClick={[Function]}
       >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d44-0-2-261"
+          className="svg-inline--fa fa-arrow-up fa-w-14 icon-0-2-18 icon-d38-0-2-253"
           data-icon="arrow-up"
           data-prefix="fas"
           focusable="false"
@@ -5238,23 +5057,30 @@ exports[`Storyshots ScrollableSection Single 1`] = `
       </span>
     </div>
     <div
-      className="children-0-2-257"
+      className="children-0-2-249"
     >
-      <div>
-        hello
+      <div
+        className="children-0-2-243"
+      >
+        <div>
+          pine
+        </div>
+        <div>
+          apple
+        </div>
       </div>
     </div>
     <div
-      className="arrowDown-0-2-254"
+      className="arrowDown-0-2-246"
       style={Object {}}
     >
       <span
-        className="iconButton-0-2-19 arrowIcon-0-2-255"
+        className="iconButton-0-2-19 arrowIcon-0-2-247"
         onClick={[Function]}
       >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d47-0-2-264"
+          className="svg-inline--fa fa-arrow-down fa-w-14 icon-0-2-18 icon-d41-0-2-256"
           data-icon="arrow-down"
           data-prefix="fas"
           focusable="false"
@@ -5283,7 +5109,7 @@ exports[`Storyshots Select Default 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-283 container-d0-0-2-288"
+      className="container-0-2-272 container-d0-0-2-277"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -5383,7 +5209,7 @@ exports[`Storyshots Select Full Width 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-283 container-d2-0-2-294"
+      className="container-0-2-272 container-d2-0-2-283"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -5435,11 +5261,11 @@ exports[`Storyshots Select Full Width 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-2-291"
+              className="option-0-2-280"
               style={Object {}}
             >
               <span
-                className="optionText-0-2-292"
+                className="optionText-0-2-281"
                 onMouseEnter={[Function]}
               >
                 Lorem
@@ -5493,7 +5319,7 @@ exports[`Storyshots Select Icon 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-283 container-d1-0-2-289"
+      className="container-0-2-272 container-d1-0-2-278"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -5545,11 +5371,11 @@ exports[`Storyshots Select Icon 1`] = `
             className="ant-select-selection-item"
           >
             <div
-              className="option-0-2-291"
+              className="option-0-2-280"
               style={Object {}}
             >
               <span
-                className="icon-0-2-290"
+                className="icon-0-2-279"
               >
                 <svg
                   className=""
@@ -5560,7 +5386,7 @@ exports[`Storyshots Select Icon 1`] = `
                 </svg>
               </span>
               <span
-                className="optionText-0-2-292"
+                className="optionText-0-2-281"
                 onMouseEnter={[Function]}
               >
                 AWS
@@ -5614,7 +5440,7 @@ exports[`Storyshots Select Search 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-283 container-d3-0-2-295"
+      className="container-0-2-272 container-d3-0-2-284"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -5714,7 +5540,7 @@ exports[`Storyshots Select Selected Option Width 1`] = `
     className="decorator-0-2-3"
   >
     <div
-      className="container-0-2-283 container-d4-0-2-296"
+      className="container-0-2-272 container-d4-0-2-285"
     >
       <div
         className="ant-select ant-select-single ant-select-show-arrow ant-select-show-search"
@@ -5811,24 +5637,24 @@ exports[`Storyshots ShortcutMicrocopy Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-300"
+    className="shortcutMicrocopy-0-2-289"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-301"
+      className="wrapper-0-2-290"
     >
       <span
-        className="label-0-2-299"
+        className="label-0-2-288"
       >
         press 
       </span>
       <span
-        className="keyName-0-2-298"
+        className="keyName-0-2-287"
       >
         enter 
       </span>
       <span
-        className="icon-0-2-297"
+        className="icon-0-2-286"
       >
         ↵
       </span>
@@ -5842,19 +5668,19 @@ exports[`Storyshots ShortcutMicrocopy Icon Only 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-300"
+    className="shortcutMicrocopy-0-2-289"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-301"
+      className="wrapper-0-2-290"
     >
       <span
-        className="label-0-2-299"
+        className="label-0-2-288"
       >
         press 
       </span>
       <span
-        className="icon-0-2-297"
+        className="icon-0-2-286"
       >
         ⌘
       </span>
@@ -5868,24 +5694,24 @@ exports[`Storyshots ShortcutMicrocopy Mixed 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-300"
+    className="shortcutMicrocopy-0-2-289"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-301"
+      className="wrapper-0-2-290"
     >
       <span
-        className="label-0-2-299"
+        className="label-0-2-288"
       >
         press 
       </span>
       <span
-        className="keyName-0-2-298"
+        className="keyName-0-2-287"
       >
         cmd 
       </span>
       <span
-        className="icon-0-2-297"
+        className="icon-0-2-286"
       >
         ⌘
       </span>
@@ -5893,12 +5719,12 @@ exports[`Storyshots ShortcutMicrocopy Mixed 1`] = `
          + 
       </span>
       <span
-        className="keyName-0-2-298"
+        className="keyName-0-2-287"
       >
         Enter 
       </span>
       <span
-        className="icon-0-2-297"
+        className="icon-0-2-286"
       >
         <span
           aria-label="enter"
@@ -5930,24 +5756,24 @@ exports[`Storyshots ShortcutMicrocopy Predefined Keys 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="shortcutMicrocopy-0-2-300"
+    className="shortcutMicrocopy-0-2-289"
     data-test="shortcut-microcopy"
   >
     <div
-      className="wrapper-0-2-301"
+      className="wrapper-0-2-290"
     >
       <span
-        className="label-0-2-299"
+        className="label-0-2-288"
       >
         press 
       </span>
       <span
-        className="keyName-0-2-298"
+        className="keyName-0-2-287"
       >
         cmd 
       </span>
       <span
-        className="icon-0-2-297"
+        className="icon-0-2-286"
       >
         ⌘
       </span>
@@ -5955,12 +5781,12 @@ exports[`Storyshots ShortcutMicrocopy Predefined Keys 1`] = `
          + 
       </span>
       <span
-        className="keyName-0-2-298"
+        className="keyName-0-2-287"
       >
         enter 
       </span>
       <span
-        className="icon-0-2-297"
+        className="icon-0-2-286"
       >
         ↵
       </span>
@@ -5974,7 +5800,7 @@ exports[`Storyshots Skeleton Circle 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-39 container-d11-0-2-303"
+    className="container-0-2-39 container-d11-0-2-292"
   >
      
   </span>
@@ -5986,27 +5812,27 @@ exports[`Storyshots Skeleton Count 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-39 container-d12-0-2-304"
+    className="container-0-2-39 container-d12-0-2-293"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-304"
+    className="container-0-2-39 container-d12-0-2-293"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-304"
+    className="container-0-2-39 container-d12-0-2-293"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-304"
+    className="container-0-2-39 container-d12-0-2-293"
   >
      
   </span>
   <span
-    className="container-0-2-39 container-d12-0-2-304"
+    className="container-0-2-39 container-d12-0-2-293"
   >
      
   </span>
@@ -6018,7 +5844,7 @@ exports[`Storyshots Skeleton Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <span
-    className="container-0-2-39 container-d10-0-2-302"
+    className="container-0-2-39 container-d10-0-2-291"
   >
      
   </span>
@@ -6030,21 +5856,21 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-305"
+    className="container-0-2-294"
     id="table-drawer-wrapper"
   >
     <div
-      className="tableContainer-0-2-309"
+      className="tableContainer-0-2-298"
     >
       <div
-        className="tableContainer-0-2-312"
+        className="tableContainer-0-2-301"
       >
         <div
-          className="tableControls-0-2-313 tableControls-d1-0-2-315"
+          className="tableControls-0-2-302 tableControls-d1-0-2-304"
         >
           <input
             autoFocus={false}
-            className="ant-input container-0-2-48 container-d16-0-2-316"
+            className="ant-input container-0-2-48 container-d14-0-2-305"
             data-test="input-table-search"
             disabled={false}
             onBlur={[Function]}
@@ -6347,7 +6173,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                         className="ant-table-tbody"
                       >
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-311 row-d0-0-2-314"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-300 row-d0-0-2-303"
                           data-row-key={0}
                           onClick={[Function]}
                           style={Object {}}
@@ -6359,10 +6185,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 vpc-flow-logs-are-disabled
@@ -6376,7 +6202,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="iconWrapper-0-2-320"
+                              className="iconWrapper-0-2-309"
                             >
                               <svg
                                 className=""
@@ -6394,10 +6220,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 FlowLog
@@ -6411,10 +6237,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 visibility
@@ -6423,7 +6249,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-311 row-d0-0-2-314"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-300 row-d0-0-2-303"
                           data-row-key={1}
                           onClick={[Function]}
                           style={Object {}}
@@ -6435,10 +6261,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 instance-is-exposed-to-internet
@@ -6452,7 +6278,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="iconWrapper-0-2-320"
+                              className="iconWrapper-0-2-309"
                             >
                               <svg
                                 className=""
@@ -6470,10 +6296,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 instance
@@ -6487,10 +6313,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 network
@@ -6499,7 +6325,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-311 row-d0-0-2-314"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-300 row-d0-0-2-303"
                           data-row-key={2}
                           onClick={[Function]}
                           style={Object {}}
@@ -6511,10 +6337,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 default-security-group-should-not-allow-traffic
@@ -6528,7 +6354,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="iconWrapper-0-2-320"
+                              className="iconWrapper-0-2-309"
                             >
                               <svg
                                 className=""
@@ -6546,10 +6372,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 security-group
@@ -6563,10 +6389,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 networking
@@ -6575,7 +6401,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-311 row-d0-0-2-314"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-300 row-d0-0-2-303"
                           data-row-key={3}
                           onClick={[Function]}
                           style={Object {}}
@@ -6587,10 +6413,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 ssh-from-internet
@@ -6604,7 +6430,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="iconWrapper-0-2-320"
+                              className="iconWrapper-0-2-309"
                             >
                               <svg
                                 className=""
@@ -6622,10 +6448,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 security-group
@@ -6639,10 +6465,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 network
@@ -6651,7 +6477,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                           </td>
                         </tr>
                         <tr
-                          className="ant-table-row ant-table-row-level-0 row-0-2-311 row-d0-0-2-314"
+                          className="ant-table-row ant-table-row-level-0 row-0-2-300 row-d0-0-2-303"
                           data-row-key={4}
                           onClick={[Function]}
                           style={Object {}}
@@ -6663,10 +6489,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 ebs-volume-is-not-encrypted
@@ -6680,7 +6506,7 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="iconWrapper-0-2-320"
+                              className="iconWrapper-0-2-309"
                             >
                               <svg
                                 className=""
@@ -6698,10 +6524,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 volume
@@ -6715,10 +6541,10 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             style={Object {}}
                           >
                             <div
-                              className="container-0-2-317"
+                              className="container-0-2-306"
                             >
                               <div
-                                className="wrapper-0-2-319"
+                                className="wrapper-0-2-308"
                                 onMouseEnter={[Function]}
                               >
                                 cryptography
@@ -6981,7 +6807,7 @@ exports[`Storyshots TimeInput Error 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="ant-picker error-0-2-324"
+    className="ant-picker error-0-2-313"
     onMouseUp={[Function]}
   >
     <div
@@ -7255,22 +7081,22 @@ exports[`Storyshots Wizard Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-325"
+    className="container-0-2-314"
   >
     <div
-      className="header-0-2-326"
+      className="header-0-2-315"
     >
       <div
-        className="title-0-2-330"
+        className="title-0-2-319"
       >
         Foo
         <span
-          className="iconButton-0-2-19 iconArrow-0-2-327 iconLeftArrow-0-2-328"
+          className="iconButton-0-2-19 iconArrow-0-2-316 iconLeftArrow-0-2-317"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d65-0-2-333"
+            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d59-0-2-322"
             data-icon="arrow-right"
             data-prefix="fas"
             focusable="false"

@@ -1,8 +1,6 @@
 import cn from 'classnames'
-import { CodeProps } from '../Code'
 import { convertEpochToUserTimezone } from '@dassana-io/web-utils'
 import { createUseStyles } from 'react-jss'
-import { Input } from '../Input'
 import LogsControls from './LogsControls'
 import Mark from 'mark.js'
 import { commonCodeStyles, copyToClipboard } from 'components/Code/utils'
@@ -15,6 +13,7 @@ import {
 	generateThemedCodeStyles,
 	generateThemedLineNumStyles
 } from '../Code/utils'
+import { Input, InputProps } from '../Input'
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
@@ -80,12 +79,15 @@ export interface Log {
 
 export type LogsType = Log[]
 
-export interface LogsProps extends Pick<CodeProps, 'search'> {
+export interface LogsProps {
 	classes?: string[]
 	displayControls?: boolean
 	popupContainerSelector?: string
 	filename: string
 	logs: LogsType
+	search?:
+		| boolean
+		| Omit<InputProps, 'addonAfter' | 'addonBefore' | 'onChange' | 'type'>
 }
 
 const downloadMsgDelay = 800
