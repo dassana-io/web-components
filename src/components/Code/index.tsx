@@ -20,6 +20,7 @@ export interface CodeProps
 		IAceEditorProps,
 		| 'debounceChangePeriod'
 		| 'height'
+		| 'maxLines'
 		| 'showGutter'
 		| 'tabSize'
 		| 'width'
