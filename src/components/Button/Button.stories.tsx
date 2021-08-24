@@ -7,6 +7,7 @@ export default {
 	argTypes: {
 		children: { control: 'text' },
 		classes: { control: 'array' },
+		color: { control: 'color' },
 		onClick: { defaultValue: action('onClick') }
 	},
 	component: Button,
