@@ -1,3 +1,4 @@
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -95,11 +96,26 @@ export const generateButtonStyles = (
 	}
 }
 
-export const generateButtonColorStyles = (color: string) => ({
-	'&.ant-btn': {
-		'&.ant-btn-primary': {
-			backgroundColor: color
-		},
-		backgroundColor: color
+export const generateButtonColorStyles = (color?: string) => {
+	const hoverColor = color
+		? manipulateColor(color, 20, ColorManipulationTypes.tint)
+		: ''
+
+	return {
+		'&.ant-btn': {
+			'&.ant-btn-primary': {
+				'&:hover': {
+					backgroundColor: hoverColor,
+					borderColor: hoverColor
+				},
+				backgroundColor: color
+			},
+			'&:hover': {
+				borderColor: hoverColor,
+				color: hoverColor
+			},
+			borderColor: color,
+			color
+		}
 	}
-})
+}
