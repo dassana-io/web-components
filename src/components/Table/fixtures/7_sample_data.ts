@@ -95,6 +95,20 @@ const columns: ColumnType[] = [
 		},
 		title: 'Broken Icon',
 		type: component
+	},
+	{
+		dataIndex: 'icon',
+		format: icon,
+		renderProps: {
+			buildHref: val =>
+				val === IconCellLabelType.undefined
+					? 'https://cdn4.iconfinder.com/data/icons/kawaii-food-and-drink/100/Food_Kawaii-17-1024.png'
+					: 'https://cdn4.iconfinder.com/data/icons/kawaii-food-and-drink/100/Food_Kawaii-10-1024.png',
+			label: { type: IconCellLabelType.undefined },
+			type: 'icon'
+		},
+		title: 'Undefined',
+		type: component
 	}
 ]
 
@@ -223,6 +237,25 @@ const data: JSONPathData[] = [
 		buildHrefIconJSONPath: { id: 'D', label: 'D' },
 		company: { id: 'c2', value: 'googleCloudService' },
 		icon: 'D',
+		id: 3,
+		name: { id: 'n2', value: 'Duis Irure' },
+		start_date: { date: 1531932342212, id: 'sd3' },
+		vendors: [
+			{
+				id: 'v1',
+				name: 'S',
+				value: 'https://dummyimage.com/300x300/C1DB3C/fff&text=S'
+			},
+			{
+				id: 'v3',
+				value: 'https://dummyimage.com/300x300/EA4335/fff&text=G'
+			}
+		]
+	},
+	{
+		buildHrefIconJSONPath: { id: 'D', label: 'D' },
+		company: { id: 'c2', value: 'googleCloudService' },
+		icon: 'undefined',
 		id: 3,
 		name: { id: 'n2', value: 'Duis Irure' },
 		start_date: { date: 1531932342212, id: 'sd3' },

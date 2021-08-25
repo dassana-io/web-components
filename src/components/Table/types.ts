@@ -86,7 +86,8 @@ interface PartialComponentType extends PartialColumnType {
 
 export enum IconCellLabelType {
 	inline = 'inline',
-	tooltip = 'tooltip'
+	tooltip = 'tooltip',
+	undefined = 'undefined'
 }
 
 interface SharedCompIconType extends SharedIconProps {

@@ -22,11 +22,12 @@ interface IconCellProps {
 	labelClasses?: string[]
 	label?: string
 	labelType?: IconCellLabelType
+	undefinedLabel?: string
 	wrapperClasses?: string[]
 }
 
 export const IconCell: FC<IconCellProps> = ({
-	label,
+	label = '',
 	labelClasses = [],
 	labelType,
 	iconProps,
@@ -34,39 +35,41 @@ export const IconCell: FC<IconCellProps> = ({
 }: IconCellProps) => {
 	const classes = useStyles()
 
-	const { inline, tooltip } = IconCellLabelType
+	const { undefined: undef, inline, tooltip } = IconCellLabelType
 
 	const iconWrapperClasses = cn(
 		{ [classes.iconWrapper]: true },
 		wrapperClasses
 	)
 
+	const renderInline = () => (
+		<div className={iconWrapperClasses}>
+			<Icon {...iconProps} handleErrors={false} />
+			<span className={cn({ [classes.label]: true }, labelClasses)}>
+				{label}
+			</span>
+		</div>
+	)
+
+	const renderTooltip = (label: string) => (
+		<Tooltip
+			placement='top'
+			title={label}
+			tooltipTriggerClasses={[classes.tooltipTrigger, ...wrapperClasses]}
+		>
+			<Icon {...iconProps} />
+		</Tooltip>
+	)
+
 	switch (labelType) {
 		case inline:
-			return (
-				<div className={iconWrapperClasses}>
-					<Icon {...iconProps} handleErrors={false} />
-					<span
-						className={cn({ [classes.label]: true }, labelClasses)}
-					>
-						{label}
-					</span>
-				</div>
-			)
+			return renderInline()
 
 		case tooltip:
-			return (
-				<Tooltip
-					placement='top'
-					title={label}
-					tooltipTriggerClasses={[
-						classes.tooltipTrigger,
-						...wrapperClasses
-					]}
-				>
-					<Icon {...iconProps} />
-				</Tooltip>
-			)
+			return renderTooltip(label)
+
+		case undef:
+			return label === undef ? renderTooltip(undef) : renderInline()
 	}
 
 	return (
