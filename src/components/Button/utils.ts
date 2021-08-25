@@ -91,8 +91,10 @@ export const generateButtonStyles = (themeType: ThemeType) => {
 	}
 }
 
-export const generateButtonColorStyles = (color: string) => {
-	const hoverColor = manipulateColor(color, 20, ColorManipulationTypes.tint)
+export const generateButtonColorStyles = (color?: string) => {
+	const hoverColor = color
+		? manipulateColor(color, 20, ColorManipulationTypes.tint)
+		: ''
 
 	return {
 		'&.ant-btn': {
