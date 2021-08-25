@@ -1,3 +1,4 @@
+import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -28,10 +29,7 @@ export const buttonPalette = {
 	}
 }
 
-export const generateButtonStyles = (
-	themeType: ThemeType,
-	buttonColor = ''
-) => {
+export const generateButtonStyles = (themeType: ThemeType) => {
 	const { base, disabled } = themedStyles[themeType]
 
 	const {
@@ -58,7 +56,7 @@ export const generateButtonStyles = (
 	return {
 		'&.ant-btn': {
 			'&:hover': activeStyles,
-			backgroundColor: buttonColor ? buttonColor : base.backgroundColor,
+			backgroundColor: base.backgroundColor,
 			...baseButtonStyles,
 			'&.ant-btn-primary': {
 				'&.ant-btn-disabled, &.ant-btn[disabled]': {
@@ -75,9 +73,7 @@ export const generateButtonStyles = (
 					borderColor: primaryHoverBgColor,
 					color: blacks['lighten-80']
 				},
-				backgroundColor: buttonColor
-					? buttonColor
-					: primaryBackgroundColor,
+				backgroundColor: primaryBackgroundColor,
 				color: blacks['lighten-80']
 			}
 		},
@@ -95,11 +91,26 @@ export const generateButtonStyles = (
 	}
 }
 
-export const generateButtonColorStyles = (color: string) => ({
-	'&.ant-btn': {
-		'&.ant-btn-primary': {
-			backgroundColor: color
-		},
-		backgroundColor: color
+export const generateButtonColorStyles = (color?: string) => {
+	const hoverColor = color
+		? manipulateColor(color, 20, ColorManipulationTypes.tint)
+		: ''
+
+	return {
+		'&.ant-btn': {
+			'&.ant-btn-primary': {
+				'&:hover': {
+					backgroundColor: hoverColor,
+					borderColor: hoverColor
+				},
+				backgroundColor: color
+			},
+			'&:hover': {
+				borderColor: hoverColor,
+				color: hoverColor
+			},
+			borderColor: color,
+			color
+		}
 	}
-})
+}
