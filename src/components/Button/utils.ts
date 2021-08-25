@@ -29,7 +29,10 @@ export const buttonPalette = {
 	}
 }
 
-export const generateButtonStyles = (themeType: ThemeType) => {
+export const generateButtonStyles = (
+	themeType: ThemeType,
+	buttonColor = ''
+) => {
 	const { base, disabled } = themedStyles[themeType]
 
 	const {
@@ -56,7 +59,7 @@ export const generateButtonStyles = (themeType: ThemeType) => {
 	return {
 		'&.ant-btn': {
 			'&:hover': activeStyles,
-			backgroundColor: base.backgroundColor,
+			backgroundColor: buttonColor ? buttonColor : base.backgroundColor,
 			...baseButtonStyles,
 			'&.ant-btn-primary': {
 				'&.ant-btn-disabled, &.ant-btn[disabled]': {
@@ -73,7 +76,9 @@ export const generateButtonStyles = (themeType: ThemeType) => {
 					borderColor: primaryHoverBgColor,
 					color: blacks['lighten-80']
 				},
-				backgroundColor: primaryBackgroundColor,
+				backgroundColor: buttonColor
+					? buttonColor
+					: primaryBackgroundColor,
 				color: blacks['lighten-80']
 			}
 		},
