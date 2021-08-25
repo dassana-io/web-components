@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { ReactComponent as LoadingLightbulb } from '../assets/images/loading_lightbulb.svg'
 import React from 'react'
@@ -64,11 +65,17 @@ const useStyles = createUseStyles({
 	}
 })
 
-export const PageLoader: React.FC = () => {
-	const classes = useStyles()
+export interface PageLoaderProps {
+	classes?: string[]
+}
+
+export const PageLoader: React.FC<PageLoaderProps> = ({
+	classes = []
+}: PageLoaderProps) => {
+	const compClasses = useStyles()
 
 	return (
-		<div className={classes.container}>
+		<div className={cn(compClasses.container, classes)}>
 			<LoadingLightbulb />
 		</div>
 	)

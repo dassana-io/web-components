@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { PageLoader } from 'components/PageLoader'
 import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
 import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
@@ -30,6 +31,8 @@ export interface CodeProps
 	code?: CodeType
 	displayControls?: DisplayCodeControls | false
 	language?: typeof languages[number]
+	loading?: boolean
+	pageLoaderClasses?: string[]
 	readOnly?: boolean
 	onChange?: (val: string) => void
 }
@@ -40,6 +43,8 @@ export const Code: FC<CodeProps> = ({
 	displayControls = {},
 	onChange,
 	language = 'json',
+	loading = false,
+	pageLoaderClasses = [],
 	readOnly = true,
 	tabSize = 2,
 	wrapEnabled = false,
@@ -61,7 +66,9 @@ export const Code: FC<CodeProps> = ({
 		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
 	}, [isCopied])
 
-	return (
+	return loading ? (
+		<PageLoader classes={pageLoaderClasses} />
+	) : (
 		<div className={cn(compClasses.wrapper, classes)}>
 			{displayControls && (
 				<CodeControls
