@@ -181,6 +181,9 @@ export const useStyles = createUseStyles({
 				background:
 					'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAVSURBVHgBAQoA9f8A+fn5/wLb294AJR8GgZJTUkoAAAAASUVORK5CYII=) right repeat-y'
 			},
+			'& .ace_marker-layer .ace_bracket': {
+				display: 'none'
+			},
 			...generateThemedAceCodeStyles(light)
 		}
 	},
