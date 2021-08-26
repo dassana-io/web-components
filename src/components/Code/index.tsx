@@ -20,6 +20,7 @@ export interface CodeProps
 	extends Pick<
 		IAceEditorProps,
 		| 'debounceChangePeriod'
+		| 'focus'
 		| 'height'
 		| 'maxLines'
 		| 'showGutter'
