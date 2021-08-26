@@ -3,7 +3,7 @@ import { PageLoader } from 'components/PageLoader'
 import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
 import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, RefObject, useEffect, useState } from 'react'
 
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
@@ -20,6 +20,7 @@ export interface CodeProps
 	extends Pick<
 		IAceEditorProps,
 		| 'debounceChangePeriod'
+		| 'defaultValue'
 		| 'focus'
 		| 'height'
 		| 'maxLines'
@@ -31,6 +32,7 @@ export interface CodeProps
 	classes?: string[]
 	code?: CodeType
 	displayControls?: DisplayCodeControls | false
+	editorRef?: RefObject<AceEditor>
 	language?: typeof languages[number]
 	loading?: boolean
 	pageLoaderClasses?: string[]
@@ -42,6 +44,7 @@ export const Code: FC<CodeProps> = ({
 	classes = [],
 	code,
 	displayControls = {},
+	editorRef,
 	onChange,
 	language = 'json',
 	loading = false,
@@ -84,6 +87,7 @@ export const Code: FC<CodeProps> = ({
 				mode={language}
 				onChange={onChange}
 				readOnly={readOnly}
+				ref={editorRef}
 				setOptions={{
 					useWorker: false
 				}} // To fix this issue --> https://github.com/securingsincity/react-ace/issues/725#issuecomment-546711308
@@ -95,3 +99,5 @@ export const Code: FC<CodeProps> = ({
 		</div>
 	)
 }
+
+export type { AceEditor }
