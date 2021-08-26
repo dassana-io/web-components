@@ -1,59 +1,42 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { ReactComponent as LoadingLightbulb } from '../assets/images/loading_lightbulb.svg'
+import { ReactComponent as LightbulbLit } from '../assets/images/lightbulb_lit.svg'
+import { ReactComponent as LightbulbUnlit } from '../assets/images/lightbulb_unlit.svg'
 import React from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
-const {
-	colors: { blacks },
-	flexCenter
-} = styleguide
+const { flexCenter } = styleguide
 const { dark, light } = ThemeType
 
+const svgWidth = 130
+const svgHeight = 133
+
 const useStyles = createUseStyles({
+	bulbLit: {
+		animation: 'lightUp 2s infinite'
+	},
 	container: {
 		'& svg': {
-			'& path': {
-				'&.lightbulb': {
-					animation: 'scale 5s infinite ease-out',
-					fill: blacks['lighten-10']
-				},
-				animation: 'scaleAccents 5s infinite ease-out',
-				fill: blacks['lighten-50'],
-				'transform-origin': 'center'
-			},
-			display: 'block',
-			height: '258px',
-			width: '258px'
+			position: 'absolute'
 		},
 		...flexCenter,
 		background: themes[light].background.primary,
 		width: 'inherit'
 	},
+	// iconWrapper dimensions should match svg dimensions
+	iconWrapper: {
+		height: svgHeight,
+		position: 'relative',
+		width: svgWidth
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
-		'@keyframes scale': {
+		'@keyframes lightUp': {
 			'0%, 100%': {
-				transform: 'scale(0.0)'
+				opacity: 0
 			},
 			'50%': {
-				transform: 'scale(1)'
-			},
-			'7%, 90%': {
-				transform: 'scale(0.4)'
-			}
-		},
-		'@keyframes scaleAccents': {
-			'0%, 100%': {
-				opacity: 0,
-				transform: 'scale(0.0)'
-			},
-			'50%': {
-				opacity: 1,
-				transform: 'scale(1)'
-			},
-			'7%, 90%': {
-				opacity: 0.5,
-				transform: 'scale(0.4)'
+				opacity: 1
 			}
 		},
 		[`.${dark}`]: {
@@ -64,12 +47,30 @@ const useStyles = createUseStyles({
 	}
 })
 
-export const PageLoader: React.FC = () => {
-	const classes = useStyles()
+export interface PageLoaderProps {
+	classes?: string[]
+}
+
+const commonSvgProps = {
+	height: svgHeight,
+	viewBox: `0 0 ${svgWidth} ${svgHeight}`,
+	width: svgWidth
+}
+
+export const PageLoader: React.FC<PageLoaderProps> = ({
+	classes = []
+}: PageLoaderProps) => {
+	const compClasses = useStyles()
 
 	return (
-		<div className={classes.container}>
-			<LoadingLightbulb />
+		<div className={cn(compClasses.container, classes)}>
+			<div className={compClasses.iconWrapper}>
+				<LightbulbUnlit {...commonSvgProps} />
+				<LightbulbLit
+					className={compClasses.bulbLit}
+					{...commonSvgProps}
+				/>
+			</div>
 		</div>
 	)
 }
