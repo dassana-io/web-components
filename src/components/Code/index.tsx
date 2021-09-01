@@ -3,7 +3,7 @@ import { PageLoader } from 'components/PageLoader'
 import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
 import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
-import React, { FC, RefObject, useEffect, useState } from 'react'
+import React, { FC, RefObject, useEffect, useRef, useState } from 'react'
 
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
@@ -24,6 +24,7 @@ export interface CodeProps
 		| 'focus'
 		| 'height'
 		| 'maxLines'
+		| 'onLoad'
 		| 'showGutter'
 		| 'tabSize'
 		| 'width'
@@ -58,12 +59,18 @@ export const Code: FC<CodeProps> = ({
 		throw new Error('Controlled Code component requires an onChange prop')
 	}
 
+	const ref = useRef<AceEditor>(null)
+	const compRef = editorRef || ref
+
 	const compClasses = useStyles()
 
 	const [isCopied, setIsCopied] = useState(false)
 
 	const copyCode = () => {
-		if (code) copyToClipboard(stringifyCode(code), () => setIsCopied(true))
+		if (compRef.current)
+			copyToClipboard(compRef.current.editor.getValue(), () =>
+				setIsCopied(true)
+			)
 	}
 
 	useEffect(() => {
@@ -87,7 +94,7 @@ export const Code: FC<CodeProps> = ({
 				mode={language}
 				onChange={onChange}
 				readOnly={readOnly}
-				ref={editorRef}
+				ref={compRef}
 				setOptions={{
 					useWorker: false
 				}} // To fix this issue --> https://github.com/securingsincity/react-ace/issues/725#issuecomment-546711308
