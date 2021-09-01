@@ -24,6 +24,7 @@ export interface CodeProps
 		| 'focus'
 		| 'height'
 		| 'maxLines'
+		| 'onLoad'
 		| 'showGutter'
 		| 'tabSize'
 		| 'width'
