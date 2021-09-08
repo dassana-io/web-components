@@ -1,4 +1,8 @@
 import cn from 'classnames'
+import { createUseStyles } from 'react-jss'
+import { generateThemedTabsListStyles } from './utils'
+import Tab from './Tab'
+import TabPane from './TabPane'
 import { ThemeType } from 'components/assets/styles'
 import React, {
 	FC,
@@ -7,10 +11,6 @@ import React, {
 	useImperativeHandle,
 	useState
 } from 'react'
-import { createUseStyles } from 'react-jss'
-import Tab from './Tab'
-import TabPane from './TabPane'
-import { generateThemedTabsListStyles } from './utils'
 
 const { dark, light } = ThemeType
 
