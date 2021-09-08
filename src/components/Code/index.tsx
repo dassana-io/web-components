@@ -19,6 +19,7 @@ languages.forEach(lang => {
 export interface CodeProps
 	extends Pick<
 		IAceEditorProps,
+		| 'commands'
 		| 'debounceChangePeriod'
 		| 'defaultValue'
 		| 'focus'

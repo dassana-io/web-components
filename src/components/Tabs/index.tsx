@@ -1,10 +1,16 @@
 import cn from 'classnames'
+import { ThemeType } from 'components/assets/styles'
+import React, {
+	FC,
+	ReactNode,
+	RefObject,
+	useImperativeHandle,
+	useState
+} from 'react'
 import { createUseStyles } from 'react-jss'
-import { generateThemedTabsListStyles } from './utils'
 import Tab from './Tab'
 import TabPane from './TabPane'
-import { ThemeType } from 'components/assets/styles'
-import React, { FC, ReactNode, useState } from 'react'
+import { generateThemedTabsListStyles } from './utils'
 
 const { dark, light } = ThemeType
 
@@ -36,6 +42,10 @@ export interface TabConfig {
 	render: () => ReactNode
 }
 
+export interface UseTabsMethods {
+	setTab: (tabIndex: number) => void
+}
+
 export interface TabsProps {
 	activeTabClasses?: string[]
 	classes?: string[]
@@ -50,6 +60,7 @@ export interface TabsProps {
 	tabConfig: TabConfig[]
 	tabClasses?: string[]
 	tabsListClasses?: string[]
+	tabsRef?: RefObject<UseTabsMethods>
 }
 
 export const Tabs: FC<TabsProps> = ({
@@ -60,7 +71,8 @@ export const Tabs: FC<TabsProps> = ({
 	onTabChange,
 	tabConfig,
 	tabClasses = [],
-	tabsListClasses = []
+	tabsListClasses = [],
+	tabsRef
 }: TabsProps) => {
 	/* Fallback to index 0 if tabConfig[defaultActiveIndex] doesn't exist */
 	const [activeIndex, setActiveIndex] = useState(
@@ -80,6 +92,10 @@ export const Tabs: FC<TabsProps> = ({
 
 		setActiveIndex(tabIndex)
 	}
+
+	useImperativeHandle(tabsRef, () => ({
+		setTab: onClickTab
+	}))
 
 	const renderTabItems = () =>
 		tabConfig.map(({ key, label }: TabConfig, i) => (
