@@ -37,14 +37,17 @@ export const generateRadioGroupStyles = (themeType: ThemeType) => {
 		'&.ant-radio-group': {
 			'& .ant-radio-button-wrapper': {
 				'&.ant-radio-button-wrapper-checked': {
-					// eslint-disable-next-line quotes
-					"&:not([class*=' ant-radio-button-wrapper-disabled']).ant-radio-button-wrapper:first-child":
+					'&:not([class*="ant-radio-button-wrapper-disabled"]).ant-radio-button-wrapper:first-child':
 						{ borderRightColor: borderColor },
 					backgroundColor: borderColor,
 					color: active.color
 				},
 				'&:focus-within': { boxShadow: 'none' },
-				'&:hover': { color: active.color },
+				'&:hover': {
+					'&:not([class*="ant-radio-button-wrapper-disabled"])': {
+						color: active.color
+					}
+				},
 				'&:not(:first-child)::before': { backgroundColor: borderColor },
 				background,
 				borderColor,
