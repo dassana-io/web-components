@@ -1,51 +1,10 @@
 import 'antd/lib/radio/style/index.css'
 import { Radio as AntDRadio } from 'antd'
 import { CommonComponentProps } from '../types'
-import { createUseStyles } from 'react-jss'
-import { generateRadioSkeletonStyles } from './utils'
-import { Skeleton } from '../Skeleton'
-import { ThemeType } from 'components/assets/styles/themes'
-import times from 'lodash/times'
+
+import RadioGroupSkeleton from './RadioGroupSkeleton'
 import { getDataTestAttributeProp, TAG } from '../utils'
 import React, { ChangeEventHandler, FC } from 'react'
-
-const { dark, light } = ThemeType
-
-const useStyles = createUseStyles({
-	container: {
-		display: 'flex'
-	},
-	skeleton: {
-		borderRadius: 'unset'
-	},
-	skeletonButton: generateRadioSkeletonStyles(light),
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		[`.${dark}`]: {
-			'& $skeletonButton': generateRadioSkeletonStyles(dark)
-		}
-	}
-})
-
-const RadioGroupSkeleton: FC<RadioGroupProps> = ({
-	options
-}: RadioGroupProps) => {
-	const classes = useStyles()
-
-	return (
-		<div className={classes.container}>
-			{times(options.length, i => (
-				<div className={classes.skeletonButton} key={i}>
-					<Skeleton
-						classes={[classes.skeleton]}
-						height={32}
-						width={75}
-					/>
-				</div>
-			))}
-		</div>
-	)
-}
 
 export interface RadioGroupOptions {
 	disabled?: boolean
@@ -103,7 +62,7 @@ export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 	}
 
 	return loading ? (
-		<RadioGroupSkeleton {...props} />
+		<RadioGroupSkeleton count={options.length} />
 	) : (
 		<AntDRadio.Group
 			buttonStyle='solid'
