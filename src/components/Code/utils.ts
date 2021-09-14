@@ -20,7 +20,7 @@ interface CopyToClipboard {
 export const copyToClipboard: CopyToClipboard = (str, callback) =>
 	navigator.clipboard.writeText(str).then(callback)
 
-const codePalette = {
+export const codePalette = {
 	[dark]: {
 		background: blacks['darken-20'],
 		color: blacks['lighten-60']
