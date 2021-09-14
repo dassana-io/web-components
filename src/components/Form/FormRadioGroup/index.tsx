@@ -40,9 +40,7 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 					<RadioGroup
 						dataTag={getFormFieldDataTag(name)}
 						loading={loading}
-						onChange={(
-							event: React.ChangeEvent<HTMLInputElement>
-						) => onChange(event.target.value)}
+						onChange={event => onChange(event.target.value)}
 						value={value}
 						{...rest}
 					/>
