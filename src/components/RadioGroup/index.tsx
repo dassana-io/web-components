@@ -1,57 +1,33 @@
 import 'antd/lib/radio/style/index.css'
-import { Radio as AntDRadio } from 'antd'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
-import { generateRadioSkeletonStyles } from './utils'
-import { Skeleton } from '../Skeleton'
-import { ThemeType } from 'components/assets/styles/themes'
-import times from 'lodash/times'
+import { generateRadioGroupStyles } from './utils'
+import RadioGroupSkeleton from './RadioGroupSkeleton'
+import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { ThemeType } from '../assets/styles/themes'
+import { Radio as AntDRadio, RadioChangeEvent } from 'antd'
 import { getDataTestAttributeProp, TAG } from '../utils'
-import React, { ChangeEventHandler, FC } from 'react'
+import React, { FC } from 'react'
 
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
-	container: {
-		display: 'flex'
-	},
-	skeleton: {
-		borderRadius: 'unset'
-	},
-	skeletonButton: generateRadioSkeletonStyles(light),
+	radioGroup: generateRadioGroupStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $skeletonButton': generateRadioSkeletonStyles(dark)
+			'& $radioGroup': generateRadioGroupStyles(dark)
 		}
 	}
 })
-
-const RadioGroupSkeleton: FC<RadioGroupProps> = ({
-	options
-}: RadioGroupProps) => {
-	const classes = useStyles()
-
-	return (
-		<div className={classes.container}>
-			{times(options.length, i => (
-				<div className={classes.skeletonButton} key={i}>
-					<Skeleton
-						classes={[classes.skeleton]}
-						height={32}
-						width={75}
-					/>
-				</div>
-			))}
-		</div>
-	)
-}
 
 export interface RadioGroupOptions {
 	disabled?: boolean
 	label: string
 	value: string
 }
+
+export type RadioChangeEventHandler = (e: RadioChangeEvent) => void
 
 export interface RadioGroupProps extends CommonComponentProps {
 	/**
@@ -71,27 +47,29 @@ export interface RadioGroupProps extends CommonComponentProps {
 	/**
 	 * Callback that runs when element is updated
 	 */
-	onChange?: ChangeEventHandler
+	onChange?: RadioChangeEventHandler
 	/**
 	 * Array of options to be rendered in the form of buttons
 	 */
 	options: RadioGroupOptions[]
+	size?: SizeType
 	/**
 	 * Element content value for controlled input elements. Requires an onChange to be passed
 	 */
 	value?: string
 }
 
-export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
-	const {
-		defaultValue,
-		dataTag,
-		disabled = false,
-		loading = false,
-		onChange,
-		options,
-		value
-	} = props
+export const RadioGroup: FC<RadioGroupProps> = ({
+	defaultValue,
+	dataTag,
+	disabled = false,
+	loading = false,
+	onChange,
+	options,
+	value,
+	...rest
+}: RadioGroupProps) => {
+	const classes = useStyles()
 
 	let controlledCmpProps = {}
 
@@ -103,10 +81,12 @@ export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
 	}
 
 	return loading ? (
-		<RadioGroupSkeleton {...props} />
+		<RadioGroupSkeleton count={options.length} />
 	) : (
 		<AntDRadio.Group
+			{...rest}
 			buttonStyle='solid'
+			className={classes.radioGroup}
 			defaultValue={defaultValue || options[0].value}
 			disabled={disabled}
 			name={getDataTestAttributeProp('radioGroup', dataTag)[TAG]}
