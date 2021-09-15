@@ -11,7 +11,7 @@ import {
 const { dark, light } = ThemeType
 
 const {
-	colors: { blacks, blues, grays, greens, reds, oranges }
+	colors: { blacks, blues, grays, greens, reds, oranges, whites }
 } = styleguide
 
 interface CopyToClipboard {
@@ -219,6 +219,14 @@ export const useStyles = createUseStyles({
 					},
 					'& .ace_marker-layer .ace_active-line': {
 						background: 'rgba(255,255,255,0.07)'
+					},
+					'& .ace_marker-layer .ace_selected-word': {
+						background: 'rgba(254, 254, 254, 0.4)',
+						border: `1px solid ${whites.base}`
+					},
+					'& .ace_marker-layer .ace_selection': {
+						background: whites.base,
+						opacity: 0.12
 					},
 					'& .ace_search': {
 						'& .ace_button': {
