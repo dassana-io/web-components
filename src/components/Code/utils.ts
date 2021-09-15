@@ -221,8 +221,8 @@ export const useStyles = createUseStyles({
 						background: 'rgba(255,255,255,0.07)'
 					},
 					'& .ace_marker-layer .ace_selected-word': {
-						background: 'rgba(254, 254, 254, 0.4)',
-						border: `1px solid ${whites.base}`
+						background: 'rgba(254, 254, 254, 0.12)',
+						border: `1px solid ${blacks['lighten-70']}`
 					},
 					'& .ace_marker-layer .ace_selection': {
 						background: whites.base,
