@@ -1013,6 +1013,1245 @@ exports[`Storyshots ChipInput Validated With Addon 1`] = `
 </div>
 `;
 
+exports[`Storyshots Code Diff Viewer Javascript 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <table
+    className="css-1r1je6g-diff-container css-1caozzd-split-view"
+  >
+    <tbody>
+      <tr>
+        <td
+          className="css-e6qrc6-title-block"
+          colSpan={3}
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            Old Code
+          </pre>
+        </td>
+        <td
+          className="css-e6qrc6-title-block"
+          colSpan={3}
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            New Code
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            1
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token keyword\\">const</span> a <span class=\\"token operator\\">=</span> <span class=\\"token number\\">10</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            1
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token keyword\\">const</span> a <span class=\\"token operator\\">=</span> <span class=\\"token number\\">10</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter css-1icwzhz-diff-removed"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            2
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1icwzhz-diff-removed"
+        >
+          <pre>
+            -
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1icwzhz-diff-removed"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<span class=\\"token keyword\\">const</span> b",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": " <span class=\\"token operator\\">=</span> <span class=\\"token number\\">10</span>",
+                  }
+                }
+              />
+            </span>
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter css-1phm3nr-diff-added"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            2
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1phm3nr-diff-added"
+        >
+          <pre>
+            +
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1phm3nr-diff-added"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<span class=\\"token keyword\\">const</span> b",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff css-rs0mgx-word-added"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "oo",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": " <span class=\\"token operator\\">=</span> <span class=\\"token number\\">10</span>",
+                  }
+                }
+              />
+            </span>
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter css-1icwzhz-diff-removed"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            3
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1icwzhz-diff-removed"
+        >
+          <pre>
+            -
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1icwzhz-diff-removed"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token keyword\\">const</span> <span class=\\"token function-variable function\\">c</span> <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'foo'</span><span class=\\"token punctuation\\">)</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter css-azh53l-empty-gutter"
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          />
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            4
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": " ",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            3
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": " ",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter css-1icwzhz-diff-removed"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            5
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1icwzhz-diff-removed"
+        >
+          <pre>
+            -
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1icwzhz-diff-removed"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">(</span>a ",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff css-mnq436-word-removed"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<span class=\\"token operator\\">></span>",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": " <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">)</span> <span class=\\"token punctuation\\">{</span>",
+                  }
+                }
+              />
+            </span>
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter css-1phm3nr-diff-added"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            4
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1phm3nr-diff-added"
+        >
+          <pre>
+            +
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1phm3nr-diff-added"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">(</span>a ",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff css-rs0mgx-word-added"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<span class=\\"token operator\\">===</span>",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": " <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">)</span> <span class=\\"token punctuation\\">{</span>",
+                  }
+                }
+              />
+            </span>
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            6
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "  console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'bar'</span><span class=\\"token punctuation\\">)</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            5
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "  console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'bar'</span><span class=\\"token punctuation\\">)</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            7
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token punctuation\\">}</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            6
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token punctuation\\">}</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter css-1icwzhz-diff-removed"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            8
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1icwzhz-diff-removed"
+        >
+          <pre>
+            -
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1icwzhz-diff-removed"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": " ",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter css-azh53l-empty-gutter"
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          />
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter css-1icwzhz-diff-removed"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            9
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1icwzhz-diff-removed"
+        >
+          <pre>
+            -
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1icwzhz-diff-removed"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'done'</span><span class=\\"token punctuation\\">)</span>",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter css-azh53l-empty-gutter"
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          />
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span />
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Storyshots Code Diff Viewer Yaml 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <table
+    className="css-1r1je6g-diff-container css-1caozzd-split-view"
+  >
+    <tbody>
+      <tr>
+        <td
+          className="css-e6qrc6-title-block"
+          colSpan={3}
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            Old Code
+          </pre>
+        </td>
+        <td
+          className="css-e6qrc6-title-block"
+          colSpan={3}
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            New Code
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1a6arsc-code-fold"
+      >
+        <td
+          className="css-jbzd4j-code-fold-gutter"
+        />
+        <td
+          className=""
+        />
+        <td>
+          <a
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            <pre
+              className="css-17q9c7r-code-fold-content"
+            >
+              Expand 
+              10
+               lines ...
+            </pre>
+          </a>
+        </td>
+        <td />
+        <td />
+        <td />
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            11
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "      <span class=\\"token punctuation\\">-</span> .badThingJustHappened.description <span class=\\"token punctuation\\">|</span> contains (\\"fubar\\")",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            11
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "      <span class=\\"token punctuation\\">-</span> .badThingJustHappened.description <span class=\\"token punctuation\\">|</span> contains (\\"fubar\\")",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            12
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            12
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            13
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token key atrule\\">output</span><span class=\\"token punctuation\\">:</span> ",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            13
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<span class=\\"token key atrule\\">output</span><span class=\\"token punctuation\\">:</span> ",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter css-1icwzhz-diff-removed"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            14
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1icwzhz-diff-removed"
+        >
+          <pre>
+            -
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1icwzhz-diff-removed"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "  <span class=\\"token punctuation\\">-</span> <span class=\\"token key atrule\\">name</span><span class=\\"token punctuation\\">:</span> vendorId",
+                  }
+                }
+              />
+            </span>
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter css-1phm3nr-diff-added"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            14
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker css-1phm3nr-diff-added"
+        >
+          <pre>
+            +
+          </pre>
+        </td>
+        <td
+          className="css-vl0irh-content css-1phm3nr-diff-added"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              className="css-cncyp1-word-diff"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "  <span class=\\"token punctuation\\">-</span> <span class=\\"token key atrule\\">name</span><span class=\\"token punctuation\\">:</span> vendorId",
+                  }
+                }
+              />
+            </span>
+            <span
+              className="css-cncyp1-word-diff css-rs0mgx-word-added"
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "s",
+                  }
+                }
+              />
+            </span>
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            15
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "    <span class=\\"token key atrule\\">value</span><span class=\\"token punctuation\\">:</span> foo<span class=\\"token punctuation\\">-</span>cloud",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            15
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "    <span class=\\"token key atrule\\">value</span><span class=\\"token punctuation\\">:</span> foo<span class=\\"token punctuation\\">-</span>cloud",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            16
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "    <span class=\\"token key atrule\\">value-type</span><span class=\\"token punctuation\\">:</span> STRING",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            16
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "    <span class=\\"token key atrule\\">value-type</span><span class=\\"token punctuation\\">:</span> STRING",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1n7ec1i-line"
+      >
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            17
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "  <span class=\\"token punctuation\\">-</span> <span class=\\"token key atrule\\">name</span><span class=\\"token punctuation\\">:</span> alertId",
+                }
+              }
+            />
+          </pre>
+        </td>
+        <td
+          className="css-8rfblc-gutter"
+          onClick={[Function]}
+        >
+          <pre
+            className="css-m5i1c8-line-number"
+          >
+            17
+          </pre>
+        </td>
+        <td
+          className="css-sxal2m-marker"
+        >
+          <pre />
+        </td>
+        <td
+          className="css-vl0irh-content"
+        >
+          <pre
+            className="css-12pkeuj-content-text"
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "  <span class=\\"token punctuation\\">-</span> <span class=\\"token key atrule\\">name</span><span class=\\"token punctuation\\">:</span> alertId",
+                }
+              }
+            />
+          </pre>
+        </td>
+      </tr>
+      <tr
+        className="css-1a6arsc-code-fold"
+      >
+        <td
+          className="css-jbzd4j-code-fold-gutter"
+        />
+        <td
+          className=""
+        />
+        <td>
+          <a
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            <pre
+              className="css-17q9c7r-code-fold-content"
+            >
+              Expand 
+              29
+               lines ...
+            </pre>
+          </a>
+        </td>
+        <td />
+        <td />
+        <td />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
 exports[`Storyshots ColoredDot Colored 1`] = `
 <div
   className="light storyWrapper-0-2-2"

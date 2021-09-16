@@ -50,6 +50,7 @@ export default {
 		'moment',
 		'npm',
 		'prettier',
+		'prismjs',
 		'react',
 		'react-ace',
 		'react-dom',
@@ -58,6 +59,7 @@ export default {
 		'react-jss',
 		'react-scroll',
 		'remark-gfm',
+		'react-diff-viewer',
 		'react-markdown',
 		'typescript',
 		'uuid'
