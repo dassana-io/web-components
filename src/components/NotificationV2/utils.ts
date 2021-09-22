@@ -7,8 +7,8 @@ import {
 	faExclamationTriangle,
 	faTimesCircle
 } from '@fortawesome/free-solid-svg-icons'
+import { ReactNode, useCallback, useState } from 'react'
 import { styleguide, themedStyles, themes, ThemeType } from '../assets/styles'
-import { useCallback, useState } from 'react'
 
 const { borderRadius, flexSpaceBetween, spacing } = styleguide
 
@@ -16,7 +16,7 @@ export const NOTIFICATION_CONTAINER_ID = 'notification-root'
 
 export interface NotificationConfig {
 	duration?: number
-	message: string
+	message: string | ((onClose: () => void) => ReactNode)
 	type: NotificationTypes
 }
 
