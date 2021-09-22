@@ -72,7 +72,9 @@ export const Notification: FC<NotificationProps> = (
 					className={iconClasses}
 					icon={mappedTypesToIcons[type].icon}
 				/>
-				<div className={classes.message}>{message}</div>
+				<div className={classes.message}>
+					{typeof message === 'string' ? message : message(onClose)}
+				</div>
 				<IconButton onClick={onClose} />
 			</motion.div>
 		</LazyMotion>
