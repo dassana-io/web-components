@@ -1,11 +1,14 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import noop from 'lodash/noop'
-import { useClickOutside } from './useClickOutside'
-import { Emitter, EmitterEventTypes } from '@dassana-io/web-utils'
+import {
+	Emitter,
+	EmitterEventTypes,
+	useClickOutside
+} from '@dassana-io/web-utils'
 import { IconButton, IconSizes } from 'components/IconButton'
 import { ModalConfig, themedModalStyles } from './utils'
-import React, { FC, useCallback, useEffect, useRef } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType
@@ -72,11 +75,8 @@ const Modal: FC<ModalProps> = ({
 		[onClose, unsetModal]
 	)
 
-	const containingRef = useRef<HTMLDivElement>(null)
-
 	const ref = useClickOutside({
-		callback: disableKeyboardShortcut ? noop : onModalClose,
-		containingRef
+		callback: disableKeyboardShortcut ? noop : onModalClose
 	})
 
 	useEffect(() => {
@@ -87,10 +87,7 @@ const Modal: FC<ModalProps> = ({
 	})
 
 	return (
-		<div
-			className={cn({ [modalClasses.container]: true }, classes)}
-			ref={containingRef}
-		>
+		<div className={cn({ [modalClasses.container]: true }, classes)}>
 			{!hideCloseButton && (
 				<IconButton
 					classes={[modalClasses.closeButton]}
