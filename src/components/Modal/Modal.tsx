@@ -1,10 +1,14 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import noop from 'lodash/noop'
-import { Emitter, EmitterEventTypes, useShortcut } from '@dassana-io/web-utils'
+import {
+	Emitter,
+	EmitterEventTypes,
+	useClickOutside
+} from '@dassana-io/web-utils'
 import { IconButton, IconSizes } from 'components/IconButton'
 import { ModalConfig, themedModalStyles } from './utils'
-import React, { FC, useEffect } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType
@@ -31,6 +35,11 @@ const useStyles = createUseStyles({
 		width: '100%',
 		zIndex: 9999
 	}),
+	contentContainer: {
+		...flexCenter,
+		height: '100%',
+		width: '100%'
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
@@ -53,6 +62,7 @@ const Modal: FC<ModalProps> = ({
 	const { content, options = {} } = modalConfig
 	const {
 		classes = [],
+		contentContainerClasses = [],
 		disableKeyboardShortcut = false,
 		hideCloseButton = false,
 		onClose,
@@ -60,13 +70,13 @@ const Modal: FC<ModalProps> = ({
 	} = options
 	const modalClasses = useStyles({ overlay })
 
-	const onModalClose = () => (onClose ? onClose() : unsetModal())
+	const onModalClose = useCallback(
+		() => (onClose ? onClose() : unsetModal()),
+		[onClose, unsetModal]
+	)
 
-	useShortcut({
-		callback:
-			disableKeyboardShortcut || hideCloseButton ? noop : onModalClose,
-		key: 'Escape',
-		keyEvent: 'keydown'
+	const ref = useClickOutside({
+		callback: disableKeyboardShortcut ? noop : onModalClose
 	})
 
 	useEffect(() => {
@@ -85,7 +95,15 @@ const Modal: FC<ModalProps> = ({
 					size={IconSizes.sm}
 				/>
 			)}
-			{content}
+			<div
+				className={cn(
+					modalClasses.contentContainer,
+					contentContainerClasses
+				)}
+				ref={ref}
+			>
+				{content}
+			</div>
 		</div>
 	)
 }

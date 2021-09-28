@@ -11,6 +11,7 @@ export const MODAL_CONTAINER_ID = 'modal-root'
 
 export interface ModalOptions {
 	classes?: string[]
+	contentContainerClasses?: string[]
 	disableKeyboardShortcut?: boolean
 	hideCloseButton?: boolean
 	onClose?: () => void

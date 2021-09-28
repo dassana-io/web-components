@@ -66,6 +66,9 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 			background: 'none',
 			color: oranges.base
 		},
+		'& .token.comment': {
+			wordBreak: 'break-word'
+		},
 		background,
 		color
 	}
