@@ -98,7 +98,7 @@ export const generateButtonStyles = (
 
 export const generateButtonColorStyles = (color?: string) => {
 	const hoverColor = color
-		? manipulateColor(color, 20, ColorManipulationTypes.tint)
+		? manipulateColor(color, 10, ColorManipulationTypes.tint)
 		: ''
 
 	return {

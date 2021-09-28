@@ -1,4 +1,5 @@
 import { act } from 'react-dom/test-utils'
+import { fireEvent } from '@testing-library/react'
 import { IconButton } from '../../IconButton'
 import Modal from '../Modal'
 import { ModalOptions } from '../utils'
@@ -73,12 +74,10 @@ it('should call the onClose function if one is provided', () => {
 	})
 
 	act(() => {
-		dispatchEvent(
-			new KeyboardEvent('keydown', {
-				code: 'Escape',
-				key: 'Escape'
-			})
-		)
+		fireEvent.keyUp(document, {
+			code: 'Escape',
+			key: 'Escape'
+		})
 	})
 
 	expect(mockOnClose).toHaveBeenCalled()
@@ -86,12 +85,10 @@ it('should call the onClose function if one is provided', () => {
 
 it('should close the modal if Esc is pressed', () => {
 	act(() => {
-		dispatchEvent(
-			new KeyboardEvent('keydown', {
-				code: 'Escape',
-				key: 'Escape'
-			})
-		)
+		fireEvent.keyUp(document, {
+			code: 'Escape',
+			key: 'Escape'
+		})
 	})
 
 	expect(unsetModalSpy).toHaveBeenCalled()
