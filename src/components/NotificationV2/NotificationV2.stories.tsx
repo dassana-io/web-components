@@ -24,6 +24,9 @@ export default {
 				'Optional time in milliseconds before the Notification disappears'
 		},
 		message: { description: 'Notification message to display' },
+		standalone: {
+			control: { type: 'boolean' }
+		},
 		type: {
 			control: {
 				options: [error, info, success, warning],

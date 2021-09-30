@@ -17,6 +17,7 @@ export const NOTIFICATION_CONTAINER_ID = 'notification-root'
 export interface NotificationConfig {
 	duration?: number
 	message: string | ((onClose: () => void) => ReactNode)
+	standalone?: boolean
 	type: NotificationTypes
 }
 
@@ -33,7 +34,7 @@ export const useNotifications = () => {
 
 	const generateNotification = useCallback(
 		(notificationConfig: NotificationConfig) => {
-			const { duration = 3000 } = notificationConfig
+			const { duration = 3000, standalone = false } = notificationConfig
 			const processedConfig = omit(notificationConfig, 'duration')
 			const id = uuidV4()
 
@@ -43,14 +44,25 @@ export const useNotifications = () => {
 				)
 			}
 
-			setNotifications((notifications: ProcessedNotification[]) => [
-				...notifications,
-				{
+			setNotifications((notifications: ProcessedNotification[]) => {
+				const newNotification = {
 					...processedConfig,
 					id,
 					onClose: removeNotification
 				}
-			])
+
+				const notificationsList = standalone
+					? [
+							{
+								...processedConfig,
+								id,
+								onClose: removeNotification
+							}
+					  ] // eslint-disable-line no-mixed-spaces-and-tabs
+					: [...notifications, newNotification]
+
+				return notificationsList
+			})
 
 			setTimeout(removeNotification, duration)
 		},
