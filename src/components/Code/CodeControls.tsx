@@ -4,7 +4,7 @@ import { faCopy } from '@fortawesome/pro-regular-svg-icons'
 import { generateThemedControlsStyles } from './utils'
 import { IconButton } from 'components/IconButton'
 import { Tooltip } from 'components/Tooltip'
-import React, { FC } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { borderRadius, spacing } = styleguide
@@ -43,19 +43,26 @@ export interface DisplayCodeControls {
 interface Props {
 	classes?: string[]
 	displayControls?: DisplayCodeControls
-	isCopied?: boolean
-	onClickCopyCode: () => void
+	onClickCopyCode: (onCopySuccess: () => void) => void
 }
 
 export const CodeControls: FC<Props> = ({
 	classes = [],
 	displayControls = {},
-	isCopied = false,
 	onClickCopyCode
 }: Props) => {
+	const [isCopied, setIsCopied] = useState(false)
 	const compClasses = useStyles()
 
 	const { copy = true } = displayControls
+
+	const onCopyClick = useCallback(() => {
+		onClickCopyCode(() => setIsCopied(true))
+	}, [onClickCopyCode])
+
+	useEffect(() => {
+		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
+	}, [isCopied])
 
 	return (
 		<div className={cn(compClasses.codeControls, classes)}>
@@ -64,7 +71,7 @@ export const CodeControls: FC<Props> = ({
 					<IconButton
 						classes={[compClasses.iconButton]}
 						icon={faCopy}
-						onClick={onClickCopyCode}
+						onClick={onCopyClick}
 						size={14}
 					/>
 				</Tooltip>
