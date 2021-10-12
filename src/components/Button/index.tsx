@@ -9,7 +9,7 @@ import { Skeleton } from '../Skeleton'
 import { Spin } from 'components/Spin'
 import { ThemeType } from 'components/assets/styles'
 import { generateButtonColorStyles, generateButtonStyles } from './utils'
-import React, { FC, ReactNode } from 'react'
+import React, { FC, MouseEvent, ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -30,7 +30,7 @@ export interface ButtonProps extends CommonComponentProps {
 	/**
 	 * Required click handler.
 	 */
-	onClick: () => void
+	onClick: (e: MouseEvent<HTMLElement>) => void
 	/**
 	 * Button children to render including button text.
 	 */
