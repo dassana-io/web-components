@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions'
 import { multipleChoiceItems } from './fixtures'
 import { SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles/styleguide'
@@ -37,7 +36,6 @@ export default {
 			control: { options: ['multiple', 'single'], type: 'inline-radio' },
 			defaultValue: 'multiple'
 		},
-		onChange: { defaultValue: action('onChange') },
 		singleColumnItemsCount: { control: 'number', defaultValue: 8 },
 		skeletonItemCount: { control: 'number', defaultValue: 6 }
 	},

@@ -17,10 +17,17 @@ import { TimelineProps, TimelineState } from './types'
 
 const { alwaysExpanded, expanded, collapsed } = TimelineState
 
-const { borderRadius, spacing } = styleguide
+const {
+	borderRadius,
+	colors: { blacks },
+	spacing
+} = styleguide
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
+	activeTimelineItem: {
+		borderColor: `${blacks.base} !important`
+	},
 	timelineItem: {
 		...generateThemedTimelineItemStyles(light),
 		borderRadius,
@@ -36,6 +43,9 @@ const useStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
+			'& $activeTimelineItem': {
+				borderColor: `${blacks['lighten-50']} !important`
+			},
 			'& $timelineItem': generateThemedTimelineItemStyles(dark),
 			'& $wrapper': generateThemedWrapperStyles(dark)
 		}
@@ -43,6 +53,7 @@ const useStyles = createUseStyles({
 })
 
 export const Timeline: FC<TimelineProps> = ({
+	activeKey = '',
 	classes = [],
 	defaultExpandedKeys = [],
 	expandMultiple = true,
@@ -106,6 +117,10 @@ export const Timeline: FC<TimelineProps> = ({
 							<div
 								className={cn(
 									compClasses.timelineItem,
+									{
+										[compClasses.activeTimelineItem]:
+											activeKey === key
+									},
 									itemClasses
 								)}
 								key={key}

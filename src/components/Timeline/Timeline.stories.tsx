@@ -53,5 +53,6 @@ export const Default = Template.bind({})
 
 export const ExpandAll = Template.bind({})
 ExpandAll.args = {
+	activeKey: 1,
 	expandAllOnMount: true
 }
