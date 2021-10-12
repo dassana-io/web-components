@@ -1,4 +1,5 @@
 import './Prism.css'
+import cn from 'classnames'
 import { CodeControls } from '../Code/CodeControls'
 import { CodeProps } from '../Code'
 import { copyToClipboard } from '../Code/utils'
@@ -38,6 +39,7 @@ const prismLanguageMap: Record<CodeLanguages, LanguageConfig> = {
 }
 
 export interface CodeDiffViewerProps {
+	containerClasses?: string[]
 	displayControls?: CodeProps['displayControls']
 	extraLinesSurroundingDiff?: ReactDiffViewerProps['extraLinesSurroundingDiff']
 	hideLineNumbers?: ReactDiffViewerProps['hideLineNumbers']
@@ -51,6 +53,7 @@ export interface CodeDiffViewerProps {
 }
 
 export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
+	containerClasses = [],
 	displayControls = {},
 	extraLinesSurroundingDiff = 3,
 	hideLineNumbers = false,
@@ -95,7 +98,7 @@ export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
 	}
 
 	return (
-		<div className={classes.container}>
+		<div className={cn({ [classes.container]: true }, containerClasses)}>
 			{displayControls && (
 				<CodeControls
 					classes={[classes.controls]}
