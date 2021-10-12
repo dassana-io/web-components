@@ -16,6 +16,7 @@ export interface TimelineConfig extends Panel {
 }
 
 interface SharedTimelineProps extends Omit<SharedAccordionProps, 'panels'> {
+	activeKey?: Panel['key']
 	timelineConfig: TimelineConfig[]
 }
 
