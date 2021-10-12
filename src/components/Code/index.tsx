@@ -3,7 +3,7 @@ import { PageLoader } from 'components/PageLoader'
 import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
 import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
-import React, { FC, RefObject, useEffect, useRef, useState } from 'react'
+import React, { FC, RefObject, useCallback, useRef } from 'react'
 
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
@@ -65,18 +65,16 @@ export const Code: FC<CodeProps> = ({
 
 	const compClasses = useStyles()
 
-	const [isCopied, setIsCopied] = useState(false)
-
-	const copyCode = () => {
-		if (compRef.current)
-			copyToClipboard(compRef.current.editor.getValue(), () =>
-				setIsCopied(true)
-			)
-	}
-
-	useEffect(() => {
-		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
-	}, [isCopied])
+	const copyCode = useCallback(
+		(onCopySuccess: () => void) => {
+			if (compRef.current)
+				copyToClipboard(
+					compRef.current.editor.getValue(),
+					onCopySuccess
+				)
+		},
+		[compRef]
+	)
 
 	return loading ? (
 		<PageLoader classes={pageLoaderClasses} />
@@ -85,7 +83,7 @@ export const Code: FC<CodeProps> = ({
 			{displayControls && (
 				<CodeControls
 					classes={[compClasses.controls]}
-					isCopied={isCopied}
+					displayControls={displayControls}
 					onClickCopyCode={copyCode}
 				/>
 			)}

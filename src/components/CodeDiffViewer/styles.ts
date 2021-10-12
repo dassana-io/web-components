@@ -4,7 +4,8 @@ import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType
 const {
-	colors: { blacks, grays, oranges, whites }
+	colors: { blacks, grays, oranges, whites },
+	spacing
 } = styleguide
 
 export const diffCmpStyles = {
@@ -75,6 +76,19 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 }
 
 export const useStyles = createUseStyles({
+	container: {
+		'&:hover': {
+			'& $controls': { opacity: 1 }
+		},
+		position: 'relative'
+	},
+	controls: {
+		opacity: 0,
+		position: 'absolute',
+		right: spacing.s,
+		top: ({ hasTitle }) => (hasTitle ? 44 : spacing.xs)
+	},
+	// eslint-disable-next-line sort-keys
 	'@global': {
 		...generateThemedPreCodeStyles(light),
 		[`.${dark}`]: generateThemedPreCodeStyles(dark)

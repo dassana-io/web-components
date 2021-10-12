@@ -4,7 +4,7 @@ import { getJSONPathValue } from 'components/utils'
 import { useStyles } from './styles'
 import { copyToClipboard, stringifyCode } from 'components/Code/utils'
 import { getJSONValueType, JSONDataTypes, recursiveRender } from './utils'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 
 export type JSONValue =
 	| string
@@ -31,21 +31,14 @@ export const JSONPathPicker: FC<JSONPathPickerProps> = ({
 }: JSONPathPickerProps) => {
 	const compClasses = useStyles()
 
-	const [isCopied, setIsCopied] = useState(false)
-
-	const copyJSON = () =>
-		copyToClipboard(stringifyCode(json), () => setIsCopied(true))
-
-	useEffect(() => {
-		if (isCopied) setTimeout(() => setIsCopied(false), 1250)
-	}, [isCopied])
+	const copyJSON = (onCopySuccess: () => void) =>
+		copyToClipboard(stringifyCode(json), onCopySuccess)
 
 	return (
 		<div className={cn(compClasses.container, classes)}>
 			{displayControls && (
 				<CodeControls
 					classes={[compClasses.controls]}
-					isCopied={isCopied}
 					onClickCopyCode={copyJSON}
 				/>
 			)}

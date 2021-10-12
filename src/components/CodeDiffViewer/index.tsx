@@ -1,9 +1,13 @@
 import './Prism.css'
+import cn from 'classnames'
+import { CodeControls } from '../Code/CodeControls'
+import { CodeProps } from '../Code'
+import { copyToClipboard } from '../Code/utils'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // eslint-disable-line sort-imports
 import 'prismjs/components/prism-yaml'
 import { diffCmpStyles, useStyles } from './styles'
-import React, { FC } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
 import ReactDiffViewer, { ReactDiffViewerProps } from 'react-diff-viewer'
 
 const { css, javascript, yaml, json } = Prism.languages
@@ -35,6 +39,10 @@ const prismLanguageMap: Record<CodeLanguages, LanguageConfig> = {
 }
 
 export interface CodeDiffViewerProps {
+	containerClasses?: string[]
+	displayControls?: CodeProps['displayControls']
+	extraLinesSurroundingDiff?: ReactDiffViewerProps['extraLinesSurroundingDiff']
+	hideLineNumbers?: ReactDiffViewerProps['hideLineNumbers']
 	language: CodeLanguages
 	leftTitle?: ReactDiffViewerProps['leftTitle']
 	newCode: string
@@ -45,6 +53,10 @@ export interface CodeDiffViewerProps {
 }
 
 export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
+	containerClasses = [],
+	displayControls = {},
+	extraLinesSurroundingDiff = 3,
+	hideLineNumbers = false,
 	language,
 	leftTitle,
 	newCode,
@@ -53,7 +65,18 @@ export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
 	splitView = true,
 	useDarkTheme = true
 }: CodeDiffViewerProps) => {
-	useStyles()
+	const hasTitle = useMemo(
+		() => leftTitle || rightTitle,
+		[leftTitle, rightTitle]
+	)
+	const classes = useStyles({ hasTitle })
+
+	const copyCode = useCallback(
+		(onCopySuccess: () => void) => {
+			copyToClipboard(newCode, onCopySuccess)
+		},
+		[newCode]
+	)
 
 	const highlightSyntax = (str: string) => {
 		if (str) {
@@ -75,15 +98,26 @@ export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
 	}
 
 	return (
-		<ReactDiffViewer
-			leftTitle={leftTitle}
-			newValue={newCode}
-			oldValue={oldCode}
-			renderContent={highlightSyntax}
-			rightTitle={rightTitle}
-			splitView={splitView}
-			styles={diffCmpStyles}
-			useDarkTheme={useDarkTheme}
-		/>
+		<div className={cn({ [classes.container]: true }, containerClasses)}>
+			{displayControls && (
+				<CodeControls
+					classes={[classes.controls]}
+					displayControls={displayControls}
+					onClickCopyCode={copyCode}
+				/>
+			)}
+			<ReactDiffViewer
+				extraLinesSurroundingDiff={extraLinesSurroundingDiff}
+				hideLineNumbers={hideLineNumbers}
+				leftTitle={leftTitle}
+				newValue={newCode}
+				oldValue={oldCode}
+				renderContent={highlightSyntax}
+				rightTitle={rightTitle}
+				splitView={splitView}
+				styles={diffCmpStyles}
+				useDarkTheme={useDarkTheme}
+			/>
+		</div>
 	)
 }
