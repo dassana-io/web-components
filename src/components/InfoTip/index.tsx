@@ -20,11 +20,11 @@ const useStyles = createUseStyles({
 })
 
 export interface InfoTipProps {
-	classes: TooltipProps['classes']
+	classes?: TooltipProps['classes']
 	content: TooltipProps['title']
-	infoTipTriggerClasses: TooltipProps['tooltipTriggerClasses']
-	placement: TooltipProps['placement']
-	popupContainerSelector: TooltipProps['popupContainerSelector']
+	infoTipTriggerClasses?: TooltipProps['tooltipTriggerClasses']
+	placement?: TooltipProps['placement']
+	popupContainerSelector?: TooltipProps['popupContainerSelector']
 }
 
 export const InfoTip: FC<InfoTipProps> = ({
