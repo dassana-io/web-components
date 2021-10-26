@@ -17,8 +17,8 @@ const useStyles = createUseStyles({
 		borderRadius,
 		padding: `${spacing.xs}px ${spacing.s}px`,
 		position: 'absolute',
-		right: spacing['s+'],
-		top: spacing['s+'],
+		right: spacing.s,
+		top: spacing.s,
 		zIndex: 1
 	},
 	iconButton: {
