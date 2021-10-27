@@ -3,7 +3,7 @@ import { PageLoader } from 'components/PageLoader'
 import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
 import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
-import React, { FC, RefObject, useCallback, useRef } from 'react'
+import React, { FC, RefObject, useCallback, useRef, useState } from 'react'
 
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
@@ -63,6 +63,8 @@ export const Code: FC<CodeProps> = ({
 	const ref = useRef<AceEditor>(null)
 	const compRef = editorRef || ref
 
+	const [isWrapped, setIsWrapped] = useState(wrapEnabled)
+
 	const compClasses = useStyles()
 
 	const copyCode = useCallback(
@@ -85,6 +87,7 @@ export const Code: FC<CodeProps> = ({
 					classes={[compClasses.controls]}
 					displayControls={displayControls}
 					onClickCopyCode={copyCode}
+					onClickWrapCode={() => setIsWrapped(oldVal => !oldVal)}
 				/>
 			)}
 			<AceEditor
@@ -99,7 +102,7 @@ export const Code: FC<CodeProps> = ({
 				}} // To fix this issue --> https://github.com/securingsincity/react-ace/issues/725#issuecomment-546711308
 				tabSize={tabSize}
 				value={code && stringifyCode(code)}
-				wrapEnabled={wrapEnabled}
+				wrapEnabled={isWrapped}
 				{...rest}
 			/>
 		</div>
