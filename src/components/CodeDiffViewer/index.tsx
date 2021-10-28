@@ -102,7 +102,7 @@ export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
 			{displayControls && (
 				<CodeControls
 					classes={[classes.controls]}
-					displayControls={displayControls}
+					displayControls={{ ...displayControls, wrap: false }}
 					onClickCopyCode={copyCode}
 				/>
 			)}

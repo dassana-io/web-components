@@ -4,6 +4,7 @@ import { faCopy } from '@fortawesome/pro-regular-svg-icons'
 import { generateThemedControlsStyles } from './utils'
 import { generateThemedIconBtnStyles } from 'components/IconButton/utils'
 import { IconButton } from 'components/IconButton'
+import noop from 'lodash/noop'
 import { Tooltip } from 'components/Tooltip'
 import { ReactComponent as WrapIcon } from './wrap_icon.svg'
 import React, { FC, useCallback, useEffect, useState } from 'react'
@@ -18,7 +19,7 @@ const useStyles = createUseStyles({
 		...flexCenter,
 		...generateThemedControlsStyles(light),
 		borderRadius,
-		padding: `${spacing.xs}px 0px ${spacing.xs}px ${spacing.s}px`,
+		padding: `${spacing.xs}px ${spacing.s}px`,
 		position: 'absolute',
 		right: spacing.s,
 		top: spacing.s,
@@ -27,7 +28,7 @@ const useStyles = createUseStyles({
 	wrapIcon: {
 		...generateThemedIconBtnStyles(light),
 		cursor: 'pointer',
-		margin: { left: spacing.s, right: spacing.s },
+		margin: { left: spacing.s },
 		paddingTop: 2
 	},
 	// eslint-disable-next-line sort-keys
@@ -49,14 +50,14 @@ interface Props {
 	classes?: string[]
 	displayControls?: DisplayCodeControls
 	onClickCopyCode: (onCopySuccess: () => void) => void
-	onClickWrapCode: () => void
+	onClickWrapCode?: () => void
 }
 
 export const CodeControls: FC<Props> = ({
 	classes = [],
 	displayControls = {},
 	onClickCopyCode,
-	onClickWrapCode
+	onClickWrapCode = noop
 }: Props) => {
 	const [isCopied, setIsCopied] = useState(false)
 	const compClasses = useStyles()

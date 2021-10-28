@@ -1052,14 +1052,6 @@ exports[`Storyshots Code Diff Viewer Javascript 1`] = `
           </svg>
         </span>
       </span>
-      <svg
-        className="wrapIcon-0-2-79"
-        height={16}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        wrap_icon.svg
-      </svg>
     </div>
     <div
       className="wrapper-0-2-76"
@@ -1792,14 +1784,6 @@ exports[`Storyshots Code Diff Viewer Yaml 1`] = `
           </svg>
         </span>
       </span>
-      <svg
-        className="wrapIcon-0-2-79"
-        height={16}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        wrap_icon.svg
-      </svg>
     </div>
     <div
       className="wrapper-0-2-76"
@@ -3024,6 +3008,7 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
         <svg
           className="wrapIcon-0-2-79"
           height={16}
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
