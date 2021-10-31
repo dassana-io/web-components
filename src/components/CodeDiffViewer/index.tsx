@@ -102,22 +102,25 @@ export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
 			{displayControls && (
 				<CodeControls
 					classes={[classes.controls]}
-					displayControls={displayControls}
+					displayControls={{ ...displayControls, wrap: false }}
 					onClickCopyCode={copyCode}
 				/>
 			)}
-			<ReactDiffViewer
-				extraLinesSurroundingDiff={extraLinesSurroundingDiff}
-				hideLineNumbers={hideLineNumbers}
-				leftTitle={leftTitle}
-				newValue={newCode}
-				oldValue={oldCode}
-				renderContent={highlightSyntax}
-				rightTitle={rightTitle}
-				splitView={splitView}
-				styles={diffCmpStyles}
-				useDarkTheme={useDarkTheme}
-			/>
+			{/* Extra 'wrapper' div is to make CodeControls stick to top when scrolling */}
+			<div className={classes.wrapper}>
+				<ReactDiffViewer
+					extraLinesSurroundingDiff={extraLinesSurroundingDiff}
+					hideLineNumbers={hideLineNumbers}
+					leftTitle={leftTitle}
+					newValue={newCode}
+					oldValue={oldCode}
+					renderContent={highlightSyntax}
+					rightTitle={rightTitle}
+					splitView={splitView}
+					styles={diffCmpStyles}
+					useDarkTheme={useDarkTheme}
+				/>
+			</div>
 		</div>
 	)
 }

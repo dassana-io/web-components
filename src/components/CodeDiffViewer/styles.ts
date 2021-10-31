@@ -67,11 +67,9 @@ const generateThemedPreCodeStyles = (themeType: ThemeType) => {
 			background: 'none',
 			color: oranges.base
 		},
-		'& .token.comment, .token.string': {
-			wordBreak: 'break-word'
-		},
 		background,
-		color
+		color,
+		wordBreak: 'break-word'
 	}
 }
 
@@ -85,8 +83,11 @@ export const useStyles = createUseStyles({
 	controls: {
 		opacity: 0,
 		position: 'absolute',
-		right: spacing.s,
-		top: ({ hasTitle }) => (hasTitle ? 44 : spacing.xs)
+		top: ({ hasTitle }) => (hasTitle ? 44 : spacing.s)
+	},
+	wrapper: {
+		height: '100%',
+		overflow: 'auto'
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
