@@ -51,6 +51,8 @@ const useStyles = createUseStyles({
 	}
 })
 
+export type { AntDInput as AntDInputType }
+
 export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonAfter?: string
 	addonBefore?: string

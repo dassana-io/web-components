@@ -6,7 +6,7 @@ import { generateLinkStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { ThemeType } from '../assets/styles/themes'
 import { Typography } from 'antd'
-import React, { FC, ReactNode } from 'react'
+import React, { FC, MouseEvent, ReactNode, useCallback } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -66,11 +66,20 @@ export const Link: FC<LinkProps> = ({
 
 	const linkClasses = cn({ [componentClasses.underline]: underline }, classes)
 
+	const onLinkClick = useCallback(
+		(e: MouseEvent<HTMLAnchorElement>) => {
+			e.stopPropagation()
+
+			onClick && onClick(e)
+		},
+		[onClick]
+	)
+
 	return (
 		<AntDLink
 			className={linkClasses}
 			href={href}
-			onClick={onClick}
+			onClick={onLinkClick}
 			target={target}
 			underline={underline}
 			{...getDataTestAttributeProp('link', dataTag)}
