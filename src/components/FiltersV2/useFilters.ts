@@ -1,15 +1,15 @@
-import { ConsoleSqlOutlined } from '@ant-design/icons'
 import { AntDInputType } from 'components/Input'
 import { omit } from 'lodash'
-import { RefObject, useMemo, useState } from 'react'
 import { v4 as uuidV4 } from 'uuid'
 import {
 	FilterCoordinators,
 	FilterGroupConfig,
 	FilterGroupMap,
 	FilterMap,
+	FiltersMap,
 	FilterUnit
 } from './types'
+import { RefObject, useMemo, useState } from 'react'
 
 const { and, or } = FilterCoordinators
 
@@ -25,7 +25,7 @@ const defaultFilterGroup: FilterGroupConfig = {
 }
 
 export interface FilterMethods {
-	addFilterToGroup: (filter: FilterUnit) => void
+	addFilterToGroup: (filter: FiltersMap) => void
 	addFilterToNewSubgroup: (filterId: string, parentGroupId: string) => void
 	addNewFilterGroup: () => void
 	deleteFilter: (filterId: string) => void
@@ -34,7 +34,7 @@ export interface FilterMethods {
 	setCurrentFilter: (filterId: string) => void
 	updateFilter: (
 		filterId: string,
-		updatedFilterInfo: Partial<FilterUnit>
+		updatedFilterInfo: Partial<FiltersMap>
 	) => void
 	updateGroupCoordinator: (groupId: string, coord: FilterCoordinators) => void
 	updatePrimaryCoordinator: (coord: FilterCoordinators) => void
@@ -83,7 +83,7 @@ export const useFilters = (
 		inputRef.current?.focus()
 	}
 
-	const addFilterToGroup = (filter: FilterUnit) => {
+	const addFilterToGroup = (filter: FiltersMap) => {
 		const newFilterId = uuidV4()
 
 		// Add filter to filterMap
@@ -192,7 +192,7 @@ export const useFilters = (
 
 	const updateFilter = (
 		filterId: string,
-		updatedFilterInfo: Partial<FilterUnit>
+		updatedFilterInfo: Partial<FiltersMap>
 	) =>
 		setFiltersMap(prevFiltersMap => {
 			const prevFilter = prevFiltersMap[filterId]
@@ -381,7 +381,7 @@ export const useFilters = (
 
 			return newGroupMap
 		})
-		console.log(nextGroupId, 'next group id')
+
 		if (nextGroupId) setCurrentGroup(nextGroupId)
 		inputRef.current?.focus()
 	}

@@ -4,6 +4,31 @@ export enum FilterStage {
 	value = 'value'
 }
 
+export enum OperatorTypes {
+	// boolean = 'boolean',
+	number = 'number',
+	string = 'string'
+}
+
+export interface CommonFilterUnitConfig {
+	key: string
+	value: string
+}
+
+export interface KeyConfig extends CommonFilterUnitConfig {
+	type: OperatorTypes
+}
+
+interface ValueConfig extends Omit<CommonFilterUnitConfig, 'key'> {
+	key?: string
+}
+
+export interface FiltersMap {
+	[FilterStage.key]: KeyConfig
+	[FilterStage.operator]: CommonFilterUnitConfig
+	[FilterStage.value]: ValueConfig
+}
+
 export interface FilterUnit {
 	key: string
 	operator: string
@@ -33,7 +58,7 @@ export interface FilterGroupConfig {
 	subgroupIds?: string[]
 }
 
-export interface FilterConfig extends FilterUnit {
+export interface FilterConfig extends FiltersMap {
 	groupId?: string
 }
 

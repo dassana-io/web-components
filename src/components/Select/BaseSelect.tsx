@@ -137,6 +137,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
 				notFoundContent={<NoContentFound />}
+				onClick={e => e.stopPropagation()}
 				onFocus={onFocus}
 				placeholder={placeholder}
 				showArrow

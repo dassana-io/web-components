@@ -1,34 +1,64 @@
+import cn from 'classnames'
 import { FilterUnit as FilterUnitType } from './types'
 import { IconButton } from 'components/IconButton'
 import { Tooltip } from 'components/Tooltip'
 import { useBaseFilterStyles } from './styles'
+import { useClickOutside } from '@dassana-io/web-utils'
 import { faLayerPlus, faTimesCircle } from '@fortawesome/pro-light-svg-icons'
 import React, { FC, useCallback } from 'react'
 
 export interface FilterUnitProps {
+	active?: boolean
 	deleteFilter: (id: string) => void
 	filter: FilterUnitType
 	id: string
+	onClick: (id: string) => void
+	onClickOutside: () => void
 	onDrag?: () => void // TODO: make this required
 	onConvertToSubgroup?: () => void
 }
 
 export const FilterUnit: FC<FilterUnitProps> = ({
+	active = false,
 	deleteFilter,
 	filter,
 	id,
+	onClick,
+	onClickOutside,
 	onConvertToSubgroup
 }: FilterUnitProps) => {
+	const filterRef = useClickOutside({
+		callback: () => active && onClickOutside()
+	})
 	const { key, operator, value } = filter
 
 	const classes = useBaseFilterStyles()
 
+	const onConvertToSubgroupClick = useCallback(() => {
+		if (active) onClickOutside()
+
+		onConvertToSubgroup && onConvertToSubgroup()
+	}, [active, onClickOutside, onConvertToSubgroup])
+
 	const onDeleteClick = useCallback(() => {
+		if (active) onClickOutside()
+
 		deleteFilter(id)
-	}, [deleteFilter, id])
+	}, [active, deleteFilter, id, onClickOutside])
+
+	const onFilterClick = useCallback(() => {
+		onClick(id)
+	}, [id, onClick])
 
 	return (
-		<div className={classes.container}>
+		<div
+			className={cn({
+				[classes.active]: active,
+				[classes.container]: true
+			})}
+			onClick={onFilterClick}
+			ref={filterRef}
+		>
 			<div>
 				{/* <FontAwesomeIcon
 					className={classes.dragHandle}
@@ -46,7 +76,7 @@ export const FilterUnit: FC<FilterUnitProps> = ({
 				>
 					<IconButton
 						icon={faLayerPlus}
-						onClick={onConvertToSubgroup}
+						onClick={onConvertToSubgroupClick}
 					/>
 				</Tooltip>
 			)}

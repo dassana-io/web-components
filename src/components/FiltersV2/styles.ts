@@ -1,14 +1,9 @@
 import { createUseStyles } from 'react-jss'
-import {
-	dropdownStyles,
-	styleguide,
-	themedStyles,
-	ThemeType
-} from '../assets/styles'
+import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType
 const {
-	colors: { blacks, grays, whites },
+	colors: { blacks, blues, grays, whites },
 	borderRadius,
 	flexAlignCenter,
 	flexDown,
@@ -38,6 +33,11 @@ const filterPalette = {
 }
 
 export const useBaseFilterStyles = createUseStyles({
+	active: {
+		'&$container': {
+			border: `1px solid ${blues.base}`
+		}
+	},
 	container: {
 		...flexAlignCenter,
 		'&:hover': {

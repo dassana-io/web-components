@@ -1,5 +1,6 @@
 import { Dropdown } from './Dropdown'
-import mapValues from 'lodash/mapValues'
+import { FilterStage } from '../types'
+import omit from 'lodash/omit'
 import { ShortcutMicrocopy } from 'components/ShortcutMicrocopy'
 import { useFiltersContext } from '../FiltersContext'
 import { useSearchStyles } from '../styles'
@@ -13,7 +14,6 @@ import {
 	sampleOperatorMap,
 	sampleValuesMap
 } from './mockData'
-import { FilterStage, FilterUnit } from '../types'
 import {
 	getCurrentFilterStageValue,
 	getFilterStageBasedOnCursorPosition,
@@ -29,7 +29,11 @@ import React, {
 	useRef,
 	useState
 } from 'react'
-import { useClickOutside, useShortcut } from '@dassana-io/web-utils'
+import {
+	useClickOutside,
+	usePrevious,
+	useShortcut
+} from '@dassana-io/web-utils'
 
 const { key, operator, value } = FilterStage
 
@@ -65,7 +69,14 @@ interface SearchProps {
 
 export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 	const timerRef = useRef<NodeJS.Timeout>()
-	const { addFilterToGroup } = useFiltersContext()
+	const {
+		addFilterToGroup,
+		currentFilterId,
+		filtersMap,
+		setCurrentFilter,
+		updateFilter
+	} = useFiltersContext()
+	const prevFilterId = usePrevious(currentFilterId)
 
 	const [inputValue, setInputValue] = useState('')
 	const [currentFilterStage, setCurrentFilterStage] = useState(
@@ -227,9 +238,25 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 		}
 	}
 
+	const resetSearchbar = useCallback(() => {
+		setCurrentFilter('')
+		setCurrentFilterStage(FilterStage.key)
+		setFilter(defaultFilter)
+		setFilterComplete(false)
+		setInputValue('')
+	}, [setCurrentFilter])
+
 	const onInputChange = (e: ChangeEvent<HTMLInputElement>, match = false) => {
 		const newInputVal = e.target.value
 		const cursorPos = e.target.selectionStart || 0
+
+		// If there is a current filter selected and user clears the input, reset the searchbar
+		// to start from scratch
+		if (currentFilterId && !newInputVal) {
+			resetSearchbar()
+
+			return
+		}
 
 		if (timerRef.current) {
 			clearTimeout(timerRef.current)
@@ -301,19 +328,19 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 		(filterMap?: FiltersMap) => {
 			const filterToAdd = filterMap ? filterMap : filter
 
-			const processedFilter = mapValues(filterToAdd, filter =>
-				filter.value.toLowerCase()
-			)
+			currentFilterId
+				? updateFilter(currentFilterId, filterToAdd)
+				: addFilterToGroup(filterToAdd)
 
-			addFilterToGroup(processedFilter)
-
-			// Clear search bar
-			setInputValue('')
-			setFilter(defaultFilter)
-			setCurrentFilterStage(FilterStage.key)
-			setFilterComplete(false)
+			resetSearchbar()
 		},
-		[addFilterToGroup, filter]
+		[
+			addFilterToGroup,
+			currentFilterId,
+			filter,
+			resetSearchbar,
+			updateFilter
+		]
 	)
 
 	useEffect(() => {
@@ -342,6 +369,28 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 			value: sampleValuesMap[filter.key.key as Keys]
 		}))
 	}, [filter.key.key, filter.operator.key])
+
+	useEffect(() => {
+		if (
+			currentFilterId &&
+			(!inputValue || currentFilterId !== prevFilterId)
+		) {
+			const filter = omit(
+				filtersMap[currentFilterId],
+				'groupId'
+			) as FiltersMap
+			const { key, operator, value } = filter
+
+			setInputValue(`${key.value} ${operator.value} ${value.value}`)
+			setFilter(filter)
+			setFilterComplete(false)
+			setDropdownIsOpen(false)
+		}
+
+		if (!currentFilterId && prevFilterId) {
+			resetSearchbar()
+		}
+	}, [currentFilterId, filtersMap, inputValue, prevFilterId, resetSearchbar])
 
 	useShortcut({
 		additionalConditionalFn: () => filterComplete,

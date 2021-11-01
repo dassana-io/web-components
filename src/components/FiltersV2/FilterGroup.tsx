@@ -4,6 +4,8 @@ import { FilterCoordinator } from './FilterCoordinator'
 import { FilterUnit } from './Filter'
 import { IconButton } from 'components/IconButton'
 import { Link } from 'components/Link'
+import mapValues from 'lodash/mapValues'
+import omit from 'lodash/omit'
 import { useFilterGroupStyles } from './styles'
 import { useFiltersContext } from './FiltersContext'
 import React, { FC, useCallback } from 'react'
@@ -20,11 +22,13 @@ export const FilterGroup: FC<FilterGroupProps> = ({
 	const {
 		addNewFilterGroup,
 		addFilterToNewSubgroup,
+		currentFilterId,
 		currentGroupId,
 		filtersMap,
 		groupMap,
 		deleteFilter,
 		deleteGroup,
+		setCurrentFilter,
 		setCurrentGroup
 	} = useFiltersContext()
 	const {
@@ -75,10 +79,15 @@ export const FilterGroup: FC<FilterGroupProps> = ({
 							</div>
 						)}
 						<FilterUnit
+							active={filterId === currentFilterId}
 							deleteFilter={deleteFilter}
-							filter={filter}
+							filter={mapValues(omit(filter, 'groupId'), filter =>
+								filter.value.toLowerCase()
+							)}
 							id={filterId}
 							key={i}
+							onClick={setCurrentFilter}
+							onClickOutside={() => setCurrentFilter('')}
 							onConvertToSubgroup={
 								canConvertToSubgroup
 									? () =>

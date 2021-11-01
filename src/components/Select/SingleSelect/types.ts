@@ -1,7 +1,7 @@
 import { BaseFormElementProps } from '../../types'
-import { CSSProperties } from 'react'
 import { IconName } from '../../Icon'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { CSSProperties, FocusEvent } from 'react'
 
 export interface SelectOption {
 	classes?: string[]
@@ -42,7 +42,7 @@ export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	 * Selector of HTML element inside which to render the popup/dropdown
 	 */
 	popupContainerSelector?: string
-	onFocus?: () => void
+	onFocus?: (e: FocusEvent) => void
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */
