@@ -10,6 +10,7 @@ import {
 	FilterUnit
 } from './types'
 import { RefObject, useMemo, useState } from 'react'
+import { unstable_batchedUpdates } from 'react-dom'
 
 const { and, or } = FilterCoordinators
 
@@ -209,78 +210,86 @@ export const useFilters = (
 	const deleteFilter = (filterIdToDelete: string) => {
 		const filterGroupId = filtersMap[filterIdToDelete].groupId
 
-		if (filterGroupId) {
-			setGroupMap(prevGroupMap => {
-				const prevGroup = prevGroupMap[filterGroupId]
-				const { filterIds, parentGroupId, subgroupIds = [] } = prevGroup
+		unstable_batchedUpdates(() => {
+			if (filterGroupId) {
+				setGroupMap(prevGroupMap => {
+					const prevGroup = prevGroupMap[filterGroupId]
+					const {
+						filterIds,
+						parentGroupId,
+						subgroupIds = []
+					} = prevGroup
 
-				// If there is only one filter left in the group and there are no subgroups:
-				if (filterIds.length === 1 && parentGroupId) {
-					// let newGroupMap = omit(
-					// 	prevGroupMap,
-					// 	filterGroupId
-					// ) as FilterGroupMap
+					// If there is only one filter left in the group and there are no subgroups:
+					if (filterIds.length === 1 && parentGroupId) {
+						// let newGroupMap = omit(
+						// 	prevGroupMap,
+						// 	filterGroupId
+						// ) as FilterGroupMap
 
-					// If filter is in a subgroup, also remove the group from list of subgroupsIds in parent group
-					// if (parentGroupId) {
-					// 	const parentGroup = newGroupMap[parentGroupId]
+						// If filter is in a subgroup, also remove the group from list of subgroupsIds in parent group
+						// if (parentGroupId) {
+						// 	const parentGroup = newGroupMap[parentGroupId]
 
-					// 	newGroupMap = {
-					// 		...newGroupMap,
-					// 		[parentGroupId]: {
-					// 			...parentGroup,
-					// 			subgroupIds: parentGroup.subgroupIds?.filter(
-					// 				subgroupId => subgroupId !== filterGroupId
-					// 			)
-					// 		}
-					// 	}
-					// }
-					const parentGroup = prevGroupMap[parentGroupId]
+						// 	newGroupMap = {
+						// 		...newGroupMap,
+						// 		[parentGroupId]: {
+						// 			...parentGroup,
+						// 			subgroupIds: parentGroup.subgroupIds?.filter(
+						// 				subgroupId => subgroupId !== filterGroupId
+						// 			)
+						// 		}
+						// 	}
+						// }
+						const parentGroup = prevGroupMap[parentGroupId]
 
-					if (currentGroupId === filterGroupId)
-						setCurrentGroupId(parentGroupId)
+						if (currentGroupId === filterGroupId)
+							setCurrentGroupId(parentGroupId)
+
+						return {
+							...omit(prevGroupMap, filterGroupId),
+							[parentGroupId]: {
+								...parentGroup,
+								subgroupIds: parentGroup.subgroupIds?.filter(
+									subgroupId => subgroupId !== filterGroupId
+								)
+							}
+						}
+					}
+
+					// If there is only one filter left and there is only one subgroup:
+					if (filterIds.length === 1 && subgroupIds.length === 1) {
+						const subgroupId = subgroupIds[0]
+						const subgroup = groupMap[subgroupId]
+
+						if (currentGroupId === filterGroupId)
+							setCurrentGroupId(subgroupId)
+
+						// Delete filter group and convert subgroup to main group
+						return {
+							...omit(prevGroupMap, filterGroupId),
+							[subgroupId]: {
+								...omit(subgroup, 'parentGroupId')
+							}
+						}
+					}
 
 					return {
-						...omit(prevGroupMap, filterGroupId),
-						[parentGroupId]: {
-							...parentGroup,
-							subgroupIds: parentGroup.subgroupIds?.filter(
-								subgroupId => subgroupId !== filterGroupId
+						...prevGroupMap,
+						[filterGroupId]: {
+							...prevGroup,
+							filterIds: prevGroup.filterIds.filter(
+								filterId => filterId !== filterIdToDelete
 							)
 						}
 					}
-				}
+				})
+			}
 
-				// If there is only one filter left and there is only one subgroup:
-				if (filterIds.length === 1 && subgroupIds.length === 1) {
-					const subgroupId = subgroupIds[0]
-					const subgroup = groupMap[subgroupId]
-
-					if (currentGroupId === filterGroupId)
-						setCurrentGroupId(subgroupId)
-
-					// Delete filter group and convert subgroup to main group
-					return {
-						...omit(prevGroupMap, filterGroupId),
-						[subgroupId]: {
-							...omit(subgroup, 'parentGroupId')
-						}
-					}
-				}
-
-				return {
-					...prevGroupMap,
-					[filterGroupId]: {
-						...prevGroup,
-						filterIds: prevGroup.filterIds.filter(
-							filterId => filterId !== filterIdToDelete
-						)
-					}
-				}
-			})
-		}
-
-		setFiltersMap(prevFiltersMap => omit(prevFiltersMap, filterIdToDelete))
+			setFiltersMap(prevFiltersMap =>
+				omit(prevFiltersMap, filterIdToDelete)
+			)
+		})
 
 		inputRef.current?.focus()
 	}
@@ -316,70 +325,74 @@ export const useFilters = (
 			filtersToDelete = filtersToDelete.concat(filterIds)
 		})
 
-		setFiltersMap(prevFiltersMap => omit(prevFiltersMap, filtersToDelete))
-		setGroupMap(prevGroupMap => {
-			let newGroupMap = omit(prevGroupMap, [
-				groupIdToDelete,
-				...subgroupIds
-			]) as FilterGroupMap
+		unstable_batchedUpdates(() => {
+			setFiltersMap(prevFiltersMap =>
+				omit(prevFiltersMap, filtersToDelete)
+			)
+			setGroupMap(prevGroupMap => {
+				let newGroupMap = omit(prevGroupMap, [
+					groupIdToDelete,
+					...subgroupIds
+				]) as FilterGroupMap
 
-			// If it is a subgroup, disassociate it from the parent group by removing the id
-			// from subgroup ids
-			if (parentGroupId) {
-				const parentGroup = newGroupMap[parentGroupId]
-				const { filterIds, subgroupIds = [] } = parentGroup
+				// If it is a subgroup, disassociate it from the parent group by removing the id
+				// from subgroup ids
+				if (parentGroupId) {
+					const parentGroup = newGroupMap[parentGroupId]
+					const { filterIds, subgroupIds = [] } = parentGroup
 
-				if (filterIds.length === 0 && subgroupIds.length === 2) {
-					const remainingSubgroupId = subgroupIds.filter(
-						id => id !== groupIdToDelete
-					)[0]
+					if (filterIds.length === 0 && subgroupIds.length === 2) {
+						const remainingSubgroupId = subgroupIds.filter(
+							id => id !== groupIdToDelete
+						)[0]
 
-					const subgroupToConvert = omit(
-						prevGroupMap[remainingSubgroupId],
-						'parentGroupId'
-					)
-
-					newGroupMap = {
-						...omit(newGroupMap, subgroupIds),
-						[parentGroupId]: subgroupToConvert
-					}
-
-					setFiltersMap(prevFiltersMap => {
-						newGroupMap[parentGroupId].filterIds.forEach(
-							filterId =>
-								(prevFiltersMap = {
-									...prevFiltersMap,
-									[filterId]: {
-										...prevFiltersMap[filterId],
-										groupId: parentGroupId
-									}
-								})
+						const subgroupToConvert = omit(
+							prevGroupMap[remainingSubgroupId],
+							'parentGroupId'
 						)
 
-						return prevFiltersMap
-					})
-				} else {
-					newGroupMap = {
-						...newGroupMap,
-						[parentGroupId]: {
-							...parentGroup,
-							subgroupIds: parentGroup.subgroupIds?.filter(
-								subgroupId => subgroupId !== groupIdToDelete
+						newGroupMap = {
+							...omit(newGroupMap, subgroupIds),
+							[parentGroupId]: subgroupToConvert
+						}
+
+						setFiltersMap(prevFiltersMap => {
+							newGroupMap[parentGroupId].filterIds.forEach(
+								filterId =>
+									(prevFiltersMap = {
+										...prevFiltersMap,
+										[filterId]: {
+											...prevFiltersMap[filterId],
+											groupId: parentGroupId
+										}
+									})
 							)
+
+							return prevFiltersMap
+						})
+					} else {
+						newGroupMap = {
+							...newGroupMap,
+							[parentGroupId]: {
+								...parentGroup,
+								subgroupIds: parentGroup.subgroupIds?.filter(
+									subgroupId => subgroupId !== groupIdToDelete
+								)
+							}
 						}
 					}
 				}
-			}
 
-			const newGroupIds = Object.keys(newGroupMap)
+				const newGroupIds = Object.keys(newGroupMap)
 
-			if (newGroupIds.length === 0 && nextGroupId) {
-				newGroupMap = {
-					[nextGroupId]: defaultFilterGroup
+				if (newGroupIds.length === 0 && nextGroupId) {
+					newGroupMap = {
+						[nextGroupId]: defaultFilterGroup
+					}
 				}
-			}
 
-			return newGroupMap
+				return newGroupMap
+			})
 		})
 
 		if (nextGroupId) setCurrentGroup(nextGroupId)

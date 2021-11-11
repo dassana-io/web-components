@@ -2,6 +2,7 @@ import { Dropdown } from './Dropdown'
 import { FilterStage } from '../types'
 import omit from 'lodash/omit'
 import { ShortcutMicrocopy } from 'components/ShortcutMicrocopy'
+import { unstable_batchedUpdates } from 'react-dom'
 import { useFiltersContext } from '../FiltersContext'
 import { useSearchStyles } from '../styles'
 import { AntDInputType, Input } from 'components/Input'
@@ -238,13 +239,17 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 		}
 	}
 
-	const resetSearchbar = useCallback(() => {
-		setCurrentFilter('')
-		setCurrentFilterStage(FilterStage.key)
-		setFilter(defaultFilter)
-		setFilterComplete(false)
-		setInputValue('')
-	}, [setCurrentFilter])
+	const resetSearchbar = useCallback(
+		() =>
+			unstable_batchedUpdates(() => {
+				setCurrentFilter('')
+				setCurrentFilterStage(FilterStage.key)
+				setFilter(defaultFilter)
+				setFilterComplete(false)
+				setInputValue('')
+			}),
+		[setCurrentFilter]
+	)
 
 	const onInputChange = (e: ChangeEvent<HTMLInputElement>, match = false) => {
 		const newInputVal = e.target.value
@@ -272,18 +277,20 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 			updatedFilter
 		} = getCurrentInputData(newInputVal, cursorPos, match, e)
 
-		setInputValue(inputVal)
-		setFilteredSuggestions(suggestions)
-		setFilterComplete(isFilterComplete)
+		unstable_batchedUpdates(() => {
+			setInputValue(inputVal)
+			setFilteredSuggestions(suggestions)
+			setFilterComplete(isFilterComplete)
 
-		setFilter(prevFilter => ({
-			...prevFilter,
-			...updatedFilter
-		}))
+			setFilter(prevFilter => ({
+				...prevFilter,
+				...updatedFilter
+			}))
 
-		if (nextFilterStage !== currentFilterStage) {
-			setCurrentFilterStage(nextFilterStage)
-		}
+			if (nextFilterStage !== currentFilterStage) {
+				setCurrentFilterStage(nextFilterStage)
+			}
+		})
 	}
 
 	const onDropdownItemClick = (val: CommonFilterUnitConfig | KeyConfig) => {
@@ -301,27 +308,29 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 		const { isFilterComplete, nextFilterStage, suggestions } =
 			getCurrentInputData(inputStr, inputStr.length, true)
 
-		setFilter(newFilter)
-		setInputValue(inputStr)
+		unstable_batchedUpdates(() => {
+			setFilter(newFilter)
+			setInputValue(inputStr)
 
-		setFilteredSuggestions(suggestions)
+			setFilteredSuggestions(suggestions)
 
-		if (isFilterComplete && currentFilterStage === FilterStage.value) {
-			// If user chooses a filter value from the dropdown, automatically add it to filter group
-			setTimeout(() => {
-				onFilterAdd(newFilter)
-			}, 250)
-		} else {
-			setFilterComplete(isFilterComplete)
-		}
+			if (isFilterComplete && currentFilterStage === FilterStage.value) {
+				// If user chooses a filter value from the dropdown, automatically add it to filter group
+				setTimeout(() => {
+					onFilterAdd(newFilter)
+				}, 250)
+			} else {
+				setFilterComplete(isFilterComplete)
+			}
 
-		if (suggestions && suggestions.length) {
-			setDropdownIsOpen(true)
-		}
+			if (suggestions && suggestions.length) {
+				setDropdownIsOpen(true)
+			}
 
-		if (nextFilterStage !== currentFilterStage) {
-			setCurrentFilterStage(nextFilterStage)
-		}
+			if (nextFilterStage !== currentFilterStage) {
+				setCurrentFilterStage(nextFilterStage)
+			}
+		})
 	}
 
 	const onFilterAdd = useCallback(
@@ -381,10 +390,12 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 			) as FiltersMap
 			const { key, operator, value } = filter
 
-			setInputValue(`${key.value} ${operator.value} ${value.value}`)
-			setFilter(filter)
-			setFilterComplete(false)
-			setDropdownIsOpen(false)
+			unstable_batchedUpdates(() => {
+				setInputValue(`${key.value} ${operator.value} ${value.value}`)
+				setFilter(filter)
+				setFilterComplete(false)
+				setDropdownIsOpen(false)
+			})
 		}
 
 		if (!currentFilterId && prevFilterId) {
@@ -398,7 +409,7 @@ export const Search: FC<SearchProps> = ({ inputRef }: SearchProps) => {
 		key: 'Enter',
 		keyEvent: 'keydown'
 	})
-
+	console.log('rerendering search')
 	return (
 		<div className={classes.container} ref={containerRef}>
 			<div className={classes.inputContainer}>
