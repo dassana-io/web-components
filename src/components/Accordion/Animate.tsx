@@ -8,11 +8,13 @@ import React, { FC, ReactNode } from 'react'
 
 interface AnimateProps {
 	children: ReactNode
+	duration?: number
 	isExpanded: boolean
 }
 
 export const Animate: FC<AnimateProps> = ({
 	children,
+	duration = 0.8,
 	isExpanded
 }: AnimateProps) => (
 	<AnimatePresence initial={false}>
@@ -23,7 +25,7 @@ export const Animate: FC<AnimateProps> = ({
 					exit='collapsed'
 					initial='collapsed'
 					transition={{
-						duration: 0.8,
+						duration,
 						ease: [0.04, 0.62, 0.23, 0.98]
 					}}
 					variants={{
