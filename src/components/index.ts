@@ -1,4 +1,5 @@
 export * from './Accordion'
+export * from './Accordion/Animate'
 export * from './Accordion/CollapseIndicator'
 export * from './Avatar'
 export * from './assets/styles'
