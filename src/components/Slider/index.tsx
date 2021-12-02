@@ -1,6 +1,7 @@
 import 'antd/lib/slider/style/index.css'
 import { Slider as AntDSlider } from 'antd'
 import { SliderMarks } from 'antd/lib/slider'
+import { TooltipPlacement } from 'antd/es/tooltip'
 import { useSliderStyles } from './styles'
 import React, { FC, ReactNode } from 'react'
 
@@ -13,6 +14,7 @@ export interface SliderProps {
 	onAfterChange: (value: number) => void
 	tickFormatter?: (val?: number) => ReactNode
 	ticks?: SliderMarks
+	tooltipPlacement?: TooltipPlacement
 }
 
 export const Slider: FC<SliderProps> = ({
@@ -23,7 +25,8 @@ export const Slider: FC<SliderProps> = ({
 	max = 100,
 	onAfterChange,
 	tickFormatter,
-	ticks
+	ticks,
+	tooltipPlacement
 }: SliderProps) => {
 	const classes = useSliderStyles()
 
@@ -37,6 +40,7 @@ export const Slider: FC<SliderProps> = ({
 			min={min}
 			onAfterChange={onAfterChange}
 			tipFormatter={tickFormatter}
+			tooltipPlacement={tooltipPlacement}
 			tooltipVisible={alwaysShowTooltip}
 		/>
 	)
