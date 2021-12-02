@@ -5,8 +5,10 @@ import { Slider, SliderProps } from '.'
 
 export default {
 	argTypes: {
-		// children: { control: 'text' },
-		// classes: { control: 'array' }
+		classes: { control: 'array' },
+		onAfterChange: {
+			defaultValue: action('onAfterChange')
+		}
 	},
 	component: Slider,
 	title: 'Slider'
