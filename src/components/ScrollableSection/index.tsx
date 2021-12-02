@@ -1,4 +1,3 @@
-import { Bounce } from './Bounce'
 import { Breakpoints } from '@dassana-io/web-utils'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
@@ -6,6 +5,7 @@ import { Element } from 'react-scroll'
 import { IconButton } from 'components/IconButton'
 import { mediaSelectorsWithBreakpoints } from '../Pages/utils'
 import { styleguide } from 'components/assets/styles'
+import { Bounce, BounceDirection, BounceProps } from './Bounce'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import React, { FC, ReactNode } from 'react'
 import { ScrollDirections, scrollOnClick } from './utils'
@@ -105,4 +105,6 @@ export const ScrollableSection: FC<ScrollableSectionProps> = ({
 	)
 }
 
+export { Bounce, BounceDirection }
+export type { BounceProps }
 export { scrollOnClick, ScrollDirections } from './utils'
