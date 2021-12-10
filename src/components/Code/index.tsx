@@ -8,13 +8,11 @@ import React, { FC, RefObject, useCallback, useRef, useState } from 'react'
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
 import 'ace-builds/src-min-noconflict/mode-jsx'
+import 'ace-builds/src-min-noconflict/mode-markdown'
+import 'ace-builds/src-min-noconflict/mode-json'
+import 'ace-builds/src-min-noconflict/mode-yaml'
 
 const languages = ['markdown', 'json', 'yaml'] as const
-
-languages.forEach(lang => {
-	require(`ace-builds/src-noconflict/mode-${lang}`)
-	require(`ace-builds/src-noconflict/snippets/${lang}`)
-})
 
 export interface CodeProps
 	extends Pick<
