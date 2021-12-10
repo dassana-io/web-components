@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.12.8",
+	"version": "0.12.9",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -31,10 +31,8 @@
 		"npm": "^8.3.0",
 		"prettier": "^2.3.0",
 		"prismjs": "^1.25.0",
-		"react": ">=16.13 || ^17",
 		"react-ace": "^9.5.0",
 		"react-diff-viewer": "^3.1.1",
-		"react-dom": ">=16.13 || ^17",
 		"react-helmet": "^6.1.0",
 		"react-hook-form": "^7.7.1",
 		"react-jss": "~10.5.1",
@@ -120,6 +118,8 @@
 		"enzyme": "^3.11.0",
 		"eslint-plugin-react": "^7.24.0",
 		"normalize.css": "^8.0.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"react-test-renderer": "^17.0.2",
 		"rollup": "^2.50.6",
 		"rollup-plugin-styles": "^3.14.1",
