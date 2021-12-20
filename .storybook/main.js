@@ -6,5 +6,8 @@ module.exports = {
 		'@storybook/addon-actions',
 		'@storybook/preset-create-react-app',
 		'@storybook/addon-cssresources'
-	]
+	],
+	core: {
+		builder: 'webpack5'
+	}
 }
