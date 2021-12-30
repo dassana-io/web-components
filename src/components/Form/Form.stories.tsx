@@ -100,6 +100,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			label='Production Environment'
 			name='isProduction'
 		/>
+		<Form.Checkbox defaultChecked label='Dev Environment' name='isDev' />
 		<Form.Tree
 			label='Cloud Accounts'
 			name='cloudAccounts'

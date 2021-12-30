@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.12.11",
+	"version": "0.12.12",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -41,8 +41,8 @@
 		"uuid": "^8.3.2"
 	},
 	"scripts": {
-		"api-models:generate": "rm -rf src/components/api/$npm_config_outputFolder; mkdir -p src/components/api; cp -R $npm_config_inputFolder/model src/components/api/$npm_config_outputFolder; rm -rf $npm_config_inputFolder; cd src/components/api/$npm_config_outputFolder; mv models.ts index.ts; prettier --write .",
-		"api-models:global": "npm run api-models:generate --inputFolder=globalApi --outputFolder=global",
+		"api-models:generate": "rm -rf src/components/api/$npm_config_output_folder; mkdir -p src/components/api; cp -R $npm_config_input_folder/model src/components/api/$npm_config_output_folder; rm -rf $npm_config_input_folder; cd src/components/api/$npm_config_output_folder; mv models.ts index.ts; prettier --write .",
+		"api-models:global": "npm run api-models:generate --input_folder=globalApi --output_folder=global",
 		"codegen": "node codegen.js",
 		"start": "npm run storybook",
 		"build": "rollup -c rollup.config.ts",
@@ -82,8 +82,8 @@
 	},
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^21.0.1",
-		"@rollup/plugin-image": "^2.0.6",
-		"@rollup/plugin-node-resolve": "^13.0.0",
+		"@rollup/plugin-image": "^2.1.1",
+		"@rollup/plugin-node-resolve": "^13.1.1",
 		"@storybook/addon-actions": "^6.4.9",
 		"@storybook/addon-cssresources": "^6.2.9",
 		"@storybook/addon-essentials": "^6.4.9",
@@ -116,14 +116,13 @@
 		"@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
 		"chromatic": "^6.2.3",
 		"enzyme": "^3.11.0",
-		"eslint-plugin-react": "^7.27.1",
+		"eslint-plugin-react": "^7.28.0",
 		"normalize.css": "^8.0.1",
-		"npm": "^8.3.0",
-		"prettier": "^2.3.0",
+		"prettier": "^2.5.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-test-renderer": "^17.0.2",
-		"rollup": "^2.61.1",
+		"rollup": "^2.62.0",
 		"rollup-plugin-styles": "^3.14.1",
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-typescript2": "^0.31.1",

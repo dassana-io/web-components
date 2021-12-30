@@ -1,9 +1,7 @@
 /* eslint-disable */
+const { exec } = require('child_process')
 const fs = require('fs')
-const npm = require('npm')
 
 if (fs.existsSync('globalApi')) {
-	npm.load(() => {
-		npm.run('api-models:global')
-	})
+	exec('npm run api-models:global')
 }

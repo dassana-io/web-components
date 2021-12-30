@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
+import FormCheckbox from './FormCheckbox'
 import FormChipInput from './FormChipInput'
 import FormInput from './FormInput'
 import FormMultipleChoice from './FormMultipleChoice'
@@ -81,6 +82,7 @@ export function Form<Model>({
 }
 
 Form.SubmitButton = FormSubmitButton
+Form.Checkbox = FormCheckbox
 Form.ChipInput = FormChipInput
 Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
