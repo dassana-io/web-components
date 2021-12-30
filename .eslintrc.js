@@ -35,7 +35,7 @@ module.exports = {
 		'@typescript-eslint/no-extra-semi': 'off',
 		'@typescript-eslint/no-non-null-assertion': 'off',
 		'@typescript-eslint/no-unused-expressions': 'off',
-		'@typescript-eslint/no-unused-vars': 'off',
+		'@typescript-eslint/no-unused-vars': 'warn',
 		'comma-dangle': ['warn', 'never'],
 		'comma-spacing': ['warn', { after: true, before: false }],
 		'import/no-anonymous-default-export': 'off',
