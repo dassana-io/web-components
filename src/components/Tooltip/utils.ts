@@ -1,7 +1,7 @@
 import { styleguide } from 'components/assets/styles/styleguide'
 import { ThemeType } from 'components/assets/styles/themes'
 
-const { borderRadius, colors } = styleguide
+const { borderRadius, colors, font } = styleguide
 const { blacks, whites } = colors
 
 const { dark, light } = ThemeType
@@ -29,6 +29,7 @@ export const generateTooltipStyles = (themeType: ThemeType) => {
 					backgroundColor: 'none'
 				},
 				'& > .ant-tooltip-inner': {
+					...font.label,
 					backgroundColor: background,
 					borderRadius,
 					color: whites.base,

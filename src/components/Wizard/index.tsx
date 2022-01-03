@@ -1,6 +1,6 @@
 import { useWizardCmp } from './utils'
-import React, { FC, ReactNode } from 'react'
-import { useWizard, WizardCtx } from './WizardContext'
+import React, { FC, ReactNode, RefObject, useImperativeHandle } from 'react'
+import { useWizard, WizardContextProps, WizardCtx } from './WizardContext'
 
 export interface Step {
 	render: () => ReactNode
@@ -11,21 +11,23 @@ export interface WizardProps {
 	defaultActiveStep?: number
 	enableAllSteps?: boolean
 	steps: Step[]
+	wizardRef?: RefObject<WizardContextProps>
 }
 
 const Wizard: FC<WizardProps> = ({
 	defaultActiveStep,
 	enableAllSteps = false,
-	steps
+	steps,
+	wizardRef
 }: WizardProps) => {
-	const { step, ...rest } = useWizardCmp(
-		steps.length,
-		defaultActiveStep,
-		enableAllSteps
-	)
+	const wizard = useWizardCmp(steps.length, defaultActiveStep, enableAllSteps)
+
+	const { step } = wizard
+
+	useImperativeHandle(wizardRef, () => wizard)
 
 	return (
-		<WizardCtx.Provider value={{ step, ...rest }}>
+		<WizardCtx.Provider value={wizard}>
 			{/* Steps array is index-based — if step is 1, steps[0] returns the correct step */}
 			{steps[step - 1].render()}
 		</WizardCtx.Provider>
