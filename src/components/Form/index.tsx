@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
+import FieldLabel from './FieldLabel'
 import FormCheckbox from './FormCheckbox'
 import FormChipInput from './FormChipInput'
 import FormInput from './FormInput'
@@ -17,7 +18,8 @@ import {
 	FieldValues,
 	FormProvider,
 	SubmitHandler,
-	useForm
+	useForm,
+	useFormContext
 } from 'react-hook-form'
 import React, {
 	ReactNode,
@@ -54,7 +56,10 @@ export function Form<Model>({
 	onSubmit
 }: FormProps<Model>) {
 	const classes = useStyles()
-	const methods = useForm({ defaultValues: initialValues, mode: 'onBlur' })
+	const methods = useForm({
+		defaultValues: initialValues,
+		mode: 'onBlur'
+	})
 	const { reset } = methods
 
 	const { handleSubmit } = methods
@@ -94,6 +99,7 @@ Form.Timezone = FormTimezone
 Form.Toggle = FormToggle
 Form.Tree = FormTree
 
+export { FieldLabel, useFormContext }
 export type {
 	FormStateProxy,
 	UseFormReturn

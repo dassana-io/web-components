@@ -1,5 +1,6 @@
 import { BaseFieldProps } from '../types'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
@@ -38,6 +39,7 @@ export interface FormCheckboxProps
 }
 
 const FormCheckbox: FC<FormCheckboxProps> = ({
+	containerClasses = [],
 	defaultChecked = false,
 	fullWidth = false,
 	label,
@@ -51,8 +53,15 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
 
 	const classes = useStyles({ fullWidth })
 
+	const checkboxContainerClasses = cn(
+		{
+			[classes.container]: true
+		},
+		containerClasses
+	)
+
 	return (
-		<div className={classes.container}>
+		<div className={checkboxContainerClasses}>
 			<Controller
 				control={control}
 				name={name}

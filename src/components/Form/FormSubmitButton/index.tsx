@@ -58,7 +58,11 @@ const FormSubmitButton: FC<FormButtonProps> = ({
 				dataTag='submit-button'
 				disabled={isButtonDisabled()}
 				loading={loading}
-				onClick={handleSubmit(onSubmit)}
+				onClick={e => {
+					e.stopPropagation()
+
+					handleSubmit(onSubmit)()
+				}}
 				{...rest}
 			/>
 			{renderShortcutMicrocopy && !isButtonDisabled() && (
