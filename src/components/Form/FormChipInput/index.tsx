@@ -15,6 +15,7 @@ export interface FormChipInputProps
 
 const FormChipInput: FC<FormChipInputProps> = ({
 	containerClasses = [],
+	disabled = false,
 	fieldErrorClasses = [],
 	fullWidth = false,
 	label,
@@ -31,7 +32,8 @@ const FormChipInput: FC<FormChipInputProps> = ({
 		control,
 		formState: { errors }
 	} = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
 
@@ -65,6 +67,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 					<ChipInput
 						clearErrors={clearChipInputErrors}
 						dataTag={getFormFieldDataTag(name)}
+						disabled={formDisabled || disabled}
 						error={errors[name]}
 						errorMsg={errorMsg}
 						fullWidth={fullWidth}

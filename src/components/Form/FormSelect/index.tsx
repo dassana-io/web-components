@@ -13,6 +13,7 @@ export interface FormSelectProps
 }
 
 const FormSelect: FC<FormSelectProps> = ({
+	disabled = false,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -22,7 +23,11 @@ const FormSelect: FC<FormSelectProps> = ({
 	...rest
 }: FormSelectProps) => {
 	const { control, handleSubmit } = useFormContext()
-	const { loading, onSubmit } = useContext<FieldContextProps>(FieldContext)
+	const {
+		disabled: formDisabled,
+		loading,
+		onSubmit
+	} = useContext<FieldContextProps>(FieldContext)
 
 	rules.required = true
 
@@ -45,6 +50,7 @@ const FormSelect: FC<FormSelectProps> = ({
 				render={({ field: { onChange, value } }) => (
 					<Select
 						dataTag={getFormFieldDataTag(name)}
+						disabled={formDisabled || disabled}
 						loading={loading}
 						onChange={value => {
 							onChange(value)

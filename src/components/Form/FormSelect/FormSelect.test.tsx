@@ -18,12 +18,23 @@ jest.mock('react-hook-form', () => ({
 
 let wrapper: ReactWrapper<FormSelectProps>
 
+const mockOnChange = jest.fn()
+const mockChangeEvent = {
+	field: {
+		onChange: mockOnChange,
+		value: true
+	}
+} as jest.Mocked<any>
 const mockOnSubmit = jest.fn()
+
+const getRenderedCmp = (wrapper: ReactWrapper<FormSelectProps>) =>
+	wrapper.find(Controller).invoke('render')!(mockChangeEvent)
 
 beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
+				disabled: false,
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -43,14 +54,7 @@ describe('FormSelect', () => {
 	})
 
 	it('should render a Select component', () => {
-		const test = {
-			field: {
-				onChange: jest.fn(),
-				value: 'abc'
-			}
-		} as jest.Mocked<any>
-
-		const select = wrapper.find(Controller).invoke('render')!(test)
+		const select = getRenderedCmp(wrapper)
 
 		expect(select.type).toBe(Select)
 	})
@@ -59,6 +63,7 @@ describe('FormSelect', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: false,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -72,5 +77,27 @@ describe('FormSelect', () => {
 		)
 
 		expect(wrapper.find(FieldLabel)).toHaveLength(1)
+	})
+
+	it('should be disabled if the form is disabled', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					disabled: true,
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormSelect
+					label='Field Label'
+					name='foo'
+					options={iconOptions}
+				/>{' '}
+			</FieldContext.Provider>
+		)
+
+		const select = getRenderedCmp(wrapper)
+
+		expect(select.props.disabled).toBe(true)
 	})
 })

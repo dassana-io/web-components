@@ -13,6 +13,7 @@ export interface FormTimezoneProps
 }
 
 const FormTimezone: FC<FormTimezoneProps> = ({
+	disabled = false,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -22,7 +23,11 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 	...rest
 }: FormTimezoneProps) => {
 	const { control, handleSubmit } = useFormContext()
-	const { loading, onSubmit } = useContext<FieldContextProps>(FieldContext)
+	const {
+		disabled: formDisabled,
+		loading,
+		onSubmit
+	} = useContext<FieldContextProps>(FieldContext)
 
 	rules.required = true
 
@@ -45,6 +50,7 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 				render={({ field: { onChange, value } }) => (
 					<Timezone
 						dataTag={getFormFieldDataTag(name)}
+						disabled={formDisabled || disabled}
 						loading={loading}
 						onChange={value => {
 							onChange(value)

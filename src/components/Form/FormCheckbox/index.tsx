@@ -41,6 +41,7 @@ export interface FormCheckboxProps
 const FormCheckbox: FC<FormCheckboxProps> = ({
 	containerClasses = [],
 	defaultChecked = false,
+	disabled = false,
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -49,7 +50,8 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
 	...rest
 }: FormCheckboxProps) => {
 	const { control } = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	const classes = useStyles({ fullWidth })
 
@@ -70,6 +72,7 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
 						checked={value}
 						dataTag={getFormFieldDataTag(name)}
 						defaultChecked={defaultChecked}
+						disabled={formDisabled || disabled}
 						onChange={(e: CheckboxChangeEvent) =>
 							onChange(e.target.checked)
 						}

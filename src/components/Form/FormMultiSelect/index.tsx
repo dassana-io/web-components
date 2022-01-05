@@ -14,6 +14,7 @@ export interface FormMultiSelectProps
 
 const FormMultiSelect: FC<FormMultiSelectProps> = ({
 	containerClasses = [],
+	disabled = false,
 	fieldErrorClasses = [],
 	fullWidth = false,
 	label,
@@ -28,7 +29,8 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 		control,
 		formState: { errors }
 	} = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
 
@@ -53,6 +55,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 				render={({ field: { onChange, value } }) => (
 					<MultiSelect
 						dataTag={getFormFieldDataTag(name)}
+						disabled={formDisabled || disabled}
 						error={errors[name]}
 						fullWidth={fullWidth}
 						loading={loading}
