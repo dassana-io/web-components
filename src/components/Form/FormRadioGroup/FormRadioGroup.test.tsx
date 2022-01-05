@@ -33,6 +33,7 @@ beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
+				disabled: false,
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -69,6 +70,7 @@ describe('FormRadioGroup', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: false,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -81,5 +83,27 @@ describe('FormRadioGroup', () => {
 			</FieldContext.Provider>
 		)
 		expect(wrapper.find(FieldLabel)).toHaveLength(1)
+	})
+
+	it('should be disabled if the form is disabled', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					disabled: true,
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormRadioGroup
+					label='Field Label'
+					name='foo'
+					options={basicOptions}
+				/>
+			</FieldContext.Provider>
+		)
+
+		const radioGroup = getRenderedCmp(wrapper)
+
+		expect(radioGroup.props.disabled).toBe(true)
 	})
 })

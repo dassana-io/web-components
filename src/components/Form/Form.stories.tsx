@@ -9,10 +9,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 export default {
 	argTypes: {
 		initialValues: { control: { disable: true } },
-		onSubmit: {
-			control: { disable: true },
-			defaultValue: action('onSubmit')
-		}
+		onSubmit: { defaultValue: action('onSubmit') }
 	},
 	component: Form,
 	parameters: {
@@ -106,6 +103,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			name='cloudAccounts'
 			treeData={treeData}
 		/>
+		<Form.Code label='Sample JSON' name='sampleJson' />
 		<Form.SubmitButton useShortcutProps={{ keys: ['Shift', 'Enter'] }}>
 			Submit
 		</Form.SubmitButton>

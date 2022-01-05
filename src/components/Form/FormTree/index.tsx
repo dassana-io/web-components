@@ -12,6 +12,7 @@ export interface FormTreeProps
 
 const FormTree: FC<FormTreeProps> = ({
 	defaultChecked,
+	disabled = false,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -20,7 +21,8 @@ const FormTree: FC<FormTreeProps> = ({
 	...rest
 }: FormTreeProps) => {
 	const { control } = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	return (
 		<div>
@@ -39,6 +41,7 @@ const FormTree: FC<FormTreeProps> = ({
 					<Tree
 						dataTag={getFormFieldDataTag(name)}
 						defaultChecked={value}
+						disabled={formDisabled || disabled}
 						loading={loading}
 						onChange={onChange}
 						{...rest}

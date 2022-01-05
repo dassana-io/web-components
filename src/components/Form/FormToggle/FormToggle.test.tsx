@@ -17,12 +17,23 @@ jest.mock('react-hook-form', () => ({
 
 let wrapper: ReactWrapper<FormToggleProps>
 
+const mockOnChange = jest.fn()
+const mockChangeEvent = {
+	field: {
+		onChange: mockOnChange,
+		value: true
+	}
+} as jest.Mocked<any>
 const mockOnSubmit = jest.fn()
+
+const getRenderedCmp = (wrapper: ReactWrapper<FormToggleProps>) =>
+	wrapper.find(Controller).invoke('render')!(mockChangeEvent)
 
 beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
+				disabled: false,
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -42,21 +53,35 @@ describe('FormToggle', () => {
 	})
 
 	it('should render a Toggle component', () => {
-		const mockOnChange = jest.fn()
-		const test = {
-			field: {
-				onChange: mockOnChange,
-				value: true
-			}
-		} as jest.Mocked<any>
-
-		const toggle = wrapper.find(Controller).invoke('render')!(test)
+		const toggle = getRenderedCmp(wrapper)
 
 		expect(toggle.type).toBe(Toggle)
 
 		toggle.props.onChange(true)
 
 		expect(mockOnChange).toHaveBeenCalled()
+	})
+
+	it('should be disabled if the form is disabled', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					disabled: true,
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormToggle
+					defaultChecked
+					label='label that will wrap for width less than or equal to defaultWidthWidth'
+					name='foo'
+				/>
+			</FieldContext.Provider>
+		)
+
+		const toggle = getRenderedCmp(wrapper)
+
+		expect(toggle.props.disabled).toBe(true)
 	})
 
 	it('renders component with max-width of defaultFieldWith if fullWidth is not passed as true', () => {
@@ -67,6 +92,7 @@ describe('FormToggle', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: false,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -97,6 +123,7 @@ describe('FormToggle', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: false,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}

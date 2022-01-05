@@ -36,6 +36,7 @@ export interface FormToggleProps
 
 const FormToggle: FC<FormToggleProps> = ({
 	defaultChecked = false,
+	disabled = false,
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -44,7 +45,8 @@ const FormToggle: FC<FormToggleProps> = ({
 	...rest
 }: FormToggleProps) => {
 	const { control } = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	const classes = useStyles({ fullWidth })
 
@@ -66,6 +68,7 @@ const FormToggle: FC<FormToggleProps> = ({
 						checked={value}
 						dataTag={getFormFieldDataTag(name)}
 						defaultChecked={defaultChecked}
+						disabled={formDisabled || disabled}
 						onChange={(checked: boolean) => onChange(checked)}
 						{...rest}
 					/>

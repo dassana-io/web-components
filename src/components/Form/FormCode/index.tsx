@@ -1,16 +1,18 @@
 import { BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
+import { Code, CodeProps } from 'components/Code'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import { RadioGroup, RadioGroupProps } from 'components/RadioGroup'
 import React, { FC, useContext } from 'react'
 
-export interface FormRadioGroupProps
+export interface FormCodeProps
 	extends BaseFieldProps,
-		Omit<RadioGroupProps, 'onChange' | 'value'> {}
+		Omit<CodeProps, 'code' | 'onChange'> {
+	disabled?: boolean
+}
 
-const FormRadioGroup: FC<FormRadioGroupProps> = ({
+const FormCode: FC<FormCodeProps> = ({
 	disabled = false,
 	label,
 	labelSkeletonWidth,
@@ -18,12 +20,14 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 	required,
 	rules = {},
 	...rest
-}: FormRadioGroupProps) => {
+}: FormCodeProps) => {
 	const { control } = useFormContext()
 	const { disabled: formDisabled, loading } =
 		useContext<FieldContextProps>(FieldContext)
 
-	rules.required = true
+	if (required) {
+		rules.required = true
+	}
 
 	return (
 		<div>
@@ -39,12 +43,14 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 				control={control}
 				name={name}
 				render={({ field: { onChange, value } }) => (
-					<RadioGroup
+					<Code
+						code={value}
 						dataTag={getFormFieldDataTag(name)}
-						disabled={formDisabled || disabled}
 						loading={loading}
-						onChange={event => onChange(event.target.value)}
-						value={value}
+						onChange={value => {
+							onChange(value)
+						}}
+						readOnly={formDisabled || disabled}
 						{...rest}
 					/>
 				)}
@@ -54,4 +60,4 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 	)
 }
 
-export default FormRadioGroup
+export default FormCode

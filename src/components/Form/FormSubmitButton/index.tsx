@@ -59,9 +59,8 @@ const FormSubmitButton: FC<FormButtonProps> = ({
 				disabled={isButtonDisabled()}
 				loading={loading}
 				onClick={e => {
-					e.stopPropagation()
-
 					handleSubmit(onSubmit)()
+					e.stopPropagation()
 				}}
 				{...rest}
 			/>

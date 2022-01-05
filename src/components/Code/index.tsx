@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { getDataTestAttributeProp } from 'components/utils'
 import { PageLoader } from 'components/PageLoader'
 import AceEditor, { IAceEditorProps } from 'react-ace'
 import { CodeControls, DisplayCodeControls } from './CodeControls'
@@ -31,6 +32,7 @@ export interface CodeProps
 	> {
 	classes?: string[]
 	code?: CodeType
+	dataTag?: string
 	displayControls?: DisplayCodeControls | false
 	editorRef?: RefObject<AceEditor>
 	language?: typeof languages[number]
@@ -43,6 +45,7 @@ export interface CodeProps
 export const Code: FC<CodeProps> = ({
 	classes = [],
 	code,
+	dataTag,
 	displayControls = {},
 	editorRef,
 	onChange,
@@ -79,7 +82,10 @@ export const Code: FC<CodeProps> = ({
 	return loading ? (
 		<PageLoader classes={pageLoaderClasses} />
 	) : (
-		<div className={cn(compClasses.wrapper, classes)}>
+		<div
+			className={cn(compClasses.wrapper, classes)}
+			{...getDataTestAttributeProp('code-editor', dataTag)}
+		>
 			{displayControls && (
 				<CodeControls
 					classes={[compClasses.controls]}

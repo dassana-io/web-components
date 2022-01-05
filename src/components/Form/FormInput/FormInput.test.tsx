@@ -44,6 +44,7 @@ const getMountedFormInput = (formInputProps: Partial<FormInputProps> = {}) =>
 	mount(
 		<FieldContext.Provider
 			value={{
+				disabled: false,
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -75,6 +76,7 @@ describe('FormInput', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: false,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -84,6 +86,24 @@ describe('FormInput', () => {
 		)
 
 		expect(wrapper.find(FieldLabel)).toHaveLength(1)
+	})
+
+	it('should be disabled if the form is disabled', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					disabled: true,
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormInput label='Field Label' name='foo' />
+			</FieldContext.Provider>
+		)
+
+		const input = wrapper.find(Controller).invoke('render')!(mockRenderArgs)
+
+		expect(input.props.disabled).toBe(true)
 	})
 
 	it('correctly passes validation rules if required', () => {

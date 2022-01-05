@@ -15,6 +15,7 @@ interface MountWrapperArgsType {
 
 const mountWrapper = ({ name, defaultChecked }: MountWrapperArgsType) => {
 	const defaultValue: FieldContextProps = {
+		disabled: false,
 		loading: true,
 		onSubmit: mockOnSubmit
 	}
@@ -44,7 +45,17 @@ jest.mock('react-hook-form', () => ({
 
 let wrapper: ReactWrapper<FormTreeProps>
 
+const mockOnChange = jest.fn()
+const mockChangeEvent = {
+	field: {
+		onChange: mockOnChange,
+		value: true
+	}
+} as jest.Mocked<any>
 const mockOnSubmit = jest.fn()
+
+const getRenderedCmp = (wrapper: ReactWrapper<FormTreeProps>) =>
+	wrapper.find(Controller).invoke('render')!(mockChangeEvent)
 
 beforeEach(() => {
 	mountWrapper({ name: 'foo' })
@@ -60,13 +71,7 @@ describe('FormTree', () => {
 	})
 
 	it('should render a Tree component', () => {
-		const test = {
-			field: {
-				onChange: jest.fn()
-			}
-		} as jest.Mocked<any>
-
-		const tree = wrapper.find(Controller).invoke('render')!(test)
+		const tree = getRenderedCmp(wrapper)
 
 		expect(tree.type).toBe(Tree)
 	})
@@ -75,6 +80,7 @@ describe('FormTree', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: false,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -84,5 +90,23 @@ describe('FormTree', () => {
 		)
 
 		expect(wrapper.find(FieldLabel)).toHaveLength(1)
+	})
+
+	it('should be disabled if the form is disabled', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					disabled: true,
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormTree label='Field Label' name='foo' treeData={treeData} />
+			</FieldContext.Provider>
+		)
+
+		const tree = getRenderedCmp(wrapper)
+
+		expect(tree.props.disabled).toBe(true)
 	})
 })

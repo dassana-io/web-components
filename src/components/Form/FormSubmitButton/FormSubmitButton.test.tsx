@@ -23,6 +23,7 @@ const getMockFormContext = (isDirty = true) =>
 const getWrapper = (additionalButtonProps = {}) => (
 	<FieldContext.Provider
 		value={{
+			disabled: false,
 			loading: false,
 			onSubmit: (_: any) => mockOnSubmit as any
 		}}

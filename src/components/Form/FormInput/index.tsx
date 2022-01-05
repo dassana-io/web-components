@@ -16,6 +16,7 @@ export interface FormInputProps
 
 const FormInput: FC<FormInputProps> = ({
 	containerClasses = [],
+	disabled = false,
 	fieldErrorClasses = [],
 	fullWidth = false,
 	label,
@@ -32,7 +33,8 @@ const FormInput: FC<FormInputProps> = ({
 		formState: { errors }
 	} = useFormContext()
 
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name].message : ''
 
@@ -66,6 +68,7 @@ const FormInput: FC<FormInputProps> = ({
 				render={({ field: { onChange, value } }) => (
 					<Input
 						dataTag={getFormFieldDataTag(name)}
+						disabled={formDisabled || disabled}
 						error={errors[name]}
 						focused={focused}
 						fullWidth={fullWidth}

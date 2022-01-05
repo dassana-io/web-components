@@ -3,6 +3,7 @@ import FieldContext from './FieldContext'
 import FieldLabel from './FieldLabel'
 import FormCheckbox from './FormCheckbox'
 import FormChipInput from './FormChipInput'
+import FormCode from './FormCode'
 import FormInput from './FormInput'
 import FormMultipleChoice from './FormMultipleChoice'
 import FormMultiSelect from './FormMultiSelect'
@@ -42,6 +43,7 @@ const useStyles = createUseStyles({
 
 export interface FormProps<Model extends FieldValues> {
 	children: ReactNode
+	disabled?: boolean
 	formRef?: RefObject<UseFormReturn<Model>>
 	initialValues?: UnpackNestedValue<DeepPartial<Model>>
 	loading?: boolean
@@ -50,6 +52,7 @@ export interface FormProps<Model extends FieldValues> {
 
 export function Form<Model>({
 	children,
+	disabled = false,
 	formRef,
 	initialValues = {} as UnpackNestedValue<DeepPartial<Model>>,
 	loading = false,
@@ -78,7 +81,7 @@ export function Form<Model>({
 	return (
 		<FormProvider {...methods}>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<FieldContext.Provider value={{ loading, onSubmit }}>
+				<FieldContext.Provider value={{ disabled, loading, onSubmit }}>
 					<div className={classes.container}>{children}</div>
 				</FieldContext.Provider>
 			</form>
@@ -89,6 +92,7 @@ export function Form<Model>({
 Form.SubmitButton = FormSubmitButton
 Form.Checkbox = FormCheckbox
 Form.ChipInput = FormChipInput
+Form.Code = FormCode
 Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
 Form.MultiSelect = FormMultiSelect

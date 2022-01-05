@@ -17,12 +17,23 @@ jest.mock('react-hook-form', () => ({
 
 let wrapper: ReactWrapper<FormCheckboxProps>
 
+const mockOnChange = jest.fn()
+const mockChangeEvent = {
+	field: {
+		onChange: mockOnChange,
+		value: true
+	}
+} as jest.Mocked<any>
 const mockOnSubmit = jest.fn()
+
+const getRenderedCmp = (wrapper: ReactWrapper<FormCheckboxProps>) =>
+	wrapper.find(Controller).invoke('render')!(mockChangeEvent)
 
 beforeEach(() => {
 	wrapper = mount(
 		<FieldContext.Provider
 			value={{
+				disabled: true,
 				loading: true,
 				onSubmit: mockOnSubmit
 			}}
@@ -42,21 +53,31 @@ describe('FormCheckbox', () => {
 	})
 
 	it('should render a Checkbox component', () => {
-		const mockOnChange = jest.fn()
-		const test = {
-			field: {
-				onChange: mockOnChange,
-				value: true
-			}
-		} as jest.Mocked<any>
-
-		const checkbox = wrapper.find(Controller).invoke('render')!(test)
+		const checkbox = getRenderedCmp(wrapper)
 
 		expect(checkbox.type).toBe(Checkbox)
 
 		checkbox.props.onChange({ target: { checked: true } })
 
 		expect(mockOnChange).toHaveBeenCalled()
+	})
+
+	it('should be disabled if the form is disabled', () => {
+		wrapper = mount(
+			<FieldContext.Provider
+				value={{
+					disabled: true,
+					loading: true,
+					onSubmit: mockOnSubmit
+				}}
+			>
+				<FormCheckbox label='foo' name='foo' />
+			</FieldContext.Provider>
+		)
+
+		const checkbox = getRenderedCmp(wrapper)
+
+		expect(checkbox.props.disabled).toBe(true)
 	})
 
 	it('renders component with max-width of defaultFieldWith if fullWidth is not passed as true', () => {
@@ -67,6 +88,7 @@ describe('FormCheckbox', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: true,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}
@@ -97,6 +119,7 @@ describe('FormCheckbox', () => {
 		wrapper = mount(
 			<FieldContext.Provider
 				value={{
+					disabled: true,
 					loading: true,
 					onSubmit: mockOnSubmit
 				}}

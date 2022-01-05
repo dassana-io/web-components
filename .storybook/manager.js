@@ -9,6 +9,5 @@ addons.setConfig({
 	enableShortcuts: true,
 	isToolshown: true,
 	selectedPanel: 'Controls',
-	initialActive: 'sidebar',
-	showRoots: false
+	initialActive: 'sidebar'
 })

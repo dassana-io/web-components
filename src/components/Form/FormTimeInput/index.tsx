@@ -14,6 +14,7 @@ export interface FormTimeInputProps
 }
 
 const FormTimeInput: FC<FormTimeInputProps> = ({
+	disabled = false,
 	label,
 	labelSkeletonWidth,
 	fullWidth,
@@ -27,7 +28,8 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 		control,
 		formState: { errors }
 	} = useFormContext()
-	const { loading } = useContext<FieldContextProps>(FieldContext)
+	const { disabled: formDisabled, loading } =
+		useContext<FieldContextProps>(FieldContext)
 
 	const onFocus = () => {
 		if (errors[name]) clearErrors(name)
@@ -52,6 +54,7 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 				render={({ field: { onChange, value } }) => (
 					<TimeInput
 						dataTag={getFormFieldDataTag(name)}
+						disabled={formDisabled || disabled}
 						error={errors[name]}
 						loading={loading}
 						onChange={onChange}
