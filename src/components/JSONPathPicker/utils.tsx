@@ -49,6 +49,7 @@ type RemainingJSON = JSONValue | Record<string, JSONValue>
 
 interface RenderParams {
 	classes: Classes
+	disableKeyClick?: boolean
 	pickedPath: string
 	isLastItem?: boolean
 	currPath: string
@@ -132,6 +133,7 @@ const renderArray = ({
 
 const renderObject = ({
 	classes,
+	disableKeyClick,
 	isLastItem,
 	onChange,
 	pickedPath,
@@ -161,7 +163,10 @@ const renderObject = ({
 					<li className={pickedItemClasses} key={i}>
 						<span
 							className={classes.property}
-							onClick={() => onChange(`${currPath}.${key}`)}
+							onClick={() =>
+								!disableKeyClick &&
+								onChange(`${currPath}.${key}`)
+							}
 						>
 							{`"${key}"`}
 						</span>
@@ -169,6 +174,7 @@ const renderObject = ({
 						{recursiveRender({
 							classes,
 							currPath: `${currPath}.${key}`,
+							disableKeyClick,
 							isLastItem: remainingKeys.length - 1 === i,
 							onChange,
 							pickedPath,
@@ -273,6 +279,7 @@ export const getJSONValueType = (json: RemainingJSON) => {
 
 export const recursiveRender = ({
 	classes,
+	disableKeyClick,
 	pickedPath,
 	isLastItem,
 	currPath,
@@ -282,6 +289,7 @@ export const recursiveRender = ({
 	mappedTypesToRenderFns[getJSONValueType(remainingJSON)]({
 		classes,
 		currPath,
+		disableKeyClick,
 		isLastItem,
 		onChange,
 		pickedPath,
