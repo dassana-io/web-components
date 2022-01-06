@@ -23,7 +23,10 @@ const tokenStyles = {
 		'& $operator': { color: darkTokenClrs.operator },
 		'& $property': {
 			'&:hover': {
-				borderBottom: `1px solid ${darkTokenClrs.property}`
+				borderBottom: (disableClick: boolean) =>
+					disableClick
+						? 'none'
+						: `1px solid ${darkTokenClrs.property}`
 			},
 			color: darkTokenClrs.property
 		},
@@ -40,10 +43,14 @@ const tokenStyles = {
 		},
 		property: {
 			'&:hover': {
-				borderBottom: `1px solid ${lightTokenClrs.property}`
+				borderBottom: (disableClick: boolean) =>
+					disableClick
+						? 'none'
+						: `1px solid ${lightTokenClrs.property}`
 			},
 			color: lightTokenClrs.property,
-			cursor: 'pointer'
+			cursor: (disableClick: boolean) =>
+				disableClick ? 'default' : 'pointer'
 		},
 		punctuation: {
 			color: lightTokenClrs.punctuation,
