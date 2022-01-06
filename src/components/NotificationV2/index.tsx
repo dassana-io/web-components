@@ -20,7 +20,8 @@ const useStyles = createUseStyles({
 	container: {
 		position: 'fixed',
 		right: spacing.m,
-		top: topNavHeight
+		top: topNavHeight,
+		zIndex: 100001
 	}
 })
 
