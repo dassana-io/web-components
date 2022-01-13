@@ -1,10 +1,10 @@
-import { styleguide } from '../assets/styles/styleguide'
 import {
 	dropdownStyles,
 	inputPalette,
 	themedStyles,
 	ThemeType
 } from '../assets/styles/themes'
+import { fieldErrorStyles, styleguide } from '../assets/styles/styleguide'
 
 const { fontWeight } = styleguide
 
@@ -47,6 +47,10 @@ export const generateThemedFocusedStyles = (themeType: ThemeType) => {
 	const { focus } = themedStyles[themeType]
 
 	return {
+		'&$error': {
+			...fieldErrorStyles.error,
+			border: `1px solid ${themedStyles[themeType].error.borderColor}`
+		},
 		borderColor: focus.borderColor,
 		boxShadow: 'none'
 	}
