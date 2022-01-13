@@ -42,7 +42,9 @@ const FormSelect: FC<FormSelectProps> = ({
 	const fieldErrors = get(errors, name)
 	const errorMsg = !isEmpty(fieldErrors) ? fieldErrors.message : ''
 
-	rules.required = true
+	if (required) {
+		rules.required = true
+	}
 
 	const onSelectFocus = () => {
 		if (errorMsg) clearErrors(name)
