@@ -1,7 +1,9 @@
 import { BaseFieldProps } from '../types'
+import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
-import { Controller, useFormContext } from 'react-hook-form'
+import isEmpty from 'lodash/isEmpty'
+import { Controller, get, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import React, { ChangeEvent, FC, useContext } from 'react'
 import { Select, SelectProps } from 'components/Select/SingleSelect'
@@ -14,22 +16,39 @@ export interface FormSelectProps
 
 const FormSelect: FC<FormSelectProps> = ({
 	disabled = false,
+	fieldErrorClasses = [],
+	fullWidth = false,
 	label,
 	labelSkeletonWidth,
+	loading = false,
 	name,
 	required,
 	rules = {},
 	triggerSubmit = false,
 	...rest
 }: FormSelectProps) => {
-	const { control, handleSubmit } = useFormContext()
+	const {
+		clearErrors,
+		control,
+		formState: { errors },
+		handleSubmit
+	} = useFormContext()
 	const {
 		disabled: formDisabled,
-		loading,
+		loading: formLoading,
 		onSubmit
 	} = useContext<FieldContextProps>(FieldContext)
 
-	rules.required = true
+	const fieldErrors = get(errors, name)
+	const errorMsg = !isEmpty(fieldErrors) ? fieldErrors.message : ''
+
+	if (required) {
+		rules.required = true
+	}
+
+	const onSelectFocus = () => {
+		if (errorMsg) clearErrors(name)
+	}
 
 	const triggerOnSubmit = (value: ChangeEvent) =>
 		handleSubmit(onSubmit)(value)
@@ -39,7 +58,7 @@ const FormSelect: FC<FormSelectProps> = ({
 			{label && (
 				<FieldLabel
 					label={label}
-					loading={loading}
+					loading={formLoading || loading}
 					required
 					skeletonWidth={labelSkeletonWidth}
 				/>
@@ -51,16 +70,24 @@ const FormSelect: FC<FormSelectProps> = ({
 					<Select
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
-						loading={loading}
+						error={errorMsg}
+						fullWidth={fullWidth}
+						loading={formLoading || loading}
 						onChange={value => {
 							onChange(value)
 							triggerSubmit && triggerOnSubmit(value)
 						}}
+						onFocus={onSelectFocus}
 						value={value}
 						{...rest}
 					/>
 				)}
 				rules={rules}
+			/>
+			<FieldError
+				classes={fieldErrorClasses}
+				error={errorMsg}
+				fullWidth={fullWidth}
 			/>
 		</div>
 	)

@@ -41,10 +41,13 @@ const focusedClasses =
 
 const generateErrorStyles = (themeType: ThemeType) => ({
 	'&$error': {
-		'&$error': {
-			'&:hover > .ant-select-selector, & > .ant-select-selector': {
-				border: `1px solid ${themedStyles[themeType].error.borderColor}`
-			}
+		'&:hover > .ant-select-selector, & > .ant-select-selector': {
+			...fieldErrorStyles.error,
+			border: `1px solid ${themedStyles[themeType].error.borderColor}`
+		},
+		[focusedClasses]: {
+			...fieldErrorStyles.error,
+			border: `1px solid ${themedStyles[themeType].error.borderColor}`
 		}
 	}
 })
@@ -71,7 +74,7 @@ export const useStyles = createUseStyles({
 			fullWidth || matchSelectedContentWidth ? '100%' : defaultFieldWidth
 	}),
 	dropdown: generateThemedDropdownStyles(light),
-	error: { ...fieldErrorStyles.error },
+	error: {},
 	hidden: {},
 	option: {
 		'&$hidden': { display: 'none' },
@@ -89,7 +92,6 @@ export const useStyles = createUseStyles({
 						...generateThemedInputStyles(dark)
 					},
 					...generateErrorStyles(dark),
-
 					[disabledClasses]: generateThemedDisabledStyles(dark),
 					[focusedClasses]: generateThemedFocusedStyles(dark)
 				}

@@ -1,26 +1,26 @@
 import React from 'react'
 import { basicOptions, basicOptionsDisabled } from './fixtures/sample_options'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import { RadioGroup, RadioGroupProps } from './index'
+import { RadioButtonGroup, RadioButtonGroupProps } from './index'
 
 export default {
 	argTypes: {
 		value: { control: { disable: true } }
 	},
-	component: RadioGroup,
-	title: 'Radio Group'
+	component: RadioButtonGroup,
+	title: 'Radio Button Group'
 } as Meta
 
 const commonStoryProps = {
 	/**
-	 * Storybook automatically passes an onChange but not a value to RadioGroup, so the component won't work
-	 * properly in the story. Passing undefined here ensures that RadioGroup is uncontrolled.
+	 * Storybook automatically passes an onChange but not a value to RadioButtonGroup, so the component won't work
+	 * properly in the story. Passing undefined here ensures that RadioButtonGroup is uncontrolled.
 	 */
 	onChange: undefined
 }
 
-const Template: Story<RadioGroupProps> = args => (
-	<RadioGroup {...args} {...commonStoryProps} />
+const Template: Story<RadioButtonGroupProps> = args => (
+	<RadioButtonGroup {...args} {...commonStoryProps} />
 )
 
 export const Default = Template.bind({})

@@ -3,14 +3,17 @@ import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
-import { RadioGroup, RadioGroupProps } from 'components/RadioGroup'
+import {
+	RadioButtonGroup,
+	RadioButtonGroupProps
+} from 'components/RadioButtonGroup'
 import React, { FC, useContext } from 'react'
 
-export interface FormRadioGroupProps
+export interface FormRadioButtonGroupProps
 	extends BaseFieldProps,
-		Omit<RadioGroupProps, 'onChange' | 'value'> {}
+		Omit<RadioButtonGroupProps, 'onChange' | 'value'> {}
 
-const FormRadioGroup: FC<FormRadioGroupProps> = ({
+const FormRadioButtonGroup: FC<FormRadioButtonGroupProps> = ({
 	disabled = false,
 	label,
 	labelSkeletonWidth,
@@ -18,7 +21,7 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 	required,
 	rules = {},
 	...rest
-}: FormRadioGroupProps) => {
+}: FormRadioButtonGroupProps) => {
 	const { control } = useFormContext()
 	const { disabled: formDisabled, loading } =
 		useContext<FieldContextProps>(FieldContext)
@@ -39,7 +42,7 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 				control={control}
 				name={name}
 				render={({ field: { onChange, value } }) => (
-					<RadioGroup
+					<RadioButtonGroup
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
 						loading={loading}
@@ -54,4 +57,4 @@ const FormRadioGroup: FC<FormRadioGroupProps> = ({
 	)
 }
 
-export default FormRadioGroup
+export default FormRadioButtonGroup

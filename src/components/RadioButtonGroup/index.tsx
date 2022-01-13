@@ -1,8 +1,8 @@
 import 'antd/lib/radio/style/index.css'
 import { CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
-import { generateRadioGroupStyles } from './utils'
-import RadioGroupSkeleton from './RadioGroupSkeleton'
+import { generateRadioButtonGroupStyles } from './utils'
+import RadioButtonGroupSkeleton from './RadioButtonGroupSkeleton'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
 import { ThemeType } from '../assets/styles/themes'
 import { Radio as AntDRadio, RadioChangeEvent } from 'antd'
@@ -12,16 +12,16 @@ import React, { FC } from 'react'
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
-	radioGroup: generateRadioGroupStyles(light),
+	radioGroup: generateRadioButtonGroupStyles(light),
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $radioGroup': generateRadioGroupStyles(dark)
+			'& $radioGroup': generateRadioButtonGroupStyles(dark)
 		}
 	}
 })
 
-export interface RadioGroupOptions {
+export interface RadioButtonGroupOptions {
 	disabled?: boolean
 	label: string
 	value: string
@@ -29,7 +29,7 @@ export interface RadioGroupOptions {
 
 export type RadioChangeEventHandler = (e: RadioChangeEvent) => void
 
-export interface RadioGroupProps extends CommonComponentProps {
+export interface RadioButtonGroupProps extends CommonComponentProps {
 	/**
 	 * Default value for radio group. Without this, the first option will be defaulted
 	 */
@@ -51,7 +51,7 @@ export interface RadioGroupProps extends CommonComponentProps {
 	/**
 	 * Array of options to be rendered in the form of buttons
 	 */
-	options: RadioGroupOptions[]
+	options: RadioButtonGroupOptions[]
 	size?: SizeType
 	/**
 	 * Element content value for controlled input elements. Requires an onChange to be passed
@@ -59,7 +59,7 @@ export interface RadioGroupProps extends CommonComponentProps {
 	value?: string
 }
 
-export const RadioGroup: FC<RadioGroupProps> = ({
+export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
 	defaultValue,
 	dataTag,
 	disabled = false,
@@ -68,7 +68,7 @@ export const RadioGroup: FC<RadioGroupProps> = ({
 	options,
 	value,
 	...rest
-}: RadioGroupProps) => {
+}: RadioButtonGroupProps) => {
 	const classes = useStyles()
 
 	let controlledCmpProps = {}
@@ -81,7 +81,7 @@ export const RadioGroup: FC<RadioGroupProps> = ({
 	}
 
 	return loading ? (
-		<RadioGroupSkeleton count={options.length} />
+		<RadioButtonGroupSkeleton count={options.length} />
 	) : (
 		<AntDRadio.Group
 			{...rest}

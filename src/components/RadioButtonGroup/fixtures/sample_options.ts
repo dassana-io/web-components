@@ -1,12 +1,12 @@
-import { RadioGroupOptions } from '../.'
+import { RadioButtonGroupOptions } from '..'
 
-export const basicOptions: RadioGroupOptions[] = [
+export const basicOptions: RadioButtonGroupOptions[] = [
 	{ label: 'High', value: 'high' },
 	{ label: 'Medium', value: 'medium' },
 	{ label: 'Low', value: 'low' }
 ]
 
-export const basicOptionsDisabled: RadioGroupOptions[] = [
+export const basicOptionsDisabled: RadioButtonGroupOptions[] = [
 	{ label: 'High', value: 'high' },
 	{ label: 'Medium', value: 'medium' },
 	{ disabled: true, label: 'Low', value: 'low' }
