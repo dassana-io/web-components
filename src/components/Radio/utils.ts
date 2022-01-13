@@ -16,6 +16,9 @@ export const generateRadioGroupStyles = (themeType: ThemeType) => {
 				boxShadow: 'none'
 			},
 			'& .ant-radio-wrapper': {
+				'& .ant-radio-disabled + span': {
+					color
+				},
 				'& .ant-radio:hover .ant-radio-inner': {
 					'&:not([class*="ant-radio-wrapper-disabled"])': {
 						borderColor: active.color
@@ -32,6 +35,7 @@ export const generateRadioGroupStyles = (themeType: ThemeType) => {
 						border: 'none'
 					}
 				},
+
 				color
 			},
 			color
