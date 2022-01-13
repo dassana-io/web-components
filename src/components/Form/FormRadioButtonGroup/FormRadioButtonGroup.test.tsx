@@ -1,10 +1,10 @@
-import { basicOptions } from 'components/RadioGroup/fixtures/sample_options'
+import { basicOptions } from 'components/RadioButtonGroup/fixtures/sample_options'
 import { Controller } from 'react-hook-form'
 import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
-import { RadioGroup } from 'components/RadioGroup'
+import { RadioButtonGroup } from 'components/RadioButtonGroup'
 import React from 'react'
-import FormRadioGroup, { FormRadioGroupProps } from './index'
+import FormRadioButtonGroup, { FormRadioButtonGroupProps } from './index'
 import { mount, ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
@@ -16,7 +16,7 @@ jest.mock('react-hook-form', () => ({
 	})
 }))
 
-let wrapper: ReactWrapper<FormRadioGroupProps>
+let wrapper: ReactWrapper<FormRadioButtonGroupProps>
 
 const mockChangeEvent = {
 	field: {
@@ -26,7 +26,7 @@ const mockChangeEvent = {
 } as jest.Mocked<any>
 const mockOnSubmit = jest.fn()
 
-const getRenderedCmp = (wrapper: ReactWrapper<FormRadioGroupProps>) =>
+const getRenderedCmp = (wrapper: ReactWrapper<FormRadioButtonGroupProps>) =>
 	wrapper.find(Controller).invoke('render')!(mockChangeEvent)
 
 beforeEach(() => {
@@ -38,7 +38,7 @@ beforeEach(() => {
 				onSubmit: mockOnSubmit
 			}}
 		>
-			<FormRadioGroup name='foo' options={basicOptions} />
+			<FormRadioButtonGroup name='foo' options={basicOptions} />
 		</FieldContext.Provider>
 	)
 })
@@ -47,7 +47,7 @@ afterEach(() => {
 	jest.resetAllMocks()
 })
 
-describe('FormRadioGroup', () => {
+describe('FormRadioButtonGroup', () => {
 	it('renders', () => {
 		expect(wrapper).toHaveLength(1)
 	})
@@ -55,7 +55,7 @@ describe('FormRadioGroup', () => {
 	it('should render a Radio Group component', () => {
 		const radioGroup = getRenderedCmp(wrapper)
 
-		expect(radioGroup.type).toBe(RadioGroup)
+		expect(radioGroup.type).toBe(RadioButtonGroup)
 	})
 
 	it('should call onChange with the target value extracted from the event', () => {
@@ -75,7 +75,7 @@ describe('FormRadioGroup', () => {
 					onSubmit: mockOnSubmit
 				}}
 			>
-				<FormRadioGroup
+				<FormRadioButtonGroup
 					label='Field Label'
 					name='foo'
 					options={basicOptions}
@@ -94,7 +94,7 @@ describe('FormRadioGroup', () => {
 					onSubmit: mockOnSubmit
 				}}
 			>
-				<FormRadioGroup
+				<FormRadioButtonGroup
 					label='Field Label'
 					name='foo'
 					options={basicOptions}

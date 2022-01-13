@@ -8,7 +8,7 @@ const {
 
 const { dark, light } = ThemeType
 
-const radioGroupPalette = {
+export const radioButtonGroupPalette = {
 	[dark]: {
 		active: { color: grays.base },
 		base: {
@@ -27,11 +27,11 @@ const radioGroupPalette = {
 	}
 }
 
-export const generateRadioGroupStyles = (themeType: ThemeType) => {
+export const generateRadioButtonGroupStyles = (themeType: ThemeType) => {
 	const {
 		active,
 		base: { background, borderColor, color }
-	} = radioGroupPalette[themeType]
+	} = radioButtonGroupPalette[themeType]
 
 	return {
 		'&.ant-radio-group': {

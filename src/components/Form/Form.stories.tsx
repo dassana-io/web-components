@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions'
-import { basicOptions } from '../RadioGroup/fixtures/sample_options'
+import { basicOptions } from '../RadioButtonGroup/fixtures/sample_options'
 import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import treeData from '../Tree/fixtures/0_sample_data'
@@ -86,7 +86,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			required
 		/>
 		<Form.Timezone label='Timezone' name='timezone' />
-		<Form.RadioGroup
+		<Form.RadioButtonGroup
 			defaultValue='low'
 			label='Severity'
 			name='severity'

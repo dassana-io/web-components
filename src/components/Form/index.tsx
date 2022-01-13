@@ -7,7 +7,7 @@ import FormCode from './FormCode'
 import FormInput from './FormInput'
 import FormMultipleChoice from './FormMultipleChoice'
 import FormMultiSelect from './FormMultiSelect'
-import FormRadioGroup from './FormRadioGroup'
+import FormRadioButtonGroup from './FormRadioButtonGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
 import FormTimeInput from './FormTimeInput'
@@ -96,7 +96,7 @@ Form.Code = FormCode
 Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
 Form.MultiSelect = FormMultiSelect
-Form.RadioGroup = FormRadioGroup
+Form.RadioButtonGroup = FormRadioButtonGroup
 Form.Select = FormSelect
 Form.TimeInput = FormTimeInput
 Form.Timezone = FormTimezone

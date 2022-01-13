@@ -1,6 +1,6 @@
 import { Radio as AntDRadio } from 'antd'
 import { basicOptions } from './fixtures/sample_options'
-import { RadioGroup } from './index'
+import { RadioButtonGroup } from './index'
 import React from 'react'
 import { Skeleton } from '../Skeleton'
 import { mount, ReactWrapper } from 'enzyme'
@@ -8,18 +8,18 @@ import { mount, ReactWrapper } from 'enzyme'
 let wrapper: ReactWrapper
 
 beforeEach(() => {
-	wrapper = mount(<RadioGroup options={basicOptions} />)
+	wrapper = mount(<RadioButtonGroup options={basicOptions} />)
 })
 
-describe('RadioGroup', () => {
+describe('RadioButtonGroup', () => {
 	it('renders', () => {
-		expect(wrapper.find(RadioGroup)).toHaveLength(1)
+		expect(wrapper.find(RadioButtonGroup)).toHaveLength(1)
 	})
 
 	it('should pass onChange and value to the input component if the props exist', () => {
 		const mockOnChange = jest.fn()
 		wrapper = mount(
-			<RadioGroup
+			<RadioButtonGroup
 				onChange={mockOnChange}
 				options={basicOptions}
 				value='low'
@@ -39,7 +39,7 @@ describe('RadioGroup', () => {
 	})
 
 	it('correctly passes the disabled prop', () => {
-		wrapper = mount(<RadioGroup disabled options={basicOptions} />)
+		wrapper = mount(<RadioButtonGroup disabled options={basicOptions} />)
 
 		expect(wrapper.find(AntDRadio.Group).props().disabled).toBeTruthy()
 	})
@@ -52,7 +52,7 @@ describe('RadioGroup', () => {
 
 	describe('loading', () => {
 		it('renders a loading skeleton', () => {
-			wrapper = mount(<RadioGroup loading options={basicOptions} />)
+			wrapper = mount(<RadioButtonGroup loading options={basicOptions} />)
 
 			expect(wrapper.find(Skeleton)).toHaveLength(basicOptions.length)
 		})
