@@ -6,23 +6,37 @@ import { Input } from '../Input'
 import { ShortcutMicrocopy } from '../ShortcutMicrocopy'
 import { styleguide } from '../assets/styles'
 import { useClickOutside } from '@dassana-io/web-utils'
-import React, { FC, useCallback, useState } from 'react'
+import React, {
+	Dispatch,
+	FC,
+	RefObject,
+	SetStateAction,
+	useCallback,
+	useImperativeHandle,
+	useState
+} from 'react'
 
-const { spacing } = styleguide
+const { flexAlignCenter, spacing } = styleguide
 
 const useStyles = createUseStyles({
 	editIcon: {
 		marginLeft: spacing.l,
 		opacity: 0
 	},
-	value: ({ fullWidth }: Pick<EditableFieldProps, 'fullWidth'>) => ({
+	inputContainer: {
+		...flexAlignCenter
+	},
+	value: ({
+		editable,
+		fullWidth
+	}: Pick<EditableFieldProps, 'editable' | 'fullWidth'>) => ({
 		'&:hover': {
 			'& $editIcon': {
 				opacity: 1
 			}
 		},
 		alignItems: 'center',
-		cursor: ({ editable }) => (editable ? 'pointer' : 'default'),
+		cursor: editable ? 'pointer' : 'default',
 		display: 'flex',
 		height: spacing.xl,
 		overflow: 'hidden',
@@ -32,20 +46,33 @@ const useStyles = createUseStyles({
 	})
 })
 
+export interface EditableFieldMethods {
+	isEditing: boolean
+	setIsEditing: Dispatch<SetStateAction<boolean>>
+}
+
 interface EditableFieldProps {
 	editable?: boolean
+	fieldRef?: RefObject<EditableFieldMethods>
 	fullWidth?: boolean
 	inputContainerClasses?: string[]
+	onClickOutsideCb?: () => void
 	onSubmit: (newValue: string) => void
+	placeholder?: string
+	renderShortcutMicrocopy?: boolean
 	value: string
 	valueContainerClasses?: string[]
 }
 
 export const EditableField: FC<EditableFieldProps> = ({
 	editable = true,
+	fieldRef,
 	fullWidth = false,
 	inputContainerClasses = [],
+	onClickOutsideCb,
 	onSubmit,
+	placeholder = '',
+	renderShortcutMicrocopy = true,
 	value,
 	valueContainerClasses = []
 }: EditableFieldProps) => {
@@ -54,15 +81,18 @@ export const EditableField: FC<EditableFieldProps> = ({
 	const [inputValue, setInputValue] = useState(value)
 	const [isEditing, setIsEditing] = useState(false)
 
+	useImperativeHandle(fieldRef, () => ({ isEditing, setIsEditing }))
+
 	const onClickOutside = useCallback(
 		(key?: string) => {
 			if (isEditing) {
-				if (key && key !== 'Escape' && value) onSubmit(inputValue)
+				if (key && key !== 'Escape' && inputValue) onSubmit(inputValue)
 
 				setIsEditing(false)
+				onClickOutsideCb && onClickOutsideCb()
 			}
 		},
-		[inputValue, isEditing, onSubmit, value]
+		[inputValue, isEditing, onClickOutsideCb, onSubmit]
 	)
 
 	const editingRef = useClickOutside({
@@ -91,14 +121,21 @@ export const EditableField: FC<EditableFieldProps> = ({
 	)
 
 	const renderInput = () => (
-		<div className={cn(inputContainerClasses)} ref={editingRef}>
+		<div
+			className={cn(
+				{ [classes.inputContainer]: true },
+				inputContainerClasses
+			)}
+			ref={editingRef}
+		>
 			<Input
 				focused
 				fullWidth={fullWidth}
 				onChange={e => setInputValue(e.currentTarget.value)}
+				placeholder={placeholder}
 				value={inputValue}
 			/>
-			{!fullWidth && <ShortcutMicrocopy />}
+			{renderShortcutMicrocopy && <ShortcutMicrocopy />}
 		</div>
 	)
 
