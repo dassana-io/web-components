@@ -767,19 +767,23 @@ exports[`Storyshots ChipInput Default 1`] = `
     <div
       className="wrapper-0-2-52"
     >
-      <input
-        autoFocus={false}
-        className="ant-input container-0-2-54 container-d0-0-2-56"
-        data-test="input"
-        disabled={false}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        placeholder="@yourdomain.com"
-        type="text"
-        value=""
-      />
+      <div
+        className="container-0-2-54 container-d0-0-2-56"
+      >
+        <input
+          autoFocus={false}
+          className="ant-input"
+          data-test="input"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          placeholder="@yourdomain.com"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
     <div
       className="tagsWrapper-0-2-51 tagsWrapper-d0-0-2-53"
@@ -846,19 +850,23 @@ exports[`Storyshots ChipInput Full Width 1`] = `
     <div
       className="wrapper-0-2-52"
     >
-      <input
-        autoFocus={false}
-        className="ant-input container-0-2-54 container-d1-0-2-60"
-        data-test="input"
-        disabled={false}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        placeholder=""
-        type="text"
-        value=""
-      />
+      <div
+        className="container-0-2-54 container-d1-0-2-60"
+      >
+        <input
+          autoFocus={false}
+          className="ant-input"
+          data-test="input"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          placeholder=""
+          type="text"
+          value=""
+        />
+      </div>
     </div>
     <div
       className="tagsWrapper-0-2-51 tagsWrapper-d1-0-2-59"
@@ -931,33 +939,37 @@ exports[`Storyshots ChipInput Validated With Addon 1`] = `
     <div
       className="wrapper-0-2-52"
     >
-      <span
-        className="ant-input-group-wrapper container-0-2-54 container-d3-0-2-72"
+      <div
+        className="container-0-2-54 container-d3-0-2-72"
       >
         <span
-          className="ant-input-wrapper ant-input-group"
+          className="ant-input-group-wrapper"
         >
           <span
-            className="ant-input-group-addon"
+            className="ant-input-wrapper ant-input-group"
           >
-            @
+            <span
+              className="ant-input-group-addon"
+            >
+              @
+            </span>
+            <input
+              autoFocus={false}
+              className="ant-input"
+              data-test="input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              placeholder="yourdomain.com"
+              style={null}
+              type="text"
+              value=""
+            />
           </span>
-          <input
-            autoFocus={false}
-            className="ant-input"
-            data-test="input"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            placeholder="yourdomain.com"
-            style={null}
-            type="text"
-            value=""
-          />
         </span>
-      </span>
+      </div>
     </div>
     <div
       className="tagsWrapper-0-2-51 tagsWrapper-d3-0-2-71"
@@ -1410,38 +1422,42 @@ exports[`Storyshots Input Addons 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <span
-    className="ant-input-group-wrapper container-0-2-54 container-d4-0-2-114"
+  <div
+    className="container-0-2-54 container-d4-0-2-114"
   >
     <span
-      className="ant-input-wrapper ant-input-group"
+      className="ant-input-group-wrapper"
     >
       <span
-        className="ant-input-group-addon"
+        className="ant-input-wrapper ant-input-group"
       >
-        @
-      </span>
-      <input
-        autoFocus={false}
-        className="ant-input"
-        data-test="input"
-        disabled={false}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        placeholder="yourdomain"
-        style={null}
-        type="text"
-        value=""
-      />
-      <span
-        className="ant-input-group-addon"
-      >
-        .com
+        <span
+          className="ant-input-group-addon"
+        >
+          @
+        </span>
+        <input
+          autoFocus={false}
+          className="ant-input"
+          data-test="input"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          placeholder="yourdomain"
+          style={null}
+          type="text"
+          value=""
+        />
+        <span
+          className="ant-input-group-addon"
+        >
+          .com
+        </span>
       </span>
     </span>
-  </span>
+  </div>
 </div>
 `;
 
@@ -1449,19 +1465,23 @@ exports[`Storyshots Input Default 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input container-0-2-54 container-d5-0-2-115"
-    data-test="input"
-    disabled={false}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder=""
-    type="text"
-    value=""
-  />
+  <div
+    className="container-0-2-54 container-d5-0-2-115"
+  >
+    <input
+      autoFocus={false}
+      className="ant-input"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
 </div>
 `;
 
@@ -1469,19 +1489,23 @@ exports[`Storyshots Input Disabled 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input ant-input-disabled container-0-2-54 container-d6-0-2-116"
-    data-test="input"
-    disabled={true}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder=""
-    type="text"
-    value=""
-  />
+  <div
+    className="container-0-2-54 container-d6-0-2-116"
+  >
+    <input
+      autoFocus={false}
+      className="ant-input ant-input-disabled"
+      data-test="input"
+      disabled={true}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
 </div>
 `;
 
@@ -1489,19 +1513,23 @@ exports[`Storyshots Input Error 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input container-0-2-54 container-d7-0-2-117 error-0-2-55"
-    data-test="input"
-    disabled={false}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder=""
-    type="text"
-    value=""
-  />
+  <div
+    className="container-0-2-54 container-d7-0-2-117"
+  >
+    <input
+      autoFocus={false}
+      className="ant-input error-0-2-55"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
 </div>
 `;
 
@@ -1509,19 +1537,23 @@ exports[`Storyshots Input Full Width 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input container-0-2-54 container-d8-0-2-118"
-    data-test="input"
-    disabled={false}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder=""
-    type="text"
-    value=""
-  />
+  <div
+    className="container-0-2-54 container-d8-0-2-118"
+  >
+    <input
+      autoFocus={false}
+      className="ant-input"
+      data-test="input"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
 </div>
 `;
 
@@ -1549,29 +1581,8 @@ exports[`Storyshots Input Placeholder 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
-  <input
-    autoFocus={false}
-    className="ant-input container-0-2-54 container-d10-0-2-122"
-    data-test="input"
-    disabled={false}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Search..."
-    type="text"
-    value=""
-  />
-</div>
-`;
-
-exports[`Storyshots Input Suffix 1`] = `
-<div
-  className="light storyWrapper-0-2-2"
->
-  <span
-    className="ant-input-affix-wrapper container-0-2-54 container-d11-0-2-123"
-    onMouseUp={[Function]}
+  <div
+    className="container-0-2-54 container-d10-0-2-122"
   >
     <input
       autoFocus={false}
@@ -1582,45 +1593,74 @@ exports[`Storyshots Input Suffix 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
-      placeholder=""
-      style={null}
+      placeholder="Search..."
       type="text"
       value=""
     />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Input Suffix 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <div
+    className="container-0-2-54 container-d11-0-2-123"
+  >
     <span
-      className="ant-input-suffix"
+      className="ant-input-affix-wrapper"
+      onMouseUp={[Function]}
     >
+      <input
+        autoFocus={false}
+        className="ant-input"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        style={null}
+        type="text"
+        value=""
+      />
       <span
-        className=""
-        data-test="tooltip-trigger"
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
+        className="ant-input-suffix"
       >
         <span
-          className="iconButton-0-2-19"
-          onClick={[Function]}
+          className=""
+          data-test="tooltip-trigger"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d29-0-2-126"
-            data-icon="copy"
-            data-prefix="far"
-            focusable="false"
-            role="img"
-            style={Object {}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            className="iconButton-0-2-19"
+            onClick={[Function]}
           >
-            <path
-              d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"
-              fill="currentColor"
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-copy fa-w-14 icon-0-2-18 icon-d29-0-2-126"
+              data-icon="copy"
+              data-prefix="far"
+              focusable="false"
+              role="img"
               style={Object {}}
-            />
-          </svg>
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </span>
         </span>
       </span>
     </span>
-  </span>
+  </div>
 </div>
 `;
 
@@ -1629,19 +1669,23 @@ exports[`Storyshots JSONPathPicker Default 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div>
-    <input
-      autoFocus={false}
-      className="ant-input container-0-2-54 container-d12-0-2-127"
-      data-test="input"
-      disabled={false}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      type="text"
-      value="$.dassana"
-    />
+    <div
+      className="container-0-2-54 container-d12-0-2-127"
+    >
+      <input
+        autoFocus={false}
+        className="ant-input"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value="$.dassana"
+      />
+    </div>
     <div
       style={
         Object {
@@ -2398,19 +2442,23 @@ exports[`Storyshots Logs Default 1`] = `
   <div
     className="container-0-2-145"
   >
-    <input
-      autoFocus={false}
-      className="ant-input container-0-2-54 container-d13-0-2-152 search-0-2-149"
-      data-test="input"
-      disabled={false}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      type="text"
-      value=""
-    />
+    <div
+      className="container-0-2-54 container-d13-0-2-152"
+    >
+      <input
+        autoFocus={false}
+        className="ant-input search-0-2-149"
+        data-test="input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+    </div>
     <div
       className="wrapper-0-2-151"
     >
@@ -6032,19 +6080,23 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
         <div
           className="tableControls-0-2-329 tableControls-d1-0-2-331"
         >
-          <input
-            autoFocus={false}
-            className="ant-input container-0-2-54 container-d14-0-2-332"
-            data-test="input-table-search"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            placeholder=""
-            type="text"
-            value=""
-          />
+          <div
+            className="container-0-2-54 container-d14-0-2-332"
+          >
+            <input
+              autoFocus={false}
+              className="ant-input"
+              data-test="input-table-search"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
         </div>
         <div
           className="ant-table-wrapper"
@@ -7288,27 +7340,42 @@ exports[`Storyshots Tooltip Default 1`] = `
 </div>
 `;
 
+exports[`Storyshots TruncatedText Default 1`] = `
+<div
+  className="light storyWrapper-0-2-2"
+>
+  <span
+    className="container-0-2-341"
+    data-test="tooltip-trigger"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    Some really really lon...
+  </span>
+</div>
+`;
+
 exports[`Storyshots Wizard Default 1`] = `
 <div
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-341"
+    className="container-0-2-342"
   >
     <div
-      className="header-0-2-342"
+      className="header-0-2-343"
     >
       <div
-        className="title-0-2-346"
+        className="title-0-2-347"
       >
         Foo
         <span
-          className="iconButton-0-2-19 iconArrow-0-2-343 iconLeftArrow-0-2-344"
+          className="iconButton-0-2-19 iconArrow-0-2-344 iconLeftArrow-0-2-345"
           onClick={[Function]}
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d59-0-2-349"
+            className="svg-inline--fa fa-arrow-right fa-w-14 icon-0-2-18 icon-d59-0-2-350"
             data-icon="arrow-right"
             data-prefix="fas"
             focusable="false"
