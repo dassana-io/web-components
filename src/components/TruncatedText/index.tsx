@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss'
 import truncate from 'lodash/truncate'
 import React, { FC, useMemo } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
-import { Tooltip, TooltipProps } from 'components'
+import { Tooltip, TooltipProps } from '../Tooltip'
 
 const { font } = styleguide
 
