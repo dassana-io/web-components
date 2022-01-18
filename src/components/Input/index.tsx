@@ -42,6 +42,7 @@ const useStyles = createUseStyles({
 export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonAfter?: string
 	addonBefore?: string
+	containerClasses?: string[]
 	defaultValue?: string
 	inputRef?: RefObject<AntDInput>
 	focused?: boolean
@@ -60,6 +61,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		addonAfter,
 		addonBefore,
 		classes = [],
+		containerClasses = [],
 		dataTag,
 		defaultValue,
 		disabled = false,
@@ -102,22 +104,24 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	return loading ? (
 		<InputSkeleton fullWidth={props.fullWidth} />
 	) : (
-		<AntDInput
-			addonAfter={addonAfter}
-			addonBefore={addonBefore}
-			autoFocus={focused}
-			className={cn(componentClasses.container, inputClasses)}
-			defaultValue={defaultValue}
-			disabled={disabled}
-			onBlur={onBlur}
-			onFocus={onFocus}
-			onKeyDown={onKeyDown}
-			placeholder={placeholder}
-			ref={inputRef}
-			suffix={suffix}
-			type={type}
-			{...controlledCmpProps}
-			{...getDataTestAttributeProp('input', dataTag)}
-		/>
+		<div className={cn(componentClasses.container, containerClasses)}>
+			<AntDInput
+				addonAfter={addonAfter}
+				addonBefore={addonBefore}
+				autoFocus={focused}
+				className={cn(inputClasses)}
+				defaultValue={defaultValue}
+				disabled={disabled}
+				onBlur={onBlur}
+				onFocus={onFocus}
+				onKeyDown={onKeyDown}
+				placeholder={placeholder}
+				ref={inputRef}
+				suffix={suffix}
+				type={type}
+				{...controlledCmpProps}
+				{...getDataTestAttributeProp('input', dataTag)}
+			/>
+		</div>
 	)
 }
