@@ -62,66 +62,52 @@ const generateCommonHoverStyles = (themeType: ThemeType) => {
 	}
 }
 
-const generateCommonErrorStyles = (themeType: ThemeType) => {
+export const generateCommonErrorStyles = (themeType: ThemeType) => {
 	const {
 		error: { borderColor }
 	} = themedStyles[themeType]
 
 	return {
 		...fieldErrorStyles.error,
+		'&:hover': {
+			borderColor
+		},
 		borderColor
 	}
 }
 
-export const generateAddonStyles = (themeType: ThemeType) => {
-	const { error } = themedStyles[themeType]
-
-	return {
-		'&.ant-input-affix-wrapper': {
-			'&$error': {
-				'&:hover': { borderColor: error.borderColor },
-				...generateCommonErrorStyles(themeType)
+export const generateAddonStyles = (themeType: ThemeType) => ({
+	'&.ant-input-affix-wrapper': {
+		'&.ant-input-affix-wrapper-disabled':
+			generateCommonDisabledStyles(themeType),
+		...generateCommonBaseStyles(themeType),
+		...generateCommonHoverStyles(themeType)
+	},
+	'&.ant-input-affix-wrapper-focused, &.ant-input-affix-wrapper:focus':
+		generateCommonFocusStyles(themeType),
+	'&.ant-input-group-wrapper': {
+		'& .ant-input-wrapper': {
+			'& .ant-input-group-addon': {
+				...omit(generateCommonBaseStyles(themeType), ['borderRadius']),
+				fontWeight: fontWeight.light
 			},
-			'&.ant-input-affix-wrapper-disabled':
-				generateCommonDisabledStyles(themeType),
-			...generateCommonBaseStyles(themeType),
-			...generateCommonHoverStyles(themeType)
-		},
-		'&.ant-input-affix-wrapper-focused, &.ant-input-affix-wrapper:focus':
-			generateCommonFocusStyles(themeType),
-		'&.ant-input-group-wrapper': {
-			'& .ant-input-wrapper': {
-				'& .ant-input-group-addon': {
-					...omit(generateCommonBaseStyles(themeType), [
-						'borderRadius'
-					]),
-					fontWeight: fontWeight.light
-				},
-				'& .ant-input-group-addon:first-child': {
-					borderBottomLeftRadius: borderRadius,
-					borderTopLeftRadius: borderRadius
-				},
-				'& .ant-input-group-addon:last-child': {
-					borderBottomRightRadius: borderRadius,
-					borderTopRightRadius: borderRadius
-				}
+			'& .ant-input-group-addon:first-child': {
+				borderBottomLeftRadius: borderRadius,
+				borderTopLeftRadius: borderRadius
 			},
-			'&$error': {
-				'& .ant-input-wrapper .ant-input':
-					generateCommonErrorStyles(themeType)
+			'& .ant-input-group-addon:last-child': {
+				borderBottomRightRadius: borderRadius,
+				borderTopRightRadius: borderRadius
 			}
 		}
 	}
-}
+})
 
 export const generateInputStyles = (themeType: ThemeType) => {
 	const { placeholder } = themedStyles[themeType]
 
 	return {
 		'&.ant-input': {
-			'&$error': {
-				'&$container': generateCommonErrorStyles(themeType)
-			},
 			'&::placeholder': {
 				color: placeholder.color
 			},

@@ -111,7 +111,9 @@ describe('Input', () => {
 		it('passes the correct error class to input', () => {
 			wrapper = mount(<Input error />)
 
-			expect(wrapper.find(AntDInput).hasClass(/error-*/)).toBeTruthy()
+			expect(
+				wrapper.getDOMNode().className.includes('error')
+			).toBeTruthy()
 		})
 	})
 })

@@ -11,7 +11,11 @@ import {
 	defaultFieldWidth,
 	fieldErrorStyles
 } from '../assets/styles/styleguide'
-import { generateAddonStyles, generateInputStyles } from './utils'
+import {
+	generateAddonStyles,
+	generateCommonErrorStyles,
+	generateInputStyles
+} from './utils'
 import React, {
 	FC,
 	FocusEvent,
@@ -26,11 +30,18 @@ const useStyles = createUseStyles({
 	container: {
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
-	error: {},
+	error: {
+		'& input': generateCommonErrorStyles(light),
+		'& span': generateCommonErrorStyles(light)
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		...fieldErrorStyles['@global'],
 		[`.${dark}`]: {
+			'& $error': {
+				'& $input': generateCommonErrorStyles(dark),
+				'& $span': generateCommonErrorStyles(dark)
+			},
 			'& $input': generateInputStyles(dark),
 			'& $span': generateAddonStyles(dark)
 		},
@@ -42,6 +53,7 @@ const useStyles = createUseStyles({
 export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonAfter?: string
 	addonBefore?: string
+	containerClasses?: string[]
 	defaultValue?: string
 	inputRef?: RefObject<AntDInput>
 	focused?: boolean
@@ -60,6 +72,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		addonAfter,
 		addonBefore,
 		classes = [],
+		containerClasses = [],
 		dataTag,
 		defaultValue,
 		disabled = false,
@@ -79,11 +92,12 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 
 	const componentClasses = useStyles(props)
 
-	const inputClasses: string = cn(
+	const inputContainerClasses: string = cn(
 		{
+			[componentClasses.container]: true,
 			[componentClasses.error]: error
 		},
-		classes
+		containerClasses
 	)
 
 	let controlledCmpProps = {}
@@ -102,22 +116,24 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	return loading ? (
 		<InputSkeleton fullWidth={props.fullWidth} />
 	) : (
-		<AntDInput
-			addonAfter={addonAfter}
-			addonBefore={addonBefore}
-			autoFocus={focused}
-			className={cn(componentClasses.container, inputClasses)}
-			defaultValue={defaultValue}
-			disabled={disabled}
-			onBlur={onBlur}
-			onFocus={onFocus}
-			onKeyDown={onKeyDown}
-			placeholder={placeholder}
-			ref={inputRef}
-			suffix={suffix}
-			type={type}
-			{...controlledCmpProps}
-			{...getDataTestAttributeProp('input', dataTag)}
-		/>
+		<div className={inputContainerClasses}>
+			<AntDInput
+				addonAfter={addonAfter}
+				addonBefore={addonBefore}
+				autoFocus={focused}
+				className={cn(classes)}
+				defaultValue={defaultValue}
+				disabled={disabled}
+				onBlur={onBlur}
+				onFocus={onFocus}
+				onKeyDown={onKeyDown}
+				placeholder={placeholder}
+				ref={inputRef}
+				suffix={suffix}
+				type={type}
+				{...controlledCmpProps}
+				{...getDataTestAttributeProp('input', dataTag)}
+			/>
+		</div>
 	)
 }
