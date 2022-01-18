@@ -31,8 +31,8 @@ const useStyles = createUseStyles({
 		width: props => (props.fullWidth ? '100%' : defaultFieldWidth)
 	},
 	error: {
-		'& $input': generateCommonErrorStyles(light),
-		'& $span': generateCommonErrorStyles(light)
+		'& input': generateCommonErrorStyles(light),
+		'& span': generateCommonErrorStyles(light)
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {

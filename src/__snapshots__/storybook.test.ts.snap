@@ -1514,11 +1514,11 @@ exports[`Storyshots Input Error 1`] = `
   className="light storyWrapper-0-2-2"
 >
   <div
-    className="container-0-2-54 container-d7-0-2-117"
+    className="container-0-2-54 container-d7-0-2-117 error-0-2-55"
   >
     <input
       autoFocus={false}
-      className="ant-input error-0-2-55"
+      className="ant-input"
       data-test="input"
       disabled={false}
       onBlur={[Function]}
