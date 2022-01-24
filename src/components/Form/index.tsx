@@ -23,7 +23,6 @@ import {
 	useFormContext
 } from 'react-hook-form'
 import React, {
-	KeyboardEvent,
 	ReactNode,
 	RefObject,
 	useEffect,
@@ -70,11 +69,6 @@ export function Form<Model>({
 
 	useImperativeHandle(formRef, () => methods)
 
-	const checkKeyDown = (e: KeyboardEvent) => {
-		// Prevent Enter key from automatically submitting form
-		if (e.code === 'Enter') e.preventDefault()
-	}
-
 	useEffect(() => {
 		/**
 		 * Form must be reset with initialValues if they are fetched asynchronously because the
@@ -86,7 +80,7 @@ export function Form<Model>({
 
 	return (
 		<FormProvider {...methods}>
-			<form onKeyDown={checkKeyDown} onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<FieldContext.Provider value={{ disabled, loading, onSubmit }}>
 					<div className={classes.container}>{children}</div>
 				</FieldContext.Provider>
