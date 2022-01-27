@@ -80,6 +80,7 @@ export interface BannerProps {
 	id: string
 	children?: ReactNode
 	classes?: string[]
+	persistBannerState?: boolean
 	showIcon?: boolean
 	title: ReactNode
 	type: NotificationTypes
@@ -89,6 +90,7 @@ export const Banner: FC<BannerProps> = ({
 	id,
 	children,
 	classes = [],
+	persistBannerState = true,
 	showIcon = false,
 	title,
 	type
@@ -113,29 +115,36 @@ export const Banner: FC<BannerProps> = ({
 
 	const onBannerClose = () => {
 		setRenderBanner(false)
-		updateBannerPreferences(banners, id, false)
+
+		if (persistBannerState) {
+			updateBannerPreferences(banners, id, false)
+		}
 	}
 
-	return renderBanner ? (
-		<div className={cn(componentClasses.container, classes)}>
-			<div className={componentClasses.headerContainer}>
-				<div className={componentClasses.header}>
-					{showIcon && (
-						<FontAwesomeIcon
-							className={iconClasses}
-							icon={mappedTypesToIcons[type].icon}
+	return (
+		<>
+			{renderBanner && (
+				<div className={cn(componentClasses.container, classes)}>
+					<div className={componentClasses.headerContainer}>
+						<div className={componentClasses.header}>
+							{showIcon && (
+								<FontAwesomeIcon
+									className={iconClasses}
+									icon={mappedTypesToIcons[type].icon}
+								/>
+							)}
+							<div className={componentClasses.title}>
+								{title}
+							</div>
+						</div>
+						<IconButton
+							classes={[componentClasses.closeBtn]}
+							onClick={onBannerClose}
 						/>
-					)}
-					<div className={componentClasses.title}>{title}</div>
+					</div>
+					<div>{children}</div>
 				</div>
-				<IconButton
-					classes={[componentClasses.closeBtn]}
-					onClick={onBannerClose}
-				/>
-			</div>
-			<div>{children}</div>
-		</div>
-	) : (
-		<></>
+			)}
+		</>
 	)
 }
