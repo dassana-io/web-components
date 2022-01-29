@@ -11,9 +11,10 @@ import 'ace-builds/src-min-noconflict/ext-searchbox'
 import 'ace-builds/src-min-noconflict/mode-jsx'
 import 'ace-builds/src-min-noconflict/mode-markdown'
 import 'ace-builds/src-min-noconflict/mode-json'
+import 'ace-builds/src-min-noconflict/mode-sql'
 import 'ace-builds/src-min-noconflict/mode-yaml'
 
-const languages = ['markdown', 'json', 'yaml'] as const
+const languages = ['markdown', 'json', 'sql', 'yaml'] as const
 
 export interface CodeProps
 	extends Pick<
@@ -25,6 +26,7 @@ export interface CodeProps
 		| 'height'
 		| 'maxLines'
 		| 'onLoad'
+		| 'placeholder'
 		| 'showGutter'
 		| 'tabSize'
 		| 'width'
