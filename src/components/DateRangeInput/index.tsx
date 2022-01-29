@@ -40,6 +40,7 @@ interface TimeProps {
 }
 
 export interface DateRangeInputProps {
+	alwaysOpen?: boolean
 	classes?: string[]
 	disabledDate?: (date: Moment) => boolean
 	displayFormat?: string
@@ -58,6 +59,7 @@ export interface DateRangeInputProps {
 }
 
 export const DateRangeInput: FC<DateRangeInputProps> = ({
+	alwaysOpen = false,
 	classes = [],
 	displayFormat = 'YYYY-MM-DD hh:mm A',
 	disabledDate,
@@ -99,6 +101,12 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 		}
 	}
 
+	let openProps = {}
+
+	if (alwaysOpen) {
+		openProps = { open: true }
+	}
+
 	return loading ? (
 		<SelectSkeleton />
 	) : (
@@ -116,6 +124,7 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 			}
 			size={size}
 			{...controlledCmpProps}
+			{...openProps}
 			{...getPopupContainerProps(popupContainerSelector)}
 		/>
 	)

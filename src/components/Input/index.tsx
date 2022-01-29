@@ -64,7 +64,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	 * Type of input (ex: text, password)
 	 * @default text
 	 */
-	type?: 'text' | 'password'
+	type?: 'number' | 'text' | 'password'
 }
 
 export const Input: FC<InputProps> = (props: InputProps) => {

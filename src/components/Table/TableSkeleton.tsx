@@ -96,18 +96,17 @@ const TDataCellSkeleton: FC<TDataCellSkeletonProps> = ({
 }: TDataCellSkeletonProps) => {
 	const classes = useStyles()
 
-	const format = columns[index].format
-	const type = columns[index].type
+	let props = { width: `${random(25, 100)}%` }
 
-	let props = {}
+	if (columns.length) {
+		const format = columns[index].format
+		const type = columns[index].type
 
-	if (mappedSkeletonProps[type]) {
-		props = mappedSkeletonProps[type]
-	} else {
-		props =
-			format && mappedSkeletonProps[format]
-				? mappedSkeletonProps[format]
-				: { width: `${random(25, 100)}%` }
+		if (mappedSkeletonProps[type]) {
+			props = mappedSkeletonProps[type]
+		} else if (format && mappedSkeletonProps[format]) {
+			props = mappedSkeletonProps[format]
+		}
 	}
 
 	return (
@@ -132,7 +131,7 @@ export const TableSkeleton: FC<TableSkeletonProps> = ({
 
 	const classes = useStyles()
 
-	const columnCount = isMobile ? 2 : columns.length
+	const columnCount = isMobile ? 2 : columns.length || random(3, 6)
 
 	return (
 		<table className={classes.table}>

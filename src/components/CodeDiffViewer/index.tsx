@@ -10,12 +10,13 @@ import { diffCmpStyles, useStyles } from './styles'
 import React, { FC, useCallback, useMemo } from 'react'
 import ReactDiffViewer, { ReactDiffViewerProps } from 'react-diff-viewer'
 
-const { css, javascript, yaml, json } = Prism.languages
+const { css, javascript, yaml, json, sql } = Prism.languages
 
 export enum CodeLanguages {
 	css = 'css',
 	javascript = 'javascript',
 	json = 'json',
+	sql = 'sql',
 	yaml = 'yaml'
 }
 
@@ -35,6 +36,7 @@ const prismLanguageMap: Record<CodeLanguages, LanguageConfig> = {
 	[CodeLanguages.css]: { language: css },
 	[CodeLanguages.javascript]: { language: javascript },
 	[CodeLanguages.json]: { language: json },
+	[CodeLanguages.sql]: { language: sql },
 	[CodeLanguages.yaml]: { language: yaml, normalizer: normalizeYamlStr }
 }
 
