@@ -157,7 +157,7 @@ const generateTableStyles = (themeType: ThemeType) => {
 						'& > .ant-table-cell': {
 							background: td.base.background
 						},
-						color: td.base.background
+						color
 					},
 				background: td.base.background
 			}

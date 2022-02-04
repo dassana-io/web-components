@@ -97,8 +97,11 @@ export const tokenColors = {
 		primitive: darkCommonColor,
 		property: oranges.base,
 		punctuation: darkCommonColor,
+		storage: oranges.base,
 		string: manipulateColor(greens.base, 20, shade),
+		support: oranges.base,
 		tag: oranges.base,
+		type: reds.base,
 		variable: darkCommonColor
 	},
 	[light]: {
@@ -116,8 +119,11 @@ export const tokenColors = {
 		primitive: lightCommonColor,
 		property: reds.base,
 		punctuation: lightCommonColor,
+		storage: reds.base,
 		string: manipulateColor(greens.base, 10, shade),
+		support: reds.base,
 		tag: reds.base,
+		type: oranges.base,
 		variable: lightCommonColor
 	}
 }
@@ -125,11 +131,14 @@ export const tokenColors = {
 const aceColorsNormalizer = {
 	boolean: 'boolean',
 	comment: 'comment',
+	function: 'function',
 	keyword: 'keyword',
 	list: 'list',
 	number: 'numeric',
 	property: 'variable',
+	storage: 'storage',
 	string: 'string',
+	support: 'support',
 	tag: 'tag'
 }
 

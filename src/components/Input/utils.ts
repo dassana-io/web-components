@@ -69,7 +69,7 @@ export const generateCommonErrorStyles = (themeType: ThemeType) => {
 
 	return {
 		...fieldErrorStyles.error,
-		'&:hover': {
+		'&:hover, &:focus': {
 			borderColor
 		},
 		borderColor
