@@ -6,7 +6,7 @@ import { TableDrawerProps } from './index'
 import { useModal } from 'components/Modal'
 import { useWindowSize } from '@dassana-io/web-utils'
 import { DataId, Table } from '../Table'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
 const { borderRadius, spacing } = styleguide
@@ -50,19 +50,41 @@ const useStyles = createUseStyles({
 
 export const TableDrawer = <DataType extends DataId>({
 	containerId,
+	data = [],
 	drawerContainerClasses = [],
+	loading = false,
 	renderDrawerCmp,
 	tableContainerClasses = [],
 	...rest
 }: TableDrawerProps<DataType>) => {
 	const [rowData, setRowData] = useState({} as DataType)
-	const resetRowData = () => setRowData({} as DataType)
 	const { isMobile } = useWindowSize()
 	const { setModalConfig } = useModal()
 
-	const isRowEmpty = isEmpty(rowData)
+	const isRowEmpty = useMemo(() => isEmpty(rowData), [rowData])
 
 	const classes = useStyles()
+
+	const resetRowData = useCallback(() => setRowData({} as DataType), [])
+
+	const onRowClick = useCallback(
+		(clickedRowData: DataType) => {
+			isMobile &&
+				setModalConfig({
+					content: renderDrawerCmp(rowData.id, clickedRowData)
+				})
+
+			return rowData.id === clickedRowData.id
+				? resetRowData()
+				: setRowData(clickedRowData)
+		},
+		[isMobile, setModalConfig, renderDrawerCmp, resetRowData, rowData.id]
+	)
+
+	useEffect(() => {
+		if (loading) resetRowData()
+	}, [loading, resetRowData])
+
 	const drawerClasses = cn(
 		{
 			[classes.drawer]: true,
@@ -70,17 +92,6 @@ export const TableDrawer = <DataType extends DataId>({
 		},
 		drawerContainerClasses
 	)
-
-	const onRowClick = (clickedRowData: DataType) => {
-		isMobile &&
-			setModalConfig({
-				content: renderDrawerCmp(rowData.id, clickedRowData)
-			})
-
-		return rowData.id === clickedRowData.id
-			? resetRowData()
-			: setRowData(clickedRowData)
-	}
 
 	return (
 		<div className={classes.container} id={containerId}>
@@ -92,6 +103,7 @@ export const TableDrawer = <DataType extends DataId>({
 			>
 				<Table<DataType>
 					activeRowKey={rowData.id}
+					data={data}
 					onRowClick={onRowClick}
 					{...rest}
 				/>
