@@ -2,18 +2,26 @@ import 'antd/lib/avatar/style/index.css'
 import { Avatar as AntDAvatar } from 'antd'
 import { AvatarProps as AntDAvatarProps } from 'antd/lib/avatar'
 import { createUseStyles } from 'react-jss'
-import { styleguide } from 'components/assets/styles'
 import React, { FC, ReactNode } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const { dark } = ThemeType
 
 const {
 	colors: { blacks }
 } = styleguide
 
+const avatarStyles = {
+	background: blacks['lighten-30'],
+	color: blacks['lighten-80']
+}
+
 const useStyles = createUseStyles({
+	avatar: avatarStyles,
+	// eslint-disable-next-line sort-keys
 	'@global': {
-		'.ant-avatar': {
-			background: blacks['lighten-30'],
-			color: blacks['lighten-80']
+		[`.${dark}`]: {
+			'& $avatar': avatarStyles
 		}
 	}
 })
@@ -53,10 +61,15 @@ export const Avatar: FC<AvatarProps> = ({
 	icon,
 	size
 }: AvatarProps) => {
-	useStyles()
+	const classes = useStyles()
 
 	return (
-		<AntDAvatar gap={gap} icon={icon} size={size}>
+		<AntDAvatar
+			className={classes.avatar}
+			gap={gap}
+			icon={icon}
+			size={size}
+		>
 			{children}
 		</AntDAvatar>
 	)

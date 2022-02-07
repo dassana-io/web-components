@@ -66,6 +66,10 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 */
 	columns: ColumnType[]
 	/**
+	 * Optional prop to show controls
+	 */
+	controls?: boolean
+	/**
 	 * Array of data objects
 	 */
 	data: TableData<Data>[]
@@ -106,6 +110,7 @@ export const Table = <Data,>({
 	activeRowKey = '',
 	classes = [],
 	columns,
+	controls = true,
 	data,
 	dataTag,
 	loading = false,
@@ -284,7 +289,7 @@ export const Table = <Data,>({
 				className={cn(tableClasses.tableContainer, classes)}
 				ref={tableRef}
 			>
-				{search && (
+				{controls && (
 					<div
 						className={cn(
 							tableClasses.tableControls,
@@ -292,13 +297,15 @@ export const Table = <Data,>({
 						)}
 					>
 						{renderTableControls && renderTableControls()}
-						<Input
-							dataTag='table-search'
-							fullWidth={isMobile}
-							loading={loading}
-							onChange={handleChange}
-							placeholder={searchProps.placeholder}
-						/>
+						{search && (
+							<Input
+								dataTag='table-search'
+								fullWidth={isMobile}
+								loading={loading}
+								onChange={handleChange}
+								placeholder={searchProps.placeholder}
+							/>
+						)}
 					</div>
 				)}
 				{loading ? (
