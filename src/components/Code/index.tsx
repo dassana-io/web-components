@@ -34,6 +34,7 @@ export interface CodeProps
 	> {
 	classes?: string[]
 	code?: CodeType
+	codeControlsClasses?: string[]
 	dataTag?: string
 	displayControls?: DisplayCodeControls | false
 	editorRef?: RefObject<AceEditor>
@@ -47,6 +48,7 @@ export interface CodeProps
 export const Code: FC<CodeProps> = ({
 	classes = [],
 	code,
+	codeControlsClasses = [],
 	dataTag,
 	displayControls = {},
 	editorRef,
@@ -90,7 +92,7 @@ export const Code: FC<CodeProps> = ({
 		>
 			{displayControls && (
 				<CodeControls
-					classes={[compClasses.controls]}
+					classes={[cn(compClasses.controls, codeControlsClasses)]}
 					displayControls={displayControls}
 					onClickCopyCode={copyCode}
 					onClickWrapCode={() => setIsWrapped(oldVal => !oldVal)}
