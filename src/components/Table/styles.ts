@@ -131,8 +131,7 @@ const generateTableStyles = (
 	} = themedStyles[themeType]
 
 	const { arrow, td, th } = tablePalette(additionalPaletteColors)[themeType]
-	console.log(themeType, 'theme type')
-	console.log(th, 'th')
+
 	return {
 		...flexDown,
 		'& .ant-table-wrapper': {

@@ -187,4 +187,4 @@ export interface DataId extends Record<string, any> {
 
 export type TableData<Data> = Data & DataId
 
-export type AdditionalPaletteColors = Record<ThemeType, Record<string, string>>
+export type AdditionalPaletteColors = Record<ThemeType, any>
