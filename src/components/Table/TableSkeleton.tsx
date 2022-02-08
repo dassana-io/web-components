@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
 		'&:last-of-type': {
 			paddingRight: spacing.l
 		},
-		background: tablePalette[light].td.base.background,
+		background: tablePalette()[light].td.base.background,
 		borderBottom: `1px solid ${themes[light].border}`,
 		height: 54,
 		padding: `0 ${spacing.m}px`
@@ -42,7 +42,7 @@ const useStyles = createUseStyles({
 		'&:last-of-type': {
 			paddingRight: spacing.l
 		},
-		background: tablePalette[light].th.base.background,
+		background: tablePalette()[light].th.base.background,
 		height: 55,
 		padding: `0 ${spacing.m}px`
 	},
@@ -51,11 +51,11 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $table': {},
 			'& $td': {
-				background: tablePalette[dark].td.base.background,
+				background: tablePalette()[dark].td.base.background,
 				borderBottom: `1px solid ${themes[dark].border}`
 			},
 			'& $th': {
-				background: tablePalette[dark].th.base.background
+				background: tablePalette()[dark].th.base.background
 			}
 		}
 	}

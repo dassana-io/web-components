@@ -1,3 +1,4 @@
+import { AdditionalPaletteColors } from './types'
 import { createUseStyles } from 'react-jss'
 import { TableProps } from '.'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
@@ -53,7 +54,14 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 	}
 }
 
-export const tablePalette = {
+const defaultAdditionalPaletteColors = {
+	[dark]: {},
+	[light]: {}
+}
+
+export const tablePalette = (
+	additionalPaletteColors: AdditionalPaletteColors = defaultAdditionalPaletteColors
+) => ({
 	[dark]: {
 		arrow: {
 			active: blacks['lighten-60'],
@@ -75,12 +83,13 @@ export const tablePalette = {
 		},
 		th: {
 			base: {
-				background: blacks['darken-40']
+				background: blacks['darken-20']
 			},
 			sort: {
-				background: blacks['darken-40']
+				background: blacks['darken-20']
 			}
-		}
+		},
+		...additionalPaletteColors[dark]
 	},
 	[light]: {
 		arrow: {
@@ -108,16 +117,20 @@ export const tablePalette = {
 			sort: {
 				background: grays.base
 			}
-		}
+		},
+		...additionalPaletteColors[light]
 	}
-}
+})
 
-const generateTableStyles = (themeType: ThemeType) => {
+const generateTableStyles = (
+	themeType: ThemeType,
+	additionalPaletteColors?: AdditionalPaletteColors
+) => {
 	const {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { arrow, td, th } = tablePalette[themeType]
+	const { arrow, td, th } = tablePalette(additionalPaletteColors)[themeType]
 
 	return {
 		...flexDown,
@@ -175,7 +188,7 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 		base: { borderColor, color }
 	} = themedStyles[themeType]
 
-	const { td } = tablePalette[themeType]
+	const { td } = tablePalette()[themeType]
 
 	return {
 		[cellClasses]: {
@@ -193,7 +206,7 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 }
 
 const generateThemedActiveCellStyles = (themeType: ThemeType) => {
-	const { td } = tablePalette[themeType]
+	const { td } = tablePalette()[themeType]
 
 	return {
 		background: td.active.background
@@ -201,7 +214,7 @@ const generateThemedActiveCellStyles = (themeType: ThemeType) => {
 }
 
 const generateThemedRowIconStyles = (themeType: ThemeType, active = false) => {
-	const { arrow } = tablePalette[themeType]
+	const { arrow } = tablePalette()[themeType]
 
 	return {
 		color: active ? arrow.active : arrow.base
@@ -243,7 +256,8 @@ export const useStyles = createUseStyles({
 			}
 		}
 	},
-	tableContainer: generateTableStyles(light),
+	tableContainer: props =>
+		generateTableStyles(light, props.additionalPaletteColors),
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
@@ -268,7 +282,8 @@ export const useStyles = createUseStyles({
 					}
 				}
 			},
-			'& $tableContainer': generateTableStyles(dark)
+			'& $tableContainer': props =>
+				generateTableStyles(dark, props.additionalPaletteColors)
 		}
 	},
 	tableControls: {
