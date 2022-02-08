@@ -57,7 +57,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Key(id) of active row if onRowClick exists
 	 */
 	activeRowKey?: Key
-	additionalColorPalette?: AdditionalPaletteColors
+	additionalPaletteColors?: AdditionalPaletteColors
 	/**
 	 * Array of classes to pass to Table
 	 */
@@ -109,7 +109,7 @@ type Pagination = false | { defaultPageSize?: number; showSizeChanger: false }
 // eslint-disable-next-line comma-spacing
 export const Table = <Data,>({
 	activeRowKey = '',
-	additionalColorPalette,
+	additionalPaletteColors,
 	classes = [],
 	columns,
 	controls = true,
@@ -142,11 +142,11 @@ export const Table = <Data,>({
 		windowSize: { width }
 	} = useWindowSize()
 
-	const tableClasses = useStyles({
-		additionalColorPalette,
+	const tableClasses = useStyles<Data>({
+		additionalPaletteColors,
 		onRowClick,
 		searchProps
-	})
+	})()
 
 	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
 	const [processedData, setProcessedData] = useState(
