@@ -2,6 +2,7 @@ import { ColoredDotProps } from '../ColoredDot'
 import { LinkProps } from '../Link'
 import { SharedIconProps } from '../Icon'
 import { TableMethods } from './utils'
+import { ThemeType } from 'components/assets/styles'
 import { Key, ReactNode } from 'react'
 
 export enum ColumnTypes {
@@ -185,3 +186,5 @@ export interface DataId extends Record<string, any> {
 }
 
 export type TableData<Data> = Data & DataId
+
+export type AdditionalPaletteColors = Record<ThemeType, any>

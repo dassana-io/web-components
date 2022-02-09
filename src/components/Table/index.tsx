@@ -12,7 +12,7 @@ import { TableCtxProvider } from './TableContext'
 import { TableSkeleton } from './TableSkeleton'
 import { useStyles } from './styles'
 import { useWindowSize } from '@dassana-io/web-utils'
-import { ColumnType, TableData } from './types'
+import { AdditionalPaletteColors, ColumnType, TableData } from './types'
 import { mapData, mapFilterKeys, processColumns, processData } from './utils'
 import React, {
 	ChangeEvent,
@@ -57,6 +57,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Key(id) of active row if onRowClick exists
 	 */
 	activeRowKey?: Key
+	additionalPaletteColors?: AdditionalPaletteColors
 	/**
 	 * Array of classes to pass to Table
 	 */
@@ -108,6 +109,7 @@ type Pagination = false | { defaultPageSize?: number; showSizeChanger: false }
 // eslint-disable-next-line comma-spacing
 export const Table = <Data,>({
 	activeRowKey = '',
+	additionalPaletteColors,
 	classes = [],
 	columns,
 	controls = true,
@@ -140,10 +142,11 @@ export const Table = <Data,>({
 		windowSize: { width }
 	} = useWindowSize()
 
-	const tableClasses = useStyles({
+	const tableClasses = useStyles<Data>({
+		additionalPaletteColors,
 		onRowClick,
 		searchProps
-	})
+	})()
 
 	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
 	const [processedData, setProcessedData] = useState(

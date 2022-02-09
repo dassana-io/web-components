@@ -1,5 +1,6 @@
+import { AdditionalPaletteColors } from './types'
 import { createUseStyles } from 'react-jss'
-import { TableProps } from '.'
+import { SearchProps, TableProps } from '.'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -53,7 +54,14 @@ export const generatePaginationStyles = (themeType: ThemeType) => {
 	}
 }
 
-export const tablePalette = {
+const defaultAdditionalPaletteColors = {
+	[dark]: {},
+	[light]: {}
+}
+
+export const tablePalette = (
+	additionalPaletteColors: AdditionalPaletteColors = defaultAdditionalPaletteColors
+) => ({
 	[dark]: {
 		arrow: {
 			active: blacks['lighten-60'],
@@ -75,12 +83,13 @@ export const tablePalette = {
 		},
 		th: {
 			base: {
-				background: blacks['darken-40']
+				background: blacks['darken-20']
 			},
 			sort: {
-				background: blacks['darken-40']
+				background: blacks['darken-20']
 			}
-		}
+		},
+		...additionalPaletteColors[dark]
 	},
 	[light]: {
 		arrow: {
@@ -108,16 +117,20 @@ export const tablePalette = {
 			sort: {
 				background: grays.base
 			}
-		}
+		},
+		...additionalPaletteColors[light]
 	}
-}
+})
 
-const generateTableStyles = (themeType: ThemeType) => {
+const generateTableStyles = (
+	themeType: ThemeType,
+	additionalPaletteColors?: AdditionalPaletteColors
+) => {
 	const {
 		base: { color }
 	} = themedStyles[themeType]
 
-	const { arrow, td, th } = tablePalette[themeType]
+	const { arrow, td, th } = tablePalette(additionalPaletteColors)[themeType]
 
 	return {
 		...flexDown,
@@ -175,7 +188,7 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 		base: { borderColor, color }
 	} = themedStyles[themeType]
 
-	const { td } = tablePalette[themeType]
+	const { td } = tablePalette()[themeType]
 
 	return {
 		[cellClasses]: {
@@ -193,7 +206,7 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 }
 
 const generateThemedActiveCellStyles = (themeType: ThemeType) => {
-	const { td } = tablePalette[themeType]
+	const { td } = tablePalette()[themeType]
 
 	return {
 		background: td.active.background
@@ -201,16 +214,19 @@ const generateThemedActiveCellStyles = (themeType: ThemeType) => {
 }
 
 const generateThemedRowIconStyles = (themeType: ThemeType, active = false) => {
-	const { arrow } = tablePalette[themeType]
+	const { arrow } = tablePalette()[themeType]
 
 	return {
 		color: active ? arrow.active : arrow.base
 	}
 }
 
-const generateLightRowIconStyles = (isActive = false) => ({
+const generateLightRowIconStyles = <T>(
+	props: StyleProps<T>,
+	isActive = false
+) => ({
 	...generateThemedRowIconStyles(light, isActive),
-	content: (props: TableProps<{}>) => (props.onRowClick ? '"\u27e9"' : '""'),
+	content: props.onRowClick ? '"\u27e9"' : '""',
 	fontSize: font.body.fontSize,
 	lineHeight: '12px',
 	position: 'absolute',
@@ -218,64 +234,83 @@ const generateLightRowIconStyles = (isActive = false) => ({
 	top: `calc(50% - ${font.body.fontSize / 2}px)`
 })
 
-export const useStyles = createUseStyles({
-	activeRow: {},
-	row: {
-		[rowClasses]: {
-			'&$activeRow': {
-				[cellClasses]: {
-					...generateThemedActiveCellStyles(light),
-					[lastCellAfterClasses]: generateLightRowIconStyles(true)
-				}
-			},
-			[cellClasses]: {
-				...generateThemedCellStyles(light)[cellClasses],
-				'&:last-child': {
-					paddingRight: props =>
-						props.onRowClick ? 2 * spacing.l : spacing.m
-				},
-				cursor: props => (props.onRowClick ? 'pointer' : 'default'),
-				fontWeight: 300
-			},
-			[rowHoverCellClasses]: {
-				...generateThemedCellStyles(light)[rowHoverCellClasses],
-				[lastCellAfterClasses]: generateLightRowIconStyles()
-			}
-		}
-	},
-	tableContainer: generateTableStyles(light),
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		[`.${dark}`]: {
-			'& $row': {
-				[rowClasses]: {
-					'&$activeRow': {
-						[cellClasses]: {
-							...generateThemedActiveCellStyles(dark),
-							[lastCellAfterClasses]: generateThemedRowIconStyles(
-								dark,
-								true
-							)
-						}
-					},
+interface StyleProps<T> {
+	additionalPaletteColors?: AdditionalPaletteColors
+	onRowClick?: TableProps<T>['onRowClick']
+	searchProps: SearchProps
+}
+
+export const useStyles = <T>(props: StyleProps<T>) =>
+	createUseStyles({
+		activeRow: {},
+		row: {
+			[rowClasses]: {
+				'&$activeRow': {
 					[cellClasses]: {
-						...generateThemedCellStyles(dark)[cellClasses]
-					},
-					[rowHoverCellClasses]: {
-						...generateThemedCellStyles(dark)[rowHoverCellClasses],
-						[lastCellAfterClasses]:
-							generateThemedRowIconStyles(dark)
+						...generateThemedActiveCellStyles(light),
+						[lastCellAfterClasses]: generateLightRowIconStyles<T>(
+							props,
+							true
+						)
 					}
+				},
+				[cellClasses]: {
+					...generateThemedCellStyles(light)[cellClasses],
+					'&:last-child': {
+						paddingRight: props.onRowClick
+							? 2 * spacing.l
+							: spacing.m
+					},
+					cursor: props.onRowClick ? 'pointer' : 'default',
+					fontWeight: 300
+				},
+				[rowHoverCellClasses]: {
+					...generateThemedCellStyles(light)[rowHoverCellClasses],
+					[lastCellAfterClasses]: generateLightRowIconStyles<T>(props)
 				}
-			},
-			'& $tableContainer': generateTableStyles(dark)
+			}
+		},
+		tableContainer: generateTableStyles(
+			light,
+			props.additionalPaletteColors
+		),
+		// eslint-disable-next-line sort-keys
+		'@global': {
+			[`.${dark}`]: {
+				'& $row': {
+					[rowClasses]: {
+						'&$activeRow': {
+							[cellClasses]: {
+								...generateThemedActiveCellStyles(dark),
+								[lastCellAfterClasses]:
+									generateThemedRowIconStyles(dark, true)
+							}
+						},
+						[cellClasses]: {
+							...generateThemedCellStyles(dark)[cellClasses]
+						},
+						[rowHoverCellClasses]: {
+							...generateThemedCellStyles(dark)[
+								rowHoverCellClasses
+							],
+							[lastCellAfterClasses]:
+								generateThemedRowIconStyles(dark)
+						}
+					}
+				},
+				'& $tableContainer': generateTableStyles(
+					dark,
+					props.additionalPaletteColors
+				)
+			}
+		},
+		tableControls: {
+			display: 'flex',
+			justifyContent:
+				props.searchProps.placement === 'right'
+					? 'flex-end'
+					: 'flex-start',
+			marginBottom: spacing.m,
+			width: '100%'
 		}
-	},
-	tableControls: {
-		display: 'flex',
-		justifyContent: props =>
-			props.searchProps.placement === 'right' ? 'flex-end' : 'flex-start',
-		marginBottom: spacing.m,
-		width: '100%'
-	}
-})
+	})
