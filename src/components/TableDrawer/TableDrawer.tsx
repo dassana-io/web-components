@@ -104,6 +104,7 @@ export const TableDrawer = <DataType extends DataId>({
 				<Table<DataType>
 					activeRowKey={rowData.id}
 					data={data}
+					loading={loading}
 					onRowClick={onRowClick}
 					{...rest}
 				/>

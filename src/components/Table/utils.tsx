@@ -25,6 +25,10 @@ import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
+const { component, number, string } = ColumnTypes
+const { action, boolean, byte, date, icon, coloredDot, link, tag, toggle } =
+	ColumnFormats
+
 /* ------- Exported Functions ------- */
 
 interface MappedData<TableData> {
@@ -104,7 +108,7 @@ export function processData<TableData extends DataId>(
 				item
 			) as ProcessedData<TableData>[keyof TableData]
 
-			if (value) {
+			if (!isUndefined(value)) {
 				partialData[dataIndex as keyof TableData] = value
 			}
 
@@ -298,8 +302,14 @@ function applySort<TableData extends DataId>(
 			break
 
 		case string:
-			antDColumn.sorter = compareStrings(column)
-			break
+			switch (column.format) {
+				case boolean:
+					antDColumn.sorter = compareBooleans(column)
+					break
+				default:
+					antDColumn.sorter = compareStrings(column)
+					break
+			}
 	}
 }
 
@@ -427,9 +437,6 @@ function applyRender<TableData extends DataId>(
 	antDColumn: AntDColumnType<TableData>,
 	tableMethods: TableMethods<TableData>
 ) {
-	const { component, number, string } = ColumnTypes
-	const { action, byte, date, icon, coloredDot, link, tag, toggle } =
-		ColumnFormats
 	const { updateRowData } = tableMethods
 
 	switch (column.type) {
@@ -482,14 +489,35 @@ function applyRender<TableData extends DataId>(
 					}
 				}
 			} else {
-				antDColumn.render = (record: string | string[]) => (
-					<CellWithTooltip
-						showTooltip={ellipsis}
-						text={
-							Array.isArray(record) ? record.join(', ') : record
-						}
-					/>
-				)
+				switch (column.format) {
+					case boolean: {
+						antDColumn.render = (record: boolean | boolean[]) => (
+							<CellWithTooltip
+								showTooltip={ellipsis}
+								text={
+									Array.isArray(record)
+										? record.join(', ')
+										: stringifyBoolean(record)
+								}
+							/>
+						)
+						break
+					}
+
+					default: {
+						antDColumn.render = (record: string | string[]) => (
+							<CellWithTooltip
+								showTooltip={ellipsis}
+								text={
+									Array.isArray(record)
+										? record.join(', ')
+										: record
+								}
+							/>
+						)
+						break
+					}
+				}
 			}
 
 			break
@@ -710,6 +738,9 @@ export function createDateFormatter(
 export function createByteFormatter(): NumFormatterFunction {
 	return (num?: number) => (num === undefined ? null : bytes(num))
 }
+
+const stringifyBoolean = (bool?: boolean) =>
+	typeof bool === 'boolean' ? String(bool) : bool
 
 /* ------- Extracted Types ------- */
 type NumFormatterFunction = (num?: number) => string | null

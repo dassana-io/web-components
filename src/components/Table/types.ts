@@ -13,6 +13,7 @@ export enum ColumnTypes {
 
 export enum ColumnFormats {
 	action = 'action',
+	boolean = 'boolean',
 	none = 'none',
 	date = 'date',
 	byte = 'byte',
@@ -55,11 +56,17 @@ interface EditableSelectConfig extends CommonEditableCellConfig {
 
 type EditableCellConfig = EditableInputConfig | EditableSelectConfig
 
-interface StringType extends PartialColumnType {
+interface StringDefaultType extends PartialColumnType {
 	type: ColumnTypes.string
 	editConfig?: EditableCellConfig
 	format?: ColumnFormats.none
 }
+
+interface StringBooleanType extends Omit<StringDefaultType, 'format'> {
+	format: ColumnFormats.boolean
+}
+
+export type StringType = StringDefaultType | StringBooleanType
 
 interface NumberDefaultType extends PartialColumnType {
 	type: ColumnTypes.number

@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
 
 interface CellWithTooltipProps {
 	showTooltip?: boolean
-	text: string
+	text?: string
 }
 
 export const CellWithTooltip: FC<CellWithTooltipProps> = ({
