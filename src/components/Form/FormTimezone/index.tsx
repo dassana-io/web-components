@@ -17,6 +17,7 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 	label,
 	labelSkeletonWidth,
 	name,
+	options,
 	required,
 	rules = {},
 	triggerSubmit = false,
@@ -57,6 +58,7 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 							triggerSubmit &&
 								triggerOnSubmit(value as unknown as ChangeEvent)
 						}}
+						options={options}
 						value={value}
 						{...rest}
 					/>
