@@ -130,6 +130,8 @@ export const getJSONPathValue = <T = string>(
 	path: string,
 	obj: Record<string, JSONValue>
 ) => {
+	path = path.replace('"', '\'"')
+
 	const value = JSONPath<T>({
 		json: obj,
 		path
