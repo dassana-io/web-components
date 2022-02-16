@@ -5,7 +5,7 @@ import { tablePalette } from './styles'
 import times from 'lodash/times'
 import { useTableContext } from './TableContext'
 import { ColumnFormats, ColumnType, ColumnTypes } from './types'
-import React, { FC } from 'react'
+import React, { FC, memo, useMemo } from 'react'
 import { styleguide, themes, ThemeType } from 'components/assets/styles'
 
 const { spacing } = styleguide
@@ -63,7 +63,7 @@ const useStyles = createUseStyles({
 
 // ------------------------------------
 
-const THeaderCellSkeleton = () => {
+const THeaderCellSkeleton = memo(() => {
 	const classes = useStyles()
 
 	return (
@@ -75,7 +75,7 @@ const THeaderCellSkeleton = () => {
 			/>
 		</th>
 	)
-}
+})
 
 // ------------------------------------
 
@@ -90,31 +90,31 @@ interface TDataCellSkeletonProps extends Pick<TableSkeletonProps, 'columns'> {
 	index: number
 }
 
-const TDataCellSkeleton: FC<TDataCellSkeletonProps> = ({
-	columns,
-	index
-}: TDataCellSkeletonProps) => {
-	const classes = useStyles()
+const TDataCellSkeleton: FC<TDataCellSkeletonProps> = memo(
+	({ columns, index }: TDataCellSkeletonProps) => {
+		const classes = useStyles()
+		const initialWidth = useMemo(() => random(25, 100), [])
 
-	let props = { width: `${random(25, 100)}%` }
+		let props = { width: initialWidth }
 
-	if (columns.length) {
-		const format = columns[index].format
-		const type = columns[index].type
+		if (columns.length) {
+			const format = columns[index].format
+			const type = columns[index].type
 
-		if (mappedSkeletonProps[type]) {
-			props = mappedSkeletonProps[type]
-		} else if (format && mappedSkeletonProps[format]) {
-			props = mappedSkeletonProps[format]
+			if (mappedSkeletonProps[type]) {
+				props = mappedSkeletonProps[type]
+			} else if (format && mappedSkeletonProps[format]) {
+				props = mappedSkeletonProps[format]
+			}
 		}
-	}
 
-	return (
-		<td className={classes.td}>
-			<Skeleton classes={[classes.skeleton]} height={15} {...props} />
-		</td>
-	)
-}
+		return (
+			<td className={classes.td}>
+				<Skeleton classes={[classes.skeleton]} height={15} {...props} />
+			</td>
+		)
+	}
+)
 
 // ------------------------------------
 
@@ -123,38 +123,37 @@ interface TableSkeletonProps {
 	rowCount: number
 }
 
-export const TableSkeleton: FC<TableSkeletonProps> = ({
-	columns,
-	rowCount
-}: TableSkeletonProps) => {
-	const { isMobile } = useTableContext()
+export const TableSkeleton: FC<TableSkeletonProps> = memo(
+	({ columns, rowCount }: TableSkeletonProps) => {
+		const { isMobile } = useTableContext()
 
-	const classes = useStyles()
+		const classes = useStyles()
 
-	const columnCount = isMobile ? 2 : columns.length || random(3, 6)
+		const columnCount = isMobile ? 2 : columns.length || random(3, 6)
 
-	return (
-		<table className={classes.table}>
-			<thead>
-				<tr>
-					{times(columnCount, (j: number) => (
-						<THeaderCellSkeleton key={j} />
-					))}
-				</tr>
-			</thead>
-			<tbody>
-				{times(rowCount, (i: number) => (
-					<tr key={i}>
+		return (
+			<table className={classes.table}>
+				<thead>
+					<tr>
 						{times(columnCount, (j: number) => (
-							<TDataCellSkeleton
-								columns={columns}
-								index={j}
-								key={j}
-							/>
+							<THeaderCellSkeleton key={j} />
 						))}
 					</tr>
-				))}
-			</tbody>
-		</table>
-	)
-}
+				</thead>
+				<tbody>
+					{times(rowCount, (i: number) => (
+						<tr key={i}>
+							{times(columnCount, (j: number) => (
+								<TDataCellSkeleton
+									columns={columns}
+									index={j}
+									key={j}
+								/>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		)
+	}
+)
