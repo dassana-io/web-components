@@ -1,4 +1,3 @@
-import isEmpty from 'lodash/isEmpty'
 import isNull from 'lodash/isNull'
 import { getTimezoneDefaultValue, mappedTimezoneOpts } from './utils'
 import React, { ChangeEventHandler, FC, useEffect } from 'react'
@@ -17,7 +16,7 @@ export interface TimezoneProps
 
 export const Timezone: FC<TimezoneProps> = ({
 	onChange,
-	options,
+	options = mappedTimezoneOpts(),
 	value,
 	...rest
 }: TimezoneProps) => {
@@ -30,7 +29,7 @@ export const Timezone: FC<TimezoneProps> = ({
 		<Select
 			{...rest}
 			onChange={onChange as unknown as ChangeEventHandler}
-			options={!isEmpty(options) ? options : mappedTimezoneOpts()}
+			options={options}
 			showSearch
 			value={isNull(value) ? getTimezoneDefaultValue(value) : value}
 		/>
