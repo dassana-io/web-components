@@ -30,7 +30,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		onChange,
 		onSearch,
 		optionKeysToFilter = ['text'],
-		options,
+		options = [],
 		optionsConfig = {},
 		placeholder = '',
 		pending = false,
