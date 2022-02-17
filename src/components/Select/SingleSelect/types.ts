@@ -46,7 +46,7 @@ export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	/**
 	 * Array of options to be rendered in the dropdown
 	 */
-	options: SelectOption[]
+	options?: SelectOption[]
 	/**
 	 * Optional configuration that applies to the options. Ex: An icon map where each key in the map corresponds to the value of the option
 	 * @default {}
