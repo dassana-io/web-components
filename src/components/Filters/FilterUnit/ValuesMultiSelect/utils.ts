@@ -34,7 +34,7 @@ export const getMultiSelectProps = ({
 	onFilterChange,
 	selectedValues = []
 }: Params): MultiSelectProps => {
-	const { options, ...rest } = multiSelectProps
+	const { options = [], ...rest } = multiSelectProps
 
 	const optionalResponsiveProps: Pick<MultiSelectProps, 'maxTagCount'> = {}
 
