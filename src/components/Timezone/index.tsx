@@ -6,12 +6,7 @@ import { Select, SelectProps } from 'components/Select'
 export interface TimezoneProps
 	extends Omit<
 		SelectProps,
-		| 'defaultValue'
-		| 'options'
-		| 'onChange'
-		| 'optionsConfig'
-		| 'showSearch'
-		| 'value'
+		'defaultValue' | 'onChange' | 'optionsConfig' | 'showSearch' | 'value'
 	> {
 	onChange?: (value?: string) => void
 	format?: string
@@ -21,6 +16,7 @@ export interface TimezoneProps
 
 export const Timezone: FC<TimezoneProps> = ({
 	onChange,
+	options = mappedTimezoneOpts(),
 	value,
 	...rest
 }: TimezoneProps) => {
@@ -33,7 +29,7 @@ export const Timezone: FC<TimezoneProps> = ({
 		<Select
 			{...rest}
 			onChange={onChange as unknown as ChangeEventHandler}
-			options={mappedTimezoneOpts()}
+			options={options}
 			showSearch
 			value={isNull(value) ? getTimezoneDefaultValue(value) : value}
 		/>

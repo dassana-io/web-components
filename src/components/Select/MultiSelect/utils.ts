@@ -61,7 +61,7 @@ interface GetSortedAndFilteredValuesArgs
 export const getSortedAndFilteredValues = ({
 	fuse,
 	onSearch,
-	options,
+	options = [],
 	localValues,
 	searchTerm
 }: GetSortedAndFilteredValuesArgs) => {
