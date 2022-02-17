@@ -52,7 +52,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		loading = false,
 		onBlur,
 		onFocus,
-		options,
+		options = [],
 		optionsConfig = {},
 		placeholder = '',
 		popupContainerSelector,
