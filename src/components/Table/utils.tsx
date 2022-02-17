@@ -101,11 +101,12 @@ export function processData<TableData extends DataId>(
 		} as ProcessedData<TableData>
 
 		columns.forEach(col => {
-			const { dataIndex } = col
+			const { dataIndex, formatKey } = col
 
 			const value = getJSONPathValue(
 				`$.${dataIndex}`,
-				item
+				item,
+				formatKey
 			) as ProcessedData<TableData>[keyof TableData]
 
 			if (!isUndefined(value)) {
@@ -186,6 +187,7 @@ const compareIcons =
 	(a: Record<string, any>, b: Record<string, any>) => {
 		const {
 			dataIndex,
+			formatKey,
 			renderProps: { iconKey }
 		} = column
 
@@ -193,9 +195,11 @@ const compareIcons =
 			? `$.${dataIndex}.${iconKey}`
 			: `$.${dataIndex}`
 
-		const compareValA = getJSONPathValue(jsonPath, a)?.toString() || ''
+		const compareValA =
+			getJSONPathValue(jsonPath, a, formatKey)?.toString() || ''
 
-		const compareValB = getJSONPathValue(jsonPath, b)?.toString() || ''
+		const compareValB =
+			getJSONPathValue(jsonPath, b, formatKey)?.toString() || ''
 
 		return compareValA.localeCompare(compareValB)
 	}

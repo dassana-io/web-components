@@ -36,6 +36,7 @@ interface PartialColumnType {
 	 * @default true
 	 */
 	ellipsis?: boolean
+	formatKey?: (key: string) => string
 	title: string
 	sort?: boolean
 }

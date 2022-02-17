@@ -128,9 +128,10 @@ export const getDataTestAttributeProp = (
 
 export const getJSONPathValue = <T = string>(
 	path: string,
-	obj: Record<string, JSONValue>
+	obj: Record<string, JSONValue>,
+	formatPath?: (path: string) => string
 ) => {
-	path = path.replace('"', '\'"')
+	if (formatPath) path = formatPath(path)
 
 	const value = JSONPath<T>({
 		json: obj,
