@@ -1,22 +1,14 @@
-import isEmpty from 'lodash/isEmpty'
+import { getTimezoneDefaultValue } from './utils'
 import isNull from 'lodash/isNull'
-import { TimezoneSelectOption } from './types'
-import { getTimezoneDefaultValue, mappedTimezoneOpts } from './utils'
 import React, { ChangeEventHandler, FC, useEffect } from 'react'
 import { Select, SelectProps } from 'components/Select'
 
 export interface TimezoneProps
 	extends Omit<
 		SelectProps,
-		| 'defaultValue'
-		| 'options'
-		| 'onChange'
-		| 'optionsConfig'
-		| 'showSearch'
-		| 'value'
+		'defaultValue' | 'onChange' | 'optionsConfig' | 'showSearch' | 'value'
 	> {
 	onChange?: (value?: string) => void
-	options: TimezoneSelectOption[]
 	format?: string
 	// null is so an empty defaultValue can be passed through react-hook-form without console.warnings. If a value is null, the component will guess the timezone
 	value?: string | null
