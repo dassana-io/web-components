@@ -47,7 +47,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent<HTMLDivElement>) => {
-			if (e.key === 'Enter') {
+			if (e.key === 'Enter' && !e.shiftKey) {
 				e.preventDefault()
 				e.stopPropagation()
 
