@@ -4,7 +4,7 @@ import MultipleChoiceItem from './MultipleChoiceItem'
 import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
 import { isEnglishAlphabet, useStyles } from './utils'
 import { KeysPressedMap, SharedProps } from './types'
-import React, { FC, useEffect, useMemo, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 
 interface SharedBaseProps extends Omit<SharedProps, 'mode'> {
 	onSelectedChange: (value: string) => void
@@ -39,7 +39,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 
 	const [currentFocus, setCurrentFocus] = useState(-1)
 
-	const keysPressedMap: KeysPressedMap = useMemo(() => ({}), [])
+	const keysPressedMap = useRef<KeysPressedMap>({})
 
 	// https://dev.to/rafi993/roving-focus-in-react-with-custom-hooks-1ln
 	useEffect(() => {
@@ -50,7 +50,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 
 		// onKeyDown will check which key is pressed and conditionally select/deselect item or give focus to item
 		const onKeyDown = (e: KeyboardEvent) => {
-			keysPressedMap[e.key] = e.type === 'keydown'
+			keysPressedMap.current[e.key] = true
 
 			const index = e.key.toUpperCase().charCodeAt(0) - 65
 
@@ -80,7 +80,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 		}
 
 		const onKeyUp = (e: KeyboardEvent) => {
-			delete keysPressedMap[e.key]
+			delete keysPressedMap.current[e.key]
 		}
 
 		const eventTargetRef = getEventTarget && getEventTarget()
@@ -128,7 +128,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 						isSelected={isSelected(value)}
 						itemsCount={items.length}
 						key={value}
-						keysPressedMap={keysPressedMap}
+						keysPressedMap={keysPressedMap.current}
 						label={label}
 						onSelect={(index, value) => {
 							setCurrentFocus(index)
