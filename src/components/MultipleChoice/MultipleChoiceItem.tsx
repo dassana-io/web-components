@@ -1,9 +1,10 @@
 import cn from 'classnames'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { MultipleChoiceItemConfig } from './types'
+import isEmpty from 'lodash/isEmpty'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
+import { KeysPressedMap, MultipleChoiceItemConfig } from './types'
 import React, { FC, KeyboardEvent, useCallback, useEffect, useRef } from 'react'
 
 export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
@@ -11,6 +12,7 @@ export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	index: number
 	isSelected?: boolean
 	itemsCount: number
+	keysPressedMap: KeysPressedMap
 	onSelect: (index: number, value: string) => void
 	popupContainerSelector?: string
 	singleColumnItemsCount?: number
@@ -21,6 +23,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	index,
 	isSelected = false,
 	itemsCount,
+	keysPressedMap,
 	label,
 	onSelect,
 	popupContainerSelector,
@@ -47,14 +50,16 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent<HTMLDivElement>) => {
-			if (e.key === 'Enter' && !e.shiftKey) {
+			const { Enter, ...rest } = keysPressedMap
+
+			if (e.key === 'Enter' && isEmpty(rest)) {
 				e.preventDefault()
 				e.stopPropagation()
 
 				handleChange()
 			}
 		},
-		[handleChange]
+		[handleChange, keysPressedMap]
 	)
 
 	useEffect(() => {

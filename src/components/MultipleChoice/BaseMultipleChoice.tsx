@@ -2,9 +2,9 @@ import cn from 'classnames'
 import { getDataTestAttributeProp } from 'components/utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
-import { SharedProps } from './types'
 import { isEnglishAlphabet, useStyles } from './utils'
-import React, { FC, useEffect, useState } from 'react'
+import { KeysPressedMap, SharedProps } from './types'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 
 interface SharedBaseProps extends Omit<SharedProps, 'mode'> {
 	onSelectedChange: (value: string) => void
@@ -39,6 +39,8 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 
 	const [currentFocus, setCurrentFocus] = useState(-1)
 
+	const keysPressedMap: KeysPressedMap = useMemo(() => ({}), [])
+
 	// https://dev.to/rafi993/roving-focus-in-react-with-custom-hooks-1ln
 	useEffect(() => {
 		const preventDefault = (e: KeyboardEvent) => {
@@ -48,6 +50,8 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 
 		// onKeyDown will check which key is pressed and conditionally select/deselect item or give focus to item
 		const onKeyDown = (e: KeyboardEvent) => {
+			keysPressedMap[e.key] = e.type === 'keydown'
+
 			const index = e.key.toUpperCase().charCodeAt(0) - 65
 
 			// If key pressed is english alphabet (either lower or uppercase) and index of item is less than items length, select/deselect item
@@ -75,6 +79,10 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 			}
 		}
 
+		const onKeyUp = (e: KeyboardEvent) => {
+			delete keysPressedMap[e.key]
+		}
+
 		const eventTargetRef = getEventTarget && getEventTarget()
 
 		// Attach event listener to the event target if one is provided, otherwise attach it to the window
@@ -82,18 +90,22 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 			const target = eventTargetRef.current
 
 			target.addEventListener('keydown', onKeyDown)
+			target.addEventListener('keyup', onKeyUp)
 
 			return () => {
 				target.removeEventListener('keydown', onKeyDown)
+				target.removeEventListener('keyup', onKeyUp)
 			}
 		} else {
 			window.addEventListener('keydown', onKeyDown)
+			window.addEventListener('keyup', onKeyUp)
 
 			return () => {
 				window.removeEventListener('keydown', onKeyDown)
+				window.removeEventListener('keyup', onKeyUp)
 			}
 		}
-	}, [currentFocus, getEventTarget, items, onSelectedChange])
+	}, [currentFocus, getEventTarget, items, keysPressedMap, onSelectedChange])
 
 	if (items.length > 26)
 		throw new Error(
@@ -116,6 +128,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 						isSelected={isSelected(value)}
 						itemsCount={items.length}
 						key={value}
+						keysPressedMap={keysPressedMap}
 						label={label}
 						onSelect={(index, value) => {
 							setCurrentFocus(index)
