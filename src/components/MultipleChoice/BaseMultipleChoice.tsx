@@ -105,7 +105,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 				window.removeEventListener('keyup', onKeyUp)
 			}
 		}
-	}, [currentFocus, getEventTarget, items, keysPressedMap, onSelectedChange])
+	}, [currentFocus, getEventTarget, items, onSelectedChange])
 
 	if (items.length > 26)
 		throw new Error(
