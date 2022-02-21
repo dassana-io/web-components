@@ -49,3 +49,5 @@ export interface MultipleChoiceProps extends SharedProps {
 	onChange?: SingleProps['onChange'] | MultipleProps['onChange']
 	value?: SingleProps['value'] | MultipleProps['values']
 }
+
+export type KeysPressedMap = Record<string, boolean>
