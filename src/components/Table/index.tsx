@@ -74,6 +74,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Array of data objects
 	 */
 	data: TableData<Data>[]
+	disableRowClick?: boolean
 	/**
 	 * Whether or not to show skeleton loader
 	 */
@@ -115,6 +116,7 @@ export const Table = <Data,>({
 	controls = true,
 	data,
 	dataTag,
+	disableRowClick = false,
 	loading = false,
 	paginationConfig = {},
 	onRowClick,
@@ -258,7 +260,7 @@ export const Table = <Data,>({
 
 	const optionalProps: Record<string, any> = {}
 
-	if (onRowClick) {
+	if (onRowClick && !disableRowClick) {
 		optionalProps.onRow = (
 			record: Record<string, any>,
 			rowIndex: number
