@@ -7,7 +7,7 @@ import { TimeInput, TimeInputProps } from './index'
 
 export default {
 	argTypes: {
-		displayFormat: { control: 'text', defaultValue: 'hh:mm A' },
+		displayFormat: { control: 'text', defaultValue: 'hh:mm a' },
 		onChange: { defaultValue: action('onChange') },
 		popupContainerSelector: { control: { disable: true } },
 		value: { control: { disable: true } }

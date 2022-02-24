@@ -1,11 +1,16 @@
 import { Breakpoints } from '@dassana-io/web-utils'
 import Color from 'color'
+import format from 'date-fns/format'
+import getUnixTime from 'date-fns/getUnixTime'
+import isUndefined from 'lodash/isUndefined'
 import { JSONPath } from 'jsonpath-plus'
 import { JSONValue } from './JSONPathPicker'
 import mapValues from 'lodash/mapValues'
 import { PopupContainerProps } from './types'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
+
+type TimeFormat = 'unix' | 'hours'
 
 export const placementOptions: TooltipPlacement[] = [
 	'bottom',
@@ -216,3 +221,30 @@ export const mediaSelectorsWithBreakpoints = {
 		[tablet]: getMediaSelector(tablet)
 	}
 }
+
+const hourIntegerFormat = 'HH'
+
+interface FormatTime {
+	(format: TimeFormat, value?: number): Date | undefined
+}
+
+export const formatTime: FormatTime = (format, value) => {
+	if (isUndefined(value)) return value
+
+	if (format === 'unix') {
+		return new Date(value)
+	}
+
+	return new Date(value)
+}
+
+// ----------------------------------------
+
+interface ParseTime {
+	(date: Date, format: TimeFormat): number
+}
+
+export const parseTime: ParseTime = (date, timeFormat) =>
+	timeFormat === 'unix'
+		? getUnixTime(date)
+		: parseInt(format(date, hourIntegerFormat))

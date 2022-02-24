@@ -23,7 +23,7 @@ export interface Data {
 	toggle: boolean
 }
 
-export const dateFormat = 'MM/DD/YYYY'
+export const dateFormat = 'mm/dd/yyyy'
 
 const columns: ColumnType[] = [
 	{

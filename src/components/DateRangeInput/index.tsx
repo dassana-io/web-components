@@ -2,15 +2,13 @@ import 'antd/lib/date-picker/style/index.css'
 import 'antd/lib/time-picker/style/index.css'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { DatePicker } from 'antd'
+import { DatePicker } from 'components/DatePicker'
 import { generateButtonStyles } from '../Button/utils'
-import { getPopupContainerProps } from '../utils'
 import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
 import { ThemeType } from 'components/assets/styles'
-import { formatTime, parseTime } from '../TimeInput/utils'
+import { formatTime, getPopupContainerProps, parseTime } from '../utils'
 import { generateDateRangeInputStyles, generateDropdownStyles } from './styles'
-import { Moment, MomentInputObject } from 'moment'
 import React, { FC } from 'react'
 
 const { dark, light } = ThemeType
@@ -42,7 +40,7 @@ interface TimeProps {
 export interface DateRangeInputProps {
 	alwaysOpen?: boolean
 	classes?: string[]
-	disabledDate?: (date: Moment) => boolean
+	disabledDate?: (date: Date) => boolean
 	displayFormat?: string
 	onChange?: (value: DateRangeInputValue) => void
 	/**
@@ -61,10 +59,10 @@ export interface DateRangeInputProps {
 export const DateRangeInput: FC<DateRangeInputProps> = ({
 	alwaysOpen = false,
 	classes = [],
-	displayFormat = 'YYYY-MM-DD hh:mm A',
+	displayFormat = 'yyyy-mm-dd hh:mm a',
 	disabledDate,
 	onChange,
-	includeTime = { displayFormat: 'hh:mm A' },
+	includeTime = { displayFormat: 'hh:mm a' },
 	loading = false,
 	popupContainerSelector,
 	size = 'middle',
@@ -76,30 +74,28 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 		throw new Error('Controlled inputs require an onChange prop')
 	}
 
-	let controlledCmpProps = {}
+	const controlledCmpProps = {}
 
-	if (onChange) {
-		controlledCmpProps = {
-			onChange: (
-				momentObjArr: [MomentInputObject, MomentInputObject]
-			) => {
-				onChange({
-					endTime: parseTime(momentObjArr[1], 'unix'),
-					startTime: parseTime(momentObjArr[0], 'unix')
-				})
-			}
-		}
+	// if (onChange) {
+	// 	controlledCmpProps = {
+	// 		onChange: (dateArr: [Date, Date]) => {
+	// 			onChange({
+	// 				endTime: parseTime(dateArr[1], 'unix'),
+	// 				startTime: parseTime(dateArr[0], 'unix')
+	// 			})
+	// 		}
+	// 	}
 
-		if (value) {
-			controlledCmpProps = {
-				...controlledCmpProps,
-				value: [
-					formatTime('unix', value.startTime),
-					formatTime('unix', value.endTime)
-				]
-			}
-		}
-	}
+	// 	if (value) {
+	// 		controlledCmpProps = {
+	// 			...controlledCmpProps,
+	// 			value: [
+	// 				formatTime('unix', value.startTime),
+	// 				formatTime('unix', value.endTime)
+	// 			]
+	// 		}
+	// 	}
+	// }
 
 	let openProps = {}
 
@@ -113,7 +109,7 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 		<AntDRangePicker
 			allowClear={false}
 			className={cn(classes)}
-			disabledDate={disabledDate}
+			// disabledDate={disabledDate}
 			dropdownClassName={compClasses.dropdown}
 			format={displayFormat}
 			mode={['date', 'date']}

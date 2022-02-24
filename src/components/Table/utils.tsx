@@ -2,10 +2,10 @@ import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
+
 import { EditableCell } from './EditableCell'
 import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
-import moment from 'moment'
 import { MultipleIcons } from './MultipleIcons'
 import {
 	ColumnFormats,
@@ -18,6 +18,10 @@ import {
 	EditableCellTypes,
 	NumberDateType
 } from './types'
+import {
+	convertEpochToRelativeTime,
+	convertEpochToUserTimezone
+} from '@dassana-io/web-utils'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
 import { IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
@@ -718,24 +722,20 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 
 /* ------- Common Helper functions ------- */
 
-/* Returns a date formatter function (using moment.js). */
+/* Returns a date formatter function. */
 export function createDateFormatter(
 	column: NumberDateType
 ): NumFormatterFunction {
-	let displayFormat = ''
-	const { renderProps } = column
+	const { renderProps: { displayFormat, timezone } = {} } = column
 
-	if (renderProps && renderProps.displayFormat) {
-		if (renderProps.displayFormat === DateDisplayFormat.fromNow) {
-			return (num?: number) =>
-				num === undefined ? null : moment(num).fromNow()
-		}
-
-		displayFormat = renderProps.displayFormat
-	}
+	if (displayFormat === DateDisplayFormat.fromNow)
+		return (num?: number) =>
+			num === undefined ? null : convertEpochToRelativeTime(num)
 
 	return (num?: number) =>
-		num === undefined ? null : moment(num).format(displayFormat)
+		num === undefined
+			? null
+			: convertEpochToUserTimezone(num, displayFormat, timezone)
 }
 
 /* Returns a byte formatter function (using bytes). */

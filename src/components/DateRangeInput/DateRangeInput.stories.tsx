@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions'
-import moment from 'moment'
 import { SbTheme } from '../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { useTheme } from 'react-jss'
@@ -44,6 +43,6 @@ const Template: Story<DateRangeInputProps> = args => (
 export const Default = Template.bind({})
 Default.args = {
 	disabledDate: current => {
-		return current && current > moment().endOf('day')
+		return current && current.getTime() > Date.now()
 	}
 }

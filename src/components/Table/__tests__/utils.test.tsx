@@ -204,7 +204,7 @@ describe('createByteFormatter', () => {
 		dataIndex: 'date',
 		format: ColumnFormats.date,
 		renderProps: {
-			displayFormat: 'MM/DD/YY'
+			displayFormat: 'mm/dd/yy'
 		},
 		title: 'Date',
 		type: ColumnTypes.number
@@ -214,7 +214,7 @@ describe('createByteFormatter', () => {
 		const formattedDate = createDateFormatter(dateColumn)(1599193037581)
 
 		expect(formattedDate).toEqual(
-			formatDate({ displayFormat: 'MM/DD/YY', unixTS: 1599193037581 })
+			formatDate({ displayFormat: 'mm/dd/yy', unixTS: 1599193037581 })
 		)
 	})
 

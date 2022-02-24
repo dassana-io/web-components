@@ -10,8 +10,8 @@ export interface File {
 	updated_at?: number // Pass an optional type if there will be missing data
 }
 
-export const dateFormat0 = 'MMM D, YYYY h:mm A'
-export const dateFormat1 = 'lll'
+export const dateFormat0 = 'mmm d, yyyy h:mm a'
+export const dateFormat1 = 'EEE, MMM d yyyy hh:mm a z'
 
 const { number, string } = ColumnTypes
 const { byte, date } = ColumnFormats

@@ -4,11 +4,16 @@ import { TimePicker as AntDTimeInput } from 'antd'
 import { BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
 import InputSkeleton from 'components/Input/InputSkeleton'
-import { MomentInputObject } from 'moment'
+// import { MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
 import range from 'lodash/range'
-import { formatTime, parseTime, useStyles } from './utils'
-import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
+import { useStyles } from './utils'
+import {
+	formatTime,
+	getDataTestAttributeProp,
+	getPopupContainerProps
+	// parseTime
+} from '../utils'
 import React, { FC, FocusEvent } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
@@ -46,7 +51,7 @@ export interface TimeInputProps
 export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 	const {
 		classes = [],
-		defaultValue,
+		// defaultValue,
 		dataTag,
 		disabled = false,
 		displayFormat = 'hh:mm A',
@@ -73,8 +78,8 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 
 	if (onChange) {
 		controlledCmpProps = {
-			onChange: (momentObj: MomentInputObject) =>
-				onChange(parseTime(momentObj, format)),
+			// onChange: (momentObj: MomentInputObject) =>
+			// 	onChange(parseTime(momentObj, format)),
 			value: formatTime(format, value)
 		}
 	}
@@ -98,7 +103,7 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			allowClear={false}
 			autoFocus={focused}
 			className={cn({ [componentClasses.error]: error }, classes)}
-			defaultValue={formatTime(format, defaultValue)}
+			// defaultValue={formatTime(format, defaultValue)}
 			disabled={disabled}
 			format={displayFormat}
 			minuteStep={minuteStep}

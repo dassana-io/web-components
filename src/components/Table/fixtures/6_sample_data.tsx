@@ -76,7 +76,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'start_date',
 		format: date,
 		renderProps: {
-			displayFormat: 'MM/DD/YYYY'
+			displayFormat: 'mm/dd/yyyy'
 		},
 		title: 'Client Since',
 		type: number

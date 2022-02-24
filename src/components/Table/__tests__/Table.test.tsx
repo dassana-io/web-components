@@ -1,8 +1,11 @@
 import { act } from 'react-dom/test-utils'
-import moment from 'moment'
 import React from 'react'
 import { TableSkeleton } from '../TableSkeleton'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
+import {
+	convertEpochToRelativeTime,
+	convertEpochToUserTimezone
+} from '@dassana-io/web-utils'
 import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
 import mockData0, { Person } from '../fixtures/0_sample_data'
 import mockData1, { File } from '../fixtures/4_sample_data'
@@ -43,8 +46,8 @@ export function formatDate({
 	fromNow = false
 }: FormatDateParams) {
 	return fromNow
-		? moment(unixTS).fromNow()
-		: moment(unixTS).format(displayFormat)
+		? convertEpochToRelativeTime(unixTS)
+		: convertEpochToUserTimezone(unixTS, displayFormat)
 }
 
 const mockOnRowClick = jest.fn()
