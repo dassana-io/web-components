@@ -55,7 +55,10 @@ export const Markdown: FC<MarkdownProps> = ({
 	useStyles()
 
 	return (
-		<ReactMarkdown className={cn('markdown-body', classes)} plugins={[gfm]}>
+		<ReactMarkdown
+			className={cn('markdown-body', classes)}
+			remarkPlugins={[gfm]}
+		>
 			{children}
 		</ReactMarkdown>
 	)
