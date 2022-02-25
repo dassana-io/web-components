@@ -4,7 +4,6 @@ import { ColumnFormats, ColumnType, ColumnTypes } from '..'
 import {
 	createByteFormatter,
 	createDateFormatter,
-	mapData,
 	mapFilterKeys,
 	processColumns,
 	processData
@@ -46,7 +45,9 @@ describe('mapData', () => {
 				name: 'Dolor'
 			}
 		}
-		expect(mapData<Person>(mockData0.data)).toMatchObject(mockMappedData)
+		expect(
+			processData<Person>(mockData0.data, mockData0.columns).mappedData
+		).toMatchObject(mockMappedData)
 	})
 })
 

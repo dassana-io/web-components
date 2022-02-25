@@ -26,7 +26,7 @@ export const codePalette = {
 		color: blacks['lighten-60']
 	},
 	[light]: {
-		background: grays['lighten-70'],
+		background: whites.base,
 		color: blacks['lighten-20']
 	}
 }

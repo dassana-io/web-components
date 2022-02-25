@@ -3,7 +3,7 @@ import { Form } from '../Form'
 import { SelectOption } from 'components/Select'
 import { styleguide } from '../assets/styles'
 import { useShortcut } from '@dassana-io/web-utils'
-import { DataId, EditableCellTypes } from './types'
+import { EditableCellTypes, RequiredDataId } from './types'
 import React, {
 	Key,
 	MouseEvent,
@@ -65,7 +65,9 @@ export type EditableCellProps<T> =
 
 const EDIT_FIELD_TYPES_WITH_BUTTON = [EditableCellTypes.input]
 
-export const EditableCell = <T extends DataId>(props: EditableCellProps<T>) => {
+export const EditableCell = <T extends RequiredDataId>(
+	props: EditableCellProps<T>
+) => {
 	const {
 		dataIndex,
 		children,

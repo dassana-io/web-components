@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty'
 import { TableDrawerProps } from './index'
 import { useModal } from 'components/Modal'
 import { useWindowSize } from '@dassana-io/web-utils'
-import { DataId, Table } from '../Table'
+import { DataId, ProcessedTableData, Table } from '../Table'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
@@ -57,7 +57,7 @@ export const TableDrawer = <DataType extends DataId>({
 	tableContainerClasses = [],
 	...rest
 }: TableDrawerProps<DataType>) => {
-	const [rowData, setRowData] = useState({} as DataType)
+	const [rowData, setRowData] = useState({} as ProcessedTableData<DataType>)
 	const { isMobile } = useWindowSize()
 	const { setModalConfig } = useModal()
 
@@ -65,10 +65,13 @@ export const TableDrawer = <DataType extends DataId>({
 
 	const classes = useStyles()
 
-	const resetRowData = useCallback(() => setRowData({} as DataType), [])
+	const resetRowData = useCallback(
+		() => setRowData({} as ProcessedTableData<DataType>),
+		[]
+	)
 
 	const onRowClick = useCallback(
-		(clickedRowData: DataType) => {
+		(clickedRowData: ProcessedTableData<DataType>) => {
 			isMobile &&
 				setModalConfig({
 					content: renderDrawerCmp(rowData.id, clickedRowData)
