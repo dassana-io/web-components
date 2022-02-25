@@ -226,7 +226,8 @@ const generateLightRowIconStyles = <T>(
 	isActive = false
 ) => ({
 	...generateThemedRowIconStyles(light, isActive),
-	content: props.onRowClick ? '"\u27e9"' : '""',
+	content: (props: StyleProps<T>) =>
+		isRowClickEnabled<T>(props) ? '"\u27e9"' : '""',
 	fontSize: font.body.fontSize,
 	lineHeight: '12px',
 	position: 'absolute',
@@ -236,9 +237,13 @@ const generateLightRowIconStyles = <T>(
 
 interface StyleProps<T> {
 	additionalPaletteColors?: AdditionalPaletteColors
+	disableRowClick?: boolean
 	onRowClick?: TableProps<T>['onRowClick']
-	searchProps: SearchProps
+	searchProps?: SearchProps
 }
+
+const isRowClickEnabled = <T>({ disableRowClick, onRowClick }: StyleProps<T>) =>
+	!disableRowClick && onRowClick
 
 export const useStyles = <T>(props: StyleProps<T>) =>
 	createUseStyles({
@@ -257,11 +262,13 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 				[cellClasses]: {
 					...generateThemedCellStyles(light)[cellClasses],
 					'&:last-child': {
-						paddingRight: props.onRowClick
-							? 2 * spacing.l
-							: spacing.m
+						paddingRight: props =>
+							isRowClickEnabled<T>(props)
+								? 2 * spacing.l
+								: spacing.m
 					},
-					cursor: props.onRowClick ? 'pointer' : 'default',
+					cursor: props =>
+						isRowClickEnabled<T>(props) ? 'pointer' : 'default',
 					fontWeight: 300
 				},
 				[rowHoverCellClasses]: {
@@ -306,7 +313,7 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 		},
 		tableControls: {
 			display: 'flex',
-			justifyContent:
+			justifyContent: props =>
 				props.searchProps.placement === 'right'
 					? 'flex-end'
 					: 'flex-start',

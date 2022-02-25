@@ -10,6 +10,7 @@ import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { TableCtxProvider } from './TableContext'
 import { TableSkeleton } from './TableSkeleton'
+import { unstable_batchedUpdates } from 'react-dom'
 import { useStyles } from './styles'
 import { useWindowSize } from '@dassana-io/web-utils'
 import { AdditionalPaletteColors, ColumnType, TableData } from './types'
@@ -145,14 +146,16 @@ export const Table = <Data,>({
 	} = useWindowSize()
 
 	const tableClasses = useStyles<Data>({
-		additionalPaletteColors,
+		additionalPaletteColors
+	})({
+		disableRowClick,
 		onRowClick,
 		searchProps
-	})()
+	})
 
 	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
 	const [processedData, setProcessedData] = useState(
-		processData<TableData<Data>>(data, columns)
+		processData<TableData<Data>>(data, columns).processedData
 	)
 
 	const deleteRow = useCallback(
@@ -194,10 +197,6 @@ export const Table = <Data,>({
 	)
 
 	useEffect(() => {
-		setMappedData(mapData<TableData<Data>>(data))
-	}, [data])
-
-	useEffect(() => {
 		/**
 		 * If the number of rows is greater than number of rows per
 		 * page(paginationConfig.rowCount), render a Table with pagination.
@@ -222,7 +221,15 @@ export const Table = <Data,>({
 	}, [columns, deleteRow, updateRowData])
 
 	useEffect(() => {
-		setProcessedData(processData<TableData<Data>>(data, columns))
+		const { mappedData, processedData } = processData<TableData<Data>>(
+			data,
+			columns
+		)
+
+		unstable_batchedUpdates(() => {
+			setMappedData(mappedData)
+			setProcessedData(processedData)
+		})
 	}, [columns, data])
 
 	const delayedSearch = debounce(q => searchTable(q), 250)

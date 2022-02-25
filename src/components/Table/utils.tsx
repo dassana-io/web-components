@@ -7,6 +7,7 @@ import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import { MultipleIcons } from './MultipleIcons'
+import { v4 as uuidV4 } from 'uuid'
 import {
 	ColumnFormats,
 	ColumnType,
@@ -77,9 +78,15 @@ export function processColumns<TableData extends DataId>(
 
 // ------------------------------------------------
 
-type ProcessedData<T> = T & {
+type ProcessedDataType<T> = T & {
 	_FORMATTED_DATA: (string | null)[]
+	id: Key
 	key: Key
+}
+
+interface ProcessedData<T> {
+	mappedData: MappedData<T>
+	processedData: ProcessedDataType<T>[]
 }
 
 /*
@@ -91,14 +98,21 @@ Takes data prop passed to Table and returns data:
 export function processData<TableData extends DataId>(
 	data: TableData[],
 	columns: ColumnType[]
-): ProcessedData<TableData>[] {
+): ProcessedData<TableData> {
+	const mappedData: MappedData<TableData> = {}
+	const processedData: ProcessedDataType<TableData & DataId>[] = []
+
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
-	return data.map(item => {
-		const partialData: ProcessedData<TableData> = {
-			id: item.id,
-			key: item.id
-		} as ProcessedData<TableData>
+	data.forEach(item => {
+		const id = item.id ?? uuidV4()
+
+		mappedData[id] = item
+
+		const partialData: ProcessedDataType<TableData> = {
+			id,
+			key: id
+		} as ProcessedDataType<TableData>
 
 		columns.forEach(col => {
 			const { dataIndex, formatKey } = col
@@ -107,7 +121,7 @@ export function processData<TableData extends DataId>(
 				`$.${dataIndex}`,
 				item,
 				formatKey
-			) as ProcessedData<TableData>[keyof TableData]
+			) as ProcessedDataType<TableData>[keyof TableData]
 
 			if (!isUndefined(value)) {
 				partialData[dataIndex as keyof TableData] = value
@@ -122,11 +136,16 @@ export function processData<TableData extends DataId>(
 			}
 		})
 
-		return {
+		processedData.push({
 			...partialData,
 			_FORMATTED_DATA: createFormattedData(mappedFormat, partialData)
-		}
+		})
 	})
+
+	return {
+		mappedData,
+		processedData
+	}
 }
 
 /*

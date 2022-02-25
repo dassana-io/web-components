@@ -168,7 +168,9 @@ describe('processData', () => {
 		]
 
 		const { data, columns } = mockData1
-		expect(processData(data, columns)).toMatchObject(mockProcessedData)
+		expect(processData(data, columns).processedData).toMatchObject(
+			mockProcessedData
+		)
 	})
 })
 
