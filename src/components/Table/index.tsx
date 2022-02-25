@@ -3,6 +3,7 @@ import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
 import cloneDeep from 'lodash/cloneDeep'
 import cn from 'classnames'
+import { ColumnsType } from 'antd/lib/table'
 import { CommonComponentProps } from '../types'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
@@ -13,8 +14,13 @@ import { TableSkeleton } from './TableSkeleton'
 import { unstable_batchedUpdates } from 'react-dom'
 import { useStyles } from './styles'
 import { useWindowSize } from '@dassana-io/web-utils'
-import { AdditionalPaletteColors, ColumnType, TableData } from './types'
-import { mapData, mapFilterKeys, processColumns, processData } from './utils'
+import {
+	AdditionalPaletteColors,
+	ColumnType,
+	ProcessedTableData,
+	TableData
+} from './types'
+import { mapFilterKeys, processColumns, processData } from './utils'
 import React, {
 	ChangeEvent,
 	Key,
@@ -83,7 +89,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	/**
 	 * Optional callback that runs when a table row is clicked
 	 */
-	onRowClick?: OnRowClick<TableData<Data>>
+	onRowClick?: OnRowClick<ProcessedTableData<Data>>
 	/**
 	 * Optional Table Pagination config that determines the numbers of table rows to render per page
 	 */
@@ -153,7 +159,9 @@ export const Table = <Data,>({
 		searchProps
 	})
 
-	const [mappedData, setMappedData] = useState(mapData<TableData<Data>>(data))
+	const [mappedData, setMappedData] = useState(
+		processData<TableData<Data>>(data, columns).mappedData
+	)
 	const [processedData, setProcessedData] = useState(
 		processData<TableData<Data>>(data, columns).processedData
 	)
@@ -327,7 +335,9 @@ export const Table = <Data,>({
 					/>
 				) : (
 					<AntDTable
-						columns={processedColumns}
+						columns={
+							processedColumns as ColumnsType<TableData<Data>>
+						}
 						dataSource={searchTerm ? filteredData : processedData}
 						pagination={
 							!pagination

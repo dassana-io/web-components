@@ -17,7 +17,8 @@ import {
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
-	NumberDateType
+	NumberDateType,
+	RequiredDataId
 } from './types'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
 import { IconName, IconProps } from '../Icon'
@@ -33,17 +34,7 @@ const { action, boolean, byte, date, icon, coloredDot, link, tag, toggle } =
 /* ------- Exported Functions ------- */
 
 interface MappedData<TableData> {
-	[id: string]: TableData
-}
-
-export const mapData = <TableData extends DataId>(data: TableData[]) => {
-	const mappedData: MappedData<TableData> = {}
-
-	for (const item of data) {
-		mappedData[item.id] = item
-	}
-
-	return mappedData
+	[id: string]: TableData & RequiredDataId
 }
 
 export interface TableMethods<T> {
@@ -55,21 +46,25 @@ export interface TableMethods<T> {
 formatted to satisfy antD requirements. */
 export function processColumns<TableData extends DataId>(
 	columns: ColumnType[],
-	tableMethods: TableMethods<TableData>
+	tableMethods: TableMethods<TableData & RequiredDataId>
 ) {
 	return columns.map(column => {
 		const { dataIndex, title, sort = true } = column
 
-		const antDColumn: AntDColumnType<TableData> = {
+		const antDColumn: AntDColumnType<TableData & RequiredDataId> = {
 			dataIndex,
 			showSorterTooltip: false,
 			title
 		}
 
-		applyRender<TableData>(column, antDColumn, tableMethods)
+		applyRender<TableData & RequiredDataId>(
+			column,
+			antDColumn,
+			tableMethods
+		)
 
 		if (sort) {
-			applySort<TableData>(column, antDColumn)
+			applySort<TableData & RequiredDataId>(column, antDColumn)
 		}
 
 		return antDColumn
@@ -107,7 +102,7 @@ export function processData<TableData extends DataId>(
 	data.forEach(item => {
 		const id = item.id ?? uuidV4()
 
-		mappedData[id] = item
+		mappedData[id] = { ...item, id }
 
 		const partialData: ProcessedDataType<TableData> = {
 			id,
@@ -281,9 +276,9 @@ function compareBooleans(column: ColumnType) {
 }
 
 /* Sets antD column sorter prop as appropriate compare function. */
-function applySort<TableData extends DataId>(
+function applySort<TableData>(
 	column: ColumnType,
-	antDColumn: AntDColumnType<TableData>
+	antDColumn: AntDColumnType<TableData & RequiredDataId>
 ) {
 	const { component, number, string } = ColumnTypes
 	const { icon, coloredDot, link, tag, toggle } = ColumnFormats
@@ -455,7 +450,7 @@ depending on data type and format. Render function takes
 data value as input and returns a custom formatted value(
 can be a string or React Element).
 */
-function applyRender<TableData extends DataId>(
+function applyRender<TableData extends RequiredDataId>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<TableData>,
 	tableMethods: TableMethods<TableData>
@@ -654,7 +649,7 @@ function applyRender<TableData extends DataId>(
 				case toggle: {
 					antDColumn.render = (
 						record: boolean,
-						rowData: TableData
+						rowData: TableData & RequiredDataId
 					) => {
 						if (record === undefined) return ''
 						const { onSave } = column.renderProps
