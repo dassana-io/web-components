@@ -83,6 +83,7 @@ export interface BannerProps {
 	persistBannerState?: boolean
 	showIcon?: boolean
 	title: ReactNode
+	titleClasses?: string[]
 	type: NotificationTypes
 }
 
@@ -93,6 +94,7 @@ export const Banner: FC<BannerProps> = ({
 	persistBannerState = true,
 	showIcon = false,
 	title,
+	titleClasses = [],
 	type
 }: BannerProps) => {
 	const componentClasses = useStyles({ type })
@@ -133,7 +135,12 @@ export const Banner: FC<BannerProps> = ({
 									icon={mappedTypesToIcons[type].icon}
 								/>
 							)}
-							<div className={componentClasses.title}>
+							<div
+								className={cn(
+									componentClasses.title,
+									titleClasses
+								)}
+							>
 								{title}
 							</div>
 						</div>
