@@ -24,6 +24,7 @@ export interface CodeProps
 		| 'defaultValue'
 		| 'focus'
 		| 'height'
+		| 'highlightActiveLine'
 		| 'maxLines'
 		| 'onLoad'
 		| 'placeholder'
