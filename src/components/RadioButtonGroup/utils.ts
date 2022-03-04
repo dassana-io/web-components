@@ -10,19 +10,21 @@ const { dark, light } = ThemeType
 
 export const radioButtonGroupPalette = {
 	[dark]: {
-		active: { color: grays.base },
+		active: { background: blacks['lighten-10'], color: grays.base },
 		base: {
 			background: blacks['darken-40'],
 			borderColor: blacks['lighten-10'],
-			color: themedStyles[dark].base.color
+			color: themedStyles[dark].base.color,
+			hoverColor: grays.base
 		}
 	},
 	[light]: {
-		active: { color: blacks.base },
+		active: { background: blacks.base, color: grays.base },
 		base: {
 			background: whites.base,
 			borderColor: grays.base,
-			color: themedStyles[light].base.color
+			color: blacks['lighten-50'],
+			hoverColor: blacks['lighten-30']
 		}
 	}
 }
@@ -30,7 +32,7 @@ export const radioButtonGroupPalette = {
 export const generateRadioButtonGroupStyles = (themeType: ThemeType) => {
 	const {
 		active,
-		base: { background, borderColor, color }
+		base: { background, borderColor, color, hoverColor }
 	} = radioButtonGroupPalette[themeType]
 
 	return {
@@ -39,14 +41,15 @@ export const generateRadioButtonGroupStyles = (themeType: ThemeType) => {
 				'&.ant-radio-button-wrapper-checked': {
 					'&:not([class*="ant-radio-button-wrapper-disabled"]).ant-radio-button-wrapper:first-child':
 						{ borderRightColor: borderColor },
-					backgroundColor: borderColor,
+					backgroundColor: active.background,
 					color: active.color
 				},
 				'&:focus-within': { boxShadow: 'none' },
 				'&:hover': {
-					'&:not([class*="ant-radio-button-wrapper-disabled"])': {
-						color: active.color
-					}
+					'&:not([class*="ant-radio-button-wrapper-disabled"]):not([class*="ant-radio-button-wrapper-checked"])':
+						{
+							color: hoverColor
+						}
 				},
 				'&:not(:first-child)::before': { backgroundColor: borderColor },
 				background,
