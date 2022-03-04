@@ -3,7 +3,7 @@ import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const {
 	borderRadius,
-	colors: { blacks, grays }
+	colors: { blacks, grays, whites }
 } = styleguide
 
 const { dark, light } = ThemeType
@@ -20,8 +20,8 @@ export const radioButtonGroupPalette = {
 	[light]: {
 		active: { color: blacks.base },
 		base: {
-			background: grays.base,
-			borderColor: blacks['lighten-60'],
+			background: whites.base,
+			borderColor: grays.base,
 			color: themedStyles[light].base.color
 		}
 	}
