@@ -74,7 +74,7 @@ const useStyles = createUseStyles({
 /* eslint-enable quotes */
 
 export interface ProgressBarProps {
-	classes: string[]
+	classes?: string[]
 }
 
 export const ProgressBar: FC<ProgressBarProps> = ({
