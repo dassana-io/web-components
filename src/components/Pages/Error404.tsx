@@ -64,9 +64,17 @@ const useStyles = createUseStyles({
 	}
 })
 
-interface Error404Props {
+interface WithBtn {
 	onBtnClick: () => void
+	showBtn?: true
 }
+
+interface WithoutBtn {
+	showBtn: false
+	onBtnClick?: never
+}
+
+type Error404Props = WithBtn | WithoutBtn
 
 const error404Config = [
 	{
@@ -89,7 +97,10 @@ const error404Config = [
 	}
 ]
 
-export const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
+export const Error404: FC<Error404Props> = ({
+	onBtnClick = () => undefined,
+	showBtn = true
+}: Error404Props) => {
 	const classes = useStyles()
 
 	useEffect(() => {
@@ -107,9 +118,11 @@ export const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
 			<div className={classes.details}>
 				<div className={classes.title}>{title}</div>
 				<div className={classes.msg}>{msg}</div>
-				<Button classes={[classes.btn]} onClick={onBtnClick}>
-					{renderButton(classes.btnIcon)}
-				</Button>
+				{showBtn && (
+					<Button classes={[classes.btn]} onClick={onBtnClick}>
+						{renderButton(classes.btnIcon)}
+					</Button>
+				)}
 			</div>
 			<img alt='404' className={classes.bgImg} src={bg} />
 		</div>
