@@ -5,11 +5,13 @@ import Error2 from '../assets/images/404_error_2.svg'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import random from 'lodash/random'
-import { styleguide } from 'components/assets/styles'
 import React, { FC, useEffect } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const { dark } = ThemeType
 
 const {
-	colors: { blacks, blues },
+	colors: { blacks, blues, whites },
 	flexCenter,
 	flexDown,
 	flexJustifyCenter,
@@ -51,6 +53,14 @@ const useStyles = createUseStyles({
 		color: blacks.base,
 		fontSize: 64,
 		fontWeight: 700
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $title': {
+				color: whites.base
+			}
+		}
 	}
 })
 
