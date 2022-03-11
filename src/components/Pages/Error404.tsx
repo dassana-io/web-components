@@ -5,11 +5,13 @@ import Error2 from '../assets/images/404_error_2.svg'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import random from 'lodash/random'
-import { styleguide } from 'components/assets/styles'
 import React, { FC, useEffect } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const { dark } = ThemeType
 
 const {
-	colors: { blacks, blues },
+	colors: { blacks, blues, whites },
 	flexCenter,
 	flexDown,
 	flexJustifyCenter,
@@ -51,12 +53,28 @@ const useStyles = createUseStyles({
 		color: blacks.base,
 		fontSize: 64,
 		fontWeight: 700
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $title': {
+				color: whites.base
+			}
+		}
 	}
 })
 
-interface Error404Props {
+interface WithBtn {
 	onBtnClick: () => void
+	showBtn?: true
 }
+
+interface WithoutBtn {
+	showBtn: false
+	onBtnClick?: never
+}
+
+type Error404Props = WithBtn | WithoutBtn
 
 const error404Config = [
 	{
@@ -79,7 +97,10 @@ const error404Config = [
 	}
 ]
 
-export const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
+export const Error404: FC<Error404Props> = ({
+	onBtnClick = () => undefined,
+	showBtn = true
+}: Error404Props) => {
 	const classes = useStyles()
 
 	useEffect(() => {
@@ -97,9 +118,11 @@ export const Error404: FC<Error404Props> = ({ onBtnClick }: Error404Props) => {
 			<div className={classes.details}>
 				<div className={classes.title}>{title}</div>
 				<div className={classes.msg}>{msg}</div>
-				<Button classes={[classes.btn]} onClick={onBtnClick}>
-					{renderButton(classes.btnIcon)}
-				</Button>
+				{showBtn && (
+					<Button classes={[classes.btn]} onClick={onBtnClick}>
+						{renderButton(classes.btnIcon)}
+					</Button>
+				)}
 			</div>
 			<img alt='404' className={classes.bgImg} src={bg} />
 		</div>
