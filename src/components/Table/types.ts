@@ -84,7 +84,10 @@ export enum DateDisplayFormat {
 
 export interface NumberDateType extends Omit<NumberDefaultType, 'format'> {
 	format: ColumnFormats.date
-	renderProps?: { displayFormat: string | DateDisplayFormat }
+	renderProps?: {
+		displayFormat?: string | DateDisplayFormat
+		formatter?: (date: number) => string
+	}
 }
 
 type NumberType = NumberDefaultType | NumberByteType | NumberDateType

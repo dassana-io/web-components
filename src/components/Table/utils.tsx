@@ -26,6 +26,7 @@ import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
+import { faMoneySimpleFromBracket } from '@fortawesome/pro-regular-svg-icons'
 
 const { component, number, string } = ColumnTypes
 const { action, boolean, byte, date, icon, coloredDot, link, tag, toggle } =
@@ -736,20 +737,17 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 export function createDateFormatter(
 	column: NumberDateType
 ): NumFormatterFunction {
-	let displayFormat = ''
-	const { renderProps } = column
+	const { renderProps: { displayFormat, formatter } = {} } = column
 
-	if (renderProps && renderProps.displayFormat) {
-		if (renderProps.displayFormat === DateDisplayFormat.fromNow) {
-			return (num?: number) =>
-				num === undefined ? null : moment(num).fromNow()
-		}
+	let dateFormatter = (num: number) => moment(num).format(displayFormat)
 
-		displayFormat = renderProps.displayFormat
+	if (displayFormat && displayFormat === DateDisplayFormat.fromNow) {
+		dateFormatter = (num: number) => moment(num).fromNow()
 	}
 
-	return (num?: number) =>
-		num === undefined ? null : moment(num).format(displayFormat)
+	if (formatter) dateFormatter = formatter
+
+	return (num?: number) => (num === undefined ? null : dateFormatter(num))
 }
 
 /* Returns a byte formatter function (using bytes). */
