@@ -1,9 +1,15 @@
+import '../assets/styles/antdAnimations.css'
 import 'antd/lib/pagination/style/index.css'
 import { Pagination as AntDPagination } from 'antd'
 import { PaginationProps as AntDPaginationProps } from 'antd/lib/pagination'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generatePaginationStyles } from './styles'
+import { generateSelectStyles } from 'components/Select/SingleSelect/utils'
+import {
+	generateThemedDropdownStyles,
+	generateThemedOptionStyles
+} from 'components/Select/utils'
 import React, { ReactNode, useCallback, useMemo, useState } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
@@ -18,12 +24,20 @@ const useStyles = createUseStyles({
 	paginationContainer: {
 		...flexJustifyEnd,
 		...generatePaginationStyles(light),
+		...generateSelectStyles(light),
+		'& .ant-select-dropdown': generateThemedDropdownStyles(light),
+		'& .ant-select-item': generateThemedOptionStyles(light),
 		paddingTop: spacing.l
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $paginationContainer': generatePaginationStyles(dark)
+			'& $paginationContainer': {
+				...generatePaginationStyles(dark),
+				...generateSelectStyles(dark),
+				'& .ant-select-dropdown': generateThemedDropdownStyles(dark),
+				'& .ant-select-item': generateThemedOptionStyles(dark)
+			}
 		}
 	}
 })
