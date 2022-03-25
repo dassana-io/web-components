@@ -1,6 +1,6 @@
-import { Input as AntDInput } from 'antd'
 import { BaseFieldProps } from '../types'
 import cn from 'classnames'
+import { InputRef } from 'antd'
 import { ChipInput, ChipInputProps } from 'components/ChipInput'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
@@ -26,7 +26,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 	rules = {},
 	...rest
 }: FormChipInputProps) => {
-	const inputRef = useRef<AntDInput>(null)
+	const inputRef = useRef<InputRef>(null)
 	const {
 		clearErrors,
 		control,

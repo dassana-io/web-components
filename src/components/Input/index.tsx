@@ -1,5 +1,4 @@
 import 'antd/lib/input/style/index.css'
-import { Input as AntDInput } from 'antd'
 import { BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
@@ -7,6 +6,7 @@ import { getDataTestAttributeProp } from '../utils'
 import InputSkeleton from './InputSkeleton'
 import noop from 'lodash/noop'
 import { ThemeType } from '../assets/styles/themes'
+import { Input as AntDInput, InputRef } from 'antd'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
@@ -55,7 +55,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonBefore?: string
 	containerClasses?: string[]
 	defaultValue?: string
-	inputRef?: RefObject<AntDInput>
+	inputRef?: RefObject<InputRef>
 	focused?: boolean
 	onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	onKeyDown?: (e: KeyboardEvent) => void

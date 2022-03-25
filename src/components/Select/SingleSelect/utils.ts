@@ -52,24 +52,33 @@ const generateErrorStyles = (themeType: ThemeType) => ({
 	}
 })
 
+export const generateSelectStyles = (
+	theme: ThemeType,
+	additionalStyles?: Record<string, string>
+) => ({
+	'& .ant-select': {
+		borderRadius,
+		...generateThemedSelectStyles(theme),
+		...generateThemedSelectedItemStyles(theme),
+		'& .ant-select-selector': {
+			...generateThemedInputStyles(theme),
+			borderRadius
+		},
+		...generateErrorStyles(theme),
+		[disabledClasses]: generateThemedDisabledStyles(theme),
+		[focusedClasses]: generateThemedFocusedStyles(theme),
+		...additionalStyles
+	}
+})
+
 export const useStyles = createUseStyles({
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
-		'& .ant-select': {
-			borderRadius,
-			...generateThemedSelectStyles(light),
-			...generateThemedSelectedItemStyles(light),
-			'& .ant-select-selector': {
-				...generateThemedInputStyles(light),
-				borderRadius
-			},
-			...generateErrorStyles(light),
-			[disabledClasses]: generateThemedDisabledStyles(light),
-			[focusedClasses]: generateThemedFocusedStyles(light),
+		...generateSelectStyles(light, {
 			minWidth: matchSelectedContentWidth
 				? matchSelectedContentWidth
 				: 'unset',
 			width: matchSelectedContentWidth ? 'unset' : '100%'
-		},
+		}),
 		width:
 			fullWidth || matchSelectedContentWidth ? '100%' : defaultFieldWidth
 	}),
@@ -84,18 +93,7 @@ export const useStyles = createUseStyles({
 	'@global': {
 		...fieldErrorStyles['@global'],
 		[`.${dark}`]: {
-			'& $container': {
-				'& .ant-select': {
-					...generateThemedSelectStyles(dark),
-					...generateThemedSelectedItemStyles(dark),
-					'& .ant-select-selector': {
-						...generateThemedInputStyles(dark)
-					},
-					...generateErrorStyles(dark),
-					[disabledClasses]: generateThemedDisabledStyles(dark),
-					[focusedClasses]: generateThemedFocusedStyles(dark)
-				}
-			},
+			'& $container': generateSelectStyles(dark),
 			'& $dropdown': generateThemedDropdownStyles(dark),
 			'& $option': generateThemedOptionStyles(dark)
 		}

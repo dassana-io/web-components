@@ -26,7 +26,6 @@ import { Link, LinkProps } from '../Link'
 import React, { Key, MouseEvent } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
-import { faMoneySimpleFromBracket } from '@fortawesome/pro-regular-svg-icons'
 
 const { component, number, string } = ColumnTypes
 const { action, boolean, byte, date, icon, coloredDot, link, tag, toggle } =
