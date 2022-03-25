@@ -1,6 +1,6 @@
-import { Input as AntDInput } from 'antd'
 import { Input } from './index'
 import { Skeleton } from '../Skeleton'
+import { Input as AntDInput, InputRef } from 'antd'
 import { mount, ReactWrapper, shallow } from 'enzyme'
 import React, { createRef } from 'react'
 
@@ -36,7 +36,7 @@ describe('Input', () => {
 	})
 
 	it('correctly passes the ref if one is provided', () => {
-		const inputRef = createRef<AntDInput>()
+		const inputRef = createRef<InputRef>()
 
 		wrapper = mount(<Input inputRef={inputRef} />)
 
