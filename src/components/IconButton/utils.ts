@@ -46,6 +46,9 @@ export const generateThemedDisabledStyles = (themeType: ThemeType) => {
 			backgroundColor: disabledBgColor,
 			borderColor
 		},
+		'&$hasBorder:hover': {
+			borderColor
+		},
 		'&$iconButton': {
 			color: disabledColor,
 			cursor: 'not-allowed'
