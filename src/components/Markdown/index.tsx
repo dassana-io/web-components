@@ -14,12 +14,18 @@ const useStyles = createUseStyles({
 	'@global': {
 		'.markdown-body': {
 			'& a': generateLinkStyles(light)['&.ant-typography'],
+			'& code': {
+				backgroundColor: themes[light].state.loading.primary,
+				color: 'unset',
+				textShadow: 'none',
+				whiteSpace: 'break-spaces'
+			},
+			'& img': {
+				backgroundColor: 'transparent'
+			},
 			'& pre': {
 				'& code': {
-					backgroundColor: themes[light].state.disabled,
-					color: 'unset',
-					textShadow: 'none',
-					whiteSpace: 'break-spaces'
+					backgroundColor: 'transparent'
 				},
 				backgroundColor: themes[light].background.secondary,
 				padding: 10
@@ -31,9 +37,12 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& .markdown-body': {
 				'& a': generateLinkStyles(dark)['&.ant-typography'],
+				'& code': {
+					backgroundColor: themes[dark].state.loading.primary
+				},
 				'& pre': {
 					'& code': {
-						backgroundColor: themes[dark].state.disabled
+						backgroundColor: 'transparent'
 					},
 					backgroundColor: themes[dark].background.secondary
 				},
