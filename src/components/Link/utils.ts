@@ -13,6 +13,7 @@ export const generateLinkStyles = (themeType: ThemeType) => {
 			},
 			color: base.color,
 			fontWeight: fontWeight.light,
+			textDecoration: 'underline',
 			transition: 'all 0.3s'
 		}
 	}
