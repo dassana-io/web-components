@@ -70,7 +70,7 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $container': generateThemedBannerStyles(dark),
 			'& $title': {
-				color: themedStyles.light.base.color
+				color: themedStyles.dark.base.color
 			}
 		}
 	}
