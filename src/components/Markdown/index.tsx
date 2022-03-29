@@ -1,11 +1,15 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { generateLinkStyles } from '../Link/utils'
 import gfm from 'remark-gfm'
-import { markdownPalette } from './styles'
 import ReactMarkdown from 'react-markdown'
+import {
+	generateThemedMarkdownCodeStyles,
+	generateThemedMarkdownPreStyles,
+	generateThemedMarkdownStyles,
+	markdownPalette
+} from './styles'
 import React, { FC } from 'react'
-import { styleguide, themes, ThemeType } from '../assets/styles'
+import { styleguide, ThemeType } from '../assets/styles'
 
 const { font, fontWeight } = styleguide
 
@@ -14,52 +18,25 @@ const { dark, light } = ThemeType
 const useStyles = createUseStyles({
 	'@global': {
 		'.markdown-body': {
-			'& a': generateLinkStyles(light)['&.ant-typography'],
+			...generateThemedMarkdownStyles(light),
 			'& code': {
-				backgroundColor: themes[light].state.loading.primary,
+				...generateThemedMarkdownCodeStyles(light),
 				color: 'unset',
 				textShadow: 'none',
 				whiteSpace: 'break-spaces'
 			},
-			'& h1, & h2': {
-				borderBottomColor: markdownPalette[light].lineBreak
-			},
-			'& hr': {
-				backgroundColor: markdownPalette[light].lineBreak
-			},
-			'& img': {
-				backgroundColor: 'transparent'
-			},
 			'& pre': {
-				'& code': {
-					backgroundColor: 'transparent'
-				},
-				backgroundColor: themes[light].background.secondary,
+				...generateThemedMarkdownPreStyles(light),
 				padding: 10
 			},
 			...font.body,
-			color: themes[light].text.primary,
 			fontWeight: fontWeight.light
 		},
 		[`.${dark}`]: {
 			'& .markdown-body': {
-				'& a': generateLinkStyles(dark)['&.ant-typography'],
-				'& code': {
-					backgroundColor: themes[dark].state.loading.primary
-				},
-				'& h2': {
-					borderBottomColor: markdownPalette[dark].lineBreak
-				},
-				'& hr': {
-					backgroundColor: markdownPalette[dark].lineBreak
-				},
-				'& pre': {
-					'& code': {
-						backgroundColor: 'transparent'
-					},
-					backgroundColor: themes[dark].background.secondary
-				},
-				color: themes[dark].text.primary
+				...generateThemedMarkdownStyles(dark),
+				'& code': generateThemedMarkdownCodeStyles(dark),
+				'& pre': generateThemedMarkdownPreStyles(dark)
 			}
 		}
 	}
