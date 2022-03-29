@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateLinkStyles } from '../Link/utils'
 import gfm from 'remark-gfm'
+import { markdownPalette } from './styles'
 import ReactMarkdown from 'react-markdown'
 import React, { FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
@@ -19,6 +20,12 @@ const useStyles = createUseStyles({
 				color: 'unset',
 				textShadow: 'none',
 				whiteSpace: 'break-spaces'
+			},
+			'& h1, & h2': {
+				borderBottomColor: markdownPalette[light].lineBreak
+			},
+			'& hr': {
+				backgroundColor: markdownPalette[light].lineBreak
 			},
 			'& img': {
 				backgroundColor: 'transparent'
@@ -39,6 +46,12 @@ const useStyles = createUseStyles({
 				'& a': generateLinkStyles(dark)['&.ant-typography'],
 				'& code': {
 					backgroundColor: themes[dark].state.loading.primary
+				},
+				'& h2': {
+					borderBottomColor: markdownPalette[dark].lineBreak
+				},
+				'& hr': {
+					backgroundColor: markdownPalette[dark].lineBreak
 				},
 				'& pre': {
 					'& code': {
