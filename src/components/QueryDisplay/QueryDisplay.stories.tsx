@@ -14,6 +14,8 @@ const Template: Story = args => (
 		query={
 			"Select userIdentity.principalId, eventSource, eventName \nfrom \"tutorial_app\" \nwhere eventSource = 's3.amazonaws.com' and eventName = 'ListBuckets' and userIdentity.principalId like '%:i-%"
 		}
+		renderControls={() => <div>Controls</div>}
+		renderFooter={() => <div>Footer</div>}
 	/>
 )
 

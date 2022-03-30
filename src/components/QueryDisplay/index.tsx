@@ -1,42 +1,62 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from '../IconButton'
 import { AceEditor, Code } from '../Code'
-import { COLLAPSED_CONTAINER_HEIGHT, colorPalette } from './styles'
+import {
+	COLLAPSED_CONTAINER_HEIGHT,
+	generatedThemedHeightToggleStyles,
+	generatedThemedQueryContainerStyles
+} from './styles'
 import {
 	faChevronDown,
 	faChevronUp,
 	faSearch
 } from '@fortawesome/pro-light-svg-icons'
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react'
-import { styleguide, themedStyles, ThemeType } from '../assets/styles'
+import React, {
+	FC,
+	ReactNode,
+	useCallback,
+	useEffect,
+	useRef,
+	useState
+} from 'react'
+import { styleguide, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType
 
-const { borderRadius, flexDown, font, fontWeight, spacing } = styleguide
+const {
+	borderRadius,
+	flexAlignCenter,
+	flexDown,
+	flexSpaceBetween,
+	font,
+	fontWeight,
+	spacing
+} = styleguide
 
 const useStyles = createUseStyles({
 	code: {
 		height: '100%',
-		resize: 'both',
 		width: '100% !important'
 	},
 	codeContainer: {
 		height: ({ fixedContainerHeight }) =>
 			fixedContainerHeight ? COLLAPSED_CONTAINER_HEIGHT : 'auto'
 	},
+	footerContainer: {
+		paddingTop: spacing.m
+	},
 	header: {
+		...flexAlignCenter,
+		...flexSpaceBetween,
 		cursor: 'pointer',
 		fontWeight: fontWeight.light,
 		paddingBottom: spacing.m,
-		width: 'max-content'
+		width: '100%'
 	},
 	heightToggle: {
-		'&:hover': {
-			backgroundColor: colorPalette[light].hoverBackground
-		},
-		backgroundColor: colorPalette[light].secondaryBackground,
-		border: `1px solid ${themedStyles[light].base.borderColor}`,
+		...generatedThemedHeightToggleStyles(light),
 		borderRadius: '0 0 20% 20%',
 		bottom: -spacing.l,
 		cursor: 'pointer',
@@ -48,43 +68,46 @@ const useStyles = createUseStyles({
 	launch: {
 		marginLeft: spacing.m
 	},
+	nameContainer: {
+		width: 'max-content'
+	},
 	queryContainer: {
 		...flexDown,
 		...font.body,
-		backgroundColor: colorPalette[light].secondaryBackground,
+		...generatedThemedQueryContainerStyles(light),
 		borderRadius,
-		color: colorPalette[light].color,
 		padding: spacing.m,
 		position: 'relative'
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $heightToggle': {
-				'&:hover': {
-					backgroundColor: colorPalette[dark].hoverBackground
-				},
-				backgroundColor: colorPalette[dark].secondaryBackground,
-				border: `1px solid ${themedStyles[dark].base.borderColor}`
-			},
-			'& $queryContainer': {
-				backgroundColor: colorPalette[dark].secondaryBackground,
-				color: colorPalette[dark].color
-			}
+			'& $heightToggle': generatedThemedHeightToggleStyles(dark),
+			'& $queryContainer': generatedThemedQueryContainerStyles(dark)
 		}
 	}
 })
 
 interface QueryDisplayProps {
+	containerClasses?: string[]
+	controlsContainerClasses?: string[]
+	footerContainerClasses?: string[]
 	name: string
 	onQueryClick: () => void
 	query: string
+	renderControls?: () => ReactNode
+	renderFooter?: () => ReactNode
 }
 
 export const QueryDisplay: FC<QueryDisplayProps> = ({
+	containerClasses = [],
+	controlsContainerClasses = [],
+	footerContainerClasses = [],
 	name,
+	onQueryClick,
 	query,
-	onQueryClick
+	renderControls,
+	renderFooter
 }: QueryDisplayProps) => {
 	const editorRef = useRef<AceEditor>(null)
 
@@ -107,14 +130,19 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	}, [])
 
 	return (
-		<div className={classes.queryContainer}>
+		<div
+			className={cn({ [classes.queryContainer]: true }, containerClasses)}
+		>
 			<div className={classes.header} onClick={onQueryClick}>
-				<span>{name}</span>
-				<IconButton
-					classes={[classes.launch]}
-					icon={faSearch}
-					onClick={onQueryClick}
-				/>
+				<div className={classes.nameContainer}>
+					<span>{name}</span>
+					<IconButton
+						classes={[classes.launch]}
+						icon={faSearch}
+						onClick={onQueryClick}
+					/>
+				</div>
+				{renderControls && <>{renderControls()}</>}
 			</div>
 			<div className={classes.codeContainer}>
 				<Code
@@ -138,6 +166,16 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 						icon={isExpanded ? faChevronUp : faChevronDown}
 						size='xs'
 					/>
+				</div>
+			)}
+			{renderFooter && (
+				<div
+					className={cn(
+						{ [classes.footerContainer]: true },
+						footerContainerClasses
+					)}
+				>
+					{renderFooter()}
 				</div>
 			)}
 		</div>
