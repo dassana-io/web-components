@@ -142,7 +142,11 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 						onClick={onQueryClick}
 					/>
 				</div>
-				{renderControls && <>{renderControls()}</>}
+				{renderControls && (
+					<div className={cn(controlsContainerClasses)}>
+						{renderControls()}
+					</div>
+				)}
 			</div>
 			<div className={classes.codeContainer}>
 				<Code
