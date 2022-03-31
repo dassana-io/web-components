@@ -5,8 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import {
 	generateThemedMarkdownCodeStyles,
 	generateThemedMarkdownPreStyles,
-	generateThemedMarkdownStyles,
-	markdownPalette
+	generateThemedMarkdownStyles
 } from './styles'
 import React, { FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
