@@ -10,7 +10,13 @@ import {
 	generateThemedDropdownStyles,
 	generateThemedOptionStyles
 } from 'components/Select/utils'
-import React, { ReactNode, useCallback, useMemo, useState } from 'react'
+import React, {
+	ReactNode,
+	RefObject,
+	useCallback,
+	useMemo,
+	useState
+} from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType
@@ -19,6 +25,9 @@ const { flexDown, flexJustifyEnd, spacing } = styleguide
 
 const useStyles = createUseStyles({
 	container: {
+		...flexDown
+	},
+	itemWrapper: {
 		...flexDown
 	},
 	paginationContainer: {
@@ -45,12 +54,18 @@ const useStyles = createUseStyles({
 export interface PaginateProps<T>
 	extends Pick<
 		AntDPaginationProps,
-		'defaultPageSize' | 'showSizeChanger' | 'pageSizeOptions' | 'size'
+		| 'defaultPageSize'
+		| 'hideOnSinglePage'
+		| 'showSizeChanger'
+		| 'pageSizeOptions'
+		| 'size'
 	> {
 	containerClasses?: string[]
 	data: T[]
 	itemContainerClasses?: string[]
+	itemWrapperClasses?: string[]
 	itemRender: (data: T) => ReactNode
+	paginationContainerRef?: RefObject<HTMLDivElement>
 }
 
 // eslint-disable-next-line comma-spacing
@@ -58,8 +73,11 @@ export const Paginate = <Data,>({
 	containerClasses = [],
 	data,
 	defaultPageSize = 10,
+	hideOnSinglePage = true,
 	itemContainerClasses = [],
+	itemWrapperClasses = [],
 	itemRender,
+	paginationContainerRef,
 	showSizeChanger = true,
 	...rest
 }: PaginateProps<Data>) => {
@@ -83,14 +101,27 @@ export const Paginate = <Data,>({
 
 	return (
 		<div className={cn({ [classes.container]: true }, containerClasses)}>
-			{data.slice(minVal, maxVal).map((datum, i) => (
-				<div key={i}>{itemRender(datum)}</div>
-			))}
-			<div className={classes.paginationContainer}>
+			<div
+				className={cn(
+					{ [classes.itemWrapper]: true },
+					itemWrapperClasses
+				)}
+			>
+				{data.slice(minVal, maxVal).map((datum, i) => (
+					<div className={cn(itemContainerClasses)} key={i}>
+						{itemRender(datum)}
+					</div>
+				))}
+			</div>
+			<div
+				className={classes.paginationContainer}
+				ref={paginationContainerRef}
+			>
 				<AntDPagination
 					current={currentPage}
 					defaultCurrent={1}
 					defaultPageSize={pageSize}
+					hideOnSinglePage={hideOnSinglePage}
 					onChange={setCurrentPage}
 					onShowSizeChange={handlePageSizeChange}
 					pageSize={pageSize}

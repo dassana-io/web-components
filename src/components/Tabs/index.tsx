@@ -1,9 +1,13 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { generateThemedTabsListStyles } from './utils'
 import Tab from './Tab'
 import TabPane from './TabPane'
 import { ThemeType } from 'components/assets/styles'
+import {
+	findDefaultActiveIndex,
+	generateThemedTabsListStyles,
+	TabParams
+} from './utils'
 import React, {
 	FC,
 	ReactNode,
@@ -131,3 +135,5 @@ export const Tabs: FC<TabsProps> = ({
 		</div>
 	)
 }
+
+export { findDefaultActiveIndex, TabParams }
