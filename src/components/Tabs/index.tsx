@@ -65,6 +65,7 @@ export interface TabsProps {
 	tabClasses?: string[]
 	tabsListClasses?: string[]
 	tabsRef?: RefObject<UseTabsMethods>
+	transitionDuration?: number
 }
 
 export const Tabs: FC<TabsProps> = ({
@@ -76,7 +77,8 @@ export const Tabs: FC<TabsProps> = ({
 	tabConfig,
 	tabClasses = [],
 	tabsListClasses = [],
-	tabsRef
+	tabsRef,
+	transitionDuration = 0.5
 }: TabsProps) => {
 	/* Fallback to index 0 if tabConfig[defaultActiveIndex] doesn't exist */
 	const [activeIndex, setActiveIndex] = useState(
@@ -121,6 +123,7 @@ export const Tabs: FC<TabsProps> = ({
 				isActive={i === activeIndex}
 				key={i}
 				tabConfigItem={tabConfigItem}
+				transitionDuration={transitionDuration}
 			/>
 		))
 

@@ -6,6 +6,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generatePaginationStyles } from './styles'
 import { generateSelectStyles } from 'components/Select/SingleSelect/utils'
+import omit from 'lodash/omit'
 import {
 	generateThemedDropdownStyles,
 	generateThemedOptionStyles
@@ -33,7 +34,7 @@ const useStyles = createUseStyles({
 	paginationContainer: {
 		...flexJustifyEnd,
 		...generatePaginationStyles(light),
-		...generateSelectStyles(light),
+		...omit(generateSelectStyles(light), '&$error'),
 		'& .ant-select-dropdown': generateThemedDropdownStyles(light),
 		'& .ant-select-item': generateThemedOptionStyles(light),
 		paddingTop: spacing.l
@@ -43,7 +44,7 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $paginationContainer': {
 				...generatePaginationStyles(dark),
-				...generateSelectStyles(dark),
+				...omit(generateSelectStyles(dark), '&$error'),
 				'& .ant-select-dropdown': generateThemedDropdownStyles(dark),
 				'& .ant-select-item': generateThemedOptionStyles(dark)
 			}
