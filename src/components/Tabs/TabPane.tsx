@@ -20,6 +20,7 @@ interface TabPaneProps {
 	forceRender: boolean
 	isActive: boolean
 	tabConfigItem: TabConfig
+	transitionDuration?: number
 }
 
 const [ACTIVE, INACTIVE] = ['active', 'inactive']
@@ -27,7 +28,8 @@ const [ACTIVE, INACTIVE] = ['active', 'inactive']
 const TabPane: FC<TabPaneProps> = ({
 	forceRender,
 	isActive,
-	tabConfigItem: { classes = [], render }
+	tabConfigItem: { classes = [], render },
+	transitionDuration = 0.5
 }: TabPaneProps) => {
 	const compClasses = useStyles({ isActive })
 
@@ -42,7 +44,7 @@ const TabPane: FC<TabPaneProps> = ({
 			<motion.div
 				animate={isActive ? ACTIVE : INACTIVE}
 				className={cn(compClasses.tabPane, classes)}
-				transition={{ duration: 0.5 }}
+				transition={{ duration: transitionDuration }}
 				variants={{
 					[ACTIVE]: { opacity: 1 },
 					[INACTIVE]: { opacity: 0 }
