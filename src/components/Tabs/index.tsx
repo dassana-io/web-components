@@ -48,6 +48,7 @@ export interface TabConfig {
 
 export interface UseTabsMethods {
 	setTab: (tabIndex: number) => void
+	tabConfig: TabConfig[]
 }
 
 export interface TabsProps {
@@ -100,7 +101,8 @@ export const Tabs: FC<TabsProps> = ({
 	}
 
 	useImperativeHandle(tabsRef, () => ({
-		setTab: onClickTab
+		setTab: onClickTab,
+		tabConfig
 	}))
 
 	const renderTabItems = () =>
