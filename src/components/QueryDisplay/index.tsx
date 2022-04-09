@@ -93,6 +93,7 @@ interface QueryDisplayProps {
 	controlsContainerClasses?: string[]
 	footerContainerClasses?: string[]
 	name: string
+	loading?: boolean
 	onQueryClick: () => void
 	query: string
 	renderControls?: () => ReactNode
@@ -103,6 +104,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	containerClasses = [],
 	controlsContainerClasses = [],
 	footerContainerClasses = [],
+	loading = false,
 	name,
 	onQueryClick,
 	query,
@@ -157,6 +159,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 					height='100%'
 					highlightActiveLine={false}
 					language='sql'
+					loading={loading}
 					maxLines={Infinity}
 					width='100%'
 				/>
