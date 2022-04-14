@@ -92,7 +92,7 @@ interface QueryDisplayProps {
 	containerClasses?: string[]
 	controlsContainerClasses?: string[]
 	footerContainerClasses?: string[]
-	name: string
+	name: ReactNode | string
 	loading?: boolean
 	onQueryClick: () => void
 	query: string
