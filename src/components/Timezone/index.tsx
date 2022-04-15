@@ -1,5 +1,6 @@
+import { guessUserTimezone } from '@dassana-io/web-utils'
 import isNull from 'lodash/isNull'
-import { getTimezoneDefaultValue, mappedTimezoneOpts } from './utils'
+import { mappedTimezoneOpts } from './utils'
 import React, { ChangeEventHandler, FC, useEffect } from 'react'
 import { Select, SelectProps } from 'components/Select'
 
@@ -22,7 +23,7 @@ export const Timezone: FC<TimezoneProps> = ({
 }: TimezoneProps) => {
 	// if value is null and we're guessing the user's tz, then call onChange with the new value
 	useEffect(() => {
-		if (isNull(value) && onChange) onChange(getTimezoneDefaultValue(value))
+		if (isNull(value) && onChange) onChange(guessUserTimezone())
 	}, [onChange, value])
 
 	return (
@@ -31,7 +32,7 @@ export const Timezone: FC<TimezoneProps> = ({
 			onChange={onChange as unknown as ChangeEventHandler}
 			options={options}
 			showSearch
-			value={isNull(value) ? getTimezoneDefaultValue(value) : value}
+			value={isNull(value) ? guessUserTimezone() : value}
 		/>
 	)
 }

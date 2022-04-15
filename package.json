@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.6.2",
-		"@dassana-io/web-utils": "^0.9.4",
+		"@dassana-io/web-utils": "^0.9.19",
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
 		"@fortawesome/free-brands-svg-icons": "^6.1.1",
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",
