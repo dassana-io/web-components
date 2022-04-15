@@ -44,17 +44,20 @@ const useStyles = createUseStyles({
 export interface MarkdownProps {
 	children: string
 	classes?: string[]
+	linkTarget?: string
 }
 
 export const Markdown: FC<MarkdownProps> = ({
 	children,
-	classes = []
+	classes = [],
+	linkTarget
 }: MarkdownProps) => {
 	useStyles()
 
 	return (
 		<ReactMarkdown
 			className={cn('markdown-body', classes)}
+			linkTarget={linkTarget}
 			remarkPlugins={[gfm]}
 		>
 			{children}
