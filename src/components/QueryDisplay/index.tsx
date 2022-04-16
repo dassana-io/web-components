@@ -92,6 +92,7 @@ interface QueryDisplayProps {
 	containerClasses?: string[]
 	controlsContainerClasses?: string[]
 	footerContainerClasses?: string[]
+	nameContainerClasses?: string[]
 	name: ReactNode | string
 	loading?: boolean
 	onQueryClick: () => void
@@ -104,6 +105,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	containerClasses = [],
 	controlsContainerClasses = [],
 	footerContainerClasses = [],
+	nameContainerClasses = [],
 	loading = false,
 	name,
 	onQueryClick,
@@ -136,7 +138,12 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 			className={cn({ [classes.queryContainer]: true }, containerClasses)}
 		>
 			<div className={classes.header} onClick={onQueryClick}>
-				<div className={classes.nameContainer}>
+				<div
+					className={cn(
+						{ [classes.nameContainer]: true },
+						nameContainerClasses
+					)}
+				>
 					<span>{name}</span>
 					<IconButton
 						classes={[classes.launch]}
@@ -153,7 +160,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 			<div className={classes.codeContainer}>
 				<Code
 					classes={[classes.code]}
-					defaultValue={query}
+					code={query}
 					displayControls={false}
 					editorRef={editorRef}
 					height='100%'
