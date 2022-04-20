@@ -91,6 +91,7 @@ const useStyles = createUseStyles({
 interface QueryDisplayProps {
 	containerClasses?: string[]
 	controlsContainerClasses?: string[]
+	expandable?: boolean
 	footerContainerClasses?: string[]
 	nameContainerClasses?: string[]
 	name: ReactNode | string
@@ -104,6 +105,7 @@ interface QueryDisplayProps {
 export const QueryDisplay: FC<QueryDisplayProps> = ({
 	containerClasses = [],
 	controlsContainerClasses = [],
+	expandable = true,
 	footerContainerClasses = [],
 	nameContainerClasses = [],
 	loading = false,
@@ -129,9 +131,9 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 		if (editorRef.current) {
 			const lines = editorRef.current.editor.getSession().getLength()
 
-			setShowExpander(lines > 2)
+			expandable && setShowExpander(lines > 2)
 		}
-	}, [])
+	}, [expandable])
 
 	return (
 		<div
@@ -171,7 +173,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 					width='100%'
 				/>
 			</div>
-			{showExpander && (
+			{expandable && showExpander && (
 				<div
 					className={classes.heightToggle}
 					onClick={toggleContainerExpansion}
