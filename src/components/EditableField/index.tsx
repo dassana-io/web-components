@@ -1,11 +1,11 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { faPencilAlt } from '@fortawesome/pro-light-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Input } from '../Input'
 import { ShortcutMicrocopy } from '../ShortcutMicrocopy'
 import { styleguide } from '../assets/styles'
 import { useClickOutside } from '@dassana-io/web-utils'
+import { IconButton, IconSizes } from 'components/IconButton'
 import React, {
 	Dispatch,
 	FC,
@@ -111,10 +111,15 @@ export const EditableField: FC<EditableFieldProps> = ({
 		>
 			{inputValue}
 			{editable && (
-				<FontAwesomeIcon
-					className={classes.editIcon}
+				<IconButton
+					classes={[classes.editIcon]}
 					icon={faPencilAlt}
-					size='xs'
+					onClick={e => {
+						e?.stopPropagation()
+
+						setIsEditing(true)
+					}}
+					size={IconSizes.xs}
 				/>
 			)}
 		</div>
