@@ -16,6 +16,9 @@ const useStyles = createUseStyles({
 			'& $a': generateLinkStyles(dark)
 		},
 		a: generateLinkStyles(light)
+	},
+	underline: {
+		textDecoration: 'underline'
 	}
 })
 
@@ -59,9 +62,9 @@ export const Link: FC<LinkProps> = ({
 	target = '_self',
 	underline = true
 }: LinkProps) => {
-	useStyles()
+	const componentClasses = useStyles()
 
-	const linkClasses = cn(classes)
+	const linkClasses = cn({ [componentClasses.underline]: underline }, classes)
 
 	return (
 		<AntDLink
