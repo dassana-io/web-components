@@ -1,14 +1,14 @@
 import colors from 'components/assets/styles/colors'
 import { ThemeType } from 'components/assets/styles/themes'
 
-const { blacks, grays, whites } = colors
+const { blacks, blues, grays, whites } = colors
 
 const { dark, light } = ThemeType
 
 const togglePalette = {
 	[dark]: {
 		active: {
-			primary: blacks['lighten-30'],
+			primary: blues.base,
 			secondary: blacks['lighten-80']
 		},
 		disabled: {
@@ -25,7 +25,7 @@ const togglePalette = {
 		}
 	},
 	[light]: {
-		active: { primary: blacks['lighten-30'], secondary: whites.base },
+		active: { primary: blues.base, secondary: whites.base },
 		disabled: {
 			primary: blacks['lighten-80'],
 			secondary: grays.base
