@@ -26,10 +26,16 @@ const useStyles = createUseStyles({
 	inputContainer: {
 		...flexAlignCenter
 	},
-	value: ({
+	unsaved: {
+		'&::after': {
+			content: '"*"',
+			paddingLeft: spacing.s
+		}
+	},
+	valueContainer: ({
 		editable,
 		fullWidth
-	}: Pick<EditableFieldProps, 'editable' | 'fullWidth'>) => ({
+	}: Pick<EditableFieldProps, 'editable' | 'fullWidth' | 'unsaved'>) => ({
 		'&:hover': {
 			'& $editIcon': {
 				opacity: 1
@@ -60,6 +66,7 @@ interface EditableFieldProps {
 	onSubmit: (newValue: string) => void
 	placeholder?: string
 	renderShortcutMicrocopy?: boolean
+	unsaved?: boolean
 	value: string
 	valueContainerClasses?: string[]
 }
@@ -73,6 +80,7 @@ export const EditableField: FC<EditableFieldProps> = ({
 	onSubmit,
 	placeholder = '',
 	renderShortcutMicrocopy = true,
+	unsaved = false,
 	value,
 	valueContainerClasses = []
 }: EditableFieldProps) => {
@@ -101,15 +109,20 @@ export const EditableField: FC<EditableFieldProps> = ({
 	})
 
 	const renderValue = () => (
-		<div
-			className={cn(classes.value, valueContainerClasses)}
-			onClick={() => {
-				if (editable) {
-					setIsEditing(true)
-				}
-			}}
-		>
-			{inputValue}
+		<div className={cn(classes.valueContainer, valueContainerClasses)}>
+			<div
+				className={cn({ [classes.unsaved]: unsaved })}
+				onClick={e => {
+					e.stopPropagation()
+
+					if (editable) {
+						setIsEditing(true)
+					}
+				}}
+			>
+				{inputValue}
+			</div>
+
 			{editable && (
 				<IconButton
 					classes={[classes.editIcon]}
