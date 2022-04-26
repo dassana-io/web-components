@@ -95,7 +95,7 @@ interface QueryDisplayProps {
 	nameContainerClasses?: string[]
 	name: ReactNode | string
 	loading?: boolean
-	onQueryClick: (event: any) => void
+	onQueryClick: () => void
 	query: string
 	renderControls?: () => ReactNode
 	renderFooter?: () => ReactNode
