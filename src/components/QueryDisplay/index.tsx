@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconButton } from '../IconButton'
 import { AceEditor, Code } from '../Code'
 import {
 	COLLAPSED_CONTAINER_HEIGHT,
@@ -147,10 +146,9 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 					)}
 				>
 					<span>{name}</span>
-					<IconButton
-						classes={[classes.launch]}
+					<FontAwesomeIcon
+						className={classes.launch}
 						icon={faSearch}
-						onClick={onQueryClick}
 					/>
 				</div>
 				{renderControls && (
