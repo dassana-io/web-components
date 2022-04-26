@@ -47,6 +47,7 @@ export interface TabConfig {
 }
 
 export interface UseTabsMethods {
+	activeIndex: number
 	setTab: (tabIndex: number) => void
 	tabConfig: TabConfig[]
 }
@@ -101,6 +102,7 @@ export const Tabs: FC<TabsProps> = ({
 	}
 
 	useImperativeHandle(tabsRef, () => ({
+		activeIndex,
 		setTab: onClickTab,
 		tabConfig
 	}))
