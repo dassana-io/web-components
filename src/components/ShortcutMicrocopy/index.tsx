@@ -8,6 +8,7 @@ import React, { FC, Fragment } from 'react'
 export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 	classes = [],
 	dataTag,
+	hideLabel = false,
 	loading = false,
 	items = ['enter'],
 	skeletonWidth = 80,
@@ -21,7 +22,7 @@ export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 
 			return (
 				<Fragment key={i}>
-					{text && (
+					{!hideLabel && text && (
 						<span className={componentClasses.keyName}>
 							{`${text} `}
 						</span>
@@ -46,7 +47,11 @@ export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 				<Skeleton height={32} width={skeletonWidth} />
 			) : (
 				<div className={componentClasses.wrapper}>
-					<span className={componentClasses.label}>{'press '}</span>
+					{!hideLabel && (
+						<span className={componentClasses.label}>
+							{'press '}
+						</span>
+					)}
 					{renderShortcutKeys()}
 				</div>
 			)}
