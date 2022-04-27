@@ -13,6 +13,7 @@ export type ShortcutKey = PredefinedShortcutKey | ShortcutKeyItem
 
 export interface ShortcutMicrocopyProps extends CommonComponentProps {
 	classes?: string[]
+	hideLabel?: boolean
 	loading?: boolean
 	/**
 	 * Array of shortcut key items({ text?: string, icon: string}) or predefined shortcut keys(string). E.g. ['enter', {'icon': 'A'}] will render "press enter ↵ + A"
