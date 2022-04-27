@@ -26,6 +26,7 @@ export interface CodeProps
 		| 'height'
 		| 'highlightActiveLine'
 		| 'maxLines'
+		| 'minLines'
 		| 'onLoad'
 		| 'placeholder'
 		| 'showGutter'
