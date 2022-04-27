@@ -12,6 +12,7 @@ import React, {
 	RefObject,
 	SetStateAction,
 	useCallback,
+	useEffect,
 	useImperativeHandle,
 	useState
 } from 'react'
@@ -107,6 +108,10 @@ export const EditableField: FC<EditableFieldProps> = ({
 		callback: onClickOutside,
 		keys: ['Enter', 'Escape']
 	})
+
+	useEffect(() => {
+		setInputValue(value)
+	}, [value])
 
 	const renderValue = () => (
 		<div className={cn(classes.valueContainer, valueContainerClasses)}>
