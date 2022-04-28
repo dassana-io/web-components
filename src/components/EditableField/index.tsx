@@ -4,9 +4,11 @@ import { faPencilAlt } from '@fortawesome/pro-light-svg-icons'
 import { Input } from '../Input'
 import { ShortcutMicrocopy } from '../ShortcutMicrocopy'
 import { styleguide } from '../assets/styles'
+import { unstable_batchedUpdates } from 'react-dom'
 import { useClickOutside } from '@dassana-io/web-utils'
 import { IconButton, IconSizes } from 'components/IconButton'
 import React, {
+	ChangeEvent,
 	Dispatch,
 	FC,
 	RefObject,
@@ -59,6 +61,7 @@ export interface EditableFieldMethods {
 }
 
 interface EditableFieldProps {
+	autoSelectOnFocus?: boolean
 	editable?: boolean
 	fieldRef?: RefObject<EditableFieldMethods>
 	fullWidth?: boolean
@@ -73,6 +76,7 @@ interface EditableFieldProps {
 }
 
 export const EditableField: FC<EditableFieldProps> = ({
+	autoSelectOnFocus = false,
 	editable = true,
 	fieldRef,
 	fullWidth = false,
@@ -89,19 +93,42 @@ export const EditableField: FC<EditableFieldProps> = ({
 
 	const [inputValue, setInputValue] = useState(value)
 	const [isEditing, setIsEditing] = useState(false)
+	const [hasErrors, setHasErrors] = useState(false)
 
 	useImperativeHandle(fieldRef, () => ({ isEditing, setIsEditing }))
+
+	const handleInputChange = useCallback(
+		(e: ChangeEvent<HTMLInputElement>) => {
+			unstable_batchedUpdates(() => {
+				if (hasErrors) setHasErrors(false)
+
+				setInputValue(e.target.value)
+			})
+		},
+		[hasErrors]
+	)
 
 	const onClickOutside = useCallback(
 		(key?: string) => {
 			if (isEditing) {
-				if (key && key !== 'Escape' && inputValue) onSubmit(inputValue)
+				if (key && key === 'Enter') {
+					if (inputValue) {
+						onSubmit(inputValue)
+						setIsEditing(false)
+					} else setHasErrors(true)
+				} else {
+					unstable_batchedUpdates(() => {
+						if (!inputValue) setInputValue(value)
 
-				setIsEditing(false)
+						setHasErrors(false)
+						setIsEditing(false)
+					})
+				}
+
 				onClickOutsideCb && onClickOutsideCb()
 			}
 		},
-		[inputValue, isEditing, onClickOutsideCb, onSubmit]
+		[inputValue, isEditing, onClickOutsideCb, onSubmit, value]
 	)
 
 	const editingRef = useClickOutside({
@@ -152,9 +179,11 @@ export const EditableField: FC<EditableFieldProps> = ({
 			ref={editingRef}
 		>
 			<Input
+				autoSelectOnFocus={autoSelectOnFocus}
+				error={hasErrors}
 				focused
 				fullWidth={fullWidth}
-				onChange={e => setInputValue(e.currentTarget.value)}
+				onChange={handleInputChange}
 				placeholder={placeholder}
 				value={inputValue}
 			/>
