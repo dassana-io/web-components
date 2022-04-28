@@ -21,7 +21,8 @@ import React, {
 	FocusEvent,
 	KeyboardEvent,
 	ReactNode,
-	RefObject
+	RefObject,
+	useCallback
 } from 'react'
 
 const { dark, light } = ThemeType
@@ -53,6 +54,7 @@ const useStyles = createUseStyles({
 export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	addonAfter?: string
 	addonBefore?: string
+	autoSelectOnFocus?: boolean
 	containerClasses?: string[]
 	defaultValue?: string
 	inputRef?: RefObject<InputRef>
@@ -71,6 +73,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	const {
 		addonAfter,
 		addonBefore,
+		autoSelectOnFocus = false,
 		classes = [],
 		containerClasses = [],
 		dataTag,
@@ -113,6 +116,15 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
 
+	const handleOnFocus = useCallback(
+		(e: FocusEvent<HTMLInputElement>) => {
+			autoSelectOnFocus && e.target.select()
+
+			onFocus()
+		},
+		[autoSelectOnFocus, onFocus]
+	)
+
 	return loading ? (
 		<InputSkeleton fullWidth={props.fullWidth} />
 	) : (
@@ -125,7 +137,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 				defaultValue={defaultValue}
 				disabled={disabled}
 				onBlur={onBlur}
-				onFocus={onFocus}
+				onFocus={handleOnFocus}
 				onKeyDown={onKeyDown}
 				placeholder={placeholder}
 				ref={inputRef}
@@ -137,3 +149,5 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		</div>
 	)
 }
+
+export type { InputRef }
