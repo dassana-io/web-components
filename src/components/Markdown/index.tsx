@@ -18,6 +18,10 @@ const useStyles = createUseStyles({
 	'@global': {
 		'.markdown-body': {
 			...generateThemedMarkdownStyles(light),
+			'& a': {
+				color: 'unset',
+				textDecoration: 'underline'
+			},
 			'& code': {
 				...generateThemedMarkdownCodeStyles(light),
 				color: 'unset',
