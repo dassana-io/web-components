@@ -3,11 +3,11 @@ import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType
 const {
-	colors: { blacks, blues, grays, whites },
+	colors: { blacks, grays, whites },
 	borderRadius,
 	flexAlignCenter,
 	flexDown,
-	flexSpaceBetween,
+	flexJustifyEnd,
 	font,
 	fontWeight,
 	spacing
@@ -35,7 +35,7 @@ const filterPalette = {
 export const useBaseFilterStyles = createUseStyles({
 	active: {
 		'&$container': {
-			border: `1px solid ${blues.base}`
+			border: `1px solid ${filterPalette[light].container.activeBorderColor}`
 		}
 	},
 	container: {
@@ -48,12 +48,16 @@ export const useBaseFilterStyles = createUseStyles({
 		background: filterPalette[light].container.unitBackground,
 		borderRadius,
 		color: themedStyles[light].base.color,
+		cursor: ({ isDragging, readOnly }) =>
+			isDragging || readOnly ? 'grabbing' : 'pointer',
 		fontWeight: fontWeight.light,
+		opacity: ({ isDragging }) => (isDragging ? 0.5 : 1),
 		padding: spacing.s,
 		paddingLeft: spacing['m+'],
 		width: 'fit-content'
 	},
 	dragHandle: {
+		cursor: 'grab',
 		marginRight: spacing['s+']
 	},
 	iconButton: {
@@ -73,6 +77,9 @@ export const useBaseFilterStyles = createUseStyles({
 	'@global': {
 		[`.${dark}`]: {
 			'& $container': {
+				'&$active': {
+					border: `1px solid ${filterPalette[light].container.activeBorderColor}`
+				},
 				background: filterPalette[dark].container.unitBackground,
 				color: themedStyles[dark].base.color
 			}
@@ -105,11 +112,15 @@ export const useFilterGroupStyles = createUseStyles({
 		top: '50%',
 		transform: 'translateY(-50%)'
 	},
+	droppableContainer: {
+		display: 'flex',
+		width: '100%'
+	},
 	filterContainer: {
 		'&:not(:first-of-type)': {
 			paddingTop: spacing['l+']
 		},
-		...flexSpaceBetween,
+		...flexJustifyEnd,
 		position: 'relative'
 	},
 	hide: {

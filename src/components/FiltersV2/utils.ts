@@ -1,18 +1,21 @@
-import { isEmpty } from 'lodash'
+import { isEmpty, mapValues, omit } from 'lodash'
 import { v4 as uuidV4 } from 'uuid'
 import {
+	FilterConfig,
 	FilterCoordinators,
 	FilterGroupConfig,
 	FilterGroupMap,
 	FilterMap,
-	Filters
+	Filters,
+	FilterUnit,
+	Item
 } from './types'
 
 const { and, or } = FilterCoordinators
 
 const defaultFilterGroup: FilterGroupConfig = {
 	coordinator: and,
-	filterIds: []
+	items: []
 }
 
 export const processFilters = (filterConfig: Filters) => {
@@ -23,8 +26,10 @@ export const processFilters = (filterConfig: Filters) => {
 
 	filterGroups.forEach(filterGroup => {
 		const id = uuidV4()
-		const filterIds: string[] = []
-		const subgroupIds: string[] = []
+		// const filterIds: string[] = []
+		// const subgroupIds: string[] = []
+		const items: Item[] = []
+
 		const {
 			coordinator: groupCoordinator = FilterCoordinators.and,
 			filters = [],
@@ -34,7 +39,7 @@ export const processFilters = (filterConfig: Filters) => {
 		filters.forEach(filter => {
 			const filterId = uuidV4()
 
-			filterIds.push(filterId)
+			items.push({ id: filterId })
 
 			filterMap[filterId] = {
 				...filter,
@@ -44,7 +49,7 @@ export const processFilters = (filterConfig: Filters) => {
 
 		subgroups.forEach(subgroup => {
 			const subgroupId = uuidV4()
-			const subgroupFilterIds: string[] = []
+			const subgroupFilterIds: Item[] = []
 
 			const {
 				coordinator: subgroupCoordinator = FilterCoordinators.and,
@@ -54,7 +59,7 @@ export const processFilters = (filterConfig: Filters) => {
 			filters.forEach(filter => {
 				const filterId = uuidV4()
 
-				subgroupFilterIds.push(filterId)
+				subgroupFilterIds.push({ id: filterId })
 
 				filterMap[filterId] = {
 					...filter,
@@ -62,19 +67,18 @@ export const processFilters = (filterConfig: Filters) => {
 				}
 			})
 
-			subgroupIds.push(subgroupId)
+			items.push({ id: subgroupId, subgroup: true })
 
 			groupMap[subgroupId] = {
 				coordinator: subgroupCoordinator,
-				filterIds: subgroupFilterIds,
+				items: subgroupFilterIds,
 				parentGroupId: id
 			}
 		})
 
 		groupMap[id] = {
 			coordinator: groupCoordinator,
-			filterIds,
-			subgroupIds
+			items
 		}
 	})
 
@@ -84,3 +88,31 @@ export const processFilters = (filterConfig: Filters) => {
 
 	return { filterMap, groupMap }
 }
+
+interface CategorizedItemIds {
+	filterIds: string[]
+	subgroupIds: string[]
+}
+
+export const getFiltersAndSubgroups = (items: Item[]): CategorizedItemIds => {
+	const [subgroupIds, filterIds] = items.reduce<[string[], string[]]>(
+		(result, item) => {
+			const arrayIndex = item.subgroup ? 0 : 1
+
+			result[arrayIndex].push(item.id)
+
+			return result
+		},
+		[[], []]
+	)
+
+	return {
+		filterIds,
+		subgroupIds
+	}
+}
+
+export const convertFilterConfigToFilterUnit = (
+	config: FilterConfig
+): FilterUnit =>
+	mapValues(omit(config, 'groupId'), filter => filter.value.toLowerCase())

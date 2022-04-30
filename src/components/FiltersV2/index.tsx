@@ -1,53 +1,49 @@
-import { FilterRenderer } from './FilterRenderer'
-import { FiltersCtxProvider } from './FiltersContext'
 import { AntDInputType } from 'components/Input'
+import { FilterRenderer } from './FilterRenderer'
+import { Filters } from './types'
+import { FiltersCtxProvider } from './FiltersContext'
 import { processFilters } from './utils'
 import { Search } from './Search'
 import { useFilters } from './useFilters'
-import {
-	FilterCoordinators,
-	FilterGroup as FilterGroupType,
-	Filters
-} from './types'
 import React, { FC, useRef } from 'react'
 
-const mockFilter = {
-	key: 'brand',
-	operator: '=',
-	value: 'allbirds'
-}
+// const mockFilter = {
+// 	key: 'brand',
+// 	operator: '=',
+// 	value: 'allbirds'
+// }
 
-const mockFilterGroup: FilterGroupType = {
-	coordinator: FilterCoordinators.and,
-	filters: [{ key: 'brand', operator: '=', value: 'allbirds' }],
-	subgroups: [
-		{
-			coordinator: FilterCoordinators.or,
-			filters: [
-				{ key: 'color', operator: '=', value: 'black' },
-				{ key: 'color', operator: '=', value: 'grey' }
-			]
-		}
-	]
-}
+// const mockFilterGroup: FilterGroupType = {
+// 	coordinator: FilterCoordinators.and,
+// 	filters: [{ key: 'brand', operator: '=', value: 'allbirds' }],
+// 	subgroups: [
+// 		{
+// 			coordinator: FilterCoordinators.or,
+// 			filters: [
+// 				{ key: 'color', operator: '=', value: 'black' },
+// 				{ key: 'color', operator: '=', value: 'grey' }
+// 			]
+// 		}
+// 	]
+// }
 
-const mockFilters: Filters = {
-	filterGroups: [
-		{
-			coordinator: FilterCoordinators.and,
-			filters: [{ key: 'brand', operator: '=', value: 'allbirds' }],
-			subgroups: [
-				{
-					coordinator: FilterCoordinators.or,
-					filters: [
-						{ key: 'color', operator: '=', value: 'black' },
-						{ key: 'color', operator: '=', value: 'grey' }
-					]
-				}
-			]
-		}
-	]
-}
+// const mockFilters: Filters = {
+// 	filterGroups: [
+// 		{
+// 			coordinator: FilterCoordinators.and,
+// 			filters: [{ key: 'brand', operator: '=', value: 'allbirds' }],
+// 			subgroups: [
+// 				{
+// 					coordinator: FilterCoordinators.or,
+// 					filters: [
+// 						{ key: 'color', operator: '=', value: 'black' },
+// 						{ key: 'color', operator: '=', value: 'grey' }
+// 					]
+// 				}
+// 			]
+// 		}
+// 	]
+// }
 
 export interface FiltersV2Props {
 	filterConfig?: Filters

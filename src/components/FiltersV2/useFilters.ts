@@ -1,28 +1,35 @@
 import { AntDInputType } from 'components/Input'
+import { getFiltersAndSubgroups } from './utils'
 import { omit } from 'lodash'
+import { UniqueIdentifier } from '@dnd-kit/core'
+import { unstable_batchedUpdates } from 'react-dom'
 import { v4 as uuidV4 } from 'uuid'
 import {
 	FilterCoordinators,
 	FilterGroupConfig,
 	FilterGroupMap,
 	FilterMap,
-	FiltersMap,
-	FilterUnit
+	FiltersMap
+	// FilterUnit
 } from './types'
-import { RefObject, useMemo, useState } from 'react'
-import { unstable_batchedUpdates } from 'react-dom'
+import {
+	findIndexOfChildItem,
+	insertItemsAtIndex,
+	removeChildItemsFromContainer
+} from './FilterRenderer/utils'
+import { MutableRefObject, RefObject, useMemo, useRef, useState } from 'react'
 
 const { and, or } = FilterCoordinators
 
-const defaultFilter: FilterUnit = {
-	key: '',
-	operator: '',
-	value: ''
-}
+// const defaultFilter: FilterUnit = {
+// 	key: '',
+// 	operator: '',
+// 	value: ''
+// }
 
 const defaultFilterGroup: FilterGroupConfig = {
-	coordinator: or,
-	filterIds: []
+	coordinator: and,
+	items: []
 }
 
 export interface FilterMethods {
@@ -33,6 +40,8 @@ export interface FilterMethods {
 	deleteGroup: (groupId: string) => void
 	setCurrentGroup: (groupId: string) => void
 	setCurrentFilter: (filterId: string) => void
+	setDraggingFilterId: React.Dispatch<React.SetStateAction<string | null>>
+	setGroupMap: React.Dispatch<React.SetStateAction<FilterGroupMap>>
 	updateFilter: (
 		filterId: string,
 		updatedFilterInfo: Partial<FiltersMap>
@@ -44,9 +53,11 @@ export interface FilterMethods {
 export interface FilterProperties {
 	currentGroupId: string
 	currentFilterId: string
+	draggingFilterId: string | null
 	filtersMap: FilterMap
 	numFilters: number
 	groupMap: FilterGroupMap
+	lastDragOverId: MutableRefObject<string | null>
 	primaryCoordinator: FilterCoordinators
 }
 
@@ -70,6 +81,9 @@ export const useFilters = (
 		Object.keys(initialGroupMap)[0]
 	)
 	const [currentFilter, setCurrentFilter] = useState<string>('')
+	const [draggingFilterId, setDraggingFilterId] =
+		useState<string | null>(null)
+	const lastOverId = useRef<UniqueIdentifier | null>(null)
 	const [groupMap, setGroupMap] = useState<FilterGroupMap>(initialGroupMap)
 	const [filtersMap, setFiltersMap] = useState<FilterMap>(initialFilterMap)
 	const [primaryCoordinator, setPrimaryCoordinator] = useState(or)
@@ -104,7 +118,7 @@ export const useFilters = (
 				...prevGroupMap,
 				[currentGroupId]: {
 					...prevGroup,
-					filterIds: [...prevGroup.filterIds, newFilterId]
+					items: [...prevGroup.items, { id: newFilterId }]
 				}
 			}
 		})
@@ -130,24 +144,31 @@ export const useFilters = (
 
 		setGroupMap(prevGroupMap => {
 			const currentGroup = prevGroupMap[parentGroupId]
-			const { subgroupIds = [] } = currentGroup
+			const { items: parentItems } = currentGroup
+
+			const filterIndex = findIndexOfChildItem(filterId, parentItems)
+			const updatedParentItems = removeChildItemsFromContainer(
+				filterId,
+				parentItems
+			)
 
 			return {
 				...prevGroupMap,
 				[newSubgroupId]: {
 					coordinator: or,
-					filterIds: [filterId],
+					items: [{ id: filterId }],
 					parentGroupId
 				},
 				[parentGroupId]: {
 					...currentGroup,
 					coordinator: and,
-					filterIds: currentGroup.filterIds.filter(
-						id => id !== filterId
-					),
-					subgroupIds: [newSubgroupId, ...subgroupIds]
+					items: insertItemsAtIndex(
+						{ id: newSubgroupId, subgroup: true },
+						filterIndex,
+						updatedParentItems
+					)
 				}
-			}
+			} as FilterGroupMap
 		})
 
 		setCurrentGroup(newSubgroupId)
@@ -165,15 +186,15 @@ export const useFilters = (
 		})
 	}
 
-	const moveFilterToNewGroup = (
-		filterId: string,
-		prevGroupId: string,
-		newGroupId: string
-	) => {
-		// update groupId in filterMap
-		// Remove filterId from prevGroupId in groupMap
-		// Add filterId to newGroupId in groupMap
-	}
+	// const moveFilterToNewGroup = (
+	// 	filterId: string,
+	// 	prevGroupId: string,
+	// 	newGroupId: string
+	// ) => {
+	// 	// update groupId in filterMap
+	// 	// Remove filterId from prevGroupId in groupMap
+	// 	// Add filterId to newGroupId in groupMap
+	// }
 
 	const updateGroupCoordinator = (
 		groupId: string,
@@ -214,11 +235,10 @@ export const useFilters = (
 			if (filterGroupId) {
 				setGroupMap(prevGroupMap => {
 					const prevGroup = prevGroupMap[filterGroupId]
-					const {
-						filterIds,
-						parentGroupId,
-						subgroupIds = []
-					} = prevGroup
+					const { items, parentGroupId } = prevGroup
+
+					const { filterIds, subgroupIds } =
+						getFiltersAndSubgroups(items)
 
 					// If there is only one filter left in the group and there are no subgroups:
 					if (filterIds.length === 1 && parentGroupId) {
@@ -250,8 +270,9 @@ export const useFilters = (
 							...omit(prevGroupMap, filterGroupId),
 							[parentGroupId]: {
 								...parentGroup,
-								subgroupIds: parentGroup.subgroupIds?.filter(
-									subgroupId => subgroupId !== filterGroupId
+								items: removeChildItemsFromContainer(
+									filterGroupId,
+									parentGroup.items
 								)
 							}
 						}
@@ -278,8 +299,9 @@ export const useFilters = (
 						...prevGroupMap,
 						[filterGroupId]: {
 							...prevGroup,
-							filterIds: prevGroup.filterIds.filter(
-								filterId => filterId !== filterIdToDelete
+							items: removeChildItemsFromContainer(
+								filterIdToDelete,
+								prevGroup.items
 							)
 						}
 					}
@@ -295,11 +317,9 @@ export const useFilters = (
 	}
 
 	const deleteGroup = (groupIdToDelete: string) => {
-		const {
-			filterIds,
-			parentGroupId,
-			subgroupIds = []
-		} = groupMap[groupIdToDelete]
+		const { items, parentGroupId } = groupMap[groupIdToDelete]
+
+		const { filterIds, subgroupIds } = getFiltersAndSubgroups(items)
 
 		let filtersToDelete = filterIds
 		let nextGroupId = parentGroupId
@@ -320,7 +340,9 @@ export const useFilters = (
 
 		// For groups with subgroups, delete filters of subgroups
 		subgroupIds.forEach(subgroupId => {
-			const { filterIds } = groupMap[subgroupId]
+			const { filterIds } = getFiltersAndSubgroups(
+				groupMap[subgroupId].items
+			)
 
 			filtersToDelete = filtersToDelete.concat(filterIds)
 		})
@@ -339,7 +361,9 @@ export const useFilters = (
 				// from subgroup ids
 				if (parentGroupId) {
 					const parentGroup = newGroupMap[parentGroupId]
-					const { filterIds, subgroupIds = [] } = parentGroup
+					const { filterIds, subgroupIds } = getFiltersAndSubgroups(
+						parentGroup.items
+					)
 
 					if (filterIds.length === 0 && subgroupIds.length === 2) {
 						const remainingSubgroupId = subgroupIds.filter(
@@ -356,8 +380,12 @@ export const useFilters = (
 							[parentGroupId]: subgroupToConvert
 						}
 
+						const { filterIds } = getFiltersAndSubgroups(
+							newGroupMap[parentGroupId].items
+						)
+
 						setFiltersMap(prevFiltersMap => {
-							newGroupMap[parentGroupId].filterIds.forEach(
+							filterIds.forEach(
 								filterId =>
 									(prevFiltersMap = {
 										...prevFiltersMap,
@@ -375,8 +403,9 @@ export const useFilters = (
 							...newGroupMap,
 							[parentGroupId]: {
 								...parentGroup,
-								subgroupIds: parentGroup.subgroupIds?.filter(
-									subgroupId => subgroupId !== groupIdToDelete
+								items: removeChildItemsFromContainer(
+									groupIdToDelete,
+									parentGroup.items
 								)
 							}
 						}
@@ -407,12 +436,16 @@ export const useFilters = (
 		currentGroupId,
 		deleteFilter,
 		deleteGroup,
+		draggingFilterId,
 		filtersMap,
 		groupMap,
+		lastDragOverId: lastOverId,
 		numFilters,
 		primaryCoordinator,
 		setCurrentFilter,
 		setCurrentGroup,
+		setDraggingFilterId,
+		setGroupMap,
 		updateFilter,
 		updateGroupCoordinator,
 		updatePrimaryCoordinator: setPrimaryCoordinator

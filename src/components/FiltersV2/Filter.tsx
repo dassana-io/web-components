@@ -1,21 +1,29 @@
 import cn from 'classnames'
+import { DraggableItem } from './FilterRenderer/DraggableItem'
 import { FilterUnit as FilterUnitType } from './types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconButton } from 'components/IconButton'
 import { Tooltip } from 'components/Tooltip'
 import { useBaseFilterStyles } from './styles'
 import { useClickOutside } from '@dassana-io/web-utils'
-import { faLayerPlus, faTimesCircle } from '@fortawesome/pro-light-svg-icons'
+import {
+	faGripVertical,
+	faLayerPlus,
+	faTimesCircle
+} from '@fortawesome/pro-light-svg-icons'
 import React, { FC, useCallback } from 'react'
 
-export interface FilterUnitProps {
+interface FilterUnitProps {
 	active?: boolean
-	deleteFilter: (id: string) => void
+	deleteFilter?: (id: string) => void
 	filter: FilterUnitType
 	id: string
-	onClick: (id: string) => void
-	onClickOutside: () => void
+	isDragging?: boolean
+	onClick?: (id: string) => void
+	onClickOutside?: () => void
 	onDrag?: () => void // TODO: make this required
 	onConvertToSubgroup?: () => void
+	readOnly?: boolean
 }
 
 export const FilterUnit: FC<FilterUnitProps> = ({
@@ -23,31 +31,33 @@ export const FilterUnit: FC<FilterUnitProps> = ({
 	deleteFilter,
 	filter,
 	id,
+	isDragging = false,
 	onClick,
 	onClickOutside,
-	onConvertToSubgroup
+	onConvertToSubgroup,
+	readOnly
 }: FilterUnitProps) => {
 	const filterRef = useClickOutside({
-		callback: () => active && onClickOutside()
+		callback: () => active && onClickOutside && onClickOutside()
 	})
 	const { key, operator, value } = filter
 
-	const classes = useBaseFilterStyles()
+	const classes = useBaseFilterStyles({ isDragging, readOnly })
 
 	const onConvertToSubgroupClick = useCallback(() => {
-		if (active) onClickOutside()
+		if (active && onClickOutside) onClickOutside()
 
 		onConvertToSubgroup && onConvertToSubgroup()
 	}, [active, onClickOutside, onConvertToSubgroup])
 
 	const onDeleteClick = useCallback(() => {
-		if (active) onClickOutside()
+		if (active && onClickOutside) onClickOutside()
 
-		deleteFilter(id)
+		deleteFilter && deleteFilter(id)
 	}, [active, deleteFilter, id, onClickOutside])
 
 	const onFilterClick = useCallback(() => {
-		onClick(id)
+		onClick && onClick(id)
 	}, [id, onClick])
 
 	return (
@@ -59,11 +69,18 @@ export const FilterUnit: FC<FilterUnitProps> = ({
 			onClick={onFilterClick}
 			ref={filterRef}
 		>
-			<div>
-				{/* <FontAwesomeIcon
+			{readOnly ? (
+				<FontAwesomeIcon
 					className={classes.dragHandle}
 					icon={faGripVertical}
-				/> */}
+				/>
+			) : (
+				<DraggableItem classes={[classes.dragHandle]} id={id}>
+					<FontAwesomeIcon icon={faGripVertical} />
+				</DraggableItem>
+			)}
+
+			<div>
 				<span>{key}</span>
 				<span className={classes.operator}>{operator}</span>
 				<span>{value}</span>

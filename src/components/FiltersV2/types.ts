@@ -51,12 +51,26 @@ export interface Filters {
 	filterGroups: FilterGroup[]
 }
 
-export interface FilterGroupConfig {
-	coordinator: FilterCoordinators
-	filterIds: string[]
-	parentGroupId?: string
-	subgroupIds?: string[]
+export interface Item {
+	id: string
+	subgroup?: boolean
 }
+
+interface CommonItemConfig {
+	coordinator: FilterCoordinators
+}
+
+interface FilterSubgroupConfig extends CommonItemConfig {
+	parentGroupId: string
+	items: Item[]
+}
+
+interface FilterMainGroupConfig extends CommonItemConfig {
+	parentGroupId?: never
+	items: Item[]
+}
+
+export type FilterGroupConfig = FilterMainGroupConfig | FilterSubgroupConfig
 
 export interface FilterConfig extends FiltersMap {
 	groupId?: string
@@ -64,3 +78,18 @@ export interface FilterConfig extends FiltersMap {
 
 export type FilterGroupMap = Record<string, FilterGroupConfig>
 export type FilterMap = Record<string, FilterConfig>
+
+// DnD Types
+export interface ChildItem {
+	container?: boolean
+	draggable?: boolean
+	id: string
+}
+
+interface ContainerConfig {
+	children: ChildItem[]
+	level: number
+	parentId?: string
+}
+
+export type Containers = Record<string, ContainerConfig>
