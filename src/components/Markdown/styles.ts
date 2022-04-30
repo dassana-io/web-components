@@ -26,6 +26,11 @@ export const generateThemedMarkdownCodeStyles = (theme: ThemeType) => ({
 	backgroundColor: themes[theme].state.loading.primary
 })
 
+export const generateThemedMarkdownLinkStyles = (theme: ThemeType) => ({
+	color: 'unset',
+	textDecoration: 'underline'
+})
+
 export const generateThemedMarkdownPreStyles = (theme: ThemeType) => ({
 	'& code': {
 		backgroundColor: 'transparent'

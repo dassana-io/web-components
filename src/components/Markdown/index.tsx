@@ -4,6 +4,7 @@ import gfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 import {
 	generateThemedMarkdownCodeStyles,
+	generateThemedMarkdownLinkStyles,
 	generateThemedMarkdownPreStyles,
 	generateThemedMarkdownStyles
 } from './styles'
@@ -18,10 +19,7 @@ const useStyles = createUseStyles({
 	'@global': {
 		'.markdown-body': {
 			...generateThemedMarkdownStyles(light),
-			'& a': {
-				color: 'unset',
-				textDecoration: 'underline'
-			},
+			'& a': generateThemedMarkdownLinkStyles(light),
 			'& code': {
 				...generateThemedMarkdownCodeStyles(light),
 				color: 'unset',
@@ -38,6 +36,7 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& .markdown-body': {
 				...generateThemedMarkdownStyles(dark),
+				'& a': generateThemedMarkdownLinkStyles(dark),
 				'& code': generateThemedMarkdownCodeStyles(dark),
 				'& pre': generateThemedMarkdownPreStyles(dark)
 			}
