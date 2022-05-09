@@ -12,7 +12,7 @@ import {
 	generateThemedPendingStyles,
 	generateThemedPrimaryStyles
 } from './utils'
-import React, { FC, SyntheticEvent } from 'react'
+import React, { FC, MouseEvent, SyntheticEvent, useCallback } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { borderRadius, flexCenter, font } = styleguide
@@ -136,8 +136,16 @@ export const IconButton: FC<IconButtonProps> = ({
 		classes
 	)
 
+	const onIconButtonClick = useCallback(
+		(e: MouseEvent) => {
+			e.stopPropagation()
+			!disabled && onClick()
+		},
+		[disabled, onClick]
+	)
+
 	return (
-		<span className={iconBtnClasses} onClick={onClick}>
+		<span className={iconBtnClasses} onClick={onIconButtonClick}>
 			{pending && <span className={componentClasses.pending} />}
 			<FontAwesomeIcon className={componentClasses.icon} icon={icon} />
 		</span>

@@ -64,6 +64,9 @@ const useStyles = createUseStyles({
 		right: 0,
 		zIndex: 1
 	},
+	hide: {
+		display: 'none'
+	},
 	launch: {
 		marginLeft: spacing.m
 	},
@@ -92,6 +95,8 @@ interface QueryDisplayProps {
 	controlsContainerClasses?: string[]
 	expandable?: boolean
 	footerContainerClasses?: string[]
+	headerClasses?: string[]
+	hideSearch?: boolean
 	nameContainerClasses?: string[]
 	name: ReactNode | string
 	loading?: boolean
@@ -106,6 +111,8 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	controlsContainerClasses = [],
 	expandable = true,
 	footerContainerClasses = [],
+	headerClasses = [],
+	hideSearch = false,
 	nameContainerClasses = [],
 	loading = false,
 	name,
@@ -138,7 +145,10 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 		<div
 			className={cn({ [classes.queryContainer]: true }, containerClasses)}
 		>
-			<div className={classes.header} onClick={onQueryClick}>
+			<div
+				className={cn({ [classes.header]: true }, headerClasses)}
+				onClick={onQueryClick}
+			>
 				<div
 					className={cn(
 						{ [classes.nameContainer]: true },
@@ -147,7 +157,10 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 				>
 					<span>{name}</span>
 					<FontAwesomeIcon
-						className={classes.launch}
+						className={cn({
+							[classes.launch]: true,
+							[classes.hide]: hideSearch
+						})}
 						icon={faSearch}
 					/>
 				</div>
