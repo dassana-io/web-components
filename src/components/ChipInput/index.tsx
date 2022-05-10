@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import FieldError from 'components/Form/FieldError'
 import { getDataTestAttributeProp } from 'components/utils'
+import isEqual from 'lodash/isEqual'
 import { ShortcutMicrocopy } from 'components/ShortcutMicrocopy'
 import { Skeleton } from 'components/Skeleton'
 import { Tag } from 'components/Tag'
@@ -160,6 +161,10 @@ export const ChipInput: FC<ChipInputProps> = ({
 				{value}
 			</Tag>
 		))
+
+	useEffect(() => {
+		if (values && !isEqual(values, addedValues)) setAddedValues(values)
+	}, [addedValues, values])
 
 	useEffect(() => {
 		const isDuplicate = addedValues.includes(
