@@ -169,12 +169,23 @@ interface ComponentLinkType extends PartialComponentType {
 	renderProps?: RenderPropsLink
 }
 
+interface FormattedTag {
+	color?: string
+	name: ReactNode
+}
+
+interface RenderPropsTag {
+	deletable?: boolean
+	tagFormatter?: <T>(record: T) => FormattedTag
+}
+
 interface ComponentTagType extends PartialComponentType {
 	format: ColumnFormats.tag
+	renderProps?: RenderPropsTag
 }
 
 interface RenderPropsToggle {
-	onSave: (checked: boolean) => Promise<void>
+	onSave: <T>(checked: boolean, rowData: T) => Promise<void>
 }
 
 interface ComponentToggleType extends PartialComponentType {

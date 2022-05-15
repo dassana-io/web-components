@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
 import { faTimes } from '@fortawesome/pro-regular-svg-icons'
 import {
 	FontAwesomeIcon,
@@ -12,7 +13,13 @@ import {
 	generateThemedPendingStyles,
 	generateThemedPrimaryStyles
 } from './utils'
-import React, { FC, MouseEvent, SyntheticEvent, useCallback } from 'react'
+import React, {
+	FC,
+	MouseEvent,
+	SyntheticEvent,
+	useCallback,
+	useMemo
+} from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { borderRadius, flexCenter, font } = styleguide
@@ -119,11 +126,12 @@ export const IconButton: FC<IconButtonProps> = ({
 	primary,
 	size
 }: IconButtonProps) => {
-	const componentClasses = useStyles({ circle, size })
+	const isPendingNonCircleIcon = useMemo(
+		() => pending && !circle,
+		[circle, pending]
+	)
 
-	if (pending && !circle) {
-		throw new Error('Only circle buttons can show a pending state')
-	}
+	const componentClasses = useStyles({ circle, size })
 
 	const iconBtnClasses = cn(
 		{
@@ -139,6 +147,7 @@ export const IconButton: FC<IconButtonProps> = ({
 	const onIconButtonClick = useCallback(
 		(e: MouseEvent) => {
 			e.stopPropagation()
+
 			!disabled && onClick()
 		},
 		[disabled, onClick]
@@ -146,8 +155,12 @@ export const IconButton: FC<IconButtonProps> = ({
 
 	return (
 		<span className={iconBtnClasses} onClick={onIconButtonClick}>
-			{pending && <span className={componentClasses.pending} />}
-			<FontAwesomeIcon className={componentClasses.icon} icon={icon} />
+			{pending && circle && <span className={componentClasses.pending} />}
+			<FontAwesomeIcon
+				className={componentClasses.icon}
+				icon={isPendingNonCircleIcon ? faCircleNotch : icon}
+				spin={isPendingNonCircleIcon}
+			/>
 		</span>
 	)
 }

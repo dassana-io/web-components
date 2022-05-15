@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import FieldContext from './FieldContext'
 import FieldLabel from './FieldLabel'
@@ -44,6 +45,7 @@ const useStyles = createUseStyles({
 export interface FormProps<Model extends FieldValues> {
 	children: ReactNode
 	disabled?: boolean
+	formContainerClasses?: string[]
 	formRef?: RefObject<UseFormReturn<Model>>
 	initialValues?: UnpackNestedValue<DeepPartial<Model>>
 	loading?: boolean
@@ -53,6 +55,7 @@ export interface FormProps<Model extends FieldValues> {
 export function Form<Model>({
 	children,
 	disabled = false,
+	formContainerClasses = [],
 	formRef,
 	initialValues = {} as UnpackNestedValue<DeepPartial<Model>>,
 	loading = false,
@@ -82,7 +85,14 @@ export function Form<Model>({
 		<FormProvider {...methods}>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<FieldContext.Provider value={{ disabled, loading, onSubmit }}>
-					<div className={classes.container}>{children}</div>
+					<div
+						className={cn(
+							{ [classes.container]: true },
+							formContainerClasses
+						)}
+					>
+						{children}
+					</div>
 				</FieldContext.Provider>
 			</form>
 		</FormProvider>
