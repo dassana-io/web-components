@@ -1,5 +1,6 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import bytes from 'bytes'
+import castArray from 'lodash/castArray'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
@@ -23,7 +24,7 @@ import {
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
 import { IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
-import React, { Key, MouseEvent } from 'react'
+import React, { Key, MouseEvent, ReactNode } from 'react'
 import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
@@ -628,20 +629,28 @@ function applyRender<TableData extends RequiredDataId>(
 
 				case tag: {
 					antDColumn.render = (record: {
-						name: string
+						name: ReactNode
 						color?: string
 					}) => {
 						if (record === undefined) return ''
 
-						const { color = '' } = record
-						/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
-	          this will break. */
-						const tagProps: TagProps = {
-							children: record.name,
-							color
-						}
+						const { deletable = false, tagFormatter } =
+							column.renderProps || {}
 
-						return <Tag {...tagProps} />
+						return castArray(record).map((tagInfo, i) => {
+							if (tagFormatter) tagInfo = tagFormatter(tagInfo)
+
+							const { color = '' } = tagInfo
+							/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
+				  this will break. */
+							const tagProps: TagProps = {
+								children: tagInfo.name,
+								color,
+								deletable
+							}
+
+							return <Tag key={i} {...tagProps} />
+						})
 					}
 					break
 				}

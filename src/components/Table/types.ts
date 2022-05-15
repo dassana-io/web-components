@@ -169,8 +169,19 @@ interface ComponentLinkType extends PartialComponentType {
 	renderProps?: RenderPropsLink
 }
 
+interface FormattedTag {
+	color?: string
+	name: ReactNode
+}
+
+interface RenderPropsTag {
+	deletable?: boolean
+	tagFormatter?: <T>(record: T) => FormattedTag
+}
+
 interface ComponentTagType extends PartialComponentType {
 	format: ColumnFormats.tag
+	renderProps?: RenderPropsTag
 }
 
 interface RenderPropsToggle {
