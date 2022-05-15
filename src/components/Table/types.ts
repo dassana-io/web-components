@@ -174,7 +174,7 @@ interface ComponentTagType extends PartialComponentType {
 }
 
 interface RenderPropsToggle {
-	onSave: (checked: boolean) => Promise<void>
+	onSave: <T>(checked: boolean, rowData: T) => Promise<void>
 }
 
 interface ComponentToggleType extends PartialComponentType {

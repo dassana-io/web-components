@@ -652,12 +652,16 @@ function applyRender<TableData extends RequiredDataId>(
 						rowData: TableData & RequiredDataId
 					) => {
 						if (record === undefined) return ''
+
 						const { onSave } = column.renderProps
 
 						const toggleProps: ToggleProps = {
 							checked: record,
 							onChange: async (checked: boolean) => {
-								await onSave(checked)
+								await onSave<TableData & RequiredDataId>(
+									checked,
+									rowData
+								)
 
 								updateRowData(rowData.id, {
 									[column.dataIndex]: checked
@@ -666,7 +670,11 @@ function applyRender<TableData extends RequiredDataId>(
 							size: 'small'
 						}
 
-						return <Toggle {...toggleProps} />
+						return (
+							<div onClick={e => e.stopPropagation()}>
+								<Toggle {...toggleProps} />
+							</div>
+						)
 					}
 					break
 				}
