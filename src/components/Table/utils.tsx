@@ -254,13 +254,20 @@ function compareTags(column: ColumnType) {
 	/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
 	  this will break. */
 	return (a: Record<string, any>, b: Record<string, any>) => {
-		const valA = a[column.dataIndex]
-		const valB = b[column.dataIndex]
+		let valA = a[column.dataIndex] || ''
+		let valB = b[column.dataIndex] || ''
 
-		const compareValA: string = isUndefined(valA) ? '' : valA['name']
-		const compareValB: string = isUndefined(valB) ? '' : valB['name']
+		if (Array.isArray(valA)) valA = valA.join(', ')
+		if (Array.isArray(valB)) valB = valB.join(', ')
 
-		return compareValA.localeCompare(compareValB)
+		if (valA.name) {
+			valA = valA.name
+		}
+		if (valB.name) {
+			valB = valB.name
+		}
+
+		return valA.localeCompare(valB)
 	}
 }
 
