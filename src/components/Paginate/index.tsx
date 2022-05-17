@@ -7,6 +7,8 @@ import { createUseStyles } from 'react-jss'
 import { generatePaginationStyles } from './styles'
 import { generateSelectStyles } from 'components/Select/SingleSelect/utils'
 import omit from 'lodash/omit'
+import { PageLoader } from 'components/PageLoader'
+
 import {
 	generateThemedDropdownStyles,
 	generateThemedOptionStyles
@@ -30,6 +32,9 @@ const useStyles = createUseStyles({
 	},
 	itemWrapper: {
 		...flexDown
+	},
+	pageLoader: {
+		height: '100%'
 	},
 	paginationContainer: {
 		...flexJustifyEnd,
@@ -66,6 +71,8 @@ export interface PaginateProps<T>
 	itemContainerClasses?: string[]
 	itemWrapperClasses?: string[]
 	itemRender: (data: T) => ReactNode
+	loading?: boolean
+	pageLoaderClasses?: string[]
 	paginationContainerRef?: RefObject<HTMLDivElement>
 }
 
@@ -78,6 +85,8 @@ export const Paginate = <Data,>({
 	itemContainerClasses = [],
 	itemWrapperClasses = [],
 	itemRender,
+	loading = false,
+	pageLoaderClasses = [],
 	paginationContainerRef,
 	showSizeChanger = true,
 	...rest
@@ -108,11 +117,22 @@ export const Paginate = <Data,>({
 					itemWrapperClasses
 				)}
 			>
-				{data.slice(minVal, maxVal).map((datum, i) => (
-					<div className={cn(itemContainerClasses)} key={i}>
-						{itemRender(datum)}
-					</div>
-				))}
+				{loading ? (
+					<PageLoader
+						classes={[
+							cn(
+								{ [classes.pageLoader]: true },
+								pageLoaderClasses
+							)
+						]}
+					/>
+				) : (
+					data.slice(minVal, maxVal).map((datum, i) => (
+						<div className={cn(itemContainerClasses)} key={i}>
+							{itemRender(datum)}
+						</div>
+					))
+				)}
 			</div>
 			<div
 				className={classes.paginationContainer}
