@@ -11,7 +11,7 @@ import { SelectProps } from './SingleSelect/types'
 import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useCallback } from 'react'
 
 const { Option } = AntDSelect
 
@@ -60,6 +60,13 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		size,
 		useStyles
 	} = props
+
+	const onInputKeyDown = useCallback((e: any) => {
+		if (e.ctrlKey || e.metaKey) {
+			e.preventDefault()
+			e.stopPropagation()
+		}
+	}, [])
 
 	const componentClasses = useStyles(props)
 
@@ -138,6 +145,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				dropdownClassName={componentClasses.dropdown}
 				notFoundContent={<NoContentFound />}
 				onFocus={onFocus}
+				onInputKeyDown={onInputKeyDown}
 				placeholder={placeholder}
 				showArrow
 				showSearch={showSearch}
