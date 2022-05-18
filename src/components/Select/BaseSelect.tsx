@@ -17,7 +17,7 @@ const { Option } = AntDSelect
 
 interface CommonBaseSelectProps
 	extends Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
-	onDropdownVisibleChange: (open: boolean) => void
+	onDropdownVisibleChange?: (open: boolean) => void
 	useStyles: (data?: unknown) => Record<string, string>
 }
 
