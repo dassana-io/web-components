@@ -176,10 +176,11 @@ interface FormattedTag {
 
 interface RenderPropsTag {
 	deletable?: boolean
+	filterFn?: <T>(record: T) => string
 	tagFormatter?: <T>(record: T) => FormattedTag
 }
 
-interface ComponentTagType extends PartialComponentType {
+export interface ComponentTagType extends PartialComponentType {
 	format: ColumnFormats.tag
 	renderProps?: RenderPropsTag
 }
