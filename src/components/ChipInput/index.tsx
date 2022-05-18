@@ -156,7 +156,12 @@ export const ChipInput: FC<ChipInputProps> = ({
 			<Tag
 				classes={[componentClasses.tag]}
 				key={value}
-				{...getTagDeletionProps(value, undeleteableValues, onDelete)}
+				{...getTagDeletionProps(
+					value,
+					undeleteableValues,
+					onDelete,
+					disabled
+				)}
 			>
 				{value}
 			</Tag>

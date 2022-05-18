@@ -28,13 +28,15 @@ interface GetTagDeletionProps {
 	(
 		value: string,
 		undeleteableValues: string[],
-		onDelete: (value: string) => void
+		onDelete: (value: string) => void,
+		disabled: boolean
 	): Pick<TagProps, 'deletable' | 'onDelete'>
 }
 export const getTagDeletionProps: GetTagDeletionProps = (
 	value,
 	undeleteableValues,
-	onDelete
+	onDelete,
+	disabled
 ) => {
 	let tagDeletionProps = {}
 
@@ -42,7 +44,7 @@ export const getTagDeletionProps: GetTagDeletionProps = (
 		tagDeletionProps = { deletable: false }
 	} else {
 		tagDeletionProps = {
-			deletable: true,
+			deletable: !disabled,
 			onDelete: () => onDelete(value)
 		}
 	}
