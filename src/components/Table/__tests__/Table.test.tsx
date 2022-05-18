@@ -93,7 +93,8 @@ describe('Table', () => {
 					displayFormat: dateFormat,
 					unixTS: 1599193037581
 				}),
-				'1KB'
+				'1KB',
+				'typescript'
 			],
 			byte: 1024,
 			date: 1599193037581,
