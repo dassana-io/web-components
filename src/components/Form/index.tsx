@@ -49,7 +49,6 @@ export interface FormProps<Model extends FieldValues> {
 	formRef?: RefObject<UseFormReturn<Model>>
 	initialValues?: UnpackNestedValue<DeepPartial<Model>>
 	loading?: boolean
-	onKeyDown?: (event: any) => void
 	onSubmit: SubmitHandler<FieldValues>
 }
 
@@ -60,7 +59,6 @@ export function Form<Model>({
 	formRef,
 	initialValues = {} as UnpackNestedValue<DeepPartial<Model>>,
 	loading = false,
-	onKeyDown,
 	onSubmit
 }: FormProps<Model>) {
 	const classes = useStyles()
@@ -85,10 +83,7 @@ export function Form<Model>({
 
 	return (
 		<FormProvider {...methods}>
-			<form
-				onKeyDown={onKeyDown ? e => onKeyDown(e) : undefined}
-				onSubmit={handleSubmit(onSubmit)}
-			>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<FieldContext.Provider value={{ disabled, loading, onSubmit }}>
 					<div
 						className={cn(
