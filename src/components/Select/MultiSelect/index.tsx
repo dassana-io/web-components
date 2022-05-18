@@ -8,6 +8,7 @@ import React, {
 	FC,
 	KeyboardEvent,
 	ReactNode,
+	useCallback,
 	useEffect,
 	useState
 } from 'react'
@@ -47,6 +48,12 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
 	const [searchTerm, setSearchTerm] = useState('')
 
+	const onDropdownVisibleChange = useCallback((open: boolean) => {
+		if (!open) {
+			setSearchTerm('')
+		}
+	}, [])
+
 	const dropdownClasses = useDropdownStyles(props)
 
 	const dropdownRender = (menu: ReactNode) => (
@@ -68,6 +75,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 							e.stopPropagation()
 					}}
 					placeholder={searchPlaceholder}
+					value={searchTerm}
 				/>
 			)}
 			{menu}
@@ -124,6 +132,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 			maxTagTextLength={maxTagTextLength}
 			mode='multiple'
 			onChange={onChangeAntD}
+			onDropdownVisibleChange={onDropdownVisibleChange}
 			options={sortedAndFilteredValues}
 			optionsConfig={optionsConfig}
 			pending={pending}
