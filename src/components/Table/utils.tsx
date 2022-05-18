@@ -15,6 +15,7 @@ import {
 	ColumnTypes,
 	ComponentActionType,
 	ComponentIconType,
+	ComponentTagType,
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
@@ -150,9 +151,6 @@ This will be used for "global" search using fuse.
 More info --> https://fusejs.io/examples.html#nested-search
  */
 export function mapFilterKeys(columns: ColumnType[]) {
-	const { component, number, string } = ColumnTypes
-	const { icon, coloredDot, link, tag } = ColumnFormats
-
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
 	for (const column of columns) {
@@ -181,6 +179,7 @@ export function mapFilterKeys(columns: ColumnType[]) {
 
 					case tag:
 						keysArr.push([dataIndex, 'name'])
+						keysArr.push(dataIndex)
 						break
 				}
 				break
@@ -288,9 +287,6 @@ function applySort<TableData>(
 	column: ColumnType,
 	antDColumn: AntDColumnType<TableData & RequiredDataId>
 ) {
-	const { component, number, string } = ColumnTypes
-	const { icon, coloredDot, link, tag, toggle } = ColumnFormats
-
 	switch (column.type) {
 		case component:
 			switch (column.format) {
@@ -748,6 +744,12 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 					}
 				}
 				break
+			case component:
+				switch (column.format) {
+					case tag:
+						mapped[dataIndex] = createTagFormatter(column)
+						break
+				}
 		}
 	}
 
@@ -776,6 +778,12 @@ export function createDateFormatter(
 /* Returns a byte formatter function (using bytes). */
 export function createByteFormatter(): NumFormatterFunction {
 	return (num?: number) => (num === undefined ? null : bytes(num))
+}
+
+export const createTagFormatter = (column: ComponentTagType) => {
+	const { renderProps: { filterFn } = {} } = column
+
+	return (record?: any) => (filterFn ? filterFn(record) : record)
 }
 
 const stringifyBoolean = (bool?: boolean) =>

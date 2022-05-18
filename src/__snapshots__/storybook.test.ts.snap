@@ -525,6 +525,8 @@ exports[`Storyshots Button Pending 1`] = `
       }
     >
       <div
+        aria-busy={true}
+        aria-live="polite"
         className="ant-spin ant-spin-spinning"
       >
         <span
@@ -1612,7 +1614,7 @@ exports[`Storyshots Input Suffix 1`] = `
   >
     <span
       className="ant-input-affix-wrapper"
-      onMouseUp={[Function]}
+      onMouseDown={[Function]}
     >
       <input
         autoFocus={false}
@@ -6501,10 +6503,12 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             className="ant-table-cell ant-table-column-has-sorters"
                             colSpan={null}
                             onClick={[Function]}
+                            onKeyDown={[Function]}
                             onMouseEnter={[Function]}
                             onMouseLeave={[Function]}
                             rowSpan={null}
                             style={Object {}}
+                            tabIndex={0}
                           >
                             <div
                               className="ant-table-column-sorters"
@@ -6566,10 +6570,12 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             className="ant-table-cell ant-table-column-has-sorters"
                             colSpan={null}
                             onClick={[Function]}
+                            onKeyDown={[Function]}
                             onMouseEnter={[Function]}
                             onMouseLeave={[Function]}
                             rowSpan={null}
                             style={Object {}}
+                            tabIndex={0}
                           >
                             <div
                               className="ant-table-column-sorters"
@@ -6631,10 +6637,12 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             className="ant-table-cell ant-table-column-has-sorters"
                             colSpan={null}
                             onClick={[Function]}
+                            onKeyDown={[Function]}
                             onMouseEnter={[Function]}
                             onMouseLeave={[Function]}
                             rowSpan={null}
                             style={Object {}}
+                            tabIndex={0}
                           >
                             <div
                               className="ant-table-column-sorters"
@@ -6696,10 +6704,12 @@ exports[`Storyshots TableDrawer Simple Drawer 1`] = `
                             className="ant-table-cell ant-table-column-has-sorters"
                             colSpan={null}
                             onClick={[Function]}
+                            onKeyDown={[Function]}
                             onMouseEnter={[Function]}
                             onMouseLeave={[Function]}
                             rowSpan={null}
                             style={Object {}}
+                            tabIndex={0}
                           >
                             <div
                               className="ant-table-column-sorters"
