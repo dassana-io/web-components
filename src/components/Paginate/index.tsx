@@ -17,6 +17,7 @@ import React, {
 	ReactNode,
 	RefObject,
 	useCallback,
+	useEffect,
 	useMemo,
 	useState
 } from 'react'
@@ -108,6 +109,8 @@ export const Paginate = <Data,>({
 		(_currPage: number, newPageSize: number) => setPageSize(newPageSize),
 		[]
 	)
+
+	useEffect(() => setCurrentPage(1), [data.length, pageSize])
 
 	return (
 		<div className={cn({ [classes.container]: true }, containerClasses)}>
