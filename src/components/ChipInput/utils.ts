@@ -62,9 +62,13 @@ export const useStyles = createUseStyles({
 	tagsWrapper: {
 		display: 'flex',
 		flexWrap: 'wrap',
-		width: ({ fullWidth, shortcutMicrocopyWidth }) =>
-			fullWidth
-				? `calc( 100% - ${shortcutMicrocopyWidth}px)`
+		width: ({
+			fullWidth,
+			tagsContainerFullWidth,
+			shortcutMicrocopyWidth
+		}) =>
+			fullWidth || tagsContainerFullWidth
+				? `calc(100% - ${shortcutMicrocopyWidth}px)`
 				: defaultFieldWidth
 	},
 	wrapper: {
