@@ -83,6 +83,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	)
 
 	const fuse = new Fuse(options, {
+		findAllMatches: true,
+		ignoreLocation: true,
 		isCaseSensitive: false,
 		keys: optionKeysToFilter,
 		shouldSort: true,
