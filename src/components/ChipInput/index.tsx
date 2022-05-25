@@ -34,6 +34,7 @@ export interface ChipInputProps
 	errorMsg?: string
 	fieldErrorClasses?: string[]
 	onChange?: (addedValues: string[]) => void
+	tagsContainerFullWidth?: boolean
 	undeleteableValues?: string[]
 	validate?: Validate
 	values?: string[]
@@ -57,6 +58,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	onFocus,
 	onChange,
 	placeholder,
+	tagsContainerFullWidth = false,
 	undeleteableValues = [],
 	validate,
 	values
@@ -73,7 +75,11 @@ export const ChipInput: FC<ChipInputProps> = ({
 	const [shortcutMicrocopyWidth, setShortcutMicrocopyWidth] = useState(101)
 	const [showShortcutMicrocopy, setShowShortcutMicrocopy] = useState(false)
 
-	const componentClasses = useStyles({ fullWidth, shortcutMicrocopyWidth })
+	const componentClasses = useStyles({
+		fullWidth,
+		shortcutMicrocopyWidth,
+		tagsContainerFullWidth
+	})
 
 	const addInputValue = () => {
 		const newValues = [
