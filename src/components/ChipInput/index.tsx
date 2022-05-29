@@ -17,6 +17,7 @@ import React, {
 	FC,
 	FocusEvent,
 	KeyboardEvent,
+	ReactNode,
 	useEffect,
 	useLayoutEffect,
 	useRef,
@@ -34,6 +35,7 @@ export interface ChipInputProps
 	errorMsg?: string
 	fieldErrorClasses?: string[]
 	onChange?: (addedValues: string[]) => void
+	tagFormatter?: (tag: string) => ReactNode
 	tagsContainerFullWidth?: boolean
 	undeleteableValues?: string[]
 	validate?: Validate
@@ -58,6 +60,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 	onFocus,
 	onChange,
 	placeholder,
+	tagFormatter,
 	tagsContainerFullWidth = false,
 	undeleteableValues = [],
 	validate,
@@ -169,7 +172,7 @@ export const ChipInput: FC<ChipInputProps> = ({
 					disabled
 				)}
 			>
-				{value}
+				{tagFormatter ? tagFormatter(value) : value}
 			</Tag>
 		))
 
