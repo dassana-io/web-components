@@ -23,6 +23,7 @@ export interface MultiSelectProps
 	optionKeysToFilter?: string[]
 	pending?: boolean
 	searchPlaceholder?: string
+	sortOptions?: boolean
 	/**
 	 * Selected values if component is controlled. Requires an onChange to be passed
 	 */
