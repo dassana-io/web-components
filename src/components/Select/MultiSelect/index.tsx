@@ -38,6 +38,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		popupContainerSelector,
 		searchPlaceholder = '',
 		showSearch = false,
+		sortOptions = true,
 		values
 	} = props
 	const [localValues, setLocalValues] = useState(values || defaultValues)
@@ -107,13 +108,15 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		throw new Error('Controlled MultiSelect requires an onChange prop')
 	}
 
-	const sortedAndFilteredValues = getSortedAndFilteredValues({
-		fuse,
-		localValues,
-		onSearch,
-		options,
-		searchTerm
-	})
+	const selectOptions = sortOptions
+		? getSortedAndFilteredValues({
+				fuse,
+				localValues,
+				onSearch,
+				options,
+				searchTerm
+		  }) // eslint-disable-line no-mixed-spaces-and-tabs
+		: options
 
 	return (
 		<BaseSelect
@@ -135,7 +138,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 			mode='multiple'
 			onChange={onChangeAntD}
 			onDropdownVisibleChange={onDropdownVisibleChange}
-			options={sortedAndFilteredValues}
+			options={selectOptions}
 			optionsConfig={optionsConfig}
 			pending={pending}
 			placeholder={placeholder}
