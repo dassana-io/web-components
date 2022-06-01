@@ -129,7 +129,6 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 
 		tagsSelectProps = {
 			defaultValue,
-
 			menuItemSelectedIcon: null,
 			mode: 'tags',
 			notFoundContent: pending ? (
