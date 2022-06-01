@@ -38,6 +38,7 @@ const FormToggle: FC<FormToggleProps> = ({
 	defaultChecked = false,
 	disabled = false,
 	fullWidth = false,
+	ignoreFormDisabled = false,
 	label,
 	labelSkeletonWidth,
 	name,
@@ -68,7 +69,9 @@ const FormToggle: FC<FormToggleProps> = ({
 						checked={value}
 						dataTag={getFormFieldDataTag(name)}
 						defaultChecked={defaultChecked}
-						disabled={formDisabled || disabled}
+						disabled={
+							(!ignoreFormDisabled && formDisabled) || disabled
+						}
 						onChange={(checked: boolean) => onChange(checked)}
 						{...rest}
 					/>
