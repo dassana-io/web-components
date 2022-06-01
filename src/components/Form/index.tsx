@@ -11,6 +11,7 @@ import FormMultiSelect from './FormMultiSelect'
 import FormRadioButtonGroup from './FormRadioButtonGroup'
 import FormSelect from './FormSelect'
 import FormSubmitButton from './FormSubmitButton'
+import FormTagsSelect from './FormTagsSelect'
 import FormTimeInput from './FormTimeInput'
 import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
@@ -108,6 +109,7 @@ Form.MultipleChoice = FormMultipleChoice
 Form.MultiSelect = FormMultiSelect
 Form.RadioButtonGroup = FormRadioButtonGroup
 Form.Select = FormSelect
+Form.TagsSelect = FormTagsSelect
 Form.TimeInput = FormTimeInput
 Form.Timezone = FormTimezone
 Form.Toggle = FormToggle

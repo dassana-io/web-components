@@ -38,8 +38,16 @@ interface BaseSingleSelectProps
 	mode: 'single'
 }
 
+interface BaseTagsSelectProps
+	extends Omit<
+		BaseMultiSelectProps,
+		'mode' | 'dropdownRender' | 'localValues'
+	> {
+	mode: 'tags'
+}
+
 type BaseSelectProps = CommonBaseSelectProps &
-	(BaseSingleSelectProps | BaseMultiSelectProps)
+	(BaseSingleSelectProps | BaseMultiSelectProps | BaseTagsSelectProps)
 
 export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 	const {
@@ -81,6 +89,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 
 	let multiSelectProps = {}
 	let singleSelectProps = {}
+	let tagsSelectProps = {}
 
 	if (props.mode === 'multiple') {
 		const {
@@ -114,6 +123,25 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 			showSearch: false,
 			value,
 			...getDataTestAttributeProp('multi-select', dataTag)
+		}
+	} else if (props.mode === 'tags') {
+		const { defaultValue, onChange, pending = false, value } = props
+
+		tagsSelectProps = {
+			defaultValue,
+			menuItemSelectedIcon: null,
+			mode: 'tags',
+			notFoundContent: pending ? (
+				<NoContentFound>
+					<Spin size={20} />
+				</NoContentFound>
+			) : (
+				<NoContentFound />
+			),
+			onChange,
+			optionLabelProp: 'label',
+			value,
+			...getDataTestAttributeProp('tags-select', dataTag)
 		}
 	} else {
 		const { defaultValue, onChange, showSearch, value } = props
@@ -156,6 +184,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				{...getPopupContainerProps(popupContainerSelector)}
 				{...multiSelectProps}
 				{...singleSelectProps}
+				{...tagsSelectProps}
 			>
 				{/* if state is pending, options are being fetched outside the component, so don't render options. With no options, `notFoundContent` prop will render a spinning loader */}
 				{!('pending' in props && props.pending) &&
