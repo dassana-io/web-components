@@ -128,7 +128,12 @@ export const useStyles = createUseStyles({
 					}
 				}
 			},
-			'& $dropdown': generateThemedDropdownStyles(dark),
+			'& $dropdown': {
+				...generateThemedDropdownStyles(dark),
+				'& .ant-select-item': {
+					...generateThemedMSOptionStyles(dark)
+				}
+			},
 			'& $option': generateThemedMSOptionStyles(dark)
 		}
 	}
