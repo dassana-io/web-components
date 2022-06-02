@@ -80,7 +80,7 @@ const useStyles = createUseStyles({
 	queryContainer: {
 		'&:hover': {
 			'& $controls': {
-				opacity: 100
+				opacity: 1
 			}
 		},
 		...flexDown,
