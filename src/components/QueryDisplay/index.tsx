@@ -43,6 +43,10 @@ const useStyles = createUseStyles({
 		height: ({ fixedContainerHeight }) =>
 			fixedContainerHeight ? COLLAPSED_CONTAINER_HEIGHT : 'auto'
 	},
+	controls: {
+		opacity: 0,
+		transition: 'opacity 0.2s ease-in-out'
+	},
 	footerContainer: {
 		paddingTop: spacing.m
 	},
@@ -74,6 +78,11 @@ const useStyles = createUseStyles({
 		width: 'max-content'
 	},
 	queryContainer: {
+		'&:hover': {
+			'& $controls': {
+				opacity: 100
+			}
+		},
 		...flexDown,
 		...font.body,
 		...generatedThemedQueryContainerStyles(light),
@@ -156,16 +165,23 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 					)}
 				>
 					<span>{name}</span>
+
 					<FontAwesomeIcon
 						className={cn({
-							[classes.launch]: true,
-							[classes.hide]: hideSearch
+							[classes.controls]: true,
+							[classes.hide]: hideSearch,
+							[classes.launch]: true
 						})}
 						icon={faSearch}
 					/>
 				</div>
 				{renderControls && (
-					<div className={cn(controlsContainerClasses)}>
+					<div
+						className={cn(
+							{ [classes.controls]: true },
+							controlsContainerClasses
+						)}
+					>
 						{renderControls()}
 					</div>
 				)}
