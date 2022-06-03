@@ -176,12 +176,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 					/>
 				</div>
 				{renderControls && (
-					<div
-						className={cn(
-							{ [classes.controls]: true },
-							controlsContainerClasses
-						)}
-					>
+					<div className={cn(controlsContainerClasses)}>
 						{renderControls()}
 					</div>
 				)}
