@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { useHoverState } from '@dassana-io/web-utils'
 import { AceEditor, Code } from '../Code'
 import {
 	COLLAPSED_CONTAINER_HEIGHT,
@@ -15,6 +16,7 @@ import {
 import React, {
 	FC,
 	ReactNode,
+	RefObject,
 	useCallback,
 	useEffect,
 	useRef,
@@ -107,12 +109,42 @@ interface QueryDisplayProps {
 	headerClasses?: string[]
 	hideSearch?: boolean
 	nameContainerClasses?: string[]
-	name: ReactNode | string
+	// name: ReactNode | string
 	loading?: boolean
 	onQueryClick: () => void
 	query: string
-	renderControls?: () => ReactNode
-	renderFooter?: () => ReactNode
+	renderControls?: (isHovered?: boolean) => ReactNode
+	renderFooter?: (isHovered?: boolean) => ReactNode
+	renderName: (isHovered?: boolean) => ReactNode | string
+}
+
+export const useHoverState = <T extends HTMLElement>(): [RefObject<T>, boolean] => {
+	const [value, setValue] = useState<boolean>(false)
+	const [loaded, setLoaded] = useState(false)
+	const ref = useRef<T>(null)
+
+	const handleMouseOver = (): void => setValue(true)
+	const handleMouseOut = (): void => setValue(false)
+
+	useEffect(() => {
+		const node = ref.current
+
+		console.log('inside useEffect')
+
+		if (!loaded && node) {
+			node.addEventListener('mouseover', handleMouseOver)
+			node.addEventListener('mouseout', handleMouseOut)
+			console.log('just added event listener')
+			setLoaded(true)
+
+			return () => {
+				node.removeEventListener('mouseover', handleMouseOver)
+				node.removeEventListener('mouseout', handleMouseOut)
+			}
+		}
+	}, [loaded, ref.current])
+
+	return [ref, value]
 }
 
 export const QueryDisplay: FC<QueryDisplayProps> = ({
@@ -124,16 +156,20 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	hideSearch = false,
 	nameContainerClasses = [],
 	loading = false,
-	name,
 	onQueryClick,
 	query,
 	renderControls,
-	renderFooter
+	renderFooter,
+	renderName
 }: QueryDisplayProps) => {
 	const editorRef = useRef<AceEditor>(null)
+	// const containerRef = useRef<HTMLDivElement>(null)
 
 	const [isExpanded, setIsExpanded] = useState(true)
 	const [showExpander, setShowExpander] = useState(false)
+
+	const [hoverRef, isHovered] = useHoverState<HTMLDivElement>()
+	console.log('isHovered', isHovered)
 
 	const classes = useStyles({ fixedContainerHeight: !isExpanded })
 
@@ -153,6 +189,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	return (
 		<div
 			className={cn({ [classes.queryContainer]: true }, containerClasses)}
+			ref={hoverRef}
 		>
 			<div
 				className={cn({ [classes.header]: true }, headerClasses)}
@@ -164,7 +201,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 						nameContainerClasses
 					)}
 				>
-					<span>{name}</span>
+					<span>{renderName(isHovered)}</span>
 
 					<FontAwesomeIcon
 						className={cn({
