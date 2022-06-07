@@ -22,12 +22,7 @@ export const generateTooltipStyles = (themeType: ThemeType) => {
 		'& .ant-tooltip': {
 			'& > .ant-tooltip-content': {
 				'& > .ant-tooltip-arrow': {
-					'& > .ant-tooltip-arrow-content': {
-						'--antd-arrow-background-color': background,
-						backgroundColor: background,
-						boxShadow: 'none'
-					},
-					backgroundColor: 'none'
+					display: 'none'
 				},
 				'& > .ant-tooltip-inner': {
 					...font.label,
