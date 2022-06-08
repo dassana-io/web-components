@@ -118,9 +118,11 @@ interface QueryDisplayProps {
 	renderName: (isHovered?: boolean) => ReactNode | string
 }
 
-export const useHoverState = <T extends HTMLElement>(): [RefObject<T>, boolean] => {
+export const useHoverState = <T extends HTMLElement>(): [
+	RefObject<T>,
+	boolean
+] => {
 	const [value, setValue] = useState<boolean>(false)
-	const [loaded, setLoaded] = useState(false)
 	const ref = useRef<T>(null)
 
 	const handleMouseOver = (): void => setValue(true)
@@ -129,20 +131,16 @@ export const useHoverState = <T extends HTMLElement>(): [RefObject<T>, boolean] 
 	useEffect(() => {
 		const node = ref.current
 
-		console.log('inside useEffect')
-
-		if (!loaded && node) {
-			node.addEventListener('mouseover', handleMouseOver)
-			node.addEventListener('mouseout', handleMouseOut)
-			console.log('just added event listener')
-			setLoaded(true)
+		if (ref && node) {
+			node.addEventListener('mouseenter', handleMouseOver)
+			node.addEventListener('mouseleave', handleMouseOut)
 
 			return () => {
-				node.removeEventListener('mouseover', handleMouseOver)
-				node.removeEventListener('mouseout', handleMouseOut)
+				node.removeEventListener('mouseenter', handleMouseOver)
+				node.removeEventListener('mouseleave', handleMouseOut)
 			}
 		}
-	}, [loaded, ref.current])
+	}, [ref.current]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return [ref, value]
 }
@@ -163,7 +161,6 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	renderName
 }: QueryDisplayProps) => {
 	const editorRef = useRef<AceEditor>(null)
-	// const containerRef = useRef<HTMLDivElement>(null)
 
 	const [isExpanded, setIsExpanded] = useState(true)
 	const [showExpander, setShowExpander] = useState(false)
