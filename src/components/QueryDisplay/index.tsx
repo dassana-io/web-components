@@ -108,7 +108,6 @@ interface QueryDisplayProps {
 	headerClasses?: string[]
 	hideSearch?: boolean
 	nameContainerClasses?: string[]
-	// name: ReactNode | string
 	loading?: boolean
 	onQueryClick: () => void
 	query: string
