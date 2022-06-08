@@ -12,7 +12,6 @@ export default {
 
 const Template: Story = args => (
 	<QueryDisplay
-		name='Discover potentially compromised EC2 instances performing S3 enumeration'
 		onQueryClick={() => console.log('hello')}
 		query={
 			// eslint-disable-next-line quotes
@@ -20,6 +19,9 @@ const Template: Story = args => (
 		}
 		renderControls={() => <div>Controls</div>}
 		renderFooter={() => <div>Footer</div>}
+		renderName={() =>
+			'Discover potentially compromised EC2 instances performing S3 enumeration'
+		}
 	/>
 )
 

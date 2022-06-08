@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { useHoverState } from '@dassana-io/web-utils'
+import { useHoverState } from '@dassana-io/web-utils'
 import { AceEditor, Code } from '../Code'
 import {
 	COLLAPSED_CONTAINER_HEIGHT,
@@ -16,7 +16,6 @@ import {
 import React, {
 	FC,
 	ReactNode,
-	RefObject,
 	useCallback,
 	useEffect,
 	useRef,
@@ -47,7 +46,7 @@ const useStyles = createUseStyles({
 	},
 	controls: {
 		opacity: 0,
-		transition: 'opacity 0.2s ease-in-out'
+		transition: 'opacity 0.1s ease-in-out'
 	},
 	footerContainer: {
 		paddingTop: spacing.m
@@ -118,33 +117,6 @@ interface QueryDisplayProps {
 	renderName: (isHovered?: boolean) => ReactNode | string
 }
 
-export const useHoverState = <T extends HTMLElement>(): [
-	RefObject<T>,
-	boolean
-] => {
-	const [value, setValue] = useState<boolean>(false)
-	const ref = useRef<T>(null)
-
-	const handleMouseOver = (): void => setValue(true)
-	const handleMouseOut = (): void => setValue(false)
-
-	useEffect(() => {
-		const node = ref.current
-
-		if (ref && node) {
-			node.addEventListener('mouseenter', handleMouseOver)
-			node.addEventListener('mouseleave', handleMouseOut)
-
-			return () => {
-				node.removeEventListener('mouseenter', handleMouseOver)
-				node.removeEventListener('mouseleave', handleMouseOut)
-			}
-		}
-	}, [ref.current]) // eslint-disable-line react-hooks/exhaustive-deps
-
-	return [ref, value]
-}
-
 export const QueryDisplay: FC<QueryDisplayProps> = ({
 	containerClasses = [],
 	controlsContainerClasses = [],
@@ -166,7 +138,6 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	const [showExpander, setShowExpander] = useState(false)
 
 	const [hoverRef, isHovered] = useHoverState<HTMLDivElement>()
-	console.log('isHovered', isHovered)
 
 	const classes = useStyles({ fixedContainerHeight: !isExpanded })
 
