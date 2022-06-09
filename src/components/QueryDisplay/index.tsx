@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useHoverState } from '@dassana-io/web-utils'
 import { AceEditor, Code } from '../Code'
 import {
 	COLLAPSED_CONTAINER_HEIGHT,
@@ -45,7 +46,7 @@ const useStyles = createUseStyles({
 	},
 	controls: {
 		opacity: 0,
-		transition: 'opacity 0.2s ease-in-out'
+		transition: 'opacity 0.1s ease-in-out'
 	},
 	footerContainer: {
 		paddingTop: spacing.m
@@ -107,12 +108,12 @@ interface QueryDisplayProps {
 	headerClasses?: string[]
 	hideSearch?: boolean
 	nameContainerClasses?: string[]
-	name: ReactNode | string
 	loading?: boolean
 	onQueryClick: () => void
 	query: string
-	renderControls?: () => ReactNode
-	renderFooter?: () => ReactNode
+	renderControls?: (isHovered?: boolean) => ReactNode
+	renderFooter?: (isHovered?: boolean) => ReactNode
+	renderName: (isHovered?: boolean) => ReactNode | string
 }
 
 export const QueryDisplay: FC<QueryDisplayProps> = ({
@@ -124,16 +125,18 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	hideSearch = false,
 	nameContainerClasses = [],
 	loading = false,
-	name,
 	onQueryClick,
 	query,
 	renderControls,
-	renderFooter
+	renderFooter,
+	renderName
 }: QueryDisplayProps) => {
 	const editorRef = useRef<AceEditor>(null)
 
 	const [isExpanded, setIsExpanded] = useState(true)
 	const [showExpander, setShowExpander] = useState(false)
+
+	const [hoverRef, isHovered] = useHoverState<HTMLDivElement>()
 
 	const classes = useStyles({ fixedContainerHeight: !isExpanded })
 
@@ -153,6 +156,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 	return (
 		<div
 			className={cn({ [classes.queryContainer]: true }, containerClasses)}
+			ref={hoverRef}
 		>
 			<div
 				className={cn({ [classes.header]: true }, headerClasses)}
@@ -164,7 +168,7 @@ export const QueryDisplay: FC<QueryDisplayProps> = ({
 						nameContainerClasses
 					)}
 				>
-					<span>{name}</span>
+					<span>{renderName(isHovered)}</span>
 
 					<FontAwesomeIcon
 						className={cn({
