@@ -1,7 +1,7 @@
 import { BaseFormElementProps } from '../../types'
-import { CSSProperties } from 'react'
 import { IconName } from '../../Icon'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { CSSProperties, ReactNode } from 'react'
 
 export interface SelectOption {
 	classes?: string[]
@@ -18,7 +18,8 @@ export interface SelectOptionsConfig {
 	style?: CSSProperties
 }
 
-export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
+export interface SelectProps
+	extends Omit<BaseFormElementProps<HTMLSelectElement>, 'placeholder'> {
 	/**
 	 * Array of classes to pass to element's container
 	 * @default []
@@ -52,6 +53,7 @@ export interface SelectProps extends BaseFormElementProps<HTMLSelectElement> {
 	 * @default {}
 	 */
 	optionsConfig?: SelectOptionsConfig
+	placeholder?: ReactNode
 	/**
 	 * Whether or not to show search input
 	 * @default false
