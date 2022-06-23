@@ -12,10 +12,10 @@ jobs:
         # the list of steps that the action will go through
         steps:
             - uses: actions/checkout@v1
-            - name: Run npm install & delete tsconfig.rollup.json
+            - name: Run npm install --legacy-peer-deps & delete tsconfig.rollup.json
               run: |
                   rm -rf tsconfig.rollup.json
-                  npm install
+                  npm install --legacy-peer-deps
               env:
                   FONT_AWESOME_AUTH_TOKEN: ${{ secrets.FONT_AWESOME_AUTH_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
