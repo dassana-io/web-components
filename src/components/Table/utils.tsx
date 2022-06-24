@@ -1,5 +1,4 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
-import bytes from 'bytes'
 import castArray from 'lodash/castArray'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
@@ -22,6 +21,7 @@ import {
 	NumberDateType,
 	RequiredDataId
 } from './types'
+import { formatBytes, formatCurrency } from '@dassana-io/web-utils'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
 import { IconName, IconProps } from '../Icon'
 import { Link, LinkProps } from '../Link'
@@ -30,8 +30,18 @@ import { Tag, TagProps } from '../Tag'
 import { Toggle, ToggleProps } from '../Toggle'
 
 const { component, number, string } = ColumnTypes
-const { action, boolean, byte, date, icon, coloredDot, link, tag, toggle } =
-	ColumnFormats
+const {
+	action,
+	boolean,
+	byte,
+	currency,
+	date,
+	icon,
+	coloredDot,
+	link,
+	tag,
+	toggle
+} = ColumnFormats
 
 /* ------- Exported Functions ------- */
 
@@ -699,6 +709,10 @@ function applyRender<TableData extends RequiredDataId>(
 					antDColumn.render = createByteFormatter()
 					break
 
+				case currency:
+					antDColumn.render = createCurrencyFormatter()
+					break
+
 				case date: {
 					antDColumn.render = createDateFormatter(column)
 					break
@@ -724,7 +738,6 @@ function createFormattedData<TableData extends DataId>(
 /* Maps dataIndex to formatter function. E.g. { dateOfBirth: DATE_FORMATTER_FN } */
 function mapDataIndexToFormatter(columns: ColumnType[]) {
 	const { number } = ColumnTypes
-	const { byte, date } = ColumnFormats
 
 	const mapped: Record<string, NumFormatterFunction> = {}
 
@@ -736,6 +749,10 @@ function mapDataIndexToFormatter(columns: ColumnType[]) {
 				switch (column.format) {
 					case byte:
 						mapped[dataIndex] = createByteFormatter()
+						break
+
+					case currency:
+						mapped[dataIndex] = createCurrencyFormatter()
 						break
 
 					case date: {
@@ -777,7 +794,12 @@ export function createDateFormatter(
 
 /* Returns a byte formatter function (using bytes). */
 export function createByteFormatter(): NumFormatterFunction {
-	return (num?: number) => (num === undefined ? null : bytes(num))
+	return (num?: number) =>
+		num === undefined ? null : formatBytes(num, { unitSeparator: ' ' })
+}
+
+export function createCurrencyFormatter(): NumFormatterFunction {
+	return (num?: number) => (num === undefined ? null : formatCurrency(num))
 }
 
 export const createTagFormatter = (column: ComponentTagType) => {
