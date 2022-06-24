@@ -85,7 +85,7 @@ describe('processData', () => {
 		const mockProcessedData = [
 			{
 				_FORMATTED_DATA: [
-					'1MB',
+					'1 MB',
 					formatDate({ fromNow: true, unixTS: 1598400668681 }),
 					formatDate({
 						displayFormat: dateFormat0,
@@ -100,7 +100,7 @@ describe('processData', () => {
 			},
 			{
 				_FORMATTED_DATA: [
-					'1.91MB',
+					'1.91 MB',
 					formatDate({ fromNow: true, unixTS: 1603779899922 }),
 					formatDate({
 						displayFormat: dateFormat0,
@@ -115,7 +115,7 @@ describe('processData', () => {
 			},
 			{
 				_FORMATTED_DATA: [
-					'1KB',
+					'1 KB',
 					null,
 					formatDate({
 						displayFormat: dateFormat0,
@@ -134,7 +134,7 @@ describe('processData', () => {
 			},
 			{
 				_FORMATTED_DATA: [
-					'4MB',
+					'4 MB',
 					null,
 					formatDate({
 						displayFormat: dateFormat0,
@@ -149,7 +149,7 @@ describe('processData', () => {
 			},
 			{
 				_FORMATTED_DATA: [
-					'2KB',
+					'2 KB',
 					null,
 					formatDate({
 						displayFormat: dateFormat0,
@@ -233,7 +233,7 @@ describe('createByteFormatter', () => {
 	it('returns function that properly formats number into string bytes if input column provides valid format pattern', () => {
 		const formattedDate = createByteFormatter()(1024)
 
-		expect(formattedDate).toEqual('1KB')
+		expect(formattedDate).toEqual('1 KB')
 	})
 
 	it('returns function that returns null if input number is not provided', () => {
