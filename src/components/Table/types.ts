@@ -14,6 +14,7 @@ export enum ColumnTypes {
 export enum ColumnFormats {
 	action = 'action',
 	boolean = 'boolean',
+	currency = 'currency',
 	none = 'none',
 	date = 'date',
 	byte = 'byte',
@@ -77,6 +78,9 @@ interface NumberDefaultType extends PartialColumnType {
 interface NumberByteType extends Omit<NumberDefaultType, 'format'> {
 	format: ColumnFormats.byte
 }
+interface NumberCurrencyType extends Omit<NumberDefaultType, 'format'> {
+	format: ColumnFormats.currency
+}
 
 export enum DateDisplayFormat {
 	fromNow = 'fromNow'
@@ -90,7 +94,11 @@ export interface NumberDateType extends Omit<NumberDefaultType, 'format'> {
 	}
 }
 
-type NumberType = NumberDefaultType | NumberByteType | NumberDateType
+type NumberType =
+	| NumberDefaultType
+	| NumberByteType
+	| NumberCurrencyType
+	| NumberDateType
 
 interface PartialComponentType extends PartialColumnType {
 	type: ColumnTypes.component
