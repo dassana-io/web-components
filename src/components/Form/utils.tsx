@@ -1,4 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep'
+import { KVField } from 'components/DynamicKVInput/types'
 import React from 'react'
 import { RegisterOptions } from 'react-hook-form'
 import FieldLabel, { FieldLabelProps } from './FieldLabel'
@@ -62,3 +63,8 @@ export const getRulesForArrVals = ({
 export const renderFieldLabel = (props: Partial<FieldLabelProps>) => {
 	if (props.label) return <FieldLabel {...(props as FieldLabelProps)} />
 }
+
+// --------------------------------------
+
+export const getNonEmptyKVInputPairs = (values: KVField[]) =>
+	values.filter(({ key, value }) => key || value)
