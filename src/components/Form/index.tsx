@@ -5,6 +5,7 @@ import FieldLabel from './FieldLabel'
 import FormCheckbox from './FormCheckbox'
 import FormChipInput from './FormChipInput'
 import FormCode from './FormCode'
+import FormDynamicKVInput from './FormDynamicKVInput'
 import FormInput from './FormInput'
 import FormMultipleChoice from './FormMultipleChoice'
 import FormMultiSelect from './FormMultiSelect'
@@ -16,6 +17,7 @@ import FormTimeInput from './FormTimeInput'
 import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
+import { getNonEmptyKVInputPairs } from './utils'
 import {
 	DeepPartial,
 	FieldValues,
@@ -104,6 +106,7 @@ Form.SubmitButton = FormSubmitButton
 Form.Checkbox = FormCheckbox
 Form.ChipInput = FormChipInput
 Form.Code = FormCode
+Form.DynamicKVInput = FormDynamicKVInput
 Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
 Form.MultiSelect = FormMultiSelect
@@ -115,7 +118,7 @@ Form.Timezone = FormTimezone
 Form.Toggle = FormToggle
 Form.Tree = FormTree
 
-export { FieldLabel, useFormContext }
+export { FieldLabel, getNonEmptyKVInputPairs, useFormContext }
 export type {
 	FormStateProxy,
 	UseFormReturn

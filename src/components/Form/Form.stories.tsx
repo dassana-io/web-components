@@ -104,6 +104,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 			treeData={treeData}
 		/>
 		<Form.Code label='Sample JSON' name='sampleJson' />
+		<Form.DynamicKVInput name='headers' />
 		<Form.SubmitButton useShortcutProps={{ keys: ['Shift', 'Enter'] }}>
 			Submit
 		</Form.SubmitButton>
