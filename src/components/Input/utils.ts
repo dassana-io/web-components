@@ -20,7 +20,13 @@ const generateCommonBaseStyles = (themeType: ThemeType) => {
 		base: { background, borderColor }
 	} = inputPalette[themeType]
 
-	return { background, borderColor, borderRadius, color }
+	return {
+		'-webkit-text-fill-color': color,
+		background,
+		borderColor,
+		borderRadius,
+		color
+	}
 }
 
 const generateCommonDisabledStyles = (themeType: ThemeType) => {
