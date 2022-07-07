@@ -61,6 +61,7 @@ export const Default = Template.bind({})
 Default.args = {
 	code: sampleJSON,
 	height: '900px',
+	readOnly: false,
 	width: '900px'
 }
 
