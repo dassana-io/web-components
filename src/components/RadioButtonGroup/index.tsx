@@ -7,7 +7,7 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext'
 import { ThemeType } from '../assets/styles/themes'
 import { Radio as AntDRadio, RadioChangeEvent } from 'antd'
 import { getDataTestAttributeProp, TAG } from '../utils'
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
 
 export interface RadioButtonGroupOptions {
 	disabled?: boolean
-	label: string
+	label: ReactNode
 	value: string
 }
 
