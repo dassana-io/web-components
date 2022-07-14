@@ -1,4 +1,5 @@
 import { BaseFieldProps } from '../types'
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
@@ -35,6 +36,7 @@ export interface FormToggleProps
 }
 
 const FormToggle: FC<FormToggleProps> = ({
+	containerClasses = [],
 	defaultChecked = false,
 	disabled = false,
 	fullWidth = false,
@@ -53,7 +55,7 @@ const FormToggle: FC<FormToggleProps> = ({
 
 	// TODO: add info tips
 	return (
-		<div className={classes.container}>
+		<div className={cn({ [classes.container]: true }, containerClasses)}>
 			<FieldLabel
 				classes={[classes.label]}
 				label={label}
