@@ -55,13 +55,13 @@ const tabConfig: TabConfig[] = [
 	{
 		key: 'lorem3',
 		label: 'Lorem 3',
-		render: () => <TabPane>Banana mochi muffin</TabPane>,
-		splitRight: true,
+		render: () => <TabPane>Strawberry mochi cheesecake</TabPane>,
+		splitRight: true
 	},
 	{
 		key: 'lorem1',
 		label: 'Lorem 1',
-		render: () => <TabPane>Banana mochi muffin</TabPane>,
+		render: () => <TabPane>Watermelon pound cake</TabPane>,
 		splitRight: true
 	},
 	{

@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import partition from 'lodash/partition'
 import Tab from './Tab'
 import TabPane from './TabPane'
 import {
@@ -110,33 +111,35 @@ export const Tabs: FC<TabsProps> = ({
 	}))
 
 	const renderTabItems = () => {
-		const leftSideTabs = tabConfig
-			.filter(({ splitRight }) => !splitRight)
-			.map(({ key, label, tabItemClasses = [] }: TabConfig, i) => (
-				<Tab
-					activeTabClasses={activeTabClasses}
-					isActiveTab={i === activeIndex}
-					key={key}
-					label={label}
-					onClickTab={onClickTab}
-					tabClasses={[...tabClasses, ...tabItemClasses]}
-					tabIndex={i}
-				/>
-			))
+		const partitionedTabs = partition(
+			tabConfig,
+			({ splitRight }) => !splitRight
+		)
 
-		const rightSideTabs = tabConfig
-			.filter(({ splitRight }) => splitRight)
-			.map(({ key, label, tabItemClasses = [] }: TabConfig, i) => (
-				<Tab
-					activeTabClasses={activeTabClasses}
-					isActiveTab={i + leftSideTabs.length === activeIndex}
-					key={key}
-					label={label}
-					onClickTab={onClickTab}
-					tabClasses={[...tabClasses, ...tabItemClasses]}
-					tabIndex={i + leftSideTabs.length}
-				/>
-			))
+		const [leftSideTabs, rightSideTabs] = partitionedTabs.map(
+			(partitionedTab, i) =>
+				partitionedTab.map(
+					({ key, label, tabItemClasses = [] }: TabConfig, j) => {
+						const leftSideLength = partitionedTabs[0].length
+						const currentTabItemIndex =
+							i === 0 ? j : j + leftSideLength
+
+						return (
+							<Tab
+								activeTabClasses={activeTabClasses}
+								isActiveTab={
+									currentTabItemIndex === activeIndex
+								}
+								key={key}
+								label={label}
+								onClickTab={onClickTab}
+								tabClasses={[...tabClasses, ...tabItemClasses]}
+								tabIndex={currentTabItemIndex}
+							/>
+						)
+					}
+				)
+		)
 
 		return (
 			<>
