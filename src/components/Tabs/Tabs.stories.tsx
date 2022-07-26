@@ -53,6 +53,18 @@ const tabConfig: TabConfig[] = [
 		render: () => <TabPane>Banana mochi muffin</TabPane>
 	},
 	{
+		key: 'lorem3',
+		label: 'Lorem 3',
+		render: () => <TabPane>Strawberry mochi cheesecake</TabPane>,
+		splitRight: true
+	},
+	{
+		key: 'lorem1',
+		label: 'Lorem 1',
+		render: () => <TabPane>Watermelon pound cake</TabPane>,
+		splitRight: true
+	},
+	{
 		key: 'ipsum',
 		label: 'Ipsum',
 		render: () => <TabPane>Pineapple upside down cake</TabPane>

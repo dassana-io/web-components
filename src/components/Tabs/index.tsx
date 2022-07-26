@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import partition from 'lodash/partition'
 import Tab from './Tab'
 import TabPane from './TabPane'
-import { ThemeType } from 'components/assets/styles'
 import {
 	findDefaultActiveIndex,
 	generateThemedTabsListStyles,
@@ -15,16 +15,17 @@ import React, {
 	useImperativeHandle,
 	useState
 } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const { flexSpaceBetween } = styleguide
 
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	tabsList: {
 		...generateThemedTabsListStyles(light),
-		alignItems: 'flex-end',
+		...flexSpaceBetween,
 		borderBottom: '1px solid',
-		display: 'flex',
-		justifyContent: 'center',
 		margin: 0,
 		paddingLeft: 0
 	},
@@ -44,6 +45,8 @@ export interface TabConfig {
 	key: string
 	label: string | ReactNode
 	render: () => ReactNode
+	splitRight?: boolean
+	tabItemClasses?: string[]
 }
 
 export interface UseTabsMethods {
@@ -107,18 +110,44 @@ export const Tabs: FC<TabsProps> = ({
 		tabConfig
 	}))
 
-	const renderTabItems = () =>
-		tabConfig.map(({ key, label }: TabConfig, i) => (
-			<Tab
-				activeTabClasses={activeTabClasses}
-				isActiveTab={i === activeIndex}
-				key={key}
-				label={label}
-				onClickTab={onClickTab}
-				tabClasses={tabClasses}
-				tabIndex={i}
-			/>
-		))
+	const renderTabItems = () => {
+		const partitionedTabs = partition(
+			tabConfig,
+			({ splitRight }) => !splitRight
+		)
+
+		const [leftSideTabs, rightSideTabs] = partitionedTabs.map(
+			(partitionedTab, i) =>
+				partitionedTab.map(
+					({ key, label, tabItemClasses = [] }: TabConfig, j) => {
+						const leftSideLength = partitionedTabs[0].length
+						const currentTabItemIndex =
+							i === 0 ? j : j + leftSideLength
+
+						return (
+							<Tab
+								activeTabClasses={activeTabClasses}
+								isActiveTab={
+									currentTabItemIndex === activeIndex
+								}
+								key={key}
+								label={label}
+								onClickTab={onClickTab}
+								tabClasses={[...tabClasses, ...tabItemClasses]}
+								tabIndex={currentTabItemIndex}
+							/>
+						)
+					}
+				)
+		)
+
+		return (
+			<>
+				<div>{leftSideTabs}</div>
+				<div>{rightSideTabs}</div>
+			</>
+		)
+	}
 
 	const renderTabPanes = () =>
 		tabConfig.map((tabConfigItem, i) => (
