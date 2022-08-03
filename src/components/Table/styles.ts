@@ -2,6 +2,7 @@ import { AdditionalPaletteColors } from './types'
 import { createUseStyles } from 'react-jss'
 import { SearchProps, TableProps } from '.'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
+import { generateThemedCheckboxStyles } from 'components/Checkbox/utils'
 
 const {
 	borderRadius,
@@ -192,6 +193,7 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 
 	return {
 		[cellClasses]: {
+			...generateThemedCheckboxStyles(themeType),
 			'&.ant-table-column-sort': {
 				background: td.sort.background
 			},

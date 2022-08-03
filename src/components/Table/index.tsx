@@ -10,6 +10,7 @@ import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { TableCtxProvider } from './TableContext'
+import { TableRowSelection } from 'antd/es/table/interface'
 import { TableSkeleton } from './TableSkeleton'
 import { unstable_batchedUpdates } from 'react-dom'
 import { useStyles } from './styles'
@@ -94,6 +95,8 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional Table Pagination config that determines the numbers of table rows to render per page
 	 */
 	paginationConfig?: { rowCount?: number }
+	rowIdKey?: string
+	rowSelection?: TableRowSelection<TableData<Data>>
 	tableControlsConfig?: TableControlsConfig
 	scrollConfig?: ScrollConfig
 	/**
@@ -125,14 +128,16 @@ export const Table = <Data,>({
 	dataTag,
 	disableRowClick = false,
 	loading = false,
-	paginationConfig = {},
 	onRowClick,
-	tableControlsConfig = {},
-	tableRef,
+	paginationConfig = {},
+	rowIdKey = 'id',
+	rowSelection,
 	scrollConfig,
 	search = true,
 	skeletonRowCount = 5,
-	searchProps = {} as SearchProps
+	searchProps = {} as SearchProps,
+	tableControlsConfig = {},
+	tableRef
 }: TableProps<Data>) => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
@@ -160,10 +165,10 @@ export const Table = <Data,>({
 	})
 
 	const [mappedData, setMappedData] = useState(
-		processData<TableData<Data>>(data, columns).mappedData
+		processData<TableData<Data>>(data, columns, rowIdKey).mappedData
 	)
 	const [processedData, setProcessedData] = useState(
-		processData<TableData<Data>>(data, columns).processedData
+		processData<TableData<Data>>(data, columns, rowIdKey).processedData
 	)
 
 	const deleteRow = useCallback(
@@ -231,14 +236,15 @@ export const Table = <Data,>({
 	useEffect(() => {
 		const { mappedData, processedData } = processData<TableData<Data>>(
 			data,
-			columns
+			columns,
+			rowIdKey
 		)
 
 		unstable_batchedUpdates(() => {
 			setMappedData(mappedData)
 			setProcessedData(processedData)
 		})
-	}, [columns, data])
+	}, [columns, data, rowIdKey])
 
 	const delayedSearch = debounce(q => searchTable(q), 250)
 
@@ -347,6 +353,7 @@ export const Table = <Data,>({
 						}
 						rowClassName={getRowClassName}
 						rowKey={getRowKey}
+						rowSelection={rowSelection}
 						{...getDataTestAttributeProp('table', dataTag)}
 						{...optionalProps}
 						{...scrollProps}
@@ -359,3 +366,4 @@ export const Table = <Data,>({
 
 export * from './types'
 export { PARTIAL_ACTION_COLUMN } from './utils'
+export type { TableRowSelection }

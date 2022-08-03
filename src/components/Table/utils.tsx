@@ -104,7 +104,8 @@ Takes data prop passed to Table and returns data:
   */
 export function processData<TableData extends DataId>(
 	data: TableData[],
-	columns: ColumnType[]
+	columns: ColumnType[],
+	rowIdKey = 'id'
 ): ProcessedData<TableData> {
 	const mappedData: MappedData<TableData> = {}
 	const processedData: ProcessedDataType<TableData & DataId>[] = []
@@ -112,7 +113,7 @@ export function processData<TableData extends DataId>(
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
 	data.forEach(item => {
-		const id = item.id ?? uuidV4()
+		const id = item[rowIdKey] ?? uuidV4()
 
 		mappedData[id] = { ...item, id }
 
