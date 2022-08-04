@@ -193,7 +193,6 @@ const generateThemedCellStyles = (themeType: ThemeType) => {
 
 	return {
 		[cellClasses]: {
-			...generateThemedCheckboxStyles(themeType),
 			'&.ant-table-column-sort': {
 				background: td.sort.background
 			},
@@ -310,7 +309,13 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 				'& $tableContainer': generateTableStyles(
 					dark,
 					props.additionalPaletteColors
-				)
+				),
+				'& label': {
+					...generateThemedCheckboxStyles(dark)
+				}
+			},
+			label: {
+				...generateThemedCheckboxStyles(light)
 			}
 		},
 		tableControls: {
