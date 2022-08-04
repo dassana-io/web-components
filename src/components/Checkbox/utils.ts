@@ -63,6 +63,9 @@ export const generateThemedCheckboxStyles = (themeType: ThemeType) => {
 				backgroundColor: disabled.backgroundColor,
 				borderColor: `${unchecked.borderColor} !important`
 			},
+			'& .ant-checkbox-indeterminate .ant-checkbox-inner::after': {
+				backgroundColor: checked.background
+			},
 			'& .ant-checkbox-inner': {
 				background: unchecked.background,
 				borderColor: unchecked.borderColor
