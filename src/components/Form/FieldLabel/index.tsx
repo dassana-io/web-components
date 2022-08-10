@@ -5,7 +5,7 @@ import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
 export interface FieldLabelProps {
 	classes?: string[]
 	fullWidth?: boolean
-	label: string
+	label: ReactNode
 	loading?: boolean
 	required?: boolean
 	skeletonWidth?: number
