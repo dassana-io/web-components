@@ -22,6 +22,7 @@ const FormInput: FC<FormInputProps> = ({
 	label,
 	labelSkeletonWidth,
 	focused,
+	form,
 	name,
 	required,
 	rules = {},
@@ -71,6 +72,7 @@ const FormInput: FC<FormInputProps> = ({
 						disabled={formDisabled || disabled}
 						error={errors[name]}
 						focused={focused}
+						form={form}
 						fullWidth={fullWidth}
 						loading={loading}
 						onChange={onChange}

@@ -59,6 +59,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	defaultValue?: string
 	inputRef?: RefObject<InputRef>
 	focused?: boolean
+	form?: string
 	onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	onKeyDown?: (e: KeyboardEvent) => void
 	suffix?: ReactNode
@@ -80,6 +81,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		defaultValue,
 		disabled = false,
 		focused = false,
+		form,
 		inputRef,
 		onBlur = noop,
 		onChange,
@@ -136,6 +138,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 				className={cn(classes)}
 				defaultValue={defaultValue}
 				disabled={disabled}
+				form={form}
 				onBlur={onBlur}
 				onFocus={handleOnFocus}
 				onKeyDown={onKeyDown}

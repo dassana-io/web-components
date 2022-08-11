@@ -284,6 +284,9 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 		),
 		// eslint-disable-next-line sort-keys
 		'@global': {
+			'.ant-dropdown': {
+				display: 'inline-block'
+			},
 			[`.${dark}`]: {
 				'& $row': {
 					[rowClasses]: {

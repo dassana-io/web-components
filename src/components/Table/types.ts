@@ -1,3 +1,4 @@
+import { ColumnType as AntDColumnType } from 'antd/es/table'
 import { ColoredDotProps } from '../ColoredDot'
 import { LinkProps } from '../Link'
 import { SharedIconProps } from '../Icon'
@@ -37,7 +38,12 @@ interface PartialColumnType {
 	 * @default true
 	 */
 	ellipsis?: boolean
+	filterDropdown?: AntDColumnType<unknown>['filterDropdown']
+	filterDropdownVisible?: boolean
+	filterIcon?: ReactNode | ((filtered: boolean) => ReactNode)
 	formatKey?: (key: string) => string
+	onFilter?: AntDColumnType<unknown>['onFilter']
+	onFilterDropdownVisibleChange?: (visible: boolean) => void
 	title: string
 	sort?: boolean
 }

@@ -1,4 +1,5 @@
-import { ColumnType, ColumnTypes, TableProps } from '../.'
+import React from 'react'
+import { ColumnType, ColumnTypes, TableProps } from '..'
 
 export interface Person {
 	name: string
@@ -12,6 +13,18 @@ const { number, string } = ColumnTypes
 const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
+		filterDropdown: () => (
+			// <input
+			// 	onKeyDown={e => {
+			// 		if (e.key === 'Enter') {
+			// 			console.log('LMAO ur so gay')
+			// 		}
+			// 	}}
+			// 	placeholder='ur gay'
+			// />
+
+			<span>ur gay af</span>
+		),
 		title: 'Name',
 		type: string
 	},

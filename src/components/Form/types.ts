@@ -4,6 +4,7 @@ import { RegisterOptions } from 'react-hook-form'
 export interface BaseFieldProps {
 	containerClasses?: string[]
 	fieldErrorClasses?: string[]
+	form?: string
 	ignoreFormDisabled?: boolean
 	label?: ReactNode
 	labelSkeletonWidth?: number

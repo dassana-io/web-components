@@ -50,6 +50,7 @@ export interface FormProps<Model extends FieldValues> {
 	disabled?: boolean
 	formContainerClasses?: string[]
 	formRef?: RefObject<UseFormReturn<Model>>
+	id?: string
 	initialValues?: UnpackNestedValue<DeepPartial<Model>>
 	loading?: boolean
 	onSubmit: SubmitHandler<FieldValues>
@@ -60,6 +61,7 @@ export function Form<Model>({
 	disabled = false,
 	formContainerClasses = [],
 	formRef,
+	id,
 	initialValues = {} as UnpackNestedValue<DeepPartial<Model>>,
 	loading = false,
 	onSubmit
@@ -86,7 +88,7 @@ export function Form<Model>({
 
 	return (
 		<FormProvider {...methods}>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form id={id} onSubmit={handleSubmit(onSubmit)}>
 				<FieldContext.Provider value={{ disabled, loading, onSubmit }}>
 					<div
 						className={cn(
