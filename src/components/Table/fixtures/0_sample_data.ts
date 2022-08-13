@@ -60,6 +60,9 @@ const data: Person[] = [
 	}
 ]
 
-const tableData0: TableProps<Person> = { columns, data }
+const tableData0: TableProps<Person> = {
+	columns,
+	data
+}
 
 export default tableData0
