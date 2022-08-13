@@ -1,8 +1,8 @@
 import { AdditionalPaletteColors } from './types'
 import { createUseStyles } from 'react-jss'
+import { generateThemedCheckboxStyles } from 'components/Checkbox/utils'
 import { SearchProps, TableProps } from '.'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
-import { generateThemedCheckboxStyles } from 'components/Checkbox/utils'
 
 const {
 	borderRadius,
