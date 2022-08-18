@@ -4,7 +4,7 @@ import { KVField } from './types'
 import { KVInputPair } from './KVInputPair'
 import React, { FC, useCallback, useEffect, useMemo } from 'react'
 
-const removeFromArrByIdx = <T,>(arr: T[], index: number) => [
+const removeFromArrByIdx = <T, >(arr: T[], index: number) => [
 	...arr.slice(0, index),
 	...arr.slice(index + 1)
 ]
