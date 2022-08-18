@@ -1,3 +1,5 @@
+import '../assets/styles/antdAnimations.css'
+import 'antd/lib/dropdown/style/index.css'
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
@@ -14,7 +16,6 @@ import { TableRowSelection } from 'antd/es/table/interface'
 import { TableSkeleton } from './TableSkeleton'
 import { unstable_batchedUpdates } from 'react-dom'
 import { useStyles } from './styles'
-import { useWindowSize } from '@dassana-io/web-utils'
 import {
 	AdditionalPaletteColors,
 	ColumnType,
@@ -26,10 +27,16 @@ import React, {
 	ChangeEvent,
 	Key,
 	ReactNode,
+	RefObject,
 	useCallback,
 	useEffect,
+	useRef,
 	useState
 } from 'react'
+import {
+	useRemainingContainerHeight,
+	useWindowSize
+} from '@dassana-io/web-utils'
 
 export interface OnRowClick<TableData> {
 	(data: TableData, rowIndex: number): void
@@ -41,7 +48,8 @@ export interface ScrollConfig {
 	 * @default true
 	 */
 	mobileOnly?: boolean
-	x: number
+	x?: number
+	y?: number
 }
 
 export interface SearchProps {
@@ -83,6 +91,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 */
 	data: TableData<Data>[]
 	disableRowClick?: boolean
+	dynamicTableHeight?: boolean
 	/**
 	 * Whether or not to show skeleton loader
 	 */
@@ -111,7 +120,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Optional props for search input
 	 */
 	searchProps?: SearchProps
-	tableRef?: React.Ref<HTMLDivElement>
+	tableRef?: RefObject<HTMLDivElement>
 }
 
 /* Pagination config props type that gets passed to AntDTable  */
@@ -127,6 +136,7 @@ export const Table = <Data,>({
 	data,
 	dataTag,
 	disableRowClick = false,
+	dynamicTableHeight = false,
 	loading = false,
 	onRowClick,
 	paginationConfig = {},
@@ -139,6 +149,13 @@ export const Table = <Data,>({
 	tableControlsConfig = {},
 	tableRef
 }: TableProps<Data>) => {
+	const cmpTableRef = useRef<HTMLDivElement>(null)
+
+	const containerRef = tableRef ? tableRef : cmpTableRef
+	const controlsRef = useRef<HTMLDivElement>(null)
+
+	const containerHeight = useRemainingContainerHeight(containerRef)
+
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
 
@@ -296,7 +313,8 @@ export const Table = <Data,>({
 	if (scrollConfig && !scrollConfig.mobileOnly) {
 		scrollProps = {
 			scroll: {
-				x: scrollConfig.x
+				x: scrollConfig.x,
+				y: scrollConfig.y
 			}
 		}
 	} else if (width <= 768) {
@@ -307,21 +325,27 @@ export const Table = <Data,>({
 		}
 	}
 
+	if (dynamicTableHeight) {
+		scrollProps = {
+			scroll: {
+				y: containerHeight - (32 + 74 + 61)
+			}
+		}
+	}
+
 	if (skeletonRowCount < 1)
 		throw new Error('skeletonRowCount must be a positive integer')
 
 	return (
 		<TableCtxProvider value={{ isMobile }}>
-			<div
-				className={cn(tableClasses.tableContainer, classes)}
-				ref={tableRef}
-			>
+			<div className={cn(tableClasses.tableContainer, classes)}>
 				{controls && (
 					<div
 						className={cn(
 							tableClasses.tableControls,
 							tableControlClasses
 						)}
+						ref={controlsRef}
 					>
 						{renderTableControls && renderTableControls()}
 						{search && (
@@ -341,23 +365,27 @@ export const Table = <Data,>({
 						rowCount={skeletonRowCount}
 					/>
 				) : (
-					<AntDTable
-						columns={
-							processedColumns as ColumnsType<TableData<Data>>
-						}
-						dataSource={searchTerm ? filteredData : processedData}
-						pagination={
-							!pagination
-								? pagination
-								: { ...pagination, responsive: true }
-						}
-						rowClassName={getRowClassName}
-						rowKey={getRowKey}
-						rowSelection={rowSelection}
-						{...getDataTestAttributeProp('table', dataTag)}
-						{...optionalProps}
-						{...scrollProps}
-					/>
+					<div ref={containerRef}>
+						<AntDTable
+							columns={
+								processedColumns as ColumnsType<TableData<Data>>
+							}
+							dataSource={
+								searchTerm ? filteredData : processedData
+							}
+							pagination={
+								!pagination
+									? pagination
+									: { ...pagination, responsive: true }
+							}
+							rowClassName={getRowClassName}
+							rowKey={getRowKey}
+							rowSelection={rowSelection}
+							{...getDataTestAttributeProp('table', dataTag)}
+							{...optionalProps}
+							{...scrollProps}
+						/>
+					</div>
 				)}
 			</div>
 		</TableCtxProvider>

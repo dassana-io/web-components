@@ -3,6 +3,8 @@ import castArray from 'lodash/castArray'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
 import { EditableCell } from './EditableCell'
+import { faFilter } from '@fortawesome/pro-light-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
@@ -61,12 +63,14 @@ export function processColumns<TableData extends DataId>(
 	tableMethods: TableMethods<TableData & RequiredDataId>
 ) {
 	return columns.map(column => {
-		const { dataIndex, title, sort = true } = column
+		const { dataIndex, filterConfig = {}, title, sort = true } = column
 
 		const antDColumn: AntDColumnType<TableData & RequiredDataId> = {
 			dataIndex,
+			filterIcon: <FontAwesomeIcon icon={faFilter} />,
 			showSorterTooltip: false,
-			title
+			title,
+			...filterConfig
 		}
 
 		applyRender<TableData & RequiredDataId>(
@@ -97,11 +101,11 @@ interface ProcessedData<T> {
 }
 
 /*
-Takes data prop passed to Table and returns data:
-  1. formatted to satisfy antD requirements
-  2. with an added _FORMATTED_DATA key and array of formatted data value
-    (this makes rows searchable by formatted data).
-  */
+	Takes data prop passed to Table and returns data:
+		1. formatted to satisfy antD requirements
+		2. with an added _FORMATTED_DATA key and array of formatted data value
+			(this makes rows searchable by formatted data).
+*/
 export function processData<TableData extends DataId>(
 	data: TableData[],
 	columns: ColumnType[],
@@ -157,10 +161,10 @@ export function processData<TableData extends DataId>(
 }
 
 /*
-Maps keys from columns - the values of which should be searched or filtered on.
-This will be used for "global" search using fuse.
-More info --> https://fusejs.io/examples.html#nested-search
- */
+	Maps keys from columns - the values of which should be searched or filtered on.
+	This will be used for "global" search using fuse.
+	More info --> https://fusejs.io/examples.html#nested-search
+*/
 export function mapFilterKeys(columns: ColumnType[]) {
 	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
 
@@ -236,9 +240,9 @@ const getStrVal = (value?: string | string[]) => {
 }
 
 /* 
-  Compare functions used by applySort to pass a custom sorter
-  based on data type and format.
- */
+	Compare functions used by applySort to pass a custom sorter
+	based on data type and format.
+*/
 function compareStrings(column: ColumnType) {
 	return (a: Record<string, any>, b: Record<string, any>) => {
 		const valA = getStrVal(a[column.dataIndex])

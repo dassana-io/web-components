@@ -24,9 +24,10 @@ const commonArgTypes = {
 		table: {
 			type: {
 				detail: `
-        interface OnRowClick<Data> {
-  (data: Data, rowIndex: number): void
-  }`
+				interface OnRowClick<Data> {
+					(data: Data, rowIndex: number): void
+				}
+				`
 			}
 		}
 	},
@@ -40,10 +41,11 @@ const commonArgTypes = {
 		table: {
 			type: {
 				detail: `
-        interface SearchProps {
-  placeholder?: string
-  placement?: 'left' | 'right'
-}`
+				interface SearchProps {
+					placeholder?: string
+					placement?: 'left' | 'right'
+				}
+				`
 			}
 		}
 	}
@@ -82,12 +84,13 @@ Simple.argTypes = {
 		table: {
 			type: {
 				detail: `
-        interface PartialColumnType {
-  dataIndex: string
-  title: string
-  type: ColumnTypes.string | ColumnTypes.number
-  sort?: boolean
-}`
+				interface PartialColumnType {
+					dataIndex: string
+					title: string
+					type: ColumnTypes.string | ColumnTypes.number
+					sort?: boolean
+				}
+				`
 			}
 		}
 	},
@@ -97,10 +100,11 @@ Simple.argTypes = {
 		table: {
 			type: {
 				detail: `
-          interface Person {
-  name: string
-  age: number
-}`
+				interface Person {
+					name: string
+					age: number
+				}
+				`
 			}
 		}
 	}
@@ -120,34 +124,35 @@ Number.argTypes = {
 		table: {
 			type: {
 				detail: `
-        interface NumberDefaultType {
-  dataIndex: string
-  title: string
-  type: ColumnTypes.number
-  format?: ColumnFormats.none
-  sort?: boolean
-}
+				interface NumberDefaultType {
+					dataIndex: string
+					title: string
+					type: ColumnTypes.number
+					format?: ColumnFormats.none
+					sort?: boolean
+				}
 
-interface NumberDate {
-  dataIndex: string
-  title: string
-  type: ColumnTypes.number
-  format?: ColumnFormats.date
-  sort?: boolean
-  renderProps?: {
-    displayFormat?: string
-  }
-}
+				interface NumberDate {
+					dataIndex: string
+					title: string
+					type: ColumnTypes.number
+					format?: ColumnFormats.date
+					sort?: boolean
+					renderProps?: {
+					displayFormat?: string
+					}
+				}
 
-interface NumberByteType {
-  dataIndex: string
-  title: string
-  type: ColumnTypes.number
-  format?: ColumnFormats.byte
-  sort?: boolean
-}
+				interface NumberByteType {
+					dataIndex: string
+					title: string
+					type: ColumnTypes.number
+					format?: ColumnFormats.byte
+					sort?: boolean
+				}
 
-type NumberType = NumberDefaultType | NumberDate | NumberByteType`
+				type NumberType = NumberDefaultType | NumberDate | NumberByteType
+				`
 			}
 		}
 	},
@@ -157,12 +162,13 @@ type NumberType = NumberDefaultType | NumberDate | NumberByteType`
 		table: {
 			type: {
 				detail: `
-        interface File {
-  file_name: string
-  created_at: number
-  data_size?: number
-  updated_at?: number
-}`
+				interface File {
+					file_name: string
+					created_at: number
+					data_size?: number
+					updated_at?: number
+				}
+				`
 			}
 		}
 	}
@@ -186,14 +192,15 @@ Mixed.argTypes = {
 		table: {
 			type: {
 				detail: `
-        interface Client {
-  name: string
-  start_date: number
-  role: { name: string; color: string }
-  linked_in: string
-  admin_access: boolean
-  company: IconName
-}`
+				interface Client {
+					name: string
+					start_date: number
+					role: { name: string; color: string }
+					linked_in: string
+					admin_access: boolean
+					company: IconName
+				}
+				`
 			}
 		}
 	}
@@ -219,14 +226,15 @@ MissingCells.argTypes = {
 		table: {
 			type: {
 				detail: `
-        interface Client {
-  name?: string
-  start_date?: number
-  role?: { name: string; color: string }
-  linked_in?: string
-  admin_access?: boolean
-  company?: string
-}`
+				interface Client {
+					name?: string
+					start_date?: number
+					role?: { name: string; color: string }
+					linked_in?: string
+					admin_access?: boolean
+					company?: string
+				}
+				`
 			}
 		}
 	}
