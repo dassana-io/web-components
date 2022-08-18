@@ -86,6 +86,9 @@ export const tablePalette = (
 			base: {
 				background: blacks['darken-20']
 			},
+			hover: {
+				color: whites.base
+			},
 			sort: {
 				background: blacks['darken-20']
 			}
@@ -114,6 +117,9 @@ export const tablePalette = (
 		th: {
 			base: {
 				background: grays['lighten-40']
+			},
+			hover: {
+				color: grays['lighten-40']
 			},
 			sort: {
 				background: grays.base
@@ -284,6 +290,12 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 		),
 		// eslint-disable-next-line sort-keys
 		'@global': {
+			'.ant-table-filter-dropdown': {
+				background: 'transparent'
+			},
+			'.ant-table-filter-trigger:hover': {
+				color: tablePalette()[light].th.hover.color
+			},
 			[`.${dark}`]: {
 				'& $row': {
 					[rowClasses]: {
@@ -310,6 +322,9 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 					dark,
 					props.additionalPaletteColors
 				),
+				'& .ant-table-filter-trigger:hover': {
+					color: tablePalette()[dark].th.hover.color
+				},
 				'& label': {
 					...generateThemedCheckboxStyles(dark)
 				}

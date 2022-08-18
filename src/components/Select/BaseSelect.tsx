@@ -62,6 +62,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		onBlur,
 		onDropdownVisibleChange,
 		onFocus,
+		open,
 		options = [],
 		optionsConfig = {},
 		placeholder = '',
@@ -177,6 +178,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				onDropdownVisibleChange={onDropdownVisibleChange}
 				onFocus={onFocus}
 				onInputKeyDown={onInputKeyDown}
+				open={open}
 				placeholder={placeholder}
 				showArrow
 				showSearch={showSearch}

@@ -1,3 +1,4 @@
+import { RefObject } from 'react'
 import { SelectProps } from '../SingleSelect/types'
 
 export interface MultiSelectProps
@@ -6,6 +7,7 @@ export interface MultiSelectProps
 	 * Default values for select component. Without this, the select dropdown will be blank until an option is selected. Gets overwritten by values if both are provided
 	 */
 	defaultValues?: string[]
+	dropdownRef?: RefObject<HTMLDivElement>
 	focused?: boolean
 	/**
 	 * The number after which to show "& 'x' more" for selected tags. Setting it to 0 will always show all selected tags in the input

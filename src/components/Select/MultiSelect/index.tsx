@@ -21,6 +21,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		defaultOpen = false,
 		defaultValues = [],
 		disabled = false,
+		dropdownRef,
 		error = false,
 		focused = false,
 		fullWidth = false,
@@ -30,6 +31,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		matchSelectedContentWidth = false,
 		onChange,
 		onSearch,
+		open,
 		optionKeysToFilter = ['text'],
 		options = [],
 		optionsConfig = {},
@@ -58,7 +60,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const dropdownClasses = useDropdownStyles(props)
 
 	const dropdownRender = (menu: ReactNode) => (
-		<>
+		<div ref={dropdownRef}>
 			{showSearch && (
 				<Input
 					classes={[dropdownClasses.searchBar]}
@@ -80,7 +82,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 				/>
 			)}
 			{menu}
-		</>
+		</div>
 	)
 
 	const fuse = new Fuse(options, {
@@ -138,6 +140,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 			mode='multiple'
 			onChange={onChangeAntD}
 			onDropdownVisibleChange={onDropdownVisibleChange}
+			open={open}
 			options={selectOptions}
 			optionsConfig={optionsConfig}
 			pending={pending}

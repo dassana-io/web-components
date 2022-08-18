@@ -1,3 +1,5 @@
+import '../assets/styles/antdAnimations.css'
+import 'antd/lib/dropdown/style/index.css'
 import 'antd/lib/table/style/index.css'
 import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
