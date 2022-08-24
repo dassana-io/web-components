@@ -10,4 +10,5 @@ export interface BaseFieldProps {
 	name: string
 	required?: boolean
 	rules?: RegisterOptions
+	showError?: boolean
 }
