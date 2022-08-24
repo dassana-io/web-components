@@ -21,6 +21,10 @@ export const styleguide = {
 		alignItems: 'center',
 		display: 'flex'
 	},
+	flexAlignStart: {
+		alignItems: 'flex-start',
+		display: 'flex'
+	},
 	flexCenter: {
 		alignItems: 'center',
 		display: 'flex',
@@ -52,6 +56,7 @@ export const styleguide = {
 	},
 	/* eslint-disable sort-keys */
 	font: {
+		labelSmall: { fontSize: 10, lineHeight: '14px' },
 		label: { fontSize: 12, lineHeight: '20px' },
 		body: { fontSize: 14, lineHeight: '22px' },
 		bodyLarge: { fontSize: 16, lineHeight: '24px' },

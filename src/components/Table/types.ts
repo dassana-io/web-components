@@ -1,6 +1,7 @@
 import { ColumnType as AntDColumnType } from 'antd/es/table'
 import { ColoredDotProps } from '../ColoredDot'
 import { LinkProps } from '../Link'
+import { SelectOption } from 'components/Select'
 import { SharedIconProps } from '../Icon'
 import { TableMethods } from './utils'
 import { ThemeType } from 'components/assets/styles'
@@ -48,9 +49,11 @@ interface PartialColumnType {
 		onFilter?: AntDColumnType<unknown>['onFilter']
 		onFilterDropdownVisibleChange?: (visible: boolean) => void
 	}
+	width?: number
 }
 
 interface CommonEditableCellConfig {
+	contentFormatter?: (content: ReactNode) => ReactNode
 	onSave: <T>(record: T, editedData: T) => Promise<void>
 }
 
@@ -59,10 +62,25 @@ interface EditableInputConfig extends CommonEditableCellConfig {
 	type: EditableCellTypes.input
 }
 
-interface EditableSelectConfig extends CommonEditableCellConfig {
-	options: string[]
+interface CommonEditableSelectConfig extends CommonEditableCellConfig {
+	matchSelectedContentWidth?: number
 	type: EditableCellTypes.select
 }
+
+interface FormattedOptionsEditableSelectConfig
+	extends CommonEditableSelectConfig {
+	formatOptions: false
+	options: SelectOption[]
+}
+interface UnformattedOptionsEditableSelectConfig
+	extends CommonEditableSelectConfig {
+	formatOptions?: never
+	options: string[]
+}
+
+type EditableSelectConfig =
+	| FormattedOptionsEditableSelectConfig
+	| UnformattedOptionsEditableSelectConfig
 
 type EditableCellConfig = EditableInputConfig | EditableSelectConfig
 

@@ -38,11 +38,9 @@ const useStyles = createUseStyles({
 	}
 })
 
-const formatSelectOptions = (options: string[]) =>
-	options.map(option => ({ text: option, value: option } as SelectOption))
-
 interface CommonEditableCellProps<T> {
 	children: ReactNode
+	contentFormatter?: (content: ReactNode) => ReactNode
 	dataIndex: string
 	onSave: (record: T, editedData: T) => Promise<void>
 	rowData: T
@@ -55,7 +53,8 @@ interface EditableInputCellProps<T> extends CommonEditableCellProps<T> {
 	type: EditableCellTypes.input
 }
 interface EditableSelectCellProps<T> extends CommonEditableCellProps<T> {
-	options: string[]
+	matchSelectedContentWidth?: number
+	options: SelectOption[]
 	type: EditableCellTypes.select
 }
 
@@ -69,13 +68,14 @@ export const EditableCell = <T extends RequiredDataId>(
 	props: EditableCellProps<T>
 ) => {
 	const {
-		dataIndex,
 		children,
+		contentFormatter,
+		dataIndex,
 		onSave,
-		options,
 		rowData,
 		type,
-		updateRowData
+		updateRowData,
+		...rest
 	} = props
 
 	const divRef = useRef<HTMLDivElement>(null)
@@ -141,16 +141,22 @@ export const EditableCell = <T extends RequiredDataId>(
 						</Form.SubmitButton>
 					</>
 				)
-			case EditableCellTypes.select:
+			case EditableCellTypes.select: {
+				const { matchSelectedContentWidth, options } =
+					rest as EditableSelectCellProps<T>
+
 				return (
 					<Form.Select
 						{...commonProps}
 						defaultOpen
+						matchSelectedContentWidth={matchSelectedContentWidth}
 						onBlur={stopEdit}
-						options={formatSelectOptions(options!)}
+						options={options}
+						showError={false}
 						triggerSubmit
 					/>
 				)
+			}
 		}
 	}
 
@@ -195,7 +201,7 @@ export const EditableCell = <T extends RequiredDataId>(
 		</Form>
 	) : (
 		<div className={classes.cell} onClick={startEdit} ref={divRef}>
-			{children}
+			{contentFormatter ? contentFormatter(children) : children}
 		</div>
 	)
 }

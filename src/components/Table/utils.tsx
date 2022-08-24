@@ -9,6 +9,7 @@ import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import { MultipleIcons } from './MultipleIcons'
+import { SelectOption } from 'components/Select'
 import { v4 as uuidV4 } from 'uuid'
 import {
 	ColumnFormats,
@@ -63,13 +64,20 @@ export function processColumns<TableData extends DataId>(
 	tableMethods: TableMethods<TableData & RequiredDataId>
 ) {
 	return columns.map(column => {
-		const { dataIndex, filterConfig = {}, title, sort = true } = column
+		const {
+			dataIndex,
+			filterConfig = {},
+			title,
+			sort = true,
+			width
+		} = column
 
 		const antDColumn: AntDColumnType<TableData & RequiredDataId> = {
 			dataIndex,
 			filterIcon: <FontAwesomeIcon icon={faFilter} />,
 			showSorterTooltip: false,
 			title,
+			width,
 			...filterConfig
 		}
 
@@ -463,6 +471,9 @@ const renderIcon = <TableData,>({
 
 /* ------------------------------------------------------- */
 
+const formatSelectOptions = (options: string[]) =>
+	options.map(option => ({ text: option, value: option } as SelectOption))
+
 /*
 Sets antD column render prop as appropriate render function
 depending on data type and format. Render function takes
@@ -482,9 +493,10 @@ function applyRender<TableData extends RequiredDataId>(
 
 			if (editConfig) {
 				const { input, select } = EditableCellTypes
-				const { onSave, type } = editConfig
+				const { contentFormatter, onSave, type } = editConfig
 
 				const commonProps = {
+					contentFormatter,
 					dataIndex: column.dataIndex,
 					onSave,
 					updateRowData
@@ -507,7 +519,15 @@ function applyRender<TableData extends RequiredDataId>(
 						break
 
 					case select: {
-						const { options = [] } = editConfig
+						const {
+							formatOptions,
+							matchSelectedContentWidth,
+							options = []
+						} = editConfig
+
+						const selectOptions = isUndefined(formatOptions)
+							? formatSelectOptions(options as string[])
+							: (options as SelectOption[])
 
 						antDColumn.render = (
 							record: string,
@@ -515,7 +535,10 @@ function applyRender<TableData extends RequiredDataId>(
 						) => (
 							<EditableCell<TableData>
 								{...commonProps}
-								options={options}
+								matchSelectedContentWidth={
+									matchSelectedContentWidth
+								}
+								options={selectOptions}
 								rowData={rowData}
 								type={select}
 							>

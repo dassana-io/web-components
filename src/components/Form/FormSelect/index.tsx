@@ -24,6 +24,7 @@ const FormSelect: FC<FormSelectProps> = ({
 	name,
 	required,
 	rules = {},
+	showError = true,
 	triggerSubmit = false,
 	...rest
 }: FormSelectProps) => {
@@ -84,11 +85,13 @@ const FormSelect: FC<FormSelectProps> = ({
 				)}
 				rules={rules}
 			/>
-			<FieldError
-				classes={fieldErrorClasses}
-				error={errorMsg}
-				fullWidth={fullWidth}
-			/>
+			{showError && (
+				<FieldError
+					classes={fieldErrorClasses}
+					error={errorMsg}
+					fullWidth={fullWidth}
+				/>
+			)}
 		</div>
 	)
 }

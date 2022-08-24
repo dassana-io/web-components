@@ -326,9 +326,21 @@ export const Table = <Data,>({
 	}
 
 	if (dynamicTableHeight) {
+		let headerHeight = 54
+
+		const tableContainer = containerRef.current
+
+		if (tableContainer) {
+			const header = tableContainer.querySelector('thead')
+
+			if (header) {
+				headerHeight = header.clientHeight
+			}
+		}
+
 		scrollProps = {
 			scroll: {
-				y: containerHeight - (32 + 74 + 61)
+				y: containerHeight - (64 + headerHeight + 50) // TODO: 64 for pagination height, 50 for row offset
 			}
 		}
 	}
