@@ -1,5 +1,10 @@
 import { IconCellLabelType } from 'components/Table'
-import { FilterOptions, FiltersConfig, FilterValues } from '../types'
+import {
+	FilterOptions,
+	FiltersConfig,
+	FilterValues,
+	FilterValueType
+} from '../types'
 
 export const mockDynamicFilterOptions: FilterValues = [
 	{
@@ -64,6 +69,16 @@ export const mockFilterOptions: FilterOptions = [
 			{ id: 'azure', value: 'Azure' },
 			{ id: 'dassana', value: 'Dassana' }
 		]
+	},
+	{
+		key: { id: '$schema', value: 'schema' },
+		staticFilter: false,
+		type: FilterValueType.input
+	},
+	{
+		key: { id: '$assetContainerId', value: 'asset container id' },
+		staticFilter: false,
+		values: []
 	}
 ]
 

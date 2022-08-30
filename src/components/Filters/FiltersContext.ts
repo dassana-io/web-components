@@ -16,6 +16,7 @@ export interface FiltersContextProps {
 	dynamicOptions?: SelectOption[]
 	dynamicSearchVal?: string
 	loading?: boolean
+	minKeySelectInputWidth?: number
 	mode: FiltersMode
 	onSearchWrapper?: OnSearchWrapper
 	onSelectedFiltersChange: FiltersProps['onSelectedFiltersChange']

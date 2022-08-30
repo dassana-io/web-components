@@ -20,7 +20,7 @@ interface Props extends ValuesMultiSelectProps {
 export const ServerSideValuesMS: FC<Props> = ({
 	id,
 	onFilterChange,
-	filterOptValues,
+	filterOptValues = [],
 	selectedKey,
 	optionsConfig,
 	selectedValues = [],
@@ -58,6 +58,14 @@ export const ServerSideValuesMS: FC<Props> = ({
 						const formattedOpts = formatFilterValsToSelectOpts(
 							filterOptValues,
 							!!optionsConfig
+						)
+
+						console.log(
+							uniqBy(
+								[...selectedValues, ...formattedOpts],
+								'value'
+							).map(option => omit(option, 'classes')),
+							'dynamic options'
 						)
 
 						setOptions(
@@ -118,7 +126,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 						? onSearchWrapper(selectedKey)
 						: undefined,
 					pending,
-					searchPlaceholder: 'This one hits BE...'
+					searchPlaceholder: 'Search...'
 				})
 			}
 		}
@@ -139,12 +147,14 @@ export const ServerSideValuesMS: FC<Props> = ({
 				multiSelectProps: {
 					options,
 					optionsConfig,
+					showSearch: !staticFilter,
 					...dynamicFilterProps
 				},
 				onFilterChange,
 				selectedValues,
 				windowWidth
 			})}
+			disabled={!selectedKey} // TODO: look into this
 		/>
 	)
 }

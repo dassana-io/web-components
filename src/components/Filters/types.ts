@@ -1,5 +1,4 @@
 import { IconCellLabelType } from 'components/Table'
-import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
 import { MultiSelectProps, SelectOption } from '../Select'
 import React, { RefObject } from 'react'
 
@@ -30,6 +29,7 @@ export interface FilterOption {
 	key: FilterKey
 	staticFilter?: boolean
 	operator?: FilterOperators
+	type?: FilterValueType
 	values?: FilterValues
 }
 export type FilterOptions = FilterOption[]
@@ -48,6 +48,7 @@ export interface FiltersListItem {
 	selectedOperator?: string
 	selectedKey?: string
 	selectedValues?: SelectOption[]
+	type?: FilterValueType
 }
 
 type SelectedValsFilter = Required<FiltersListItem>
@@ -77,6 +78,7 @@ export interface SharedFiltersProps {
 	config?: FiltersConfig
 	defaultFilters?: FiltersList
 	filtersRef?: RefObject<UseFiltersMethods>
+	minKeySelectInputWidth?: number
 	onSelectedFiltersChange: (selectedFilters: Filters) => void
 	popoverClasses?: string[]
 }
@@ -97,15 +99,27 @@ export interface ClientSideFiltersProps extends SharedFiltersProps {
 }
 
 export interface ServerSideFiltersProps extends SharedFiltersProps {
-	api: AxiosInstance
-	emitter: Emitter
-	endpoint: string
 	mode: FiltersMode.backend
 	omittedFilterKeys?: string[]
+	onFiltersFetch: () => Promise<FilterOptions>
+	onFilterSuggest: (
+		filterKey: string,
+		searchVal: string
+	) => Promise<FilterValue[]>
 }
 
 export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
 
 export interface OnSearchWrapper {
 	(selectedFilterKey: string): MultiSelectProps['onSearch']
+}
+
+export enum FilterValueType {
+	boolean = 'boolean',
+	date = 'date',
+	input = 'input',
+	multiSelect = 'multiSelect',
+	number = 'number',
+	severity = 'severity',
+	string = 'string'
 }

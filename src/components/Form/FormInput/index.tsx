@@ -3,7 +3,12 @@ import cn from 'classnames'
 import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
-import { Controller, useFormContext } from 'react-hook-form'
+import { getJSONPathValue } from 'components/JSONPathPicker'
+import {
+	Controller,
+	FieldError as FieldErrorType,
+	useFormContext
+} from 'react-hook-form'
 import FieldContext, { FieldContextProps } from '../FieldContext'
 import { Input, InputProps } from 'components/Input'
 import React, { FC, KeyboardEvent, useContext } from 'react'
@@ -25,6 +30,7 @@ const FormInput: FC<FormInputProps> = ({
 	name,
 	required,
 	rules = {},
+	showError = true,
 	...rest
 }: FormInputProps) => {
 	const {
@@ -36,7 +42,12 @@ const FormInput: FC<FormInputProps> = ({
 	const { disabled: formDisabled, loading } =
 		useContext<FieldContextProps>(FieldContext)
 
-	const errorMsg = errors[name] ? errors[name].message : ''
+	const errorObj = getJSONPathValue<FieldErrorType>(
+		`$.${name}`,
+		errors
+	) as FieldErrorType
+
+	const errorMsg = (errorObj && errorObj.message) || ''
 
 	const onInputFocus = () => {
 		if (errors[name]) clearErrors(name)
@@ -69,7 +80,8 @@ const FormInput: FC<FormInputProps> = ({
 					<Input
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
-						error={errors[name]}
+						// error={errors[name]}
+						error={!!getJSONPathValue(`$.${name}`, errors)}
 						focused={focused}
 						fullWidth={fullWidth}
 						loading={loading}
@@ -82,11 +94,13 @@ const FormInput: FC<FormInputProps> = ({
 				)}
 				rules={rules}
 			/>
-			<FieldError
-				classes={fieldErrorClasses}
-				error={errorMsg}
-				fullWidth={fullWidth}
-			/>
+			{showError && (
+				<FieldError
+					classes={fieldErrorClasses}
+					error={errorMsg}
+					fullWidth={fullWidth}
+				/>
+			)}
 		</div>
 	)
 }

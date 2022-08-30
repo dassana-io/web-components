@@ -73,7 +73,13 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 			</div>
 			<div className={classes.filtersList}>
 				{filtersList.map(
-					({ id, selectedKey, selectedOperator, selectedValues }) => {
+					({
+						id,
+						selectedKey,
+						selectedOperator,
+						selectedValues,
+						type
+					}) => {
 						const filterOption = allFilters[selectedKey || '']
 
 						return (
@@ -89,6 +95,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 								selectedOperator={selectedOperator}
 								selectedValues={selectedValues}
 								staticFilter={filterOption?.staticFilter}
+								valueType={filterOption?.type}
 							/>
 						)
 					}
