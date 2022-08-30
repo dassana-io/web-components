@@ -1,9 +1,15 @@
 import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'
 import { useWindowSize } from '@dassana-io/web-utils'
+import { ValuesInput } from './ValuesInput'
 import { ValuesMultiSelectProps } from './ValuesMultiSelect/types'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiSelect'
-import { FilterOption, FiltersList, FiltersListItem } from '../types'
+import {
+	FilterOption,
+	FiltersList,
+	FiltersListItem,
+	FilterValueType
+} from '../types'
 import { formatFilterStrToSelectOpts, getFilterKeysOptions } from '../utils'
 import { IconButton, IconSizes } from '../../IconButton'
 import { MultiSelectProps, Select } from '../../Select'
@@ -20,6 +26,7 @@ interface FilterUnitProps
 	onDelete: (selectedId: string) => void
 	onFilterChange: (filtersListItem: FiltersListItem) => void
 	staticFilter?: boolean
+	valueType?: FilterValueType
 }
 
 const FilterUnit: FC<FilterUnitProps> = ({
@@ -32,9 +39,15 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	selectedKey,
 	selectedOperator,
 	selectedValues,
-	staticFilter
+	staticFilter,
+	valueType
 }: FilterUnitProps) => {
-	const { allFilters, config = {}, mode } = useFiltersContext()
+	const {
+		allFilters,
+		config = {},
+		minKeySelectInputWidth = 125,
+		mode
+	} = useFiltersContext()
 
 	const {
 		windowSize: { width }
@@ -96,11 +109,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	const renderKey = () => (
 		<Select
 			disabled={!!selectedKey}
-			matchSelectedContentWidth={125}
+			matchSelectedContentWidth={minKeySelectInputWidth}
 			onChange={selectedKey => {
 				onFilterChange({
 					id,
-					selectedKey: selectedKey as unknown as string
+					selectedKey: selectedKey as unknown as string,
+					type: valueType
 				})
 			}}
 			options={getFilterKeysOptions(allFilters, filtersList)}
@@ -111,21 +125,36 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	)
 
 	const renderValues = () => {
-		const commonProps: ValuesMultiSelectProps = {
-			filterOptValues,
+		const commonFilterProps = {
 			id,
 			onFilterChange,
-			optionsConfig,
 			selectedKey,
-			selectedValues,
-			windowWidth: width
+			selectedValues
 		}
 
-		return mode === 'frontend' ? (
-			<ClientSideValuesMS {...commonProps} />
-		) : (
-			<ServerSideValuesMS {...commonProps} staticFilter={staticFilter} />
-		)
+		switch (valueType) {
+			case FilterValueType.input: {
+				return <ValuesInput {...commonFilterProps} />
+			}
+			case FilterValueType.multiSelect:
+			default: {
+				const commonProps: ValuesMultiSelectProps = {
+					...commonFilterProps,
+					filterOptValues,
+					optionsConfig,
+					windowWidth: width
+				}
+
+				return mode === 'frontend' ? (
+					<ClientSideValuesMS {...commonProps} />
+				) : (
+					<ServerSideValuesMS
+						{...commonProps}
+						staticFilter={staticFilter}
+					/>
+				)
+			}
+		}
 	}
 
 	return (

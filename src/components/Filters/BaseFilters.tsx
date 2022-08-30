@@ -81,7 +81,8 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 		id,
 		selectedOperator,
 		selectedKey,
-		selectedValues
+		selectedValues,
+		type
 	}: FiltersListItem) => {
 		const clonedFilters = cloneDeep(filtersList)
 

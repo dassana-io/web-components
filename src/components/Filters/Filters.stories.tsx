@@ -1,7 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import { Button } from 'components/Button'
 import omit from 'lodash/omit'
-import { api as createAxiosInstance, Emitter } from '@dassana-io/web-utils'
 import { Filters, FiltersMode, FiltersProps } from '.'
 import { filtersConfig, mockFilterOptions } from './fixtures/0_sample_data'
 import { FiltersList, UseFiltersMethods } from './types'
@@ -22,12 +21,11 @@ const Template: Story<FiltersProps> = args => <Filters {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-	api: createAxiosInstance(''),
 	config: filtersConfig,
-	emitter: new Emitter(),
-	endpoint: 'https://mockendpoint.com',
 	mode: FiltersMode.backend,
-	omittedFilterKeys: ['name']
+	omittedFilterKeys: ['name'],
+	onFilterSuggest: () => mockFilterOptions as any,
+	onFiltersFetch: () => mockFilterOptions as any
 }
 
 export const ClientSide = Template.bind({})
@@ -65,10 +63,9 @@ const ControlledTemplate: Story<FiltersProps> = args => {
 
 export const Controlled = ControlledTemplate.bind({})
 Controlled.args = {
-	api: createAxiosInstance(''),
 	config: filtersConfig,
-	emitter: new Emitter(),
-	endpoint: 'https://mockendpoint.com',
 	mode: FiltersMode.backend,
-	omittedFilterKeys: ['name']
+	omittedFilterKeys: ['name'],
+	onFilterSuggest: () => mockFilterOptions as any,
+	onFiltersFetch: () => mockFilterOptions as any
 }

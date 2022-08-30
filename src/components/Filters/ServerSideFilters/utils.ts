@@ -1,12 +1,7 @@
-// import { handleAjaxErrors } from '@dassana-io/web-utils'
 import isEmpty from 'lodash/isEmpty'
 import { SelectOption } from '../../Select'
-import { AxiosInstance, Emitter } from '@dassana-io/web-utils'
+import { unstable_batchedUpdates } from 'react-dom'
 import { formatFilterValsToSelectOpts, processFilters } from '../utils'
-import {
-	mockDynamicFilterOptions,
-	mockFilterOptions
-} from '../fixtures/0_sample_data'
 import {
 	OnSearchWrapper,
 	ProcessedFilters,
@@ -14,17 +9,14 @@ import {
 } from '../types'
 import { useEffect, useState } from 'react'
 
-interface UseFiltersParams
-	extends Pick<ServerSideFiltersProps, 'omittedFilterKeys'> {
-	api: AxiosInstance
-	emitter: Emitter
-	endpoint: string
-}
+type UseFiltersParams = Omit<
+	ServerSideFiltersProps,
+	'mode' | 'onSelectedFiltersChange'
+>
 
 export const useFilters = ({
-	api,
-	emitter,
-	endpoint,
+	onFiltersFetch,
+	onFilterSuggest,
 	omittedFilterKeys = []
 }: UseFiltersParams) => {
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
@@ -41,50 +33,20 @@ export const useFilters = ({
 	// TODO: Delete eslint-disable when API is working
 	const onSearchWrapper: OnSearchWrapper =
 		selectedFilterKey => async (searchVal: string) => {
-			// Uncomment this to test if it's working.
-			/* 
-    // TODO: Delete and write tests
-    console.log({
-			filterKey: selectedFilterKey,
-			filters: formatSelectedFilters(filtersList),
-			search: searchVal
-    })
-    */
+			unstable_batchedUpdates(() => {
+				setDynamicSearchVal(searchVal)
+				setPending(true)
+			})
 
-			setDynamicSearchVal(searchVal)
+			const dynamicOptions = await onFilterSuggest(
+				selectedFilterKey,
+				searchVal
+			)
 
-			setPending(true)
-
-			// try {
-
-			// const dataToSend: FilterSuggestions = {
-			//   filterKey: selectedFilterKey,
-			//   operator: '=',
-			//   filters: formatSelectedFilters(filtersList),
-			//   search: searchVal
-			// }
-			// 	const result = await api.post<FilterValues[]>(endpoint, dataToSend)
-			//   setDynamicOptions(result.data)
-			// } catch (error) {
-			// 	handleAjaxErrors(error, emitter)
-			// }
-
-			// TODO: Delete and uncomment above lines when API is working
-			const setAsyncTimeout = (cb: any, timeout = 0) =>
-				new Promise<void>(resolve => {
-					setTimeout(() => {
-						cb()
-						resolve()
-					}, timeout)
-				})
-
-			await setAsyncTimeout(() => {
-				setDynamicOptions(
-					formatFilterValsToSelectOpts(mockDynamicFilterOptions)
-				)
+			unstable_batchedUpdates(() => {
+				setDynamicOptions(formatFilterValsToSelectOpts(dynamicOptions))
 				setPending(false)
-			}, 400)
-			// -----------------
+			})
 		}
 
 	const resetDynamicProps = () => {
@@ -94,29 +56,22 @@ export const useFilters = ({
 	}
 
 	useEffect(() => {
-		// const getFilters = async () => {
-		// 	try {
-		// 		const result = await api.get<FilterOption[]>(endpoint)
+		const fetchFilters = async () => {
+			try {
+				const filterOptions = await onFiltersFetch()
 
-		// 		return result.data
-		// 	} catch (error) {
-		// 		handleAjaxErrors(error, emitter)
-		// 	}
-		// }
-
-		// TODO: Delete and uncomment above lines when API is working
-		const getFilters = () =>
-			setAllFilters(processFilters(mockFilterOptions, omittedFilterKeys))
-
-		setTimeout(() => {
-			getFilters()
-		}, 800)
-		// -----------------
-
-		return () => {
-			setAllFilters({})
+				setAllFilters(processFilters(filterOptions, omittedFilterKeys))
+			} catch (error) {
+				return []
+			}
 		}
-	}, [api, emitter, endpoint, omittedFilterKeys])
+
+		fetchFilters()
+	}, [omittedFilterKeys, onFiltersFetch])
+
+	useEffect(() => {
+		return () => setAllFilters({})
+	}, [])
 
 	useEffect(() => {
 		setLoading(isEmpty(allFilters))

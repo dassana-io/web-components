@@ -64,6 +64,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 			{showSearch && (
 				<Input
 					classes={[dropdownClasses.searchBar]}
+					fullWidth
 					onChange={(e: ChangeEvent<HTMLInputElement>) => {
 						if (onSearch) onSearch(e.target.value)
 
