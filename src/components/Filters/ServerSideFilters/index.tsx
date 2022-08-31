@@ -19,7 +19,7 @@ export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 			onFilterSuggest,
 			onFiltersFetch
 		}),
-		[omittedFilterKeys, onFilterSuggest, onFiltersFetch]
+		[] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const filterMethods = useFilters(useFiltersInitialization)
