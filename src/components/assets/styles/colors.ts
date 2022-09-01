@@ -5,22 +5,40 @@ const { shade, tint } = ColorManipulationTypes
 enum Colors {
 	black = 'black',
 	blue = 'blue',
+	cyan = 'cyan',
 	gray = 'gray',
 	green = 'green',
+	magenta = 'magenta',
 	orange = 'orange',
+	purple = 'purple',
 	red = 'red',
 	white = 'white',
 	yellow = 'yellow'
 }
 
-const { black, blue, gray, green, orange, red, white, yellow } = Colors
+const {
+	black,
+	blue,
+	cyan,
+	gray,
+	green,
+	magenta,
+	orange,
+	purple,
+	red,
+	white,
+	yellow
+} = Colors
 
 const baseColors = {
 	[black]: '#282A35',
 	[blue]: '#2F54EB',
+	[cyan]: '#13C2C2',
 	[gray]: '#EAEAEB',
 	[green]: '#59C93D',
+	[magenta]: '#EB2F96',
 	[orange]: '#EE9747',
+	[purple]: '#722ED1',
 	[red]: '#EE4747',
 	[white]: '#FEFEFE',
 	[yellow]: '#EEB547'
@@ -55,7 +73,99 @@ interface Grays extends Base {
 }
 
 interface Reds extends Base {
+	'darken-10': string
 	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Blues extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Cyans extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Greens extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Oranges extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Magentas extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Purples extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
+}
+
+interface Yellows extends Base {
+	'darken-10': string
+	'darken-20': string
+	'darken-30': string
+	'darken-40': string
+	'lighten-10': string
+	'lighten-20': string
+	'lighten-30': string
+	'lighten-40': string
+	'lighten-50': string
 }
 
 const percentages: Record<string, any> = {
@@ -63,8 +173,39 @@ const percentages: Record<string, any> = {
 		darken: [10, 20, 40],
 		lighten: [10, 20, 30, 40, 50, 60, 70, 80]
 	},
+	[blue]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
+	[cyan]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
 	[gray]: { lighten: [40, 70] },
-	[red]: { darken: [20] }
+	[green]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
+	[magenta]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
+	[orange]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
+	[purple]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
+	[red]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	},
+	[yellow]: {
+		darken: [10, 20, 30, 40],
+		lighten: [10, 20, 30, 40, 50]
+	}
 }
 
 interface GenerateColors {
@@ -96,24 +237,30 @@ const generateTintsAndShades = (color: Colors) => ({
 
 export interface ColorsType {
 	blacks: Blacks
-	blues: Base
+	blues: Blues
+	cyans: Cyans
 	grays: Grays
-	greens: Base
-	oranges: Base
+	greens: Greens
+	magentas: Magentas
+	oranges: Oranges
+	purples: Purples
 	reds: Reds
 	whites: Base
-	yellows: Base
+	yellows: Yellows
 }
 
 const colors: ColorsType = {
 	blacks: generateTintsAndShades(black) as Blacks,
-	blues: { base: baseColors[blue] },
+	blues: generateTintsAndShades(blue) as Blues,
+	cyans: generateTintsAndShades(cyan) as Cyans,
 	grays: generateTintsAndShades(gray) as Grays,
-	greens: { base: baseColors[green] },
-	oranges: { base: baseColors[orange] },
+	greens: generateTintsAndShades(green) as Greens,
+	magentas: generateTintsAndShades(magenta) as Magentas,
+	oranges: generateTintsAndShades(orange) as Oranges,
+	purples: generateTintsAndShades(purple) as Purples,
 	reds: generateTintsAndShades(red) as Reds,
 	whites: { base: baseColors[white] },
-	yellows: { base: baseColors[yellow] }
+	yellows: generateTintsAndShades(yellow) as Yellows
 }
 
 export default colors
