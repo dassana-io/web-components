@@ -27,8 +27,13 @@ export const ServerSideValuesMS: FC<Props> = ({
 	staticFilter,
 	windowWidth
 }: Props) => {
-	const { dynamicOptions, dynamicSearchVal, onSearchWrapper, pending } =
-		useFiltersContext()
+	const {
+		dynamicOptions,
+		dynamicSearchVal,
+		onSearchWrapper,
+		pending,
+		resetDynamicProps
+	} = useFiltersContext()
 
 	const classes = useStyles()
 	const [dynamicFilterProps, setDynamicFilterProps] = useState<
@@ -58,14 +63,6 @@ export const ServerSideValuesMS: FC<Props> = ({
 						const formattedOpts = formatFilterValsToSelectOpts(
 							filterOptValues,
 							!!optionsConfig
-						)
-
-						console.log(
-							uniqBy(
-								[...selectedValues, ...formattedOpts],
-								'value'
-							).map(option => omit(option, 'classes')),
-							'dynamic options'
 						)
 
 						setOptions(
@@ -145,6 +142,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 			{...getMultiSelectProps({
 				id,
 				multiSelectProps: {
+					onDropdownClose: resetDynamicProps,
 					options,
 					optionsConfig,
 					showSearch: !staticFilter,
