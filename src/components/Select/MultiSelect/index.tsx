@@ -33,6 +33,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		matchSelectedContentWidth = false,
 		onChange,
 		onDropdownClose,
+		onDropdownOpen,
 		onSearch,
 		open,
 		optionKeysToFilter = ['text'],
@@ -58,14 +59,15 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
 	const onDropdownVisibleChange = useCallback(
 		(open: boolean) => {
-			if (!open) {
-				console.log('closing dropdown')
+			if (open) {
+				onDropdownOpen && onDropdownOpen()
+			} else {
 				onDropdownClose && onDropdownClose()
 
 				setSearchTerm('')
 			}
 		},
-		[onDropdownClose]
+		[onDropdownClose, onDropdownOpen]
 	)
 
 	const dropdownClasses = useDropdownStyles(props)
