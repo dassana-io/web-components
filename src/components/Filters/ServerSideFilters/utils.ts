@@ -30,7 +30,6 @@ export const useFilters = ({
 	const [loading, setLoading] = useState(true)
 	const [pending, setPending] = useState(false)
 
-	// TODO: Delete eslint-disable when API is working
 	const onSearchWrapper: OnSearchWrapper =
 		selectedFilterKey => async (searchVal: string) => {
 			unstable_batchedUpdates(() => {

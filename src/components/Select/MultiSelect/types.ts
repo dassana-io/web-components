@@ -15,6 +15,8 @@ export interface MultiSelectProps
 	 */
 	maxTagCount?: number
 	maxTagTextLength?: number
+	onDropdownClose?: () => void
+	onDropdownOpen?: () => void
 	onChange?: (values: string[]) => void
 	onFocus?: () => void
 	onSearch?: (value: string) => void

@@ -3,6 +3,7 @@ import Fuse from 'fuse.js'
 import { getSortedAndFilteredValues } from './utils'
 import { Input } from '../../Input'
 import { MultiSelectProps } from './types'
+import { v4 as uuidV4 } from 'uuid'
 import React, {
 	ChangeEvent,
 	FC,
@@ -10,6 +11,7 @@ import React, {
 	ReactNode,
 	useCallback,
 	useEffect,
+	useMemo,
 	useState
 } from 'react'
 import { useDropdownStyles, useStyles } from './styles'
@@ -30,6 +32,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		maxTagTextLength,
 		matchSelectedContentWidth = false,
 		onChange,
+		onDropdownClose,
+		onDropdownOpen,
 		onSearch,
 		open,
 		optionKeysToFilter = ['text'],
@@ -45,22 +49,31 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	} = props
 	const [localValues, setLocalValues] = useState(values || defaultValues)
 
+	const dropdownId = useMemo(() => uuidV4(), [])
+
 	useEffect(() => {
 		if (values) setLocalValues(values)
 	}, [values])
 
 	const [searchTerm, setSearchTerm] = useState('')
 
-	const onDropdownVisibleChange = useCallback((open: boolean) => {
-		if (!open) {
-			setSearchTerm('')
-		}
-	}, [])
+	const onDropdownVisibleChange = useCallback(
+		(open: boolean) => {
+			if (open) {
+				onDropdownOpen && onDropdownOpen()
+			} else {
+				onDropdownClose && onDropdownClose()
+
+				setSearchTerm('')
+			}
+		},
+		[onDropdownClose, onDropdownOpen]
+	)
 
 	const dropdownClasses = useDropdownStyles(props)
 
 	const dropdownRender = (menu: ReactNode) => (
-		<div ref={dropdownRef}>
+		<div key={dropdownId} ref={dropdownRef}>
 			{showSearch && (
 				<Input
 					classes={[dropdownClasses.searchBar]}

@@ -7,7 +7,7 @@ import uniqBy from 'lodash/uniqBy'
 import { useFiltersContext } from '../../FiltersContext'
 import { ValuesMultiSelectProps } from './types'
 import { MultiSelect, MultiSelectProps, SelectOption } from '../../../Select'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 
 const useStyles = createUseStyles({
 	hiddenOpts: { display: 'none' }
@@ -27,8 +27,13 @@ export const ServerSideValuesMS: FC<Props> = ({
 	staticFilter,
 	windowWidth
 }: Props) => {
-	const { dynamicOptions, dynamicSearchVal, onSearchWrapper, pending } =
-		useFiltersContext()
+	const {
+		dynamicOptions,
+		dynamicSearchVal,
+		onSearchWrapper,
+		pending,
+		resetDynamicProps
+	} = useFiltersContext()
 
 	const classes = useStyles()
 	const [dynamicFilterProps, setDynamicFilterProps] = useState<
@@ -58,14 +63,6 @@ export const ServerSideValuesMS: FC<Props> = ({
 						const formattedOpts = formatFilterValsToSelectOpts(
 							filterOptValues,
 							!!optionsConfig
-						)
-
-						console.log(
-							uniqBy(
-								[...selectedValues, ...formattedOpts],
-								'value'
-							).map(option => omit(option, 'classes')),
-							'dynamic options'
 						)
 
 						setOptions(
@@ -140,11 +137,19 @@ export const ServerSideValuesMS: FC<Props> = ({
 		selectedKey
 	])
 
+	const onDropdownOpen = useCallback(() => {
+		if (!staticFilter && selectedKey && onSearchWrapper) {
+			onSearchWrapper(selectedKey)!('')
+		}
+	}, [onSearchWrapper, selectedKey, staticFilter])
+
 	return (
 		<MultiSelect
 			{...getMultiSelectProps({
 				id,
 				multiSelectProps: {
+					onDropdownClose: resetDynamicProps,
+					onDropdownOpen,
 					options,
 					optionsConfig,
 					showSearch: !staticFilter,
