@@ -100,6 +100,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 										[...filterOptValues],
 										!!optionsConfig
 									),
+									...dynamicOptions,
 									...selectedValues
 								],
 								'value'
