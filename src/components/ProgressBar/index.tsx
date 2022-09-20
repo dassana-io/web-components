@@ -1,93 +1,51 @@
-import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import React, { FC } from 'react'
-import { styleguide, themedStyles, ThemeType } from '../assets/styles'
-
-const { dark, light } = ThemeType
+import { styleguide } from 'components/assets/styles'
+import React, { FC, useEffect, useState } from 'react'
 
 const {
-	colors: { blacks, grays },
-	flexCenter,
+	colors: { blacks, blues },
 	spacing
 } = styleguide
 
-/* eslint-disable quotes */
-const useStyles = createUseStyles({
+interface StyleProps {
+	containerWidth: number
+	progressWidth: number
+}
+
+const useClasses = createUseStyles({
 	container: {
-		...flexCenter,
-		flexDirection: 'column'
-	},
-	percentage: {
-		'&:before': {
-			animation: 'percent 4s forwards',
-			color: themedStyles[light].base.color,
-			content: "'0%'"
-		},
-		alignSelf: 'center',
-		paddingTop: spacing['m+']
+		backgroundColor: blacks['lighten-50'],
+		borderRadius: spacing.s,
+		width: ({ containerWidth }: StyleProps) => containerWidth
 	},
 	progressBar: {
-		animation: 'load 4s normal forwards',
-		background: blacks['lighten-80'],
-		borderRadius: '100px',
-		boxShadow: '',
-		height: 16,
-		width: 0
-	},
-	progressBarContainer: {
-		alignItems: 'center',
-		background: grays['lighten-40'],
-		borderRadius: '100px',
-		display: 'flex',
-		height: 16,
-		justifyContent: 'flex-start',
-		position: 'relative',
-		width: 500
-	},
-	// eslint-disable-next-line sort-keys
-	'@global': {
-		'@keyframes load': {
-			'0%': { width: 0 },
-			'100%': { width: '100%' }
-		},
-		'@keyframes percent': {
-			'0%': { content: "'Tightening the screws...'" },
-			'25%': { content: "'Setting the sails...'" },
-			'50%': { content: "'Grinding the ax...'" },
-			'75%': { content: "'Kneading the dough...'" },
-			// eslint-disable-next-line sort-keys
-			'100%': { content: "'Liftoff!'" }
-		},
-		[`.${dark}`]: {
-			'& $percentage:before': {
-				color: themedStyles[dark].base.color
-			},
-			'& $progressBar': {
-				background: themedStyles[dark].base.borderColor
-			},
-			'& $progressBarContainer': {
-				background: blacks['darken-40']
-			}
-		}
+		backgroundColor: blues.base,
+		borderRadius: spacing.m,
+		height: 10,
+		transition: ({ progressWidth }: StyleProps) =>
+			progressWidth > 0 ? 'ease 0.5s' : 'none',
+		width: ({ progressWidth }: StyleProps) => progressWidth
 	}
 })
-/* eslint-enable quotes */
 
 export interface ProgressBarProps {
-	classes?: string[]
+	percent: number
+	width?: number
 }
 
 export const ProgressBar: FC<ProgressBarProps> = ({
-	classes = []
+	percent,
+	width = 100
 }: ProgressBarProps) => {
-	const compClasses = useStyles()
+	const [value, setValue] = useState(0)
+
+	const classes = useClasses({ containerWidth: width, progressWidth: value })
+
+	useEffect(() => setValue(percent * 0.01 * width), [percent, width])
 
 	return (
-		<div className={cn(compClasses.container, classes)}>
-			<div className={compClasses.progressBarContainer}>
-				<div className={compClasses.progressBar} />
-			</div>
-			<div className={compClasses.percentage} />
+		<div className={classes.container}>
+			<div className={classes.progressBar} />
 		</div>
 	)
 }

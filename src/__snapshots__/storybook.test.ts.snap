@@ -4938,17 +4938,10 @@ exports[`Storyshots ProgressBar Default 1`] = `
     }
   >
     <div
-      className="container-0-2-260"
+      className="container-0-2-260 container-d0-0-2-262"
     >
       <div
-        className="progressBarContainer-0-2-263"
-      >
-        <div
-          className="progressBar-0-2-262"
-        />
-      </div>
-      <div
-        className="percentage-0-2-261"
+        className="progressBar-0-2-261 progressBar-d1-0-2-263"
       />
     </div>
   </div>
