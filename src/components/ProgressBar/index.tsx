@@ -28,12 +28,12 @@ const useClasses = createUseStyles({
 	}
 })
 
-interface ProgressBarProps {
+export interface ProgressBarProps {
 	percent: number
 	width?: number
 }
 
-const ProgressBar: FC<ProgressBarProps> = ({
+export const ProgressBar: FC<ProgressBarProps> = ({
 	percent,
 	width = 100
 }: ProgressBarProps) => {
@@ -49,5 +49,3 @@ const ProgressBar: FC<ProgressBarProps> = ({
 		</div>
 	)
 }
-
-export default ProgressBar
