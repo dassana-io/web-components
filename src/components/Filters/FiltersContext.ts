@@ -19,6 +19,7 @@ export interface FiltersContextProps {
 	minKeySelectInputWidth?: number
 	mode: FiltersMode
 	onSearchWrapper?: OnSearchWrapper
+	onClearFilters?: FiltersProps['onClearFilters']
 	onSelectedFiltersChange: FiltersProps['onSelectedFiltersChange']
 	pending?: boolean
 	popoverClasses?: string[]
