@@ -79,6 +79,7 @@ export interface SharedFiltersProps {
 	defaultFilters?: FiltersList
 	filtersRef?: RefObject<UseFiltersMethods>
 	minKeySelectInputWidth?: number
+	onClearFilters?: () => void
 	onSelectedFiltersChange: (selectedFilters: Filters) => void
 	popoverClasses?: string[]
 }

@@ -27,6 +27,7 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 	const {
 		defaultFilters = [{ id: uuidV4() }],
 		loading,
+		onClearFilters,
 		onSelectedFiltersChange,
 		resetDynamicProps
 	} = useFiltersContext()
@@ -48,6 +49,7 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 	const resetFiltersList = () => {
 		setFiltersList([])
 		onSelectedFiltersChange([])
+		onClearFilters && onClearFilters()
 	}
 
 	const togglePopoverVisibility = (isPopoverOpen: boolean) =>
