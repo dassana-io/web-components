@@ -108,7 +108,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 	const renderKey = () => (
 		<Select
-			disabled={!!selectedKey}
+			disabled={selectedValues && selectedValues.length > 0}
 			matchSelectedContentWidth={minKeySelectInputWidth}
 			onChange={selectedKey => {
 				onFilterChange({
@@ -160,7 +160,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	return (
 		<div className={classes.container}>
 			<div className={classes.singleSelectContainer}>{renderKey()}</div>
-			<div>{renderOperator()}</div>
+			<div className={classes.operatorContainer}>{renderOperator()}</div>
 			<div className={classes.multiSelectContainer}>{renderValues()}</div>
 			<IconButton
 				classes={[classes.closeIcon]}

@@ -114,7 +114,6 @@ export const useFilterUnitStyles = createUseStyles({
 		[max[tablet]]: {
 			padding: 0
 		},
-		paddingLeft: spacing['s+'],
 		paddingRight: spacing['s+']
 	},
 	operator: {
@@ -122,6 +121,7 @@ export const useFilterUnitStyles = createUseStyles({
 			marginBottom: spacing.xs
 		}
 	},
+	operatorContainer: { display: 'none' },
 	singleSelectContainer: {
 		[max[tablet]]: {
 			marginBottom: spacing.xs,
