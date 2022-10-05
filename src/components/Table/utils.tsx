@@ -402,7 +402,7 @@ const getIconProps = <TableData,>({
 
 				return {
 					altText: val,
-					icon: buildHref(val, data)
+					icon: buildHref(val, data as Record<string, any>)
 				}
 			}
 		}
@@ -708,10 +708,7 @@ function applyRender<TableData extends RequiredDataId>(
 						const toggleProps: ToggleProps = {
 							checked: record,
 							onChange: async (checked: boolean) => {
-								await onSave<TableData & RequiredDataId>(
-									checked,
-									rowData
-								)
+								await onSave(checked, rowData)
 
 								updateRowData(rowData.id, {
 									[column.dataIndex]: checked
