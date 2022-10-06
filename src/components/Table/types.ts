@@ -54,7 +54,7 @@ interface PartialColumnType {
 
 interface CommonEditableCellConfig {
 	contentFormatter?: (content: ReactNode) => ReactNode
-	onSave: <T>(record: T, editedData: T) => Promise<void>
+	onSave: (record: unknown, editedData: unknown) => Promise<void>
 }
 
 interface EditableInputConfig extends CommonEditableCellConfig {
@@ -67,12 +67,12 @@ interface CommonEditableSelectConfig extends CommonEditableCellConfig {
 	type: EditableCellTypes.select
 }
 
-interface FormattedOptionsEditableSelectConfig
+export interface FormattedOptionsEditableSelectConfig
 	extends CommonEditableSelectConfig {
 	formatOptions: false
 	options: SelectOption[]
 }
-interface UnformattedOptionsEditableSelectConfig
+export interface UnformattedOptionsEditableSelectConfig
 	extends CommonEditableSelectConfig {
 	formatOptions?: never
 	options: string[]
@@ -219,8 +219,8 @@ export interface ComponentTagType extends PartialComponentType {
 	renderProps?: RenderPropsTag
 }
 
-interface RenderPropsToggle {
-	onSave: <T>(checked: boolean, rowData: T) => Promise<void>
+export interface RenderPropsToggle {
+	onSave: (checked: boolean, rowData: unknown) => Promise<void>
 }
 
 interface ComponentToggleType extends PartialComponentType {
