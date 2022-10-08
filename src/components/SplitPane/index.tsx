@@ -16,14 +16,21 @@ import React, {
 
 const SAVED_PANE_SETTINGS = 'savedPaneSettings'
 
+interface StyleProps {
+	resizing: boolean
+	type: SplitPaneType['type']
+}
+
 const useStyles = createUseStyles({
-	container: ({ type }: SplitPaneType) => ({
+	container: {
 		display: 'flex',
-		flexDirection: type === 'column' ? 'column' : 'row',
+		flexDirection: ({ type }: StyleProps) =>
+			type === 'column' ? 'column' : 'row',
 		height: '100%',
 		overflow: 'auto',
+		userSelect: ({ resizing }: StyleProps) => (resizing ? 'none' : 'auto'),
 		width: '100%'
-	})
+	}
 })
 
 export interface SplitPaneType {
@@ -72,7 +79,9 @@ export const SplitPane: FC<SplitPaneProps> = ({
 	const containerRef = useRef<HTMLDivElement>(null)
 	const dividerPosition = useRef<DividerPosition>({ x: null, y: null })
 
-	const compClasses = useStyles({ type })
+	const [resizing, setResizing] = useState(false)
+
+	const compClasses = useStyles({ resizing, type })
 
 	const [clientHeight, setClientHeight] = useState(0)
 	const [clientWidth, setClientWidth] = useState(0)
@@ -94,6 +103,8 @@ export const SplitPane: FC<SplitPaneProps> = ({
 	}, [])
 
 	const onMouseDown: MouseEventHandler<HTMLDivElement> = e => {
+		setResizing(true)
+
 		dividerPosition.current = {
 			x: e.clientX,
 			y: e.clientY
@@ -160,6 +171,8 @@ export const SplitPane: FC<SplitPaneProps> = ({
 
 	useEffect(() => {
 		const onMouseUp = () => {
+			setResizing(false)
+
 			dividerPosition.current = {
 				x: null,
 				y: null
