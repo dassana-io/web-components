@@ -246,6 +246,7 @@ interface StyleProps<T> {
 	additionalPaletteColors?: AdditionalPaletteColors
 	disableRowClick?: boolean
 	onRowClick?: TableProps<T>['onRowClick']
+	showPagination?: boolean
 	searchProps?: SearchProps
 }
 
@@ -255,6 +256,13 @@ const isRowClickEnabled = <T>({ disableRowClick, onRowClick }: StyleProps<T>) =>
 export const useStyles = <T>(props: StyleProps<T>) =>
 	createUseStyles({
 		activeRow: {},
+		additionalInfo: {
+			...font.body,
+			bottom: ({ showPagination }: StyleProps<T>) =>
+				showPagination ? 24 : -40,
+			color: themedStyles[light].base.color,
+			position: 'absolute'
+		},
 		row: {
 			[rowClasses]: {
 				'&$activeRow': {
@@ -284,6 +292,9 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 				}
 			}
 		},
+		tableAndAdditionalInfoWrapper: {
+			position: 'relative'
+		},
 		tableContainer: generateTableStyles(
 			light,
 			props.additionalPaletteColors
@@ -297,6 +308,9 @@ export const useStyles = <T>(props: StyleProps<T>) =>
 				color: tablePalette()[light].th.hover.color
 			},
 			[`.${dark}`]: {
+				'& $additionalInfo': {
+					color: themedStyles[dark].base.color
+				},
 				'& $row': {
 					[rowClasses]: {
 						'&$activeRow': {

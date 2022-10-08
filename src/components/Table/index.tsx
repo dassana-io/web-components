@@ -73,6 +73,10 @@ export interface TableProps<Data> extends CommonComponentProps {
 	 * Key(id) of active row if onRowClick exists
 	 */
 	activeRowKey?: Key
+	/**
+	 * Text to display underneath table (aligned left), such as total number of rows
+	 */
+	additionalInfo?: string
 	additionalPaletteColors?: AdditionalPaletteColors
 	/**
 	 * Array of classes to pass to Table
@@ -130,6 +134,7 @@ type Pagination = false | { defaultPageSize?: number; showSizeChanger: false }
 export const Table = <Data,>({
 	activeRowKey = '',
 	additionalPaletteColors,
+	additionalInfo = '',
 	classes = [],
 	columns,
 	controls = true,
@@ -178,7 +183,8 @@ export const Table = <Data,>({
 	})({
 		disableRowClick,
 		onRowClick,
-		searchProps
+		searchProps,
+		showPagination: !!pagination
 	})
 
 	const [mappedData, setMappedData] = useState(
@@ -377,7 +383,10 @@ export const Table = <Data,>({
 						rowCount={skeletonRowCount}
 					/>
 				) : (
-					<div ref={containerRef}>
+					<div
+						className={tableClasses.tableAndAdditionalInfoWrapper}
+						ref={containerRef}
+					>
 						<AntDTable
 							columns={
 								processedColumns as ColumnsType<TableData<Data>>
@@ -397,6 +406,11 @@ export const Table = <Data,>({
 							{...optionalProps}
 							{...scrollProps}
 						/>
+						{additionalInfo && (
+							<em className={tableClasses.additionalInfo}>
+								{additionalInfo}
+							</em>
+						)}
 					</div>
 				)}
 			</div>
