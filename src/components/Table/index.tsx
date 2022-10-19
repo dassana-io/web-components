@@ -76,7 +76,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	/**
 	 * Text to display underneath table (aligned left), such as total number of rows
 	 */
-	additionalInfo?: string
+	additionalInfo?: ReactNode
 	additionalPaletteColors?: AdditionalPaletteColors
 	/**
 	 * Array of classes to pass to Table
