@@ -173,15 +173,17 @@ export interface ComponentIconType extends PartialComponentType {
 		| RenderPropsIconUrl
 }
 
+export interface RenderPropsAction {
+	getCmp: <T>(
+		rowData: T,
+		tableMethods: TableMethods<TableData<T>>
+	) => ReactNode
+}
+
 export interface ComponentActionType extends PartialComponentType {
 	dataIndex: ''
 	format: ColumnFormats.action
-	renderProps: {
-		getCmp: <T>(
-			rowData: T,
-			tableMethods: TableMethods<TableData<T>>
-		) => ReactNode
-	}
+	renderProps: RenderPropsAction
 	title: ''
 }
 

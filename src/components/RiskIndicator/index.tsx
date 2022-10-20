@@ -11,7 +11,7 @@ import { styleguide, themes, ThemeType } from '../assets/styles'
 const { dark, light } = ThemeType
 
 const {
-	colors: { blues, oranges, reds, yellows },
+	colors: { blues, oranges, purples, reds, yellows },
 	flexAlignCenter,
 	font,
 	fontWeight,
@@ -56,7 +56,7 @@ export const RiskRank = {
 const { Critical, High, Low, Medium, Accepted } = RiskRank
 
 const riskRankColorMap = {
-	[Critical]: reds['darken-20'],
+	[Critical]: purples.base,
 	[High]: reds.base,
 	[Medium]: oranges.base,
 	// eslint-disable-next-line sort-keys
