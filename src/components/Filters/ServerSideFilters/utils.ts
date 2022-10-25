@@ -7,7 +7,7 @@ import {
 	ProcessedFilters,
 	ServerSideFiltersProps
 } from '../types'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 type UseFiltersParams = Omit<
 	ServerSideFiltersProps,
@@ -20,6 +20,7 @@ export const useFilters = ({
 	omittedFilterKeys = []
 }: UseFiltersParams) => {
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
+	const [filtersFetched, setFiltersFetched] = useState(false)
 
 	const [dynamicOptions, setDynamicOptions] = useState<
 		SelectOption[] | undefined
@@ -30,7 +31,7 @@ export const useFilters = ({
 	const [loading, setLoading] = useState(true)
 	const [pending, setPending] = useState(false)
 
-	const onSearchWrapper: OnSearchWrapper =
+	const onSearchWrapper: OnSearchWrapper = useCallback(
 		selectedFilterKey => async (searchVal: string) => {
 			unstable_batchedUpdates(() => {
 				setDynamicSearchVal(searchVal)
@@ -46,7 +47,9 @@ export const useFilters = ({
 				setDynamicOptions(formatFilterValsToSelectOpts(dynamicOptions))
 				setPending(false)
 			})
-		}
+		},
+		[onFilterSuggest]
+	)
 
 	const resetDynamicProps = () => {
 		setDynamicSearchVal('')
@@ -59,14 +62,19 @@ export const useFilters = ({
 			try {
 				const filterOptions = await onFiltersFetch()
 
-				setAllFilters(processFilters(filterOptions, omittedFilterKeys))
+				unstable_batchedUpdates(() => {
+					setFiltersFetched(true)
+					setAllFilters(
+						processFilters(filterOptions, omittedFilterKeys)
+					)
+				})
 			} catch (error) {
 				return []
 			}
 		}
 
-		fetchFilters()
-	}, [omittedFilterKeys, onFiltersFetch])
+		if (!filtersFetched) fetchFilters()
+	}, [filtersFetched, omittedFilterKeys, onFiltersFetch])
 
 	useEffect(() => {
 		return () => setAllFilters({})
