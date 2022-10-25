@@ -11,7 +11,8 @@ import { SelectProps } from './SingleSelect/types'
 import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC, ReactNode, useCallback } from 'react'
+import React, { FC, ReactNode, useCallback, useRef } from 'react'
+import { BaseSelectRef } from 'rc-select'
 
 const { Option } = AntDSelect
 
@@ -72,12 +73,21 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		useStyles
 	} = props
 
-	const onInputKeyDown = useCallback((e: any) => {
-		if (e.ctrlKey || e.metaKey) {
-			e.preventDefault()
-			e.stopPropagation()
-		}
-	}, [])
+	const dropdownRef = useRef<BaseSelectRef>(null)
+
+	const handleDropdownVisibleChange = useCallback(
+		(open: boolean) => {
+			if (!open) {
+				setTimeout(
+					() => dropdownRef.current && dropdownRef.current.blur(),
+					0
+				)
+			}
+
+			onDropdownVisibleChange && onDropdownVisibleChange(open)
+		},
+		[onDropdownVisibleChange]
+	)
 
 	const componentClasses = useStyles(props)
 
@@ -175,11 +185,11 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				disabled={disabled}
 				dropdownClassName={componentClasses.dropdown}
 				notFoundContent={<NoContentFound />}
-				onDropdownVisibleChange={onDropdownVisibleChange}
+				onDropdownVisibleChange={handleDropdownVisibleChange}
 				onFocus={onFocus}
-				onInputKeyDown={onInputKeyDown}
 				open={open}
 				placeholder={placeholder}
+				ref={dropdownRef}
 				showArrow
 				showSearch={showSearch}
 				size={size}
