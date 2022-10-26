@@ -12,7 +12,6 @@ import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { FC, ReactNode, useCallback, useRef } from 'react'
-import { BaseSelectRef } from 'rc-select'
 
 const { Option } = AntDSelect
 
