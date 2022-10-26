@@ -1,17 +1,11 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { generateThemedBannerStyles } from './utils'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
-import {
-	Banners,
-	generateThemedBannerStyles,
-	getBannerPreferences,
-	isNewBanner,
-	updateBannerPreferences
-} from './utils'
-import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
+import React, { FC, ReactNode, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -77,9 +71,10 @@ const useStyles = createUseStyles({
 })
 
 export interface BannerProps {
-	id: string
 	children?: ReactNode
 	classes?: string[]
+	hideBanner?: boolean
+	onBannerClose?: () => void
 	persistBannerState?: boolean
 	showIcon?: boolean
 	title: ReactNode
@@ -88,10 +83,10 @@ export interface BannerProps {
 }
 
 export const Banner: FC<BannerProps> = ({
-	id,
 	children,
 	classes = [],
-	persistBannerState = true,
+	hideBanner = false,
+	onBannerClose,
 	showIcon = false,
 	title,
 	titleClasses = [],
@@ -103,24 +98,12 @@ export const Banner: FC<BannerProps> = ({
 		[componentClasses[type]]: true
 	})
 
-	const banners: Banners = getBannerPreferences()
+	const [renderBanner, setRenderBanner] = useState<boolean>(!hideBanner)
 
-	const [renderBanner, setRenderBanner] = useState<boolean>(true)
-
-	useLayoutEffect(() => {
-		if (isNewBanner(banners, id)) {
-			updateBannerPreferences(banners, id, true)
-		} else if (!banners[id]) {
-			setRenderBanner(false)
-		}
-	}, [banners, id])
-
-	const onBannerClose = () => {
+	const handleBannerClose = () => {
 		setRenderBanner(false)
 
-		if (persistBannerState) {
-			updateBannerPreferences(banners, id, false)
-		}
+		onBannerClose && onBannerClose()
 	}
 
 	return (
@@ -146,7 +129,7 @@ export const Banner: FC<BannerProps> = ({
 						</div>
 						<IconButton
 							classes={[componentClasses.closeBtn]}
-							onClick={onBannerClose}
+							onClick={handleBannerClose}
 						/>
 					</div>
 					<div>{children}</div>

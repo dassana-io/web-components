@@ -1,6 +1,7 @@
 import '../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
+import { BaseSelectRef } from 'rc-select'
 import { Checkbox } from '../Checkbox'
 import cn from 'classnames'
 import { MultiSelectProps } from './MultiSelect/types'
@@ -12,7 +13,6 @@ import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { FC, ReactNode, useCallback, useRef } from 'react'
-import { BaseSelectRef } from 'rc-select'
 
 const { Option } = AntDSelect
 

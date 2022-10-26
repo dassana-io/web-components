@@ -25,12 +25,12 @@ export default {
 	title: 'Banner'
 } as Meta
 
-const DecoratedBannerStory = ({ id, ...rest }: BannerProps) => {
+const DecoratedBannerStory = ({ ...rest }: BannerProps) => {
 	const classes = useStyles()
 
 	return (
 		<div className={classes.decorator}>
-			<Banner id={id} {...rest}>
+			<Banner {...rest}>
 				Once we receive an alert we scan it against policy risk rules.
 				The rules are evaluated in order from top to bottom. The first
 				rule that matches determines the risk of the alert. Updating a
@@ -56,7 +56,6 @@ const BannerTemplate: Story<BannerProps> = args => (
 
 export const Error = BannerTemplate.bind({})
 Error.args = {
-	id: 'sb-error-banner',
 	showIcon: true,
 	title: 'Error',
 	type: error
@@ -64,7 +63,6 @@ Error.args = {
 
 export const Info = BannerTemplate.bind({})
 Info.args = {
-	id: 'sb-info-banner',
 	showIcon: true,
 	title: 'Info',
 	type: info
@@ -72,7 +70,6 @@ Info.args = {
 
 export const Success = BannerTemplate.bind({})
 Success.args = {
-	id: 'sb-success-banner',
 	showIcon: true,
 	title: 'Success',
 	type: success
@@ -80,7 +77,6 @@ Success.args = {
 
 export const Warning = BannerTemplate.bind({})
 Warning.args = {
-	id: 'sb-warning-banner',
 	showIcon: true,
 	title: 'Warning',
 	type: warning
@@ -88,7 +84,6 @@ Warning.args = {
 
 export const NoIcon = BannerTemplate.bind({})
 NoIcon.args = {
-	id: 'sb-no-icon-banner',
 	showIcon: false,
 	title: 'Policy Risk Rules',
 	type: success
