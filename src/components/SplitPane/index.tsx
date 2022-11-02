@@ -1,8 +1,8 @@
 import clamp from 'lodash/clamp'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import isEmpty from 'lodash/isEmpty'
 import { SplitPaneCtxProvider } from './SplitPaneContext'
+import { unstable_batchedUpdates } from 'react-dom'
 import { LeftPaneBounds, TopPaneBounds } from './utils'
 import React, {
 	FC,
@@ -13,8 +13,6 @@ import React, {
 	useRef,
 	useState
 } from 'react'
-
-const SAVED_PANE_SETTINGS = 'savedPaneSettings'
 
 interface StyleProps {
 	resizing: boolean
@@ -40,7 +38,8 @@ export interface SplitPaneType {
 interface CommonSplitPaneTypes extends SplitPaneType {
 	children: ReactNode
 	classes?: string[]
-	id: string
+	onPaneResize: (paneDimensions: PaneSetting) => void
+	paneDimensions?: PaneSetting
 }
 
 interface DividerPosition {
@@ -65,15 +64,12 @@ export interface PaneSetting {
 	clientWidth: number
 }
 
-interface SavedPaneSettings {
-	[id: string]: PaneSetting
-}
-
 export const SplitPane: FC<SplitPaneProps> = ({
 	bounds = {},
 	children,
 	classes = [],
-	id = '',
+	onPaneResize,
+	paneDimensions,
 	type
 }: SplitPaneProps) => {
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -87,17 +83,13 @@ export const SplitPane: FC<SplitPaneProps> = ({
 	const [clientWidth, setClientWidth] = useState(0)
 
 	useEffect(() => {
-		const localSettings = localStorage.getItem(SAVED_PANE_SETTINGS)
+		if (paneDimensions) {
+			const { clientHeight, clientWidth } = paneDimensions
 
-		if (localSettings) {
-			const parsedSettings = JSON.parse(localSettings)
-
-			if (parsedSettings[id]) {
-				const { clientHeight, clientWidth } = parsedSettings[id]
-
+			unstable_batchedUpdates(() => {
 				setClientHeight(clientHeight)
 				setClientWidth(clientWidth)
-			}
+			})
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -111,34 +103,10 @@ export const SplitPane: FC<SplitPaneProps> = ({
 		}
 	}
 
-	const savePaneSettings = useCallback(() => {
-		const localSettings = localStorage.getItem(SAVED_PANE_SETTINGS)
-		const currPaneSettings: SavedPaneSettings = {
-			[id]: {
-				clientHeight: clientHeight,
-				clientWidth: clientWidth
-			}
-		}
-
-		if (localSettings) {
-			const parsedSettings = JSON.parse(localSettings)
-
-			if (!isEmpty(parsedSettings)) {
-				localStorage.setItem(
-					SAVED_PANE_SETTINGS,
-					JSON.stringify({
-						...parsedSettings,
-						...currPaneSettings
-					})
-				)
-			}
-		} else {
-			localStorage.setItem(
-				SAVED_PANE_SETTINGS,
-				JSON.stringify(currPaneSettings)
-			)
-		}
-	}, [clientHeight, clientWidth, id])
+	const savePaneSettings = useCallback(
+		() => onPaneResize({ clientHeight, clientWidth }),
+		[clientHeight, clientWidth, onPaneResize]
+	)
 
 	const getClampedCoordinates = useCallback(
 		(clientX: number, clientY: number) => {
@@ -177,6 +145,8 @@ export const SplitPane: FC<SplitPaneProps> = ({
 				x: null,
 				y: null
 			}
+
+			savePaneSettings()
 		}
 
 		const onMouseMove = (e: MouseEvent) => {
@@ -206,8 +176,6 @@ export const SplitPane: FC<SplitPaneProps> = ({
 					y: clampedClientY
 				}
 			}
-
-			savePaneSettings()
 		}
 
 		document.addEventListener('mouseup', onMouseUp)
