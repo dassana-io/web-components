@@ -25,7 +25,7 @@ interface CommonBaseSelectProps
 interface BaseMultiSelectProps
 	extends Pick<
 		MultiSelectProps,
-		'onChange' | 'maxTagCount' | 'maxTagTextLength' | 'pending'
+		'onChange' | 'onSearch' | 'maxTagCount' | 'maxTagTextLength' | 'pending'
 	> {
 	defaultValue?: MultiSelectProps['defaultValues']
 	dropdownRender: (menu: ReactNode) => ReactNode
@@ -136,7 +136,13 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 			...getDataTestAttributeProp('multi-select', dataTag)
 		}
 	} else if (props.mode === 'tags') {
-		const { defaultValue, onChange, pending = false, value } = props
+		const {
+			defaultValue,
+			onChange,
+			onSearch,
+			pending = false,
+			value
+		} = props
 
 		tagsSelectProps = {
 			defaultValue,
@@ -150,6 +156,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				<NoContentFound />
 			),
 			onChange,
+			onSearch,
 			optionLabelProp: 'label',
 			value,
 			...getDataTestAttributeProp('tags-select', dataTag)

@@ -21,6 +21,7 @@ export const useFilters = ({
 }: UseFiltersParams) => {
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
 	const [filtersFetched, setFiltersFetched] = useState(false)
+	const [filterFetchInitiated, setFilterFetchInitiated] = useState(false)
 
 	const [dynamicOptions, setDynamicOptions] = useState<
 		SelectOption[] | undefined
@@ -60,6 +61,8 @@ export const useFilters = ({
 	useEffect(() => {
 		const fetchFilters = async () => {
 			try {
+				setFilterFetchInitiated(true)
+
 				const filterOptions = await onFiltersFetch()
 
 				unstable_batchedUpdates(() => {
@@ -73,8 +76,13 @@ export const useFilters = ({
 			}
 		}
 
-		if (!filtersFetched) fetchFilters()
-	}, [filtersFetched, omittedFilterKeys, onFiltersFetch])
+		if (!filtersFetched && !filterFetchInitiated) fetchFilters()
+	}, [
+		filterFetchInitiated,
+		filtersFetched,
+		omittedFilterKeys,
+		onFiltersFetch
+	])
 
 	useEffect(() => {
 		return () => setAllFilters({})
