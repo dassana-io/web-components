@@ -1,5 +1,9 @@
 import { styleguide } from 'components/assets/styles/styleguide'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+import {
+	themedStyles,
+	themes,
+	ThemeType
+} from 'components/assets/styles/themes'
 
 const {
 	borderRadius,
@@ -44,6 +48,11 @@ export const generateRadioButtonGroupStyles = (themeType: ThemeType) => {
 					backgroundColor: active.background,
 					color: active.color
 				},
+
+				'&.ant-radio-button-wrapper-disabled': {
+					background: themes[themeType].state.disabled.background
+				},
+
 				'&:focus-within': { boxShadow: 'none' },
 				'&:hover': {
 					'&:not([class*="ant-radio-button-wrapper-disabled"]):not([class*="ant-radio-button-wrapper-checked"])':
