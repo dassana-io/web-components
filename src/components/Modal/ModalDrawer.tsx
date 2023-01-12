@@ -47,18 +47,12 @@ const useStyles = createUseStyles({
 })
 
 export const ModalDrawer: FC<ModalProps> = ({
-	emitter,
 	modalConfig,
 	unsetModal
 }: ModalProps) => {
 	const { content, options = {} } = modalConfig
 
-	const {
-		contentContainerClasses = [],
-		disableKeyboardShortcut = false,
-		hideCloseButton = false,
-		onClose
-	} = options
+	const { contentContainerClasses = [] } = options
 
 	const modalClasses = useStyles()
 

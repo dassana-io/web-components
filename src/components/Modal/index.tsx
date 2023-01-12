@@ -1,28 +1,9 @@
-import { createPortal } from 'react-dom'
 import { Emitter } from '@dassana-io/web-utils'
-import Modal from './Modal'
-import { AnimatePresence, motion } from 'framer-motion'
+import { ModalWrapper } from './ModalWrapper'
 import { getPopupContainerProps, useCreateDomElement } from 'components/utils'
 import { MODAL_CONTAINER_ID, ModalConfig, useModalCmp } from './utils'
 import { ModalCtx, useModal } from './ModalContext'
 import React, { FC, ReactNode } from 'react'
-import { isEmpty } from 'lodash'
-import { ModalWrapper } from './ModalWrapper'
-
-const sideVariants = {
-	closed: {
-		transition: {
-			staggerChildren: 0.2,
-			staggerDirection: -1
-		}
-	},
-	open: {
-		transition: {
-			staggerChildren: 0.2,
-			staggerDirection: 1
-		}
-	}
-}
 
 export interface Props {
 	children: ReactNode
@@ -40,10 +21,6 @@ const ModalProvider: FC<Props> = ({
 		setModalConfig,
 		unsetModal
 	} = useModalCmp()
-
-	const { options = {} } = modalConfig
-
-	const { drawer = false } = options
 
 	const rootElement = useCreateDomElement(
 		MODAL_CONTAINER_ID,

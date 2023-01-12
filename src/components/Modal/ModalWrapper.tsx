@@ -1,25 +1,10 @@
+import { AnimatePresence } from 'framer-motion'
 import { createPortal } from 'react-dom'
 import { isEmpty } from 'lodash'
 import { ModalConfig } from './utils'
-import { AnimatePresence, motion } from 'framer-motion'
+import { ModalDrawer } from './ModalDrawer'
 import Modal, { ModalProps } from './Modal'
 import React, { FC } from 'react'
-import { ModalDrawer } from './ModalDrawer'
-
-const sideVariants = {
-	closed: {
-		transition: {
-			staggerChildren: 0.2,
-			staggerDirection: -1
-		}
-	},
-	open: {
-		transition: {
-			staggerChildren: 0.2,
-			staggerDirection: 1
-		}
-	}
-}
 
 interface ModalWrapperProps extends ModalProps {
 	rootEl: HTMLDivElement | null
