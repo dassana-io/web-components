@@ -37,6 +37,7 @@ Default.args = {
 	content: <div>Modal Content</div>,
 	options: {
 		disableKeyboardShortcut: false,
-		hideCloseButton: false
+		hideCloseButton: false,
+		drawer: true
 	}
 }

@@ -22,7 +22,7 @@ const useStyles = (color: string) =>
 				...generateButtonStyles(dark),
 				'&$btn': generateButtonColorStyles(color)
 			},
-			button: generateButtonStyles(light)
+			$btn: generateButtonStyles(light)
 		}
 	})
 
