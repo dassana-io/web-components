@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { getRgba } from 'components/utils'
 import noop from 'lodash/noop'
 import {
 	Emitter,
@@ -22,33 +23,41 @@ const useStyles = createUseStyles({
 		top: spacing.m,
 		zIndex: 10000
 	},
-	container: ({ overlay }: { overlay: boolean }) => ({
+	container: {
+		'&$overlay': {
+			background: getRgba(themedModalStyles(light).background, 0.6)
+		},
 		...flexCenter,
 		...themedModalStyles(light),
 		bottom: 0,
 		height: '100%',
 		left: 0,
-		opacity: overlay ? 0.6 : 1,
 		position: 'fixed',
 		right: 0,
 		top: 0,
 		width: '100%',
 		zIndex: 9999
-	}),
+	},
 	contentContainer: {
 		...flexCenter,
 		height: '100%',
 		width: '100%'
 	},
+	overlay: {},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $container': themedModalStyles(dark)
+			'& $container': {
+				'&$overlay': {
+					background: getRgba(themedModalStyles(dark).background, 0.6)
+				},
+				...themedModalStyles(dark)
+			}
 		}
 	}
 })
 
-interface ModalProps {
+export interface ModalProps {
 	emitter?: Emitter
 	modalConfig: ModalConfig
 	unsetModal: () => void
@@ -68,7 +77,7 @@ const Modal: FC<ModalProps> = ({
 		onClose,
 		overlay = false
 	} = options
-	const modalClasses = useStyles({ overlay })
+	const modalClasses = useStyles()
 
 	const onModalClose = useCallback(
 		() => (onClose ? onClose() : unsetModal()),
@@ -87,7 +96,15 @@ const Modal: FC<ModalProps> = ({
 	})
 
 	return (
-		<div className={cn({ [modalClasses.container]: true }, classes)}>
+		<div
+			className={cn(
+				{
+					[modalClasses.container]: true,
+					[modalClasses.overlay]: overlay
+				},
+				classes
+			)}
+		>
 			{!hideCloseButton && (
 				<IconButton
 					classes={[modalClasses.closeButton]}
