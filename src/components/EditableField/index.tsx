@@ -1,11 +1,11 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { faPencilAlt } from '@fortawesome/pro-light-svg-icons'
 import { Input } from '../Input'
 import { ShortcutMicrocopy } from '../ShortcutMicrocopy'
 import { styleguide } from '../assets/styles'
 import { unstable_batchedUpdates } from 'react-dom'
 import { useClickOutside } from '@dassana-io/web-utils'
+import { faPencilAlt, faSave } from '@fortawesome/pro-light-svg-icons'
 import { IconButton, IconSizes } from 'components/IconButton'
 import React, {
 	ChangeEvent,
@@ -28,6 +28,9 @@ const useStyles = createUseStyles({
 	},
 	inputContainer: {
 		...flexAlignCenter
+	},
+	saveIcon: {
+		marginLeft: spacing.l
 	},
 	unsaved: {
 		'&::after': {
@@ -67,9 +70,11 @@ interface EditableFieldProps {
 	fullWidth?: boolean
 	inputContainerClasses?: string[]
 	onClickOutsideCb?: () => void
+	onlyEditOnIconClick?: boolean
 	onSubmit: (newValue: string) => void
 	placeholder?: string
 	renderShortcutMicrocopy?: boolean
+	showSaveIcon?: boolean
 	unsaved?: boolean
 	value: string
 	valueContainerClasses?: string[]
@@ -82,9 +87,11 @@ export const EditableField: FC<EditableFieldProps> = ({
 	fullWidth = false,
 	inputContainerClasses = [],
 	onClickOutsideCb,
+	onlyEditOnIconClick = false,
 	onSubmit,
 	placeholder = '',
 	renderShortcutMicrocopy = true,
+	showSaveIcon = false,
 	unsaved = false,
 	value,
 	valueContainerClasses = []
@@ -108,14 +115,21 @@ export const EditableField: FC<EditableFieldProps> = ({
 		[hasErrors]
 	)
 
+	const handleSubmit = useCallback(
+		(val: string) => {
+			if (val) {
+				onSubmit(val)
+				setIsEditing(false)
+			} else setHasErrors(true)
+		},
+		[onSubmit]
+	)
+
 	const onClickOutside = useCallback(
 		(key?: string) => {
 			if (isEditing) {
 				if (key && key === 'Enter') {
-					if (inputValue) {
-						onSubmit(inputValue)
-						setIsEditing(false)
-					} else setHasErrors(true)
+					handleSubmit(inputValue)
 				} else {
 					unstable_batchedUpdates(() => {
 						if (!inputValue) setInputValue(value)
@@ -128,7 +142,7 @@ export const EditableField: FC<EditableFieldProps> = ({
 				onClickOutsideCb && onClickOutsideCb()
 			}
 		},
-		[inputValue, isEditing, onClickOutsideCb, onSubmit, value]
+		[handleSubmit, inputValue, isEditing, onClickOutsideCb, value]
 	)
 
 	const editingRef = useClickOutside({
@@ -145,9 +159,9 @@ export const EditableField: FC<EditableFieldProps> = ({
 			<div
 				className={cn({ [classes.unsaved]: unsaved })}
 				onClick={e => {
-					e.stopPropagation()
+					if (!onlyEditOnIconClick && editable) {
+						e.stopPropagation()
 
-					if (editable) {
 						setIsEditing(true)
 					}
 				}}
@@ -187,6 +201,15 @@ export const EditableField: FC<EditableFieldProps> = ({
 				placeholder={placeholder}
 				value={inputValue}
 			/>
+			{showSaveIcon && (
+				<IconButton
+					classes={[classes.saveIcon]}
+					disabled={inputValue === value}
+					icon={faSave}
+					onClick={() => handleSubmit(inputValue)}
+					size={IconSizes.xs}
+				/>
+			)}
 			{renderShortcutMicrocopy && <ShortcutMicrocopy />}
 		</div>
 	)
