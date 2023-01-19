@@ -1,5 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { faPlus } from '@fortawesome/pro-light-svg-icons'
+import { IconButton } from 'components/IconButton'
 import partition from 'lodash/partition'
 import Tab from './Tab'
 import TabPane from './TabPane'
@@ -12,6 +14,7 @@ import React, {
 	FC,
 	ReactNode,
 	RefObject,
+	useCallback,
 	useImperativeHandle,
 	useState
 } from 'react'
@@ -65,6 +68,10 @@ export interface TabsProps {
 	 * @default false
 	 */
 	forceRender?: boolean
+	onAddNewTab?: (
+		tabConfig: TabConfig[],
+		tabsRef?: RefObject<UseTabsMethods>
+	) => void
 	onTabChange?: (data: TabConfig) => void
 	tabConfig: TabConfig[]
 	tabClasses?: string[]
@@ -78,6 +85,7 @@ export const Tabs: FC<TabsProps> = ({
 	classes = [],
 	defaultActiveIndex = 0,
 	forceRender = false,
+	onAddNewTab,
 	onTabChange,
 	tabConfig,
 	tabClasses = [],
@@ -109,6 +117,11 @@ export const Tabs: FC<TabsProps> = ({
 		setTab: onClickTab,
 		tabConfig
 	}))
+
+	const handleAddNewTab = useCallback(
+		() => onAddNewTab && onAddNewTab(tabConfig, tabsRef),
+		[onAddNewTab, tabConfig, tabsRef]
+	)
 
 	const renderTabItems = () => {
 		const partitionedTabs = partition(
@@ -143,7 +156,12 @@ export const Tabs: FC<TabsProps> = ({
 
 		return (
 			<>
-				<div>{leftSideTabs}</div>
+				<div>
+					{leftSideTabs}
+					{onAddNewTab && (
+						<IconButton icon={faPlus} onClick={handleAddNewTab} />
+					)}
+				</div>
 				<div>{rightSideTabs}</div>
 			</>
 		)
