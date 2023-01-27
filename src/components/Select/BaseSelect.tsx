@@ -198,7 +198,8 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				notFoundContent={<NoContentFound />}
 				onDropdownVisibleChange={handleDropdownVisibleChange}
 				onFocus={onFocus}
-				open={open}
+				// open={open}
+				open
 				placeholder={placeholder}
 				ref={dropdownRef}
 				showArrow
