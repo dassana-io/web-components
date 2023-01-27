@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
 import React, { FC, useEffect, useState } from 'react'
@@ -29,12 +30,16 @@ const useClasses = createUseStyles({
 })
 
 export interface ProgressBarProps {
+	containerClasses?: string[]
 	percent: number
+	progressBarClasses?: string[]
 	width?: number
 }
 
 export const ProgressBar: FC<ProgressBarProps> = ({
+	containerClasses = [],
 	percent,
+	progressBarClasses = [],
 	width = 100
 }: ProgressBarProps) => {
 	const [value, setValue] = useState(0)
@@ -44,8 +49,13 @@ export const ProgressBar: FC<ProgressBarProps> = ({
 	useEffect(() => setValue(percent * 0.01 * width), [percent, width])
 
 	return (
-		<div className={classes.container}>
-			<div className={classes.progressBar} />
+		<div className={cn({ [classes.container]: true }, containerClasses)}>
+			<div
+				className={cn(
+					{ [classes.progressBar]: true },
+					progressBarClasses
+				)}
+			/>
 		</div>
 	)
 }
