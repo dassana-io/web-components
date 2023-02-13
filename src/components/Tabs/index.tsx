@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { faPlus } from '@fortawesome/pro-light-svg-icons'
 import { IconButton } from 'components/IconButton'
+import { InfoTip } from 'components/InfoTip'
 import partition from 'lodash/partition'
 import Tab from './Tab'
 import TabPane from './TabPane'
@@ -52,6 +53,11 @@ export interface TabConfig {
 	tabItemClasses?: string[]
 }
 
+interface TabsLimitConfig {
+	infoTipMsg?: ReactNode
+	limit: number
+}
+
 export interface UseTabsMethods {
 	activeIndex: number
 	setTab: (tabIndex: number) => void
@@ -75,6 +81,7 @@ export interface TabsProps {
 	onTabChange?: (data: TabConfig) => void
 	tabConfig: TabConfig[]
 	tabClasses?: string[]
+	tabsLimitConfig?: TabsLimitConfig
 	tabsListClasses?: string[]
 	tabsRef?: RefObject<UseTabsMethods>
 	transitionDuration?: number
@@ -89,6 +96,7 @@ export const Tabs: FC<TabsProps> = ({
 	onTabChange,
 	tabConfig,
 	tabClasses = [],
+	tabsLimitConfig,
 	tabsListClasses = [],
 	tabsRef,
 	transitionDuration = 0.5
@@ -121,6 +129,20 @@ export const Tabs: FC<TabsProps> = ({
 	const handleAddNewTab = useCallback(
 		() => onAddNewTab && onAddNewTab(tabConfig, tabsRef),
 		[onAddNewTab, tabConfig, tabsRef]
+	)
+
+	const renderAddTabAction = useCallback(
+		() =>
+			tabsLimitConfig && tabConfig.length >= tabsLimitConfig.limit ? (
+				tabsLimitConfig.infoTipMsg ? (
+					<InfoTip content={tabsLimitConfig.infoTipMsg} />
+				) : (
+					<></>
+				)
+			) : (
+				<IconButton icon={faPlus} onClick={handleAddNewTab} />
+			),
+		[handleAddNewTab, tabConfig, tabsLimitConfig]
 	)
 
 	const renderTabItems = () => {
@@ -158,9 +180,7 @@ export const Tabs: FC<TabsProps> = ({
 			<>
 				<div>
 					{leftSideTabs}
-					{onAddNewTab && (
-						<IconButton icon={faPlus} onClick={handleAddNewTab} />
-					)}
+					{onAddNewTab && renderAddTabAction()}
 				</div>
 				<div>{rightSideTabs}</div>
 			</>
