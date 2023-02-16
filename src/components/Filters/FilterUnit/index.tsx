@@ -118,7 +118,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 				})
 			}}
 			options={getFilterKeysOptions(allFilters, filtersList)}
-			placeholder='Select Value'
+			placeholder='Select field'
 			showSearch
 			value={selectedKey}
 		/>
