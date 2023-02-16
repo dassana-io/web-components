@@ -14,7 +14,7 @@ type DefaultCommonProps = Pick<
 const defaultCommonProps: DefaultCommonProps = {
 	matchSelectedContentWidth: 225,
 	maxTagCount: 5,
-	placeholder: 'Select field',
+	placeholder: 'Select value',
 	searchPlaceholder: 'Search',
 	showSearch: true
 }
