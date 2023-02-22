@@ -6,7 +6,11 @@ import { getDataTestAttributeProp } from '../utils'
 import InputSkeleton from './InputSkeleton'
 import noop from 'lodash/noop'
 import { ThemeType } from '../assets/styles/themes'
-import { Input as AntDInput, InputRef } from 'antd'
+import {
+	Input as AntDInput,
+	InputProps as AntDInputProps,
+	InputRef
+} from 'antd'
 import {
 	defaultFieldWidth,
 	fieldErrorStyles
@@ -59,6 +63,10 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	defaultValue?: string
 	inputRef?: RefObject<InputRef>
 	focused?: boolean
+	max?: AntDInputProps['max']
+	maxLength?: AntDInputProps['maxLength']
+	min?: AntDInputProps['min']
+	minLength?: AntDInputProps['minLength']
 	onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	onKeyDown?: (e: KeyboardEvent) => void
 	suffix?: ReactNode
@@ -81,6 +89,10 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		disabled = false,
 		focused = false,
 		inputRef,
+		max,
+		maxLength,
+		min,
+		minLength,
 		onBlur = noop,
 		onChange,
 		onFocus = noop,
@@ -136,6 +148,10 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 				className={cn(classes)}
 				defaultValue={defaultValue}
 				disabled={disabled}
+				max={max}
+				maxLength={maxLength}
+				min={min}
+				minLength={minLength}
 				onBlur={onBlur}
 				onFocus={handleOnFocus}
 				onKeyDown={onKeyDown}
