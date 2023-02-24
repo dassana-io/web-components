@@ -119,7 +119,7 @@ export const EditableField: FC<EditableFieldProps> = ({
 
 	const handleSubmit = useCallback(
 		(val: string) => {
-			if (val) {
+			if (val.trim()) {
 				onSubmit(val)
 				setIsEditing(false)
 			} else setHasErrors(true)
