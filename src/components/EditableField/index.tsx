@@ -69,6 +69,7 @@ interface EditableFieldProps {
 	fieldRef?: RefObject<EditableFieldMethods>
 	fullWidth?: boolean
 	inputContainerClasses?: string[]
+	inputCharLimit?: number
 	onClickOutsideCb?: () => void
 	onlyEditOnIconClick?: boolean
 	onSubmit: (newValue: string) => void
@@ -85,6 +86,7 @@ export const EditableField: FC<EditableFieldProps> = ({
 	editable = true,
 	fieldRef,
 	fullWidth = false,
+	inputCharLimit,
 	inputContainerClasses = [],
 	onClickOutsideCb,
 	onlyEditOnIconClick = false,
@@ -197,6 +199,7 @@ export const EditableField: FC<EditableFieldProps> = ({
 				error={hasErrors}
 				focused
 				fullWidth={fullWidth}
+				maxLength={inputCharLimit}
 				onChange={handleInputChange}
 				placeholder={placeholder}
 				value={inputValue}
