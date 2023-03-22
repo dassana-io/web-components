@@ -52,7 +52,7 @@ export const ModalDrawer: FC<ModalProps> = ({
 }: ModalProps) => {
 	const { content, options = {} } = modalConfig
 
-	const { contentContainerClasses = [] } = options
+	const { contentContainerClasses = [], overlayClasses = [] } = options
 
 	const modalClasses = useStyles()
 
@@ -78,7 +78,7 @@ export const ModalDrawer: FC<ModalProps> = ({
 				animate={{
 					opacity: 0.5
 				}}
-				className={modalClasses.overlay}
+				className={cn(modalClasses.overlay, overlayClasses)}
 				exit={{
 					opacity: 0,
 					transition: {
