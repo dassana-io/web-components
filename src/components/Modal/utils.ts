@@ -17,6 +17,7 @@ export interface ModalOptions {
 	hideCloseButton?: boolean
 	onClose?: () => void
 	overlay?: boolean
+	overlayClasses?: string[]
 }
 
 export interface ModalConfig {
