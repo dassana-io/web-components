@@ -46,53 +46,76 @@ const useStyles = createUseStyles({
 	}
 })
 
+const drawerAnimations = {
+	animate: {
+		x: 0
+	},
+	exit: {
+		x: '100%'
+	},
+	initial: {
+		x: '100%'
+	},
+	transition: {
+		bounce: 0,
+		duration: 0.4,
+		type: 'spring'
+	}
+}
+
+const overlayAnimations = {
+	animate: {
+		opacity: 0.5
+	},
+	exit: {
+		opacity: 0,
+		transition: {
+			delay: 0
+		}
+	},
+	initial: {
+		opacity: 0
+	},
+	transition: {
+		bounce: 0,
+		delay: 1,
+		duration: 0.2,
+		type: 'spring'
+	}
+}
+
 export const ModalDrawer: FC<ModalProps> = ({
 	modalConfig,
 	unsetModal
 }: ModalProps) => {
 	const { content, options = {} } = modalConfig
 
-	const { contentContainerClasses = [], overlayClasses = [] } = options
+	const {
+		animate = true,
+		contentContainerClasses = [],
+		overlayClasses = []
+	} = options
 
 	const modalClasses = useStyles()
+
+	const additionalDrawerProps = animate ? drawerAnimations : {}
+	const additionalOverlayProps = animate ? overlayAnimations : {}
 
 	return (
 		<>
 			<motion.div
-				animate={{
-					x: 0
-				}}
 				className={cn(
 					modalClasses.contentContainer,
 					contentContainerClasses
 				)}
-				exit={{
-					x: '100%'
-				}}
-				initial={{ x: '100%' }}
-				transition={{ bounce: 0, duration: 0.4, type: 'spring' }}
+				{...additionalDrawerProps}
 			>
 				{content}
 			</motion.div>
 			<motion.div
-				animate={{
-					opacity: 0.5
-				}}
 				className={cn(modalClasses.overlay, overlayClasses)}
-				exit={{
-					opacity: 0,
-					transition: {
-						delay: 0
-					}
-				}}
-				initial={{ opacity: 0 }}
 				onClick={unsetModal}
-				transition={{
-					bounce: 0,
-					delay: 1,
-					duration: 0.2,
-					type: 'spring'
-				}}
+				{...additionalOverlayProps}
 			/>
 		</>
 	)

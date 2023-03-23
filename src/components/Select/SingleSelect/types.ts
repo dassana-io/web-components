@@ -34,6 +34,11 @@ export interface SelectProps
 	 * Default value for select component. Without this, the select dropdown will be blank until an option is selected
 	 */
 	defaultValue?: string
+	/**
+	 * Array of classes to pass to element's dropdown container
+	 * @default []
+	 */
+	dropdownContainerClasses?: string[]
 	focused?: boolean
 	/**
 	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width

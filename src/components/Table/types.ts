@@ -17,6 +17,7 @@ export enum ColumnFormats {
 	action = 'action',
 	boolean = 'boolean',
 	currency = 'currency',
+	custom = 'custom',
 	none = 'none',
 	date = 'date',
 	byte = 'byte',
@@ -173,7 +174,7 @@ export interface ComponentIconType extends PartialComponentType {
 		| RenderPropsIconUrl
 }
 
-export interface RenderPropsAction {
+export interface RenderPropsCustom {
 	getCmp: <T>(
 		rowData: T,
 		tableMethods: TableMethods<TableData<T>>
@@ -183,8 +184,13 @@ export interface RenderPropsAction {
 export interface ComponentActionType extends PartialComponentType {
 	dataIndex: ''
 	format: ColumnFormats.action
-	renderProps: RenderPropsAction
+	renderProps: RenderPropsCustom
 	title: ''
+}
+
+export interface ComponentCustomType extends PartialComponentType {
+	format: ColumnFormats.custom
+	renderProps: RenderPropsCustom
 }
 
 interface ComponentColoredDotType extends PartialComponentType {
@@ -232,6 +238,7 @@ interface ComponentToggleType extends PartialComponentType {
 
 type ComponentType =
 	| ComponentActionType
+	| ComponentCustomType
 	| ComponentIconType
 	| ComponentColoredDotType
 	| ComponentLinkType
