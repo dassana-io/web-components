@@ -57,6 +57,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		dataTag,
 		defaultOpen = false,
 		disabled = false,
+		dropdownContainerClasses = [],
 		error = false,
 		focused = false,
 		loading = false,
@@ -190,7 +191,10 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				className={inputClasses}
 				defaultOpen={defaultOpen}
 				disabled={disabled}
-				dropdownClassName={componentClasses.dropdown}
+				dropdownClassName={cn(
+					{ [componentClasses.dropdown]: true },
+					dropdownContainerClasses
+				)}
 				notFoundContent={<NoContentFound />}
 				onDropdownVisibleChange={handleDropdownVisibleChange}
 				onFocus={onFocus}

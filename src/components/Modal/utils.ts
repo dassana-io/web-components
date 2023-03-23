@@ -10,6 +10,7 @@ const {
 export const MODAL_CONTAINER_ID = 'modal-root'
 
 export interface ModalOptions {
+	animate?: boolean
 	classes?: string[]
 	contentContainerClasses?: string[]
 	disableKeyboardShortcut?: boolean

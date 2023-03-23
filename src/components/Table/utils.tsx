@@ -38,6 +38,7 @@ const {
 	boolean,
 	byte,
 	currency,
+	custom,
 	date,
 	icon,
 	coloredDot,
@@ -585,7 +586,8 @@ function applyRender<TableData extends RequiredDataId>(
 
 		case component:
 			switch (column.format) {
-				case action: {
+				case action:
+				case custom: {
 					antDColumn.render = (_, rowData: TableData) => {
 						const { getCmp } = column.renderProps
 
