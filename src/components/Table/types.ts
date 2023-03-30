@@ -179,6 +179,7 @@ export interface RenderPropsCustom {
 		rowData: T,
 		tableMethods: TableMethods<TableData<T>>
 	) => ReactNode
+	preventClickPropagation?: boolean
 }
 
 export interface ComponentActionType extends PartialComponentType {
