@@ -589,11 +589,15 @@ function applyRender<TableData extends RequiredDataId>(
 				case action:
 				case custom: {
 					antDColumn.render = (_, rowData: TableData) => {
-						const { getCmp } = column.renderProps
+						const { getCmp, preventClickPropagation = true } =
+							column.renderProps
 
 						return (
 							<div
-								onClick={(e: MouseEvent) => e.stopPropagation()}
+								onClick={(e: MouseEvent) =>
+									preventClickPropagation &&
+									e.stopPropagation()
+								}
 							>
 								{getCmp<TableData>(rowData, tableMethods)}
 							</div>
