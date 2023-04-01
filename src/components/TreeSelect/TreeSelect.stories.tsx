@@ -1,7 +1,9 @@
 import { action } from '@storybook/addon-actions'
-import React from 'react'
+import { SbTheme } from '../../../.storybook/preview'
 import treeData0 from '../Tree/fixtures/0_sample_data'
+import { useTheme } from 'react-jss'
 import { Meta, Story } from '@storybook/react/types-6-0'
+import React, { FC } from 'react'
 import { TreeSelect, TreeSelectProps } from './index'
 
 export default {
@@ -31,7 +33,20 @@ export default {
 	title: 'TreeSelect'
 } as Meta
 
-const Template: Story<TreeSelectProps> = args => <TreeSelect {...args} />
+const ThemedTreeSelect: FC<TreeSelectProps> = (props: TreeSelectProps) => {
+	const theme: SbTheme = useTheme()
+
+	const popupContainerSelector = `.${theme.type}`
+
+	return (
+		<TreeSelect
+			popupContainerSelector={popupContainerSelector}
+			{...props}
+		/>
+	)
+}
+
+const Template: Story<TreeSelectProps> = args => <ThemedTreeSelect {...args} />
 
 export const Default = Template.bind({})
 
