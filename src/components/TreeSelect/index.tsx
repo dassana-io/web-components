@@ -33,7 +33,8 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 	popupContainerSelector,
 	skeletonBlockCount = 3,
 	skeletonTreeNodeCount = 3,
-	treeData
+	treeData,
+	value
 }: TreeSelectProps) => {
 	const mappedTreeData = processTreeSelectData(treeData)
 
@@ -46,12 +47,17 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 
 	if (onChange) {
 		controlledCmpProps = {
-			onChange
+			onChange,
+			value
 		}
 	}
 
+	if (value && !onChange) {
+		throw new Error('Controlled tree select requires an onChange prop')
+	}
+
 	return loading ? (
-		<SelectSkeleton />
+		<SelectSkeleton fullWidth={fullWidth} />
 	) : (
 		<div className={componentClasses.container}>
 			<AntDTreeSelect
