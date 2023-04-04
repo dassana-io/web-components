@@ -53,6 +53,7 @@ export interface TreeProps extends CommonComponentProps {
 	 * Number of skeleton tree nodes inside a skeleton block to show if loading is true. This also determines how many levels the skeleton tree nodes will be nested
 	 */
 	skeletonTreeNodeCount?: number
+	value?: string | string[]
 }
 
 export type TreeNodesHash = Record<TreeId, TreeNodeType>
@@ -66,7 +67,8 @@ export const Tree: FC<TreeProps> = ({
 	onChange,
 	skeletonBlockCount = 3,
 	skeletonTreeNodeCount = 3,
-	treeData
+	treeData,
+	value
 }: TreeProps) => {
 	const mappedTreeData = processTreeData(treeData)
 
