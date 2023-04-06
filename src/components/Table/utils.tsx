@@ -21,6 +21,7 @@ import {
 	DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
+	FormattedTag,
 	NumberDateType,
 	RequiredDataId
 } from './types'
@@ -687,11 +688,11 @@ function applyRender<TableData extends RequiredDataId>(
 						return castArray(record).map((tagInfo, i) => {
 							if (tagFormatter) tagInfo = tagFormatter(tagInfo)
 
-							const { color = '' } = tagInfo
+							const { color = '', name } = tagInfo as FormattedTag
 							/* Note: If BE doesn't send exactly { color: 'blue', name: 'CEO' } as data,
 				  this will break. */
 							const tagProps: TagProps = {
-								children: tagInfo.name,
+								children: name,
 								color,
 								deletable
 							}

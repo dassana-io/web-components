@@ -55,7 +55,7 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 					<TimeInput
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
-						error={errors[name]}
+						error={!!errors[name]}
 						loading={loading}
 						onChange={onChange}
 						onFocus={onFocus}

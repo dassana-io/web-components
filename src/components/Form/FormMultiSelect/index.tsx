@@ -32,7 +32,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 	const { disabled: formDisabled, loading } =
 		useContext<FieldContextProps>(FieldContext)
 
-	const errorMsg = errors[name] ? errors[name].message : ''
+	const errorMsg = errors[name] ? errors[name]?.message : ''
 
 	const onFocus = () => {
 		if (errors[name]) clearErrors(name)
@@ -56,7 +56,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 					<MultiSelect
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
-						error={errors[name]}
+						error={!!errors[name]}
 						fullWidth={fullWidth}
 						loading={loading}
 						onChange={onChange}
@@ -69,7 +69,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 			/>
 			<FieldError
 				classes={fieldErrorClasses}
-				error={errorMsg}
+				error={errorMsg as string}
 				fullWidth={fullWidth}
 			/>
 		</div>

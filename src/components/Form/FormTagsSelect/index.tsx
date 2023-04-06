@@ -32,7 +32,7 @@ const FormTagsSelect: FC<FormTagsSelectProps> = ({
 	const { disabled: formDisabled, loading } =
 		useContext<FieldContextProps>(FieldContext)
 
-	const errorMsg = errors[name] ? errors[name].message : ''
+	const errorMsg = errors[name] ? errors[name]?.message : ''
 
 	const onFocus = () => {
 		if (errors[name]) clearErrors(name)
@@ -56,7 +56,7 @@ const FormTagsSelect: FC<FormTagsSelectProps> = ({
 					<TagsSelect
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
-						error={errors[name]}
+						error={!!errors[name]}
 						fullWidth={fullWidth}
 						loading={loading}
 						onChange={onChange}
@@ -69,7 +69,7 @@ const FormTagsSelect: FC<FormTagsSelectProps> = ({
 			/>
 			<FieldError
 				classes={fieldErrorClasses}
-				error={errorMsg}
+				error={errorMsg as string}
 				fullWidth={fullWidth}
 			/>
 		</div>

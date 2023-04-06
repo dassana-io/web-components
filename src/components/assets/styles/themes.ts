@@ -200,3 +200,36 @@ export const inputPalette = {
 		}
 	}
 }
+
+export const colorPalette = {
+	[dark]: {
+		cardBackground: blacks.base,
+		color: grays.base,
+		disabledBackground: blacks['darken-20'],
+		emphasisColor: blacks['lighten-70'],
+		hoverBackground: blacks['lighten-20'],
+		hoverBorderColor: blacks['lighten-40'],
+		pauseColor: blacks['lighten-50'],
+		popoverBackground: blacks.base,
+		secondaryBackground: blacks['darken-10'],
+		secondaryColor: blacks['lighten-70'],
+		secondaryPopoverBackground: blacks['darken-40'],
+		tertiaryBackground: blacks['darken-20'],
+		tertiaryColor: blacks['lighten-80']
+	},
+	[light]: {
+		cardBackground: whites.base,
+		color: blacks['lighten-10'],
+		disabledBackground: grays['lighten-40'],
+		emphasisColor: blacks['lighten-30'],
+		hoverBackground: grays['lighten-40'],
+		hoverBorderColor: blacks['lighten-50'],
+		pauseColor: grays.base,
+		popoverBackground: whites.base,
+		secondaryBackground: grays['lighten-40'],
+		secondaryColor: blacks['lighten-20'],
+		secondaryPopoverBackground: grays['lighten-40'],
+		tertiaryBackground: grays['lighten-70'],
+		tertiaryColor: blacks['lighten-30']
+	}
+}

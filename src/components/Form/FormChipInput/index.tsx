@@ -35,7 +35,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 	const { disabled: formDisabled, loading } =
 		useContext<FieldContextProps>(FieldContext)
 
-	const errorMsg = errors[name] ? errors[name].message : ''
+	const errorMsg = errors[name] ? errors[name]?.message : ''
 
 	const clearChipInputErrors = () => {
 		if (errors[name]) clearErrors(name)
@@ -68,8 +68,8 @@ const FormChipInput: FC<FormChipInputProps> = ({
 						clearErrors={clearChipInputErrors}
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
-						error={errors[name]}
-						errorMsg={errorMsg}
+						error={!!errors[name]}
+						errorMsg={errorMsg as string}
 						fullWidth={fullWidth}
 						inputRef={inputRef}
 						loading={loading}
