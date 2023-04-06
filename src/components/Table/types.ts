@@ -212,7 +212,7 @@ interface ComponentLinkType extends PartialComponentType {
 	renderProps?: RenderPropsLink
 }
 
-interface FormattedTag {
+export interface FormattedTag {
 	color?: string
 	name: ReactNode
 }

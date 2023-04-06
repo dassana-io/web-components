@@ -18,6 +18,7 @@ import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { getNonEmptyKVInputPairs } from './utils'
+import { UseFormReturn } from 'react-hook-form/dist/types/form'
 import {
 	DeepPartial,
 	FieldValues,
@@ -32,10 +33,6 @@ import React, {
 	useEffect,
 	useImperativeHandle
 } from 'react'
-import {
-	UnpackNestedValue,
-	UseFormReturn
-} from 'react-hook-form/dist/types/form'
 
 const useStyles = createUseStyles({
 	container: {
@@ -50,23 +47,23 @@ export interface FormProps<Model extends FieldValues> {
 	disabled?: boolean
 	formContainerClasses?: string[]
 	formRef?: RefObject<UseFormReturn<Model>>
-	initialValues?: UnpackNestedValue<DeepPartial<Model>>
+	initialValues?: Model
 	loading?: boolean
 	onSubmit: SubmitHandler<FieldValues>
 }
 
-export function Form<Model>({
+export function Form<Model extends FieldValues>({
 	children,
 	disabled = false,
 	formContainerClasses = [],
 	formRef,
-	initialValues = {} as UnpackNestedValue<DeepPartial<Model>>,
+	initialValues = {} as Model,
 	loading = false,
 	onSubmit
 }: FormProps<Model>) {
 	const classes = useStyles()
-	const methods = useForm({
-		defaultValues: initialValues,
+	const methods = useForm<Model>({
+		defaultValues: initialValues as DeepPartial<Model>,
 		mode: 'onBlur'
 	})
 	const { reset } = methods

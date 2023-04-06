@@ -44,7 +44,7 @@ const FormInput: FC<FormInputProps> = ({
 
 	const errorObj = getJSONPathValue<FieldErrorType>(
 		`$.${name}`,
-		errors
+		errors as any
 	) as FieldErrorType
 
 	const errorMsg = (errorObj && errorObj.message) || ''
@@ -81,7 +81,7 @@ const FormInput: FC<FormInputProps> = ({
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
 						// error={errors[name]}
-						error={!!getJSONPathValue(`$.${name}`, errors)}
+						error={!!errorObj}
 						focused={focused}
 						fullWidth={fullWidth}
 						loading={loading}

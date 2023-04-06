@@ -6,6 +6,7 @@ import {
 	ColumnType,
 	ColumnTypes,
 	EditableCellTypes,
+	RenderPropsCustom,
 	TableProps
 } from '..'
 import React, { FC, useState } from 'react'
@@ -128,7 +129,7 @@ const columns: ColumnType[] = [
 					onDeleteSuccess={() => tableMethods.deleteRow(row.id)}
 				/>
 			)
-		}
+		} as RenderPropsCustom
 	}
 ]
 
