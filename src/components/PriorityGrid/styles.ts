@@ -1,13 +1,9 @@
 import {
 	ColorManipulationTypes,
-	colorPalette,
 	manipulateColor,
-	styleguide,
-	ThemeType
+	styleguide
 } from '../assets/styles'
 import { getPriorityColor, GRID_ITEM_DIMENSION } from './utils'
-
-const { light } = ThemeType
 
 const {
 	colors: { whites },
@@ -53,7 +49,6 @@ export const commonPriorityItemStyles = {
 			? getPartiallySelectedStyles(color)
 			: color
 	},
-	border: `0.5px solid ${colorPalette[light].hoverBorderColor}`,
 	color: whites.base,
 	cursor: 'pointer',
 	fontWeight: fontWeight.light,

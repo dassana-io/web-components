@@ -3,6 +3,7 @@ import difference from 'lodash/difference'
 import { FilterKeys } from '@dassana-io/web-utils'
 import intersection from 'lodash/intersection'
 import invert from 'lodash/invert'
+import min from 'lodash/min'
 import partition from 'lodash/partition'
 import { styleguide } from '../assets/styles'
 import uniq from 'lodash/uniq'
@@ -94,12 +95,21 @@ export const generatePriorityGrid = (): PriorityGridConfig => {
 	return { grid, gridMap: priorityGridItemMap }
 }
 
+export interface PriorityCountMap {
+	p0?: number
+	p1?: number
+	p2?: number
+	p3?: number
+	p4?: number
+	p5?: number
+}
+
 export type PriorityCountData = Record<string, Record<string, number>>
 
 const getPriorityFromRanking = (ranking: number) =>
 	Math.min(ranking, TOTAL_NUM_OF_PRIORITIES - 1)
 
-export const getPriorityItemCount = (
+export const getPriorityGridItemCount = (
 	severity: number,
 	criticality: number,
 	countData: PriorityCountData
@@ -966,4 +976,32 @@ export const getNewFiltersFromGridItemClick = (
 	)
 
 	return processedFilters
+}
+
+interface PriorityCountConfig {
+	countData?: PriorityCountData
+	criticality: number
+	priorityCountData?: PriorityCountMap
+	severity: number
+}
+
+export const getPriorityItemCount = (
+	config: PriorityCountConfig
+): number | undefined => {
+	const { countData, criticality, priorityCountData, severity } = config
+
+	let count
+
+	if (countData)
+		count = getPriorityGridItemCount(severity, criticality, countData)
+	else if (priorityCountData) {
+		const ranking = min([criticality + severity, 5])
+
+		const priorityCount =
+			priorityCountData[`p${ranking}` as keyof PriorityCountMap]
+
+		count = priorityCount ? priorityCount : 0
+	}
+
+	return count
 }

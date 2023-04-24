@@ -41,6 +41,7 @@ interface PartialColumnType {
 	 */
 	ellipsis?: boolean
 	formatKey?: (key: string) => string
+	formatTitle?: (title: string) => string
 	title: string
 	sort?: boolean
 	filterConfig?: {

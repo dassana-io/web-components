@@ -3,15 +3,17 @@ import { createUseStyles } from 'react-jss'
 import { styleguide } from '../assets/styles'
 import React, { FC } from 'react'
 
-const { font, fontWeight } = styleguide
+const { font, fontWeight, spacing } = styleguide
 
 const useStyles = createUseStyles({
 	priorityGridAxisLabel: {
 		'&$rotate': {
+			paddingRight: 0,
 			writingMode: 'vertical-rl'
 		},
 		...font.body,
 		fontWeight: fontWeight.light,
+		paddingRight: spacing.m,
 		textAlign: 'center'
 	},
 	rotate: {}

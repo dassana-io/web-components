@@ -1,28 +1,23 @@
 import { abbreviateNumber } from '@dassana-io/web-utils'
 import { createUseStyles } from 'react-jss'
 import { GRID_ITEM_DIMENSION } from './utils'
-import { colorPalette, ThemeType } from '../assets/styles'
 import { commonPriorityItemStyles, PriorityItemStyleProps } from './styles'
 import React, { FC, useCallback } from 'react'
 
-const { dark } = ThemeType
-
 const useStyles = createUseStyles({
+	count: {
+		transform: 'rotate(45deg)'
+	},
 	priorityItem: {
 		...commonPriorityItemStyles,
 		cursor: ({ clickable }: PriorityItemStyleProps) =>
 			clickable ? 'pointer' : 'default',
-		width: GRID_ITEM_DIMENSION,
-		// eslint-disable-next-line sort-keys
-		'@global': {
-			[`.${dark}`]: {
-				'& $prioritySidebarItem': {
-					border: `0.5px solid ${colorPalette[dark].hoverBorderColor}`
-				}
-			}
-		}
+		width: GRID_ITEM_DIMENSION
 	}
 })
+
+const getCount = (count: number): string =>
+	count > 0 ? abbreviateNumber(count) : '-'
 
 interface PriorityItemProps {
 	allSelected: boolean
@@ -60,7 +55,9 @@ export const PriorityItem: FC<PriorityItemProps> = ({
 
 	return (
 		<div className={classes.priorityItem} onClick={handleItemClick}>
-			{typeof count === 'number' && abbreviateNumber(count)}
+			<span className={classes.count}>
+				{typeof count === 'number' && getCount(count)}
+			</span>
 		</div>
 	)
 }

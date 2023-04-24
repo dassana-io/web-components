@@ -14,6 +14,7 @@ import {
 	getPriorityItemCount,
 	GRID_ITEM_DIMENSION,
 	PriorityCountData,
+	PriorityCountMap,
 	RankingsNumberMap
 } from './utils'
 import React, { FC, useCallback, useMemo } from 'react'
@@ -53,8 +54,10 @@ interface PriorityGridProps {
 	disableGridItemClick?: boolean
 	gridItemFilters: string[]
 	handleItemClick: (newFilters: Record<string, string[]>) => void
+	priorityCountData?: PriorityCountMap
 	priorityFilters: string[]
 	severityFilters: string[]
+	showPriorityLabel?: boolean
 }
 
 export const PriorityGrid: FC<PriorityGridProps> = ({
@@ -63,8 +66,10 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 	disableGridItemClick = false,
 	gridItemFilters,
 	handleItemClick,
+	priorityCountData,
 	priorityFilters,
-	severityFilters
+	severityFilters,
+	showPriorityLabel = true
 }: PriorityGridProps) => {
 	const hasSomeFilters = useMemo(
 		() =>
@@ -223,15 +228,12 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 										({ criticality, severity }, j) => (
 											<PriorityItem
 												allSelected={!hasSomeFilters}
-												count={
-													countData
-														? getPriorityItemCount(
-																severity,
-																criticality,
-																countData
-														  ) // eslint-disable-line no-mixed-spaces-and-tabs
-														: undefined
-												}
+												count={getPriorityItemCount({
+													countData,
+													criticality,
+													priorityCountData,
+													severity
+												})}
 												criticality={criticality}
 												key={`priority-item-${i}-${j}`}
 												onClick={
@@ -263,6 +265,7 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 				gridMap={gridMap}
 				onSidebarItemClick={handlePrioritySidebarItemClick}
 				selectedGridItems={selectedGridItems}
+				showLabel={showPriorityLabel}
 			/>
 		</div>
 	)

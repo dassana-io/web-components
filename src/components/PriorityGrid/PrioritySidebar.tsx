@@ -42,21 +42,23 @@ interface PrioritySidebarProps {
 	gridMap: GridMap
 	onSidebarItemClick: (priorityNum: number) => void
 	selectedGridItems: string[]
+	showLabel?: boolean
 }
 
 export const PrioritySidebar: FC<PrioritySidebarProps> = ({
 	allSelected,
 	gridMap,
 	onSidebarItemClick,
-	selectedGridItems
+	selectedGridItems,
+	showLabel = true
 }: PrioritySidebarProps) => {
 	const classes = useStyles()
 
 	return (
 		<div className={classes.prioritySidebarContainer}>
-			<div className={classes.label}>Priority</div>
+			{showLabel && <div className={classes.label}>Priority</div>}
 			<div className={classes.arrowContainer}>
-				<ArrowLong height='100%' />
+				<ArrowLong />
 			</div>
 			<div className={classes.prioritySidebar}>
 				{Object.keys(PriorityColorMap).map(ranking => (

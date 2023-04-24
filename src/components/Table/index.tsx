@@ -394,6 +394,7 @@ export const Table = <Data,>({
 							dataSource={
 								searchTerm ? filteredData : processedData
 							}
+							locale={{ emptyText: 'No Results Found' }}
 							pagination={
 								!pagination
 									? pagination
