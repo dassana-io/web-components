@@ -69,6 +69,7 @@ export function processColumns<TableData extends DataId>(
 		const {
 			dataIndex,
 			filterConfig = {},
+			formatTitle,
 			title,
 			sort = true,
 			width
@@ -78,7 +79,7 @@ export function processColumns<TableData extends DataId>(
 			dataIndex,
 			filterIcon: <FontAwesomeIcon icon={faFilter} />,
 			showSorterTooltip: false,
-			title,
+			title: formatTitle ? formatTitle(title) : title,
 			width,
 			...filterConfig
 		}
