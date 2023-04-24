@@ -23,6 +23,26 @@ const ThemedPriorityGrid = () => {
 
 	return (
 		<PriorityGrid
+			countData={{
+				medium: {
+					low: 26570,
+					high: 69412,
+					medium: 7,
+					critical: 1
+				},
+				critical: {
+					high: 136,
+					low: 172
+				},
+				high: {
+					high: 556,
+					low: 860
+				},
+				low: {
+					high: 128,
+					low: 155
+				}
+			}}
 			criticalityFilters={[]}
 			gridItemFilters={[]}
 			handleItemClick={() => console.log('click')}

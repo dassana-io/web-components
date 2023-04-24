@@ -53,7 +53,6 @@ export const commonPriorityItemStyles = {
 			? getPartiallySelectedStyles(color)
 			: color
 	},
-	border: `0.5px solid ${colorPalette[light].hoverBorderColor}`,
 	color: whites.base,
 	cursor: 'pointer',
 	fontWeight: fontWeight.light,
