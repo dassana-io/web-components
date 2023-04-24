@@ -1,13 +1,9 @@
 import {
 	ColorManipulationTypes,
-	colorPalette,
 	manipulateColor,
-	styleguide,
-	ThemeType
+	styleguide
 } from '../assets/styles'
 import { getPriorityColor, GRID_ITEM_DIMENSION } from './utils'
-
-const { light } = ThemeType
 
 const {
 	colors: { whites },

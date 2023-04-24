@@ -24,12 +24,6 @@ const ThemedPriorityGrid = () => {
 	return (
 		<PriorityGrid
 			countData={{
-				medium: {
-					low: 26570,
-					high: 69412,
-					medium: 7,
-					critical: 1
-				},
 				critical: {
 					high: 136,
 					low: 172
@@ -41,6 +35,12 @@ const ThemedPriorityGrid = () => {
 				low: {
 					high: 128,
 					low: 155
+				},
+				medium: {
+					critical: 1,
+					high: 69412,
+					low: 26570,
+					medium: 7
 				}
 			}}
 			criticalityFilters={[]}
