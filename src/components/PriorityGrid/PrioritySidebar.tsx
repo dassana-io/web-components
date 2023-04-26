@@ -30,7 +30,8 @@ const useStyles = createUseStyles({
 		...flexDown
 	},
 	prioritySidebarContainer: {
-		...flexAlignCenter
+		...flexAlignCenter,
+		zIndex: 1 // to fix items not being clickable due to grid rotation
 	},
 	prioritySidebarItem: {
 		width: GRID_ITEM_DIMENSION
