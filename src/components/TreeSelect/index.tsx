@@ -63,7 +63,8 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 			<AntDTreeSelect
 				className={treeClasses}
 				disabled={disabled}
-				dropdownClassName={dropdownClasses.dropdown}
+				dropdownMatchSelectWidth={false}
+				popupClassName={dropdownClasses.dropdown}
 				showSearch
 				style={{ width: '100%' }}
 				treeCheckable={multipleSelection}

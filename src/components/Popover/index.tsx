@@ -82,7 +82,7 @@ export const Popover: FC<PopoverProps> = ({
 	let controlledCmpProps = {}
 
 	if (onVisibleChange) {
-		controlledCmpProps = { onVisibleChange, visible }
+		controlledCmpProps = { onOpenChange: onVisibleChange, open: visible }
 	}
 
 	if (visible && !onVisibleChange) {

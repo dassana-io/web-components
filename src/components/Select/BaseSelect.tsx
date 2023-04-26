@@ -191,15 +191,15 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				className={inputClasses}
 				defaultOpen={defaultOpen}
 				disabled={disabled}
-				dropdownClassName={cn(
-					{ [componentClasses.dropdown]: true },
-					dropdownContainerClasses
-				)}
 				notFoundContent={<NoContentFound />}
 				onDropdownVisibleChange={handleDropdownVisibleChange}
 				onFocus={onFocus}
 				open={open}
 				placeholder={placeholder}
+				popupClassName={cn(
+					{ [componentClasses.dropdown]: true },
+					dropdownContainerClasses
+				)}
 				ref={dropdownRef}
 				showArrow
 				showSearch={showSearch}
