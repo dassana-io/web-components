@@ -32,6 +32,9 @@ export default {
 	external: [
 		'@ant-design/icons',
 		'@dassana-io/web-utils',
+		'@dnd-kit/core',
+		'@dnd-kit/modifiers',
+		'@dnd-kit/sortable',
 		'@fortawesome/fontawesome-svg-core',
 		'@fortawesome/free-solid-svg-icons',
 		'@fortawesome/pro-light-svg-icons',
