@@ -21,6 +21,10 @@ export const styleguide = {
 		alignItems: 'center',
 		display: 'flex'
 	},
+	flexAlignEnd: {
+		alignItems: 'flex-end',
+		display: 'flex'
+	},
 	flexAlignStart: {
 		alignItems: 'flex-start',
 		display: 'flex'
