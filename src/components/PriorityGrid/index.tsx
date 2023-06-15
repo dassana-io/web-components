@@ -209,7 +209,7 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 				<div className={classes.gridWithYAxis}>
 					<PriorityGridAxis
 						direction='horizontal'
-						onRankingLabelClick={handleCriticalityLabelAxisClick}
+						onRankingLabelClick={handleSeverityLabelAxisClick}
 						reverse
 						selectedGridItems={selectedGridItems}
 					/>
@@ -253,7 +253,9 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 						</div>
 						<PriorityGridAxis
 							direction='vertical'
-							onRankingLabelClick={handleSeverityLabelAxisClick}
+							onRankingLabelClick={
+								handleCriticalityLabelAxisClick
+							}
 							selectedGridItems={selectedGridItems}
 						/>
 					</div>
