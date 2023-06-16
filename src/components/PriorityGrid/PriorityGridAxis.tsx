@@ -58,7 +58,9 @@ const useStyles = createUseStyles({
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $background': colorPalette[dark].popoverBackground
+			'& $axisItemSelected': {
+				background: colorPalette[dark].popoverBackground
+			}
 		}
 	}
 })
