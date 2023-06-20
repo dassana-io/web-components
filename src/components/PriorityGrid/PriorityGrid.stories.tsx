@@ -46,6 +46,7 @@ const ThemedPriorityGrid = () => {
 			criticalityFilters={[]}
 			gridItemFilters={[]}
 			handleItemClick={() => console.log('click')}
+			loading
 			priorityFilters={[]}
 			severityFilters={[]}
 		/>

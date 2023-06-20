@@ -54,6 +54,7 @@ interface PriorityGridProps {
 	disableGridItemClick?: boolean
 	gridItemFilters: string[]
 	handleItemClick: (newFilters: Record<string, string[]>) => void
+	loading?: boolean
 	priorityCountData?: PriorityCountMap
 	priorityFilters: string[]
 	severityFilters: string[]
@@ -66,6 +67,7 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 	disableGridItemClick = false,
 	gridItemFilters,
 	handleItemClick,
+	loading = false,
 	priorityCountData,
 	priorityFilters,
 	severityFilters,
@@ -236,6 +238,7 @@ export const PriorityGrid: FC<PriorityGridProps> = ({
 												})}
 												criticality={criticality}
 												key={`priority-item-${i}-${j}`}
+												loading={loading}
 												onClick={
 													disableGridItemClick
 														? undefined

@@ -1,6 +1,9 @@
 import { abbreviateNumber } from '@dassana-io/web-utils'
 import { createUseStyles } from 'react-jss'
+import { faCircleNotch } from '@fortawesome/pro-regular-svg-icons'
 import { GRID_ITEM_DIMENSION } from './utils'
+import { IconButton } from 'components/IconButton'
+import noop from 'lodash/noop'
 import { commonPriorityItemStyles, PriorityItemStyleProps } from './styles'
 import React, { FC, useCallback } from 'react'
 
@@ -23,6 +26,7 @@ interface PriorityItemProps {
 	allSelected: boolean
 	count?: number
 	criticality: number
+	loading?: boolean
 	onClick?: (criticality: number, severity: number) => void
 	partiallySelected?: boolean
 	selected: boolean
@@ -33,6 +37,7 @@ export const PriorityItem: FC<PriorityItemProps> = ({
 	allSelected,
 	count,
 	criticality,
+	loading = false,
 	onClick,
 	partiallySelected = false,
 	selected,
@@ -56,7 +61,10 @@ export const PriorityItem: FC<PriorityItemProps> = ({
 	return (
 		<div className={classes.priorityItem} onClick={handleItemClick}>
 			<span className={classes.count}>
-				{typeof count === 'number' && getCount(count)}
+				{loading && (
+					<IconButton icon={faCircleNotch} onClick={noop} pending />
+				)}
+				{!loading && typeof count === 'number' && getCount(count)}
 			</span>
 		</div>
 	)
