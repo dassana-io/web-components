@@ -6,16 +6,34 @@ import { IconButton } from 'components/IconButton'
 import noop from 'lodash/noop'
 import { commonPriorityItemStyles, PriorityItemStyleProps } from './styles'
 import React, { FC, useCallback } from 'react'
+import { styleguide, ThemeType } from 'components/assets/styles'
+
+const { dark } = ThemeType
+
+const {
+	colors: { whites }
+} = styleguide
 
 const useStyles = createUseStyles({
 	count: {
 		transform: 'rotate(45deg)'
+	},
+	pendingIcon: {
+		color: whites.base
 	},
 	priorityItem: {
 		...commonPriorityItemStyles,
 		cursor: ({ clickable }: PriorityItemStyleProps) =>
 			clickable ? 'pointer' : 'default',
 		width: GRID_ITEM_DIMENSION
+	},
+	// eslint-disable-next-line sort-keys
+	'@global': {
+		[`.${dark}`]: {
+			'& $count': {
+				'& $pendingIcon': { color: whites.base }
+			}
+		}
 	}
 })
 
@@ -62,7 +80,12 @@ export const PriorityItem: FC<PriorityItemProps> = ({
 		<div className={classes.priorityItem} onClick={handleItemClick}>
 			<span className={classes.count}>
 				{loading && (
-					<IconButton icon={faCircleNotch} onClick={noop} pending />
+					<IconButton
+						classes={[classes.pendingIcon]}
+						icon={faCircleNotch}
+						onClick={noop}
+						pending
+					/>
 				)}
 				{!loading && typeof count === 'number' && getCount(count)}
 			</span>
