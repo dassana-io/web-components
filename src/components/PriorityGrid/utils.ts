@@ -247,7 +247,11 @@ export const convertAggregateFiltersToGridItems = (
 		}
 	})
 
-	return uniq(gridItemFilters)
+	const processedGridItemFilters = uniq(gridItemFilters)
+
+	return processedGridItemFilters.length === 16
+		? []
+		: processedGridItemFilters
 }
 
 /**
@@ -290,7 +294,10 @@ const buildFiltersFromGridItems = (
 	if (
 		allItemsInFirstArrExistInSecondArr(gridItemFilters, gridItemsToRemove)
 	) {
-		potentialNewFilters[FilterKeys.priority] = priorityFiltersToAdd
+		potentialNewFilters[FilterKeys.priority] =
+			priorityFiltersToAdd.length === Object.keys(gridMap).length
+				? []
+				: priorityFiltersToAdd
 		potentialNewFilters[FilterKeys.criticality_severity] = []
 
 		return potentialNewFilters

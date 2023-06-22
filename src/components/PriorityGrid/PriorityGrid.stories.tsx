@@ -43,11 +43,11 @@ const ThemedPriorityGrid = () => {
 					medium: 7
 				}
 			}}
-			criticalityFilters={[]}
+			criticalityFilters={['high', 'critical', 'medium', 'low']}
 			gridItemFilters={[]}
 			handleItemClick={() => console.log('click')}
 			priorityFilters={[]}
-			severityFilters={[]}
+			severityFilters={['high', 'critical', 'medium', 'low']}
 		/>
 	)
 }
