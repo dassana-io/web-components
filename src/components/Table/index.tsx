@@ -420,5 +420,6 @@ export const Table = <Data,>({
 }
 
 export * from './types'
+export { CellWithTooltip } from './CellWithTooltip'
 export { PARTIAL_ACTION_COLUMN } from './utils'
 export type { TableRowSelection }
