@@ -198,7 +198,7 @@ export const Tabs: FC<TabsProps> = ({
 			/>
 		))
 
-	if (!tabConfig.length) {
+	if (!(tabConfig.length || onAddNewTab)) {
 		throw new Error('Tab config should have at least one item in the array')
 	}
 
