@@ -87,7 +87,6 @@ export const EditableCell = <T extends RequiredDataId>(
 	const startEdit = (e: MouseEvent) => {
 		e.stopPropagation() // Prevents table row click from activating
 
-		// eslint-disable-next-line quotes
 		const existingEditField = document.querySelector(
 			`[id^='editField-${dataIndex}']`
 		)

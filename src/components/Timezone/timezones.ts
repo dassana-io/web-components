@@ -3,7 +3,7 @@ This data is scraped from gogole calender settings: https://calendar.google.com/
 
 Date scraped: "Tue Jan 26 2021 21:40:25 GMT-0800 (Pacific Standard Time)"
 */
-export default [
+const timezones = [
 	{ ianaName: 'Pacific/Niue', text: '(GMT-11:00) Niue Time' },
 	{ ianaName: 'Pacific/Pago_Pago', text: '(GMT-11:00) Samoa Standard Time' },
 	{
@@ -1014,3 +1014,5 @@ export default [
 	{ ianaName: 'Pacific/Apia', text: '(GMT+14:00) Apia Time' },
 	{ ianaName: 'Pacific/Kiritimati', text: '(GMT+14:00) Line Islands Time' }
 ]
+
+export default timezones

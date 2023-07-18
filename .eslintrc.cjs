@@ -1,9 +1,14 @@
+/* eslint-env node */
+
 module.exports = {
+	root: true,
+	env: { browser: true, es2020: true },
 	extends: [
 		'react-app',
 		'eslint:recommended',
-		'plugin:react/recommended',
-		'plugin:@typescript-eslint/recommended' // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+		'plugin:@typescript-eslint/recommended',
+		'plugin:@typescript-eslint/recommended-requiring-type-checking',
+		'plugin:react-hooks/recommended'
 	],
 	globals: {
 		console: true,
@@ -11,20 +16,22 @@ module.exports = {
 		module: true,
 		window: true
 	},
-	// ignorePatterns: ['src/api/*/'], // web-components doesn't have a src/api
-	parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+	ignorePatterns: ['*.test.*', '/src/api/*'],
+	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		ecmaFeatures: {
-			jsx: true,
-			modules: true
-		},
-		ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-		sourceType: 'module' // Allows for the use of imports
+		ecmaVersion: 'latest',
+		sourceType: 'module',
+		project: true,
+		tsconfigRootDir: __dirname
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: ['react-refresh'],
 	rules: {
-		// Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-		// e.g. "@typescript-eslint/explicit-function-return-type": "off",
+		'react-refresh/only-export-components': [
+			'warn',
+			{ allowConstantExport: true }
+		],
+		'react-refresh/only-export-components': 'off',
+		'@typescript-eslint/no-non-null-assertion': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/ban-types': 'off',
 		'@typescript-eslint/camelcase': 'off',
@@ -33,12 +40,20 @@ module.exports = {
 		'@typescript-eslint/member-delimiter-style': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/no-extra-semi': 'off',
+		'@typescript-eslint/no-floating-promises': 'off',
+		'@typescript-eslint/no-misused-promises': 'off',
 		'@typescript-eslint/no-non-null-assertion': 'off',
+		'@typescript-eslint/no-unsafe-argument': 'off',
+		'@typescript-eslint/no-unsafe-assignment': 'off',
+		'@typescript-eslint/no-unsafe-call': 'off',
+		'@typescript-eslint/no-unsafe-member-access': 'off',
+		'@typescript-eslint/no-unsafe-return': 'off',
 		'@typescript-eslint/no-unused-expressions': 'off',
 		'@typescript-eslint/no-unused-vars': 'warn',
+		'@typescript-eslint/restrict-plus-operands': 'off',
+		'@typescript-eslint/restrict-template-expressions': 'off',
 		'comma-dangle': ['warn', 'never'],
 		'comma-spacing': ['warn', { after: true, before: false }],
-		'import/no-anonymous-default-export': 'off',
 		'key-spacing': [
 			'warn',
 			{
@@ -46,7 +61,6 @@ module.exports = {
 				beforeColon: false
 			}
 		],
-		'no-debugger': 'warn',
 		'no-duplicate-imports': 'error',
 		'no-useless-computed-key': 'warn',
 		'quote-props': ['warn', 'as-needed'],
@@ -65,10 +79,5 @@ module.exports = {
 		],
 		'sort-keys': ['warn', 'asc'],
 		'space-in-parens': ['warn', 'never']
-	},
-	settings: {
-		react: {
-			version: 'detect'
-		}
 	}
 }

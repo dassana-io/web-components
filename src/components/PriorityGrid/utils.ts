@@ -86,8 +86,8 @@ export const generatePriorityGrid = (): PriorityGridConfig => {
 			]
 
 			return {
-				criticality: criticality as number,
-				severity: severity as number
+				criticality: criticality,
+				severity: severity
 			}
 		})
 	)

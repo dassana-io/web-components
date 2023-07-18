@@ -16,10 +16,5 @@ export const ValuesInput: FC<ValuesInputProps> = ({
 		})
 	}
 
-	return (
-		<Input
-			onChange={handleInputChange}
-			value={selectedValues[0].text as string}
-		/>
-	)
+	return <Input onChange={handleInputChange} value={selectedValues[0].text} />
 }

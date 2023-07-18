@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
 import tableData4 from './fixtures/4_sample_data'
 import { DataId, Table, TableProps } from '.'
+import { Meta, StoryFn } from '@storybook/react'
 import React, { Key, useState } from 'react'
 import tableData0, { Person } from './fixtures/0_sample_data'
 import tableData1, { File } from './fixtures/1_sample_data'
@@ -71,7 +71,7 @@ const DecoratedTableStory = <Data extends DataId>(props: TableProps<Data>) => {
 	)
 }
 
-const SimpleTemplate: Story<TableProps<Person>> = args => (
+const SimpleTemplate: StoryFn<TableProps<Person>> = args => (
 	<Table<Person> {...args} />
 )
 export const Simple = SimpleTemplate.bind({})

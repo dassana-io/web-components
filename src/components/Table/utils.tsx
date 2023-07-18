@@ -461,7 +461,7 @@ const renderIcon = <TableData,>({
 		const labelVal =
 			typeof record === 'string'
 				? labelKey
-				: (getJSONPathValue(jsonPath, record) as string) // eslint-disable-line no-mixed-spaces-and-tabs
+				: (getJSONPathValue(jsonPath, record) as string)
 
 		return (
 			<IconCell
