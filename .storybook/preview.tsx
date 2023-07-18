@@ -1,17 +1,14 @@
 import './index.css'
 import cn from 'classnames'
-// import document from 'global/document'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import isChromatic from 'chromatic/isChromatic'
 import { StoryFn } from '@storybook/react'
-// import { StoryContext } from '@storybook/addons'
 import {
 	themes,
 	Theme,
 	ThemeType
 } from '../src/components/assets/styles/themes'
 import { createUseStyles, ThemeProvider, useTheme } from 'react-jss'
-// import { withCssResources } from '@storybook/addon-cssresources'
 import React, { FC, ReactNode, useEffect } from 'react'
 
 enum LayoutTypes {

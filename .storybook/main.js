@@ -16,7 +16,4 @@ module.exports = {
 	docs: {
 		autodocs: true
 	}
-	// features: {
-	// 	storyStoreV7: false // 👈 Opt out of on-demand story loading
-	// }
 }
