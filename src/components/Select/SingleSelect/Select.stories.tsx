@@ -9,7 +9,7 @@ import {
 	iconOptions,
 	textOverflowOptions
 } from '../fixtures/sample_options'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC } from 'react'
 
 export default {

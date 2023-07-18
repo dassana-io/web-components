@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeType } from '../assets/styles'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import { SVGImage, SVGImageProps } from './index'
 import svgImageMap, { ImageTypes } from './fixtures/mockSVGImageMap'
 

@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import { createUseStyles } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC, ReactNode } from 'react'
 import { TabConfig, Tabs, TabsProps } from './index'
 import { themedStyles, ThemeType } from 'components/assets/styles'

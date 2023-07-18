@@ -4,13 +4,19 @@ module.exports = {
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
 		'@storybook/addon-actions',
-		'@storybook/preset-create-react-app',
-		'@storybook/addon-cssresources'
+		'@storybook/addon-mdx-gfm'
 	],
-	core: {
-		builder: 'webpack5'
+	framework: {
+		name: '@storybook/react-vite',
+		options: {}
 	},
 	typescript: {
 		reactDocgen: false
+	},
+	docs: {
+		autodocs: true
 	}
+	// features: {
+	// 	storyStoreV7: false // 👈 Opt out of on-demand story loading
+	// }
 }

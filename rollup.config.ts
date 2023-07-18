@@ -6,7 +6,7 @@ import pkg from './package.json'
 import resolve from '@rollup/plugin-node-resolve'
 import styles from 'rollup-plugin-styles'
 import svgr from '@svgr/rollup'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 
 const assetFileNames = '[name]-[hash][extname]'

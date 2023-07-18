@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { Button, ButtonProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -14,7 +14,7 @@ export default {
 	title: 'Button'
 } as Meta
 
-const Template: Story<ButtonProps> = args => (
+const Template: StoryFn<ButtonProps> = args => (
 	<Button {...args}>{args.children}</Button>
 )
 

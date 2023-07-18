@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import { ColoredDot, ColoredDotProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, StoryFn } from '@storybook/react'
 import React, { FC } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
@@ -40,7 +40,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-const Template: Story<ColoredDotProps> = args => <DecoratedStory {...args} />
+const Template: StoryFn<ColoredDotProps> = args => <DecoratedStory {...args} />
 
 export const Colored = Template.bind({})
 Colored.args = {

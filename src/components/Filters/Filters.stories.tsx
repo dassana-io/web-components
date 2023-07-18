@@ -4,7 +4,7 @@ import omit from 'lodash/omit'
 import { Filters, FiltersMode, FiltersProps } from '.'
 import { filtersConfig, mockFilterOptions } from './fixtures/0_sample_data'
 import { FiltersList, UseFiltersMethods } from './types'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { useRef } from 'react'
 
 export default {

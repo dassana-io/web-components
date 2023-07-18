@@ -4,7 +4,7 @@ import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import treeData from '../Tree/fixtures/0_sample_data'
 import { Form, FormProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 
 export default {
 	argTypes: {

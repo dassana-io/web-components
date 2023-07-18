@@ -5,7 +5,7 @@ import { placementOptions } from '../utils'
 import { SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import { Popover, PopoverProps } from './index'
 import React, { FC } from 'react'
 

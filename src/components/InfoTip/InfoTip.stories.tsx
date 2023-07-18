@@ -2,7 +2,7 @@ import { placementOptions } from '../utils'
 import { SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
 import { InfoTip, InfoTipProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC } from 'react'
 
 export default {

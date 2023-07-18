@@ -4,7 +4,7 @@ import { IconButton } from 'components/IconButton'
 import React from 'react'
 import { Tooltip } from 'components/Tooltip'
 import { Input, InputProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 
 export default {
 	argTypes: {

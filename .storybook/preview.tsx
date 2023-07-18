@@ -1,17 +1,17 @@
 import './index.css'
 import cn from 'classnames'
-import document from 'global/document'
+// import document from 'global/document'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import isChromatic from 'chromatic/isChromatic'
-import { Story } from '@storybook/react/types-6-0'
-import { StoryContext } from '@storybook/addons'
+import { StoryFn } from '@storybook/react'
+// import { StoryContext } from '@storybook/addons'
 import {
 	themes,
 	Theme,
 	ThemeType
 } from '../src/components/assets/styles/themes'
 import { createUseStyles, ThemeProvider, useTheme } from 'react-jss'
-import { withCssResources } from '@storybook/addon-cssresources'
+// import { withCssResources } from '@storybook/addon-cssresources'
 import React, { FC, ReactNode, useEffect } from 'react'
 
 enum LayoutTypes {
@@ -109,8 +109,8 @@ const ThemedBlock: FC<ThemedBlockProps> = ({
 
 /* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
 const ThemeDecorator = (
-	ComponentStory: Story,
-	{ globals: { theme = light } }: StoryContext
+	ComponentStory: StoryFn,
+	{ globals: { theme = light } }: any
 ) => {
 	const classes = useStyles()
 
@@ -169,4 +169,4 @@ export const globalTypes = {
 	}
 }
 
-export const decorators = [withCssResources, ThemeDecorator]
+export const decorators = [ThemeDecorator]

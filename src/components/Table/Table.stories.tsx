@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions'
-import { Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import tableData4 from './fixtures/4_sample_data'
 import { DataId, Table, TableProps } from '.'
 import React, { Key, useState } from 'react'
@@ -266,3 +266,9 @@ export const MultipleIconsAndJSONPath = MultipleIconsAndJSONPathTemplate.bind(
 )
 MultipleIconsAndJSONPath.args = tableData7
 MultipleIconsAndJSONPath.argTypes = commonArgTypes
+
+const meta: Meta<typeof Table> = {
+	component: Table
+}
+
+export default meta

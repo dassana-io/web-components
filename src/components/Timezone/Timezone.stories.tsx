@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC } from 'react'
 import { Timezone, TimezoneProps } from './index'
 

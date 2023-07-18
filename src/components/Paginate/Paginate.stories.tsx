@@ -1,6 +1,6 @@
 import { Paginate } from './index'
 import React from 'react'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import tableData4, { File } from '../Table/fixtures/4_sample_data'
 
 export default {

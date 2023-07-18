@@ -1,7 +1,8 @@
 import { action } from '@storybook/addon-actions'
+import noop from 'lodash/noop'
 import React from 'react'
 import { Code, CodeProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -14,7 +15,7 @@ export default {
 	title: 'Code'
 } as Meta
 
-const Template: Story<CodeProps> = args => <Code {...args} />
+const Template: StoryFn<CodeProps> = args => <Code {...args} />
 
 /* eslint-disable sort-keys */
 const sampleJSON = {
@@ -61,6 +62,7 @@ export const Default = Template.bind({})
 Default.args = {
 	code: sampleJSON,
 	height: '900px',
+	onChange: noop,
 	readOnly: false,
 	width: '900px'
 }

@@ -1,6 +1,6 @@
 import { EnterOutlined } from '@ant-design/icons'
 import React from 'react'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import { ShortcutMicrocopy, ShortcutMicrocopyProps } from './index'
 
 export default {

@@ -4,7 +4,7 @@ import { SbTheme } from '../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { useTheme } from 'react-jss'
 import { DateRangeInput, DateRangeInputProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC } from 'react'
 
 export default {

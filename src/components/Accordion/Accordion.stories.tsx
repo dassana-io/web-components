@@ -2,7 +2,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { styleguide } from 'components/assets/styles'
 import { Accordion, AccordionProps, Panel } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC, ReactNode } from 'react'
 
 const { font, spacing } = styleguide

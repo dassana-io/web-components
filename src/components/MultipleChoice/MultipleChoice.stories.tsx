@@ -3,7 +3,7 @@ import { SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { themedModalStyles } from 'components/Modal/utils'
 import { createUseStyles, useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import { MultipleChoice, MultipleChoiceProps } from './index'
 import React, { FC, Fragment, useRef } from 'react'
 

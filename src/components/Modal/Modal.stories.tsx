@@ -4,7 +4,7 @@ import { ModalConfig } from './utils'
 import React from 'react'
 import { SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import { ModalProvider, useModal } from './index'
 const mockEmitter = new Emitter()
 

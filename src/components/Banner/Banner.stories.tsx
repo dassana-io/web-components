@@ -3,7 +3,7 @@ import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React from 'react'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { Banner, BannerProps } from '.'
-import { Meta, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 const { error, info, success, warning } = NotificationTypes
 
@@ -50,7 +50,7 @@ const DecoratedBannerStory = ({ ...rest }: BannerProps) => {
 	)
 }
 
-const BannerTemplate: Story<BannerProps> = args => (
+const BannerTemplate: StoryFn<BannerProps> = args => (
 	<DecoratedBannerStory {...args} />
 )
 

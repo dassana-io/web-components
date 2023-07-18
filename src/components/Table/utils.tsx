@@ -431,7 +431,7 @@ const renderIcon = <TableData,>({
 	data,
 	record,
 	renderProps
-}: RenderIconProps<TableData>) => {
+}: RenderIconProps<TableData>): ReactNode => {
 	const { iconKey, height = defaultIconHeight, label } = renderProps
 
 	const jsonPath = iconKey ? `$.${iconKey}` : ''
@@ -446,7 +446,8 @@ const renderIcon = <TableData,>({
 		height
 	}
 
-	if (renderProps.type === 'icon' && !iconProps.icon) return record
+	if (renderProps.type === 'icon' && !iconProps.icon)
+		return record as ReactNode
 
 	if (!label) return <IconCell iconProps={iconProps} />
 

@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import React from 'react'
-import { Story } from '@storybook/react/types-6-0'
+import { StoryFn } from '@storybook/react'
 import { styleguide, themes, ThemeType } from '../src/components/assets/styles'
 
 const { spacing } = styleguide
@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
 	}
 })
 
-export const SecondaryBgDecorator = (CompStory: Story) => {
+export const SecondaryBgDecorator = (CompStory: StoryFn) => {
 	const classes = useStyles()
 
 	return (

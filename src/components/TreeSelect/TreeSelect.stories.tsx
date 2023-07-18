@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions'
 import { SbTheme } from '../../../.storybook/preview'
 import treeData0 from '../Tree/fixtures/0_sample_data'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 import React, { FC } from 'react'
 import { TreeSelect, TreeSelectProps } from './index'
 

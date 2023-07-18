@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions'
 import { multipleChoiceItems } from 'components/MultipleChoice/fixtures'
 import React from 'react'
 import { Form, FormProps } from '../index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react'
 
 export default {
 	argTypes: {

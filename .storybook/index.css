@@ -1,6 +1,6 @@
 /* This is the global dassana stylesheet. It should match the global stylesheet in web-orchestrator. */
 
-@import '~normalize.css';
+/* @import '~normalize.css'; */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap');
 
