@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.6.2",
-		"@dassana-io/web-utils": "^0.11.20",
+		"@dassana-io/web-utils": "^0.11.22",
 		"@dnd-kit/core": "^6.0.8",
 		"@dnd-kit/modifiers": "^6.0.1",
 		"@dnd-kit/sortable": "^7.0.2",
