@@ -67,6 +67,10 @@ export interface UseTabsMethods {
 export interface TabsProps {
 	activeTabClasses?: string[]
 	classes?: string[]
+	/**
+	 * Component to render in place of + icon for adding new tabs
+	 */
+	customAddTabComponent?: ReactNode
 	defaultActiveIndex?: number
 	/**
 	 * Only render content if tab pane is active. This should be set to true for content that renders
@@ -90,6 +94,7 @@ export interface TabsProps {
 export const Tabs: FC<TabsProps> = ({
 	activeTabClasses = [],
 	classes = [],
+	customAddTabComponent,
 	defaultActiveIndex = 0,
 	forceRender = false,
 	onAddNewTab,
@@ -140,9 +145,16 @@ export const Tabs: FC<TabsProps> = ({
 					<></>
 				)
 			) : (
-				<IconButton icon={faPlus} onClick={handleAddNewTab} />
+				customAddTabComponent ?? (
+					<IconButton icon={faPlus} onClick={handleAddNewTab} />
+				)
 			),
-		[handleAddNewTab, tabConfig, tabsLimitConfig]
+		[
+			customAddTabComponent,
+			handleAddNewTab,
+			tabConfig.length,
+			tabsLimitConfig
+		]
 	)
 
 	const renderTabItems = () => {
@@ -198,7 +210,7 @@ export const Tabs: FC<TabsProps> = ({
 			/>
 		))
 
-	if (!(tabConfig.length || onAddNewTab)) {
+	if (!(tabConfig.length || onAddNewTab || customAddTabComponent)) {
 		throw new Error('Tab config should have at least one item in the array')
 	}
 
