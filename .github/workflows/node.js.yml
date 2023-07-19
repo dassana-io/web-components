@@ -9,7 +9,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v3
               with:
                   always-auth: true
                   node-version: '16.x'
@@ -18,7 +18,7 @@ jobs:
             - name: Run install, lint, and build
               run: |
                   npm install --legacy-peer-deps
-                  npx eslint src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0
+                  npm run lint
                   npm run build
               env:
                   CI: true
