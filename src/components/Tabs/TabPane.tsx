@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
-import { TabConfig } from '.'
+import { type TabConfig } from '.'
 import { domAnimation, LazyMotion, m as motion } from 'framer-motion'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { font, spacing } = styleguide
 

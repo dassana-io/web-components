@@ -1,6 +1,6 @@
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
-import { TruncatedText, TruncatedTextProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import { TruncatedText, type TruncatedTextProps } from './index'
 
 export default {
 	component: TruncatedText,

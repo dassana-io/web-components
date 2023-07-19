@@ -1,6 +1,6 @@
 import React from 'react'
-import { mount, shallow, ShallowWrapper } from 'enzyme'
-import { Skeleton, SkeletonProps } from './index'
+import { mount, shallow, type ShallowWrapper } from 'enzyme'
+import { Skeleton, type SkeletonProps } from './index'
 
 let wrapper: ShallowWrapper<SkeletonProps>
 

@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { IconButton, IconButtonProps, IconSizes } from './index'
-import { Meta, Story } from '@storybook/react'
+import { IconButton, type IconButtonProps, IconSizes } from './index'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

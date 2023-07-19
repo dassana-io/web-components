@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, type ReactWrapper } from 'enzyme'
 import TreeSkeleton, { TreeNodeSkeleton } from '../TreeSkeleton'
 
 declare global {
@@ -12,7 +12,7 @@ declare global {
 }
 
 expect.extend({
-	toBeWithinRange(received, floor, ceiling) {
+	toBeWithinRange (received, floor, ceiling) {
 		const pass = received >= floor && received <= ceiling
 		if (pass) {
 			return {

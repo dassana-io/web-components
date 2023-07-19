@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { getDataTestAttributeProp } from 'components/utils'
-import { ShortcutMicrocopyProps } from './types'
+import { type ShortcutMicrocopyProps } from './types'
 import { Skeleton } from 'components/Skeleton'
 import { getShortcutKeyItem, useStyles } from './utils'
-import React, { FC, Fragment } from 'react'
+import React, { type FC, Fragment } from 'react'
 
 export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 	classes = [],
@@ -43,9 +43,11 @@ export const ShortcutMicrocopy: FC<ShortcutMicrocopyProps> = ({
 			{...getDataTestAttributeProp('shortcut-microcopy', dataTag)}
 			{...optionalProps}
 		>
-			{loading ? (
+			{loading
+? (
 				<Skeleton height={32} width={skeletonWidth} />
-			) : (
+			)
+: (
 				<div className={componentClasses.wrapper}>
 					{!hideLabel && (
 						<span className={componentClasses.label}>

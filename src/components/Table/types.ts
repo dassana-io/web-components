@@ -1,11 +1,11 @@
-import { ColumnType as AntDColumnType } from 'antd/es/table'
-import { ColoredDotProps } from '../ColoredDot'
-import { LinkProps } from '../Link'
-import { SelectOption } from 'components/Select'
-import { SharedIconProps } from '../Icon'
-import { TableMethods } from './utils'
-import { ThemeType } from 'components/assets/styles'
-import { Key, ReactNode } from 'react'
+import { type ColumnType as AntDColumnType } from 'antd/es/table'
+import { type ColoredDotProps } from '../ColoredDot'
+import { type LinkProps } from '../Link'
+import { type SelectOption } from 'components/Select'
+import { type SharedIconProps } from '../Icon'
+import { type TableMethods } from './utils'
+import { type ThemeType } from 'components/assets/styles'
+import { type Key, type ReactNode } from 'react'
 
 export enum ColumnTypes {
 	string = 'string',
@@ -143,14 +143,12 @@ interface SharedCompIconType extends SharedIconProps {
 	/**
 	 * Whether to render a label with the icon or not.
 	 */
-	label?: { labelKey?: string; type: IconCellLabelType }
+	label?: { labelKey?: string, type: IconCellLabelType }
 }
 
 export interface RenderPropsIconMap extends SharedCompIconType {
 	type: 'icon'
-	iconMap: {
-		[key: string]: string
-	}
+	iconMap: Record<string, string>
 }
 
 export interface RenderPropsIconBuildHref extends SharedCompIconType {

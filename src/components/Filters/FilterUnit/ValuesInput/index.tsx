@@ -1,6 +1,6 @@
 import { Input } from 'components/Input'
-import { ValuesInputProps } from './types'
-import React, { ChangeEvent, FC } from 'react'
+import { type ValuesInputProps } from './types'
+import React, { type ChangeEvent, type FC } from 'react'
 
 export const ValuesInput: FC<ValuesInputProps> = ({
 	id,

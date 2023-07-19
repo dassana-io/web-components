@@ -3,15 +3,15 @@ import moment from 'moment'
 import React from 'react'
 import { TableSkeleton } from '../TableSkeleton'
 import { Input as AntDInput, Table as AntDTable } from 'antd'
-import mockData, { Data, dateFormat } from '__mocks__/table_mock_data'
-import mockData0, { Person } from '../fixtures/0_sample_data'
-import mockData1, { File } from '../fixtures/4_sample_data'
-import mockData2, { JSONPathData } from '../fixtures/7_sample_data'
-import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
-import { Table, TableProps } from '..'
+import mockData, { type Data, dateFormat } from '__mocks__/table_mock_data'
+import mockData0, { type Person } from '../fixtures/0_sample_data'
+import mockData1, { type File } from '../fixtures/4_sample_data'
+import mockData2, { type JSONPathData } from '../fixtures/7_sample_data'
+import { mount, type ReactWrapper, shallow, type ShallowWrapper } from 'enzyme'
+import { Table, type TableProps } from '..'
 
 /* Helper functions */
-export function createTable<Data>(tableProps: TableProps<Data>) {
+export function createTable<Data> (tableProps: TableProps<Data>) {
 	return (
 		<div>
 			<Table<Data> {...tableProps} />
@@ -19,14 +19,14 @@ export function createTable<Data>(tableProps: TableProps<Data>) {
 	)
 }
 
-export function renderedData(wrapper: ReactWrapper, dataIndex = '') {
+export function renderedData (wrapper: ReactWrapper, dataIndex = '') {
 	const bodyRow = wrapper.find('BodyRow')
 
 	if (dataIndex) {
-		// @ts-ignore
+		// @ts-expect-error
 		return bodyRow.map(row => row.props().record[dataIndex])
 	} else {
-		// @ts-ignore
+		// @ts-expect-error
 		return bodyRow.map(row => row.props().record)
 	}
 }
@@ -37,7 +37,7 @@ interface FormatDateParams {
 	unixTS: number
 }
 
-export function formatDate({
+export function formatDate ({
 	unixTS,
 	displayFormat = '',
 	fromNow = false
@@ -66,17 +66,17 @@ describe('Table', () => {
 	})
 
 	it('renders table with a table header and a table body', () => {
-		const table = wrapper.find(Table),
-			tableHead = table.find('thead'),
-			tableBody = table.find('tbody')
+		const table = wrapper.find(Table)
+			const tableHead = table.find('thead')
+			const tableBody = table.find('tbody')
 
 		expect(tableHead).toHaveLength(1)
 		expect(tableBody).toHaveLength(1)
 	})
 
 	it('renders table rows with react keys if IDs are not provided in data objects', () => {
-		const table = wrapper.find(Table),
-			tableBody = table.find('tbody')
+		const table = wrapper.find(Table)
+			const tableBody = table.find('tbody')
 
 		expect(tableBody.find('tr')).toHaveLength(5)
 
@@ -118,7 +118,7 @@ describe('Table', () => {
 
 		wrapper = mount(
 			createTable<JSONPathData>({
-				columns: columns,
+				columns,
 				data: [data[0]]
 			})
 		)
@@ -210,7 +210,7 @@ describe('Table search and searchProps', () => {
 		const searchBar = table.find('input')
 
 		searchBar.simulate('change', { target: { value: 'lo' } })
-		await act(() => new Promise(r => setTimeout(r, 250)))
+		await act(async () => await new Promise(r => setTimeout(r, 250)))
 		wrapper.update()
 
 		expect(renderedData(wrapper)).toHaveLength(2)

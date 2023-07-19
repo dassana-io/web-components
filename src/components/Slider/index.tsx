@@ -1,9 +1,9 @@
 import 'antd/lib/slider/style/index.css'
 import { Slider as AntDSlider } from 'antd'
-import { SliderMarks } from 'antd/lib/slider'
-import { TooltipPlacement } from 'antd/es/tooltip'
+import { type SliderMarks } from 'antd/lib/slider'
+import { type TooltipPlacement } from 'antd/es/tooltip'
 import { useSliderStyles } from './styles'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 export interface SliderProps {
 	alwaysShowTooltip?: boolean

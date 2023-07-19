@@ -1,7 +1,7 @@
-import { BaseFormElementProps } from '../../types'
-import { IconName } from '../../Icon'
-import { SizeType } from 'antd/lib/config-provider/SizeContext'
-import { CSSProperties, ReactNode } from 'react'
+import { type BaseFormElementProps } from '../../types'
+import { type IconName } from '../../Icon'
+import { type SizeType } from 'antd/lib/config-provider/SizeContext'
+import { type CSSProperties, type ReactNode } from 'react'
 
 export interface SelectOption {
 	classes?: string[]

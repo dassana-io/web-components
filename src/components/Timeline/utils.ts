@@ -45,7 +45,7 @@ export const generateThemedWrapperStyles = (themeType: ThemeType) => {
 	} = themedStyles[themeType]
 
 	return {
-		color: color
+		color
 	}
 }
 
@@ -56,6 +56,6 @@ export const generateThemedTimelineItemStyles = (themeType: ThemeType) => {
 
 	return {
 		border: `1px solid ${borderColor}`,
-		color: color
+		color
 	}
 }

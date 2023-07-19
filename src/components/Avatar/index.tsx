@@ -1,8 +1,8 @@
 import 'antd/lib/avatar/style/index.css'
 import { Avatar as AntDAvatar } from 'antd'
-import { AvatarProps as AntDAvatarProps } from 'antd/lib/avatar'
+import { type AvatarProps as AntDAvatarProps } from 'antd/lib/avatar'
 import { createUseStyles } from 'react-jss'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark } = ThemeType

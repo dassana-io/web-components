@@ -1,4 +1,4 @@
-import { SelectOption } from '../SingleSelect'
+import { type SelectOption } from '../SingleSelect'
 
 export const basicOptions: SelectOption[] = [
 	{ text: 'Lorem', value: 'lorem' },

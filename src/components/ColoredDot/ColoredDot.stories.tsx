@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
-import { ColoredDot, ColoredDotProps } from '.'
-import { Meta, StoryFn } from '@storybook/react'
-import React, { FC } from 'react'
+import { ColoredDot, type ColoredDotProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
+import React, { type FC } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const { light, dark } = ThemeType

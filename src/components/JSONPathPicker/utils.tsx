@@ -1,10 +1,10 @@
-import { Classes } from './styles'
+import { type Classes } from './styles'
 import cn from 'classnames'
 import { getJSONPathArr } from 'components/utils'
 import isEmpty from 'lodash/isEmpty'
 import isNull from 'lodash/isNull'
-import { JSONValue } from '.'
-import React, { ReactNode } from 'react'
+import { type JSONValue } from '.'
+import React, { type ReactNode } from 'react'
 
 enum Relationship {
 	other,
@@ -89,7 +89,7 @@ const renderArray = ({
 	currPath,
 	remainingJSON
 }: RenderParams): ReactNode => {
-	const arr = remainingJSON as Record<string, JSONValue>[]
+	const arr = remainingJSON as Array<Record<string, JSONValue>>
 	const relation = getPathRelationship(currPath, pickedPath)
 
 	const pickedItemClasses = cn({
@@ -256,9 +256,11 @@ const mappedTypesToRenderFns = {
 }
 
 export const getJSONValueType = (json: RemainingJSON) => {
-	if (isNull(json)) return nullType
-	else if (Array.isArray(json)) return array
-	else {
+	if (isNull(json)) {
+		return nullType
+	} else if (Array.isArray(json)) {
+		return array
+	} else {
 		const type = typeof json
 
 		switch (type) {

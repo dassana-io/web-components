@@ -3,8 +3,8 @@ import { getDataTestAttributeProp } from 'components/utils'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import MultipleChoiceSkeleton from './MultipleChoiceSkeleton'
 import { isEnglishAlphabet, useStyles } from './utils'
-import { KeysPressedMap, SharedProps } from './types'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import { type KeysPressedMap, type SharedProps } from './types'
+import React, { type FC, useEffect, useRef, useState } from 'react'
 
 interface SharedBaseProps extends Omit<SharedProps, 'mode'> {
 	onSelectedChange: (value: string) => void
@@ -83,7 +83,7 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 			delete keysPressedMap.current[e.key]
 		}
 
-		const eventTargetRef = getEventTarget && getEventTarget()
+		const eventTargetRef = getEventTarget?.()
 
 		// Attach event listener to the event target if one is provided, otherwise attach it to the window
 		if (eventTargetRef && eventTargetRef.current) {
@@ -107,10 +107,11 @@ export const BaseMultipleChoice: FC<BaseMultipleChoiceProps> = ({
 		}
 	}, [currentFocus, getEventTarget, items, onSelectedChange])
 
-	if (items.length > 26)
+	if (items.length > 26) {
 		throw new Error(
 			'There can be no more than 26 items in a multiple choice component.'
 		)
+	}
 
 	return (
 		<div className={cn(componentClasses.container, classes)}>

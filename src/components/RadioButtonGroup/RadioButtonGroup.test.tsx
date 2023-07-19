@@ -3,7 +3,7 @@ import { basicOptions } from './fixtures/sample_options'
 import { RadioButtonGroup } from './index'
 import React from 'react'
 import { Skeleton } from '../Skeleton'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 

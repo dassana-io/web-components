@@ -3,7 +3,7 @@ import random from 'lodash/random'
 import { Skeleton } from '../Skeleton'
 import { styleguide } from 'components/assets/styles'
 import times from 'lodash/times'
-import React, { FC, Fragment, Key } from 'react'
+import React, { type FC, Fragment, type Key } from 'react'
 
 const { flexAlignCenter } = styleguide
 

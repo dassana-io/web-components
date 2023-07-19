@@ -1,6 +1,6 @@
 import React from 'react'
-import { Markdown, MarkdownProps } from '.'
-import { Meta, Story } from '@storybook/react'
+import { Markdown, type MarkdownProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

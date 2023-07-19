@@ -1,9 +1,9 @@
 import { Icon as DassanaIcon } from '../Icon'
 import React from 'react'
-import { Avatar, AvatarProps } from './index'
-import { Meta, StoryFn } from '@storybook/react'
+import { Avatar, type AvatarProps } from './index'
+import { type Meta, type StoryFn } from '@storybook/react'
 
-const sizeOptions: Omit<AvatarProps['size'], number>[] = [
+const sizeOptions: Array<Omit<AvatarProps['size'], number>> = [
 	'default',
 	'large',
 	'small'

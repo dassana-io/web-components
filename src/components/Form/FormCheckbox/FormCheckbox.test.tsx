@@ -3,11 +3,11 @@ import { Controller } from 'react-hook-form'
 import { defaultFieldWidth } from 'components/assets/styles/styleguide'
 import FieldContext from '../FieldContext'
 import React from 'react'
-import FormCheckbox, { FormCheckboxProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import FormCheckbox, { type FormCheckboxProps } from './index'
+import { mount, type ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),

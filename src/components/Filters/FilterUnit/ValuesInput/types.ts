@@ -1,4 +1,4 @@
-import { FiltersListItem } from '../../types'
+import { type FiltersListItem } from '../../types'
 
 export interface ValuesInputProps
 	extends Pick<FiltersListItem, 'id' | 'selectedKey' | 'selectedValues'> {

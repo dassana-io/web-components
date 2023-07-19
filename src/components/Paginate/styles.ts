@@ -1,4 +1,4 @@
-import { styleguide, themedStyles, ThemeType } from '../assets/styles'
+import { styleguide, themedStyles, type ThemeType } from '../assets/styles'
 
 const { borderRadius } = styleguide
 

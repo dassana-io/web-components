@@ -1,7 +1,7 @@
-import { AdditionalPaletteColors } from './types'
+import { type AdditionalPaletteColors } from './types'
 import { createUseStyles } from 'react-jss'
 import { generateThemedCheckboxStyles } from 'components/Checkbox/utils'
-import { SearchProps, TableProps } from '.'
+import { type SearchProps, type TableProps } from '.'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {

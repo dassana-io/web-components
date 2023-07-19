@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss'
-import { TagProps } from 'components/Tag'
+import { type TagProps } from 'components/Tag'
 import {
 	defaultFieldWidth,
 	styleguide
@@ -13,7 +13,7 @@ export const getInitialValues = (
 ) => {
 	if (values) return values
 
-	return defaultValues ? defaultValues : []
+	return defaultValues ?? []
 }
 
 export const getInputValue = (
@@ -24,14 +24,12 @@ export const getInputValue = (
 
 // -----------------------------------
 
-interface GetTagDeletionProps {
-	(
-		value: string,
-		undeleteableValues: string[],
-		onDelete: (value: string) => void,
-		disabled: boolean
-	): Pick<TagProps, 'deletable' | 'onDelete'>
-}
+type GetTagDeletionProps = (
+	value: string,
+	undeleteableValues: string[],
+	onDelete: (value: string) => void,
+	disabled: boolean
+) => Pick<TagProps, 'deletable' | 'onDelete'>
 export const getTagDeletionProps: GetTagDeletionProps = (
 	value,
 	undeleteableValues,

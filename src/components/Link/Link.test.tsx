@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, LinkProps } from '.'
-import { mount, ReactWrapper } from 'enzyme'
+import { Link, type LinkProps } from '.'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 let mockClick: jest.Mock<void>

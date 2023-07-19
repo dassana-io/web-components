@@ -1,6 +1,6 @@
 import { Input } from 'components/Input'
-import { JSONPathPicker, JSONPathPickerProps } from '.'
-import { Meta, StoryFn } from '@storybook/react'
+import { JSONPathPicker, type JSONPathPickerProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { useState } from 'react'
 
 export default {

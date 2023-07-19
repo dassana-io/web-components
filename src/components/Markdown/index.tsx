@@ -8,7 +8,7 @@ import {
 	generateThemedMarkdownPreStyles,
 	generateThemedMarkdownStyles
 } from './styles'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { font, fontWeight } = styleguide

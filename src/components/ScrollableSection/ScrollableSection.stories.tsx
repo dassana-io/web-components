@@ -2,8 +2,8 @@ import { Button } from 'components/Button'
 import { createUseStyles } from 'react-jss'
 import React from 'react'
 import { styleguide } from 'components/assets/styles'
-import { Meta, Story } from '@storybook/react'
-import { ScrollableSection, ScrollableSectionProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { ScrollableSection, type ScrollableSectionProps } from '.'
 import { ScrollDirections, scrollOnClick } from './utils'
 
 const { flexCenter } = styleguide

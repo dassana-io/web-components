@@ -1,6 +1,6 @@
 import findIndex from 'lodash/findIndex'
-import { TabConfig } from './index'
-import { themedStyles, themes, ThemeType } from 'components/assets/styles'
+import { type TabConfig } from './index'
+import { themedStyles, themes, type ThemeType } from 'components/assets/styles'
 
 export const generateThemedTabsListStyles = (themeType: ThemeType) => {
 	const {

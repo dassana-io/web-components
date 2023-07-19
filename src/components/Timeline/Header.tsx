@@ -1,9 +1,9 @@
 import { createUseStyles } from 'react-jss'
 import { generateHeaderStyles } from 'components/Accordion/utils'
 import { getHeaderBorderRadius } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
-import { TimelineConfig, TimelineState } from './types'
+import { type TimelineConfig, TimelineState } from './types'
 
 const { alwaysExpanded } = TimelineState
 

@@ -1,5 +1,5 @@
 import { createCtx } from '@dassana-io/web-utils'
-import { Key } from 'react'
+import { type Key } from 'react'
 
 export interface MenuContextProps {
 	activeKey?: Key

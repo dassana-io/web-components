@@ -18,18 +18,18 @@ import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { getNonEmptyKVInputPairs } from './utils'
-import { UseFormReturn } from 'react-hook-form/dist/types/form'
+import { type UseFormReturn } from 'react-hook-form/dist/types/form'
 import {
-	DeepPartial,
-	FieldValues,
+	type DeepPartial,
+	type FieldValues,
 	FormProvider,
-	SubmitHandler,
+	type SubmitHandler,
 	useForm,
 	useFormContext
 } from 'react-hook-form'
 import React, {
-	ReactNode,
-	RefObject,
+	type ReactNode,
+	type RefObject,
 	useEffect,
 	useImperativeHandle
 } from 'react'
@@ -52,7 +52,7 @@ export interface FormProps<Model extends FieldValues> {
 	onSubmit: SubmitHandler<FieldValues>
 }
 
-export function Form<Model extends FieldValues>({
+export function Form<Model extends FieldValues> ({
 	children,
 	disabled = false,
 	formContainerClasses = [],

@@ -1,11 +1,11 @@
 import isEmpty from 'lodash/isEmpty'
-import { SelectOption } from '../../Select'
+import { type SelectOption } from '../../Select'
 import { unstable_batchedUpdates } from 'react-dom'
 import { formatFilterValsToSelectOpts, processFilters } from '../utils'
 import {
-	OnSearchWrapper,
-	ProcessedFilters,
-	ServerSideFiltersProps
+	type OnSearchWrapper,
+	type ProcessedFilters,
+	type ServerSideFiltersProps
 } from '../types'
 import { useCallback, useEffect, useState } from 'react'
 

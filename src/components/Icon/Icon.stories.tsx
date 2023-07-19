@@ -1,6 +1,6 @@
 import React from 'react'
-import { Icon, IconProps } from '.'
-import { Meta, Story } from '@storybook/react'
+import { Icon, type IconProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

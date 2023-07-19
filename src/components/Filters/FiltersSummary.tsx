@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import { filterSelectedFilters } from './utils'
-import { FiltersList } from './types'
+import { type FiltersList } from './types'
 import { IconCell } from 'components/Table/IconCell'
 import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
@@ -9,7 +9,7 @@ import { Tooltip } from 'components/Tooltip'
 import truncate from 'lodash/truncate'
 import { useFiltersContext } from './FiltersContext'
 import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { font, spacing } = styleguide
 
@@ -144,7 +144,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 							config[selectedKey] &&
 							config[selectedKey].iconMap
 						) {
-							const iconMap = config[selectedKey].iconMap || {}
+							const iconMap = config[selectedKey].iconMap ?? {}
 
 							values = selectedValues.map(({ text, value }) =>
 								// If value exists in the iconMap, render the icon.
@@ -195,7 +195,7 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 						)
 					}
 				)}
-				{filtersListToHide.length ? (
+				{filtersListToHide.length > 0 ? (
 					<span className={classes.filterReadOnly}>
 						{filtersListToHide.length} more
 					</span>

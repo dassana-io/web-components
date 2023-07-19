@@ -1,9 +1,9 @@
 import { createUseStyles } from 'react-jss'
 import { faInfoCircle } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { themes, ThemeType } from '../assets/styles'
-import { Tooltip, TooltipProps } from 'components/Tooltip'
+import { Tooltip, type TooltipProps } from 'components/Tooltip'
 
 const { dark, light } = ThemeType
 

@@ -4,7 +4,7 @@ import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType

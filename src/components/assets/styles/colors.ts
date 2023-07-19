@@ -208,13 +208,11 @@ const percentages: Record<string, any> = {
 	}
 }
 
-interface GenerateColors {
-	(
+type GenerateColors = (
 		baseColor: string,
 		type: ColorManipulationTypes.shade | ColorManipulationTypes.tint,
 		percentArr: number[]
-	): Record<string, string>
-}
+	) => Record<string, string>
 
 const generateColors: GenerateColors = (baseColor, type, percentArr = []) => {
 	const colors = {} as Record<string, string>

@@ -12,9 +12,9 @@ import {
 	TabParams
 } from './utils'
 import React, {
-	FC,
-	ReactNode,
-	RefObject,
+	type FC,
+	type ReactNode,
+	type RefObject,
 	useCallback,
 	useImperativeHandle,
 	useState
@@ -210,7 +210,9 @@ export const Tabs: FC<TabsProps> = ({
 			/>
 		))
 
-	if (!(tabConfig.length || onAddNewTab || customAddTabComponent)) {
+	if (
+		!(tabConfig.length > 0 || onAddNewTab != null || customAddTabComponent)
+	) {
 		throw new Error('Tab config should have at least one item in the array')
 	}
 

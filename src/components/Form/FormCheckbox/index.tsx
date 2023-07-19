@@ -1,17 +1,17 @@
-import { BaseFieldProps } from '../types'
-import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import { type BaseFieldProps } from '../types'
+import { type CheckboxChangeEvent } from 'antd/es/checkbox'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
-import { Checkbox, CheckboxProps } from 'components/Checkbox'
+import { Checkbox, type CheckboxProps } from 'components/Checkbox'
 import { Controller, useFormContext } from 'react-hook-form'
 import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type FC, useContext } from 'react'
 
 const { flexAlignCenter, font, spacing } = styleguide
 

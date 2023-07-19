@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { commonListStyles, CommonMenuProps } from './utils'
-import React, { FC } from 'react'
+import { commonListStyles, type CommonMenuProps } from './utils'
+import React, { type FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const {

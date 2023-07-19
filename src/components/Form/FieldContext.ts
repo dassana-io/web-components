@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { FieldValues, SubmitHandler } from 'react-hook-form'
+import { type FieldValues, type SubmitHandler } from 'react-hook-form'
 
 export interface FieldContextProps {
 	disabled: boolean

@@ -1,12 +1,12 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import isEmpty from 'lodash/isEmpty'
 import { Controller, get, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { ChangeEvent, FC, useContext } from 'react'
-import { Select, SelectProps } from 'components/Select/SingleSelect'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type ChangeEvent, type FC, useContext } from 'react'
+import { Select, type SelectProps } from 'components/Select/SingleSelect'
 
 export interface FormSelectProps
 	extends BaseFieldProps,
@@ -51,8 +51,8 @@ const FormSelect: FC<FormSelectProps> = ({
 		if (errorMsg) clearErrors(name)
 	}
 
-	const triggerOnSubmit = (value: ChangeEvent) =>
-		handleSubmit(onSubmit)(value)
+	const triggerOnSubmit = async (value: ChangeEvent) =>
+		await handleSubmit(onSubmit)(value)
 
 	return (
 		<div>
@@ -76,7 +76,7 @@ const FormSelect: FC<FormSelectProps> = ({
 						loading={formLoading || loading}
 						onChange={value => {
 							onChange(value)
-							triggerSubmit && triggerOnSubmit(value)
+							triggerOnSubmit?.(value)
 						}}
 						onFocus={onSelectFocus}
 						value={value}

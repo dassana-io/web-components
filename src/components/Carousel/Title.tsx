@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { font, spacing } = styleguide
 

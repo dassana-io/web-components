@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { generateThemedBannerStyles } from './utils'
 import { IconButton } from 'components/IconButton'
 import { mappedTypesToIcons } from 'components/NotificationV2/utils'
-import { ev as NotificationTypes } from '@dassana-io/web-utils'
-import React, { FC, ReactNode, useState } from 'react'
+import { type ev as NotificationTypes } from '@dassana-io/web-utils'
+import React, { type FC, type ReactNode, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {
@@ -103,7 +103,7 @@ export const Banner: FC<BannerProps> = ({
 	const handleBannerClose = () => {
 		setRenderBanner(false)
 
-		onBannerClose && onBannerClose()
+		onBannerClose?.()
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
-import { Toggle, ToggleProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { Toggle, type ToggleProps } from '.'
 
 export default {
 	argTypes: {

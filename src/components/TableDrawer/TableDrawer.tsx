@@ -2,10 +2,10 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import Drawer from './Drawer'
 import isEmpty from 'lodash/isEmpty'
-import { TableDrawerProps } from './index'
+import { type TableDrawerProps } from './index'
 import { useModal } from 'components/Modal'
 import { useWindowSize } from '@dassana-io/web-utils'
-import { DataId, ProcessedTableData, Table } from '../Table'
+import { type DataId, type ProcessedTableData, Table } from '../Table'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
@@ -77,7 +77,7 @@ export const TableDrawer = <DataType extends DataId>({
 					content: renderDrawerCmp(rowData.id, clickedRowData)
 				})
 
-			return rowData.id === clickedRowData.id
+			rowData.id === clickedRowData.id
 				? resetRowData()
 				: setRowData(clickedRowData)
 		},

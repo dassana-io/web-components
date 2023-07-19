@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useHoverState } from '@dassana-io/web-utils'
-import { AceEditor, Code } from '../Code'
+import { type AceEditor, Code } from '../Code'
 import {
 	COLLAPSED_CONTAINER_HEIGHT,
 	generatedThemedHeightToggleStyles,
@@ -14,8 +14,8 @@ import {
 	faSearch
 } from '@fortawesome/pro-light-svg-icons'
 import React, {
-	FC,
-	ReactNode,
+	type FC,
+	type ReactNode,
 	useCallback,
 	useEffect,
 	useRef,

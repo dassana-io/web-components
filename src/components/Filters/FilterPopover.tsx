@@ -9,9 +9,9 @@ import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
 import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
-import { FiltersList, FiltersListItem } from './types'
+import { type FiltersList, type FiltersListItem } from './types'
 import { IconButton, IconSizes } from '../IconButton'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 interface FilterPopoverProps {
 	closePopover: () => void
@@ -80,7 +80,7 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 						selectedValues,
 						type
 					}) => {
-						const filterOption = allFilters[selectedKey || '']
+						const filterOption = allFilters[selectedKey ?? '']
 
 						return (
 							<FilterUnit

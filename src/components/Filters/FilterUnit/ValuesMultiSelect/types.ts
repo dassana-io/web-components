@@ -1,5 +1,5 @@
-import { SelectOptionsConfig } from '../../../Select'
-import { FilterOption, FiltersListItem } from '../../types'
+import { type SelectOptionsConfig } from '../../../Select'
+import { type FilterOption, type FiltersListItem } from '../../types'
 
 export interface ValuesMultiSelectProps
 	extends Pick<FiltersListItem, 'id' | 'selectedKey' | 'selectedValues'> {

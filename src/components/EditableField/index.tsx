@@ -8,11 +8,11 @@ import { useClickOutside } from '@dassana-io/web-utils'
 import { faPencilAlt, faSave } from '@fortawesome/pro-light-svg-icons'
 import { IconButton, IconSizes } from 'components/IconButton'
 import React, {
-	ChangeEvent,
-	Dispatch,
-	FC,
-	RefObject,
-	SetStateAction,
+	type ChangeEvent,
+	type Dispatch,
+	type FC,
+	type RefObject,
+	type SetStateAction,
 	useCallback,
 	useEffect,
 	useImperativeHandle,
@@ -122,7 +122,9 @@ export const EditableField: FC<EditableFieldProps> = ({
 			if (val.trim()) {
 				onSubmit(val)
 				setIsEditing(false)
-			} else setHasErrors(true)
+			} else {
+				setHasErrors(true)
+			}
 		},
 		[onSubmit]
 	)

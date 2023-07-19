@@ -4,7 +4,7 @@ import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
 import { faTimes } from '@fortawesome/pro-regular-svg-icons'
 import {
 	FontAwesomeIcon,
-	FontAwesomeIconProps
+	type FontAwesomeIconProps
 } from '@fortawesome/react-fontawesome'
 import {
 	generateThemedDisabledStyles,
@@ -14,9 +14,9 @@ import {
 	generateThemedPrimaryStyles
 } from './utils'
 import React, {
-	FC,
-	MouseEvent,
-	SyntheticEvent,
+	type FC,
+	type MouseEvent,
+	type SyntheticEvent,
 	useCallback,
 	useMemo
 } from 'react'

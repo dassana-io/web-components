@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { defaultFieldWidth } from '../../assets/styles/styleguide'
-import { SelectProps } from './types'
+import { type SelectProps } from './types'
 import { Skeleton } from '../../Skeleton'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const useStyles = createUseStyles({
 	container: {

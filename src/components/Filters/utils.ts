@@ -1,14 +1,14 @@
 // import { handleAjaxErrors } from '@dassana-io/web-utils'
 // import { FilterSuggestions } from 'api'
-import { SelectOption } from '../Select'
+import { type SelectOption } from '../Select'
 import {
-	FilterOptions,
-	Filters,
-	FiltersList,
-	FilterValues,
-	ProcessedFilters,
-	SelectedValsFilters,
-	ServerSideFiltersProps
+	type FilterOptions,
+	type Filters,
+	type FiltersList,
+	type FilterValues,
+	type ProcessedFilters,
+	type SelectedValsFilters,
+	type ServerSideFiltersProps
 } from './types'
 
 // Constants
@@ -74,7 +74,9 @@ export const getFilterKeysOptions = (
 	const hiddenKeysArr = filtersList.reduce((acc: string[], curr) => {
 		if (curr.selectedKey) {
 			return [...acc, curr.selectedKey]
-		} else return acc
+		} else {
+			return acc
+		}
 	}, [])
 
 	return Object.entries(allFilters).map(([filterKeyId, item]) => ({

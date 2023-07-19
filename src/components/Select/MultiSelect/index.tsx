@@ -2,13 +2,13 @@ import { BaseSelect } from '../BaseSelect'
 import Fuse from 'fuse.js'
 import { getSortedAndFilteredValues } from './utils'
 import { Input } from '../../Input'
-import { MultiSelectProps } from './types'
+import { type MultiSelectProps } from './types'
 import { v4 as uuidV4 } from 'uuid'
 import React, {
-	ChangeEvent,
-	FC,
-	KeyboardEvent,
-	ReactNode,
+	type ChangeEvent,
+	type FC,
+	type KeyboardEvent,
+	type ReactNode,
 	useCallback,
 	useEffect,
 	useMemo,
@@ -47,7 +47,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		sortOptions = true,
 		values
 	} = props
-	const [localValues, setLocalValues] = useState(values || defaultValues)
+	const [localValues, setLocalValues] = useState(values ?? defaultValues)
 
 	const dropdownId = useMemo(() => uuidV4(), [])
 
@@ -60,9 +60,9 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	const onDropdownVisibleChange = useCallback(
 		(open: boolean) => {
 			if (open) {
-				onDropdownOpen && onDropdownOpen()
+				onDropdownOpen?.()
 			} else {
-				onDropdownClose && onDropdownClose()
+				onDropdownClose?.()
 
 				setSearchTerm('')
 			}
@@ -84,12 +84,11 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 						setSearchTerm(e.target.value)
 					}}
 					onKeyDown={(e: KeyboardEvent) => {
-						const keysToNotPropagate: KeyboardEvent['key'][] = [
-							'Enter',
-							'Backspace'
-						]
-						if (keysToNotPropagate.includes(e.key))
+						const keysToNotPropagate: Array<KeyboardEvent['key']> =
+							['Enter', 'Backspace']
+						if (keysToNotPropagate.includes(e.key)) {
 							e.stopPropagation()
+						}
 					}}
 					placeholder={searchPlaceholder}
 					value={searchTerm}

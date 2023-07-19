@@ -3,13 +3,13 @@ import { fakeApiCallSuccess } from 'components/utils'
 import { PARTIAL_ACTION_COLUMN } from '../utils'
 import {
 	ColumnFormats,
-	ColumnType,
+	type ColumnType,
 	ColumnTypes,
 	EditableCellTypes,
-	RenderPropsCustom,
-	TableProps
+	type RenderPropsCustom,
+	type TableProps
 } from '..'
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 
 const { component, number, string } = ColumnTypes
 const { date, icon, link, toggle, tag } = ColumnFormats
@@ -48,7 +48,7 @@ export interface Client2 {
 	id: number
 	linked_in?: string
 	name?: string
-	role?: { name: string; color: string }
+	role?: { name: string, color: string }
 	start_date?: number
 	team?: string
 }
@@ -57,7 +57,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'name',
 		editConfig: {
-			onSave: () => fakeApiCallSuccess(),
+			onSave: async () => { await fakeApiCallSuccess() },
 			type: EditableCellTypes.input
 		},
 		title: 'Name',
@@ -66,7 +66,7 @@ const columns: ColumnType[] = [
 	{
 		dataIndex: 'team',
 		editConfig: {
-			onSave: () => fakeApiCallSuccess(),
+			onSave: async () => { await fakeApiCallSuccess() },
 			options: ['Scranton', 'Utica', 'Buffalo'],
 			type: EditableCellTypes.select
 		},
@@ -102,7 +102,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'admin_access',
 		format: toggle,
 		renderProps: {
-			onSave: () => fakeApiCallSuccess()
+			onSave: async () => { await fakeApiCallSuccess() }
 		},
 		title: 'Has Admin Access',
 		type: component

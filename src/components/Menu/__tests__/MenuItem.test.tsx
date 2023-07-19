@@ -2,7 +2,7 @@ import { Menu } from '../'
 import { MenuContextProvider } from '../MenuContext'
 import MenuItem from '../MenuItem'
 import React from 'react'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 

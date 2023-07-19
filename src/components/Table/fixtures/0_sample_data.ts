@@ -1,4 +1,4 @@
-import { ColumnType, ColumnTypes, TableProps } from '../.'
+import { type ColumnType, ColumnTypes, type TableProps } from '../.'
 
 export interface Person {
 	name: string

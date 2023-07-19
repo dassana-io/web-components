@@ -1,7 +1,7 @@
 import { BaseSelect } from '../BaseSelect'
-import { SelectProps } from './types'
+import { type SelectProps } from './types'
 import { useStyles } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {

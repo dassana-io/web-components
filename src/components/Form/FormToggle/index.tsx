@@ -1,4 +1,4 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import FieldLabel from '../FieldLabel'
@@ -8,9 +8,9 @@ import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
-import { Toggle, ToggleProps } from 'components/Toggle'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type FC, useContext } from 'react'
+import { Toggle, type ToggleProps } from 'components/Toggle'
 
 const { flexAlignCenter, font, spacing } = styleguide
 

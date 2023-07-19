@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import noop from 'lodash/noop'
 import React from 'react'
-import { Code, CodeProps } from '.'
-import { Meta, StoryFn } from '@storybook/react'
+import { Code, type CodeProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {

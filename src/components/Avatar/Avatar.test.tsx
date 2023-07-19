@@ -1,5 +1,5 @@
+import { Avatar } from '.'
 import React from 'react'
-import { Avatar, AvatarProps } from '.'
 import { render, screen } from '@testing-library/react'
 
 describe('Avatar', () => {

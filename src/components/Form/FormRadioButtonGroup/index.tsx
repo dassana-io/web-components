@@ -1,13 +1,13 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
 import {
 	RadioButtonGroup,
-	RadioButtonGroupProps
+	type RadioButtonGroupProps
 } from 'components/RadioButtonGroup'
-import React, { FC, useContext } from 'react'
+import React, { type FC, useContext } from 'react'
 
 export interface FormRadioButtonGroupProps
 	extends BaseFieldProps,

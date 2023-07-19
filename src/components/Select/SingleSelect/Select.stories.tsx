@@ -1,16 +1,16 @@
 import { action } from '@storybook/addon-actions'
-import { SbTheme } from '../../../../.storybook/preview'
+import { type SbTheme } from '../../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../../.storybook/utils'
 import { Select } from './index'
-import { SelectProps } from './types'
+import { type SelectProps } from './types'
 import { useTheme } from 'react-jss'
 import {
 	basicOptions,
 	iconOptions,
 	textOverflowOptions
 } from '../fixtures/sample_options'
-import { Meta, Story } from '@storybook/react'
-import React, { FC } from 'react'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC } from 'react'
 
 export default {
 	argTypes: {

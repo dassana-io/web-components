@@ -6,14 +6,14 @@ import React from 'react'
 import { act, renderHook } from '@testing-library/react-hooks'
 import {
 	NotificationProvider,
-	NotificationProviderProps,
+	type NotificationProviderProps,
 	useNotification
 } from '../index'
 
 const generateNotificationSpy = jest.fn()
 const mockMessage = 'foo'
 
-// @ts-ignore
+// @ts-expect-error
 jest.spyOn(hooks, 'useNotifications').mockImplementation(() => ({
 	generateNotification: generateNotificationSpy,
 	notifications: [

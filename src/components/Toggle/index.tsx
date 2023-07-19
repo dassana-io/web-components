@@ -1,12 +1,12 @@
 import 'antd/lib/switch/style/index.css'
 import cn from 'classnames'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generateToggleStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { Switch } from 'antd'
 import { ThemeType } from '../assets/styles/themes'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { dark, light } = ThemeType
 

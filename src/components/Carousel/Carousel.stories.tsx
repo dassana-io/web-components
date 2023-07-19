@@ -1,7 +1,7 @@
 import { images } from './_fixtures_/image-data'
 import React from 'react'
-import { Carousel, CarouselProps } from '.'
-import { Meta, Story } from '@storybook/react'
+import { Carousel, type CarouselProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

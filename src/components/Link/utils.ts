@@ -1,5 +1,5 @@
 import { styleguide } from 'components/assets/styles/styleguide'
-import { themedStyles, ThemeType } from 'components/assets/styles/themes'
+import { themedStyles, type ThemeType } from 'components/assets/styles/themes'
 
 const { fontWeight } = styleguide
 

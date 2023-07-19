@@ -3,13 +3,13 @@ import { createUseStyles } from 'react-jss'
 import { getRgba } from 'components/utils'
 import noop from 'lodash/noop'
 import {
-	Emitter,
+	type Emitter,
 	EmitterEventTypes,
 	useClickOutside
 } from '@dassana-io/web-utils'
 import { IconButton, IconSizes } from 'components/IconButton'
-import { ModalConfig, themedModalStyles } from './utils'
-import React, { FC, useCallback, useEffect } from 'react'
+import { type ModalConfig, themedModalStyles } from './utils'
+import React, { type FC, useCallback, useEffect } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType

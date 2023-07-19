@@ -1,9 +1,5 @@
-import { Button as AntDButton } from 'antd'
+import { Button } from '.'
 import React from 'react'
-import { Skeleton } from '../Skeleton'
-import { Spin } from 'components/Spin'
-import { Button, ButtonProps } from '.'
-import { shallow, ShallowWrapper } from 'enzyme'
 import { render, screen } from '@testing-library/react'
 
 let mockClick: jest.Mock<void>

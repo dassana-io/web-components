@@ -6,7 +6,7 @@ import { Tooltip } from 'components/Tooltip'
 import { capitalize, filter } from 'lodash'
 import { faFileEdit, faFileWord } from '@fortawesome/pro-regular-svg-icons'
 import { faGithub, faSlack } from '@fortawesome/free-brands-svg-icons'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const {
 	borderRadius,

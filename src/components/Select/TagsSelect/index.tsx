@@ -1,7 +1,7 @@
 import { BaseSelect } from '../BaseSelect'
-import { TagsSelectProps } from './types'
+import { type TagsSelectProps } from './types'
 import { useStyles } from '../MultiSelect/styles'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 export const TagsSelect: FC<TagsSelectProps> = (props: TagsSelectProps) => {
 	const {

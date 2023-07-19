@@ -1,16 +1,16 @@
 import 'antd/lib/radio/style/index.css'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generateRadioButtonGroupStyles } from './utils'
 import { InfoTip } from 'components/InfoTip'
 import RadioButtonGroupSkeleton from './RadioButtonGroupSkeleton'
-import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { type SizeType } from 'antd/lib/config-provider/SizeContext'
 import { styleguide } from 'components/assets/styles'
 import { ThemeType } from '../assets/styles/themes'
-import { TooltipProps } from 'components/Tooltip'
-import { Radio as AntDRadio, RadioChangeEvent } from 'antd'
+import { type TooltipProps } from 'components/Tooltip'
+import { Radio as AntDRadio, type RadioChangeEvent } from 'antd'
 import { getDataTestAttributeProp, TAG } from '../utils'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -103,7 +103,7 @@ export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
 				{...rest}
 				buttonStyle='solid'
 				className={classes.radioGroup}
-				defaultValue={defaultValue || options[0].value}
+				defaultValue={defaultValue ?? options[0].value}
 				disabled={disabled}
 				name={getDataTestAttributeProp('radioGroup', dataTag)[TAG]}
 				optionType='button'

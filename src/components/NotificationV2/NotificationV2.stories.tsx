@@ -2,12 +2,12 @@ import { Button } from '../Button'
 import { generatePopupSelector } from '../utils'
 import omit from 'lodash/omit'
 import React from 'react'
-import { SbTheme } from '../../../.storybook/preview'
+import { type SbTheme } from '../../../.storybook/preview'
 import startCase from 'lodash/startCase'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react'
+import { type Meta, type Story } from '@storybook/react'
 import {
-	NotificationConfig,
+	type NotificationConfig,
 	NotificationProvider,
 	NotificationTypes,
 	useNotification

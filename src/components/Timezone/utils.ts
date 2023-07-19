@@ -1,9 +1,7 @@
-import { TimezoneProps } from './index'
+import { type TimezoneProps } from './index'
 import timezones from './timezones'
 
-interface GetTimezoneValue {
-	(value: TimezoneProps['value']): string | undefined
-}
+type GetTimezoneValue = (value: TimezoneProps['value']) => string | undefined
 
 export const getTimezoneDefaultValue: GetTimezoneValue = value => {
 	const guessedUserTz = guessUserTimezone()
@@ -33,9 +31,7 @@ interface TimezoneOption {
 	value: string
 }
 
-interface MappedTimezoneOpts {
-	(): TimezoneOption[]
-}
+type MappedTimezoneOpts = () => TimezoneOption[]
 
 export const mappedTimezoneOpts: MappedTimezoneOpts = () =>
 	timezones.map(value => ({

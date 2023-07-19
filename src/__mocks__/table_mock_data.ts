@@ -1,9 +1,9 @@
 import { fakeApiCallSuccess } from '../components/utils'
 import {
 	ColumnFormats,
-	ColumnType,
+	type ColumnType,
 	ColumnTypes,
-	TableProps
+	type TableProps
 } from '../components/Table'
 
 const { component, number, string } = ColumnTypes
@@ -72,7 +72,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'toggle',
 		format: toggle,
 		renderProps: {
-			onSave: () => fakeApiCallSuccess()
+			onSave: async () => { await fakeApiCallSuccess() }
 		},
 		title: 'Component - Toggle',
 		type: component

@@ -59,7 +59,7 @@ export const generateButtonStyles = (
 	return {
 		'&.ant-btn': {
 			'&:hover': activeStyles,
-			backgroundColor: buttonColor ? buttonColor : base.backgroundColor,
+			backgroundColor: buttonColor || base.backgroundColor,
 			...baseButtonStyles,
 			'&.ant-btn-primary': {
 				'&.ant-btn-disabled, &.ant-btn[disabled]': {
@@ -76,9 +76,7 @@ export const generateButtonStyles = (
 					borderColor: primaryHoverBgColor,
 					color: blacks['lighten-80']
 				},
-				backgroundColor: buttonColor
-					? buttonColor
-					: primaryBackgroundColor,
+				backgroundColor: buttonColor || primaryBackgroundColor,
 				color: blacks['lighten-80']
 			}
 		},

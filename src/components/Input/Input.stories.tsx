@@ -3,8 +3,8 @@ import { faCopy } from '@fortawesome/pro-regular-svg-icons'
 import { IconButton } from 'components/IconButton'
 import React from 'react'
 import { Tooltip } from 'components/Tooltip'
-import { Input, InputProps } from './index'
-import { Meta, Story } from '@storybook/react'
+import { Input, type InputProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

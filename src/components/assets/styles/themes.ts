@@ -19,7 +19,7 @@ export interface Theme {
 	secondary: string
 	state: {
 		active: string
-		disabled: { background: string; border: string }
+		disabled: { background: string, border: string }
 		error: string
 		hover: string
 		inactive: string
@@ -30,7 +30,7 @@ export interface Theme {
 		success: string
 		warning: string
 	}
-	text: { disabled: string; primary: string }
+	text: { disabled: string, primary: string }
 }
 
 const lightPalette: Theme = {

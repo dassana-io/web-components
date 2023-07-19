@@ -5,9 +5,9 @@ import { Element } from 'react-scroll'
 import { IconButton } from 'components/IconButton'
 import { mediaSelectorsWithBreakpoints } from '../Pages/utils'
 import { styleguide } from 'components/assets/styles'
-import { Bounce, BounceDirection, BounceProps } from './Bounce'
+import { Bounce, BounceDirection, type BounceProps } from './Bounce'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { ScrollDirections, scrollOnClick } from './utils'
 
 const { tablet } = Breakpoints

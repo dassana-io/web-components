@@ -1,11 +1,11 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import cn from 'classnames'
-import { InputRef } from 'antd'
-import { ChipInput, ChipInputProps } from 'components/ChipInput'
+import { type InputRef } from 'antd'
+import { ChipInput, type ChipInputProps } from 'components/ChipInput'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
 import { getFormFieldDataTag, renderFieldLabel } from '../utils'
-import React, { FC, useContext, useEffect, useRef } from 'react'
+import React, { type FC, useContext, useEffect, useRef } from 'react'
 
 export interface FormChipInputProps
 	extends BaseFieldProps,

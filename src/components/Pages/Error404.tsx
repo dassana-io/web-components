@@ -5,7 +5,7 @@ import Error2 from '../assets/images/404_error_2.svg'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import random from 'lodash/random'
-import React, { FC, useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark } = ThemeType

@@ -1,10 +1,10 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
-import { DynamicKVInput, DynamicKVInputProps } from 'components/DynamicKVInput'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
+import { DynamicKVInput, type DynamicKVInputProps } from 'components/DynamicKVInput'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type FC, useContext } from 'react'
 
 export interface FormDynamicKVInputProps
 	extends BaseFieldProps,

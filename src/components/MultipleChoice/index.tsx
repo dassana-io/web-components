@@ -1,7 +1,7 @@
 import { MultipleMultipleChoice } from './MultipleMultipleChoice'
 import { SingleMultipleChoice } from './SingleMultipleChoice'
-import { MultipleChoiceProps, MultipleProps, SingleProps } from './types'
-import React, { FC } from 'react'
+import { type MultipleChoiceProps, type MultipleProps, type SingleProps } from './types'
+import React, { type FC } from 'react'
 
 export const MultipleChoice: FC<MultipleChoiceProps> = ({
 	defaultValue,
@@ -22,12 +22,14 @@ export const MultipleChoice: FC<MultipleChoiceProps> = ({
 		values: value
 	}
 
-	return mode === 'single' ? (
+	return mode === 'single'
+? (
 		<SingleMultipleChoice
 			{...rest}
 			{...(singleProps as Partial<SingleProps>)}
 		/>
-	) : (
+	)
+: (
 		<MultipleMultipleChoice
 			{...rest}
 			{...(multipleProps as Partial<MultipleProps>)}

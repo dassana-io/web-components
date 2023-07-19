@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton, IconSizes } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 let mockOnClick: jest.Mock<void>

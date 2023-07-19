@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import { createUseStyles } from 'react-jss'
-import { Meta, Story } from '@storybook/react'
-import React, { FC, ReactNode } from 'react'
-import { TabConfig, Tabs, TabsProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC, type ReactNode } from 'react'
+import { type TabConfig, Tabs, type TabsProps } from './index'
 import { themedStyles, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType

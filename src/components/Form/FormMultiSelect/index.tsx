@@ -1,12 +1,12 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import cn from 'classnames'
 import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
 import { getFormFieldDataTag, getRulesForArrVals } from '../utils'
-import { MultiSelect, MultiSelectProps } from 'components/Select/MultiSelect'
-import React, { FC, useContext } from 'react'
+import { MultiSelect, type MultiSelectProps } from 'components/Select/MultiSelect'
+import React, { type FC, useContext } from 'react'
 
 export interface FormMultiSelectProps
 	extends BaseFieldProps,

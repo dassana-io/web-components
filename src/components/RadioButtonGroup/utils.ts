@@ -77,7 +77,7 @@ export const generateRadioSkeletonStyles = (themeType: ThemeType) => {
 
 	return {
 		border: `1px solid ${loading.borderColor}`,
-		borderRadius: borderRadius,
+		borderRadius,
 		display: 'flex',
 		margin: '0 1px'
 	}

@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { Button, ButtonProps } from '.'
-import { Meta, StoryFn } from '@storybook/react'
+import { Button, type ButtonProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {

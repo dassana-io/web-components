@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { Tooltip } from 'components/Tooltip'
 import { useTableContext } from './TableContext'
-import React, { FC, SyntheticEvent, useState } from 'react'
+import React, { type FC, type SyntheticEvent, useState } from 'react'
 
 const useStyles = createUseStyles({
 	container: { display: 'grid', placeItems: 'stretch' },
@@ -33,9 +33,11 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 
 	const classes = useStyles()
 
-	return isMobile || !showTooltip ? (
+	return isMobile || !showTooltip
+? (
 		<>{text}</>
-	) : (
+	)
+: (
 		<div className={classes.container}>
 			<div
 				className={classes.wrapper}
@@ -45,11 +47,13 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 					setHasTooltip(el.scrollWidth > el.offsetWidth)
 				}}
 			>
-				{hasTooltip ? (
+				{hasTooltip
+? (
 					<Tooltip placement='bottomLeft' title={text}>
 						{text}
 					</Tooltip>
-				) : (
+				)
+: (
 					text
 				)}
 			</div>

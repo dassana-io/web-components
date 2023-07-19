@@ -2,14 +2,14 @@ import * as hooks from '../utils'
 import React from 'react'
 import { WizardCtx } from '../WizardContext'
 import { act, renderHook } from '@testing-library/react-hooks'
-import { mount, ReactWrapper } from 'enzyme'
-import { Step, useWizard, Wizard } from '../index'
+import { mount, type ReactWrapper } from 'enzyme'
+import { type Step, useWizard, Wizard } from '../index'
 
 let wrapper: ReactWrapper
 
 const nextStepSpy = jest.fn()
 
-// @ts-ignore
+// @ts-expect-error
 jest.spyOn(hooks, 'useWizardCmp').mockImplementation(() => ({
 	goToStep: jest.fn(),
 	nextStep: nextStepSpy,
@@ -44,7 +44,7 @@ it('should render the correct component in the steps config', () => {
 })
 
 it('should provide a nextStep function via context', () => {
-	// @ts-ignore
+	// @ts-expect-error
 	const wrapper = ({ children }) => (
 		<WizardCtx.Provider value={hooks.useWizardCmp(3, 1)}>
 			{children}

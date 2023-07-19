@@ -14,12 +14,12 @@ import {
 	faSlack,
 	faTwitterSquare
 } from '@fortawesome/free-brands-svg-icons'
-import { faPlus, IconDefinition } from '@fortawesome/pro-regular-svg-icons'
+import { faPlus, type IconDefinition } from '@fortawesome/pro-regular-svg-icons'
 import {
 	generateThemedMadeWithLoveStyles,
 	mediaSelectorsWithBreakpoints
 } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { mobile, tablet } = Breakpoints
 const { max, min } = mediaSelectorsWithBreakpoints

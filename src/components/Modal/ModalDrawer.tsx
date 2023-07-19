@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
-import { ModalProps } from './Modal'
+import { type ModalProps } from './Modal'
 import { motion } from 'framer-motion'
 import { themedModalStyles } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styleguide, themes, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType

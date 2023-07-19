@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateThemedTagStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 

@@ -1,11 +1,11 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Tooltip } from 'components/Tooltip'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const useStyles = createUseStyles({
 	coloredDot: {
-		background: ({ color }) => (color ? color : 'transparent'),
+		background: ({ color }) => (color || 'transparent'),
 		borderRadius: '50%',
 		display: 'block',
 		height: 10,
@@ -32,11 +32,13 @@ export const ColoredDot: FC<ColoredDotProps> = ({
 
 	const showTooltip = color && tooltipText
 
-	return showTooltip ? (
+	return showTooltip
+? (
 		<Tooltip placement='top' renderWithoutDataTag title={tooltipText}>
 			<span className={dotClass}></span>
 		</Tooltip>
-	) : (
+	)
+: (
 		<span className={dotClass}></span>
 	)
 }

@@ -13,8 +13,14 @@ import {
 	generateThemedCodeStyles,
 	generateThemedLineNumStyles
 } from '../Code/utils'
-import { Input, InputProps } from '../Input'
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import { Input, type InputProps } from '../Input'
+import React, {
+	type ChangeEvent,
+	type FC,
+	useEffect,
+	useRef,
+	useState
+} from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { light, dark } = ThemeType
@@ -125,11 +131,12 @@ export const Logs: FC<LogsProps> = ({
 	}, [isCopied])
 
 	useEffect(() => {
-		if (isDownloaded)
+		if (isDownloaded) {
 			setTimeout(
 				() => setIsDownloaded(false),
 				msgDuration + downloadMsgDelay
 			)
+		}
 	}, [isDownloaded])
 
 	const copyLogsToClipboard = () =>

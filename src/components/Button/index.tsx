@@ -2,14 +2,14 @@ import 'antd/lib/button/style/index.css'
 import 'antd/lib/spin/style/index.css'
 import { Button as AntDButton } from 'antd'
 import classnames from 'classnames'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
 import { Skeleton } from '../Skeleton'
 import { Spin } from 'components/Spin'
 import { ThemeType } from 'components/assets/styles'
 import { generateButtonColorStyles, generateButtonStyles } from './utils'
-import React, { FC, MouseEvent, ReactNode } from 'react'
+import React, { type FC, type MouseEvent, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -86,9 +86,11 @@ export const Button: FC<ButtonProps> = ({
 }: ButtonProps) => {
 	const btnClasses = useStyles(color)()
 
-	return loading ? (
+	return loading
+? (
 		<Skeleton height={skeletonHeight} width={skeletonWidth} />
-	) : (
+	)
+: (
 		<AntDButton
 			autoFocus={focused}
 			className={classnames({ [btnClasses.btn]: true }, classes)}

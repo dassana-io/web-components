@@ -2,8 +2,8 @@ import 'antd/lib/radio/style/index.css'
 import { createUseStyles } from 'react-jss'
 import { generateRadioGroupStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
-import { Radio as AntDRadio, RadioChangeEvent } from 'antd'
-import React, { FC, ReactNode } from 'react'
+import { Radio as AntDRadio, type RadioChangeEvent } from 'antd'
+import React, { type FC, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 

@@ -2,11 +2,11 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { useMenuContext } from './MenuContext'
 import {
-	CommonMenuProps,
+	type CommonMenuProps,
 	generateThemedMenuItemActiveStyles,
 	generateThemedMenuItemStyles
 } from './utils'
-import React, { FC, Key } from 'react'
+import React, { type FC, type Key } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { font, fontWeight, spacing } = styleguide

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
-import { RiskIndicator, RiskIndicatorProps, RiskRank } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { RiskIndicator, type RiskIndicatorProps, RiskRank } from '.'
 
 const { Critical, High, Low, Medium, Accepted } = RiskRank
 

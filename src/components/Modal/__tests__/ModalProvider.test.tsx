@@ -3,13 +3,13 @@ import Modal from '../Modal'
 import { mount } from 'enzyme'
 import React from 'react'
 import { act, renderHook } from '@testing-library/react-hooks'
-import { ModalProvider, Props as ModalProviderProps, useModal } from '../index'
+import { ModalProvider, type Props as ModalProviderProps, useModal } from '../index'
 
 const setModalConfigSpy = jest.fn()
 const unsetModalSpy = jest.fn()
 const mockModalContent = <div>Hello World</div>
 
-// @ts-ignore
+// @ts-expect-error
 jest.spyOn(hooks, 'useModalCmp').mockImplementation(() => ({
 	modalConfig: { content: mockModalContent },
 	setModalConfig: setModalConfigSpy,

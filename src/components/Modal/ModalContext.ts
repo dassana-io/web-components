@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { ModalConfig, ModalOptions } from './utils'
+import { type ModalConfig, type ModalOptions } from './utils'
 
 export interface ModalContextProps {
 	options?: ModalOptions

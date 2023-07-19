@@ -1,6 +1,6 @@
 import { useWizardCmp } from './utils'
-import React, { FC, ReactNode, RefObject, useImperativeHandle } from 'react'
-import { useWizard, WizardContextProps, WizardCtx } from './WizardContext'
+import React, { type FC, type ReactNode, type RefObject, useImperativeHandle } from 'react'
+import { useWizard, type WizardContextProps, WizardCtx } from './WizardContext'
 
 export interface Step {
 	render: () => ReactNode

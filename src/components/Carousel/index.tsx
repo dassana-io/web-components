@@ -6,7 +6,7 @@ import Title from './Title'
 import { useWindowSize } from '@dassana-io/web-utils'
 import { AnimatePresence, domMax, LazyMotion, m as motion } from 'framer-motion'
 import React, {
-	FC,
+	type FC,
 	useEffect,
 	useLayoutEffect,
 	useMemo,

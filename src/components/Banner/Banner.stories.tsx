@@ -2,8 +2,8 @@ import { createUseStyles } from 'react-jss'
 import { ev as NotificationTypes } from '@dassana-io/web-utils'
 import React from 'react'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
-import { Banner, BannerProps } from '.'
-import { Meta, StoryFn } from '@storybook/react'
+import { Banner, type BannerProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 const { error, info, success, warning } = NotificationTypes
 

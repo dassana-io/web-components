@@ -1,8 +1,8 @@
 import { guessUserTimezone } from '@dassana-io/web-utils'
 import isNull from 'lodash/isNull'
 import { mappedTimezoneOpts } from './utils'
-import React, { ChangeEventHandler, FC, useEffect } from 'react'
-import { Select, SelectProps } from 'components/Select'
+import React, { type ChangeEventHandler, type FC, useEffect } from 'react'
+import { Select, type SelectProps } from 'components/Select'
 
 export interface TimezoneProps
 	extends Omit<

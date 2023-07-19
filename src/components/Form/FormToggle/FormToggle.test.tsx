@@ -3,11 +3,11 @@ import { defaultFieldWidth } from 'components/assets/styles/styleguide'
 import FieldContext from '../FieldContext'
 import React from 'react'
 import { Toggle } from 'components/Toggle'
-import FormToggle, { FormToggleProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import FormToggle, { type FormToggleProps } from './index'
+import { mount, type ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),

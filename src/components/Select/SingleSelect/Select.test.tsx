@@ -5,7 +5,7 @@ import React from 'react'
 import { Select } from './index'
 import { Skeleton } from '../../Skeleton'
 import { basicOptions, iconOptions } from '../fixtures/sample_options'
-import { mount, ReactWrapper, shallow } from 'enzyme'
+import { mount, type ReactWrapper, shallow } from 'enzyme'
 
 let wrapper: ReactWrapper
 

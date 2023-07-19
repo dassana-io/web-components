@@ -1,4 +1,4 @@
-import { themedStyles, ThemeType } from 'components/assets/styles'
+import { themedStyles, type ThemeType } from 'components/assets/styles'
 
 export const generateThemedBannerStyles = (themeType: ThemeType) => {
 	const {
@@ -6,7 +6,7 @@ export const generateThemedBannerStyles = (themeType: ThemeType) => {
 	} = themedStyles[themeType]
 
 	return {
-		backgroundColor: backgroundColor,
+		backgroundColor,
 		color
 	}
 }

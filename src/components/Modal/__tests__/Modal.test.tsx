@@ -2,10 +2,10 @@ import { act } from 'react-dom/test-utils'
 import { fireEvent } from '@testing-library/react'
 import { IconButton } from '../../IconButton'
 import Modal from '../Modal'
-import { ModalOptions } from '../utils'
+import { type ModalOptions } from '../utils'
 import { ModalProvider } from 'components/Modal'
 import React from 'react'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 

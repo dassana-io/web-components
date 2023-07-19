@@ -7,8 +7,8 @@ import {
 	faExclamationTriangle,
 	faTimesCircle
 } from '@fortawesome/free-solid-svg-icons'
-import { ReactNode, useCallback, useState } from 'react'
-import { styleguide, themedStyles, themes, ThemeType } from '../assets/styles'
+import { type ReactNode, useCallback, useState } from 'react'
+import { styleguide, themedStyles, themes, type ThemeType } from '../assets/styles'
 
 const { borderRadius, flexSpaceBetween, spacing } = styleguide
 

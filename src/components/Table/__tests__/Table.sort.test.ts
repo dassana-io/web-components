@@ -1,13 +1,13 @@
-import { TableProps } from '..'
+import { type TableProps } from '..'
 import { createTable, renderedData } from './Table.test'
-import mockData0, { Person } from '../fixtures/0_sample_data'
-import mockData2, { Client } from '../fixtures/2_sample_data'
-import mockData3, { Client1 } from '../fixtures/3_sample_data'
-import { mount, ReactWrapper } from 'enzyme'
+import mockData0, { type Person } from '../fixtures/0_sample_data'
+import mockData2, { type Client } from '../fixtures/2_sample_data'
+import mockData3, { type Client1 } from '../fixtures/3_sample_data'
+import { mount, type ReactWrapper } from 'enzyme'
 
 type ObjectType = object | undefined
 
-function compareArrsOfObjs(arr1: ObjectType[], arr2: ObjectType[]) {
+function compareArrsOfObjs (arr1: ObjectType[], arr2: ObjectType[]) {
 	arr1.forEach((obj1, i) => {
 		obj1 === undefined
 			? expect(obj1).toEqual(arr2[i])
@@ -15,7 +15,7 @@ function compareArrsOfObjs(arr1: ObjectType[], arr2: ObjectType[]) {
 	})
 }
 
-function createDataCopy<Data>(tableProps: TableProps<Data>) {
+function createDataCopy<Data> (tableProps: TableProps<Data>) {
 	return JSON.parse(JSON.stringify(tableProps))
 }
 

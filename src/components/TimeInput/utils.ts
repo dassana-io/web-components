@@ -11,19 +11,17 @@ import {
 	fieldErrorStyles,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import moment, { MomentInputObject } from 'moment'
-import { TimeFormat, TimeInputProps } from './index'
+import moment, { type MomentInputObject } from 'moment'
+import { type TimeFormat, type TimeInputProps } from './index'
 
 const { borderRadius } = styleguide
 const { dark, light } = ThemeType
 
 const hourIntegerFormat = 'HH'
 
-interface FormatTime {
-	(format: TimeFormat, value?: TimeInputProps['value']):
+type FormatTime = (format: TimeFormat, value?: TimeInputProps['value']) =>
 		| moment.Moment
 		| undefined
-}
 
 export const formatTime: FormatTime = (format, value) => {
 	if (isUndefined(value)) return value
@@ -37,9 +35,7 @@ export const formatTime: FormatTime = (format, value) => {
 
 // ----------------------------------------
 
-interface ParseTime {
-	(momentObj: MomentInputObject, format: TimeFormat): number
-}
+type ParseTime = (momentObj: MomentInputObject, format: TimeFormat) => number
 
 export const parseTime: ParseTime = (momentObj, format) =>
 	format === 'unix'
@@ -167,7 +163,7 @@ const generateTimeInputStyles = (themeType: ThemeType) => {
 				borderColor: hover.borderColor
 			},
 			background,
-			borderColor: borderColor,
+			borderColor,
 			borderRadius,
 			color
 		}

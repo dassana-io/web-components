@@ -5,9 +5,9 @@ import { getMultiSelectProps } from './utils'
 import omit from 'lodash/omit'
 import uniqBy from 'lodash/uniqBy'
 import { useFiltersContext } from '../../FiltersContext'
-import { ValuesMultiSelectProps } from './types'
-import { MultiSelect, MultiSelectProps, SelectOption } from '../../../Select'
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import { type ValuesMultiSelectProps } from './types'
+import { MultiSelect, type MultiSelectProps, type SelectOption } from '../../../Select'
+import React, { type FC, useCallback, useEffect, useState } from 'react'
 
 const useStyles = createUseStyles({
 	hiddenOpts: { display: 'none' }

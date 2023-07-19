@@ -4,8 +4,8 @@ import { faCircleNotch } from '@fortawesome/pro-regular-svg-icons'
 import { GRID_ITEM_DIMENSION } from './utils'
 import { IconButton } from 'components/IconButton'
 import noop from 'lodash/noop'
-import { commonPriorityItemStyles, PriorityItemStyleProps } from './styles'
-import React, { FC, useCallback } from 'react'
+import { commonPriorityItemStyles, type PriorityItemStyleProps } from './styles'
+import React, { type FC, useCallback } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark } = ThemeType
@@ -72,7 +72,7 @@ export const PriorityItem: FC<PriorityItemProps> = ({
 	})
 
 	const handleItemClick = useCallback(
-		() => onClick && onClick(criticality, severity),
+		() => onClick?.(criticality, severity),
 		[criticality, onClick, severity]
 	)
 

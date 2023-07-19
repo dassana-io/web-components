@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { CSS } from '@dnd-kit/utilities'
 import { useSortable } from '@dnd-kit/sortable'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 interface DraggableItemProps {
 	children: ReactNode
@@ -21,7 +21,7 @@ const DraggableItem: FC<DraggableItemProps> = ({
 
 	const style = {
 		cursor: isDragging ? 'grabbing' : 'grab',
-		transform: CSS.Transform.toString(transform) || ''
+		transform: CSS.Transform.toString(transform) ?? ''
 	}
 
 	return (

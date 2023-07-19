@@ -1,15 +1,15 @@
 import { action } from '@storybook/addon-actions'
 import tableData4 from './fixtures/4_sample_data'
-import { DataId, Table, TableProps } from '.'
-import { Meta, StoryFn } from '@storybook/react'
-import React, { Key, useState } from 'react'
-import tableData0, { Person } from './fixtures/0_sample_data'
-import tableData1, { File } from './fixtures/1_sample_data'
-import tableData2, { Client } from './fixtures/2_sample_data'
-import tableData3, { Client1 } from './fixtures/3_sample_data'
-import tableData5, { Dot } from './fixtures/5_sample_data'
-import tableData6, { Client2 } from './fixtures/6_sample_data'
-import tableData7, { JSONPathData } from './fixtures/7_sample_data'
+import { type DataId, Table, type TableProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
+import React, { type Key, useState } from 'react'
+import tableData0, { type Person } from './fixtures/0_sample_data'
+import tableData1, { type File } from './fixtures/1_sample_data'
+import tableData2, { type Client } from './fixtures/2_sample_data'
+import tableData3, { type Client1 } from './fixtures/3_sample_data'
+import tableData5, { type Dot } from './fixtures/5_sample_data'
+import tableData6, { type Client2 } from './fixtures/6_sample_data'
+import tableData7, { type JSONPathData } from './fixtures/7_sample_data'
 
 const commonArgTypes = {
 	activeRowKey: {
@@ -183,7 +183,7 @@ Mixed.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: `Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)`
+		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },
@@ -217,7 +217,7 @@ MissingCells.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: `Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)`
+		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },

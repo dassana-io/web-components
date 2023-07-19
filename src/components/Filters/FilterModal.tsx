@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom'
 import { createUseStyles } from 'react-jss'
 import { popoverPalette } from 'components/Popover/utils'
 import { useCreateDomElement } from 'components/utils'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { flexCenter } = styleguide

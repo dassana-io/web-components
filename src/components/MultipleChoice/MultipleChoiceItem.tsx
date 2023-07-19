@@ -4,8 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import isEmpty from 'lodash/isEmpty'
 import { Tooltip } from 'components/Tooltip'
 import { useMultipleChoiceItemStyles } from './utils'
-import { KeysPressedMap, MultipleChoiceItemConfig } from './types'
-import React, { FC, KeyboardEvent, useCallback, useEffect, useRef } from 'react'
+import { type KeysPressedMap, type MultipleChoiceItemConfig } from './types'
+import React, {
+	type FC,
+	type KeyboardEvent,
+	useCallback,
+	useEffect,
+	useRef
+} from 'react'
 
 export interface MultipleChoiceItemProps extends MultipleChoiceItemConfig {
 	focus?: boolean
@@ -63,8 +69,9 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 	)
 
 	useEffect(() => {
-		if (focus && multipleChoiceItemRef.current)
+		if (focus && multipleChoiceItemRef.current) {
 			multipleChoiceItemRef.current.focus()
+		}
 	}, [focus])
 
 	return (

@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import isUndefined from 'lodash/isUndefined'
 import { styleguide } from 'components/assets/styles'
-import Icons, { IconName } from './IconsMap'
-import React, { FC, SyntheticEvent } from 'react'
+import Icons, { type IconName } from './IconsMap'
+import React, { type FC, type SyntheticEvent } from 'react'
 
 const {
 	colors: { blacks }

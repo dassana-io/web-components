@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeType } from '../assets/styles'
-import { Meta, Story } from '@storybook/react'
-import { SVGImage, SVGImageProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import { SVGImage, type SVGImageProps } from './index'
 import svgImageMap, { ImageTypes } from './fixtures/mockSVGImageMap'
 
 export default {

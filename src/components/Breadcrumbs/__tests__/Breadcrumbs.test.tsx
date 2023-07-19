@@ -1,5 +1,5 @@
 import React from 'react'
-import { BreadcrumbConfig, Breadcrumbs } from '../index'
+import { type BreadcrumbConfig, Breadcrumbs } from '../index'
 import { render, screen } from '@testing-library/react'
 
 const mockOnClick = jest.fn()

@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import truncate from 'lodash/truncate'
-import React, { FC, useMemo } from 'react'
+import React, { type FC, useMemo } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
-import { Tooltip, TooltipProps } from '../Tooltip'
+import { Tooltip, type TooltipProps } from '../Tooltip'
 
 const { font } = styleguide
 

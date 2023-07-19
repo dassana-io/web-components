@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { ThemeType } from 'components/assets/styles/themes'
-import { ShortcutKey, ShortcutKeyItem } from './types'
+import { type ShortcutKey, type ShortcutKeyItem } from './types'
 
 const { dark } = ThemeType
 
@@ -22,8 +22,9 @@ export const predefinedKeysMap = {
 }
 
 export const getShortcutKeyItem = (shortcut: ShortcutKey): ShortcutKeyItem => {
-	if (typeof shortcut !== 'string') return shortcut
-	else {
+	if (typeof shortcut !== 'string') {
+		return shortcut
+	} else {
 		return {
 			icon: predefinedKeysMap[shortcut],
 			text: shortcut

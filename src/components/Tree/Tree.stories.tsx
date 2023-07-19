@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import treeData0 from './fixtures/0_sample_data'
-import { Meta, Story } from '@storybook/react'
-import { Tree, TreeProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import { Tree, type TreeProps } from './index'
 
 export default {
 	argTypes: {

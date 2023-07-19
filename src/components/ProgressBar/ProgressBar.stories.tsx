@@ -1,6 +1,6 @@
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
-import { ProgressBar, ProgressBarProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { ProgressBar, type ProgressBarProps } from '.'
 
 export default {
 	argTypes: {

@@ -2,13 +2,13 @@ import '../assets/styles/antdAnimations.css'
 import 'antd/lib/tooltip/style/index.css'
 import { Tooltip as AntDTooltip } from 'antd'
 import cn from 'classnames'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generateTooltipStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
-import { TooltipPlacement } from 'antd/es/tooltip'
+import { type TooltipPlacement } from 'antd/es/tooltip'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -78,9 +78,11 @@ export const Tooltip: FC<TooltipProps> = ({
 			trigger={triggerMode}
 			{...getPopupContainerProps(popupContainerSelector)}
 		>
-			{renderWithoutDataTag ? (
+			{renderWithoutDataTag
+? (
 				children
-			) : (
+			)
+: (
 				<span
 					className={cn(tooltipTriggerClasses)}
 					{...getDataTestAttributeProp('tooltip-trigger', dataTag)}

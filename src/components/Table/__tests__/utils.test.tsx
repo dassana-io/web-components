@@ -1,6 +1,6 @@
 import { formatDate } from './Table.test'
 import mockData2 from '../fixtures/2_sample_data'
-import { ColumnFormats, ColumnType, ColumnTypes } from '..'
+import { ColumnFormats, type ColumnType, ColumnTypes } from '..'
 import {
 	createByteFormatter,
 	createDateFormatter,
@@ -8,7 +8,7 @@ import {
 	processColumns,
 	processData
 } from '../utils'
-import mockData0, { Person } from '../fixtures/0_sample_data'
+import mockData0, { type Person } from '../fixtures/0_sample_data'
 import mockData1, { dateFormat0, dateFormat1 } from '../fixtures/1_sample_data'
 
 const mockTableMethods = {

@@ -1,12 +1,12 @@
 import 'antd/lib/typography/style/index.css'
 import cn from 'classnames'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generateLinkStyles } from './utils'
 import { getDataTestAttributeProp } from '../utils'
 import { ThemeType } from '../assets/styles/themes'
 import { Typography } from 'antd'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 

@@ -1,10 +1,21 @@
 import cn from 'classnames'
 import { getDataTestAttributeProp } from 'components/utils'
 import { PageLoader } from 'components/PageLoader'
-import AceEditor, { IAceEditorProps } from 'react-ace'
-import { CodeControls, DisplayCodeControls } from './CodeControls'
-import { CodeType, copyToClipboard, stringifyCode, useStyles } from './utils'
-import React, { FC, RefObject, useCallback, useRef, useState } from 'react'
+import AceEditor, { type IAceEditorProps } from 'react-ace'
+import { CodeControls, type DisplayCodeControls } from './CodeControls'
+import {
+	type CodeType,
+	copyToClipboard,
+	stringifyCode,
+	useStyles
+} from './utils'
+import React, {
+	type FC,
+	type RefObject,
+	useCallback,
+	useRef,
+	useState
+} from 'react'
 
 // eslint-disable-next-line sort-imports
 import 'ace-builds/src-min-noconflict/ext-searchbox'
@@ -40,7 +51,7 @@ export interface CodeProps
 	dataTag?: string
 	displayControls?: DisplayCodeControls | false
 	editorRef?: RefObject<AceEditor>
-	language?: typeof languages[number]
+	language?: (typeof languages)[number]
 	loading?: boolean
 	pageLoaderClasses?: string[]
 	readOnly?: boolean
@@ -68,7 +79,7 @@ export const Code: FC<CodeProps> = ({
 	}
 
 	const ref = useRef<AceEditor>(null)
-	const compRef = editorRef || ref
+	const compRef = editorRef ?? ref
 
 	const [isWrapped, setIsWrapped] = useState(wrapEnabled)
 
@@ -76,11 +87,12 @@ export const Code: FC<CodeProps> = ({
 
 	const copyCode = useCallback(
 		(onCopySuccess: () => void) => {
-			if (compRef.current)
+			if (compRef.current) {
 				copyToClipboard(
 					compRef.current.editor.getValue(),
 					onCopySuccess
 				)
+			}
 		},
 		[compRef]
 	)

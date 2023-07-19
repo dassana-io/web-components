@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
 import { Tooltip } from 'components/Tooltip'
 import { useTableContext } from './TableContext'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { spacing } = styleguide
 

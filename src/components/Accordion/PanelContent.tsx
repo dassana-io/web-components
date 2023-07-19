@@ -1,5 +1,5 @@
 import { Animate } from './Animate'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 interface PanelContentProps {
 	children: ReactNode

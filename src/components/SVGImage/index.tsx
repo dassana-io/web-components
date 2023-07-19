@@ -1,5 +1,5 @@
-import { ThemeType } from '../assets/styles/themes'
-import React, { FunctionComponent, SVGProps } from 'react'
+import { type ThemeType } from '../assets/styles/themes'
+import React, { type FunctionComponent, type SVGProps } from 'react'
 
 type ImagePropKey = string | number | symbol
 

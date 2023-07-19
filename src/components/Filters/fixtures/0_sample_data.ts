@@ -1,8 +1,8 @@
 import { IconCellLabelType } from 'components/Table'
 import {
-	FilterOptions,
-	FiltersConfig,
-	FilterValues,
+	type FilterOptions,
+	type FiltersConfig,
+	type FilterValues,
 	FilterValueType
 } from '../types'
 

@@ -1,7 +1,7 @@
 import noop from 'lodash/noop'
 import React from 'react'
-import { BreadCrumbProps, Breadcrumbs } from './index'
-import { Meta, StoryFn } from '@storybook/react'
+import { type BreadCrumbProps, Breadcrumbs } from './index'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {

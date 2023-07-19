@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateThemedActiveTabStyles } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
-import { TabConfig, TabsProps } from '.'
+import { type TabConfig, type TabsProps } from '.'
 
 const { dark, light } = ThemeType
 

@@ -1,13 +1,13 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
 import {
 	getFormFieldDataTag,
 	getRulesForArrVals,
 	renderFieldLabel
 } from '../utils'
-import { MultipleChoice, MultipleChoiceProps } from 'components/MultipleChoice'
-import React, { FC, useContext } from 'react'
+import { MultipleChoice, type MultipleChoiceProps } from 'components/MultipleChoice'
+import React, { type FC, useContext } from 'react'
 
 export interface FormMultipleChoiceProps
 	extends BaseFieldProps,

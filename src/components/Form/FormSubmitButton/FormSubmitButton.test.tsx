@@ -3,8 +3,8 @@ import { act } from 'react-dom/test-utils'
 import { Button } from 'components/Button'
 import FieldContext from '../FieldContext'
 import React from 'react'
-import FormSubmitButton, { FormButtonProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import FormSubmitButton, { type FormButtonProps } from './index'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper<FormButtonProps>
 

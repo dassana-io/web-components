@@ -1,6 +1,6 @@
-import { CommonComponentProps } from '../types'
-import { predefinedKeysMap } from './utils'
-import { ReactNode, RefObject } from 'react'
+import { type CommonComponentProps } from '../types'
+import { type predefinedKeysMap } from './utils'
+import { type ReactNode, type RefObject } from 'react'
 
 export type PredefinedShortcutKey = keyof typeof predefinedKeysMap
 

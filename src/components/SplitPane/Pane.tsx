@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import Resizer from './Resizer'
 import { useSplitPaneCtx } from './SplitPaneContext'
-import React, { FC, ReactNode, useEffect, useRef } from 'react'
+import React, { type FC, type ReactNode, useEffect, useRef } from 'react'
 
 const useStyles = createUseStyles({
 	pane: {

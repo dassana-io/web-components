@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import isEmpty from 'lodash/isEmpty'
-import React, { FC, ReactNode, useMemo } from 'react'
+import React, { type FC, type ReactNode, useMemo } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType

@@ -1,4 +1,4 @@
-import { RadioButtonGroupOptions } from '..'
+import { type RadioButtonGroupOptions } from '..'
 
 export const basicOptions: RadioButtonGroupOptions[] = [
 	{ label: 'High', value: 'high' },

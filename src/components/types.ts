@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { type ChangeEventHandler } from 'react'
 
 export interface BaseFormElementProps<Element> extends CommonComponentProps {
 	/**
@@ -55,7 +55,7 @@ export interface CommonComponentProps {
 	dataTag?: string
 }
 
-/* 
+/*
 If component has element that gets added to the DOM on click, hover etc, you can pass an optional prop to explicitly state which DOM element to render the popover/dropdown inside of.
 In most cases, it's attached to document.body by default
 */

@@ -1,5 +1,5 @@
-import { BaseFormElementProps } from '../types'
-import { RefObject } from 'react'
+import { type BaseFormElementProps } from '../types'
+import { type RefObject } from 'react'
 
 export interface MultipleChoiceItemConfig {
 	label: string

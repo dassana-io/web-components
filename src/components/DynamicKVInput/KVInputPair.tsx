@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss'
 import { FieldLabel } from 'components/Form'
 import { styleguide } from 'components/assets/styles/styleguide'
-import { Input, InputProps } from 'components/Input'
-import React, { ChangeEvent, FC } from 'react'
+import { Input, type InputProps } from 'components/Input'
+import React, { type ChangeEvent, type FC } from 'react'
 
 const { flexAlignCenter, flexDown, spacing } = styleguide
 
