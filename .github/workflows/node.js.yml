@@ -18,7 +18,7 @@ jobs:
             - name: Run install, lint, and build
               run: |
                   npm install --legacy-peer-deps
-                  npm run lint
+                  npx eslint ./src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0
                   npm run build
               env:
                   CI: true
