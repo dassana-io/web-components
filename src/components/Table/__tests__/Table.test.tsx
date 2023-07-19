@@ -11,7 +11,7 @@ import { mount, type ReactWrapper, shallow, type ShallowWrapper } from 'enzyme'
 import { Table, type TableProps } from '..'
 
 /* Helper functions */
-export function createTable<Data> (tableProps: TableProps<Data>) {
+export function createTable<Data>(tableProps: TableProps<Data>) {
 	return (
 		<div>
 			<Table<Data> {...tableProps} />
@@ -19,7 +19,7 @@ export function createTable<Data> (tableProps: TableProps<Data>) {
 	)
 }
 
-export function renderedData (wrapper: ReactWrapper, dataIndex = '') {
+export function renderedData(wrapper: ReactWrapper, dataIndex = '') {
 	const bodyRow = wrapper.find('BodyRow')
 
 	if (dataIndex) {
@@ -37,7 +37,7 @@ interface FormatDateParams {
 	unixTS: number
 }
 
-export function formatDate ({
+export function formatDate({
 	unixTS,
 	displayFormat = '',
 	fromNow = false
@@ -67,8 +67,8 @@ describe('Table', () => {
 
 	it('renders table with a table header and a table body', () => {
 		const table = wrapper.find(Table)
-			const tableHead = table.find('thead')
-			const tableBody = table.find('tbody')
+		const tableHead = table.find('thead')
+		const tableBody = table.find('tbody')
 
 		expect(tableHead).toHaveLength(1)
 		expect(tableBody).toHaveLength(1)
@@ -76,7 +76,7 @@ describe('Table', () => {
 
 	it('renders table rows with react keys if IDs are not provided in data objects', () => {
 		const table = wrapper.find(Table)
-			const tableBody = table.find('tbody')
+		const tableBody = table.find('tbody')
 
 		expect(tableBody.find('tr')).toHaveLength(5)
 
