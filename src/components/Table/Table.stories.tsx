@@ -110,7 +110,7 @@ Simple.argTypes = {
 	}
 }
 
-const NumberTemplate: Story<TableProps<File>> = args => (
+const NumberTemplate: StoryFn<TableProps<File>> = args => (
 	<DecoratedTableStory {...args} />
 )
 export const Number = NumberTemplate.bind({})
@@ -174,7 +174,7 @@ Number.argTypes = {
 	}
 }
 
-const MixedTemplate: Story<TableProps<Client>> = args => (
+const MixedTemplate: StoryFn<TableProps<Client>> = args => (
 	<DecoratedTableStory<Client> {...args} />
 )
 export const Mixed = MixedTemplate.bind({})
@@ -206,7 +206,7 @@ Mixed.argTypes = {
 	}
 }
 
-const MissingCellsTemplate: Story<TableProps<Client1>> = args => (
+const MissingCellsTemplate: StoryFn<TableProps<Client1>> = args => (
 	<DecoratedTableStory<Client1> {...args} />
 )
 export const MissingCells = MissingCellsTemplate.bind({})
@@ -244,21 +244,21 @@ export const Paginated = NumberTemplate.bind({})
 Paginated.args = tableData4
 Paginated.argTypes = commonArgTypes
 
-const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
+const ColoredDotTemplate: StoryFn<TableProps<Dot>> = args => (
 	<Table<Dot> {...args} />
 )
 export const ColoredDot = ColoredDotTemplate.bind({})
 ColoredDot.args = tableData5
 ColoredDot.argTypes = commonArgTypes
 
-const EditableCellsTemplate: Story<TableProps<Client2>> = args => (
+const EditableCellsTemplate: StoryFn<TableProps<Client2>> = args => (
 	<DecoratedTableStory<Client2> {...args} />
 )
 export const EditableCells = EditableCellsTemplate.bind({})
 EditableCells.args = tableData6
 EditableCells.argTypes = commonArgTypes
 
-const MultipleIconsAndJSONPathTemplate: Story<
+const MultipleIconsAndJSONPathTemplate: StoryFn<
 	TableProps<JSONPathData>
 > = args => <DecoratedTableStory<JSONPathData> {...args} />
 export const MultipleIconsAndJSONPath = MultipleIconsAndJSONPathTemplate.bind(

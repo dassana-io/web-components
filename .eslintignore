@@ -1,2 +1,4 @@
 rollup.config.ts
 jest.config.js
+.eslintrc.cjs
+setupTests.ts

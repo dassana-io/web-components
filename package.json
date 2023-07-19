@@ -52,7 +52,7 @@
 		"test": "jest --watchAll=false",
 		"test-watch": "jest --watchAll",
 		"test-coverage": "npm test -- --coverage --watchAll=false",
-		"lint": "eslint src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0"
+		"lint": "eslint ./src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
 	"main": "lib/index.cjs.js",
 	"module": "lib/index.esm.js",
