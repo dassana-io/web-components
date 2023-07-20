@@ -21,11 +21,6 @@ const { sideBySide, left, right } = LayoutTypes
 
 const { dark, light } = ThemeType
 
-// Storybook theme needs an extra "type" property to conditionally render a dark or light themed story for Popover and Tooltip components.
-export interface SbTheme extends Theme {
-	type: ThemeType.dark | ThemeType.light
-}
-
 const sbThemes = {
 	[dark]: { ...themes[dark], type: dark },
 	[light]: { ...themes[light], type: light }
@@ -104,7 +99,7 @@ const ThemedBlock: FC<ThemedBlockProps> = ({
 	)
 }
 
-/* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
+// /* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
 const ThemeDecorator = (
 	ComponentStory: StoryFn,
 	{ globals: { theme = light } }: any
@@ -167,3 +162,17 @@ export const globalTypes = {
 }
 
 export const decorators = [ThemeDecorator]
+
+// const preview: Preview = {
+// 	parameters: {
+// 		actions: { argTypesRegex: '^on[A-Z].*' },
+// 		controls: {
+// 			matchers: {
+// 				color: /(background|color)$/i,
+// 				date: /Date$/
+// 			}
+// 		}
+// 	}
+// }
+
+// export default preview

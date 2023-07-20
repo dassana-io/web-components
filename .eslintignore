@@ -3,3 +3,4 @@ storybook.test.ts
 *.d.ts
 setupTests.ts
 vite.config.js
+rollup.config.ts
