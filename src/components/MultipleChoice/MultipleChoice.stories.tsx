@@ -1,11 +1,11 @@
 import { multipleChoiceItems } from './fixtures'
-import { SbTheme } from '../../../.storybook/preview'
+import { type SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles/styleguide'
 import { themedModalStyles } from 'components/Modal/utils'
 import { createUseStyles, useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import { MultipleChoice, MultipleChoiceProps } from './index'
-import React, { FC, Fragment, useRef } from 'react'
+import { type Meta, type Story } from '@storybook/react'
+import { MultipleChoice, type MultipleChoiceProps } from './index'
+import React, { type FC, Fragment, useRef } from 'react'
 
 const { font, fontWeight } = styleguide
 

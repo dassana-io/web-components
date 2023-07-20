@@ -1,7 +1,7 @@
 import { Input } from './index'
 import { Skeleton } from '../Skeleton'
-import { Input as AntDInput, InputRef } from 'antd'
-import { mount, ReactWrapper, shallow } from 'enzyme'
+import { Input as AntDInput, type InputRef } from 'antd'
+import { mount, type ReactWrapper, shallow } from 'enzyme'
 import React, { createRef } from 'react'
 
 let wrapper: ReactWrapper
@@ -40,7 +40,7 @@ describe('Input', () => {
 
 		wrapper = mount(<Input inputRef={inputRef} />)
 
-		// @ts-ignore
+		// @ts-expect-error
 		expect(wrapper.find(AntDInput).getElement().ref).toBe(inputRef)
 	})
 

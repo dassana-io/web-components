@@ -4,11 +4,11 @@ import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { RadioButtonGroup } from 'components/RadioButtonGroup'
 import React from 'react'
-import FormRadioButtonGroup, { FormRadioButtonGroupProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import FormRadioButtonGroup, { type FormRadioButtonGroupProps } from './index'
+import { mount, type ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tooltip } from 'antd'
-import { ColoredDot, ColoredDotProps } from '.'
-import { mount, ReactWrapper } from 'enzyme'
+import { ColoredDot, type ColoredDotProps } from '.'
+import { mount, type ReactWrapper } from 'enzyme'
 
 const MOCK_COLOR = 'red'
 const MOCK_TOOLTIP_TEXT = 'Hi I am color'

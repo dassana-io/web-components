@@ -1,8 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep'
-import { KVField } from 'components/DynamicKVInput/types'
+import { type KVField } from 'components/DynamicKVInput/types'
 import React from 'react'
-import { RegisterOptions } from 'react-hook-form'
-import FieldLabel, { FieldLabelProps } from './FieldLabel'
+import { type RegisterOptions } from 'react-hook-form'
+import FieldLabel, { type FieldLabelProps } from './FieldLabel'
 
 export const getFormFieldDataTag = (tag: string): string => `field-${tag}`
 
@@ -31,7 +31,7 @@ export const getRulesForArrVals = ({
 
 		// Then create requiredRules which consists of an object with the required rule that checks if input array is empty
 		const requiredRules = {
-			required: (values?: string[]) => (values && values.length > 0) || ''
+			required: (values?: string[]) => (values && values.length > 0) ?? ''
 		}
 
 		let extraRules = {}
@@ -67,4 +67,4 @@ export const renderFieldLabel = (props: Partial<FieldLabelProps>) => {
 // --------------------------------------
 
 export const getNonEmptyKVInputPairs = (values: KVField[]) =>
-	values.filter(({ key, value }) => key || value)
+	values.filter(({ key, value }) => key ?? value)

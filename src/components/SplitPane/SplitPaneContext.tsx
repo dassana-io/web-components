@@ -1,5 +1,5 @@
 import { createCtx } from '@dassana-io/web-utils'
-import { Dispatch, MouseEventHandler, SetStateAction } from 'react'
+import { type Dispatch, type MouseEventHandler, type SetStateAction } from 'react'
 
 interface SplitPaneCtxProps {
 	clientHeight: number

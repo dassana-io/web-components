@@ -6,7 +6,7 @@ import {
 import {
 	inputPalette,
 	themedStyles,
-	ThemeType
+	type ThemeType
 } from 'components/assets/styles/themes'
 
 const { borderRadius, fontWeight } = styleguide

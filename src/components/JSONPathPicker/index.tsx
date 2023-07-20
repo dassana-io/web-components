@@ -5,7 +5,7 @@ import noop from 'lodash/noop'
 import { useStyles } from './styles'
 import { copyToClipboard, stringifyCode } from 'components/Code/utils'
 import { getJSONValueType, JSONDataTypes, recursiveRender } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 export type JSONValue =
 	| string

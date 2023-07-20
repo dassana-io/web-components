@@ -74,9 +74,7 @@ export const generateSelectStyles = (
 export const useStyles = createUseStyles({
 	container: ({ fullWidth, matchSelectedContentWidth }) => ({
 		...generateSelectStyles(light, {
-			minWidth: matchSelectedContentWidth
-				? matchSelectedContentWidth
-				: 'unset',
+			minWidth: matchSelectedContentWidth || 'unset',
 			width: matchSelectedContentWidth ? 'unset' : '100%'
 		}),
 		width:

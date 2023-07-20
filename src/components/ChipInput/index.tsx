@@ -11,22 +11,20 @@ import {
 	getTagDeletionProps,
 	useStyles
 } from './utils'
-import { Input, InputProps } from 'components/Input'
+import { Input, type InputProps } from 'components/Input'
 import React, {
-	ChangeEvent,
-	FC,
-	FocusEvent,
-	KeyboardEvent,
-	ReactNode,
+	type ChangeEvent,
+	type FC,
+	type FocusEvent,
+	type KeyboardEvent,
+	type ReactNode,
 	useEffect,
 	useLayoutEffect,
 	useRef,
 	useState
 } from 'react'
 
-export interface Validate {
-	(inputVal: string): boolean | string
-}
+export type Validate = (inputVal: string) => boolean | string
 
 export interface ChipInputProps
 	extends Omit<InputProps, 'onChange' | 'onKeyDown' | 'type' | 'value'> {
@@ -139,13 +137,15 @@ export const ChipInput: FC<ChipInputProps> = ({
 				if (validated !== true) {
 					setLocalError(true)
 
-					if (typeof validated === 'string')
+					if (typeof validated === 'string') {
 						setLocalErrorMsg(validated)
+					}
 				}
 			}
 
-			if (!isInvalidValue && !disabled && validated === true)
+			if (!isInvalidValue && !disabled && validated === true) {
 				addInputValue()
+			}
 		}
 	}
 
@@ -191,12 +191,14 @@ export const ChipInput: FC<ChipInputProps> = ({
 	}, [addonBefore, addonAfter, addedValues, inputValue, localError, error])
 
 	useLayoutEffect(() => {
-		if (shortcutMicrocopyRef.current)
+		if (shortcutMicrocopyRef.current) {
 			setShortcutMicrocopyWidth(shortcutMicrocopyRef.current.scrollWidth)
+		}
 	}, [])
 
-	if (values && !onChange)
+	if (values && !onChange) {
 		throw new Error('Controlled chip inputs require an onChange prop')
+	}
 
 	return (
 		<div

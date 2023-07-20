@@ -1,7 +1,7 @@
 import '../assets/styles/antdAnimations.css'
 import 'antd/lib/pagination/style/index.css'
 import { Pagination as AntDPagination } from 'antd'
-import { PaginationProps as AntDPaginationProps } from 'antd/lib/pagination'
+import { type PaginationProps as AntDPaginationProps } from 'antd/lib/pagination'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generatePaginationStyles } from './styles'
@@ -14,8 +14,8 @@ import {
 	generateThemedOptionStyles
 } from 'components/Select/utils'
 import React, {
-	ReactNode,
-	RefObject,
+	type ReactNode,
+	type RefObject,
 	useCallback,
 	useEffect,
 	useMemo,
@@ -120,7 +120,8 @@ export const Paginate = <Data,>({
 					itemWrapperClasses
 				)}
 			>
-				{loading ? (
+				{loading
+? (
 					<PageLoader
 						classes={[
 							cn(
@@ -129,7 +130,8 @@ export const Paginate = <Data,>({
 							)
 						]}
 					/>
-				) : (
+				)
+: (
 					data.slice(minVal, maxVal).map((datum, i) => (
 						<div className={cn(itemContainerClasses)} key={i}>
 							{itemRender(datum)}

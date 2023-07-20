@@ -5,29 +5,29 @@ import 'antd/lib/pagination/style/index.css'
 import { Table as AntDTable } from 'antd'
 import cloneDeep from 'lodash/cloneDeep'
 import cn from 'classnames'
-import { ColumnsType } from 'antd/lib/table'
-import { CommonComponentProps } from '../types'
+import { type ColumnsType } from 'antd/lib/table'
+import { type CommonComponentProps } from '../types'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { getDataTestAttributeProp } from '../utils'
 import { Input } from '../Input'
 import { TableCtxProvider } from './TableContext'
-import { TableRowSelection } from 'antd/es/table/interface'
+import { type TableRowSelection } from 'antd/es/table/interface'
 import { TableSkeleton } from './TableSkeleton'
 import { unstable_batchedUpdates } from 'react-dom'
 import { useStyles } from './styles'
 import {
-	AdditionalPaletteColors,
-	ColumnType,
-	ProcessedTableData,
-	TableData
+	type AdditionalPaletteColors,
+	type ColumnType,
+	type ProcessedTableData,
+	type TableData
 } from './types'
 import { mapFilterKeys, processColumns, processData } from './utils'
 import React, {
-	ChangeEvent,
-	Key,
-	ReactNode,
-	RefObject,
+	type ChangeEvent,
+	type Key,
+	type ReactNode,
+	type RefObject,
 	useCallback,
 	useEffect,
 	useRef,
@@ -38,9 +38,7 @@ import {
 	useWindowSize
 } from '@dassana-io/web-utils'
 
-export interface OnRowClick<TableData> {
-	(data: TableData, rowIndex: number): void
-}
+export type OnRowClick<TableData> = (data: TableData, rowIndex: number) => void
 
 export interface ScrollConfig {
 	/**
@@ -93,7 +91,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 	/**
 	 * Array of data objects
 	 */
-	data: TableData<Data>[]
+	data: Array<TableData<Data>>
 	disableRowClick?: boolean
 	dynamicTableHeight?: boolean
 	/**
@@ -128,6 +126,7 @@ export interface TableProps<Data> extends CommonComponentProps {
 }
 
 /* Pagination config props type that gets passed to AntDTable  */
+// eslint-disable-next-line  @typescript-eslint/member-delimiter-style
 type Pagination = false | { defaultPageSize?: number; showSizeChanger: false }
 
 // eslint-disable-next-line comma-spacing
@@ -156,13 +155,13 @@ export const Table = <Data,>({
 }: TableProps<Data>) => {
 	const cmpTableRef = useRef<HTMLDivElement>(null)
 
-	const containerRef = tableRef ? tableRef : cmpTableRef
+	const containerRef = tableRef ?? cmpTableRef
 	const controlsRef = useRef<HTMLDivElement>(null)
 
 	const containerHeight = useRemainingContainerHeight(containerRef)
 
 	const [searchTerm, setSearchTerm] = useState<string>('')
-	const [filteredData, setFilteredData] = useState<TableData<Data>[]>([])
+	const [filteredData, setFilteredData] = useState<Array<TableData<Data>>>([])
 
 	const { rowCount = 10 } = paginationConfig
 	const [pagination, setPagination] = useState<Pagination>({
@@ -244,7 +243,9 @@ export const Table = <Data,>({
 				defaultPageSize: rowCount,
 				showSizeChanger: false
 			})
-		} else setPagination(false)
+		} else {
+			setPagination(false)
+		}
 	}, [data.length, rowCount])
 
 	useEffect(() => {
@@ -351,8 +352,9 @@ export const Table = <Data,>({
 		}
 	}
 
-	if (skeletonRowCount < 1)
+	if (skeletonRowCount < 1) {
 		throw new Error('skeletonRowCount must be a positive integer')
+	}
 
 	return (
 		<TableCtxProvider value={{ isMobile }}>
@@ -365,7 +367,7 @@ export const Table = <Data,>({
 						)}
 						ref={controlsRef}
 					>
-						{renderTableControls && renderTableControls()}
+						{renderTableControls?.()}
 						{search && (
 							<Input
 								dataTag='table-search'

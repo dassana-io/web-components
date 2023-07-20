@@ -1,7 +1,7 @@
 import { ModalProvider } from 'components/Modal'
 import { TableDrawer as TableDrawerCmp } from './TableDrawer'
-import { DataId, ProcessedTableData, TableProps } from '../Table'
-import React, { Key, ReactNode } from 'react'
+import { type DataId, type ProcessedTableData, type TableProps } from '../Table'
+import React, { type Key, type ReactNode } from 'react'
 
 export interface TableDrawerProps<DataType>
 	extends Omit<TableProps<DataType>, 'activeRowKey' | 'onRowClick'> {

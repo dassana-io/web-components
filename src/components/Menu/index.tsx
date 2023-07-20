@@ -2,9 +2,9 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import MenuItem from './MenuItem'
 import MenuItemGroup from './MenuItemGroup'
-import { commonListStyles, CommonMenuProps } from './utils'
-import { MenuContextProps, MenuContextProvider } from './MenuContext'
-import React, { Key } from 'react'
+import { commonListStyles, type CommonMenuProps } from './utils'
+import { type MenuContextProps, MenuContextProvider } from './MenuContext'
+import React, { type Key } from 'react'
 
 const useStyles = createUseStyles({
 	menu: commonListStyles

@@ -6,10 +6,10 @@ import {
 	allItemsInFirstArrExistInSecondArr,
 	findCommonItemsInArrays,
 	GRID_ITEM_DIMENSION,
-	GridMap,
+	type GridMap,
 	PriorityColorMap
 } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { flexAlignCenter, flexDown, font, fontWeight, spacing } = styleguide
 

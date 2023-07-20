@@ -1,11 +1,11 @@
 import { action } from '@storybook/addon-actions'
-import { SbTheme } from '../../../../.storybook/preview'
+import { type SbTheme } from '../../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../../.storybook/utils'
-import { SelectOption } from '../SingleSelect/types'
+import { type SelectOption } from '../SingleSelect/types'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { FC } from 'react'
-import { TagsSelect, TagsSelectProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC } from 'react'
+import { TagsSelect, type TagsSelectProps } from './index'
 
 export default {
 	argTypes: {

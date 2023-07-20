@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss'
 import { Skeleton } from 'components/Skeleton'
 import times from 'lodash/times'
 import { gridGap, itemHeight } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const useStyles = createUseStyles({
 	skeleton: {

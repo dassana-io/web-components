@@ -1,6 +1,6 @@
 import React from 'react'
-import { Checkbox, CheckboxProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Checkbox, type CheckboxProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { mount, shallow, ShallowWrapper } from 'enzyme'
-import { TabConfig, Tabs } from '../index'
+import { mount, shallow, type ShallowWrapper } from 'enzyme'
+import { type TabConfig, Tabs } from '../index'
 
 let wrapper: ShallowWrapper
 

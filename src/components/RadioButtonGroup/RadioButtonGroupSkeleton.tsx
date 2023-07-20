@@ -3,7 +3,7 @@ import { generateRadioSkeletonStyles } from './utils'
 import { Skeleton } from '../Skeleton'
 import { ThemeType } from 'components/assets/styles/themes'
 import times from 'lodash/times'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { dark, light } = ThemeType
 

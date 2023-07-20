@@ -1,6 +1,10 @@
 /* eslint-disable sort-keys */
-import { TableDrawerProps } from '..'
-import { ColumnFormats, ColumnType, ColumnTypes } from 'components/Table/types'
+import { type TableDrawerProps } from '..'
+import {
+	ColumnFormats,
+	type ColumnType,
+	ColumnTypes
+} from 'components/Table/types'
 
 const { string, component } = ColumnTypes
 const { icon } = ColumnFormats
@@ -14,7 +18,7 @@ export interface Policy {
 	subcategory: string
 	name: string
 	description?: string
-	vendors: { [name: string]: string[] | string }
+	vendors: Record<string, string[] | string>
 	context: Record<string, any> | null // use Record since context contains multiple data types - WIP
 }
 

@@ -7,7 +7,7 @@ import {
 	generateThemedChevronStyles,
 	generateThemedConnectorStyles
 } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 
 const { alwaysExpanded, collapsed, expanded } = TimelineState

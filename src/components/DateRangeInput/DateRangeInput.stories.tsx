@@ -1,11 +1,11 @@
 import { action } from '@storybook/addon-actions'
 import moment from 'moment'
-import { SbTheme } from '../../../.storybook/preview'
+import { type SbTheme } from '../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { useTheme } from 'react-jss'
-import { DateRangeInput, DateRangeInputProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { FC } from 'react'
+import { DateRangeInput, type DateRangeInputProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC } from 'react'
 
 export default {
 	argTypes: {

@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Helmet } from 'react-helmet'
 import { styleguide } from '../assets/styles'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { spacing } = styleguide
 

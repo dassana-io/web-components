@@ -3,10 +3,10 @@ import React from 'react'
 import { Tree } from '../index'
 import treeData0 from '../fixtures/0_sample_data'
 import TreeSkeleton from '../TreeSkeleton'
-import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
+import { mount, type ReactWrapper, shallow, type ShallowWrapper } from 'enzyme'
 
 /* Helper functions */
-function getTreeNode(wrapper: ReactWrapper) {
+function getTreeNode (wrapper: ReactWrapper) {
 	return wrapper
 		.find('.ant-tree-treenode')
 		.find('.ant-tree-node-content-wrapper')

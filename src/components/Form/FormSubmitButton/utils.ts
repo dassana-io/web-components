@@ -1,5 +1,5 @@
-import { FormButtonProps } from './index'
-import { UseShortcutConfig } from '@dassana-io/web-utils'
+import { type FormButtonProps } from './index'
+import { type UseShortcutConfig } from '@dassana-io/web-utils'
 
 interface Params {
 	useShortcutProps?: FormButtonProps['useShortcutProps']

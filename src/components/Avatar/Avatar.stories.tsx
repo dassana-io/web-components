@@ -1,9 +1,9 @@
 import { Icon as DassanaIcon } from '../Icon'
 import React from 'react'
-import { Avatar, AvatarProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Avatar, type AvatarProps } from './index'
+import { type Meta, type StoryFn } from '@storybook/react'
 
-const sizeOptions: Omit<AvatarProps['size'], number>[] = [
+const sizeOptions: Array<Omit<AvatarProps['size'], number>> = [
 	'default',
 	'large',
 	'small'
@@ -25,7 +25,9 @@ export default {
 	title: 'Avatar'
 } as Meta
 
-const Template: Story<AvatarProps> = args => <Avatar {...args} />
+const Template: StoryFn<AvatarProps> = (args: AvatarProps) => (
+	<Avatar {...args} />
+)
 
 export const Default = Template.bind({})
 Default.args = { children: 'D' }

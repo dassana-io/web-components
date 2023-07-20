@@ -1,8 +1,8 @@
 import { BaseFilters } from '../BaseFilters'
-import { ClientSideFiltersProps } from '../types'
+import { type ClientSideFiltersProps } from '../types'
 import { FiltersCtxProvider } from '../FiltersContext'
 import { processFilters } from '../utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 export const ClientSideFilters: FC<ClientSideFiltersProps> = ({
 	filterOptions = [],

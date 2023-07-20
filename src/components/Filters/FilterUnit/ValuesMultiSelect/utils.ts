@@ -1,6 +1,6 @@
 import { Breakpoints } from '@dassana-io/web-utils'
-import { MultiSelectProps } from '../../../Select'
-import { ValuesMultiSelectProps } from './types'
+import { type MultiSelectProps } from '../../../Select'
+import { type ValuesMultiSelectProps } from './types'
 
 type DefaultCommonProps = Pick<
 	MultiSelectProps,

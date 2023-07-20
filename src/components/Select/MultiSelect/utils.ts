@@ -1,6 +1,6 @@
-import Fuse from 'fuse.js'
-import { MultiSelectProps } from './types'
-import { SelectOption } from '../SingleSelect/types'
+import type Fuse from 'fuse.js'
+import { type MultiSelectProps } from './types'
+import { type SelectOption } from '../SingleSelect/types'
 import sortBy from 'lodash/sortBy'
 
 const filterOptions = (

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
-import React, { FC, useEffect, useState } from 'react'
+import React, { type FC, useEffect, useState } from 'react'
 
 const {
 	colors: { blacks, blues },

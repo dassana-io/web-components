@@ -1,7 +1,7 @@
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
-import tableData0, { Policy } from './fixtures/0_sample_data'
-import { TableDrawer, TableDrawerProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import tableData0, { type Policy } from './fixtures/0_sample_data'
+import { TableDrawer, type TableDrawerProps } from '.'
 
 export default {
 	argTypes: {

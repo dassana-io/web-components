@@ -1,11 +1,11 @@
 import { dateFormat } from '__mocks__/table_mock_data'
-import { IconName } from 'components/Icon'
+import { type IconName } from 'components/Icon'
 import {
 	ColumnFormats,
-	ColumnType,
+	type ColumnType,
 	ColumnTypes,
 	IconCellLabelType,
-	TableProps
+	type TableProps
 } from '..'
 
 // This file contains table data with col dataIndex as a JSONPath instead of string
@@ -14,13 +14,13 @@ const { component, number, string } = ColumnTypes
 const { date, icon } = ColumnFormats
 
 export interface JSONPathData {
-	buildHrefIconJSONPath: { id: string; label: string }
-	company: { id: string; name?: string; value: IconName }
+	buildHrefIconJSONPath: { id: string, label: string }
+	company: { id: string, name?: string, value: IconName }
 	icon: string
 	id: number
-	name: { id: string; value: string }
-	start_date: { id: string; date: number }
-	vendors: { id: string; name?: string; value: string }[]
+	name: { id: string, value: string }
+	start_date: { id: string, date: number }
+	vendors: Array<{ id: string, name?: string, value: string }>
 }
 
 const columns: ColumnType[] = [

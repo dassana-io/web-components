@@ -11,9 +11,9 @@ import {
 	getInitialExpandedKeys,
 	getUpdatedExpandedKeys
 } from '../Accordion/utils'
-import React, { FC, Key, useState } from 'react'
+import React, { type FC, type Key, useState } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
-import { TimelineProps, TimelineState } from './types'
+import { type TimelineProps, TimelineState } from './types'
 
 const { alwaysExpanded, expanded, collapsed } = TimelineState
 

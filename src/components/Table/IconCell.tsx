@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss'
 import { IconCellLabelType } from './types'
 import { styleguide } from 'components/assets/styles'
 import { Tooltip } from 'components/Tooltip'
-import { Icon, IconProps } from '../Icon'
-import React, { FC } from 'react'
+import { Icon, type IconProps } from '../Icon'
+import React, { type FC } from 'react'
 
 const { flexAlignCenter, spacing } = styleguide
 

@@ -1,8 +1,8 @@
 import { cloneDeep } from 'lodash'
 import { getDataTestAttributeProp } from 'components/utils'
-import { KVField } from './types'
+import { type KVField } from './types'
 import { KVInputPair } from './KVInputPair'
-import React, { FC, useCallback, useEffect, useMemo } from 'react'
+import React, { type FC, useCallback, useEffect, useMemo } from 'react'
 
 const removeFromArrByIdx = <T, >(arr: T[], index: number) => [
 	...arr.slice(0, index),
@@ -13,7 +13,7 @@ const shouldAddNewPair = (values: KVField[]): boolean => {
 	const numOfPairs = values.length
 	const lastPair = values[numOfPairs - 1]
 
-	return !numOfPairs || !!(lastPair.key || lastPair.value)
+	return !numOfPairs ?? !!(lastPair.key ?? lastPair.value)
 }
 
 const defaultKVPair: KVField = {
@@ -78,8 +78,9 @@ export const DynamicKVInput: FC<DynamicKVInputProps> = ({
 
 				let newValues = valuesClone
 
-				if (isLastPair || lastPair.key || lastPair.value)
+				if (isLastPair ?? lastPair.key ?? lastPair.value) {
 					newValues = [...valuesClone, defaultKVPair]
+				}
 
 				onChange(newValues)
 			}

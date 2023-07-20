@@ -98,9 +98,7 @@ export const useStyles = createUseStyles({
 				},
 				[focusedClasses]: generateThemedFocusedStyles(light)
 			},
-			minWidth: matchSelectedContentWidth
-				? matchSelectedContentWidth
-				: 'unset',
+			minWidth: matchSelectedContentWidth || 'unset',
 			width: matchSelectedContentWidth ? 'unset' : '100%'
 		},
 		width:

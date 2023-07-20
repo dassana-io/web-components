@@ -1,8 +1,8 @@
 import {
-	ExpandMultipleProps,
-	ExpandSingleProps,
-	Panel,
-	SharedAccordionProps
+	type ExpandMultipleProps,
+	type ExpandSingleProps,
+	type Panel,
+	type SharedAccordionProps
 } from '../Accordion'
 
 export enum TimelineState {

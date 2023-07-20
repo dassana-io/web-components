@@ -1,11 +1,11 @@
 import { fakeApiCallSuccess } from 'components/utils'
-import { IconName } from 'components/Icon'
+import { type IconName } from 'components/Icon'
 import {
 	ColumnFormats,
-	ColumnType,
+	type ColumnType,
 	ColumnTypes,
 	IconCellLabelType,
-	TableProps
+	type TableProps
 } from '..'
 
 const { component, number, string } = ColumnTypes
@@ -17,7 +17,7 @@ export interface Client {
 	id: number
 	linked_in: string
 	name: string
-	role: { name: string; color: string }
+	role: { name: string, color: string }
 	start_date: number
 }
 
@@ -56,7 +56,7 @@ const columns: ColumnType[] = [
 		dataIndex: 'admin_access',
 		format: toggle,
 		renderProps: {
-			onSave: () => fakeApiCallSuccess()
+			onSave: async () => { await fakeApiCallSuccess() }
 		},
 		title: 'Has Admin Access',
 		type: component

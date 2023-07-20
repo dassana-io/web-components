@@ -1,4 +1,4 @@
-import { ColumnType as AntDColumnType } from 'antd/es/table'
+import { type ColumnType as AntDColumnType } from 'antd/es/table'
 import castArray from 'lodash/castArray'
 import { CellWithTooltip } from './CellWithTooltip'
 import { ColoredDot } from 'components/ColoredDot'
@@ -9,29 +9,29 @@ import { IconCell } from './IconCell'
 import isUndefined from 'lodash/isUndefined'
 import moment from 'moment'
 import { MultipleIcons } from './MultipleIcons'
-import { SelectOption } from 'components/Select'
+import { type SelectOption } from 'components/Select'
 import { v4 as uuidV4 } from 'uuid'
 import {
 	ColumnFormats,
-	ColumnType,
+	type ColumnType,
 	ColumnTypes,
-	ComponentActionType,
-	ComponentIconType,
-	ComponentTagType,
-	DataId,
+	type ComponentActionType,
+	type ComponentIconType,
+	type ComponentTagType,
+	type DataId,
 	DateDisplayFormat,
 	EditableCellTypes,
-	FormattedTag,
-	NumberDateType,
-	RequiredDataId
+	type FormattedTag,
+	type NumberDateType,
+	type RequiredDataId
 } from './types'
 import { formatBytes, formatCurrency } from '@dassana-io/web-utils'
 import { getJSONPathArr, getJSONPathValue } from 'components/utils'
-import { IconName, IconProps } from '../Icon'
-import { Link, LinkProps } from '../Link'
-import React, { Key, MouseEvent, ReactNode } from 'react'
-import { Tag, TagProps } from '../Tag'
-import { Toggle, ToggleProps } from '../Toggle'
+import { type IconName, type IconProps } from '../Icon'
+import { Link, type LinkProps } from '../Link'
+import React, { type Key, type MouseEvent, type ReactNode } from 'react'
+import { Tag, type TagProps } from '../Tag'
+import { Toggle, type ToggleProps } from '../Toggle'
 
 const { component, number, string } = ColumnTypes
 const {
@@ -50,9 +50,7 @@ const {
 
 /* ------- Exported Functions ------- */
 
-interface MappedData<TableData> {
-	[id: string]: TableData & RequiredDataId
-}
+type MappedData<TableData> = Record<string, TableData & RequiredDataId>
 
 export interface TableMethods<T> {
 	deleteRow: (rowId: Key) => void
@@ -101,14 +99,14 @@ export function processColumns<TableData extends DataId>(
 // ------------------------------------------------
 
 type ProcessedDataType<T> = T & {
-	_FORMATTED_DATA: (string | null)[]
+	_FORMATTED_DATA: Array<string | null>
 	id: Key
 	key: Key
 }
 
 interface ProcessedData<T> {
 	mappedData: MappedData<T>
-	processedData: ProcessedDataType<T>[]
+	processedData: Array<ProcessedDataType<T>>
 }
 
 /*
@@ -123,7 +121,7 @@ export function processData<TableData extends DataId>(
 	rowIdKey = 'id'
 ): ProcessedData<TableData> {
 	const mappedData: MappedData<TableData> = {}
-	const processedData: ProcessedDataType<TableData & DataId>[] = []
+	const processedData: Array<ProcessedDataType<TableData & DataId>> = []
 
 	const mappedFormat = mapDataIndexToFormatter(columns)
 
@@ -154,7 +152,7 @@ export function processData<TableData extends DataId>(
 			// Fix for this issue https://github.com/JSONPath-Plus/JSONPath/issues/102
 			if (pathArr[0] === '$') pathArr.shift()
 
-			if (pathArr.length) {
+			if (pathArr.length > 0) {
 				partialData[pathArr[0] as keyof TableData] = item[pathArr[0]]
 			}
 		})
@@ -177,7 +175,7 @@ export function processData<TableData extends DataId>(
 	More info --> https://fusejs.io/examples.html#nested-search
 */
 export function mapFilterKeys(columns: ColumnType[]) {
-	const keysArr: (string | string[])[] = ['_FORMATTED_DATA']
+	const keysArr: Array<string | string[]> = ['_FORMATTED_DATA']
 
 	for (const column of columns) {
 		const { dataIndex } = column
@@ -236,10 +234,10 @@ const compareIcons =
 			: `$.${dataIndex}`
 
 		const compareValA =
-			getJSONPathValue(jsonPath, a, formatKey)?.toString() || ''
+			getJSONPathValue(jsonPath, a, formatKey)?.toString() ?? ''
 
 		const compareValB =
-			getJSONPathValue(jsonPath, b, formatKey)?.toString() || ''
+			getJSONPathValue(jsonPath, b, formatKey)?.toString() ?? ''
 
 		return compareValA.localeCompare(compareValB)
 	}
@@ -250,7 +248,7 @@ const getStrVal = (value?: string | string[]) => {
 	return Array.isArray(value) ? value.join(', ') : value
 }
 
-/* 
+/*
 	Compare functions used by applySort to pass a custom sorter
 	based on data type and format.
 */
@@ -373,7 +371,9 @@ const getIconOrIconKey = (
 		const value = getJSONPathValue(jsonPath, record)?.toString()
 
 		if (value) return value
-	} else return record
+	} else {
+		return record
+	}
 }
 
 interface GetIconPropsParams<TableData> {
@@ -431,7 +431,7 @@ const renderIcon = <TableData,>({
 	data,
 	record,
 	renderProps
-}: RenderIconProps<TableData>) => {
+}: RenderIconProps<TableData>): ReactNode => {
 	const { iconKey, height = defaultIconHeight, label } = renderProps
 
 	const jsonPath = iconKey ? `$.${iconKey}` : ''
@@ -446,21 +446,24 @@ const renderIcon = <TableData,>({
 		height
 	}
 
-	if (renderProps.type === 'icon' && !iconProps.icon) return record
+	if (renderProps.type === 'icon' && !iconProps.icon) {
+		return record as ReactNode
+	}
 
 	if (!label) return <IconCell iconProps={iconProps} />
 
 	const labelKey =
 		!label.labelKey && typeof record === 'string' ? record : label.labelKey
 
-	if (!labelKey) return <IconCell iconProps={iconProps} />
-	else {
+	if (!labelKey) {
+		return <IconCell iconProps={iconProps} />
+	} else {
 		const jsonPath = `$.${labelKey}`
 
 		const labelVal =
 			typeof record === 'string'
 				? labelKey
-				: (getJSONPathValue(jsonPath, record) as string) // eslint-disable-line no-mixed-spaces-and-tabs
+				: (getJSONPathValue(jsonPath, record) as string)
 
 		return (
 			<IconCell
@@ -659,7 +662,7 @@ function applyRender<TableData extends RequiredDataId>(
 							isDisabled = (_r: string, _data: TableData) =>
 								false,
 							target = '_blank'
-						} = column.renderProps || {}
+						} = column.renderProps ?? {}
 
 						const linkProps: LinkProps = {
 							children: record,
@@ -668,8 +671,9 @@ function applyRender<TableData extends RequiredDataId>(
 							target
 						}
 
-						if (isDisabled(record, data))
+						if (isDisabled(record, data)) {
 							return <CellWithTooltip text={record} />
+						}
 
 						return <Link {...linkProps} />
 					}
@@ -684,7 +688,7 @@ function applyRender<TableData extends RequiredDataId>(
 						if (record === undefined) return ''
 
 						const { deletable = false, tagFormatter } =
-							column.renderProps || {}
+							column.renderProps ?? {}
 
 						return castArray(record).map((tagInfo, i) => {
 							if (tagFormatter) tagInfo = tagFormatter(tagInfo)

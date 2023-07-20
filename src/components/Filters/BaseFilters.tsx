@@ -11,9 +11,9 @@ import { useBaseFilterStyles } from './styles'
 import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
-import { FiltersList, FiltersListItem, FiltersProps } from './types'
+import { type FiltersList, type FiltersListItem, type FiltersProps } from './types'
 import { filtersPopupWrapperId, formatSelectedFilters } from './utils'
-import React, { FC, useEffect, useImperativeHandle, useState } from 'react'
+import React, { type FC, useEffect, useImperativeHandle, useState } from 'react'
 
 const { spacing } = styleguide
 
@@ -128,11 +128,13 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 
 	return (
 		<div className={classes.container} id={filtersPopupWrapperId}>
-			{loading ? (
+			{loading
+? (
 				<div className={classes.filterControls}>
 					<Skeleton height={spacing.xl} width={spacing.xl} />
 				</div>
-			) : (
+			)
+: (
 				<>
 					<FilterPopover
 						closePopover={closePopover}

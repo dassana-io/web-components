@@ -1,8 +1,8 @@
 import { formatFilterValsToSelectOpts } from '../../utils'
 import { getMultiSelectProps } from './utils'
-import { ValuesMultiSelectProps } from './types'
-import { MultiSelect, SelectOption } from '../../../Select'
-import React, { FC, useEffect, useState } from 'react'
+import { type ValuesMultiSelectProps } from './types'
+import { MultiSelect, type SelectOption } from '../../../Select'
+import React, { type FC, useEffect, useState } from 'react'
 
 export const ClientSideValuesMS: FC<ValuesMultiSelectProps> = ({
 	id,

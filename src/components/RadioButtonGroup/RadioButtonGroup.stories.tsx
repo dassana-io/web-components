@@ -1,7 +1,7 @@
 import React from 'react'
 import { basicOptions, basicOptionsDisabled } from './fixtures/sample_options'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import { RadioButtonGroup, RadioButtonGroupProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import { RadioButtonGroup, type RadioButtonGroupProps } from './index'
 
 export default {
 	argTypes: {

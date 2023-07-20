@@ -6,12 +6,12 @@ import { DatePicker } from 'antd'
 import { generateButtonStyles } from '../Button/utils'
 import { getPopupContainerProps } from '../utils'
 import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
-import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { type SizeType } from 'antd/lib/config-provider/SizeContext'
 import { ThemeType } from 'components/assets/styles'
 import { formatTime, parseTime } from '../TimeInput/utils'
 import { generateDateRangeInputStyles, generateDropdownStyles } from './styles'
-import { Moment, MomentInputObject } from 'moment'
-import React, { FC } from 'react'
+import { type Moment, type MomentInputObject } from 'moment'
+import React, { type FC } from 'react'
 
 const { dark, light } = ThemeType
 const { RangePicker: AntDRangePicker } = DatePicker
@@ -107,9 +107,11 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 		openProps = { open: true }
 	}
 
-	return loading ? (
+	return loading
+? (
 		<SelectSkeleton />
-	) : (
+	)
+: (
 		<AntDRangePicker
 			allowClear={false}
 			className={cn(classes)}

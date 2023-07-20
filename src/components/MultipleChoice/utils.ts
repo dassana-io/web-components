@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 import { filterMap } from 'components/utils'
-import { MultipleChoiceItemConfig } from './types'
+import { type MultipleChoiceItemConfig } from './types'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType
@@ -15,9 +15,7 @@ const {
 	fontWeight
 } = styleguide
 
-export interface MultipleSelectedValues {
-	[value: string]: boolean
-}
+export type MultipleSelectedValues = Record<string, boolean>
 
 export const selectedValsArrToObj = (
 	values: string[]

@@ -1,10 +1,10 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
-import { TimeInput, TimeInputProps } from 'components/TimeInput'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type FC, useContext } from 'react'
+import { TimeInput, type TimeInputProps } from 'components/TimeInput'
 
 export interface FormTimeInputProps
 	extends BaseFieldProps,

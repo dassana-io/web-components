@@ -1,6 +1,6 @@
-import { BaseOptionType } from 'antd/lib/select'
-import { DataNode } from 'antd/es/tree'
-import { OnChangeHandler, TreeId, TreeNodeType } from '.'
+import { type BaseOptionType } from 'antd/lib/select'
+import { type DataNode } from 'antd/es/tree'
+import { type OnChangeHandler, type TreeId, type TreeNodeType } from '.'
 
 /**
  * Recursive function to process TreeData. It takes an array of nested TreeNodes and returns array of nested DataNodes formatted to satisfy antD requirements.
@@ -19,7 +19,7 @@ export const processTreeSelectData = (nodes: TreeNodeType[] | undefined) => {
 
 		const mappedChildren = processTreeSelectData(node.children)
 
-		if (mappedChildren.length) mappedNode.children = mappedChildren
+		if (mappedChildren.length > 0) mappedNode.children = mappedChildren
 
 		mappedNodes.push(mappedNode)
 	}
@@ -41,7 +41,7 @@ export const processTreeData = (nodes: TreeNodeType[] | undefined) => {
 
 		const mappedChildren = processTreeData(node.children)
 
-		if (mappedChildren.length) mappedNode.children = mappedChildren
+		if (mappedChildren.length > 0) mappedNode.children = mappedChildren
 
 		mappedNodes.push(mappedNode)
 	}

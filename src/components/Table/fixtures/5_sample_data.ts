@@ -1,6 +1,6 @@
 import { ColumnFormats } from '../types'
 import { styleguide } from 'components/assets/styles'
-import { ColumnType, ColumnTypes, TableProps } from '..'
+import { type ColumnType, ColumnTypes, type TableProps } from '..'
 
 const {
 	colors: { blacks, oranges }

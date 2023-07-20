@@ -1,10 +1,10 @@
 import { AnimatePresence } from 'framer-motion'
 import { createPortal } from 'react-dom'
 import { isEmpty } from 'lodash'
-import { ModalConfig } from './utils'
+import { type ModalConfig } from './utils'
 import { ModalDrawer } from './ModalDrawer'
-import Modal, { ModalProps } from './Modal'
-import React, { FC } from 'react'
+import Modal, { type ModalProps } from './Modal'
+import React, { type FC } from 'react'
 
 interface ModalWrapperProps extends ModalProps {
 	rootEl: HTMLDivElement | null
@@ -24,13 +24,17 @@ export const ModalWrapper: FC<ModalWrapperProps> = ({
 		rootEl &&
 		createPortal(
 			<AnimatePresence>
-				{!isEmpty(modalConfig) ? (
-					drawer ? (
+				{!isEmpty(modalConfig)
+? (
+					drawer
+? (
 						<ModalDrawer {...rest} />
-					) : (
+					)
+: (
 						<Modal {...rest} />
 					)
-				) : null}
+				)
+: null}
 			</AnimatePresence>,
 			rootEl
 		)

@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react'
+import { type ReactNode, useCallback, useState } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const { light } = ThemeType

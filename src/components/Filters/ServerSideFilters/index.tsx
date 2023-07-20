@@ -1,8 +1,8 @@
 import { BaseFilters } from '../BaseFilters'
 import { FiltersCtxProvider } from '../FiltersContext'
-import { ServerSideFiltersProps } from '../types'
+import { type ServerSideFiltersProps } from '../types'
 import { useFilters } from './utils'
-import React, { FC, useMemo } from 'react'
+import React, { type FC, useMemo } from 'react'
 
 export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 	onFilterSuggest,

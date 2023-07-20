@@ -9,7 +9,7 @@ import {
 	faChevronLeft,
 	faChevronRight
 } from '@fortawesome/pro-regular-svg-icons'
-import React, { FC, useLayoutEffect, useRef, useState } from 'react'
+import React, { type FC, useLayoutEffect, useRef, useState } from 'react'
 
 const {
 	colors: { blues, grays },

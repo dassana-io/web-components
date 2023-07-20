@@ -1,5 +1,5 @@
 import { Breakpoints } from '@dassana-io/web-utils'
-import { themedStyles, ThemeType } from 'components/assets/styles'
+import { themedStyles, type ThemeType } from 'components/assets/styles'
 
 const getMediaSelector = (breakpoint: Breakpoints, isMax?: boolean) =>
 	`@media screen and (${isMax ? 'max' : 'min'}-width: ${breakpoint}px)`

@@ -1,4 +1,4 @@
-import { TreeNodeType } from '../'
+import { type TreeNodeType } from '../'
 
 const treeData: TreeNodeType[] = [
 	{

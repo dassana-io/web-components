@@ -10,7 +10,7 @@ import {
 	SeverityRankingListOrder
 } from './utils'
 import { colorPalette, styleguide, ThemeType } from '../assets/styles'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const { dark, light } = ThemeType
 

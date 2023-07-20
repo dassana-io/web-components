@@ -1,10 +1,10 @@
 import { action } from '@storybook/addon-actions'
 import { Button } from 'components/Button'
 import omit from 'lodash/omit'
-import { Filters, FiltersMode, FiltersProps } from '.'
+import { Filters, FiltersMode, type FiltersProps } from '.'
 import { filtersConfig, mockFilterOptions } from './fixtures/0_sample_data'
-import { FiltersList, UseFiltersMethods } from './types'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { type FiltersList, type UseFiltersMethods } from './types'
+import { type Meta, type Story } from '@storybook/react'
 import React, { useRef } from 'react'
 
 export default {

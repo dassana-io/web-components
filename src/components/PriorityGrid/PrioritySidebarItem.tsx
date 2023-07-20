@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss'
 import { styleguide } from '../assets/styles'
-import { commonPriorityItemStyles, PriorityItemStyleProps } from './styles'
+import { commonPriorityItemStyles, type PriorityItemStyleProps } from './styles'
 import { GRID_ITEM_DIMENSION, TOTAL_NUM_OF_PRIORITIES } from './utils'
-import React, { FC, useCallback } from 'react'
+import React, { type FC, useCallback } from 'react'
 
 const { spacing } = styleguide
 

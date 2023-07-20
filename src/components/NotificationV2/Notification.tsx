@@ -6,9 +6,9 @@ import { domAnimation, LazyMotion, m as motion } from 'framer-motion'
 import {
 	generateNotificationStyles,
 	mappedTypesToIcons,
-	ProcessedNotification
+	type ProcessedNotification
 } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styleguide, themedStyles, ThemeType } from 'components/assets/styles'
 
 const {

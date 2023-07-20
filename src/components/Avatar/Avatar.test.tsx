@@ -1,13 +1,11 @@
+import { Avatar } from '.'
 import React from 'react'
-import { Avatar, AvatarProps } from '.'
-import { shallow, ShallowWrapper } from 'enzyme'
-
-let wrapper: ShallowWrapper<AvatarProps>
+import { render, screen } from '@testing-library/react'
 
 describe('Avatar', () => {
 	it('renders', () => {
-		wrapper = shallow(<Avatar>A</Avatar>)
+		render(<Avatar>A</Avatar>)
 
-		expect(wrapper).toHaveLength(1)
+		expect(screen.getByText('A')).toBeTruthy()
 	})
 })

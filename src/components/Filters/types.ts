@@ -1,6 +1,6 @@
-import { IconCellLabelType } from 'components/Table'
-import { MultiSelectProps, SelectOption } from '../Select'
-import React, { RefObject } from 'react'
+import { type IconCellLabelType } from 'components/Table'
+import { type RefObject } from 'react'
+import { type MultiSelectProps, type SelectOption } from '../Select'
 
 /************************************/
 // TODO: Setup and integrate swaggerhub so types are generated
@@ -57,18 +57,15 @@ export type SelectedValsFilters = SelectedValsFilter[]
 
 export type FiltersList = FiltersListItem[]
 
-export interface ProcessedFilters {
-	[key: string]: FilterOption
-}
+export type ProcessedFilters = Record<string, FilterOption>
 
-export interface FiltersConfig {
-	[filterKey: string]: {
-		iconMap?: {
-			[key: string]: string
-		}
+export type FiltersConfig = Record<
+	string,
+	{
+		iconMap?: Record<string, string>
 		type?: IconCellLabelType
 	}
-}
+>
 
 export interface UseFiltersMethods {
 	setFiltersList: React.Dispatch<React.SetStateAction<FiltersList>>
@@ -111,9 +108,9 @@ export interface ServerSideFiltersProps extends SharedFiltersProps {
 
 export type FiltersProps = ClientSideFiltersProps | ServerSideFiltersProps
 
-export interface OnSearchWrapper {
-	(selectedFilterKey: string): MultiSelectProps['onSearch']
-}
+export type OnSearchWrapper = (
+	selectedFilterKey: string
+) => MultiSelectProps['onSearch']
 
 export enum FilterValueType {
 	boolean = 'boolean',

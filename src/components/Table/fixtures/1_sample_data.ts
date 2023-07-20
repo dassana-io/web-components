@@ -1,5 +1,5 @@
 import { DateDisplayFormat } from '../types'
-import { ColumnFormats, ColumnType, ColumnTypes, TableProps } from '..'
+import { ColumnFormats, type ColumnType, ColumnTypes, type TableProps } from '..'
 
 export interface File {
 	created_at: number

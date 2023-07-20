@@ -2,12 +2,12 @@ import { createUseStyles } from 'react-jss'
 import { styleguide } from '../assets/styles/styleguide'
 import { Tooltip } from '../Tooltip'
 import { tooltipStyles } from './utils'
-import { Icon, IconName, IconProps, SharedIconProps } from '../Icon'
-import React, { FC, ReactNode, SyntheticEvent, useState } from 'react'
+import { Icon, type IconName, type IconProps, type SharedIconProps } from '../Icon'
+import React, { type FC, type ReactNode, type SyntheticEvent, useState } from 'react'
 import {
-	SelectOption,
-	SelectOptionsConfig,
-	SelectProps
+	type SelectOption,
+	type SelectOptionsConfig,
+	type SelectProps
 } from './SingleSelect/types'
 
 const { flexAlignCenter } = styleguide
@@ -61,10 +61,12 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 		return iconMap ? (
 			iconMap[iconKey] ? (
 				renderIconWithProps({ icon: iconMap[iconKey] })
-			) : (
+			)
+: (
 				<></>
 			)
-		) : (
+		)
+: (
 			renderIconWithProps({ iconKey: iconKey as IconName })
 		)
 	}
@@ -81,11 +83,13 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 					setHasTooltip(el.scrollWidth > el.offsetWidth)
 				}}
 			>
-				{hasTooltip ? (
+				{hasTooltip
+? (
 					<Tooltip placement='bottomLeft' title={text}>
 						{text}
 					</Tooltip>
-				) : (
+				)
+: (
 					text
 				)}
 			</span>

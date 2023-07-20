@@ -1,10 +1,10 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
-import { Code, CodeProps } from 'components/Code'
+import { Code, type CodeProps } from 'components/Code'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type FC, useContext } from 'react'
 
 export interface FormCodeProps
 	extends BaseFieldProps,

@@ -1,9 +1,9 @@
 import cn from 'classnames'
-import { motion, Variants } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import React, {
-	FC,
-	ReactNode,
-	RefObject,
+	type FC,
+	type ReactNode,
+	type RefObject,
 	useEffect,
 	useRef,
 	useState
@@ -52,7 +52,7 @@ export const Bounce: FC<BounceProps> = ({
 	distance = 8
 }: BounceProps) => {
 	const cmpRef = useRef<HTMLDivElement>(null)
-	const hoverRef = containerRef ? containerRef : cmpRef
+	const hoverRef = containerRef ?? cmpRef
 
 	const hovering = useHover(hoverRef)
 

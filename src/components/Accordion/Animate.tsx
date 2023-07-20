@@ -5,7 +5,7 @@ import {
 	LazyMotion,
 	m as motion
 } from 'framer-motion'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const getDimensionProperty = (direction: BounceDirection) =>
 	direction === BounceDirection.vertical ? 'height' : 'width'

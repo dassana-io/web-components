@@ -2,11 +2,11 @@ import 'antd/lib/tree/style/index.css'
 import '../assets/styles/antdBaseStyles.css'
 import { Tree as AntDTree } from 'antd'
 import cn from 'classnames'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { getDataTestAttributeProp } from '../utils'
 import TreeSkeleton from './TreeSkeleton'
 import { getLeafNodeIds, processTreeData } from './utils'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 export type TreeId = string | number
 
@@ -16,9 +16,7 @@ export interface TreeNodeType {
 	children?: TreeNodeType[]
 }
 
-export interface OnChangeHandler {
-	(checkedKeys: TreeId[]): void
-}
+export type OnChangeHandler = (checkedKeys: TreeId[]) => void
 
 export interface TreeProps extends CommonComponentProps {
 	/**
@@ -83,11 +81,13 @@ export const Tree: FC<TreeProps> = ({
 		}
 	}
 
-	if (skeletonBlockCount < 1)
+	if (skeletonBlockCount < 1) {
 		throw new Error('skeletonBlockCount must be a positive integer')
+	}
 
-	if (skeletonTreeNodeCount < 1)
+	if (skeletonTreeNodeCount < 1) {
 		throw new Error('skeletonTreeNodeCount must be a positive integer')
+	}
 
 	return loading ? (
 		<TreeSkeleton

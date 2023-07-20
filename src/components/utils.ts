@@ -1,10 +1,10 @@
 import { Breakpoints } from '@dassana-io/web-utils'
 import Color from 'color'
 import { JSONPath } from 'jsonpath-plus'
-import { JSONValue } from './JSONPathPicker'
+import { type JSONValue } from './JSONPathPicker'
 import mapValues from 'lodash/mapValues'
-import { PopupContainerProps } from './types'
-import { TooltipPlacement } from 'antd/es/tooltip'
+import { type PopupContainerProps } from './types'
+import { type TooltipPlacement } from 'antd/es/tooltip'
 import { useEffect, useState } from 'react'
 
 export const placementOptions: TooltipPlacement[] = [
@@ -26,7 +26,7 @@ export const TAG = 'data-test'
 
 /* ------------ Utilities related to colors ------------ */
 
-type RGB = {
+interface RGB {
 	r: number
 	g: number
 	b: number
@@ -56,11 +56,12 @@ export const manipulateColor = (
 	percent: number,
 	colorChangeType: ColorManipulationTypes
 ) => {
-	if (percent < 0 || percent > 100)
+	if (percent < 0 || percent > 100) {
 		throw new Error('please provide a valid percentage')
+	}
 
 	const clr = Color(color)
-	const rgb = Color(color).rgb().object() as RGB
+	const rgb = Color(color).rgb().object() as unknown as RGB
 
 	const ratio = percent / 100
 

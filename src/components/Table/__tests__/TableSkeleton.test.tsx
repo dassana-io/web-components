@@ -2,7 +2,7 @@ import mockData from '__mocks__/table_mock_data'
 import React from 'react'
 import { TableCtxProvider } from '../TableContext'
 import { TableSkeleton } from '../TableSkeleton'
-import { mount, ReactWrapper } from 'enzyme'
+import { mount, type ReactWrapper } from 'enzyme'
 
 let wrapper: ReactWrapper
 

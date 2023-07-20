@@ -1,5 +1,5 @@
 import 'antd/lib/input/style/index.css'
-import { BaseFormElementProps } from '../types'
+import { type BaseFormElementProps } from '../types'
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
@@ -8,8 +8,8 @@ import noop from 'lodash/noop'
 import { ThemeType } from '../assets/styles/themes'
 import {
 	Input as AntDInput,
-	InputProps as AntDInputProps,
-	InputRef
+	type InputProps as AntDInputProps,
+	type InputRef
 } from 'antd'
 import {
 	defaultFieldWidth,
@@ -21,11 +21,11 @@ import {
 	generateInputStyles
 } from './utils'
 import React, {
-	FC,
-	FocusEvent,
-	KeyboardEvent,
-	ReactNode,
-	RefObject,
+	type FC,
+	type FocusEvent,
+	type KeyboardEvent,
+	type ReactNode,
+	type RefObject,
 	useCallback
 } from 'react'
 
@@ -137,9 +137,11 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		[autoSelectOnFocus, onFocus]
 	)
 
-	return loading ? (
+	return loading
+? (
 		<InputSkeleton fullWidth={props.fullWidth} />
-	) : (
+	)
+: (
 		<div className={inputContainerClasses}>
 			<AntDInput
 				addonAfter={addonAfter}

@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/react/types-6-0'
-import { Radio, RadioChangeEvent, RadioProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import { Radio, type RadioChangeEvent, type RadioProps } from './index'
 import React, { useState } from 'react'
 
 export default {

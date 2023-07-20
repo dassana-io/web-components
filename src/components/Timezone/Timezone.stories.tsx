@@ -1,9 +1,9 @@
 import { action } from '@storybook/addon-actions'
-import { SbTheme } from '../../../.storybook/preview'
+import { type SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { FC } from 'react'
-import { Timezone, TimezoneProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC } from 'react'
+import { Timezone, type TimezoneProps } from './index'
 
 export default {
 	argTypes: {

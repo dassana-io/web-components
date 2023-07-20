@@ -1,12 +1,12 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import cn from 'classnames'
 import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
 import { getFormFieldDataTag, getRulesForArrVals } from '../utils'
-import React, { FC, useContext } from 'react'
-import { TagsSelect, TagsSelectProps } from 'components/Select/TagsSelect'
+import React, { type FC, useContext } from 'react'
+import { TagsSelect, type TagsSelectProps } from 'components/Select/TagsSelect'
 
 export interface FormTagsSelectProps
 	extends BaseFieldProps,

@@ -1,8 +1,8 @@
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { FC, ReactNode } from 'react'
-import { Timeline, TimelineConfig, TimelineProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC, type ReactNode } from 'react'
+import { Timeline, type TimelineConfig, type TimelineProps } from './index'
 
 export default {
 	argTypes: {

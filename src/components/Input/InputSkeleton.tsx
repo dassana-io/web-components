@@ -1,11 +1,11 @@
-import { BaseFormElementProps } from 'components/types'
+import { type BaseFormElementProps } from 'components/types'
 import { createUseStyles } from 'react-jss'
 import { Skeleton } from 'components/Skeleton'
 import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
@@ -15,7 +15,7 @@ const { borderRadius } = styleguide
 const useInputStyles = createUseStyles({
 	container: {
 		width: ({ fullWidth, width }) =>
-			width ? width : fullWidth ? '100%' : defaultFieldWidth
+			width || (fullWidth ? '100%' : defaultFieldWidth)
 	},
 	inputSkeleton: {
 		border: `1px solid ${themedStyles[light].loading.borderColor}`,

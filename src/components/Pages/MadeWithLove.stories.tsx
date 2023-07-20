@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { MadeWithLove } from './MadeWithLove'
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	component: MadeWithLove,

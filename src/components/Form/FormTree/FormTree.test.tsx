@@ -2,10 +2,10 @@ import { Controller } from 'react-hook-form'
 import FieldLabel from '../FieldLabel'
 import React from 'react'
 import treeData from 'components/Tree/fixtures/0_sample_data'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import FormTree, { FormTreeProps } from '.'
-import { mount, ReactWrapper } from 'enzyme'
-import { Tree, TreeId } from 'components/Tree'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import FormTree, { type FormTreeProps } from '.'
+import { mount, type ReactWrapper } from 'enzyme'
+import { Tree, type TreeId } from 'components/Tree'
 
 /* Helper functions */
 interface MountWrapperArgsType {
@@ -35,7 +35,7 @@ const mountWrapper = ({ name, defaultChecked }: MountWrapperArgsType) => {
 /* --------------------------------------- */
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),

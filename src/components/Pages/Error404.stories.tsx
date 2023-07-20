@@ -1,6 +1,6 @@
 import { Error404 } from './Error404'
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	component: Error404,

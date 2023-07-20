@@ -1,7 +1,7 @@
 import noop from 'lodash/noop'
 import React from 'react'
-import { BreadCrumbProps, Breadcrumbs } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { type BreadCrumbProps, Breadcrumbs } from './index'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -12,7 +12,7 @@ export default {
 	title: 'BreadCrumbs'
 } as Meta
 
-const Template: Story<BreadCrumbProps> = args => <Breadcrumbs {...args} />
+const Template: StoryFn<BreadCrumbProps> = args => <Breadcrumbs {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

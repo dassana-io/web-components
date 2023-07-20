@@ -1,8 +1,8 @@
 import { CollapseIndicator } from './CollapseIndicator'
 import { createUseStyles } from 'react-jss'
 import { generateHeaderStyles } from './utils'
-import { Panel } from './index'
-import React, { FC } from 'react'
+import { type Panel } from './index'
+import React, { type FC } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
 const { dark, light } = ThemeType

@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
-import { TableProps } from '..'
-import tableData1, { File } from './1_sample_data'
+import { type TableProps } from '..'
+import tableData1, { type File } from './1_sample_data'
 
 const paginatedData = [
 	...cloneDeep(tableData1.data),

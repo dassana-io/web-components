@@ -15,14 +15,14 @@ const {
 export const GRID_ITEM_DIMENSION = 64
 export const TOTAL_NUM_OF_PRIORITIES = 6
 
-/* eslint-disable sort-keys*/
+/* eslint-disable sort-keys */
 export const Rankings: Record<string, number> = {
 	critical: 0,
 	high: 1,
 	medium: 2,
 	low: 3
 }
-/* eslint-enable sort-keys*/
+/* eslint-enable sort-keys */
 
 export const RankingsNumberMap: Record<number, string> = invert(Rankings)
 
@@ -64,14 +64,13 @@ interface PriorityGridConfig {
 }
 
 export const generatePriorityGrid = (): PriorityGridConfig => {
-	const priorityGridItemMap: GridMap = Object.keys(PriorityColorMap).reduce(
-		(acc, val) => {
-			acc[`p${val}`] = []
+	const priorityGridItemMap: GridMap = Object.keys(
+		PriorityColorMap
+	).reduce<GridMap>((acc, val) => {
+		acc[`p${val}`] = []
 
-			return acc
-		},
-		{} as GridMap
-	)
+		return acc
+	}, {})
 
 	const grid = CriticalityRankingNumOrder.map(criticality =>
 		SeverityRankingNumOrder.map(severity => {
@@ -86,8 +85,8 @@ export const generatePriorityGrid = (): PriorityGridConfig => {
 			]
 
 			return {
-				criticality: criticality as number,
-				severity: severity as number
+				criticality,
+				severity
 			}
 		})
 	)
@@ -341,13 +340,19 @@ const buildFiltersFromGridItems = (
 	) {
 		// Since filters do not support OR, only add aggregate filters if there is only one type
 		// Otherwise, everything needs to be left as individual grid item filters
-		if (criticalityFiltersToAdd.length && !severityFiltersToAdd.length) {
+		if (
+			criticalityFiltersToAdd.length > 0 &&
+			severityFiltersToAdd.length === 0
+		) {
 			potentialNewFilters[FilterKeys.criticality] =
 				criticalityFiltersToAdd
 			potentialNewFilters[FilterKeys.criticality_severity] = []
 		}
 
-		if (severityFiltersToAdd.length && !criticalityFiltersToAdd.length) {
+		if (
+			severityFiltersToAdd.length > 0 &&
+			criticalityFiltersToAdd.length === 0
+		) {
 			potentialNewFilters[FilterKeys.severity] = severityFiltersToAdd
 			potentialNewFilters[FilterKeys.criticality_severity] = []
 		}
@@ -436,14 +441,15 @@ export const getNewFiltersFromSidebarItemClick = (
 			priorityFilters.forEach(priorityFilter => {
 				const priorityGridItems = gridMap[priorityFilter]
 
-				if (priorityFilter !== priority)
+				if (priorityFilter !== priority) {
 					gridItemFiltersToExclude.push(...priorityGridItems)
+				}
 			})
 		}
 
 		// Update criticality and severity filters that are affected with deselection of priority
 		// For filters that are removed, add unaffected grid items part of row / column as individual filters
-		if (criticalityFilters.length) {
+		if (criticalityFilters.length > 0) {
 			const { rankingGridItemFiltersToAdd, rankingFiltersToKeep } =
 				processRankingFiltersForSidebarItemClick(
 					FilterKeys.criticality,
@@ -456,7 +462,7 @@ export const getNewFiltersFromSidebarItemClick = (
 			newFilters[FilterKeys.criticality] = rankingFiltersToKeep
 		}
 
-		if (severityFilters.length) {
+		if (severityFilters.length > 0) {
 			const { rankingGridItemFiltersToAdd, rankingFiltersToKeep } =
 				processRankingFiltersForSidebarItemClick(
 					FilterKeys.severity,
@@ -586,7 +592,7 @@ export const getNewFiltersFromAxisLabelClick = (
 		const gridItemFiltersToAdd: string[] = []
 
 		// Handle priority filter grid items affected by deselection of axis label
-		if (priorityFilters.length) {
+		if (priorityFilters.length > 0) {
 			const priorityFiltersToRemove: string[] = []
 
 			priorityFilters.forEach(priorityFilter => {
@@ -596,7 +602,7 @@ export const getNewFiltersFromAxisLabelClick = (
 					findCommonItemsInArrays(
 						priorityGridItems,
 						relatedTypeFilters
-					).length
+					).length > 0
 				) {
 					priorityFiltersToRemove.push(priorityFilter)
 
@@ -631,7 +637,7 @@ export const getNewFiltersFromAxisLabelClick = (
 		}
 
 		// Handle secondary filter grid items affected by deselection of axis label
-		if (secondaryFilters.length) {
+		if (secondaryFilters.length > 0) {
 			const selectedGridItemsFromSecondaryFilter: string[] = []
 			const relatedSecondaryFilters: string[] = []
 
@@ -650,7 +656,7 @@ export const getNewFiltersFromAxisLabelClick = (
 					relatedTypeFilters
 				)
 
-				if (sharedSecondaryFilterGridItems.length) {
+				if (sharedSecondaryFilterGridItems.length > 0) {
 					relatedSecondaryFilters.push(secondaryFilter)
 
 					// Filter out shared grid items and add the remaining ones as individual grid items
@@ -704,11 +710,12 @@ export const getNewFiltersFromAxisLabelClick = (
 			}
 		})
 
-		if (priorityFiltersToAdd.length)
+		if (priorityFiltersToAdd.length > 0) {
 			newFilters[FilterKeys.priority] = uniq([
 				...priorityFilters,
 				...priorityFiltersToAdd
 			])
+		}
 
 		// Add appplicable secondary filters
 		Object.keys(Rankings).forEach(secondaryFilter => {
@@ -728,7 +735,7 @@ export const getNewFiltersFromAxisLabelClick = (
 			}
 		})
 
-		if (secondaryFiltersToAdd.length) {
+		if (secondaryFiltersToAdd.length > 0) {
 			newFilters[secondaryType] = uniq([
 				...secondaryFilters,
 				...secondaryFiltersToAdd
@@ -841,7 +848,7 @@ export const getNewFiltersFromGridItemClick = (
 			gridItemsToAdd.push(...remainingPriorityGridItems)
 		}
 
-		if (remainingPriorityFilters.length) {
+		if (remainingPriorityFilters.length > 0) {
 			remainingPriorityFilters.forEach(priorityFilter => {
 				const priorityGridItems = gridMap[priorityFilter]
 
@@ -861,7 +868,7 @@ export const getNewFiltersFromGridItemClick = (
 		}
 
 		// Process remaining criticality filters and make sure related grid items aren't added as individual filters
-		if (remainingCriticalityFilters.length) {
+		if (remainingCriticalityFilters.length > 0) {
 			const filtersToProcess = [
 				...relatedSeverityGridItems,
 				...gridItemsToAdd
@@ -877,7 +884,7 @@ export const getNewFiltersFromGridItemClick = (
 		}
 
 		// Process remaining severity filters and make sure related grid items aren't added as individual filters
-		if (remainingSeverityFilters.length) {
+		if (remainingSeverityFilters.length > 0) {
 			const filtersToProcess = [
 				...relatedCriticalityGridItems,
 				...gridItemsToAdd
@@ -999,15 +1006,15 @@ export const getPriorityItemCount = (
 
 	let count
 
-	if (countData)
+	if (countData) {
 		count = getPriorityGridItemCount(severity, criticality, countData)
-	else if (priorityCountData) {
+	} else if (priorityCountData) {
 		const ranking = min([criticality + severity, 5])
 
 		const priorityCount =
 			priorityCountData[`p${ranking}` as keyof PriorityCountMap]
 
-		count = priorityCount ? priorityCount : 0
+		count = priorityCount ?? 0
 	}
 
 	return count

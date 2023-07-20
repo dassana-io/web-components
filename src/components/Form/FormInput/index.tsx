@@ -1,4 +1,4 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import cn from 'classnames'
 import FieldError from '../FieldError'
 import FieldLabel from '../FieldLabel'
@@ -6,12 +6,12 @@ import { getFormFieldDataTag } from '../utils'
 import { getJSONPathValue } from 'components/JSONPathPicker'
 import {
 	Controller,
-	FieldError as FieldErrorType,
+	type FieldError as FieldErrorType,
 	useFormContext
 } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import { Input, InputProps } from 'components/Input'
-import React, { FC, KeyboardEvent, useContext } from 'react'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import { Input, type InputProps } from 'components/Input'
+import React, { type FC, type KeyboardEvent, useContext } from 'react'
 
 export interface FormInputProps
 	extends BaseFieldProps,
@@ -47,7 +47,7 @@ const FormInput: FC<FormInputProps> = ({
 		errors as any
 	) as FieldErrorType
 
-	const errorMsg = (errorObj && errorObj.message) || ''
+	const errorMsg = (errorObj && errorObj.message) ?? ''
 
 	const onInputFocus = () => {
 		if (errors[name]) clearErrors(name)

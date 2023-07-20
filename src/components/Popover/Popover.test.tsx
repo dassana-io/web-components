@@ -1,7 +1,7 @@
 import { Popover as AntDPopover } from 'antd'
 import React from 'react'
-import { mount, shallow, ShallowWrapper } from 'enzyme'
-import { Popover, PopoverProps } from './index'
+import { mount, shallow, type ShallowWrapper } from 'enzyme'
+import { Popover, type PopoverProps } from './index'
 
 let wrapper: ShallowWrapper
 

@@ -1,10 +1,10 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { FC, useContext } from 'react'
-import { Tree, TreeProps } from 'components/Tree'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type FC, useContext } from 'react'
+import { Tree, type TreeProps } from 'components/Tree'
 
 export interface FormTreeProps
 	extends BaseFieldProps,

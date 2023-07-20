@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { Link } from '../Link'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 
 const { light, dark } = ThemeType

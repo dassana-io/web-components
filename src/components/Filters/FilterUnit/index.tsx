@@ -2,18 +2,18 @@ import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'
 import { useWindowSize } from '@dassana-io/web-utils'
 import { ValuesInput } from './ValuesInput'
-import { ValuesMultiSelectProps } from './ValuesMultiSelect/types'
+import { type ValuesMultiSelectProps } from './ValuesMultiSelect/types'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiSelect'
 import {
-	FilterOption,
-	FiltersList,
-	FiltersListItem,
+	type FilterOption,
+	type FiltersList,
+	type FiltersListItem,
 	FilterValueType
 } from '../types'
 import { formatFilterStrToSelectOpts, getFilterKeysOptions } from '../utils'
 import { IconButton, IconSizes } from '../../IconButton'
-import { MultiSelectProps, Select } from '../../Select'
-import React, { FC, useEffect, useState } from 'react'
+import { type MultiSelectProps, Select } from '../../Select'
+import React, { type FC, useEffect, useState } from 'react'
 
 interface FilterUnitProps
 	extends Pick<
@@ -102,7 +102,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			}
 			options={formatFilterStrToSelectOpts(operators)}
 			showSearch
-			value={selectedOperator || operators[0]}
+			value={selectedOperator ?? operators[0]}
 		/>
 	)
 

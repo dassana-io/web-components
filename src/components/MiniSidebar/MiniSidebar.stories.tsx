@@ -1,6 +1,6 @@
 import React from 'react'
-import { Meta, Story } from '@storybook/react'
-import { MiniSidebar, MiniSidebarProps, SocialLinks } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { MiniSidebar, type MiniSidebarProps, SocialLinks } from '.'
 
 export default {
 	component: MiniSidebar,

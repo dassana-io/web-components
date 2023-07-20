@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { ChipInput, ChipInputProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { ChipInput, type ChipInputProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

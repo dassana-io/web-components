@@ -1,7 +1,7 @@
 import { PriorityGrid } from '.'
 import React from 'react'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

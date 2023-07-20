@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import { Slider, SliderProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { Slider, type SliderProps } from '.'
 
 export default {
 	argTypes: {

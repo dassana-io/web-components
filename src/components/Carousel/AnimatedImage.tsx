@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss'
 import { m as motion } from 'framer-motion'
 import React, {
 	forwardRef,
-	ForwardRefExoticComponent,
-	RefAttributes
+	type ForwardRefExoticComponent,
+	type RefAttributes
 } from 'react'
 
 const useStyles = createUseStyles({
@@ -56,5 +56,7 @@ const AnimatedImage: ForwardRefExoticComponent<
 		)
 	}
 )
+
+AnimatedImage.displayName = 'AnimatedImage'
 
 export default AnimatedImage

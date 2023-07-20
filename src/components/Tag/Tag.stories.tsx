@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import { Tag, TagProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import { Tag, type TagProps } from '.'
 
 export default {
 	argTypes: {

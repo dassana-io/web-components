@@ -1,13 +1,13 @@
 import { createUseStyles } from 'react-jss'
 import { Form } from '../Form'
-import { SelectOption } from 'components/Select'
+import { type SelectOption } from 'components/Select'
 import { styleguide } from '../assets/styles'
 import { useShortcut } from '@dassana-io/web-utils'
-import { EditableCellTypes, RequiredDataId } from './types'
+import { EditableCellTypes, type RequiredDataId } from './types'
 import React, {
-	Key,
-	MouseEvent,
-	ReactNode,
+	type Key,
+	type MouseEvent,
+	type ReactNode,
 	useEffect,
 	useRef,
 	useState
@@ -87,7 +87,6 @@ export const EditableCell = <T extends RequiredDataId>(
 	const startEdit = (e: MouseEvent) => {
 		e.stopPropagation() // Prevents table row click from activating
 
-		// eslint-disable-next-line quotes
 		const existingEditField = document.querySelector(
 			`[id^='editField-${dataIndex}']`
 		)
@@ -99,8 +98,9 @@ export const EditableCell = <T extends RequiredDataId>(
 		} else {
 			let inputWidth = divRef.current!.clientWidth
 
-			if (EDIT_FIELD_TYPES_WITH_BUTTON.includes(type))
+			if (EDIT_FIELD_TYPES_WITH_BUTTON.includes(type)) {
 				inputWidth = inputWidth + 70 // 70 accounts for submit button width
+			}
 
 			setInputWidth(inputWidth)
 		}

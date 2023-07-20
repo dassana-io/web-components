@@ -13,11 +13,11 @@ import {
 	getNewFiltersFromSidebarItemClick,
 	getPriorityItemCount,
 	GRID_ITEM_DIMENSION,
-	PriorityCountData,
-	PriorityCountMap,
+	type PriorityCountData,
+	type PriorityCountMap,
 	RankingsNumberMap
 } from './utils'
-import React, { FC, useCallback, useMemo } from 'react'
+import React, { type FC, useCallback, useMemo } from 'react'
 
 const { grid: gridItems, gridMap } = generatePriorityGrid()
 

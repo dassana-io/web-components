@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { IconButton, IconSizes } from 'components/IconButton'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { FC, ReactNode } from 'react'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type FC, type ReactNode } from 'react'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
-import { useWizard, Wizard, WizardProps } from '.'
+import { useWizard, Wizard, type WizardProps } from '.'
 
 const { light, dark } = ThemeType
 const { font, spacing } = styleguide

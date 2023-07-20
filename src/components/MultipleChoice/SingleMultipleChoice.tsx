@@ -1,12 +1,12 @@
 import { BaseMultipleChoice } from './BaseMultipleChoice'
-import { SingleProps } from './types'
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import { type SingleProps } from './types'
+import React, { type FC, useCallback, useEffect, useState } from 'react'
 
 export const SingleMultipleChoice: FC<SingleProps> = (props: SingleProps) => {
 	const { onChange, defaultValue = '', value } = props
 
 	const [selectedValue, setSelectedValue] = useState<string>(
-		value ? value : defaultValue
+		value ?? defaultValue
 	)
 
 	useEffect(() => {

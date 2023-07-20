@@ -1,15 +1,15 @@
 import 'antd/lib/date-picker/style/index.css'
 import 'antd/lib/time-picker/style/index.css'
 import { TimePicker as AntDTimeInput } from 'antd'
-import { BaseFormElementProps } from 'components/types'
+import { type BaseFormElementProps } from 'components/types'
 import cn from 'classnames'
 import InputSkeleton from 'components/Input/InputSkeleton'
-import { MomentInputObject } from 'moment'
+import { type MomentInputObject } from 'moment'
 import noop from 'lodash/noop'
 import range from 'lodash/range'
 import { formatTime, parseTime, useStyles } from './utils'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC, FocusEvent } from 'react'
+import React, { type FC, type FocusEvent } from 'react'
 
 export type TimeFormat = 'unix' | 'hours'
 
@@ -104,7 +104,6 @@ export const TimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 			minuteStep={minuteStep}
 			onBlur={onBlur}
 			onFocus={(e: FocusEvent<HTMLInputElement>) => {
-				1
 				onTimeInputFocus(e)
 				onFocus(e)
 			}}

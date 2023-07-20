@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { Link, LinkProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Link, type LinkProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	argTypes: {

@@ -2,7 +2,7 @@ import { Spin as AntDSpin } from 'antd'
 import { createUseStyles } from 'react-jss'
 import { LoadingOutlined } from '@ant-design/icons'
 import { styleguide } from 'components/assets/styles'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const {
 	colors: { blacks }

@@ -1,17 +1,14 @@
 import './index.css'
 import cn from 'classnames'
-import document from 'global/document'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import isChromatic from 'chromatic/isChromatic'
-import { Story } from '@storybook/react/types-6-0'
-import { StoryContext } from '@storybook/addons'
+import { StoryFn } from '@storybook/react'
 import {
 	themes,
 	Theme,
 	ThemeType
 } from '../src/components/assets/styles/themes'
 import { createUseStyles, ThemeProvider, useTheme } from 'react-jss'
-import { withCssResources } from '@storybook/addon-cssresources'
 import React, { FC, ReactNode, useEffect } from 'react'
 
 enum LayoutTypes {
@@ -23,11 +20,6 @@ enum LayoutTypes {
 const { sideBySide, left, right } = LayoutTypes
 
 const { dark, light } = ThemeType
-
-// Storybook theme needs an extra "type" property to conditionally render a dark or light themed story for Popover and Tooltip components.
-export interface SbTheme extends Theme {
-	type: ThemeType.dark | ThemeType.light
-}
 
 const sbThemes = {
 	[dark]: { ...themes[dark], type: dark },
@@ -107,10 +99,10 @@ const ThemedBlock: FC<ThemedBlockProps> = ({
 	)
 }
 
-/* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
+// /* This is the decorator that wraps the stories with a theme provider and a wrapper div for side-by-side view. */
 const ThemeDecorator = (
-	ComponentStory: Story,
-	{ globals: { theme = light } }: StoryContext
+	ComponentStory: StoryFn,
+	{ globals: { theme = light } }: any
 ) => {
 	const classes = useStyles()
 
@@ -169,4 +161,18 @@ export const globalTypes = {
 	}
 }
 
-export const decorators = [withCssResources, ThemeDecorator]
+export const decorators = [ThemeDecorator]
+
+// const preview: Preview = {
+// 	parameters: {
+// 		actions: { argTypesRegex: '^on[A-Z].*' },
+// 		controls: {
+// 			matchers: {
+// 				color: /(background|color)$/i,
+// 				date: /Date$/
+// 			}
+// 		}
+// 	}
+// }
+
+// export default preview

@@ -1,14 +1,14 @@
 import FieldContext from '../FieldContext'
-import { FormState } from 'react-hook-form/dist/types/form'
+import { type FormState } from 'react-hook-form/dist/types/form'
 import { getUseShortcutProps } from './utils'
-import { Button, ButtonProps } from 'components/Button'
-import { FieldValues, useFormContext } from 'react-hook-form'
-import React, { FC, useContext } from 'react'
+import { Button, type ButtonProps } from 'components/Button'
+import { type FieldValues, useFormContext } from 'react-hook-form'
+import React, { type FC, useContext } from 'react'
 import {
 	ShortcutMicrocopy,
-	ShortcutMicrocopyProps
+	type ShortcutMicrocopyProps
 } from 'components/ShortcutMicrocopy'
-import { useShortcut, UseShortcutConfig } from '@dassana-io/web-utils'
+import { useShortcut, type UseShortcutConfig } from '@dassana-io/web-utils'
 
 /**
  * TODO: Move to web-utils

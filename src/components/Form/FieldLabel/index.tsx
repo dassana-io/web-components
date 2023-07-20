@@ -5,7 +5,7 @@ import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
@@ -68,9 +68,11 @@ const FieldLabel: FC<FieldLabelProps> = ({
 
 	return (
 		<div className={cn({ [fieldLabelClasses.container]: true }, classes)}>
-			{loading ? (
+			{loading
+? (
 				<Skeleton width={skeletonWidth} />
-			) : (
+			)
+: (
 				<>
 					<span>{label}</span>
 					{!required && (

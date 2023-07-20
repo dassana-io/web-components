@@ -3,11 +3,11 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { SplitPaneCtxProvider } from './SplitPaneContext'
 import { unstable_batchedUpdates } from 'react-dom'
-import { LeftPaneBounds, TopPaneBounds } from './utils'
+import { type LeftPaneBounds, type TopPaneBounds } from './utils'
 import React, {
-	FC,
-	MouseEventHandler,
-	ReactNode,
+	type FC,
+	type MouseEventHandler,
+	type ReactNode,
 	useCallback,
 	useEffect,
 	useRef,
@@ -111,7 +111,7 @@ export const SplitPane: FC<SplitPaneProps> = ({
 	const getClampedCoordinates = useCallback(
 		(clientX: number, clientY: number) => {
 			let { bottom, left, right, top } =
-				containerRef.current?.getClientRects()[0] || {
+				containerRef.current?.getClientRects()[0] ?? {
 					bottom: 0,
 					left: 0,
 					right: 0,

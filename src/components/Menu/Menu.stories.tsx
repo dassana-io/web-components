@@ -1,7 +1,7 @@
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
-import { Menu, MenuProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import React, { Key, useState } from 'react'
+import { Menu, type MenuProps } from '.'
+import { type Meta, type Story } from '@storybook/react'
+import React, { type Key, useState } from 'react'
 
 export default {
 	argTypes: {

@@ -1,13 +1,13 @@
 import { act } from 'react-dom/test-utils'
 import FieldContext from './FieldContext'
 import FormSubmitButton from './FormSubmitButton'
-import { UseFormReturn } from 'react-hook-form'
-import { Form, FormProps } from './index'
-import { mount, shallow, ShallowWrapper } from 'enzyme'
+import { type UseFormReturn } from 'react-hook-form'
+import { Form, type FormProps } from './index'
+import { mount, shallow, type ShallowWrapper } from 'enzyme'
 import React, { createRef } from 'react'
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	useForm: () => ({
 		getValues: mockGetValues,
 		handleSubmit: jest.fn(),

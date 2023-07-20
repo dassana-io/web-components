@@ -1,6 +1,6 @@
 import React from 'react'
-import FieldError, { FieldErrorProps } from './index'
-import { mount, shallow, ShallowWrapper } from 'enzyme'
+import FieldError, { type FieldErrorProps } from './index'
+import { mount, shallow, type ShallowWrapper } from 'enzyme'
 
 let wrapper: ShallowWrapper<FieldErrorProps>
 

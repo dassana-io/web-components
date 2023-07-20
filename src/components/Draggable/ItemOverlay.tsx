@@ -1,9 +1,9 @@
-import { UniqueIdentifier } from 'components/Draggable'
+import { type UniqueIdentifier } from 'components/Draggable'
 import React, {
 	forwardRef,
-	ForwardRefExoticComponent,
-	ReactNode,
-	RefAttributes
+	type ForwardRefExoticComponent,
+	type ReactNode,
+	type RefAttributes
 } from 'react'
 
 interface ItemOverlayProps {
@@ -20,5 +20,7 @@ const ItemOverlay: ForwardRefExoticComponent<
 		</div>
 	)
 )
+
+ItemOverlay.displayName = 'ItemOverlay'
 
 export default ItemOverlay

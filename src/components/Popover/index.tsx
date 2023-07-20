@@ -2,13 +2,13 @@ import '../assets/styles/antdAnimations.css'
 import 'antd/lib/popover/style/index.css'
 import { Popover as AntDPopover } from 'antd'
 import cn from 'classnames'
-import { CommonComponentProps } from '../types'
+import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generatePopoverStyles } from './utils'
 import { ThemeType } from '../assets/styles/themes'
-import { TooltipPlacement } from 'antd/es/tooltip'
+import { type TooltipPlacement } from 'antd/es/tooltip'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { dark, light } = ThemeType
 

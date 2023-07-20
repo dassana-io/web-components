@@ -1,6 +1,6 @@
 import React from 'react'
-import { Icon, IconProps } from '.'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { Icon, type IconProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -10,7 +10,7 @@ export default {
 	title: 'Icon'
 } as Meta
 
-const Template: Story<IconProps> = args => <Icon {...args} />
+const Template: StoryFn<IconProps> = (args: IconProps) => <Icon {...args} />
 
 export const Predefined = Template.bind({})
 Predefined.argTypes = {

@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom'
 import { createUseStyles } from 'react-jss'
-import { DataId } from 'components/Table'
+import { type DataId } from 'components/Table'
 import DraggableItem from './DraggableItem'
 import isEqual from 'lodash/isEqual'
 import ItemOverlay from './ItemOverlay'
@@ -9,7 +9,7 @@ import {
 	arrayMove,
 	horizontalListSortingStrategy,
 	SortableContext,
-	SortingStrategy,
+	type SortingStrategy,
 	verticalListSortingStrategy
 } from '@dnd-kit/sortable'
 import {
@@ -17,19 +17,19 @@ import {
 	defaultDropAnimation,
 	defaultDropAnimationSideEffects,
 	DndContext,
-	DragEndEvent,
+	type DragEndEvent,
 	DragOverlay,
-	DragStartEvent,
-	DropAnimation,
+	type DragStartEvent,
+	type DropAnimation,
 	getClientRect,
-	Modifiers,
-	PointerActivationConstraint,
+	type Modifiers,
+	type PointerActivationConstraint,
 	PointerSensor,
-	UniqueIdentifier,
+	type UniqueIdentifier,
 	useSensor,
 	useSensors
 } from '@dnd-kit/core'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { type ReactNode, useEffect, useState } from 'react'
 import {
 	restrictToHorizontalAxis,
 	restrictToParentElement,
@@ -172,7 +172,7 @@ export const Draggable = <T extends DataId>({
 
 		modifiers = [...modifiers, ...directionModifiers]
 
-		strategy = strategy ? strategy : sortingStrategy
+		strategy = strategy ?? sortingStrategy
 	}
 
 	useEffect(() => {

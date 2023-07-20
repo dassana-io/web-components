@@ -1,4 +1,4 @@
-import { SelectProps } from '../SingleSelect/types'
+import { type SelectProps } from '../SingleSelect/types'
 
 export interface TagsSelectProps
 	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {

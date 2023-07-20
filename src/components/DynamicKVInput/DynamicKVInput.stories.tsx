@@ -1,6 +1,6 @@
-import { KVField } from './types'
-import { DynamicKVInput, DynamicKVInputProps } from './index'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { type KVField } from './types'
+import { DynamicKVInput, type DynamicKVInputProps } from './index'
+import { type Meta, type Story } from '@storybook/react'
 import React, { useState } from 'react'
 
 export default {

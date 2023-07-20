@@ -1,44 +1,52 @@
 module.exports = {
+	env: {
+		browser: true,
+		es2021: true
+	},
 	extends: [
-		'react-app',
-		'eslint:recommended',
+		'standard-with-typescript',
 		'plugin:react/recommended',
-		'plugin:@typescript-eslint/recommended' // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+		'plugin:react-hooks/recommended'
 	],
-	globals: {
-		console: true,
-		localStorage: true,
-		module: true,
-		window: true
-	},
-	// ignorePatterns: ['src/api/*/'], // web-components doesn't have a src/api
-	parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+	overrides: [
+		{
+			env: {
+				node: true
+			},
+			files: ['.eslintrc.{js,cjs}'],
+			parserOptions: {
+				sourceType: 'script'
+			}
+		}
+	],
 	parserOptions: {
-		ecmaFeatures: {
-			jsx: true,
-			modules: true
-		},
-		ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-		sourceType: 'module' // Allows for the use of imports
+		ecmaVersion: 'latest',
+		project: true,
+		sourceType: 'module'
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: ['react'],
 	rules: {
-		// Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-		// e.g. "@typescript-eslint/explicit-function-return-type": "off",
+		'@typescript-eslint/brace-style': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
-		'@typescript-eslint/ban-types': 'off',
-		'@typescript-eslint/camelcase': 'off',
+		'@typescript-eslint/consistent-type-assertions': 'off',
+		'@typescript-eslint/indent': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
-		'@typescript-eslint/member-delimiter-style': 'off',
-		'@typescript-eslint/no-explicit-any': 'off',
-		'@typescript-eslint/no-extra-semi': 'off',
+		'@typescript-eslint/method-signature-style': 'off',
+		'@typescript-eslint/no-confusing-void-expression': 'off',
+		'@typescript-eslint/no-dynamic-delete': 'off',
+		'@typescript-eslint/no-floating-promises': 'off',
+		'@typescript-eslint/no-misused-promises': 'off',
 		'@typescript-eslint/no-non-null-assertion': 'off',
-		'@typescript-eslint/no-unused-expressions': 'off',
 		'@typescript-eslint/no-unused-vars': 'warn',
+		'@typescript-eslint/prefer-optional-chain': 'off',
+		'@typescript-eslint/promise-function-async': 'off',
+		'@typescript-eslint/restrict-plus-operands': 'off',
+		'@typescript-eslint/restrict-template-expressions': 'off',
+		'@typescript-eslint/space-before-function-paren': 'off',
+		'@typescript-eslint/strict-boolean-expressions': 'off',
 		'comma-dangle': ['warn', 'never'],
 		'comma-spacing': ['warn', { after: true, before: false }],
-		'import/no-anonymous-default-export': 'off',
+		curly: ['error', 'multi-line', 'consistent'],
 		'key-spacing': [
 			'warn',
 			{
@@ -46,9 +54,11 @@ module.exports = {
 				beforeColon: false
 			}
 		],
-		'no-debugger': 'warn',
+		'multiline-ternary': 'off',
 		'no-duplicate-imports': 'error',
+		'no-tabs': 'off',
 		'no-useless-computed-key': 'warn',
+		'promise/param-names': 'off',
 		'quote-props': ['warn', 'as-needed'],
 		quotes: ['warn', 'single'],
 		'react/display-name': 'off',

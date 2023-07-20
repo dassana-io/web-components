@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss'
-import { SplitPaneType } from '.'
+import { type SplitPaneType } from '.'
 import { styleguide } from 'components/assets/styles'
 import { useSplitPaneCtx } from './SplitPaneContext'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 const {
 	colors: { blacks }

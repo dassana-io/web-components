@@ -1,7 +1,7 @@
 import { Button } from 'components/Button'
 import { createUseStyles } from 'react-jss'
 import { styleguide } from 'components/assets/styles'
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 
 const {
 	colors: { blacks, blues, grays, greens, reds },

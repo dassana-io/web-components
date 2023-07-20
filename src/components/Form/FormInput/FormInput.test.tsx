@@ -3,14 +3,14 @@ import FieldContext from '../FieldContext'
 import FieldLabel from '../FieldLabel'
 import { Input } from 'components/Input'
 import React from 'react'
-import FormInput, { FormInputProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import FormInput, { type FormInputProps } from './index'
+import { mount, type ReactWrapper } from 'enzyme'
 
 const mockFocus = jest.fn()
 const mockClearErrors = jest.fn()
 
 jest.mock('react', () => ({
-	...(jest.requireActual('react') as {}),
+	...(jest.requireActual('react')),
 	useRef: () => ({
 		current: {
 			focus: mockFocus
@@ -19,7 +19,7 @@ jest.mock('react', () => ({
 }))
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		clearErrors: mockClearErrors,

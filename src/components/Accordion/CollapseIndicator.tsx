@@ -1,7 +1,7 @@
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { domAnimation, LazyMotion, m as motion } from 'framer-motion'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 interface CollapseIndicatorProps {
 	isCollapsed: boolean

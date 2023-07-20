@@ -2,7 +2,7 @@ import {
 	dropdownStyles,
 	inputPalette,
 	themedStyles,
-	ThemeType
+	type ThemeType
 } from '../assets/styles/themes'
 import { fieldErrorStyles, styleguide } from '../assets/styles/styleguide'
 

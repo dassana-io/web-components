@@ -2,12 +2,12 @@ import { action } from '@storybook/addon-actions'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
-import { SbTheme } from '../../../.storybook/preview'
+import { type SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles'
 import { useTheme } from 'react-jss'
-import { Meta, Story } from '@storybook/react/types-6-0'
-import { Popover, PopoverProps } from './index'
-import React, { FC } from 'react'
+import { type Meta, type Story } from '@storybook/react'
+import { Popover, type PopoverProps } from './index'
+import React, { type FC } from 'react'
 
 const { spacing } = styleguide
 

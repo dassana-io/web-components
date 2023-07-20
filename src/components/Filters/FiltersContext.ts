@@ -1,12 +1,12 @@
 import { createCtx } from '@dassana-io/web-utils'
-import { SelectOption } from '../Select'
+import { type SelectOption } from '../Select'
 import {
-	FiltersConfig,
-	FiltersList,
-	FiltersMode,
-	FiltersProps,
-	OnSearchWrapper,
-	ProcessedFilters
+	type FiltersConfig,
+	type FiltersList,
+	type FiltersMode,
+	type FiltersProps,
+	type OnSearchWrapper,
+	type ProcessedFilters
 } from './types'
 
 export interface FiltersContextProps {

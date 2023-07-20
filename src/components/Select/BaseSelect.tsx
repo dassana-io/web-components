@@ -1,18 +1,18 @@
 import '../assets/styles/antdAnimations.css'
 import 'antd/lib/select/style/index.css'
 import { Select as AntDSelect } from 'antd'
-import { BaseSelectRef } from 'rc-select'
+import { type BaseSelectRef } from 'rc-select'
 import { Checkbox } from '../Checkbox'
 import cn from 'classnames'
-import { MultiSelectProps } from './MultiSelect/types'
+import { type MultiSelectProps } from './MultiSelect/types'
 import { NoContentFound } from './NoContentFound'
 import noop from 'lodash/noop'
 import { OptionChildren } from './OptionChildren'
-import { SelectProps } from './SingleSelect/types'
+import { type SelectProps } from './SingleSelect/types'
 import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { FC, ReactNode, useCallback, useRef } from 'react'
+import React, { type FC, type ReactNode, useCallback, useRef } from 'react'
 
 const { Option } = AntDSelect
 
@@ -85,7 +85,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				)
 			}
 
-			onDropdownVisibleChange && onDropdownVisibleChange(open)
+			onDropdownVisibleChange?.(open)
 		},
 		[onDropdownVisibleChange]
 	)
@@ -236,10 +236,9 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 							>
 								{props.mode === 'multiple' && (
 									<Checkbox
-										checked={
-											props.localValues.indexOf(value) >=
-											0
-										}
+										checked={props.localValues.includes(
+											value
+										)}
 										classes={[componentClasses.checkbox]}
 										onChange={noop}
 									/>

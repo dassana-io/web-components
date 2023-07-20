@@ -18,18 +18,20 @@ import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { getNonEmptyKVInputPairs } from './utils'
-import { UseFormReturn } from 'react-hook-form/dist/types/form'
 import {
-	DeepPartial,
-	FieldValues,
+	type DefaultValues,
+	type UseFormReturn
+} from 'react-hook-form/dist/types/form'
+import {
+	type FieldValues,
 	FormProvider,
-	SubmitHandler,
+	type SubmitHandler,
 	useForm,
 	useFormContext
 } from 'react-hook-form'
 import React, {
-	ReactNode,
-	RefObject,
+	type ReactNode,
+	type RefObject,
 	useEffect,
 	useImperativeHandle
 } from 'react'
@@ -63,7 +65,7 @@ export function Form<Model extends FieldValues>({
 }: FormProps<Model>) {
 	const classes = useStyles()
 	const methods = useForm<Model>({
-		defaultValues: initialValues as DeepPartial<Model>,
+		defaultValues: initialValues as DefaultValues<Model>,
 		mode: 'onBlur'
 	})
 	const { reset } = methods

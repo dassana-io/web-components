@@ -1,10 +1,10 @@
-import { BaseFieldProps } from '../types'
+import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
-import FieldContext, { FieldContextProps } from '../FieldContext'
-import React, { ChangeEvent, FC, useContext } from 'react'
-import { Timezone, TimezoneProps } from 'components/Timezone'
+import FieldContext, { type FieldContextProps } from '../FieldContext'
+import React, { type ChangeEvent, type FC, useContext } from 'react'
+import { Timezone, type TimezoneProps } from 'components/Timezone'
 
 export interface FormTimezoneProps
 	extends BaseFieldProps,
@@ -32,8 +32,8 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 
 	rules.required = true
 
-	const triggerOnSubmit = (value: ChangeEvent) =>
-		handleSubmit(onSubmit)(value)
+	const triggerOnSubmit = async (value: ChangeEvent) =>
+		await handleSubmit(onSubmit)(value)
 
 	return (
 		<div>

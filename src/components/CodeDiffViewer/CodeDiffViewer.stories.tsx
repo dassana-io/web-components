@@ -1,6 +1,6 @@
 import React from 'react'
-import { CodeDiffViewer, CodeDiffViewerProps, CodeLanguages } from 'components'
-import { Meta, Story } from '@storybook/react/types-6-0'
+import { CodeDiffViewer, type CodeDiffViewerProps, CodeLanguages } from 'components'
+import { type Meta, type Story } from '@storybook/react'
 
 export default {
 	component: CodeDiffViewer,

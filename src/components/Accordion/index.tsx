@@ -8,7 +8,7 @@ import {
 	getInitialExpandedKeys,
 	getUpdatedExpandedKeys
 } from './utils'
-import React, { FC, Key, ReactNode, useState } from 'react'
+import React, { type FC, type Key, type ReactNode, useState } from 'react'
 
 const { dark, light } = ThemeType
 
@@ -74,14 +74,15 @@ export const Accordion: FC<AccordionProps> = ({
 						>
 							<Header
 								isExpanded={isExpanded}
-								onHeaderClick={() =>
-									setExpandedKeys(
+								onHeaderClick={() => {
+ setExpandedKeys(
 										getUpdatedExpandedKeys(
 											key,
 											expandedKeys,
 											expandMultiple
 										)
 									)
+}
 								}
 								{...rest}
 							/>

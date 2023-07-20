@@ -1,5 +1,5 @@
-import { RefObject } from 'react'
-import { SelectProps } from '../SingleSelect/types'
+import { type RefObject } from 'react'
+import { type SelectProps } from '../SingleSelect/types'
 
 export interface MultiSelectProps
 	extends Omit<SelectProps, 'onChange' | 'defaultValue' | 'value'> {

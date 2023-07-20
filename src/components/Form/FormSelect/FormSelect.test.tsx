@@ -4,11 +4,11 @@ import FieldLabel from '../FieldLabel'
 import { iconOptions } from 'components/Select/fixtures/sample_options'
 import React from 'react'
 import { Select } from 'components/Select/SingleSelect'
-import FormSelect, { FormSelectProps } from './index'
-import { mount, ReactWrapper } from 'enzyme'
+import FormSelect, { type FormSelectProps } from './index'
+import { mount, type ReactWrapper } from 'enzyme'
 
 jest.mock('react-hook-form', () => ({
-	...(jest.requireActual('react-hook-form') as {}),
+	...(jest.requireActual('react-hook-form')),
 	Controller: () => <div />,
 	useFormContext: () => ({
 		control: jest.fn(),

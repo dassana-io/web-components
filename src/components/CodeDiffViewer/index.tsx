@@ -1,14 +1,14 @@
 import './Prism.css'
 import cn from 'classnames'
 import { CodeControls } from '../Code/CodeControls'
-import { CodeProps } from '../Code'
+import { type CodeProps } from '../Code'
 import { copyToClipboard } from '../Code/utils'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // eslint-disable-line sort-imports
 import 'prismjs/components/prism-yaml'
 import { diffCmpStyles, useStyles } from './styles'
-import React, { FC, useCallback, useMemo } from 'react'
-import ReactDiffViewer, { ReactDiffViewerProps } from 'react-diff-viewer'
+import React, { type FC, useCallback, useMemo } from 'react'
+import ReactDiffViewer, { type ReactDiffViewerProps } from 'react-diff-viewer'
 
 const { css, javascript, yaml, json, sql } = Prism.languages
 
@@ -68,7 +68,7 @@ export const CodeDiffViewer: FC<CodeDiffViewerProps> = ({
 	useDarkTheme = true
 }: CodeDiffViewerProps) => {
 	const hasTitle = useMemo(
-		() => leftTitle || rightTitle,
+		() => leftTitle ?? rightTitle,
 		[leftTitle, rightTitle]
 	)
 	const classes = useStyles({ hasTitle })

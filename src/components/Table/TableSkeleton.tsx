@@ -4,8 +4,8 @@ import { Skeleton } from '../Skeleton'
 import { tablePalette } from './styles'
 import times from 'lodash/times'
 import { useTableContext } from './TableContext'
-import { ColumnFormats, ColumnType, ColumnTypes } from './types'
-import React, { FC, memo, useMemo } from 'react'
+import { ColumnFormats, type ColumnType, ColumnTypes } from './types'
+import React, { type FC, memo, useMemo } from 'react'
 import { styleguide, themes, ThemeType } from 'components/assets/styles'
 
 const { spacing } = styleguide
@@ -77,6 +77,8 @@ const THeaderCellSkeleton = memo(() => {
 	)
 })
 
+THeaderCellSkeleton.displayName = 'THeaderCellSkeleton'
+
 // ------------------------------------
 
 const mappedSkeletonProps: Record<string, any> = {
@@ -97,7 +99,7 @@ const TDataCellSkeleton: FC<TDataCellSkeletonProps> = memo(
 
 		let props = { width: initialWidth }
 
-		if (columns.length) {
+		if (columns.length > 0) {
 			const format = columns[index].format
 			const type = columns[index].type
 
@@ -116,6 +118,8 @@ const TDataCellSkeleton: FC<TDataCellSkeletonProps> = memo(
 	}
 )
 
+TDataCellSkeleton.displayName = 'TDataCellSkeleton'
+
 // ------------------------------------
 
 interface TableSkeletonProps {
@@ -130,7 +134,7 @@ export const TableSkeleton: FC<TableSkeletonProps> = memo(
 		const classes = useStyles()
 
 		const columnCount = useMemo(
-			() => (isMobile ? 2 : columns.length || random(3, 6)),
+			() => (isMobile ? 2 : columns.length ?? random(3, 6)),
 			[columns.length, isMobile]
 		)
 
@@ -160,3 +164,5 @@ export const TableSkeleton: FC<TableSkeletonProps> = memo(
 		)
 	}
 )
+
+TableSkeleton.displayName = 'TableSkeleton'

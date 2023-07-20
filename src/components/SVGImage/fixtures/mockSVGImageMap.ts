@@ -1,7 +1,7 @@
 import { ReactComponent as AWS } from '../../assets/icons/aws.svg'
 import { ReactComponent as Azure } from '../../assets/icons/azure.svg'
 import { ReactComponent as GoogleCloud } from '../../assets/icons/google-cloud-platform.svg'
-import { ImageMapProps } from '../index'
+import { type ImageMapProps } from '../index'
 import { ThemeType } from '../../assets/styles'
 
 export enum ImageTypes {

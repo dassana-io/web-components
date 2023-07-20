@@ -7,7 +7,7 @@ import { IconButton } from 'components/IconButton'
 import noop from 'lodash/noop'
 import { Tooltip } from 'components/Tooltip'
 import { ReactComponent as WrapIcon } from './wrap_icon.svg'
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import React, { type FC, useCallback, useEffect, useState } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
 const { borderRadius, flexCenter, spacing } = styleguide

@@ -1,6 +1,6 @@
 import { Animate } from '../Accordion/Animate'
 import { TimelineState } from './types'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { alwaysExpanded, collapsed, expanded } = TimelineState
 

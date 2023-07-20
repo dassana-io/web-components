@@ -6,13 +6,13 @@ import { styleguide } from 'components/assets/styles'
 import { useCreateDomElement } from 'components/utils'
 import {
 	NOTIFICATION_CONTAINER_ID,
-	NotificationConfig as NotificationConfigInterface,
+	type NotificationConfig as NotificationConfigInterface,
 	NotificationTypes,
-	ProcessedNotification,
+	type ProcessedNotification,
 	useNotifications
 } from './utils'
 import { NotificationCtxProvider, useNotification } from './NotificationContext'
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 const { spacing, topNavHeight } = styleguide
 

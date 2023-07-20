@@ -1,10 +1,8 @@
 import { convertEpochToUserTimezone } from '@dassana-io/web-utils'
-import { LogsType } from '.'
+import { type LogsType } from '.'
 import { styleguide, ThemeType } from '../assets/styles'
 
-interface DownloadBlob {
-	(blob: Blob, filename: string, callback?: () => void): void
-}
+type DownloadBlob = (blob: Blob, filename: string, callback?: () => void) => void
 export const downloadBlob: DownloadBlob = (blob, filename, callback) => {
 	const element = document.createElement('a')
 

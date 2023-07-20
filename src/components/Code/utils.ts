@@ -14,11 +14,10 @@ const {
 	colors: { blacks, blues, grays, greens, reds, oranges, whites }
 } = styleguide
 
-interface CopyToClipboard {
-	(str: string, callback?: () => void): void
-}
-export const copyToClipboard: CopyToClipboard = (str, callback) =>
-	navigator.clipboard.writeText(str).then(callback)
+type CopyToClipboard = (str: string, callback?: () => void) => void
+
+export const copyToClipboard: CopyToClipboard = async (str, callback) =>
+	await navigator.clipboard.writeText(str).then(callback)
 
 export const codePalette = {
 	[dark]: {
@@ -154,7 +153,7 @@ const generateThemedAceCodeStyles = (themeType: ThemeType) => {
 				[`& .ace_${val}`]: {
 					background: 'none',
 					color: tokenColors[themeType][
-						key as keyof typeof tokenColors[ThemeType]
+						key as keyof (typeof tokenColors)[ThemeType]
 					]
 				}
 			}

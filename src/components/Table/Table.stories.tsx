@@ -1,15 +1,15 @@
 import { action } from '@storybook/addon-actions'
-import { Story } from '@storybook/react/types-6-0'
 import tableData4 from './fixtures/4_sample_data'
-import { DataId, Table, TableProps } from '.'
-import React, { Key, useState } from 'react'
-import tableData0, { Person } from './fixtures/0_sample_data'
-import tableData1, { File } from './fixtures/1_sample_data'
-import tableData2, { Client } from './fixtures/2_sample_data'
-import tableData3, { Client1 } from './fixtures/3_sample_data'
-import tableData5, { Dot } from './fixtures/5_sample_data'
-import tableData6, { Client2 } from './fixtures/6_sample_data'
-import tableData7, { JSONPathData } from './fixtures/7_sample_data'
+import { type DataId, Table, type TableProps } from '.'
+import { type Meta, type StoryFn } from '@storybook/react'
+import React, { type Key, useState } from 'react'
+import tableData0, { type Person } from './fixtures/0_sample_data'
+import tableData1, { type File } from './fixtures/1_sample_data'
+import tableData2, { type Client } from './fixtures/2_sample_data'
+import tableData3, { type Client1 } from './fixtures/3_sample_data'
+import tableData5, { type Dot } from './fixtures/5_sample_data'
+import tableData6, { type Client2 } from './fixtures/6_sample_data'
+import tableData7, { type JSONPathData } from './fixtures/7_sample_data'
 
 const commonArgTypes = {
 	activeRowKey: {
@@ -71,7 +71,7 @@ const DecoratedTableStory = <Data extends DataId>(props: TableProps<Data>) => {
 	)
 }
 
-const SimpleTemplate: Story<TableProps<Person>> = args => (
+const SimpleTemplate: StoryFn<TableProps<Person>> = args => (
 	<Table<Person> {...args} />
 )
 export const Simple = SimpleTemplate.bind({})
@@ -110,7 +110,7 @@ Simple.argTypes = {
 	}
 }
 
-const NumberTemplate: Story<TableProps<File>> = args => (
+const NumberTemplate: StoryFn<TableProps<File>> = args => (
 	<DecoratedTableStory {...args} />
 )
 export const Number = NumberTemplate.bind({})
@@ -174,7 +174,7 @@ Number.argTypes = {
 	}
 }
 
-const MixedTemplate: Story<TableProps<Client>> = args => (
+const MixedTemplate: StoryFn<TableProps<Client>> = args => (
 	<DecoratedTableStory<Client> {...args} />
 )
 export const Mixed = MixedTemplate.bind({})
@@ -183,7 +183,7 @@ Mixed.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: `Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)`
+		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },
@@ -206,7 +206,7 @@ Mixed.argTypes = {
 	}
 }
 
-const MissingCellsTemplate: Story<TableProps<Client1>> = args => (
+const MissingCellsTemplate: StoryFn<TableProps<Client1>> = args => (
 	<DecoratedTableStory<Client1> {...args} />
 )
 export const MissingCells = MissingCellsTemplate.bind({})
@@ -217,7 +217,7 @@ MissingCells.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: `Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)`
+		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },
@@ -244,21 +244,21 @@ export const Paginated = NumberTemplate.bind({})
 Paginated.args = tableData4
 Paginated.argTypes = commonArgTypes
 
-const ColoredDotTemplate: Story<TableProps<Dot>> = args => (
+const ColoredDotTemplate: StoryFn<TableProps<Dot>> = args => (
 	<Table<Dot> {...args} />
 )
 export const ColoredDot = ColoredDotTemplate.bind({})
 ColoredDot.args = tableData5
 ColoredDot.argTypes = commonArgTypes
 
-const EditableCellsTemplate: Story<TableProps<Client2>> = args => (
+const EditableCellsTemplate: StoryFn<TableProps<Client2>> = args => (
 	<DecoratedTableStory<Client2> {...args} />
 )
 export const EditableCells = EditableCellsTemplate.bind({})
 EditableCells.args = tableData6
 EditableCells.argTypes = commonArgTypes
 
-const MultipleIconsAndJSONPathTemplate: Story<
+const MultipleIconsAndJSONPathTemplate: StoryFn<
 	TableProps<JSONPathData>
 > = args => <DecoratedTableStory<JSONPathData> {...args} />
 export const MultipleIconsAndJSONPath = MultipleIconsAndJSONPathTemplate.bind(
@@ -266,3 +266,9 @@ export const MultipleIconsAndJSONPath = MultipleIconsAndJSONPathTemplate.bind(
 )
 MultipleIconsAndJSONPath.args = tableData7
 MultipleIconsAndJSONPath.argTypes = commonArgTypes
+
+const meta: Meta<typeof Table> = {
+	component: Table
+}
+
+export default meta
