@@ -24,6 +24,7 @@ jobs:
               env:
                   FONT_AWESOME_AUTH_TOKEN: ${{ secrets.FONT_AWESOME_AUTH_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+                  NODE_OPTIONS: --max-old-space-size=16384
               with:
                   # our project token, to see how to obtain it
                   # refer to https://www.learnstorybook.com/intro-to-storybook/react/en/deploy/
