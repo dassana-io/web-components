@@ -134,7 +134,12 @@ export const TableSkeleton: FC<TableSkeletonProps> = memo(
 		const classes = useStyles()
 
 		const columnCount = useMemo(
-			() => (isMobile ? 2 : columns.length ?? random(3, 6)),
+			() =>
+				isMobile
+					? 2
+					: columns.length > 0
+					? columns.length
+					: random(3, 6),
 			[columns.length, isMobile]
 		)
 
