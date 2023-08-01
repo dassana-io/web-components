@@ -29,6 +29,8 @@ import React, {
 	useCallback
 } from 'react'
 
+const { TextArea } = AntDInput
+
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
@@ -37,7 +39,8 @@ const useStyles = createUseStyles({
 	},
 	error: {
 		'& input': generateCommonErrorStyles(light),
-		'& span': generateCommonErrorStyles(light)
+		'& span': generateCommonErrorStyles(light),
+		'& textarea': generateCommonErrorStyles(light)
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
@@ -45,13 +48,16 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $error': {
 				'& $input': generateCommonErrorStyles(dark),
-				'& $span': generateCommonErrorStyles(dark)
+				'& $span': generateCommonErrorStyles(dark),
+				'& $textarea': generateCommonErrorStyles(dark)
 			},
 			'& $input': generateInputStyles(dark),
-			'& $span': generateAddonStyles(dark)
+			'& $span': generateAddonStyles(dark),
+			'& $textarea': generateInputStyles(dark)
 		},
 		input: generateInputStyles(light),
-		span: generateAddonStyles(light)
+		span: generateAddonStyles(light),
+		textarea: generateInputStyles(light)
 	}
 })
 
@@ -67,6 +73,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	maxLength?: AntDInputProps['maxLength']
 	min?: AntDInputProps['min']
 	minLength?: AntDInputProps['minLength']
+	multiLine?: boolean
 	onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	onKeyDown?: (e: KeyboardEvent) => void
 	suffix?: ReactNode
@@ -93,6 +100,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		maxLength,
 		min,
 		minLength,
+		multiLine = false,
 		onBlur = noop,
 		onChange,
 		onFocus = noop,
@@ -128,6 +136,21 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
 
+	const commonProps = {
+		autoFocus: focused,
+		className: cn(classes),
+		defaultValue,
+		disabled,
+		maxLength,
+		minLength,
+		onBlur,
+		onKeyDown,
+		placeholder,
+		ref: inputRef,
+		...controlledCmpProps,
+		...getDataTestAttributeProp('input', dataTag)
+	}
+
 	const handleOnFocus = useCallback(
 		(e: FocusEvent<HTMLInputElement>) => {
 			autoSelectOnFocus && e.target.select()
@@ -137,33 +160,24 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		[autoSelectOnFocus, onFocus]
 	)
 
-	return loading
-? (
+	return loading ? (
 		<InputSkeleton fullWidth={props.fullWidth} />
-	)
-: (
+	) : (
 		<div className={inputContainerClasses}>
-			<AntDInput
-				addonAfter={addonAfter}
-				addonBefore={addonBefore}
-				autoFocus={focused}
-				className={cn(classes)}
-				defaultValue={defaultValue}
-				disabled={disabled}
-				max={max}
-				maxLength={maxLength}
-				min={min}
-				minLength={minLength}
-				onBlur={onBlur}
-				onFocus={handleOnFocus}
-				onKeyDown={onKeyDown}
-				placeholder={placeholder}
-				ref={inputRef}
-				suffix={suffix}
-				type={type}
-				{...controlledCmpProps}
-				{...getDataTestAttributeProp('input', dataTag)}
-			/>
+			{multiLine ? (
+				<TextArea {...commonProps} />
+			) : (
+				<AntDInput
+					addonAfter={addonAfter}
+					addonBefore={addonBefore}
+					max={max}
+					min={min}
+					onFocus={handleOnFocus}
+					suffix={suffix}
+					type={type}
+					{...commonProps}
+				/>
+			)}
 		</div>
 	)
 }
