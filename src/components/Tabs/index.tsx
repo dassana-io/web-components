@@ -192,7 +192,7 @@ export const Tabs: FC<TabsProps> = ({
 			<>
 				<div>
 					{leftSideTabs}
-					{(customAddTabComponent || onAddNewTab) &&
+					{(customAddTabComponent ?? onAddNewTab) &&
 						renderAddTabAction()}
 				</div>
 				<div>{rightSideTabs}</div>
