@@ -23,7 +23,7 @@ export const radioButtonGroupPalette = {
 		}
 	},
 	[light]: {
-		active: { background: blacks.base, color: grays.base },
+		active: { background: grays.base, color: blacks.base },
 		base: {
 			background: whites.base,
 			borderColor: grays.base,

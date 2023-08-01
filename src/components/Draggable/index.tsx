@@ -95,6 +95,7 @@ interface DraggableProps<T> {
 	renderItem: (item: T, index: number, isDragging: boolean) => ReactNode
 	renderOverlay?: (activeItem: T, activeItemIndex: number) => ReactNode
 	separator?: ReactNode
+	showSeparatorAfterLastItem?: boolean
 	strategy?: SortingStrategy
 }
 
@@ -109,6 +110,7 @@ export const Draggable = <T extends DataId>({
 	renderItem,
 	renderOverlay,
 	separator,
+	showSeparatorAfterLastItem = false,
 	strategy
 }: DraggableProps<T>) => {
 	const [activeItemId, setActiveItemId] = useState<UniqueIdentifier>()
@@ -211,7 +213,11 @@ export const Draggable = <T extends DataId>({
 						>
 							{renderItem(item, i, activeItemId === item.id)}
 						</DraggableItem>,
-						separator && i < items.length - 1 ? (
+						separator &&
+						i <
+							(showSeparatorAfterLastItem
+								? items.length
+								: items.length - 1) ? (
 							<span key={`${i}-separator`}>{separator}</span>
 						) : null
 					])}
