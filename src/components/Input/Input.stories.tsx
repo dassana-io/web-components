@@ -23,6 +23,9 @@ export const Default = Template.bind({})
 export const Placeholder = Template.bind({})
 Placeholder.args = { placeholder: 'Search...' }
 
+export const MultiLine = Template.bind({})
+MultiLine.args = { multiLine: true }
+
 export const Loading = Template.bind({})
 Loading.args = { loading: true }
 

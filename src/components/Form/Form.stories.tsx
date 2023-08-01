@@ -22,6 +22,7 @@ export default {
 interface UserModel {
 	cloudAccounts?: number[]
 	cloudType?: string
+	biography?: string
 	domains?: string[]
 	firstName: string
 	isProduction?: boolean
@@ -36,6 +37,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 	<Form<UserModel>
 		{...args}
 		initialValues={{
+			biography: '',
 			cloudAccounts: [5],
 			cloudType: 'azure',
 			domains: ['@lorem.com'],
@@ -50,6 +52,7 @@ const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
 	>
 		<Form.Input label='First Name' name='firstName' required />
 		<Form.Input label='Last Name' name='lastName' />
+		<Form.Input label='Bio' multiLine name='biography' />
 		<Form.Select
 			label='Cloud Type'
 			name='cloudType'
