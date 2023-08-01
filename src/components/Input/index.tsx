@@ -136,6 +136,21 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		throw new Error('Controlled inputs require an onChange prop')
 	}
 
+	const commonProps = {
+		autoFocus: focused,
+		className: cn(classes),
+		defaultValue,
+		disabled,
+		maxLength,
+		minLength,
+		onBlur,
+		onKeyDown,
+		placeholder,
+		ref: inputRef,
+		...controlledCmpProps,
+		...getDataTestAttributeProp('input', dataTag)
+	}
+
 	const handleOnFocus = useCallback(
 		(e: FocusEvent<HTMLInputElement>) => {
 			autoSelectOnFocus && e.target.select()
@@ -150,41 +165,17 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	) : (
 		<div className={inputContainerClasses}>
 			{multiLine ? (
-				<TextArea
-					autoFocus={focused}
-					className={cn(classes)}
-					defaultValue={defaultValue}
-					disabled={disabled}
-					maxLength={maxLength}
-					minLength={minLength}
-					onBlur={onBlur}
-					onKeyDown={onKeyDown}
-					placeholder={placeholder}
-					ref={inputRef}
-					{...controlledCmpProps}
-					{...getDataTestAttributeProp('input', dataTag)}
-				/>
+				<TextArea {...commonProps} />
 			) : (
 				<AntDInput
 					addonAfter={addonAfter}
 					addonBefore={addonBefore}
-					autoFocus={focused}
-					className={cn(classes)}
-					defaultValue={defaultValue}
-					disabled={disabled}
 					max={max}
-					maxLength={maxLength}
 					min={min}
-					minLength={minLength}
-					onBlur={onBlur}
 					onFocus={handleOnFocus}
-					onKeyDown={onKeyDown}
-					placeholder={placeholder}
-					ref={inputRef}
 					suffix={suffix}
 					type={type}
-					{...controlledCmpProps}
-					{...getDataTestAttributeProp('input', dataTag)}
+					{...commonProps}
 				/>
 			)}
 		</div>
