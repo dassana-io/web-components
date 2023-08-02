@@ -3,8 +3,9 @@ import { createUseStyles } from 'react-jss'
 import { type ModalProps } from './Modal'
 import { motion } from 'framer-motion'
 import { themedModalStyles } from './utils'
-import React, { type FC } from 'react'
+import React, { useCallback, type FC } from 'react'
 import { styleguide, themes, ThemeType } from 'components/assets/styles'
+import { useClickOutside } from '@dassana-io/web-utils'
 
 const { dark, light } = ThemeType
 
@@ -93,8 +94,18 @@ export const ModalDrawer: FC<ModalProps> = ({
 	const {
 		animate = true,
 		contentContainerClasses = [],
+		onClose,
 		overlayClasses = []
 	} = options
+
+	const onModalClose = useCallback(
+		() => (onClose ? onClose() : unsetModal()),
+		[onClose, unsetModal]
+	)
+
+	const ref = useClickOutside({
+		callback: onModalClose
+	})
 
 	const modalClasses = useStyles()
 
@@ -108,6 +119,7 @@ export const ModalDrawer: FC<ModalProps> = ({
 					modalClasses.contentContainer,
 					contentContainerClasses
 				)}
+				ref={ref}
 				{...additionalDrawerProps}
 			>
 				{content}
