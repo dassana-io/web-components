@@ -3,9 +3,9 @@ import { createUseStyles } from 'react-jss'
 import { type ModalProps } from './Modal'
 import { motion } from 'framer-motion'
 import { themedModalStyles } from './utils'
-import React, { useCallback, type FC } from 'react'
-import { styleguide, themes, ThemeType } from 'components/assets/styles'
 import { useClickOutside } from '@dassana-io/web-utils'
+import React, { type FC, useCallback } from 'react'
+import { styleguide, themes, ThemeType } from 'components/assets/styles'
 
 const { dark, light } = ThemeType
 
