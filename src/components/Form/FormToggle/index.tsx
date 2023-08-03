@@ -39,6 +39,7 @@ const FormToggle: FC<FormToggleProps> = ({
 	containerClasses = [],
 	defaultChecked = false,
 	disabled = false,
+	fieldLabelClasses = [],
 	fullWidth = false,
 	ignoreFormDisabled = false,
 	label,
@@ -57,7 +58,7 @@ const FormToggle: FC<FormToggleProps> = ({
 	return (
 		<div className={cn({ [classes.container]: true }, containerClasses)}>
 			<FieldLabel
-				classes={[classes.label]}
+				classes={[cn({ [classes.label]: true }, fieldLabelClasses)]}
 				label={label}
 				loading={loading}
 				required

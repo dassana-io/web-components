@@ -2,7 +2,10 @@ import { type BaseFieldProps } from '../types'
 import FieldLabel from '../FieldLabel'
 import { getFormFieldDataTag } from '../utils'
 import { Controller, useFormContext } from 'react-hook-form'
-import { DynamicKVInput, type DynamicKVInputProps } from 'components/DynamicKVInput'
+import {
+	DynamicKVInput,
+	type DynamicKVInputProps
+} from 'components/DynamicKVInput'
 import FieldContext, { type FieldContextProps } from '../FieldContext'
 import React, { type FC, useContext } from 'react'
 
@@ -12,6 +15,7 @@ export interface FormDynamicKVInputProps
 
 const FormDynamicKVInput: FC<FormDynamicKVInputProps> = ({
 	disabled = false,
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	name,
@@ -31,6 +35,7 @@ const FormDynamicKVInput: FC<FormDynamicKVInputProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					label={label}
 					loading={loading}
 					required

@@ -23,6 +23,7 @@ const FormInput: FC<FormInputProps> = ({
 	containerClasses = [],
 	disabled = false,
 	fieldErrorClasses = [],
+	fieldLabelClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -66,6 +67,7 @@ const FormInput: FC<FormInputProps> = ({
 		<div className={cn(containerClasses)}>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					fullWidth={fullWidth}
 					label={label}
 					loading={loading}
@@ -76,7 +78,7 @@ const FormInput: FC<FormInputProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ field: { onChange, value } }) => (
+				render={({ field: { onChange, onBlur, value } }) => (
 					<Input
 						dataTag={getFormFieldDataTag(name)}
 						disabled={formDisabled || disabled}
@@ -85,6 +87,7 @@ const FormInput: FC<FormInputProps> = ({
 						focused={focused}
 						fullWidth={fullWidth}
 						loading={loading}
+						onBlur={onBlur}
 						onChange={onChange}
 						onFocus={onInputFocus}
 						onKeyDown={onKeyDown}

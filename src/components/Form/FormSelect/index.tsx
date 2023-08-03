@@ -17,6 +17,7 @@ export interface FormSelectProps
 const FormSelect: FC<FormSelectProps> = ({
 	disabled = false,
 	fieldErrorClasses = [],
+	fieldLabelClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -58,6 +59,7 @@ const FormSelect: FC<FormSelectProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					label={label}
 					loading={formLoading || loading}
 					required

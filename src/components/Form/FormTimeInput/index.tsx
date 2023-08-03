@@ -15,6 +15,7 @@ export interface FormTimeInputProps
 
 const FormTimeInput: FC<FormTimeInputProps> = ({
 	disabled = false,
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	fullWidth,
@@ -41,6 +42,7 @@ const FormTimeInput: FC<FormTimeInputProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					fullWidth={fullWidth}
 					label={label}
 					loading={loading}

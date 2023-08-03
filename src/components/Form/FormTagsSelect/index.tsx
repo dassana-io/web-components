@@ -16,6 +16,7 @@ const FormTagsSelect: FC<FormTagsSelectProps> = ({
 	containerClasses = [],
 	disabled = false,
 	fieldErrorClasses = [],
+	fieldLabelClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -42,6 +43,7 @@ const FormTagsSelect: FC<FormTagsSelectProps> = ({
 		<div className={cn(containerClasses)}>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					fullWidth={fullWidth}
 					label={label}
 					loading={loading}

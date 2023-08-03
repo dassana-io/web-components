@@ -42,6 +42,7 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
 	containerClasses = [],
 	defaultChecked = false,
 	disabled = false,
+	fieldLabelClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -82,7 +83,7 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
 				rules={rules}
 			/>
 			<FieldLabel
-				classes={[classes.label]}
+				classes={[cn({ [classes.label]: true }, fieldLabelClasses)]}
 				label={label}
 				loading={loading}
 				required

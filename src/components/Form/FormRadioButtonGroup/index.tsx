@@ -15,6 +15,7 @@ export interface FormRadioButtonGroupProps
 
 const FormRadioButtonGroup: FC<FormRadioButtonGroupProps> = ({
 	disabled = false,
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	name,
@@ -32,6 +33,7 @@ const FormRadioButtonGroup: FC<FormRadioButtonGroupProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					label={label}
 					loading={loading}
 					required

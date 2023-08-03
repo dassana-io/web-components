@@ -13,6 +13,7 @@ export interface FormTreeProps
 const FormTree: FC<FormTreeProps> = ({
 	defaultChecked,
 	disabled = false,
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	name,
@@ -28,6 +29,7 @@ const FormTree: FC<FormTreeProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					label={label}
 					loading={loading}
 					required

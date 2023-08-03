@@ -14,6 +14,7 @@ export interface FormCodeProps
 
 const FormCode: FC<FormCodeProps> = ({
 	disabled = false,
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	name,
@@ -33,6 +34,7 @@ const FormCode: FC<FormCodeProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					label={label}
 					loading={loading}
 					required
