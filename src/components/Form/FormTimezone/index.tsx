@@ -14,6 +14,7 @@ export interface FormTimezoneProps
 
 const FormTimezone: FC<FormTimezoneProps> = ({
 	disabled = false,
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	name,
@@ -39,6 +40,7 @@ const FormTimezone: FC<FormTimezoneProps> = ({
 		<div>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					label={label}
 					loading={loading}
 					required

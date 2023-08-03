@@ -5,7 +5,10 @@ import FieldLabel from '../FieldLabel'
 import { Controller, useFormContext } from 'react-hook-form'
 import FieldContext, { type FieldContextProps } from '../FieldContext'
 import { getFormFieldDataTag, getRulesForArrVals } from '../utils'
-import { MultiSelect, type MultiSelectProps } from 'components/Select/MultiSelect'
+import {
+	MultiSelect,
+	type MultiSelectProps
+} from 'components/Select/MultiSelect'
 import React, { type FC, useContext } from 'react'
 
 export interface FormMultiSelectProps
@@ -16,6 +19,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 	containerClasses = [],
 	disabled = false,
 	fieldErrorClasses = [],
+	fieldLabelClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -42,6 +46,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 		<div className={cn(containerClasses)}>
 			{label && (
 				<FieldLabel
+					classes={fieldLabelClasses}
 					fullWidth={fullWidth}
 					label={label}
 					loading={loading}

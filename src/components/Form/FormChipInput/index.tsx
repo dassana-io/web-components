@@ -17,6 +17,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 	containerClasses = [],
 	disabled = false,
 	fieldErrorClasses = [],
+	fieldLabelClasses = [],
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
@@ -54,6 +55,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 	return (
 		<div className={cn(containerClasses)}>
 			{renderFieldLabel({
+				classes: fieldLabelClasses,
 				fullWidth,
 				label,
 				loading,
@@ -63,7 +65,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 			<Controller
 				control={control}
 				name={name}
-				render={({ field: { onChange, value } }) => (
+				render={({ field: { onBlur, onChange, value } }) => (
 					<ChipInput
 						clearErrors={clearChipInputErrors}
 						dataTag={getFormFieldDataTag(name)}
@@ -73,6 +75,7 @@ const FormChipInput: FC<FormChipInputProps> = ({
 						fullWidth={fullWidth}
 						inputRef={inputRef}
 						loading={loading}
+						onBlur={onBlur}
 						onChange={onChange}
 						onFocus={clearChipInputErrors}
 						values={value}

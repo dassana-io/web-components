@@ -6,7 +6,10 @@ import {
 	getRulesForArrVals,
 	renderFieldLabel
 } from '../utils'
-import { MultipleChoice, type MultipleChoiceProps } from 'components/MultipleChoice'
+import {
+	MultipleChoice,
+	type MultipleChoiceProps
+} from 'components/MultipleChoice'
 import React, { type FC, useContext } from 'react'
 
 export interface FormMultipleChoiceProps
@@ -14,6 +17,7 @@ export interface FormMultipleChoiceProps
 		Omit<MultipleChoiceProps, 'onChange' | 'value'> {}
 
 const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
+	fieldLabelClasses = [],
 	label,
 	labelSkeletonWidth,
 	name,
@@ -31,6 +35,7 @@ const FormMultipleChoice: FC<FormMultipleChoiceProps> = ({
 	return (
 		<div>
 			{renderFieldLabel({
+				classes: fieldLabelClasses,
 				fullWidth: true,
 				label,
 				loading,
