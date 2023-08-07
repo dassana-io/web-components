@@ -1,5 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ReactComponent as LightbulbLit } from '../assets/images/lightbulb_lit.svg'
 import { ReactComponent as LightbulbUnlit } from '../assets/images/lightbulb_unlit.svg'
 import React from 'react'
@@ -49,6 +51,7 @@ const useStyles = createUseStyles({
 
 export interface PageLoaderProps {
 	classes?: string[]
+	generic?: boolean
 }
 
 const commonSvgProps = {
@@ -58,19 +61,24 @@ const commonSvgProps = {
 }
 
 export const PageLoader: React.FC<PageLoaderProps> = ({
-	classes = []
+	classes = [],
+	generic = false
 }: PageLoaderProps) => {
 	const compClasses = useStyles()
 
 	return (
 		<div className={cn(compClasses.container, classes)}>
-			<div className={compClasses.iconWrapper}>
-				<LightbulbUnlit {...commonSvgProps} />
-				<LightbulbLit
-					className={compClasses.bulbLit}
-					{...commonSvgProps}
-				/>
-			</div>
+			{generic ? (
+				<FontAwesomeIcon icon={faCircleNotch} size='5x' spin />
+			) : (
+				<div className={compClasses.iconWrapper}>
+					<LightbulbUnlit {...commonSvgProps} />
+					<LightbulbLit
+						className={compClasses.bulbLit}
+						{...commonSvgProps}
+					/>
+				</div>
+			)}
 		</div>
 	)
 }
