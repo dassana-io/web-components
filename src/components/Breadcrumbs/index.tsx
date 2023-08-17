@@ -33,6 +33,7 @@ const useStyles = createUseStyles({
 export interface BreadcrumbConfig {
 	label: string | ReactNode
 	onClick?: () => void
+	underline?: boolean
 }
 
 export interface BreadCrumbProps {
@@ -46,8 +47,18 @@ export const Breadcrumbs: FC<BreadCrumbProps> = ({
 }: BreadCrumbProps) => {
 	const breadCrumbsClasses = useStyles()
 
-	const renderBreadcrumb = ({ label, onClick }: BreadcrumbConfig) =>
-		onClick ? <Link onClick={onClick}>{label}</Link> : label
+	const renderBreadcrumb = ({
+		label,
+		onClick,
+		underline = true
+	}: BreadcrumbConfig) =>
+		onClick ? (
+			<Link onClick={onClick} underline={underline}>
+				{label}
+			</Link>
+		) : (
+			label
+		)
 
 	return (
 		<div className={cn(breadCrumbsClasses.container, classes)}>
