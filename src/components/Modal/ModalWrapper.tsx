@@ -24,17 +24,13 @@ export const ModalWrapper: FC<ModalWrapperProps> = ({
 		rootEl &&
 		createPortal(
 			<AnimatePresence>
-				{!isEmpty(modalConfig)
-? (
-					drawer
-? (
+				{!isEmpty(modalConfig) ? (
+					drawer ? (
 						<ModalDrawer {...rest} />
-					)
-: (
+					) : (
 						<Modal {...rest} />
 					)
-				)
-: null}
+				) : null}
 			</AnimatePresence>,
 			rootEl
 		)

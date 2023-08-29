@@ -42,12 +42,23 @@ const useStyles = createUseStyles({
 	}
 })
 
-export type NotificationProps = ProcessedNotification
+export interface NotificationConfigProps {
+	closeBtnClasses?: string[]
+	notificationClasses?: string[]
+}
+
+type NotificationProps = ProcessedNotification & NotificationConfigProps
 
 export const Notification: FC<NotificationProps> = (
 	props: NotificationProps
 ) => {
-	const { message, onClose, type } = props
+	const {
+		closeBtnClasses = [],
+		notificationClasses = [],
+		message,
+		onClose,
+		type
+	} = props
 	const classes = useStyles(props)
 
 	const iconClasses = cn({
@@ -55,11 +66,20 @@ export const Notification: FC<NotificationProps> = (
 		[classes[type]]: true
 	})
 
+	const closeButtonClasses = cn(closeBtnClasses)
+
+	const containerClasses = cn(
+		{
+			[classes.container]: true
+		},
+		notificationClasses
+	)
+
 	return (
 		<LazyMotion features={domAnimation}>
 			<motion.div
 				animate={{ opacity: 1, scale: 1, x: 0 }}
-				className={classes.container}
+				className={containerClasses}
 				exit={{ opacity: 0, scale: 0.8, x: 300 }}
 				initial={{ opacity: 0, scale: 0.8, x: 300 }}
 				transition={{
@@ -75,7 +95,7 @@ export const Notification: FC<NotificationProps> = (
 				<div className={classes.message}>
 					{typeof message === 'string' ? message : message(onClose)}
 				</div>
-				<IconButton onClick={onClose} />
+				<IconButton classes={[closeButtonClasses]} onClick={onClose} />
 			</motion.div>
 		</LazyMotion>
 	)

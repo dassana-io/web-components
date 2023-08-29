@@ -1,9 +1,9 @@
 import { AnimatePresence } from 'framer-motion'
 import { createPortal } from 'react-dom'
 import { createUseStyles } from 'react-jss'
-import { Notification } from './Notification'
 import { styleguide } from 'components/assets/styles'
 import { useCreateDomElement } from 'components/utils'
+import { Notification, type NotificationConfigProps } from './Notification'
 import {
 	NOTIFICATION_CONTAINER_ID,
 	type NotificationConfig as NotificationConfigInterface,
@@ -27,14 +27,15 @@ const useStyles = createUseStyles({
 
 export type NotificationConfig = NotificationConfigInterface
 
-export interface NotificationProviderProps {
+export interface NotificationProviderProps extends NotificationConfigProps {
 	children: ReactNode
 	getPopupContainer?: () => HTMLElement
 }
 
 const NotificationProvider: FC<NotificationProviderProps> = ({
 	children,
-	getPopupContainer
+	getPopupContainer,
+	...rest
 }: NotificationProviderProps) => {
 	const rootElement = useCreateDomElement(
 		NOTIFICATION_CONTAINER_ID,
@@ -59,6 +60,7 @@ const NotificationProvider: FC<NotificationProviderProps> = ({
 									<Notification
 										key={notification.id}
 										{...notification}
+										{...rest}
 									/>
 								)
 							)}

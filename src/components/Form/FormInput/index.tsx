@@ -11,11 +11,17 @@ import {
 } from 'react-hook-form'
 import FieldContext, { type FieldContextProps } from '../FieldContext'
 import { Input, type InputProps } from 'components/Input'
-import React, { type FC, type KeyboardEvent, useContext } from 'react'
+import React, {
+	type FC,
+	type KeyboardEvent,
+	type ReactNode,
+	useContext
+} from 'react'
 
 export interface FormInputProps
 	extends BaseFieldProps,
 		Omit<InputProps, 'onChange' | 'onFocus' | 'value'> {
+	fieldErrorIcon?: ReactNode
 	focused?: boolean
 }
 
@@ -23,11 +29,12 @@ const FormInput: FC<FormInputProps> = ({
 	containerClasses = [],
 	disabled = false,
 	fieldErrorClasses = [],
+	fieldErrorIcon,
 	fieldLabelClasses = [],
+	focused,
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
-	focused,
 	name,
 	required,
 	rules = {},
@@ -101,6 +108,7 @@ const FormInput: FC<FormInputProps> = ({
 				<FieldError
 					classes={fieldErrorClasses}
 					error={errorMsg}
+					errorIcon={fieldErrorIcon}
 					fullWidth={fullWidth}
 				/>
 			)}

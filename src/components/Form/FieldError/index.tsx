@@ -4,7 +4,7 @@ import {
 	defaultFieldWidth,
 	styleguide
 } from 'components/assets/styles/styleguide'
-import React, { type FC } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { themedStyles, ThemeType } from 'components/assets/styles/themes'
 
 const { dark, light } = ThemeType
@@ -42,17 +42,20 @@ export interface FieldErrorProps {
 	classes?: string[]
 	fullWidth?: boolean
 	error: string
+	errorIcon?: ReactNode
 }
 
 const FieldError: FC<FieldErrorProps> = ({
 	classes = [],
 	fullWidth = false,
-	error
+	error,
+	errorIcon
 }: FieldErrorProps) => {
 	const fieldErrorClasses = useStyles({ fullWidth })
 
 	return (
 		<div className={cn({ [fieldErrorClasses.container]: true }, classes)}>
+			{error && errorIcon && errorIcon}
 			{error}
 		</div>
 	)

@@ -67,6 +67,7 @@ export interface InputProps extends BaseFormElementProps<HTMLInputElement> {
 	autoSelectOnFocus?: boolean
 	containerClasses?: string[]
 	defaultValue?: string
+	errorClassname?: string
 	inputRef?: RefObject<InputRef>
 	focused?: boolean
 	max?: AntDInputProps['max']
@@ -94,6 +95,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 		dataTag,
 		defaultValue,
 		disabled = false,
+		errorClassname = '',
 		focused = false,
 		inputRef,
 		max,
@@ -118,7 +120,8 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	const inputContainerClasses: string = cn(
 		{
 			[componentClasses.container]: true,
-			[componentClasses.error]: error
+			[componentClasses.error]: error,
+			[errorClassname]: error
 		},
 		containerClasses
 	)
