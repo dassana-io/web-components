@@ -90,7 +90,7 @@ export const generateButtonStyles = (
 			backgroundColor: disabledBgColor,
 			color: disabled.color
 		},
-		'&.ant-btn-focused, &.ant-btn:focus': activeStyles
+		'&.ant-btn-focused, &.ant-btn:focus:active': activeStyles
 	}
 }
 
