@@ -4,7 +4,7 @@ import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ReactComponent as LightbulbLit } from '../assets/images/lightbulb_lit.svg'
 import { ReactComponent as LightbulbUnlit } from '../assets/images/lightbulb_unlit.svg'
-import React from 'react'
+import React, { type ReactNode } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
 const { flexCenter } = styleguide
@@ -52,6 +52,7 @@ const useStyles = createUseStyles({
 export interface PageLoaderProps {
 	classes?: string[]
 	generic?: boolean
+	loader?: ReactNode
 }
 
 const commonSvgProps = {
@@ -62,9 +63,16 @@ const commonSvgProps = {
 
 export const PageLoader: React.FC<PageLoaderProps> = ({
 	classes = [],
-	generic = false
+	generic = false,
+	loader
 }: PageLoaderProps) => {
 	const compClasses = useStyles()
+
+	if (loader) {
+		return (
+			<div className={cn(compClasses.container, classes)}>{loader}</div>
+		)
+	}
 
 	return (
 		<div className={cn(compClasses.container, classes)}>
