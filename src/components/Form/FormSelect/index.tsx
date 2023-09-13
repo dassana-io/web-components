@@ -78,7 +78,7 @@ const FormSelect: FC<FormSelectProps> = ({
 						loading={formLoading || loading}
 						onChange={value => {
 							onChange(value)
-							triggerOnSubmit?.(value)
+							triggerSubmit && triggerOnSubmit?.(value)
 						}}
 						onFocus={onSelectFocus}
 						value={value}
