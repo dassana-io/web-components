@@ -578,12 +578,17 @@ export const getNewFiltersFromAxisLabelClick = (
 
 	const relatedTypeFilters = getRelatedRankingFilters(val, type)
 
-	const isDeselection = allGridItemsInAggregateFilterSelected(
-		val,
-		primaryFilters,
-		relatedTypeFilters,
-		gridItemFilters
-	)
+	const isDeselection =
+		allGridItemsInAggregateFilterSelected(
+			val,
+			primaryFilters,
+			relatedTypeFilters,
+			gridItemFilters
+		) ||
+		allItemsInFirstArrExistInSecondArr(
+			relatedTypeFilters,
+			selectedGridItems
+		)
 
 	// Axis label deselection
 	if (isDeselection) {
