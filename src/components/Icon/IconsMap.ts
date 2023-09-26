@@ -2,6 +2,7 @@ import { ReactComponent as ALERT_MANAGER } from '../assets/icons/alert-manager.s
 import { ReactComponent as APPS } from '../assets/icons/apps.svg'
 import { ReactComponent as AWS } from '../assets/icons/aws.svg'
 import { ReactComponent as AZURE } from '../assets/icons/azure.svg'
+import { ReactComponent as DASSANA } from '../assets/icons/dassana.svg'
 import { ReactComponent as GITHUB } from '../assets/icons/github.svg'
 import { ReactComponent as GOOGLE_CLOUD_PLATFORM } from '../assets/icons/google-cloud-platform.svg'
 import { ReactComponent as ORG_MANAGER } from '../assets/icons/org-manager.svg'
@@ -19,6 +20,7 @@ const Icons = {
 	apps: APPS,
 	aws: AWS,
 	azure: AZURE,
+	dassana: DASSANA,
 	github: GITHUB,
 	googleCloudService: GOOGLE_CLOUD_PLATFORM,
 	orgManager: ORG_MANAGER,
