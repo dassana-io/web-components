@@ -1,16 +1,19 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { ReactComponent as DassanaLogo } from '../assets/images/dassana_loader.svg'
 import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ReactComponent as LoaderPhase0 } from '../assets/images/loader_phase_0.svg'
-import { ReactComponent as LoaderPhase1 } from '../assets/images/loader_phase_1.svg'
-import { ReactComponent as LoaderPhase2 } from '../assets/images/loader_phase_2.svg'
-import { ReactComponent as LoaderPhase3 } from '../assets/images/loader_phase_3.svg'
 import React, { type ReactNode } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
-const { flexCenter } = styleguide
+const {
+	colors: { oranges, reds, purples },
+	flexCenter
+} = styleguide
 const { dark, light } = ThemeType
+
+const svgWidth = 130
+const svgHeight = 133
 
 const useStyles = createUseStyles({
 	container: {
@@ -21,43 +24,47 @@ const useStyles = createUseStyles({
 		background: themes[light].background.primary,
 		width: 'inherit'
 	},
-
-	iconWrapper: {
-		position: 'relative'
+	dassanaLoader: {
+		'& .dassana-icon-row-1': {
+			animation: 'row-1 4s infinite'
+		},
+		'& .dassana-icon-row-2': {
+			animation: 'row-2 4s infinite'
+		},
+		'& .dassana-icon-row-3': {
+			animation: 'row-3 4s infinite'
+		}
 	},
-	loader1: { animation: 'loader1 3s infinite' },
-	loader2: { animation: 'loader2 3s infinite' },
-	loader3: { animation: 'loader3 3s infinite' },
+	// iconWrapper dimensions should match svg dimensions
+	iconWrapper: {
+		height: svgHeight,
+		position: 'relative',
+		width: svgWidth
+	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
-		'@keyframes loader1': {
-			'0%, 24%': {
-				opacity: 0
+		'@keyframes row-1': {
+			'0%, 74%': {
+				fill: 'transparent'
 			},
-			'25%, 49%': {
-				opacity: 1
+			'75%, 100%': {
+				fill: purples.base
+			}
+		},
+		'@keyframes row-2': {
+			'0%, 49%': {
+				fill: 'transparent'
 			},
 			'50%, 100%': {
-				opacity: 0
+				fill: reds.base
 			}
 		},
-		'@keyframes loader2': {
-			'0%, 49%': {
-				opacity: 0
+		'@keyframes row-3': {
+			'0%, 24%': {
+				fill: 'transparent'
 			},
-			'50%, 74%': {
-				opacity: 1
-			},
-			'75%, 100%': {
-				opacity: 0
-			}
-		},
-		'@keyframes loader3': {
-			'0%, 74%': {
-				opacity: 0
-			},
-			'75%, 100%': {
-				opacity: 1
+			'25%, 100%': {
+				fill: oranges.base
 			}
 		},
 		[`.${dark}`]: {
@@ -93,10 +100,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({
 				<FontAwesomeIcon icon={faCircleNotch} size='5x' spin />
 			) : (
 				<div className={compClasses.iconWrapper}>
-					<LoaderPhase0 />
-					<LoaderPhase1 className={compClasses.loader1} />
-					<LoaderPhase2 className={compClasses.loader2} />
-					<LoaderPhase3 className={compClasses.loader3} />
+					<DassanaLogo className={compClasses.dassanaLoader} />
 				</div>
 			)}
 		</div>
