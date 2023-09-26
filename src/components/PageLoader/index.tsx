@@ -1,22 +1,21 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { ReactComponent as DassanaLogo } from '../assets/images/dassana_loader.svg'
 import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ReactComponent as LightbulbLit } from '../assets/images/lightbulb_lit.svg'
-import { ReactComponent as LightbulbUnlit } from '../assets/images/lightbulb_unlit.svg'
 import React, { type ReactNode } from 'react'
 import { styleguide, themes, ThemeType } from '../assets/styles'
 
-const { flexCenter } = styleguide
+const {
+	colors: { oranges, reds, purples },
+	flexCenter
+} = styleguide
 const { dark, light } = ThemeType
 
 const svgWidth = 130
 const svgHeight = 133
 
 const useStyles = createUseStyles({
-	bulbLit: {
-		animation: 'lightUp 2s infinite'
-	},
 	container: {
 		'& svg': {
 			position: 'absolute'
@@ -24,6 +23,17 @@ const useStyles = createUseStyles({
 		...flexCenter,
 		background: themes[light].background.primary,
 		width: 'inherit'
+	},
+	dassanaLoader: {
+		'& .dassana-icon-row-1': {
+			animation: 'row-1 4s infinite'
+		},
+		'& .dassana-icon-row-2': {
+			animation: 'row-2 4s infinite'
+		},
+		'& .dassana-icon-row-3': {
+			animation: 'row-3 4s infinite'
+		}
 	},
 	// iconWrapper dimensions should match svg dimensions
 	iconWrapper: {
@@ -33,12 +43,28 @@ const useStyles = createUseStyles({
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
-		'@keyframes lightUp': {
-			'0%, 100%': {
-				opacity: 0
+		'@keyframes row-1': {
+			'0%, 74%': {
+				fill: 'transparent'
 			},
-			'50%': {
-				opacity: 1
+			'75%, 100%': {
+				fill: purples.base
+			}
+		},
+		'@keyframes row-2': {
+			'0%, 49%': {
+				fill: 'transparent'
+			},
+			'50%, 100%': {
+				fill: reds.base
+			}
+		},
+		'@keyframes row-3': {
+			'0%, 24%': {
+				fill: 'transparent'
+			},
+			'25%, 100%': {
+				fill: oranges.base
 			}
 		},
 		[`.${dark}`]: {
@@ -53,12 +79,6 @@ export interface PageLoaderProps {
 	classes?: string[]
 	generic?: boolean
 	loader?: ReactNode
-}
-
-const commonSvgProps = {
-	height: svgHeight,
-	viewBox: `0 0 ${svgWidth} ${svgHeight}`,
-	width: svgWidth
 }
 
 export const PageLoader: React.FC<PageLoaderProps> = ({
@@ -80,11 +100,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({
 				<FontAwesomeIcon icon={faCircleNotch} size='5x' spin />
 			) : (
 				<div className={compClasses.iconWrapper}>
-					<LightbulbUnlit {...commonSvgProps} />
-					<LightbulbLit
-						className={compClasses.bulbLit}
-						{...commonSvgProps}
-					/>
+					<DassanaLogo className={compClasses.dassanaLoader} />
 				</div>
 			)}
 		</div>
