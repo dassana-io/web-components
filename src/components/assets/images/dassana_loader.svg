@@ -1,0 +1,50 @@
+<svg
+	width="160"
+	height="160"
+	viewBox="0 0 160 160"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<g clip-path="url(#clip0_101_2)" stroke="white">
+		<path
+			class="dassana-icon-row-1"
+			d="M80 34L58.8074 55.0637L80 76.1274L101.193 55.0637L80 34Z"
+			fill="transparent"
+		/>
+		<path
+			class="dassana-icon-row-2"
+			d="M57.5996 56.4365L36.4004 77.5002L57.5996 98.5639L78.7922 77.5002L57.5996 56.4365Z"
+			fill="transparent"
+		/>
+		<path
+			class="dassana-icon-row-2"
+			d="M102.4 56.4365L81.2078 77.5002L102.4 98.5639L123.6 77.5002L102.4 56.4365Z"
+			fill="transparent"
+		/>
+		<path
+			class="dassana-icon-row-3"
+			d="M35.1926 78.873L14 99.9368L35.1926 121L56.3918 99.9368L35.1926 78.873Z"
+			fill="transparent"
+		/>
+		<path
+			class="dassana-icon-row-3"
+			d="M80 78.5488L58.8074 99.6125L80 120.676L101.193 99.6125L80 78.5488Z"
+			fill="transparent"
+		/>
+		<path
+			class="dassana-icon-row-3"
+			d="M124.801 78.873L103.602 99.9368L124.801 121L146 99.9368L124.801 78.873Z"
+			fill="transparent"
+		/>
+	</g>
+	<defs>
+		<clipPath id="clip0_101_2">
+			<rect
+				width="132"
+				height="87"
+				fill="white"
+				transform="translate(14 34)"
+			/>
+		</clipPath>
+	</defs>
+</svg>
