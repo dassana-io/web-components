@@ -26,13 +26,13 @@ const useStyles = createUseStyles({
 	},
 	dassanaLoader: {
 		'& .dassana-icon-row-1': {
-			animation: 'row-1 2s infinite'
+			animation: 'row-1 4s infinite'
 		},
 		'& .dassana-icon-row-2': {
-			animation: 'row-2 2s infinite'
+			animation: 'row-2 4s infinite'
 		},
 		'& .dassana-icon-row-3': {
-			animation: 'row-3 2s infinite'
+			animation: 'row-3 4s infinite'
 		}
 	},
 	// iconWrapper dimensions should match svg dimensions
