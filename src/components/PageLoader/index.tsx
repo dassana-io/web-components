@@ -23,7 +23,9 @@ const useStyles = createUseStyles({
 	},
 
 	iconWrapper: {
-		position: 'relative'
+		height: 100,
+		position: 'relative',
+		width: 100
 	},
 	loader1: { animation: 'loader1 3s infinite' },
 	loader2: { animation: 'loader2 3s infinite' },
