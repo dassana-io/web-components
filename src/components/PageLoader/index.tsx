@@ -6,11 +6,10 @@ import { ReactComponent as LoaderPhase0 } from '../assets/images/loader_phase_0.
 import { ReactComponent as LoaderPhase1 } from '../assets/images/loader_phase_1.svg'
 import { ReactComponent as LoaderPhase2 } from '../assets/images/loader_phase_2.svg'
 import { ReactComponent as LoaderPhase3 } from '../assets/images/loader_phase_3.svg'
+import { styleguide } from '../assets/styles'
 import React, { type ReactNode } from 'react'
-import { styleguide, themes, ThemeType } from '../assets/styles'
 
 const { flexCenter } = styleguide
-const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
 	container: {
@@ -18,7 +17,7 @@ const useStyles = createUseStyles({
 			position: 'absolute'
 		},
 		...flexCenter,
-		background: themes[light].background.primary,
+		background: 'transparent',
 		width: 'inherit'
 	},
 
@@ -60,11 +59,6 @@ const useStyles = createUseStyles({
 			},
 			'75%, 100%': {
 				opacity: 1
-			}
-		},
-		[`.${dark}`]: {
-			'& $container': {
-				background: themes[dark].background.primary
 			}
 		}
 	}
