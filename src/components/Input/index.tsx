@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss'
 import { getDataTestAttributeProp } from '../utils'
 import InputSkeleton from './InputSkeleton'
 import noop from 'lodash/noop'
+import omit from 'lodash/omit'
 import { ThemeType } from '../assets/styles/themes'
 import {
 	Input as AntDInput,
@@ -168,7 +169,7 @@ export const Input: FC<InputProps> = (props: InputProps) => {
 	) : (
 		<div className={inputContainerClasses}>
 			{multiLine ? (
-				<TextArea {...commonProps} />
+				<TextArea {...omit(commonProps, 'onKeyDown')} />
 			) : (
 				<AntDInput
 					addonAfter={addonAfter}
