@@ -48,6 +48,9 @@ export interface TabConfig {
 	classes?: string[]
 	key: string
 	label: string | ReactNode
+	onClose?: (tabIndex: number, onError: () => void) => void
+	onDelete?: (tabIndex: number) => void
+	pending?: boolean
 	render: () => ReactNode
 	splitRight?: boolean
 	tabItemClasses?: string[]
@@ -166,7 +169,16 @@ export const Tabs: FC<TabsProps> = ({
 		const [leftSideTabs, rightSideTabs] = partitionedTabs.map(
 			(partitionedTab, i) =>
 				partitionedTab.map(
-					({ key, label, tabItemClasses = [] }: TabConfig, j) => {
+					(
+						{
+							onClose,
+							onDelete,
+							key,
+							label,
+							tabItemClasses = []
+						}: TabConfig,
+						j
+					) => {
 						const leftSideLength = partitionedTabs[0].length
 						const currentTabItemIndex =
 							i === 0 ? j : j + leftSideLength
@@ -180,6 +192,8 @@ export const Tabs: FC<TabsProps> = ({
 								key={key}
 								label={label}
 								onClickTab={onClickTab}
+								onClose={onClose}
+								onDelete={onDelete}
 								tabClasses={[...tabClasses, ...tabItemClasses]}
 								tabIndex={currentTabItemIndex}
 							/>

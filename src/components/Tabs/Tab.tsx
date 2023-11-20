@@ -1,24 +1,48 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateThemedActiveTabStyles } from './utils'
-import React, { type FC } from 'react'
+import { IconButton } from 'components/IconButton'
+import { faTrash, faX } from '@fortawesome/pro-light-svg-icons'
+import React, { type FC, useCallback, useState } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 import { type TabConfig, type TabsProps } from '.'
 
 const { dark, light } = ThemeType
 
 const {
-	colors: { blacks },
+	colors: { blacks, reds },
+	flexAlignCenter,
 	font,
 	fontWeight,
 	spacing
 } = styleguide
 
+interface StyleProps {
+	hasControls: boolean
+	isActiveTab: boolean
+}
+
 const useStyles = createUseStyles({
+	actionIcon: {
+		opacity: ({ isActiveTab }: StyleProps) => (isActiveTab ? 1 : 0),
+		paddingLeft: spacing.s
+	},
 	activeTab: {},
+	deleteIcon: {
+		'&:hover': {
+			color: reds.base
+		}
+	},
+	pending: {},
 	tab: {
-		'&$activeTab': {
-			...generateThemedActiveTabStyles(light)
+		'&$activeTab': { ...generateThemedActiveTabStyles(light) },
+		'&$pending': {
+			display: 'none'
+		},
+		'&:hover': {
+			'& $actionIcon': {
+				opacity: 1
+			}
 		},
 		...font.body,
 		borderBottom: '1px solid transparent',
@@ -27,21 +51,37 @@ const useStyles = createUseStyles({
 		display: 'inline-block',
 		fontWeight: fontWeight.regular,
 		listStyle: 'none',
-		margin: { left: spacing.m, right: spacing.m },
+		margin: ({ hasControls }: StyleProps) => {
+			return hasControls ? `0 ${spacing.s}px` : `0 ${spacing.m}px`
+		},
 		padding: { bottom: spacing.m, top: spacing.m },
 		textAlign: 'center'
+	},
+	tabControls: {
+		...flexAlignCenter,
+		'&:not(:empty)': {
+			paddingLeft: spacing.xs
+		}
+	},
+	tabLabelContent: {
+		...flexAlignCenter
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
-			'& $activeTab': generateThemedActiveTabStyles(dark)
+			'& $tab': {
+				'& $deleteIcon:hover': {
+					color: reds.base
+				},
+				'&$activeTab': generateThemedActiveTabStyles(dark)
+			}
 		}
 	}
 })
 
 interface TabProps
 	extends Pick<TabsProps, 'activeTabClasses' | 'tabClasses'>,
-		Pick<TabConfig, 'label'> {
+		Pick<TabConfig, 'onClose' | 'onDelete' | 'label' | 'pending'> {
 	isActiveTab: boolean
 	tabIndex: number
 	onClickTab: (tabIndex: number) => void
@@ -52,23 +92,66 @@ const Tab: FC<TabProps> = ({
 	isActiveTab,
 	label,
 	onClickTab,
+	onClose,
+	onDelete,
 	tabClasses = [],
 	tabIndex
 }: TabProps) => {
-	const classes = useStyles()
+	const [pending, setPending] = useState(false)
+
+	const classes = useStyles({
+		// eslint-disable-next-line
+		hasControls: !!(onClose || onDelete),
+		isActiveTab
+	})
 
 	const tabCmpClasses = cn(
 		{
 			[classes.tab]: true,
 			[classes.activeTab]: isActiveTab,
+			[classes.pending]: pending,
 			[cn(activeTabClasses)]: isActiveTab
 		},
 		tabClasses
 	)
 
+	const onControlsError = useCallback(() => setPending(false), [])
+
+	const handleOnCloseClick = useCallback(() => {
+		if (!onClose) return
+
+		setPending(true)
+
+		onClose(tabIndex, onControlsError)
+	}, [onClose, onControlsError, tabIndex])
+
+	const handleOnDeleteClick = useCallback(() => {
+		if (!onDelete) return
+
+		onDelete(tabIndex)
+	}, [onDelete, tabIndex])
+
 	return (
 		<li className={tabCmpClasses} onClick={() => onClickTab(tabIndex)}>
-			{label}
+			<div className={classes.tabLabelContent}>
+				{label}
+				<div className={classes.tabControls}>
+					{onDelete && (
+						<IconButton
+							classes={[classes.actionIcon, classes.deleteIcon]}
+							icon={faTrash}
+							onClick={handleOnDeleteClick}
+						/>
+					)}
+					{onClose && (
+						<IconButton
+							classes={[classes.actionIcon]}
+							icon={faX}
+							onClick={handleOnCloseClick}
+						/>
+					)}
+				</div>
+			</div>
 		</li>
 	)
 }
