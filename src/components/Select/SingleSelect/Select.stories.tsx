@@ -7,6 +7,7 @@ import { useTheme } from 'react-jss'
 import {
 	basicOptions,
 	iconOptions,
+	iconWithUrlOptions,
 	textOverflowOptions
 } from '../fixtures/sample_options'
 import { type Meta, type Story } from '@storybook/react'
@@ -49,6 +50,12 @@ Icon.args = {
 	defaultValue: 'aws',
 	options: iconOptions,
 	placeholder: 'Choose a Cloud Provider'
+}
+
+export const IconWithUrl = Template.bind({})
+IconWithUrl.args = {
+	defaultValue: 'random1',
+	options: iconWithUrlOptions
 }
 
 export const FullWidth = Template.bind({})

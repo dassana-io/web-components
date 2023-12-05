@@ -8,6 +8,7 @@ export interface SelectOption {
 	disabled?: boolean
 	hidden?: boolean
 	iconKey?: IconName | string
+	iconUrl?: string
 	style?: CSSProperties
 	text: string
 	value: string
