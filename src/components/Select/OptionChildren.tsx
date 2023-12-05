@@ -2,8 +2,18 @@ import { createUseStyles } from 'react-jss'
 import { styleguide } from '../assets/styles/styleguide'
 import { Tooltip } from '../Tooltip'
 import { tooltipStyles } from './utils'
-import { Icon, type IconName, type IconProps, type SharedIconProps } from '../Icon'
-import React, { type FC, type ReactNode, type SyntheticEvent, useState } from 'react'
+import {
+	Icon,
+	type IconName,
+	type IconProps,
+	type SharedIconProps
+} from '../Icon'
+import React, {
+	type FC,
+	type ReactNode,
+	type SyntheticEvent,
+	useState
+} from 'react'
 import {
 	type SelectOption,
 	type SelectOptionsConfig,
@@ -35,6 +45,7 @@ type OptionChildrenProps = Omit<SelectOption, 'disabled' | 'hidden' | 'value'> &
 export const OptionChildren: FC<OptionChildrenProps> = ({
 	children,
 	iconKey,
+	iconUrl,
 	optionsConfig = {},
 	text
 }: OptionChildrenProps) => {
@@ -42,38 +53,40 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 	const classes = useOptionChildrenStyles()
 	const { style = {} } = optionsConfig
 
+	const commonIconProps: SharedIconProps = {
+		height: 15
+	}
+
+	const renderIconWithProps = (props: IconProps) => (
+		<span className={classes.icon}>
+			<Icon {...commonIconProps} {...props} />
+		</span>
+	)
+
 	const renderIcon = (
 		iconKey: IconName | string,
 		optionsConfig: SelectOptionsConfig
 	): JSX.Element => {
-		const commonIconProps: SharedIconProps = {
-			height: 15
-		}
-
 		const { iconMap } = optionsConfig
-
-		const renderIconWithProps = (props: IconProps) => (
-			<span className={classes.icon}>
-				<Icon {...commonIconProps} {...props} />
-			</span>
-		)
 
 		return iconMap ? (
 			iconMap[iconKey] ? (
 				renderIconWithProps({ icon: iconMap[iconKey] })
-			)
-: (
+			) : (
 				<></>
 			)
-		)
-: (
+		) : (
 			renderIconWithProps({ iconKey: iconKey as IconName })
 		)
 	}
 
+	const renderIconWithUrl = (iconUrl: string) =>
+		renderIconWithProps({ icon: iconUrl })
+
 	return (
 		<div className={classes.option} style={style}>
 			{children && children}
+			{iconUrl && renderIconWithUrl(iconUrl)}
 			{iconKey && renderIcon(iconKey, optionsConfig)}
 			<span
 				className={classes.optionText}
@@ -83,13 +96,11 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 					setHasTooltip(el.scrollWidth > el.offsetWidth)
 				}}
 			>
-				{hasTooltip
-? (
+				{hasTooltip ? (
 					<Tooltip placement='bottomLeft' title={text}>
 						{text}
 					</Tooltip>
-				)
-: (
+				) : (
 					text
 				)}
 			</span>

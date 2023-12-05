@@ -217,6 +217,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 							disabled = false,
 							hidden = false,
 							iconKey,
+							iconUrl,
 							text,
 							style,
 							value
@@ -245,6 +246,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 								)}
 								<OptionChildren
 									iconKey={iconKey}
+									iconUrl={iconUrl}
 									key={value}
 									optionsConfig={{ ...optionsConfig, style }}
 									text={text}
