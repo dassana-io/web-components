@@ -64,7 +64,8 @@ const useStyles = createUseStyles({
 		}
 	},
 	tabLabelContent: {
-		...flexAlignCenter
+		...flexAlignCenter,
+		minHeight: 32
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
