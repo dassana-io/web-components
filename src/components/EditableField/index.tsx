@@ -1,5 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
+import { faCircleNotch } from '@fortawesome/pro-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Input } from '../Input'
 import { ShortcutMicrocopy } from '../ShortcutMicrocopy'
 import { styleguide } from '../assets/styles'
@@ -70,6 +72,7 @@ interface EditableFieldProps {
 	fullWidth?: boolean
 	inputContainerClasses?: string[]
 	inputCharLimit?: number
+	isLoading?: boolean
 	onClickOutsideCb?: () => void
 	onlyEditOnIconClick?: boolean
 	onSubmit: (newValue: string) => void
@@ -88,6 +91,7 @@ export const EditableField: FC<EditableFieldProps> = ({
 	fullWidth = false,
 	inputCharLimit,
 	inputContainerClasses = [],
+	isLoading = false,
 	onClickOutsideCb,
 	onlyEditOnIconClick = false,
 	onSubmit,
@@ -218,6 +222,10 @@ export const EditableField: FC<EditableFieldProps> = ({
 			{renderShortcutMicrocopy && <ShortcutMicrocopy />}
 		</div>
 	)
+
+	if (isLoading) {
+		return <FontAwesomeIcon icon={faCircleNotch} size='xs' spin />
+	}
 
 	return isEditing ? renderInput() : renderValue()
 }

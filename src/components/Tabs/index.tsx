@@ -20,6 +20,7 @@ import React, {
 	useState
 } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
+import { PointerEventsNone } from 'components/PointerEventsNone'
 
 const { flexSpaceBetween } = styleguide
 
@@ -75,6 +76,7 @@ export interface TabsProps {
 	 */
 	customAddTabComponent?: ReactNode
 	defaultActiveIndex?: number
+	disabled?: boolean
 	/**
 	 * Only render content if tab pane is active. This should be set to true for content that renders
 	 * based on ref heights of other elements on the page
@@ -99,6 +101,7 @@ export const Tabs: FC<TabsProps> = ({
 	classes = [],
 	customAddTabComponent,
 	defaultActiveIndex = 0,
+	disabled = false,
 	forceRender = false,
 	onAddNewTab,
 	onTabChange,
@@ -233,7 +236,10 @@ export const Tabs: FC<TabsProps> = ({
 
 	return (
 		<div className={cn(classes)}>
-			<div className={tabsListCmpClasses}>{renderTabItems()}</div>
+			<PointerEventsNone shouldDisablePointerEvents={disabled}>
+				<div className={tabsListCmpClasses}>{renderTabItems()}</div>
+			</PointerEventsNone>
+
 			{renderTabPanes()}
 		</div>
 	)
