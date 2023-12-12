@@ -4,6 +4,7 @@ import { faPlus } from '@fortawesome/pro-light-svg-icons'
 import { IconButton } from 'components/IconButton'
 import { InfoTip } from 'components/InfoTip'
 import partition from 'lodash/partition'
+import { PointerEventsNone } from 'components/PointerEventsNone'
 import Tab from './Tab'
 import TabPane from './TabPane'
 import {
@@ -20,7 +21,6 @@ import React, {
 	useState
 } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
-import { PointerEventsNone } from 'components/PointerEventsNone'
 
 const { flexSpaceBetween } = styleguide
 
