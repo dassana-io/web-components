@@ -137,7 +137,7 @@ const Tab: FC<TabProps> = ({
 			<div className={classes.tabLabelContent}>
 				{label}
 				<div className={classes.tabControls}>
-					{onDelete && (
+					{onDelete && isActiveTab && (
 						<IconButton
 							classes={[classes.actionIcon, classes.deleteIcon]}
 							icon={faTrash}
