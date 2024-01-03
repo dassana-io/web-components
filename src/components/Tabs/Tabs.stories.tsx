@@ -50,23 +50,31 @@ const tabConfig: TabConfig[] = [
 	{
 		key: 'lorem',
 		label: 'Lorem',
+		onClose: () => alert('closed'),
+		onDelete: () => alert('deleted'),
 		render: () => <TabPane>Banana mochi muffin</TabPane>
 	},
 	{
 		key: 'lorem3',
 		label: 'Lorem 3',
+		onClose: () => alert('closed'),
+		onDelete: () => alert('deleted'),
 		render: () => <TabPane>Strawberry mochi cheesecake</TabPane>,
 		splitRight: true
 	},
 	{
 		key: 'lorem1',
 		label: 'Lorem 1',
+		onClose: () => alert('closed'),
+		onDelete: () => alert('deleted'),
 		render: () => <TabPane>Watermelon pound cake</TabPane>,
 		splitRight: true
 	},
 	{
 		key: 'ipsum',
 		label: 'Ipsum',
+		onClose: () => alert('closed'),
+		onDelete: () => alert('deleted'),
 		render: () => <TabPane>Pineapple upside down cake</TabPane>
 	}
 ]
