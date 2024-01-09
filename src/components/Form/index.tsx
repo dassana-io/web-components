@@ -18,6 +18,7 @@ import FormTimezone from './FormTimezone'
 import FormToggle from './FormToggle'
 import FormTree from './FormTree'
 import { getNonEmptyKVInputPairs } from './utils'
+import isEmpty from 'lodash/isEmpty'
 import {
 	type DefaultValues,
 	type UseFormReturn
@@ -33,7 +34,8 @@ import React, {
 	type ReactNode,
 	type RefObject,
 	useEffect,
-	useImperativeHandle
+	useImperativeHandle,
+	useState
 } from 'react'
 
 const useStyles = createUseStyles({
@@ -72,6 +74,8 @@ export function Form<Model extends FieldValues>({
 
 	const { handleSubmit } = methods
 
+	const [initialized, setInitialized] = useState(false)
+
 	useImperativeHandle(formRef, () => methods)
 
 	useEffect(() => {
@@ -80,8 +84,12 @@ export function Form<Model extends FieldValues>({
 		 * initialValues are only passed into useForm once. Without the reset, defaultValues will
 		 * always be an empty object.
 		 */
-		reset(initialValues)
-	}, [initialValues, reset])
+		if (!isEmpty(initialValues) && !initialized) {
+			reset(initialValues)
+
+			setInitialized(true)
+		}
+	}, [initialValues, initialized, reset])
 
 	return (
 		<FormProvider {...methods}>
