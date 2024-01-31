@@ -1,43 +1,43 @@
-import { type TreeNodeType } from '../'
+import { type DataNode } from '../'
 
-const treeData: TreeNodeType[] = [
+const treeData: DataNode[] = [
 	{
 		children: [
 			{
 				children: [
 					{
-						id: 3,
-						name: 'Prod Account'
+						key: 3,
+						title: 'Prod Account'
 					},
 					{
-						id: 4,
-						name: 'Dev Account'
+						key: 4,
+						title: 'Dev Account'
 					}
 				],
-				id: 1,
-				name: 'Security'
+				key: 1,
+				title: 'Security'
 			},
 			{
 				children: [
 					{
-						id: 5,
-						name: 'Prod Account'
+						key: 5,
+						title: 'Prod Account'
 					},
 					{
-						id: 6,
-						name: 'Dev Account'
+						key: 6,
+						title: 'Dev Account'
 					},
 					{
-						id: 7,
-						name: 'Test Account'
+						key: 7,
+						title: 'Test Account'
 					}
 				],
-				id: 2,
-				name: 'Infrastructure'
+				key: 2,
+				title: 'Infrastructure'
 			}
 		],
-		id: 0,
-		name: 'AWS'
+		key: 0,
+		title: 'AWS'
 	}
 ]
 

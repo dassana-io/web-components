@@ -2,7 +2,6 @@ import 'antd/lib/tree-select/style/index.css'
 import '../assets/styles/antdBaseStyles.css'
 import { TreeSelect as AntDTreeSelect } from 'antd'
 import cn from 'classnames'
-import { processTreeSelectData } from 'components/Tree/utils'
 import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
 import { type TreeProps } from 'components/Tree'
 import { useStyles } from 'components/Select/SingleSelect/utils'
@@ -36,8 +35,6 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 	treeData,
 	value
 }: TreeSelectProps) => {
-	const mappedTreeData = processTreeSelectData(treeData)
-
 	const componentClasses = useStyles({ fullWidth })
 	const dropdownClasses = useTreeDropdownStyles()
 
@@ -56,11 +53,9 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 		throw new Error('Controlled tree select requires an onChange prop')
 	}
 
-	return loading
-? (
+	return loading ? (
 		<SelectSkeleton fullWidth={fullWidth} />
-	)
-: (
+	) : (
 		<div className={componentClasses.container}>
 			<AntDTreeSelect
 				className={treeClasses}
@@ -70,7 +65,7 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 				showSearch
 				style={{ width: '100%' }}
 				treeCheckable={multipleSelection}
-				treeData={mappedTreeData}
+				treeData={treeData}
 				treeDefaultExpandAll={defaultExpandAll}
 				treeNodeFilterProp='title'
 				{...getPopupContainerProps(popupContainerSelector)}
