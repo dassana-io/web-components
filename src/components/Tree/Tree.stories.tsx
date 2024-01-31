@@ -36,5 +36,7 @@ const Template: Story<TreeProps> = args => <Tree {...args} />
 export const Default = Template.bind({})
 
 Default.args = {
+	checkable: false,
+	selectable: true,
 	treeData: treeData0
 }
