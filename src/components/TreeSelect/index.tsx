@@ -1,26 +1,35 @@
 import 'antd/lib/tree-select/style/index.css'
 import '../assets/styles/antdBaseStyles.css'
-import { TreeSelect as AntDTreeSelect } from 'antd'
 import cn from 'classnames'
 import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
 import { type TreeProps } from 'components/Tree'
 import { useStyles } from 'components/Select/SingleSelect/utils'
 import { useTreeDropdownStyles } from './styles'
 import {
+	TreeSelect as AntDTreeSelect,
+	type TreeSelectProps as AntDTreeSelectProps
+} from 'antd'
+import {
 	getDataTestAttributeProp,
 	getPopupContainerProps
 } from 'components/utils'
 import React, { type FC } from 'react'
 
-export interface TreeSelectProps extends Omit<TreeProps, 'defaultChecked'> {
+type TreeSelectNodeType = AntDTreeSelectProps['treeData']
+
+export interface DTreeSelectProps
+	extends Omit<TreeProps, 'defaultChecked' | 'treeData'> {
 	defaultExpandAll?: boolean
 	fullWidth?: boolean
 	multipleSelection?: boolean
 	placeholder?: string
 	popupContainerSelector?: string
+	treeData: AntDTreeSelectProps['treeData']
 }
 
-export const TreeSelect: FC<TreeSelectProps> = ({
+export type { TreeSelectNodeType }
+
+export const TreeSelect: FC<DTreeSelectProps> = ({
 	classes = [],
 	dataTag,
 	defaultExpandAll = true,
@@ -34,7 +43,7 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 	skeletonTreeNodeCount = 3,
 	treeData,
 	value
-}: TreeSelectProps) => {
+}: DTreeSelectProps) => {
 	const componentClasses = useStyles({ fullWidth })
 	const dropdownClasses = useTreeDropdownStyles()
 
