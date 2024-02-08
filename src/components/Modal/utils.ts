@@ -15,10 +15,12 @@ export interface ModalOptions {
 	contentContainerClasses?: string[]
 	disableKeyboardShortcut?: boolean
 	drawer?: boolean
+	drawerStyles?: Record<string, string>
 	hideCloseButton?: boolean
 	onClose?: () => void
 	overlay?: boolean
 	overlayClasses?: string[]
+	overlayStyles?: Record<string, string>
 }
 
 export interface ModalConfig {
