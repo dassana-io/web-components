@@ -94,8 +94,10 @@ export const ModalDrawer: FC<ModalProps> = ({
 	const {
 		animate = true,
 		contentContainerClasses = [],
+		drawerStyles,
 		onClose,
-		overlayClasses = []
+		overlayClasses = [],
+		overlayStyles = {}
 	} = options
 
 	const onModalClose = useCallback(
@@ -120,6 +122,7 @@ export const ModalDrawer: FC<ModalProps> = ({
 					contentContainerClasses
 				)}
 				ref={ref}
+				style={drawerStyles}
 				{...additionalDrawerProps}
 			>
 				{content}
@@ -127,6 +130,7 @@ export const ModalDrawer: FC<ModalProps> = ({
 			<motion.div
 				className={cn(modalClasses.overlay, overlayClasses)}
 				onClick={unsetModal}
+				style={overlayStyles}
 				{...additionalOverlayProps}
 			/>
 		</>
