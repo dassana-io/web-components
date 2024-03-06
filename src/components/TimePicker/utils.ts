@@ -1,5 +1,4 @@
 import capitalize from 'lodash/capitalize'
-import { convertEpochToUserTimezone } from '@dassana-io/web-utils'
 import {
 	type AbsoluteTimeRange,
 	type RelativeTimeRange,
@@ -9,6 +8,10 @@ import {
 	TimeTypes,
 	TimeUnits
 } from './types'
+import {
+	convertEpochToUserTimezone,
+	parseParamsString
+} from '@dassana-io/web-utils'
 
 const ABSOLUTE_TIME_FORMAT = 'MM/dd/yy hh:mm a'
 
@@ -105,4 +108,71 @@ export const generateRelativeTimeMap = (): RelativeTimeRange[] => {
 	)
 
 	return timeMap
+}
+
+const convertStrToInt = (stringifiedNum: unknown): number | undefined => {
+	if (typeof stringifiedNum === 'string') {
+		const parsedNum = parseInt(stringifiedNum)
+
+		if (Number.isInteger(parsedNum)) return parsedNum
+	}
+}
+
+export type ValidTimeRange = AbsoluteTimeRange | RelativeTimeRange | TimeRange
+
+export const extractTimeRangeFromParams = (): ValidTimeRange | undefined => {
+	const { search } = window.location
+
+	const params = parseParamsString(search)
+	const { timeType } = params
+
+	let timeRange: ValidTimeRange | undefined
+
+	switch (timeType) {
+		case TimeTypes.absolute: {
+			const { startTime, endTime } = params
+
+			const [parsedEndTime, parsedStartTime] = [
+				convertStrToInt(endTime),
+				convertStrToInt(startTime)
+			]
+
+			if (parsedEndTime && parsedStartTime) {
+				timeRange = {
+					endTime: parsedEndTime,
+					startTime: parsedStartTime,
+					type: TimeTypes.absolute
+				}
+			}
+
+			break
+		}
+
+		case TimeTypes.all: {
+			timeRange = { type: TimeTypes.all }
+			break
+		}
+
+		case TimeTypes.relative: {
+			const { amount, unit } = params
+
+			if (typeof unit === 'string') {
+				if (Object.values(TimeUnits).includes(unit as TimeUnits)) {
+					const parsedAmount = convertStrToInt(amount)
+
+					if (parsedAmount) {
+						timeRange = {
+							amount: parsedAmount,
+							type: TimeTypes.relative,
+							unit: unit as TimeUnits
+						}
+					}
+				}
+			}
+
+			break
+		}
+	}
+
+	return timeRange
 }
