@@ -1,7 +1,21 @@
 import AdvancedTimeOptions from './AdvancedTimeOptions'
 import { Animate } from 'components/Accordion/Animate'
 import { createUseStyles } from 'react-jss'
-import { generateRelativeTimeLabel, generateRelativeTimeMap } from './utils'
+import TimeLabel from './TimeLabel'
+import {
+	type AbsoluteTimeRange,
+	type RelativeTimeRange,
+	TimePrependLabels,
+	type TimeRange,
+	TimeTypes,
+	TimeUnits
+} from './types'
+import {
+	extractTimeRangeFromParams,
+	generateRelativeTimeLabel,
+	generateRelativeTimeMap,
+	generateRelativeTimeRange
+} from './utils'
 import {
 	generateThemedContainerStyles,
 	generateThemedMenuStyles,
@@ -9,7 +23,6 @@ import {
 } from './styles'
 import React, { type FC, useState } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
-import { TimePrependLabels, type TimeRange, TimeTypes } from './types'
 
 const { dark, light } = ThemeType
 const { flexDown, spacing } = styleguide
@@ -97,3 +110,14 @@ export const TimePicker: FC<TimePickerProps> = ({
 		</div>
 	)
 }
+
+export {
+	extractTimeRangeFromParams,
+	generateRelativeTimeRange,
+	TimeLabel,
+	TimePrependLabels,
+	TimeTypes,
+	TimeUnits
+}
+
+export type { AbsoluteTimeRange, RelativeTimeRange, TimeRange }
