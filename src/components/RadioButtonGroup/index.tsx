@@ -36,6 +36,7 @@ export interface RadioButtonGroupOptions {
 }
 
 export type RadioChangeEventHandler = (e: RadioChangeEvent) => void
+export type { RadioChangeEvent }
 
 interface InfoTipConfig {
 	message: ReactNode
