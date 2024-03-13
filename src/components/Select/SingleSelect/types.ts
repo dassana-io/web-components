@@ -50,6 +50,7 @@ export interface SelectProps
 	 */
 	popupContainerSelector?: string
 	onFocus?: () => void
+	onSearch: (searchTerm: string) => void
 	open?: boolean
 	/**
 	 * Array of options to be rendered in the dropdown

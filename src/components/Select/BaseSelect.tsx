@@ -35,7 +35,10 @@ interface BaseMultiSelectProps
 }
 
 interface BaseSingleSelectProps
-	extends Pick<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
+	extends Pick<
+		SelectProps,
+		'defaultValue' | 'onChange' | 'onSearch' | 'value'
+	> {
 	mode: 'single'
 }
 
@@ -163,12 +166,13 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 			...getDataTestAttributeProp('tags-select', dataTag)
 		}
 	} else {
-		const { defaultValue, onChange, showSearch, value } = props
+		const { defaultValue, onChange, onSearch, showSearch, value } = props
 
 		singleSelectProps = {
 			defaultValue,
 			onBlur,
 			onChange,
+			onSearch,
 			// Todo: allow filtering by multiple keys like in MultipleSelect with prop 	'optionKeysToFilter'. AntD prop is filterOption
 			optionFilterProp: 'label',
 			showSearch,
