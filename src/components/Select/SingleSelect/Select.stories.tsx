@@ -67,6 +67,7 @@ FullWidth.args = {
 
 export const Search = Template.bind({})
 Search.args = {
+	isSearching: true,
 	options: iconOptions,
 	placeholder: 'Choose a Cloud Provider',
 	showSearch: true

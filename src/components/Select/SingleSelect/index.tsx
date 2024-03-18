@@ -1,7 +1,9 @@
 import { BaseSelect } from '../BaseSelect'
+import { DropdownMenuSpinner } from '../DropdownMenuSpinner'
 import { type SelectProps } from './types'
 import { useStyles } from './utils'
-import React, { type FC } from 'react'
+import { v4 as uuidV4 } from 'uuid'
+import React, { type FC, type ReactNode, useCallback, useMemo } from 'react'
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
 	const {
@@ -11,12 +13,16 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		// defaulting defaultValue to empty string doesn't render a placeholder if a placeholder is provided
 		defaultValue,
 		disabled = false,
+		dropdownRef,
 		error = false,
 		focused = false,
 		fullWidth = false,
+		isSearching = false,
 		loading = false,
 		matchSelectedContentWidth = false,
 		onChange,
+		onDropdownClose,
+		onDropdownOpen,
 		options,
 		optionsConfig = {},
 		popupContainerSelector,
@@ -25,7 +31,26 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		value
 	} = props
 
+	const dropdownId = useMemo(() => uuidV4(), [])
+
+	const onDropdownVisibleChange = useCallback(
+		(open: boolean) => {
+			if (open) {
+				onDropdownOpen?.()
+			} else {
+				onDropdownClose?.()
+			}
+		},
+		[onDropdownClose, onDropdownOpen]
+	)
+
 	let controlledCmpProps = {}
+
+	const dropdownRender = (menu: ReactNode) => (
+		<div key={dropdownId} ref={dropdownRef}>
+			{isSearching ? <DropdownMenuSpinner /> : menu}
+		</div>
+	)
 
 	if (onChange) {
 		controlledCmpProps = {
@@ -46,12 +71,14 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 			defaultOpen={defaultOpen}
 			defaultValue={defaultValue}
 			disabled={disabled}
+			dropdownRender={dropdownRender}
 			error={error}
 			focused={focused}
 			fullWidth={fullWidth}
 			loading={loading}
 			matchSelectedContentWidth={matchSelectedContentWidth}
 			mode='single'
+			onDropdownVisibleChange={onDropdownVisibleChange}
 			options={options}
 			optionsConfig={optionsConfig}
 			placeholder={placeholder}
