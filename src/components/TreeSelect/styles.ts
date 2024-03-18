@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss'
 import { generateThemedDropdownStyles } from 'components/Select/utils'
 import {
 	dropdownStyles,
+	inputPalette,
 	styleguide,
 	themedStyles,
 	ThemeType
@@ -22,6 +23,10 @@ const generatedThemedTreeDropdownStyles = (themeType: ThemeType) => {
 		selected
 	} = dropdownStyles[themeType]
 
+	const {
+		disabled: { color: disabledColor }
+	} = inputPalette[themeType]
+
 	return {
 		...generateThemedDropdownStyles(themeType),
 		'& .ant-select-tree': {
@@ -35,6 +40,14 @@ const generatedThemedTreeDropdownStyles = (themeType: ThemeType) => {
 			},
 			'& .ant-select-tree-treenode': {
 				color
+			},
+			'& .ant-select-tree-treenode.ant-select-tree-treenode-disabled': {
+				'& .ant-select-tree-node-content-wrapper': {
+					'&:hover': {
+						background: 'unset'
+					},
+					color: disabledColor
+				}
 			},
 			background
 		}
