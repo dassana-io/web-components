@@ -1,4 +1,5 @@
 import { BaseSelect } from '../BaseSelect'
+import { DropdownMenuSpinner } from '../DropdownMenuSpinner'
 import Fuse from 'fuse.js'
 import { getSortedAndFilteredValues } from './utils'
 import { Input } from '../../Input'
@@ -27,6 +28,7 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 		error = false,
 		focused = false,
 		fullWidth = false,
+		isSearching = false,
 		loading = false,
 		maxTagCount,
 		maxTagTextLength,
@@ -94,7 +96,8 @@ export const MultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 					value={searchTerm}
 				/>
 			)}
-			{menu}
+
+			{isSearching ? <DropdownMenuSpinner /> : menu}
 		</div>
 	)
 

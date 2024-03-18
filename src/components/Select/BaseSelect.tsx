@@ -12,12 +12,13 @@ import { type SelectProps } from './SingleSelect/types'
 import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
 import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
-import React, { type FC, type ReactNode, useCallback, useRef } from 'react'
+import React, { type FC, type ReactElement, useCallback, useRef } from 'react'
 
 const { Option } = AntDSelect
 
 interface CommonBaseSelectProps
 	extends Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
+	dropdownRender?: (menu: ReactElement) => ReactElement
 	onDropdownVisibleChange?: (open: boolean) => void
 	useStyles: (data?: unknown) => Record<string, string>
 }
@@ -28,7 +29,6 @@ interface BaseMultiSelectProps
 		'onChange' | 'onSearch' | 'maxTagCount' | 'maxTagTextLength' | 'pending'
 	> {
 	defaultValue?: MultiSelectProps['defaultValues']
-	dropdownRender: (menu: ReactNode) => ReactNode
 	localValues: string[]
 	mode: 'multiple'
 	value?: MultiSelectProps['values']
@@ -43,10 +43,7 @@ interface BaseSingleSelectProps
 }
 
 interface BaseTagsSelectProps
-	extends Omit<
-		BaseMultiSelectProps,
-		'mode' | 'dropdownRender' | 'localValues'
-	> {
+	extends Omit<BaseMultiSelectProps, 'mode' | 'localValues'> {
 	mode: 'tags'
 }
 
@@ -61,6 +58,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		defaultOpen = false,
 		disabled = false,
 		dropdownContainerClasses = [],
+		dropdownRender,
 		error = false,
 		focused = false,
 		loading = false,
@@ -195,6 +193,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				className={inputClasses}
 				defaultOpen={defaultOpen}
 				disabled={disabled}
+				dropdownRender={dropdownRender}
 				notFoundContent={<NoContentFound />}
 				onDropdownVisibleChange={handleDropdownVisibleChange}
 				onFocus={onFocus}

@@ -1,7 +1,7 @@
 import { type BaseFormElementProps } from '../../types'
 import { type IconName } from '../../Icon'
 import { type SizeType } from 'antd/lib/config-provider/SizeContext'
-import { type CSSProperties, type ReactNode } from 'react'
+import { type CSSProperties, type ReactNode, type RefObject } from 'react'
 
 export interface SelectOption {
 	classes?: string[]
@@ -40,7 +40,9 @@ export interface SelectProps
 	 * @default []
 	 */
 	dropdownContainerClasses?: string[]
+	dropdownRef?: RefObject<HTMLDivElement>
 	focused?: boolean
+	isSearching?: boolean
 	/**
 	 * Sets the width of the select to be same as the selected content width. Can be false or a number which will be used as the minimum width
 	 */
@@ -49,6 +51,8 @@ export interface SelectProps
 	 * Selector of HTML element inside which to render the popup/dropdown
 	 */
 	popupContainerSelector?: string
+	onDropdownClose?: () => void
+	onDropdownOpen?: () => void
 	onFocus?: () => void
 	onSearch?: (value: string) => void
 	open?: boolean
@@ -62,6 +66,7 @@ export interface SelectProps
 	 */
 	optionsConfig?: SelectOptionsConfig
 	placeholder?: ReactNode
+	searchPlaceholder?: string
 	/**
 	 * Whether or not to show search input
 	 * @default false
