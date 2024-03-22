@@ -4,6 +4,7 @@ import { Select as AntDSelect } from 'antd'
 import { type BaseSelectRef } from 'rc-select'
 import { Checkbox } from '../Checkbox'
 import cn from 'classnames'
+import { getDataTestAttributeProp } from '../utils'
 import { type MultiSelectProps } from './MultiSelect/types'
 import { NoContentFound } from './NoContentFound'
 import noop from 'lodash/noop'
@@ -11,7 +12,6 @@ import { OptionChildren } from './OptionChildren'
 import { type SelectProps } from './SingleSelect/types'
 import { SelectSkeleton } from './SingleSelect/SelectSkeleton'
 import { Spin } from '../Spin'
-import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import React, { type FC, type ReactElement, useCallback, useRef } from 'react'
 
 const { Option } = AntDSelect
@@ -69,7 +69,6 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		options = [],
 		optionsConfig = {},
 		placeholder = '',
-		popupContainerSelector,
 		showSearch = false,
 		size,
 		useStyles
@@ -194,6 +193,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				defaultOpen={defaultOpen}
 				disabled={disabled}
 				dropdownRender={dropdownRender}
+				getPopupContainer={trigger => trigger.parentElement}
 				notFoundContent={<NoContentFound />}
 				onDropdownVisibleChange={handleDropdownVisibleChange}
 				onFocus={onFocus}
@@ -207,7 +207,6 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 				showArrow
 				showSearch={showSearch}
 				size={size}
-				{...getPopupContainerProps(popupContainerSelector)}
 				{...multiSelectProps}
 				{...singleSelectProps}
 				{...tagsSelectProps}
