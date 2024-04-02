@@ -75,7 +75,7 @@ interface EditableFieldProps {
 	isLoading?: boolean
 	onClickOutsideCb?: () => void
 	onlyEditOnIconClick?: boolean
-	onSubmit: (newValue: string) => void
+	onSubmit: (newValue: string, onErrorCb: () => void) => void
 	placeholder?: string
 	renderShortcutMicrocopy?: boolean
 	showSaveIcon?: boolean
@@ -121,16 +121,21 @@ export const EditableField: FC<EditableFieldProps> = ({
 		[hasErrors]
 	)
 
+	const onSubmitError = useCallback(() => {
+		setInputValue(value)
+	}, [value])
+
 	const handleSubmit = useCallback(
 		(val: string) => {
 			if (val.trim()) {
-				onSubmit(val)
+				onSubmit(val, onSubmitError)
+
 				setIsEditing(false)
 			} else {
 				setHasErrors(true)
 			}
 		},
-		[onSubmit]
+		[onSubmit, onSubmitError]
 	)
 
 	const onClickOutside = useCallback(
