@@ -33,9 +33,16 @@ const useStyles = createUseStyles({
 			color: reds.base
 		}
 	},
+	disabled: {},
 	pending: {},
 	tab: {
 		'&$activeTab': { ...generateThemedActiveTabStyles(light) },
+		'&$disabled': {
+			'& $tabLabelContent': {
+				pointerEvents: 'none'
+			},
+			cursor: 'not-allowed'
+		},
 		'&$pending': {
 			display: 'none'
 		},
@@ -81,7 +88,7 @@ const useStyles = createUseStyles({
 })
 
 interface TabProps
-	extends Pick<TabsProps, 'activeTabClasses' | 'tabClasses'>,
+	extends Pick<TabsProps, 'activeTabClasses' | 'disabled' | 'tabClasses'>,
 		Pick<TabConfig, 'onClose' | 'onDelete' | 'label' | 'pending'> {
 	isActiveTab: boolean
 	tabIndex: number
@@ -90,6 +97,7 @@ interface TabProps
 
 const Tab: FC<TabProps> = ({
 	activeTabClasses = [],
+	disabled,
 	isActiveTab,
 	label,
 	onClickTab,
@@ -110,6 +118,7 @@ const Tab: FC<TabProps> = ({
 		{
 			[classes.tab]: true,
 			[classes.activeTab]: isActiveTab,
+			[classes.disabled]: disabled,
 			[classes.pending]: pending,
 			[cn(activeTabClasses)]: isActiveTab
 		},
@@ -133,13 +142,17 @@ const Tab: FC<TabProps> = ({
 	}, [onDelete, tabIndex])
 
 	return (
-		<li className={tabCmpClasses} onClick={() => onClickTab(tabIndex)}>
+		<li
+			className={tabCmpClasses}
+			onClick={() => !disabled && onClickTab(tabIndex)}
+		>
 			<div className={classes.tabLabelContent}>
 				{label}
 				<div className={classes.tabControls}>
 					{onDelete && isActiveTab && (
 						<IconButton
 							classes={[classes.actionIcon, classes.deleteIcon]}
+							disabled={disabled}
 							icon={faTrash}
 							onClick={handleOnDeleteClick}
 						/>
@@ -147,6 +160,7 @@ const Tab: FC<TabProps> = ({
 					{onClose && (
 						<IconButton
 							classes={[classes.actionIcon]}
+							disabled={disabled}
 							icon={faX}
 							onClick={handleOnCloseClick}
 						/>

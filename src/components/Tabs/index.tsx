@@ -4,7 +4,6 @@ import { faPlus } from '@fortawesome/pro-light-svg-icons'
 import { IconButton } from 'components/IconButton'
 import { InfoTip } from 'components/InfoTip'
 import partition from 'lodash/partition'
-import { PointerEventsNone } from 'components/PointerEventsNone'
 import Tab from './Tab'
 import TabPane from './TabPane'
 import {
@@ -189,6 +188,7 @@ export const Tabs: FC<TabsProps> = ({
 						return (
 							<Tab
 								activeTabClasses={activeTabClasses}
+								disabled={disabled}
 								isActiveTab={
 									currentTabItemIndex === activeIndex
 								}
@@ -236,10 +236,7 @@ export const Tabs: FC<TabsProps> = ({
 
 	return (
 		<div className={cn(classes)}>
-			<PointerEventsNone shouldDisablePointerEvents={disabled}>
-				<div className={tabsListCmpClasses}>{renderTabItems()}</div>
-			</PointerEventsNone>
-
+			<div className={tabsListCmpClasses}>{renderTabItems()}</div>
 			{renderTabPanes()}
 		</div>
 	)
