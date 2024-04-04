@@ -22,7 +22,7 @@ export const PointerEventsNone: FC<PointerEventsNoneProps> = ({
 	const classes = useStyles()
 
 	if (!shouldDisablePointerEvents) {
-		return <>{children}</>
+		return <div>{children}</div>
 	}
 
 	return (
