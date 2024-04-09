@@ -2,8 +2,12 @@ import * as hooks from '../utils'
 import Modal from '../Modal'
 import { mount } from 'enzyme'
 import React from 'react'
-import { act, renderHook } from '@testing-library/react-hooks'
-import { ModalProvider, type Props as ModalProviderProps, useModal } from '../index'
+import { act, renderHook } from '@testing-library/react'
+import {
+	ModalProvider,
+	type Props as ModalProviderProps,
+	useModal
+} from '../index'
 
 const setModalConfigSpy = jest.fn()
 const unsetModalSpy = jest.fn()

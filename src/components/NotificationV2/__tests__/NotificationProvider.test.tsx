@@ -3,7 +3,7 @@ import { Button } from 'components/Button'
 import { mount } from 'enzyme'
 import { Notification } from '../Notification'
 import React from 'react'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 import {
 	NotificationProvider,
 	type NotificationProviderProps,
