@@ -17,7 +17,7 @@ jobs:
                   scope: '@dassana-io'
             - name: Run install, lint, and build
               run: |
-                  npm install --legacy-peer-deps
+                  npm install
                   npm run lint
                   npm run build
               env:
