@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import gfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
+import rehypeExternalLinks from 'rehype-external-links'
 import {
 	generateThemedMarkdownCodeStyles,
 	generateThemedMarkdownLinkStyles,
@@ -47,21 +48,20 @@ const useStyles = createUseStyles({
 export interface MarkdownProps {
 	children: string
 	classes?: string[]
-	linkTarget?: string
 }
 
 export const Markdown: FC<MarkdownProps> = ({
 	children,
-	classes = [],
-	linkTarget
+	classes = []
 }: MarkdownProps) => {
 	useStyles()
 
 	return (
 		<ReactMarkdown
 			className={cn('markdown-body', classes)}
-			linkTarget={linkTarget}
+			rehypePlugins={[[rehypeExternalLinks, { target: '_blank' }]]}
 			remarkPlugins={[gfm]}
+			remarkRehypeOptions={{}}
 		>
 			{children}
 		</ReactMarkdown>

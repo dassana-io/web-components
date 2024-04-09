@@ -1,6 +1,6 @@
 import React from 'react'
 import { useModalCmp } from '../utils'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 
 describe('useModalCmp', () => {
 	const mockCmp = <div>Hello World</div>

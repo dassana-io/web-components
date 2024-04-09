@@ -1,5 +1,5 @@
 import { useWizardCmp } from '../utils'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 
 const initializeWizard = (
 	totalSteps = 3,

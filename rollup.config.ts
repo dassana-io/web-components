@@ -62,8 +62,8 @@ export default {
 		'react-jss',
 		'react-scroll',
 		'remark-gfm',
-		'react-diff-viewer',
 		'react-markdown',
+		'rehype-external-links',
 		'typescript',
 		'uuid'
 	],

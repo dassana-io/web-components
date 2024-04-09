@@ -1,7 +1,7 @@
 import * as hooks from '../utils'
 import React from 'react'
 import { WizardCtx } from '../WizardContext'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 import { mount, type ReactWrapper } from 'enzyme'
 import { type Step, useWizard, Wizard } from '../index'
 
