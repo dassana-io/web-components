@@ -68,7 +68,7 @@ export const styleguide = {
 		h2: { fontSize: 24, lineHeight: '32px' },
 		h1: { fontSize: 32, lineHeight: '40px' }
 	},
-	fontWeight: { light: 300, regular: 400, bold: 500 },
+	fontWeight: { light: 300, regular: 400, bold: 700 },
 	spacing: {
 		xs: 4,
 		s: 8,
