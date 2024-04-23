@@ -39,6 +39,7 @@
 		"react-jss": "~10.5.1",
 		"react-markdown": "^8.0.0",
 		"react-scroll": "^1.8.5",
+		"rehype-external-links": "^3.0.0",
 		"remark-gfm": "^3.0.1",
 		"uuid": "^8.3.2"
 	},
