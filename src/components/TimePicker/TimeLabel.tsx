@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss'
 import { faClock } from '@fortawesome/pro-light-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { generateTimeLabel } from './utils'
+import { getDataTestAttributeProp } from 'components/utils'
 import React, { type FC } from 'react'
 import { styleguide, ThemeType } from '../assets/styles'
 import { TimePrependLabels, type TimeRange } from './types'
@@ -35,17 +36,22 @@ const useStyles = createUseStyles({
 
 interface TimeLabelProps {
 	containerClasses?: string[]
+	dataTag?: string
 	timeRange: TimeRange
 }
 
 const TimeLabel: FC<TimeLabelProps> = ({
 	containerClasses = [],
+	dataTag,
 	timeRange
 }: TimeLabelProps) => {
 	const classes = useStyles()
 
 	return (
-		<div className={cn({ [classes.timeLabel]: true }, containerClasses)}>
+		<div
+			className={cn({ [classes.timeLabel]: true }, containerClasses)}
+			{...getDataTestAttributeProp('time-picker', dataTag)}
+		>
 			<FontAwesomeIcon className={classes.timeIcon} icon={faClock} />
 			{generateTimeLabel(timeRange, TimePrependLabels.past)}
 		</div>

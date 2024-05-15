@@ -188,6 +188,7 @@ export const Tabs: FC<TabsProps> = ({
 						return (
 							<Tab
 								activeTabClasses={activeTabClasses}
+								dataTag={key}
 								disabled={disabled}
 								isActiveTab={
 									currentTabItemIndex === activeIndex

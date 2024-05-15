@@ -4,12 +4,12 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { DatePicker } from 'antd'
 import { generateButtonStyles } from '../Button/utils'
-import { getPopupContainerProps } from '../utils'
 import { SelectSkeleton } from 'components/Select/SingleSelect/SelectSkeleton'
 import { type SizeType } from 'antd/lib/config-provider/SizeContext'
 import { ThemeType } from 'components/assets/styles'
 import { formatTime, parseTime } from '../TimeInput/utils'
 import { generateDateRangeInputStyles, generateDropdownStyles } from './styles'
+import { getDataTestAttributeProp, getPopupContainerProps } from '../utils'
 import { type Moment, type MomentInputObject } from 'moment'
 import React, { type FC } from 'react'
 
@@ -42,6 +42,7 @@ interface TimeProps {
 export interface DateRangeInputProps {
 	alwaysOpen?: boolean
 	classes?: string[]
+	dataTag?: string
 	disabledDate?: (date: Moment) => boolean
 	displayFormat?: string
 	onChange?: (value: DateRangeInputValue) => void
@@ -61,6 +62,7 @@ export interface DateRangeInputProps {
 export const DateRangeInput: FC<DateRangeInputProps> = ({
 	alwaysOpen = false,
 	classes = [],
+	dataTag,
 	displayFormat = 'YYYY-MM-DD hh:mm A',
 	disabledDate,
 	onChange,
@@ -107,27 +109,29 @@ export const DateRangeInput: FC<DateRangeInputProps> = ({
 		openProps = { open: true }
 	}
 
-	return loading
-? (
-		<SelectSkeleton />
-	)
-: (
-		<AntDRangePicker
-			allowClear={false}
-			className={cn(classes)}
-			disabledDate={disabledDate}
-			dropdownClassName={compClasses.dropdown}
-			format={displayFormat}
-			mode={['date', 'date']}
-			showTime={
-				typeof includeTime === 'boolean'
-					? includeTime
-					: { format: includeTime.displayFormat }
-			}
-			size={size}
-			{...controlledCmpProps}
-			{...openProps}
-			{...getPopupContainerProps(popupContainerSelector)}
-		/>
+	return (
+		<div {...getDataTestAttributeProp('date-range-input', dataTag)}>
+			{loading ? (
+				<SelectSkeleton />
+			) : (
+				<AntDRangePicker
+					allowClear={false}
+					className={cn(classes)}
+					disabledDate={disabledDate}
+					dropdownClassName={compClasses.dropdown}
+					format={displayFormat}
+					mode={['date', 'date']}
+					showTime={
+						typeof includeTime === 'boolean'
+							? includeTime
+							: { format: includeTime.displayFormat }
+					}
+					size={size}
+					{...controlledCmpProps}
+					{...openProps}
+					{...getPopupContainerProps(popupContainerSelector)}
+				/>
+			)}
+		</div>
 	)
 }

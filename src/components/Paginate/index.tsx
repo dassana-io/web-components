@@ -6,7 +6,6 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generatePaginationStyles } from './styles'
 import { generateSelectStyles } from 'components/Select/SingleSelect/utils'
-import omit from 'lodash/omit'
 import { PageLoader } from 'components/PageLoader'
 
 import {
@@ -40,7 +39,7 @@ const useStyles = createUseStyles({
 	paginationContainer: {
 		...flexJustifyEnd,
 		...generatePaginationStyles(light),
-		...omit(generateSelectStyles(light), '&$error'),
+		...generateSelectStyles(light, {}, false),
 		'& .ant-select-dropdown': generateThemedDropdownStyles(light),
 		'& .ant-select-item': generateThemedOptionStyles(light),
 		paddingTop: spacing.l
@@ -50,7 +49,7 @@ const useStyles = createUseStyles({
 		[`.${dark}`]: {
 			'& $paginationContainer': {
 				...generatePaginationStyles(dark),
-				...omit(generateSelectStyles(dark), '&$error'),
+				...generateSelectStyles(dark, {}, false),
 				'& .ant-select-dropdown': generateThemedDropdownStyles(dark),
 				'& .ant-select-item': generateThemedOptionStyles(dark)
 			}
@@ -120,8 +119,7 @@ export const Paginate = <Data,>({
 					itemWrapperClasses
 				)}
 			>
-				{loading
-? (
+				{loading ? (
 					<PageLoader
 						classes={[
 							cn(
@@ -130,8 +128,7 @@ export const Paginate = <Data,>({
 							)
 						]}
 					/>
-				)
-: (
+				) : (
 					data.slice(minVal, maxVal).map((datum, i) => (
 						<div className={cn(itemContainerClasses)} key={i}>
 							{itemRender(datum)}

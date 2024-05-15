@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { generateThemedActiveTabStyles } from './utils'
+import { getDataTestAttributeProp } from 'components/utils'
 import { IconButton } from 'components/IconButton'
 import { faTrash, faX } from '@fortawesome/pro-light-svg-icons'
 import React, { type FC, useCallback, useState } from 'react'
@@ -90,6 +91,7 @@ const useStyles = createUseStyles({
 interface TabProps
 	extends Pick<TabsProps, 'activeTabClasses' | 'disabled' | 'tabClasses'>,
 		Pick<TabConfig, 'onClose' | 'onDelete' | 'label' | 'pending'> {
+	dataTag?: string
 	isActiveTab: boolean
 	tabIndex: number
 	onClickTab: (tabIndex: number) => void
@@ -97,6 +99,7 @@ interface TabProps
 
 const Tab: FC<TabProps> = ({
 	activeTabClasses = [],
+	dataTag,
 	disabled,
 	isActiveTab,
 	label,
@@ -145,6 +148,7 @@ const Tab: FC<TabProps> = ({
 		<li
 			className={tabCmpClasses}
 			onClick={() => !disabled && onClickTab(tabIndex)}
+			{...getDataTestAttributeProp('tab', dataTag)}
 		>
 			<div className={classes.tabLabelContent}>
 				{label}
@@ -152,6 +156,7 @@ const Tab: FC<TabProps> = ({
 					{onDelete && isActiveTab && (
 						<IconButton
 							classes={[classes.actionIcon, classes.deleteIcon]}
+							dataTag='delete-tab'
 							disabled={disabled}
 							icon={faTrash}
 							onClick={handleOnDeleteClick}
@@ -160,6 +165,7 @@ const Tab: FC<TabProps> = ({
 					{onClose && (
 						<IconButton
 							classes={[classes.actionIcon]}
+							dataTag='close-tab'
 							disabled={disabled}
 							icon={faX}
 							onClick={handleOnCloseClick}

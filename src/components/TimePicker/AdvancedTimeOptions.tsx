@@ -2,6 +2,7 @@ import capitalize from 'lodash/capitalize'
 import { createUseStyles } from 'react-jss'
 import CustomRelativeTime from './CustomRelativeTime'
 import { generateRelativeTimeRange } from './utils'
+import { getDataTestAttributeProp } from 'components/utils'
 import omit from 'lodash/omit'
 import { styleguide } from '../assets/styles'
 import {
@@ -36,7 +37,13 @@ const useStyles = createUseStyles({
 const radioButtonGroupOptions: RadioButtonGroupOptions[] = Object.keys(
 	omit(TimeTypes, 'all')
 ).map(timeType => ({
-	label: capitalize(timeType),
+	label: (
+		<span
+			{...getDataTestAttributeProp('advanced-time-type-option', timeType)}
+		>
+			{capitalize(timeType)}
+		</span>
+	),
 	value: timeType
 }))
 
@@ -95,6 +102,7 @@ const AdvancedTimeOptions: FC<AdvancedTimeOptionsProps> = ({
 				<DateRangeInput
 					alwaysOpen
 					classes={[classes.dateRange]}
+					dataTag='custom-absolute-time'
 					onChange={onAbsoluteTimeRangeChange}
 					popupContainerSelector={`.${classes.container}`}
 					{...absoluteTRProps}

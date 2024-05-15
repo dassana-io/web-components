@@ -54,7 +54,8 @@ const generateErrorStyles = (themeType: ThemeType) => ({
 
 export const generateSelectStyles = (
 	theme: ThemeType,
-	additionalStyles?: Record<string, string>
+	additionalStyles?: Record<string, string>,
+	includeError = true
 ) => ({
 	'& .ant-select': {
 		borderRadius,
@@ -64,9 +65,9 @@ export const generateSelectStyles = (
 			...generateThemedInputStyles(theme),
 			borderRadius
 		},
-		...generateErrorStyles(theme),
+		...(includeError ? generateErrorStyles(theme) : {}),
 		[disabledClasses]: generateThemedDisabledStyles(theme),
-		[focusedClasses]: generateThemedFocusedStyles(theme),
+		[focusedClasses]: generateThemedFocusedStyles(theme, includeError),
 		...additionalStyles
 	}
 })

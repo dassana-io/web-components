@@ -79,18 +79,21 @@ const CustomRelativeTime: FC<CustomRelativeTimeProps> = ({
 			<div className={classes.inputs}>
 				<Input
 					containerClasses={[classes.inputContainer]}
+					dataTag='custom-relative-time-value'
 					onChange={onInputChange}
 					type='number'
 					value={String(inputValue)}
 				/>
 				<Select
 					containerClasses={[classes.selectContainer]}
+					dataTag='custom-relative-time-unit'
 					onChange={onTimeUnitChange}
 					options={selectOptions}
 					value={timeUnit}
 				/>
 			</div>
 			<Button
+				dataTag='custom-relative-time-submit'
 				onClick={() =>
 					onTimeRangeChange(
 						generateRelativeTimeRange(inputValue, timeUnit)
