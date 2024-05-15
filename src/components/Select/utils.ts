@@ -43,17 +43,25 @@ export const generateThemedDropdownStyles = (themeType: ThemeType) => {
 	}
 }
 
-export const generateThemedFocusedStyles = (themeType: ThemeType) => {
+export const generateThemedFocusedStyles = (
+	themeType: ThemeType,
+	includeError = true
+) => {
 	const { focus } = themedStyles[themeType]
 
-	return {
-		'&$error': {
-			...fieldErrorStyles.error,
-			border: `1px solid ${themedStyles[themeType].error.borderColor}`
-		},
+	const themedFocusStyles: Record<string, any> = {
 		borderColor: focus.borderColor,
 		boxShadow: 'none'
 	}
+
+	if (includeError) {
+		themedFocusStyles['&$error'] = {
+			...fieldErrorStyles.error,
+			border: `1px solid ${themedStyles[themeType].error.borderColor}`
+		}
+	}
+
+	return themedFocusStyles
 }
 
 export const generateThemedInputStyles = (themeType: ThemeType) => {

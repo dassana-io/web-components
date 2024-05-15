@@ -1,6 +1,7 @@
 import AdvancedTimeOptions from './AdvancedTimeOptions'
 import { Animate } from 'components/Accordion/Animate'
 import { createUseStyles } from 'react-jss'
+import { getDataTestAttributeProp } from 'components/utils'
 import TimeLabel from './TimeLabel'
 import {
 	type AbsoluteTimeRange,
@@ -82,27 +83,37 @@ export const TimePicker: FC<TimePickerProps> = ({
 				</div>
 			</Animate>
 			<div className={classes.menu}>
-				{relativeTimeMap.map((timeRange, i) => (
-					<div
-						className={classes.menuInput}
-						key={i}
-						onClick={() => onChange(timeRange)}
-					>
-						{generateRelativeTimeLabel(
-							timeRange,
-							TimePrependLabels.past
-						)}
-					</div>
-				))}
+				{relativeTimeMap.map((timeRange, i) => {
+					const timeLabel = generateRelativeTimeLabel(
+						timeRange,
+						TimePrependLabels.past
+					)
+
+					return (
+						<div
+							className={classes.menuInput}
+							key={i}
+							onClick={() => onChange(timeRange)}
+							{...getDataTestAttributeProp(
+								'time-label-relative',
+								timeLabel
+							)}
+						>
+							{timeLabel}
+						</div>
+					)
+				})}
 				<div
 					className={classes.menuInput}
 					onClick={() => onChange({ type: TimeTypes.all })}
+					{...getDataTestAttributeProp('time-label-all')}
 				>
 					All Time
 				</div>
 				<div
 					className={classes.menuInput}
 					onClick={() => setShowCustom(!showCustom)}
+					{...getDataTestAttributeProp('time-label-advanced')}
 				>
 					Advanced
 				</div>

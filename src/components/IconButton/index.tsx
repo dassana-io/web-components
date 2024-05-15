@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { faCircleNotch } from '@fortawesome/pro-light-svg-icons'
 import { faTimes } from '@fortawesome/pro-regular-svg-icons'
+import { getDataTestAttributeProp } from 'components/utils'
 import {
 	FontAwesomeIcon,
 	type FontAwesomeIconProps
@@ -106,6 +107,7 @@ const useStyles = createUseStyles({
 export interface IconButtonProps {
 	circle?: boolean
 	classes?: string[]
+	dataTag?: string
 	disabled?: boolean
 	hasBorder?: boolean
 	icon?: FontAwesomeIconProps['icon']
@@ -118,6 +120,7 @@ export interface IconButtonProps {
 export const IconButton: FC<IconButtonProps> = ({
 	circle = false,
 	classes = [],
+	dataTag,
 	disabled = false,
 	hasBorder = false,
 	icon = faTimes,
@@ -154,7 +157,11 @@ export const IconButton: FC<IconButtonProps> = ({
 	)
 
 	return (
-		<span className={iconBtnClasses} onClick={onIconButtonClick}>
+		<span
+			className={iconBtnClasses}
+			onClick={onIconButtonClick}
+			{...getDataTestAttributeProp('icon-button', dataTag)}
+		>
 			{pending && circle && <span className={componentClasses.pending} />}
 			<FontAwesomeIcon
 				className={componentClasses.icon}
