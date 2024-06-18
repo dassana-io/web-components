@@ -39,6 +39,7 @@ interface BaseSingleSelectProps
 		SelectProps,
 		'defaultValue' | 'onChange' | 'onSearch' | 'value'
 	> {
+	filterOption?: boolean
 	mode: 'single'
 }
 
@@ -60,6 +61,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		dropdownContainerClasses = [],
 		dropdownRender,
 		error = false,
+		filterOption = true,
 		focused = false,
 		loading = false,
 		onBlur,
@@ -147,6 +149,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 
 		tagsSelectProps = {
 			defaultValue,
+			filterOption,
 			menuItemSelectedIcon: null,
 			mode: 'tags',
 			notFoundContent: pending ? (
@@ -167,6 +170,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 
 		singleSelectProps = {
 			defaultValue,
+			filterOption,
 			onBlur,
 			onChange,
 			onSearch,

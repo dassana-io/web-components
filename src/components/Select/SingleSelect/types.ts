@@ -41,6 +41,8 @@ export interface SelectProps
 	 */
 	dropdownContainerClasses?: string[]
 	dropdownRef?: RefObject<HTMLDivElement>
+	dropdownOnSearchClasses?: string[]
+	filterOption?: boolean
 	focused?: boolean
 	isSearching?: boolean
 	/**
@@ -67,6 +69,7 @@ export interface SelectProps
 	optionsConfig?: SelectOptionsConfig
 	placeholder?: ReactNode
 	searchPlaceholder?: string
+	searchValue?: string
 	/**
 	 * Whether or not to show search input
 	 * @default false

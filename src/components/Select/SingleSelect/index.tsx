@@ -1,4 +1,5 @@
 import { BaseSelect } from '../BaseSelect'
+import cn from 'classnames'
 import { DropdownMenuSpinner } from '../DropdownMenuSpinner'
 import { type SelectProps } from './types'
 import { useStyles } from './utils'
@@ -13,6 +14,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 		// defaulting defaultValue to empty string doesn't render a placeholder if a placeholder is provided
 		defaultValue,
 		disabled = false,
+		dropdownOnSearchClasses = [],
 		dropdownRef,
 		error = false,
 		focused = false,
@@ -48,7 +50,13 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
 
 	const dropdownRender = (menu: ReactNode) => (
 		<div key={dropdownId} ref={dropdownRef}>
-			{isSearching ? <DropdownMenuSpinner /> : menu}
+			{isSearching ? (
+				<div className={cn(dropdownOnSearchClasses)}>
+					<DropdownMenuSpinner />
+				</div>
+			) : (
+				menu
+			)}
 		</div>
 	)
 
