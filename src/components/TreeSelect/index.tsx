@@ -21,6 +21,7 @@ export interface DTreeSelectProps
 	extends Omit<TreeProps, 'defaultChecked' | 'treeData'> {
 	defaultExpandAll?: boolean
 	dropdownContainerClasses?: string[]
+	fieldNames?: AntDTreeSelectProps['fieldNames']
 	fullWidth?: boolean
 	multipleSelection?: boolean
 	placeholder?: string
@@ -36,6 +37,7 @@ export const TreeSelect: FC<DTreeSelectProps> = ({
 	defaultExpandAll = true,
 	disabled = false,
 	dropdownContainerClasses = [],
+	fieldNames,
 	fullWidth = false,
 	loading = false,
 	multipleSelection = false,
@@ -72,6 +74,7 @@ export const TreeSelect: FC<DTreeSelectProps> = ({
 				className={treeClasses}
 				disabled={disabled}
 				dropdownMatchSelectWidth={false}
+				fieldNames={fieldNames}
 				popupClassName={cn(
 					{ [dropdownClasses.dropdown]: true },
 					dropdownContainerClasses

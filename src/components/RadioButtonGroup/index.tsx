@@ -1,4 +1,5 @@
 import 'antd/lib/radio/style/index.css'
+import cn from 'classnames'
 import { type CommonComponentProps } from '../types'
 import { createUseStyles } from 'react-jss'
 import { generateRadioButtonGroupStyles } from './utils'
@@ -44,6 +45,7 @@ interface InfoTipConfig {
 }
 
 export interface RadioButtonGroupProps extends CommonComponentProps {
+	classes?: string[]
 	/**
 	 * Default value for radio group. Without this, the first option will be defaulted
 	 */
@@ -75,6 +77,7 @@ export interface RadioButtonGroupProps extends CommonComponentProps {
 }
 
 export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
+	classes = [],
 	defaultValue,
 	dataTag,
 	disabled = false,
@@ -85,7 +88,7 @@ export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
 	value,
 	...rest
 }: RadioButtonGroupProps) => {
-	const classes = useStyles()
+	const cmpClasses = useStyles()
 
 	let controlledCmpProps = {}
 
@@ -103,7 +106,7 @@ export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
 			<AntDRadio.Group
 				{...rest}
 				buttonStyle='solid'
-				className={classes.radioGroup}
+				className={cn({ [cmpClasses.radioGroup]: true }, classes)}
 				defaultValue={defaultValue ?? options[0].value}
 				disabled={disabled}
 				name={getDataTestAttributeProp('radioGroup', dataTag)[TAG]}
@@ -114,7 +117,7 @@ export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
 			{infoTipConfig && (
 				<InfoTip
 					content={infoTipConfig.message}
-					infoTipTriggerClasses={[classes.infoTip]}
+					infoTipTriggerClasses={[cmpClasses.infoTip]}
 					placement={infoTipConfig.placement}
 				/>
 			)}
