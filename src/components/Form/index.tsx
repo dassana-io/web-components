@@ -5,6 +5,7 @@ import FieldLabel from './FieldLabel'
 import FormCheckbox from './FormCheckbox'
 import FormChipInput from './FormChipInput'
 import FormCode from './FormCode'
+import FormDateInput from './FormDateInput'
 import FormDynamicKVInput from './FormDynamicKVInput'
 import FormInput from './FormInput'
 import FormMultipleChoice from './FormMultipleChoice'
@@ -113,6 +114,7 @@ Form.SubmitButton = FormSubmitButton
 Form.Checkbox = FormCheckbox
 Form.ChipInput = FormChipInput
 Form.Code = FormCode
+Form.DateInput = FormDateInput
 Form.DynamicKVInput = FormDynamicKVInput
 Form.Input = FormInput
 Form.MultipleChoice = FormMultipleChoice
