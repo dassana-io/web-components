@@ -242,7 +242,8 @@ export const generateDropdownStyles = (themeType: ThemeType) => {
 					boxShadow,
 					color
 				}
-			}
+			},
+			zIndex: 99999
 		}
 	}
 }
