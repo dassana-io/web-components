@@ -97,7 +97,11 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 				}}
 			>
 				{hasTooltip ? (
-					<Tooltip placement='bottomLeft' title={text}>
+					<Tooltip
+						classes={[classes.tooltip]}
+						placement='bottomLeft'
+						title={text}
+					>
 						{text}
 					</Tooltip>
 				) : (

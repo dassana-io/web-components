@@ -133,6 +133,7 @@ export const tooltipStyles = {
 		'& > .ant-tooltip-content > .ant-tooltip-inner': {
 			overflowWrap: 'normal'
 		},
-		maxWidth: 'unset'
+		maxWidth: 'unset',
+		zIndex: 9999
 	}
 }
