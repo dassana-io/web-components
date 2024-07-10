@@ -19,6 +19,7 @@ export interface SharedIconProps {
 	 * The height of the icon, in pixels
 	 */
 	height?: number
+	iconDefaultSrc?: string
 	/**
 	 * The width of the icon, in pixels
 	 */
@@ -51,7 +52,7 @@ export const Icon: FC<IconProps> = ({
 	width,
 	...props
 }: IconProps) => {
-	const { classes = [] } = props
+	const { classes = [], iconDefaultSrc } = props
 
 	const areDimensionsUndefined = isUndefined(height) && isUndefined(width)
 
@@ -76,6 +77,11 @@ export const Icon: FC<IconProps> = ({
 	const { altText = '', icon } = props
 
 	const useDefaultSrc = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+		if (iconDefaultSrc) {
+			e.currentTarget.src = iconDefaultSrc
+			return
+		}
+
 		const span = document.createElement('span')
 
 		if (handleErrors) {

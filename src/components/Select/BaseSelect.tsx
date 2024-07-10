@@ -19,6 +19,7 @@ const { Option } = AntDSelect
 interface CommonBaseSelectProps
 	extends Omit<SelectProps, 'defaultValue' | 'onChange' | 'value'> {
 	dropdownRender?: (menu: ReactElement) => ReactElement
+	iconDefaultSrc?: string
 	onDropdownVisibleChange?: (open: boolean) => void
 	useStyles: (data?: unknown) => Record<string, string>
 }
@@ -63,6 +64,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 		error = false,
 		filterOption = true,
 		focused = false,
+		iconDefaultSrc,
 		loading = false,
 		onBlur,
 		onDropdownVisibleChange,
@@ -251,6 +253,7 @@ export const BaseSelect: FC<BaseSelectProps> = (props: BaseSelectProps) => {
 									/>
 								)}
 								<OptionChildren
+									iconDefaultSrc={iconDefaultSrc}
 									iconKey={iconKey}
 									iconUrl={iconUrl}
 									key={value}
