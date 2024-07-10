@@ -3,6 +3,7 @@ import { ColorManipulationTypes, manipulateColor } from 'components/utils'
 const { shade, tint } = ColorManipulationTypes
 
 enum Colors {
+	azure = 'azure',
 	black = 'black',
 	blue = 'blue',
 	cyan = 'cyan',
@@ -17,6 +18,7 @@ enum Colors {
 }
 
 const {
+	azure,
 	black,
 	blue,
 	cyan,
@@ -31,6 +33,7 @@ const {
 } = Colors
 
 const baseColors = {
+	[azure]: '#69C0FF',
 	[black]: '#282A35',
 	[blue]: '#2F54EB',
 	[cyan]: '#13C2C2',
@@ -209,10 +212,10 @@ const percentages: Record<string, any> = {
 }
 
 type GenerateColors = (
-		baseColor: string,
-		type: ColorManipulationTypes.shade | ColorManipulationTypes.tint,
-		percentArr: number[]
-	) => Record<string, string>
+	baseColor: string,
+	type: ColorManipulationTypes.shade | ColorManipulationTypes.tint,
+	percentArr: number[]
+) => Record<string, string>
 
 const generateColors: GenerateColors = (baseColor, type, percentArr = []) => {
 	const colors = {} as Record<string, string>
@@ -234,6 +237,7 @@ const generateTintsAndShades = (color: Colors) => ({
 })
 
 export interface ColorsType {
+	azures: Base
 	blacks: Blacks
 	blues: Blues
 	cyans: Cyans
@@ -248,6 +252,7 @@ export interface ColorsType {
 }
 
 const colors: ColorsType = {
+	azures: { base: baseColors[azure] },
 	blacks: generateTintsAndShades(black) as Blacks,
 	blues: generateTintsAndShades(blue) as Blues,
 	cyans: generateTintsAndShades(cyan) as Cyans,
