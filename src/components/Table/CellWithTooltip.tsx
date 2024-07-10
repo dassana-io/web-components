@@ -11,6 +11,9 @@ const useStyles = createUseStyles({
 		textOverflow: 'ellipsis',
 		whiteSpace: 'nowrap'
 	},
+	tooltip: {
+		zIndex: 9999
+	},
 	wrapper: {
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
@@ -33,11 +36,9 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 
 	const classes = useStyles()
 
-	return isMobile || !showTooltip
-? (
+	return isMobile || !showTooltip ? (
 		<>{text}</>
-	)
-: (
+	) : (
 		<div className={classes.container}>
 			<div
 				className={classes.wrapper}
@@ -47,13 +48,15 @@ export const CellWithTooltip: FC<CellWithTooltipProps> = ({
 					setHasTooltip(el.scrollWidth > el.offsetWidth)
 				}}
 			>
-				{hasTooltip
-? (
-					<Tooltip placement='bottomLeft' title={text}>
+				{hasTooltip ? (
+					<Tooltip
+						classes={[classes.tooltip]}
+						placement='bottomLeft'
+						title={text}
+					>
 						{text}
 					</Tooltip>
-				)
-: (
+				) : (
 					text
 				)}
 			</div>
