@@ -40,10 +40,14 @@ const useOptionChildrenStyles = createUseStyles({
 })
 
 type OptionChildrenProps = Omit<SelectOption, 'disabled' | 'hidden' | 'value'> &
-	Pick<SelectProps, 'optionsConfig'> & { children?: ReactNode }
+	Pick<SelectProps, 'optionsConfig'> & {
+		children?: ReactNode
+		iconDefaultSrc?: string
+	}
 
 export const OptionChildren: FC<OptionChildrenProps> = ({
 	children,
+	iconDefaultSrc,
 	iconKey,
 	iconUrl,
 	optionsConfig = {},
@@ -81,7 +85,7 @@ export const OptionChildren: FC<OptionChildrenProps> = ({
 	}
 
 	const renderIconWithUrl = (iconUrl: string) =>
-		renderIconWithProps({ icon: iconUrl })
+		renderIconWithProps({ icon: iconUrl, iconDefaultSrc })
 
 	return (
 		<div className={classes.option} style={style}>
