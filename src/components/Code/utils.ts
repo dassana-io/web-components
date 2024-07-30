@@ -192,6 +192,9 @@ export const useStyles = createUseStyles({
 			'& .ace_marker-layer .ace_bracket': {
 				display: 'none'
 			},
+			'& .ace_placeholder': {
+				fontFamily: 'Monaco, Menlo'
+			},
 			...generateThemedAceCodeStyles(light)
 		}
 	},
