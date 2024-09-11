@@ -129,7 +129,7 @@ export const ModalDrawer: FC<ModalProps> = ({
 			</motion.div>
 			<motion.div
 				className={cn(modalClasses.overlay, overlayClasses)}
-				onClick={unsetModal}
+				onClick={onModalClose}
 				style={overlayStyles}
 				{...additionalOverlayProps}
 			/>
