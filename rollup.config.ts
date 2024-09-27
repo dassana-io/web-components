@@ -74,7 +74,6 @@ export default {
 		'uuid'
 	],
 	input: 'src/components/index.ts',
-	preserveModules: true,
 	output: [
 		{
 			file: pkg.main,
