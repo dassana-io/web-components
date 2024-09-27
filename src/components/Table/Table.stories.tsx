@@ -183,7 +183,8 @@ Mixed.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
+		description:
+			'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },
@@ -217,7 +218,8 @@ MissingCells.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
+		description:
+			'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },
