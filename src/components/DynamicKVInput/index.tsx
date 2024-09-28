@@ -4,7 +4,8 @@ import { type KVField } from './types'
 import { KVInputPair } from './KVInputPair'
 import React, { type FC, useCallback, useEffect, useMemo } from 'react'
 
-const removeFromArrByIdx = <T, >(arr: T[], index: number) => [
+// eslint-disable-next-line comma-spacing
+const removeFromArrByIdx = <T,>(arr: T[], index: number) => [
 	...arr.slice(0, index),
 	...arr.slice(index + 1)
 ]
@@ -13,7 +14,7 @@ const shouldAddNewPair = (values: KVField[]): boolean => {
 	const numOfPairs = values.length
 	const lastPair = values[numOfPairs - 1]
 
-	return !numOfPairs ?? !!(lastPair.key ?? lastPair.value)
+	return !numOfPairs || !!(lastPair.key ?? lastPair.value)
 }
 
 const defaultKVPair: KVField = {

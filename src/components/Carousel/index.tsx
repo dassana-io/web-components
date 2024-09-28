@@ -135,7 +135,7 @@ export const Carousel: FC<CarouselProps> = ({
 						{images[imageIndex].title && (
 							<Title
 								classes={titleClasses}
-								title={images[imageIndex].title!}
+								title={images[imageIndex].title}
 							/>
 						)}
 						<AnimatedImage
