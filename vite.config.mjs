@@ -16,9 +16,6 @@ export default defineConfig(() => {
 				components: path.resolve('src/components/'),
 				__mocks__: path.resolve('src/__mocks__/')
 			}
-		},
-		optimizeDeps: {
-			exclude: ['node_modules/.cache/storybook']
 		}
 	}
 })
