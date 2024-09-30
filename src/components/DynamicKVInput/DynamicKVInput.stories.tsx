@@ -1,6 +1,6 @@
 import { type KVField } from './types'
 import { DynamicKVInput, type DynamicKVInputProps } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { useState } from 'react'
 
 export default {
@@ -12,7 +12,7 @@ export default {
 	title: 'DynamicKVInputProps'
 } as Meta
 
-const Template: Story<DynamicKVInputProps> = args => {
+const Template: StoryFn<DynamicKVInputProps> = args => {
 	const [values, setValues] = useState<KVField[]>([])
 
 	return <DynamicKVInput {...args} onChange={setValues} values={values} />
