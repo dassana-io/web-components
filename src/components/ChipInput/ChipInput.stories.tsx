@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { ChipInput, type ChipInputProps } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -12,7 +12,7 @@ export default {
 	title: 'ChipInput'
 } as Meta
 
-const Template: Story<ChipInputProps> = args => <ChipInput {...args} />
+const Template: StoryFn<ChipInputProps> = args => <ChipInput {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

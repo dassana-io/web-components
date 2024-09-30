@@ -4,7 +4,7 @@ import omit from 'lodash/omit'
 import { Filters, FiltersMode, type FiltersProps } from '.'
 import { filtersConfig, mockFilterOptions } from './fixtures/0_sample_data'
 import { type FiltersList, type UseFiltersMethods } from './types'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { useRef } from 'react'
 
 export default {
@@ -17,7 +17,7 @@ export default {
 	title: 'Filters'
 } as Meta
 
-const Template: Story<FiltersProps> = args => <Filters {...args} />
+const Template: StoryFn<FiltersProps> = args => <Filters {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -37,7 +37,7 @@ ClientSide.args = {
 	mode: FiltersMode.frontend
 }
 
-const ControlledTemplate: Story<FiltersProps> = args => {
+const ControlledTemplate: StoryFn<FiltersProps> = args => {
 	const filtersRef = useRef<UseFiltersMethods>(null)
 
 	const filtersList: FiltersList = [

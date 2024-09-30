@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
 export default {
 	argTypes: {
 		children: { control: { disable: true } },
-		classes: { control: 'array' }
+		classes: { control: 'object' }
 	},
 	component: Banner,
 	decorators: [SecondaryBgDecorator],

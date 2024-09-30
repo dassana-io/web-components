@@ -2,7 +2,7 @@ import { placementOptions } from '../utils'
 import { type SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
 import { InfoTip, type InfoTipProps } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 
 export default {
@@ -17,7 +17,7 @@ export default {
 	},
 	component: InfoTip,
 	decorators: [
-		(PopoverStory: Story) => (
+		(PopoverStory: StoryFn) => (
 			<div style={{ padding: 75 }}>
 				<PopoverStory />
 			</div>
@@ -36,7 +36,7 @@ const ThemedInfoTip: FC<InfoTipProps> = (props: InfoTipProps) => {
 	)
 }
 
-const Template: Story<InfoTipProps> = args => <ThemedInfoTip {...args} />
+const Template: StoryFn<InfoTipProps> = args => <ThemedInfoTip {...args} />
 
 export const Default = Template.bind({})
 

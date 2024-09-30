@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { IconButton, IconSizes } from 'components/IconButton'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC, type ReactNode } from 'react'
 import { styleguide, themedStyles, ThemeType } from '../assets/styles'
 import { useWizard, Wizard, type WizardProps } from '.'
@@ -17,7 +17,7 @@ export default {
 	title: 'Wizard'
 } as Meta
 
-const Template: Story<WizardProps> = args => <Wizard {...args} />
+const Template: StoryFn<WizardProps> = args => <Wizard {...args} />
 
 const useStyles = createUseStyles({
 	container: {

@@ -21,6 +21,10 @@ const { sideBySide, left, right } = LayoutTypes
 
 const { dark, light } = ThemeType
 
+export interface SbTheme extends Theme {
+	type: ThemeType.dark | ThemeType.light
+}
+
 const sbThemes = {
 	[dark]: { ...themes[dark], type: dark },
 	[light]: { ...themes[light], type: light }

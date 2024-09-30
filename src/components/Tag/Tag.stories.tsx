@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { Tag, type TagProps } from '.'
 
 export default {
@@ -15,7 +15,7 @@ export default {
 	title: 'Tag'
 } as Meta
 
-const Template: Story<TagProps> = args => <Tag {...args}>{args.children}</Tag>
+const Template: StoryFn<TagProps> = args => <Tag {...args}>{args.children}</Tag>
 
 export const Default = Template.bind({})
 Default.args = { children: 'Default' }

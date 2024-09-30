@@ -1,6 +1,6 @@
 import React from 'react'
 import { basicOptions, basicOptionsDisabled } from './fixtures/sample_options'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { RadioButtonGroup, type RadioButtonGroupProps } from './index'
 
 export default {
@@ -19,7 +19,7 @@ const commonStoryProps = {
 	onChange: undefined
 }
 
-const Template: Story<RadioButtonGroupProps> = args => (
+const Template: StoryFn<RadioButtonGroupProps> = args => (
 	<RadioButtonGroup {...args} {...commonStoryProps} />
 )
 

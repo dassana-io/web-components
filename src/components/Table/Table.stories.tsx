@@ -34,20 +34,6 @@ const commonArgTypes = {
 	pagination: {
 		description:
 			'Optional prop to show or hide pagination. Pagination is present on the bottom right by default.'
-	},
-	searchProps: {
-		control: 'object',
-		defaultValue: { placeholder: '', placement: 'left' }, // This isn't the default, it's a placeholder for storybook
-		table: {
-			type: {
-				detail: `
-				interface SearchProps {
-					placeholder?: string
-					placement?: 'left' | 'right'
-				}
-				`
-			}
-		}
 	}
 }
 
@@ -103,6 +89,20 @@ Simple.argTypes = {
 				interface Person {
 					name: string
 					age: number
+				}
+				`
+			}
+		}
+	},
+	searchProps: {
+		control: 'object',
+		defaultValue: { placeholder: '', placement: 'left' }, // This isn't the default, it's a placeholder for storybook
+		table: {
+			type: {
+				detail: `
+				interface SearchProps {
+					placeholder?: string
+					placement?: 'left' | 'right'
 				}
 				`
 			}
@@ -183,7 +183,8 @@ Mixed.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
+		description:
+			'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },
@@ -217,7 +218,8 @@ MissingCells.argTypes = {
 	...commonArgTypes,
 	columns: {
 		control: { disable: true },
-		description: 'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
+		description:
+			'Array of column objects. [Click to view a partial Column interface.](/?path=/docs/table--simple#representing-columntype-with-typescript-1)'
 	},
 	data: {
 		control: { disable: true },

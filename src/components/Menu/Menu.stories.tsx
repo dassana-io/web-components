@@ -1,6 +1,6 @@
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { Menu, type MenuProps } from '.'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type Key, useState } from 'react'
 
 export default {
@@ -14,7 +14,7 @@ export default {
 	title: 'Menu'
 } as Meta
 
-const Template: Story<MenuProps> = args => {
+const Template: StoryFn<MenuProps> = args => {
 	const [activeKey, setActiveKey] = useState<Key>('dolor')
 
 	return (

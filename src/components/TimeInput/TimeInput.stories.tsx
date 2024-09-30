@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import { type SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 import { TimeInput, type TimeInputProps } from './index'
 
@@ -26,7 +26,7 @@ const ThemedTimeInput: FC<TimeInputProps> = (props: TimeInputProps) => {
 	)
 }
 
-const Template: Story<TimeInputProps> = args => <ThemedTimeInput {...args} />
+const Template: StoryFn<TimeInputProps> = args => <ThemedTimeInput {...args} />
 
 export const Placeholder = Template.bind({})
 Placeholder.args = { placeholder: 'Select time' }

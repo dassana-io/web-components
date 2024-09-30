@@ -2,7 +2,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { styleguide } from 'components/assets/styles'
 import { Accordion, type AccordionProps, type Panel } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC, type ReactNode } from 'react'
 
 const { font, spacing } = styleguide
@@ -59,7 +59,7 @@ const mockPanels: Panel[] = [
 	}
 ]
 
-const Template: Story<AccordionProps> = args => (
+const Template: StoryFn<AccordionProps> = args => (
 	<Accordion {...args} panels={mockPanels} />
 )
 

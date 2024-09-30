@@ -4,7 +4,7 @@ import { type ModalConfig } from './utils'
 import React from 'react'
 import { type SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { ModalProvider, useModal } from './index'
 const mockEmitter = new Emitter()
 
@@ -26,7 +26,7 @@ export default {
 	title: 'Modal'
 } as Meta
 
-const Template: Story<ModalConfig> = args => {
+const Template: StoryFn<ModalConfig> = args => {
 	const { setModalConfig } = useModal()
 
 	return <Button onClick={() => setModalConfig(args)}>Open Modal</Button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { ProgressBar, type ProgressBarProps } from '.'
 
 export default {
@@ -8,7 +8,7 @@ export default {
 	},
 	component: ProgressBar,
 	decorators: [
-		(ProgressBarStory: Story) => (
+		(ProgressBarStory: StoryFn) => (
 			<div style={{ paddingTop: 150 }}>
 				<ProgressBarStory />
 			</div>
@@ -17,6 +17,6 @@ export default {
 	title: 'ProgressBar'
 } as Meta
 
-const Template: Story<ProgressBarProps> = args => <ProgressBar {...args} />
+const Template: StoryFn<ProgressBarProps> = args => <ProgressBar {...args} />
 
 export const Default = Template.bind({})

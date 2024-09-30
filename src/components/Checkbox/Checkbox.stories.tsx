@@ -1,6 +1,6 @@
 import React from 'react'
 import { Checkbox, type CheckboxProps } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -11,7 +11,7 @@ export default {
 	title: 'Checkbox'
 } as Meta
 
-const Template: Story<CheckboxProps> = args => <Checkbox {...args} />
+const Template: StoryFn<CheckboxProps> = args => <Checkbox {...args} />
 
 export const Default = Template.bind({})
 

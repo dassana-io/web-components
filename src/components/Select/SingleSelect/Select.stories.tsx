@@ -10,7 +10,7 @@ import {
 	iconWithUrlOptions,
 	textOverflowOptions
 } from '../fixtures/sample_options'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 
 export default {
@@ -38,7 +38,7 @@ const ThemedSelect: FC<SelectProps> = (props: SelectProps) => {
 	return <Select popupContainerSelector={popupContainerSelector} {...props} />
 }
 
-const Template: Story<SelectProps> = args => <ThemedSelect {...args} />
+const Template: StoryFn<SelectProps> = args => <ThemedSelect {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

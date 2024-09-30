@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import { type SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 import { Timezone, type TimezoneProps } from './index'
 
@@ -29,7 +29,7 @@ const ThemedTimezone: FC<TimezoneProps> = (props: TimezoneProps) => {
 	)
 }
 
-const Template: Story<TimezoneProps> = args => <ThemedTimezone {...args} />
+const Template: StoryFn<TimezoneProps> = args => <ThemedTimezone {...args} />
 
 export const Default = Template.bind({})
 Default.args = {}

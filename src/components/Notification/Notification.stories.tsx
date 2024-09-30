@@ -1,7 +1,7 @@
 import { generateNotification } from './index'
 import React from 'react'
 import { Button, type ButtonProps } from '../Button'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -10,7 +10,7 @@ export default {
 	title: 'Notifications'
 } as Meta
 
-const Template: Story<ButtonProps> = args => (
+const Template: StoryFn<ButtonProps> = args => (
 	<Button {...args}>{args.children}</Button>
 )
 
