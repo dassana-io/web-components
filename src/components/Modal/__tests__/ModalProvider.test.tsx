@@ -13,7 +13,6 @@ const setModalConfigSpy = jest.fn()
 const unsetModalSpy = jest.fn()
 const mockModalContent = <div>Hello World</div>
 
-// @ts-expect-error
 jest.spyOn(hooks, 'useModalCmp').mockImplementation(() => ({
 	modalConfig: { content: mockModalContent },
 	setModalConfig: setModalConfigSpy,
