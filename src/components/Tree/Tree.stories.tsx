@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import treeData0 from './fixtures/0_sample_data'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { Tree, type TreeProps } from './index'
 
 export default {
@@ -31,7 +31,7 @@ export default {
 	title: 'Tree'
 } as Meta
 
-const Template: Story<TreeProps> = args => <Tree {...args} />
+const Template: StoryFn<TreeProps> = args => <Tree {...args} />
 
 export const Default = Template.bind({})
 

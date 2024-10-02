@@ -5,7 +5,7 @@ import React from 'react'
 import { type SbTheme } from '../../../.storybook/preview'
 import startCase from 'lodash/startCase'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import {
 	type NotificationConfig,
 	NotificationProvider,
@@ -52,7 +52,7 @@ export default {
 	title: 'Notification'
 } as Meta
 
-const Template: Story<NotificationConfig> = args => {
+const Template: StoryFn<NotificationConfig> = args => {
 	const { generateNotification } = useNotification()
 
 	return (

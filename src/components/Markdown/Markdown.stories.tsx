@@ -1,6 +1,6 @@
 import React from 'react'
 import { Markdown, type MarkdownProps } from '.'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -27,7 +27,7 @@ Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 3. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 `
 
-const Template: Story<MarkdownProps> = args => <Markdown {...args} />
+const Template: StoryFn<MarkdownProps> = args => <Markdown {...args} />
 
 export const Default = Template.bind({})
 

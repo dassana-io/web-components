@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { IconButton, type IconButtonProps, IconSizes } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -24,7 +24,7 @@ export default {
 	title: 'IconButton'
 } as Meta
 
-const Template: Story<IconButtonProps> = args => <IconButton {...args} />
+const Template: StoryFn<IconButtonProps> = args => <IconButton {...args} />
 
 export const Default = Template.bind({})
 Default.argTypes = {

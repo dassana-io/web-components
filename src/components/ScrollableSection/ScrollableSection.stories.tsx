@@ -2,7 +2,7 @@ import { Button } from 'components/Button'
 import { createUseStyles } from 'react-jss'
 import React from 'react'
 import { styleguide } from 'components/assets/styles'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { ScrollableSection, type ScrollableSectionProps } from '.'
 import { ScrollDirections, scrollOnClick } from './utils'
 
@@ -28,7 +28,7 @@ const sectionsMockData = ['apple', 'pineapple', 'mango']
 export default {
 	argTypes: {
 		children: { control: { disable: true } },
-		class: { control: 'array' }
+		class: { control: 'object' }
 	},
 	args: {
 		sections: sectionsMockData
@@ -53,7 +53,7 @@ const DecoratedSingleTemplate = (args: ScrollableSectionProps) => {
 	)
 }
 
-export const Single: Story<ScrollableSectionProps> =
+export const Single: StoryFn<ScrollableSectionProps> =
 	DecoratedSingleTemplate.bind({})
 Single.args = {
 	name: 'apple'

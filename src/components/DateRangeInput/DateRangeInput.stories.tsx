@@ -4,7 +4,7 @@ import { type SbTheme } from '../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../.storybook/utils'
 import { useTheme } from 'react-jss'
 import { DateRangeInput, type DateRangeInputProps } from '.'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 
 export default {
@@ -37,7 +37,7 @@ const ThemedDateRangeInput: FC<DateRangeInputProps> = (
 	)
 }
 
-const Template: Story<DateRangeInputProps> = args => (
+const Template: StoryFn<DateRangeInputProps> = args => (
 	<ThemedDateRangeInput {...args} />
 )
 

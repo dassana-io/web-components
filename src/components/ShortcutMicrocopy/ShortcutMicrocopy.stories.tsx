@@ -1,6 +1,6 @@
 import { EnterOutlined } from '@ant-design/icons'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { ShortcutMicrocopy, type ShortcutMicrocopyProps } from './index'
 
 export default {
@@ -10,7 +10,7 @@ export default {
 	title: 'ShortcutMicrocopy'
 } as Meta
 
-const Template: Story<ShortcutMicrocopyProps> = args => (
+const Template: StoryFn<ShortcutMicrocopyProps> = args => (
 	<ShortcutMicrocopy {...args} />
 )
 

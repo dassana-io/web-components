@@ -1,18 +1,18 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { Link, type LinkProps } from '.'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
 		children: { control: 'text' },
-		classes: { control: 'array' }
+		classes: { control: 'object' }
 	},
 	component: Link,
 	title: 'Link'
 } as Meta
 
-const Template: Story<LinkProps> = args => <Link {...args} />
+const Template: StoryFn<LinkProps> = args => <Link {...args} />
 
 export const Href = Template.bind({})
 Href.argTypes = {

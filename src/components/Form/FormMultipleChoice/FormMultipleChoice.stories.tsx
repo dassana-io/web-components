@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions'
 import { multipleChoiceItems } from 'components/MultipleChoice/fixtures'
 import React from 'react'
 import { Form, type FormProps } from '../index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -23,7 +23,7 @@ interface MultipleProps {
 	roles?: string[]
 }
 
-const MultipleTemplate: Story<FormProps<MultipleProps>> = (
+const MultipleTemplate: StoryFn<FormProps<MultipleProps>> = (
 	args: FormProps<MultipleProps>
 ) => (
 	<Form
@@ -48,7 +48,7 @@ interface SingleProps {
 	role?: string
 }
 
-const SingleTemplate: Story<FormProps<SingleProps>> = (
+const SingleTemplate: StoryFn<FormProps<SingleProps>> = (
 	args: FormProps<SingleProps>
 ) => (
 	<Form

@@ -3,7 +3,7 @@ import { type SbTheme } from '../../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../../.storybook/utils'
 import { type SelectOption } from '../SingleSelect/types'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 import { TagsSelect, type TagsSelectProps } from './index'
 
@@ -47,7 +47,9 @@ const ThemedTagsSelect: FC<TagsSelectProps> = (props: TagsSelectProps) => {
 	)
 }
 
-const Template: Story<TagsSelectProps> = args => <ThemedTagsSelect {...args} />
+const Template: StoryFn<TagsSelectProps> = args => (
+	<ThemedTagsSelect {...args} />
+)
 
 export const Default = Template.bind({})
 Default.args = {

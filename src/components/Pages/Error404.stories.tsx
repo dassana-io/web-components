@@ -1,6 +1,6 @@
 import { Error404 } from './Error404'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	component: Error404,
@@ -10,7 +10,7 @@ export default {
 	title: 'Error 404 Page'
 } as Meta
 
-const Template: Story = () => (
+const Template: StoryFn = () => (
 	<Error404 onBtnClick={() => console.log('Clicked!')} />
 )
 

@@ -2,7 +2,7 @@ import { Icon } from '../Icon'
 import { placementOptions } from '../utils'
 import { type SbTheme } from '../../../.storybook/preview'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC } from 'react'
 import { Tooltip, type TooltipProps } from './index'
 
@@ -19,7 +19,7 @@ export default {
 	},
 	component: Tooltip,
 	decorators: [
-		(PopoverStory: Story) => (
+		(PopoverStory: StoryFn) => (
 			<div style={{ padding: 75 }}>
 				<PopoverStory />
 			</div>
@@ -40,7 +40,7 @@ const ThemedTooltip: FC<TooltipProps> = (props: TooltipProps) => {
 	)
 }
 
-const Template: Story<TooltipProps> = args => <ThemedTooltip {...args} />
+const Template: StoryFn<TooltipProps> = args => <ThemedTooltip {...args} />
 
 export const Default = Template.bind({})
 

@@ -1,15 +1,15 @@
 import { images } from './_fixtures_/image-data'
 import React from 'react'
 import { Carousel, type CarouselProps } from '.'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
 		autoplayInterval: { control: 'number' },
-		bulletClasses: { control: 'array' },
-		containerClasses: { control: 'array' },
-		imageClasses: { control: 'array' },
-		titleClasses: { control: 'array' }
+		bulletClasses: { control: 'object' },
+		containerClasses: { control: 'object' },
+		imageClasses: { control: 'object' },
+		titleClasses: { control: 'object' }
 	},
 	args: {
 		images
@@ -21,6 +21,6 @@ export default {
 	title: 'Carousel'
 } as Meta
 
-const CarouselTemplate: Story<CarouselProps> = args => <Carousel {...args} />
+const CarouselTemplate: StoryFn<CarouselProps> = args => <Carousel {...args} />
 
 export const SimpleCarousel = CarouselTemplate.bind({})

@@ -1,6 +1,6 @@
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC, type ReactNode } from 'react'
 import { Timeline, type TimelineConfig, type TimelineProps } from './index'
 
@@ -45,7 +45,7 @@ const mockTimelineConfig: TimelineConfig[] = [
 	}
 ]
 
-const Template: Story<TimelineProps> = args => (
+const Template: StoryFn<TimelineProps> = args => (
 	<Timeline {...args} timelineConfig={mockTimelineConfig} />
 )
 

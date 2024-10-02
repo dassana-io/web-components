@@ -1,4 +1,4 @@
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { Radio, type RadioChangeEvent, type RadioProps } from './index'
 import React, { useState } from 'react'
 
@@ -10,7 +10,7 @@ export default {
 	title: 'Radio Group'
 } as Meta
 
-const Template: Story<RadioProps> = args => {
+const Template: StoryFn<RadioProps> = args => {
 	const [value, setValue] = useState('hello')
 
 	const handleOnChange = (e: RadioChangeEvent) => setValue(e.target.value)

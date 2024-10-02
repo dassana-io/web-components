@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import { createUseStyles } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import React, { type FC, type ReactNode } from 'react'
 import { type TabConfig, Tabs, type TabsProps } from './index'
 import { themedStyles, ThemeType } from 'components/assets/styles'
@@ -34,7 +34,7 @@ export default {
 	title: 'Tabs'
 } as Meta
 
-const Template: Story<TabsProps> = args => <Tabs {...args} />
+const Template: StoryFn<TabsProps> = args => <Tabs {...args} />
 
 interface TabPaneProps {
 	children: ReactNode

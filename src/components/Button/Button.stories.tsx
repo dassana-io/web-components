@@ -6,7 +6,7 @@ import { type Meta, type StoryFn } from '@storybook/react'
 export default {
 	argTypes: {
 		children: { control: 'text' },
-		classes: { control: 'array' },
+		classes: { control: 'object' },
 		color: { control: 'color' },
 		onClick: { defaultValue: action('onClick') }
 	},

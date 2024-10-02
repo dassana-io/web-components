@@ -4,7 +4,7 @@ import { iconOptions } from '../Select/fixtures/sample_options'
 import React from 'react'
 import treeData from '../Tree/fixtures/0_sample_data'
 import { Form, type FormProps } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -33,7 +33,9 @@ interface UserModel {
 	workStart?: number
 }
 
-const Template: Story<FormProps<UserModel>> = (args: FormProps<UserModel>) => (
+const Template: StoryFn<FormProps<UserModel>> = (
+	args: FormProps<UserModel>
+) => (
 	<Form<UserModel>
 		{...args}
 		initialValues={{

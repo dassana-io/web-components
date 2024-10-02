@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { MadeWithLove } from './MadeWithLove'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	component: MadeWithLove,
@@ -24,6 +24,6 @@ const DecoratedTemplate = () => {
 	)
 }
 
-const Template: Story = () => <DecoratedTemplate />
+const Template: StoryFn = () => <DecoratedTemplate />
 
 export const WithLove = Template.bind({})

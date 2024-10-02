@@ -1,7 +1,7 @@
 import { PriorityGrid } from '.'
 import React from 'react'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
@@ -9,7 +9,7 @@ export default {
 	},
 	component: PriorityGrid,
 	decorators: [
-		(PriorityGridStory: Story) => (
+		(PriorityGridStory: StoryFn) => (
 			<div style={{ paddingTop: 150 }}>
 				<PriorityGridStory />
 			</div>
@@ -52,6 +52,6 @@ const ThemedPriorityGrid = () => {
 	)
 }
 
-const Template: Story = () => <ThemedPriorityGrid />
+const Template: StoryFn = () => <ThemedPriorityGrid />
 
 export const Default = Template.bind({})

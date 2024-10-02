@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { Plausible } from '.'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	component: Plausible,
@@ -24,6 +24,6 @@ const DecoratedTemplate = () => {
 	)
 }
 
-const Template: Story = () => <DecoratedTemplate />
+const Template: StoryFn = () => <DecoratedTemplate />
 
 export const DisablePlausible = Template.bind({})

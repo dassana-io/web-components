@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeType } from '../assets/styles'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { SVGImage, type SVGImageProps } from './index'
 import svgImageMap, { ImageTypes } from './fixtures/mockSVGImageMap'
 
@@ -16,7 +16,7 @@ export default {
 	title: 'SVGImage'
 } as Meta
 
-const Template: Story<SVGImageProps<ImageTypes>> = args => (
+const Template: StoryFn<SVGImageProps<ImageTypes>> = args => (
 	<SVGImage {...args} />
 )
 

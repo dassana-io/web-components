@@ -4,11 +4,11 @@ import { IconButton } from 'components/IconButton'
 import React from 'react'
 import { Tooltip } from 'components/Tooltip'
 import { Input, type InputProps } from './index'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	argTypes: {
-		classes: { control: 'array' },
+		classes: { control: 'object' },
 		onChange: { defaultValue: action('onChange') },
 		value: { control: { disable: true } }
 	},
@@ -16,7 +16,7 @@ export default {
 	title: 'Input'
 } as Meta
 
-const Template: Story<InputProps> = args => <Input {...args} />
+const Template: StoryFn<InputProps> = args => <Input {...args} />
 
 export const Default = Template.bind({})
 

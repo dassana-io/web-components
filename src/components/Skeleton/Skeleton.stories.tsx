@@ -1,5 +1,5 @@
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { Skeleton, type SkeletonProps } from './index'
 
 export default {
@@ -7,7 +7,7 @@ export default {
 	title: 'Skeleton'
 } as Meta
 
-const Template: Story<SkeletonProps> = args => <Skeleton {...args} />
+const Template: StoryFn<SkeletonProps> = args => <Skeleton {...args} />
 
 export const Default = Template.bind({})
 

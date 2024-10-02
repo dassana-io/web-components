@@ -4,7 +4,7 @@ import { type SbTheme } from '../../../../.storybook/preview'
 import { SecondaryBgDecorator } from '../../../../.storybook/utils'
 import { type SelectOption } from '../SingleSelect/types'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { MultiSelect, type MultiSelectProps } from './index'
 import React, { type FC } from 'react'
 
@@ -48,7 +48,7 @@ const ThemedMultiSelect: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 	)
 }
 
-const Template: Story<MultiSelectProps> = args => (
+const Template: StoryFn<MultiSelectProps> = args => (
 	<ThemedMultiSelect {...args} />
 )
 

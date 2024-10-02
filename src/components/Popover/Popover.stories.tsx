@@ -5,7 +5,7 @@ import { placementOptions } from '../utils'
 import { type SbTheme } from '../../../.storybook/preview'
 import { styleguide } from 'components/assets/styles'
 import { useTheme } from 'react-jss'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { Popover, type PopoverProps } from './index'
 import React, { type FC } from 'react'
 
@@ -34,7 +34,7 @@ export default {
 	},
 	component: Popover,
 	decorators: [
-		(PopoverStory: Story) => (
+		(PopoverStory: StoryFn) => (
 			<div style={{ padding: 75 }}>
 				<PopoverStory />
 			</div>
@@ -55,7 +55,7 @@ const ThemedPopover: FC<PopoverProps> = (props: PopoverProps) => {
 	)
 }
 
-const Template: Story<PopoverProps> = args => <ThemedPopover {...args} />
+const Template: StoryFn<PopoverProps> = args => <ThemedPopover {...args} />
 
 export const Default = Template.bind({})
 

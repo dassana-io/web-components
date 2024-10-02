@@ -1,11 +1,11 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { Slider, type SliderProps } from '.'
 
 export default {
 	argTypes: {
-		classes: { control: 'array' },
+		classes: { control: 'object' },
 		onAfterChange: {
 			defaultValue: action('onAfterChange')
 		}
@@ -14,6 +14,6 @@ export default {
 	title: 'Slider'
 } as Meta
 
-const Template: Story<SliderProps> = args => <Slider {...args} />
+const Template: StoryFn<SliderProps> = args => <Slider {...args} />
 
 export const Default = Template.bind({})

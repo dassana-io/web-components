@@ -1,5 +1,5 @@
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 import { MiniSidebar, type MiniSidebarProps, SocialLinks } from '.'
 
 export default {
@@ -7,7 +7,7 @@ export default {
 	title: 'Mini Sidebar'
 } as Meta
 
-const MiniSidebarTemplate: Story<MiniSidebarProps> = args => (
+const MiniSidebarTemplate: StoryFn<MiniSidebarProps> = args => (
 	<MiniSidebar {...args} />
 )
 

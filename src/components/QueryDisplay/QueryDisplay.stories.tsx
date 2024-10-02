@@ -1,6 +1,6 @@
 import { QueryDisplay } from './index'
 import React from 'react'
-import { type Meta, type Story } from '@storybook/react'
+import { type Meta, type StoryFn } from '@storybook/react'
 
 export default {
 	component: QueryDisplay,
@@ -10,7 +10,7 @@ export default {
 	title: 'Query Display'
 } as Meta
 
-const Template: Story = args => (
+const Template: StoryFn = args => (
 	<QueryDisplay
 		onQueryClick={() => console.log('hello')}
 		query={
