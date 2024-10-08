@@ -66,10 +66,9 @@ export default {
 				'src/components/**/*.stories.tsx',
 				'src/components/**/*.test.tsx',
 				'src/components/**/*.test.ts',
-				'src/components/**/*fixtures',
-				'**/__mocks__',
-				'**/__snapshots__',
-				'src/__mocks__/**/*',
+				'**/fixtures/**',
+				'**/__mocks__/**',
+				'**/__snapshots__/**',
 				'.storybook'
 			]
 		}),
