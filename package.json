@@ -1,6 +1,6 @@
 {
 	"name": "@dassana-io/web-components",
-	"version": "0.16.4",
+	"version": "0.16.5",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/dassana-io"
 	},
@@ -57,7 +57,7 @@
 	},
 	"main": "lib/index.cjs.js",
 	"module": "lib/index.esm.js",
-	"types": "lib/types/components/index.d.ts",
+	"types": "lib/types/index.d.ts",
 	"eslintConfig": {
 		"extends": "react-app"
 	},
