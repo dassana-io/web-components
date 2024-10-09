@@ -10,7 +10,7 @@ export interface SelectOption {
 	iconKey?: IconName | string
 	iconUrl?: string
 	style?: CSSProperties
-	text: string
+	text: ReactNode
 	value: string
 }
 
