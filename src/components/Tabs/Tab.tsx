@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss'
 import { generateThemedActiveTabStyles } from './utils'
 import { getDataTestAttributeProp } from 'components/utils'
 import { IconButton } from 'components/IconButton'
+import { Tooltip } from 'components/Tooltip'
 import { faTrash, faX } from '@fortawesome/pro-light-svg-icons'
 import React, { type FC, useCallback, useState } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
@@ -90,7 +91,14 @@ const useStyles = createUseStyles({
 
 interface TabProps
 	extends Pick<TabsProps, 'activeTabClasses' | 'disabled' | 'tabClasses'>,
-		Pick<TabConfig, 'onClose' | 'onDelete' | 'label' | 'pending'> {
+		Pick<
+			TabConfig,
+			| 'onClose'
+			| 'onCloseTooltipContent'
+			| 'onDelete'
+			| 'label'
+			| 'pending'
+		> {
 	dataTag?: string
 	isActiveTab: boolean
 	tabIndex: number
@@ -105,6 +113,7 @@ const Tab: FC<TabProps> = ({
 	label,
 	onClickTab,
 	onClose,
+	onCloseTooltipContent = 'Close Tab',
 	onDelete,
 	tabClasses = [],
 	tabIndex
@@ -163,13 +172,15 @@ const Tab: FC<TabProps> = ({
 						/>
 					)}
 					{onClose && (
-						<IconButton
-							classes={[classes.actionIcon]}
-							dataTag='close-tab'
-							disabled={disabled}
-							icon={faX}
-							onClick={handleOnCloseClick}
-						/>
+						<Tooltip placement='top' title={onCloseTooltipContent}>
+							<IconButton
+								classes={[classes.actionIcon]}
+								dataTag='close-tab'
+								disabled={disabled}
+								icon={faX}
+								onClick={handleOnCloseClick}
+							/>
+						</Tooltip>
 					)}
 				</div>
 			</div>

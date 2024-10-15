@@ -49,6 +49,7 @@ export interface TabConfig {
 	key: string
 	label: string | ReactNode
 	onClose?: (tabIndex: number, onError: () => void) => void
+	onCloseTooltipContent?: string
 	onDelete?: (tabIndex: number) => void
 	pending?: boolean
 	render: () => ReactNode
@@ -150,9 +151,9 @@ export const Tabs: FC<TabsProps> = ({
 					<></>
 				)
 			) : (
-				customAddTabComponent ?? (
+				(customAddTabComponent ?? (
 					<IconButton icon={faPlus} onClick={handleAddNewTab} />
-				)
+				))
 			),
 		[
 			customAddTabComponent,
@@ -174,6 +175,7 @@ export const Tabs: FC<TabsProps> = ({
 					(
 						{
 							onClose,
+							onCloseTooltipContent,
 							onDelete,
 							key,
 							label,
@@ -197,6 +199,7 @@ export const Tabs: FC<TabsProps> = ({
 								label={label}
 								onClickTab={onClickTab}
 								onClose={onClose}
+								onCloseTooltipContent={onCloseTooltipContent}
 								onDelete={onDelete}
 								tabClasses={[...tabClasses, ...tabItemClasses]}
 								tabIndex={currentTabItemIndex}
