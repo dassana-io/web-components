@@ -35,6 +35,7 @@ const FormInput: FC<FormInputProps> = ({
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
+	loading,
 	name,
 	required,
 	rules = {},
@@ -47,7 +48,7 @@ const FormInput: FC<FormInputProps> = ({
 		formState: { errors }
 	} = useFormContext()
 
-	const { disabled: formDisabled, loading } =
+	const { disabled: formDisabled, loading: formLoading } =
 		useContext<FieldContextProps>(FieldContext)
 
 	const errorObj = getJSONPathValue<FieldErrorType>(
@@ -77,7 +78,7 @@ const FormInput: FC<FormInputProps> = ({
 					classes={fieldLabelClasses}
 					fullWidth={fullWidth}
 					label={label}
-					loading={loading}
+					loading={formLoading || loading}
 					required={required}
 					skeletonWidth={labelSkeletonWidth}
 				/>
@@ -93,7 +94,7 @@ const FormInput: FC<FormInputProps> = ({
 						error={!!errorObj}
 						focused={focused}
 						fullWidth={fullWidth}
-						loading={loading}
+						loading={formLoading || loading}
 						onBlur={onBlur}
 						onChange={onChange}
 						onFocus={onInputFocus}
