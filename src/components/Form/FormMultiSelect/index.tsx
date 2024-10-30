@@ -23,6 +23,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 	fullWidth = false,
 	label,
 	labelSkeletonWidth,
+	loading,
 	name,
 	required,
 	rules = {},
@@ -33,7 +34,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 		control,
 		formState: { errors }
 	} = useFormContext()
-	const { disabled: formDisabled, loading } =
+	const { disabled: formDisabled, loading: formLoading } =
 		useContext<FieldContextProps>(FieldContext)
 
 	const errorMsg = errors[name] ? errors[name]?.message : ''
@@ -49,7 +50,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 					classes={fieldLabelClasses}
 					fullWidth={fullWidth}
 					label={label}
-					loading={loading}
+					loading={formLoading}
 					required={required}
 					skeletonWidth={labelSkeletonWidth}
 				/>
@@ -63,7 +64,7 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
 						disabled={formDisabled || disabled}
 						error={!!errors[name]}
 						fullWidth={fullWidth}
-						loading={loading}
+						loading={formLoading || loading}
 						onChange={onChange}
 						onFocus={onFocus}
 						values={value}
