@@ -22,6 +22,7 @@ import { getNonEmptyKVInputPairs } from './utils'
 import isEmpty from 'lodash/isEmpty'
 import {
 	type DefaultValues,
+	type Mode,
 	type UseFormReturn
 } from 'react-hook-form/dist/types/form'
 import {
@@ -53,6 +54,7 @@ export interface FormProps<Model extends FieldValues> {
 	formContainerClasses?: string[]
 	formRef?: RefObject<UseFormReturn<Model>>
 	initialValues?: Model
+	mode?: Mode
 	loading?: boolean
 	onSubmit: SubmitHandler<FieldValues>
 }
@@ -64,12 +66,13 @@ export function Form<Model extends FieldValues>({
 	formRef,
 	initialValues = {} as Model,
 	loading = false,
+	mode = 'onBlur',
 	onSubmit
 }: FormProps<Model>) {
 	const classes = useStyles()
 	const methods = useForm<Model>({
 		defaultValues: initialValues as DefaultValues<Model>,
-		mode: 'onBlur'
+		mode
 	})
 	const { reset } = methods
 
