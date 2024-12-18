@@ -3,6 +3,7 @@ import { useFilterUnitStyles } from '../styles'
 import { useWindowSize } from '@dassana-io/web-utils'
 import { ValuesInput } from './ValuesInput'
 import { type ValuesMultiSelectProps } from './ValuesMultiSelect/types'
+import { ValuesTagsSelect } from './ValuesTagsSelect'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiSelect'
 import {
 	type FilterOption,
@@ -58,6 +59,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	const [operators, setOperators] = useState(['='])
 	const [optionsConfig, setOptionsConfig] =
 		useState<MultiSelectProps['optionsConfig']>()
+	const [searchVal, setSearchVal] = useState('')
 
 	useEffect(() => {
 		// When the selectedKey changes, get operators
@@ -117,7 +119,8 @@ const FilterUnit: FC<FilterUnitProps> = ({
 					type: valueType
 				})
 			}}
-			options={getFilterKeysOptions(allFilters, filtersList)}
+			onSearch={(value: string) => setSearchVal(value)}
+			options={getFilterKeysOptions(allFilters, filtersList, searchVal)}
 			placeholder='Select field'
 			showSearch
 			value={selectedKey}
@@ -145,11 +148,16 @@ const FilterUnit: FC<FilterUnitProps> = ({
 					windowWidth: width
 				}
 
+				if (selectedKey && !(selectedKey in allFilters)) {
+					return <ValuesTagsSelect {...commonFilterProps} />
+				}
+
 				return mode === 'frontend' ? (
 					<ClientSideValuesMS {...commonProps} />
 				) : (
 					<ServerSideValuesMS
 						{...commonProps}
+						containerClasses={[classes.multiSelect]}
 						staticFilter={staticFilter}
 					/>
 				)

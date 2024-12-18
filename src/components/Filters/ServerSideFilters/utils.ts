@@ -15,13 +15,15 @@ type UseFiltersParams = Omit<
 >
 
 export const useFilters = ({
+	filterOptions,
 	onFiltersFetch,
 	onFilterSuggest,
 	omittedFilterKeys = []
 }: UseFiltersParams) => {
 	const [allFilters, setAllFilters] = useState<ProcessedFilters>({})
 	const [filtersFetched, setFiltersFetched] = useState(false)
-	const [filterFetchInitiated, setFilterFetchInitiated] = useState(false)
+	const [filterFetchInitiated, setFilterFetchInitiated] =
+		useState(!!filterOptions)
 
 	const [dynamicOptions, setDynamicOptions] = useState<
 		SelectOption[] | undefined
@@ -83,6 +85,12 @@ export const useFilters = ({
 		omittedFilterKeys,
 		onFiltersFetch
 	])
+
+	useEffect(() => {
+		if (filterOptions && isEmpty(allFilters)) {
+			setAllFilters(processFilters(filterOptions, omittedFilterKeys))
+		}
+	}, [allFilters, filterOptions, omittedFilterKeys])
 
 	useEffect(() => {
 		return () => setAllFilters({})

@@ -72,8 +72,10 @@ export interface UseFiltersMethods {
 }
 
 export interface SharedFiltersProps {
+	alwaysOpen?: boolean
 	config?: FiltersConfig
 	defaultFilters?: FiltersList
+	filterOptions?: FilterOptions
 	filtersRef?: RefObject<UseFiltersMethods>
 	minKeySelectInputWidth?: number
 	onClearFilters?: () => void

@@ -5,6 +5,8 @@ import { useFilters } from './utils'
 import React, { type FC, useMemo } from 'react'
 
 export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
+	alwaysOpen,
+	filterOptions,
 	onFilterSuggest,
 	onFiltersFetch,
 	filtersRef,
@@ -15,11 +17,12 @@ export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 	// API calls will also be handled in useFilters.
 	const useFiltersInitialization = useMemo(
 		() => ({
+			filterOptions,
 			omittedFilterKeys,
 			onFilterSuggest,
 			onFiltersFetch
 		}),
-		[omittedFilterKeys, onFilterSuggest, onFiltersFetch]
+		[filterOptions, omittedFilterKeys, onFilterSuggest, onFiltersFetch]
 	)
 
 	const filterMethods = useFilters(useFiltersInitialization)
@@ -31,7 +34,7 @@ export const ServerSideFilters: FC<ServerSideFiltersProps> = ({
 				...rest
 			}}
 		>
-			<BaseFilters filtersRef={filtersRef} />
+			<BaseFilters alwaysOpen={alwaysOpen} filtersRef={filtersRef} />
 		</FiltersCtxProvider>
 	)
 }

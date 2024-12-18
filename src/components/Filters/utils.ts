@@ -46,7 +46,7 @@ export const formatFilterValsToSelectOpts = (
 // --------------------------------------
 
 export const formatFilterStrToSelectOpts = (options: string[]) =>
-	options.map(option => ({ text: option, value: option } as SelectOption))
+	options.map(option => ({ text: option, value: option }) as SelectOption)
 
 // --------------------------------------
 
@@ -68,7 +68,8 @@ export const formatSelectedFilters: (
 
 export const getFilterKeysOptions = (
 	allFilters: ProcessedFilters,
-	filtersList: FiltersList
+	filtersList: FiltersList,
+	searchVal: string
 ) => {
 	// Already selected keys will be hidden from dropdown
 	const hiddenKeysArr = filtersList.reduce((acc: string[], curr) => {
@@ -78,6 +79,20 @@ export const getFilterKeysOptions = (
 			return acc
 		}
 	}, [])
+
+	if (searchVal) {
+		return [
+			{
+				text: searchVal,
+				value: searchVal
+			},
+			...Object.entries(allFilters).map(([filterKeyId, item]) => ({
+				hidden: hiddenKeysArr.includes(filterKeyId),
+				text: item.key.value,
+				value: filterKeyId
+			}))
+		]
+	}
 
 	return Object.entries(allFilters).map(([filterKeyId, item]) => ({
 		hidden: hiddenKeysArr.includes(filterKeyId),

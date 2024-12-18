@@ -11,20 +11,27 @@ import { useBaseFilterStyles } from './styles'
 import { useFiltersContext } from './FiltersContext'
 import { useShortcut } from '@dassana-io/web-utils'
 import { v4 as uuidV4 } from 'uuid'
-import { type FiltersList, type FiltersListItem, type FiltersProps } from './types'
+import {
+	type FiltersList,
+	type FiltersListItem,
+	type FiltersProps
+} from './types'
 import { filtersPopupWrapperId, formatSelectedFilters } from './utils'
 import React, { type FC, useEffect, useImperativeHandle, useState } from 'react'
 
 const { spacing } = styleguide
 
-type BaseFiltersProps = Pick<FiltersProps, 'filtersRef'>
+type BaseFiltersProps = Pick<FiltersProps, 'alwaysOpen' | 'filtersRef'>
 
 export const BaseFilters: FC<BaseFiltersProps> = ({
+	alwaysOpen,
 	filtersRef
 }: BaseFiltersProps) => {
 	const classes = useBaseFilterStyles()
 
 	const {
+		allFilters,
+		config,
 		defaultFilters = [{ id: uuidV4() }],
 		loading,
 		onClearFilters,
@@ -40,8 +47,10 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 	}))
 
 	useEffect(() => {
-		if (!isPopoverOpen && resetDynamicProps) resetDynamicProps()
-	}, [isPopoverOpen, resetDynamicProps])
+		if (!alwaysOpen && !isPopoverOpen && resetDynamicProps) {
+			resetDynamicProps()
+		}
+	}, [alwaysOpen, isPopoverOpen, resetDynamicProps])
 
 	const closePopover = () => setIsPopoverOpen(false)
 	const openPopover = () => setIsPopoverOpen(true)
@@ -121,22 +130,25 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 				onClick={openPopover}
 			/>
 			<div className={classes.filtersSummary} onClick={openPopover}>
-				<FiltersSummary filtersList={filtersList} />
+				<FiltersSummary
+					allFilters={allFilters}
+					config={config}
+					filtersList={filtersList}
+				/>
 			</div>
 		</div>
 	)
 
 	return (
 		<div className={classes.container} id={filtersPopupWrapperId}>
-			{loading
-? (
+			{loading ? (
 				<div className={classes.filterControls}>
 					<Skeleton height={spacing.xl} width={spacing.xl} />
 				</div>
-			)
-: (
+			) : (
 				<>
 					<FilterPopover
+						alwaysOpen={alwaysOpen}
 						closePopover={closePopover}
 						filtersList={filtersList}
 						isPopoverOpen={isPopoverOpen}
@@ -146,7 +158,7 @@ export const BaseFilters: FC<BaseFiltersProps> = ({
 						resetFiltersList={resetFiltersList}
 						togglePopoverVisibility={togglePopoverVisibility}
 					/>
-					{renderFilterControls()}
+					{!alwaysOpen && renderFilterControls()}
 				</>
 			)}
 		</div>

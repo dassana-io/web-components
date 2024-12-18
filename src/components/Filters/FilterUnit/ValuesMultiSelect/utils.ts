@@ -49,6 +49,9 @@ export const getMultiSelectProps = ({
 		...rest,
 		...optionalResponsiveProps,
 		disabled: !options.length,
+		// matchSelectedContentWidth: 400,
+		maxTagCount: 2,
+		maxTagTextLength: 10,
 		onChange: vals =>
 			onFilterChange({
 				id,
