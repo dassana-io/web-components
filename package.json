@@ -34,7 +34,7 @@
 		"prismjs": "^1.29.0",
 		"react-ace": "^10.1.0",
 		"react-helmet": "^6.1.0",
-		"react-hook-form": "^7.53.0",
+		"react-hook-form": "^7.53.1",
 		"react-jss": "~10.5.1",
 		"react-markdown": "^8.0.0",
 		"react-scroll": "^1.9.0",
