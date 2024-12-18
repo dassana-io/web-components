@@ -1,14 +1,17 @@
 import { createUseStyles } from 'react-jss'
 import { filterSelectedFilters } from './utils'
-import { type FiltersList } from './types'
 import { IconCell } from 'components/Table/IconCell'
 import isEmpty from 'lodash/isEmpty'
 import startCase from 'lodash/startCase'
 import { styleguide } from '../assets/styles'
 import { Tooltip } from 'components/Tooltip'
 import truncate from 'lodash/truncate'
-import { useFiltersContext } from './FiltersContext'
 import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
+import {
+	type FiltersConfig,
+	type FiltersList,
+	type ProcessedFilters
+} from './types'
 import React, { type FC, type ReactNode } from 'react'
 
 const { font, spacing } = styleguide
@@ -56,6 +59,8 @@ type Classes = Record<keyof typeof styles, string>
 const useStyles = createUseStyles(styles)
 
 interface FiltersSummaryProps {
+	allFilters: ProcessedFilters
+	config?: FiltersConfig
 	filtersList: FiltersList
 }
 
@@ -97,13 +102,13 @@ const renderValuesStr = (values: string[] | ReactNode[], classes: Classes) => {
 }
 
 const FiltersSummary: FC<FiltersSummaryProps> = ({
+	allFilters,
+	config = {},
 	filtersList
 }: FiltersSummaryProps) => {
 	const {
 		windowSize: { width }
 	} = useWindowSize()
-
-	const { allFilters, config = {} } = useFiltersContext()
 
 	const classes = useStyles()
 
@@ -173,9 +178,10 @@ const FiltersSummary: FC<FiltersSummaryProps> = ({
 							)
 						}
 
-						const keyStr = startCase(
-							allFilters[selectedKey].key.value
-						)
+						const keyStr =
+							selectedKey in allFilters
+								? startCase(allFilters[selectedKey].key.value)
+								: selectedKey
 
 						return (
 							<span

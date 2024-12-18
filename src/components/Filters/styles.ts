@@ -110,10 +110,15 @@ export const useFilterUnitStyles = createUseStyles({
 		padding: spacing.xs,
 		paddingRight: spacing['s+']
 	},
+	multiSelect: {
+		// maxWidth: 300,
+		// width: 300
+	},
 	multiSelectContainer: {
 		[max[tablet]]: {
 			padding: 0
 		},
+		maxWidth: 400,
 		paddingRight: spacing['s+']
 	},
 	operator: {

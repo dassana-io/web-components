@@ -9,11 +9,16 @@ import { Popover } from '../Popover'
 import { useFiltersContext } from './FiltersContext'
 import { usePopoverStyles } from './styles'
 import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
-import { type FiltersList, type FiltersListItem } from './types'
+import {
+	type FilterOption,
+	type FiltersList,
+	type FiltersListItem
+} from './types'
 import { IconButton, IconSizes } from '../IconButton'
 import React, { type FC } from 'react'
 
 interface FilterPopoverProps {
+	alwaysOpen?: boolean
 	closePopover: () => void
 	filtersList: FiltersList
 	isPopoverOpen?: boolean
@@ -25,6 +30,7 @@ interface FilterPopoverProps {
 }
 
 export const FilterPopover: FC<FilterPopoverProps> = ({
+	alwaysOpen = false,
 	closePopover,
 	filtersList = [],
 	isPopoverOpen = false,
@@ -43,12 +49,17 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 	const classes = usePopoverStyles({ windowHeight: height })
 
 	const renderContent = () => (
-		<div className={classes.popoverContent}>
-			<IconButton
-				classes={[classes.closeButton]}
-				onClick={closePopover}
-				size={IconSizes.sm}
-			/>
+		<div
+			className={classes.popoverContent}
+			onClick={e => e.stopPropagation()}
+		>
+			{!alwaysOpen && (
+				<IconButton
+					classes={[classes.closeButton]}
+					onClick={closePopover}
+					size={IconSizes.sm}
+				/>
+			)}
 			<div className={classes.popoverControls}>
 				<div className={classes.popoverControlsChild}>
 					<FontAwesomeIcon icon={faFilter} />
@@ -80,7 +91,9 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 						selectedValues,
 						type
 					}) => {
-						const filterOption = allFilters[selectedKey ?? '']
+						const filterOption = selectedKey
+							? allFilters[selectedKey]
+							: ({} as FilterOption)
 
 						return (
 							<FilterUnit
@@ -103,6 +116,10 @@ export const FilterPopover: FC<FilterPopoverProps> = ({
 			</div>
 		</div>
 	)
+
+	if (alwaysOpen) {
+		return <div>{renderContent()}</div>
+	}
 
 	return width <= Breakpoints.tablet ? (
 		<FilterModal isPopoverOpen={isPopoverOpen}>

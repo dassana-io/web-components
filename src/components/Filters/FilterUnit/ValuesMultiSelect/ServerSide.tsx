@@ -6,7 +6,7 @@ import omit from 'lodash/omit'
 import uniqBy from 'lodash/uniqBy'
 import { useFiltersContext } from '../../FiltersContext'
 import { type ValuesMultiSelectProps } from './types'
-import { MultiSelect, type MultiSelectProps, type SelectOption } from '../../../Select'
+import { MultiSelect, type SelectOption } from '../../../Select'
 import React, { type FC, useCallback, useEffect, useState } from 'react'
 
 const useStyles = createUseStyles({
@@ -14,10 +14,12 @@ const useStyles = createUseStyles({
 })
 
 interface Props extends ValuesMultiSelectProps {
+	containerClasses?: string[]
 	staticFilter?: boolean
 }
 
 export const ServerSideValuesMS: FC<Props> = ({
+	containerClasses = [],
 	id,
 	onFilterChange,
 	filterOptValues = [],
@@ -36,9 +38,6 @@ export const ServerSideValuesMS: FC<Props> = ({
 	} = useFiltersContext()
 
 	const classes = useStyles()
-	const [dynamicFilterProps, setDynamicFilterProps] = useState<
-		Pick<MultiSelectProps, 'searchPlaceholder' | 'onSearch' | 'pending'>
-	>({})
 	const [options, setOptions] = useState<SelectOption[]>(selectedValues)
 
 	useEffect(() => {
@@ -86,8 +85,7 @@ export const ServerSideValuesMS: FC<Props> = ({
 										: {
 												...item,
 												classes: [classes.hiddenOpts]
-												// eslint-disable-next-line no-mixed-spaces-and-tabs
-										  }
+											}
 								)
 							)
 						}
@@ -117,15 +115,6 @@ export const ServerSideValuesMS: FC<Props> = ({
 						}
 					}
 				}
-
-				// these dynamic filter props should be there for all dynamic filters
-				setDynamicFilterProps({
-					onSearch: onSearchWrapper
-						? onSearchWrapper(selectedKey)
-						: undefined,
-					pending,
-					searchPlaceholder: 'Search...'
-				})
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,16 +140,23 @@ export const ServerSideValuesMS: FC<Props> = ({
 				multiSelectProps: {
 					onDropdownClose: resetDynamicProps,
 					onDropdownOpen,
+					onSearch:
+						onSearchWrapper && selectedKey
+							? onSearchWrapper(selectedKey)
+							: undefined,
 					options,
 					optionsConfig,
-					showSearch: !staticFilter,
-					...dynamicFilterProps
+					pending,
+					searchPlaceholder: 'Search...',
+					showSearch: !staticFilter
 				},
 				onFilterChange,
 				selectedValues,
 				windowWidth
 			})}
+			containerClasses={containerClasses}
 			disabled={!selectedKey} // TODO: look into this
+			fullWidth
 		/>
 	)
 }
