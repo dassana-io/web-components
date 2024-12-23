@@ -107,8 +107,10 @@ export const useFilterUnitStyles = createUseStyles({
 			bottom: spacing.s,
 			right: spacing.s
 		},
+		overflow: 'auto',
 		padding: spacing.xs,
-		paddingRight: spacing['s+']
+		paddingRight: spacing['s+'],
+		width: '100%'
 	},
 	multiSelect: {
 		// maxWidth: 300,
