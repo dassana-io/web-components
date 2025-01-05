@@ -54,12 +54,12 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		windowSize: { width }
 	} = useWindowSize()
 
-	const classes = useFilterUnitStyles()
-
 	const [operators, setOperators] = useState(['='])
 	const [optionsConfig, setOptionsConfig] =
 		useState<MultiSelectProps['optionsConfig']>()
 	const [searchVal, setSearchVal] = useState('')
+
+	const classes = useFilterUnitStyles({ keyOverflow: searchVal.length > 50 })
 
 	useEffect(() => {
 		// When the selectedKey changes, get operators
@@ -122,6 +122,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 			onSearch={(value: string) => setSearchVal(value)}
 			options={getFilterKeysOptions(allFilters, filtersList, searchVal)}
 			placeholder='Select field'
+			popupContainerSelector={`.${classes.singleSelectContainer}`}
 			showSearch
 			value={selectedKey}
 		/>
@@ -167,9 +168,17 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 	return (
 		<div className={classes.container}>
-			<div className={classes.singleSelectContainer}>{renderKey()}</div>
-			<div className={classes.operatorContainer}>{renderOperator()}</div>
-			<div className={classes.multiSelectContainer}>{renderValues()}</div>
+			<div className={classes.filterUnit}>
+				<div className={classes.singleSelectContainer}>
+					{renderKey()}
+				</div>
+				<div className={classes.operatorContainer}>
+					{renderOperator()}
+				</div>
+				<div className={classes.multiSelectContainer}>
+					{renderValues()}
+				</div>
+			</div>
 			<IconButton
 				classes={[classes.closeIcon]}
 				onClick={() => onDelete(id)}

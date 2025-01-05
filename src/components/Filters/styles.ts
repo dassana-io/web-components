@@ -83,12 +83,18 @@ export const useBaseFilterStyles = createUseStyles({
 
 // --------------------------------------
 
+interface StyleProps {
+	keyOverflow: boolean
+}
+
 export const useFilterUnitStyles = createUseStyles({
 	closeIcon: {
 		[max[tablet]]: {
 			position: 'absolute',
 			right: spacing.s
-		}
+		},
+		paddingTop: ({ keyOverflow }: StyleProps) =>
+			keyOverflow ? spacing.s : 0
 	},
 	container: {
 		[max[tablet]]: {
@@ -100,17 +106,25 @@ export const useFilterUnitStyles = createUseStyles({
 			width: '100%'
 		},
 		...flexAlignCenter,
+		alignItems: ({ keyOverflow }: StyleProps) =>
+			keyOverflow ? 'flex-start' : 'center',
 		...generateThemedFilterContainerStyles(light),
 		border: '1px solid',
 		borderRadius,
+
 		margin: {
 			bottom: spacing.s,
 			right: spacing.s
 		},
-		overflow: 'auto',
 		padding: spacing.xs,
-		paddingRight: spacing['s+'],
-		width: '100%'
+		paddingRight: spacing['s+']
+	},
+	filterUnit: {
+		...flexAlignCenter,
+		alignItems: ({ keyOverflow }: StyleProps) =>
+			keyOverflow ? 'flex-start' : 'center',
+		flexDirection: ({ keyOverflow }: StyleProps) =>
+			keyOverflow ? 'column' : 'row'
 	},
 	multiSelect: {
 		// maxWidth: 300,
@@ -134,6 +148,8 @@ export const useFilterUnitStyles = createUseStyles({
 			marginBottom: spacing.xs,
 			padding: 0
 		},
+		paddingBottom: ({ keyOverflow }: StyleProps) =>
+			keyOverflow ? spacing.m : 0,
 		paddingRight: spacing['s+']
 	},
 	// eslint-disable-next-line sort-keys
