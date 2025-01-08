@@ -1,9 +1,9 @@
 import { useFiltersContext } from '../FiltersContext'
 import { useFilterUnitStyles } from '../styles'
-import { useWindowSize } from '@dassana-io/web-utils'
 import { ValuesInput } from './ValuesInput'
 import { type ValuesMultiSelectProps } from './ValuesMultiSelect/types'
 import { ValuesTagsSelect } from './ValuesTagsSelect'
+import { Breakpoints, useWindowSize } from '@dassana-io/web-utils'
 import { ClientSideValuesMS, ServerSideValuesMS } from './ValuesMultiSelect'
 import {
 	type FilterOption,
@@ -59,7 +59,10 @@ const FilterUnit: FC<FilterUnitProps> = ({
 		useState<MultiSelectProps['optionsConfig']>()
 	const [searchVal, setSearchVal] = useState('')
 
-	const classes = useFilterUnitStyles({ keyOverflow: searchVal.length > 50 })
+	const classes = useFilterUnitStyles({
+		keyOverflow:
+			searchVal.length > (width < Breakpoints.largeScreen ? 35 : 50)
+	})
 
 	useEffect(() => {
 		// When the selectedKey changes, get operators
