@@ -37,7 +37,7 @@ const FilterUnit: FC<FilterUnitProps> = ({
 	onFilterChange,
 	filterOptOperator,
 	filterOptValues,
-	selectedKey,
+	selectedKey = '',
 	selectedOperator,
 	selectedValues,
 	staticFilter,
@@ -61,7 +61,8 @@ const FilterUnit: FC<FilterUnitProps> = ({
 
 	const classes = useFilterUnitStyles({
 		keyOverflow:
-			searchVal.length > (width < Breakpoints.largeScreen ? 35 : 50)
+			(searchVal.length || selectedKey.length) >
+			(width < Breakpoints.largeScreen ? 30 : 50)
 	})
 
 	useEffect(() => {
