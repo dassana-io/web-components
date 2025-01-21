@@ -1,17 +1,18 @@
 import { createUseStyles } from 'react-jss'
-import { styleguide, ThemeType } from 'components/assets/styles'
+import { styleguide, themes, ThemeType } from 'components/assets/styles'
 
-const { dark } = ThemeType
+const { dark, light } = ThemeType
 
 const {
 	colors: { blacks, blues, grays },
 	flexJustifyCenter,
+	font,
 	spacing
 } = styleguide
 
 const commonSliderStyles = {
 	borderRadius: '8px',
-	height: 14
+	height: 10
 }
 
 const sliderPalette = {
@@ -23,14 +24,19 @@ const sliderPalette = {
 }
 
 export const useSliderStyles = createUseStyles({
+	minMaxLabel: {
+		...font.body,
+		color: themes[light].text.primary
+	},
 	slider: {
 		'& .ant-slider-dot': {
 			display: 'none'
 		},
 		'& .ant-slider-handle': {
 			border: 'none',
-			height: 24,
-			width: 24
+			borderRadius: 8,
+			height: 20,
+			width: 10
 		},
 		'& .ant-slider-mark-text': {
 			'&:before': {
@@ -45,11 +51,17 @@ export const useSliderStyles = createUseStyles({
 		},
 		'& .ant-slider-track': {
 			...commonSliderStyles
+		},
+		'&.ant-slider': {
+			padding: '2px 0'
 		}
 	},
 	// eslint-disable-next-line sort-keys
 	'@global': {
 		[`.${dark}`]: {
+			'& $minMaxLabel': {
+				color: themes[dark].text.primary
+			},
 			'& $slider': {
 				'& .ant-slider-handle': {
 					backgroundColor: sliderPalette[dark].handleColor

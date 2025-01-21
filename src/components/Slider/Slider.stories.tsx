@@ -14,6 +14,8 @@ export default {
 	title: 'Slider'
 } as Meta
 
-const Template: StoryFn<SliderProps> = args => <Slider {...args} />
+const Template: StoryFn<SliderProps> = args => (
+	<Slider {...args} showMinMax showTooltipOnHover />
+)
 
 export const Default = Template.bind({})
