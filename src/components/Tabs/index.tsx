@@ -31,6 +31,15 @@ const useStyles = createUseStyles({
 		paddingLeft: spacing.s,
 		paddingRight: spacing.l
 	},
+	leftSideTabs: {
+		minWidth: '1%'
+	},
+	pinnedTabs: {
+		flexShrink: 0
+	},
+	rightSideTabs: {
+		minWidth: 'fit-content'
+	},
 	tabsList: {
 		...generateThemedTabsListStyles(light),
 		...flexAlignCenter,
@@ -236,15 +245,15 @@ export const Tabs: FC<TabsProps> = ({
 		return (
 			<>
 				{pinnedTabs.length > 0 && (
-					<div style={{ flexShrink: 0 }}>{pinnedTabs}</div>
+					<div className={tabsClasses.pinnedTabs}>{pinnedTabs}</div>
 				)}
 
-				<div style={{ minWidth: '1%' }}>
+				<div className={tabsClasses.leftSideTabs}>
 					<ScrollableTabs tabs={leftSideTabs} />
 				</div>
 				{(customAddTabComponent ?? onAddNewTab) && renderAddTabAction()}
 
-				<div style={{ minWidth: 'fit-content' }}>{rightSideTabs}</div>
+				<div className={tabsClasses.rightSideTabs}>{rightSideTabs}</div>
 			</>
 		)
 	}
