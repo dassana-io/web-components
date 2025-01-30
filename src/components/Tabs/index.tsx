@@ -4,6 +4,7 @@ import { faPlus } from '@fortawesome/pro-light-svg-icons'
 import { IconButton } from 'components/IconButton'
 import { InfoTip } from 'components/InfoTip'
 import partition from 'lodash/partition'
+import { ScrollableTabs } from './ScrollableTabs'
 import Tab from './Tab'
 import TabPane from './TabPane'
 import {
@@ -21,13 +22,27 @@ import React, {
 } from 'react'
 import { styleguide, ThemeType } from 'components/assets/styles'
 
-const { flexSpaceBetween } = styleguide
+const { flexAlignCenter, flexSpaceBetween, spacing } = styleguide
 
 const { dark, light } = ThemeType
 
 const useStyles = createUseStyles({
+	defaultAddTabIcon: {
+		paddingLeft: spacing.s,
+		paddingRight: spacing.l
+	},
+	leftSideTabs: {
+		minWidth: '1%'
+	},
+	pinnedTabs: {
+		flexShrink: 0
+	},
+	rightSideTabs: {
+		minWidth: 'fit-content'
+	},
 	tabsList: {
 		...generateThemedTabsListStyles(light),
+		...flexAlignCenter,
 		...flexSpaceBetween,
 		borderBottom: '1px solid',
 		margin: 0,
@@ -52,6 +67,7 @@ export interface TabConfig {
 	onCloseTooltipContent?: string
 	onDelete?: (tabIndex: number) => void
 	pending?: boolean
+	pinned?: boolean
 	render: () => ReactNode
 	splitRight?: boolean
 	tabItemClasses?: string[]
@@ -125,17 +141,58 @@ export const Tabs: FC<TabsProps> = ({
 		tabsListClasses
 	)
 
-	const onClickTab = (tabIndex: number) => {
-		if (onTabChange) onTabChange(tabConfig[tabIndex])
+	const onClickTab = useCallback(
+		(tabIndex: number) => {
+			if (onTabChange) onTabChange(tabConfig[tabIndex])
 
-		setActiveIndex(tabIndex)
-	}
+			setActiveIndex(tabIndex)
+		},
+		[onTabChange, tabConfig]
+	)
 
 	useImperativeHandle(tabsRef, () => ({
 		activeIndex,
 		setTab: onClickTab,
 		tabConfig
 	}))
+
+	const getTabs = useCallback(
+		({
+			onClose,
+			onCloseTooltipContent,
+			onDelete,
+			key,
+			label,
+			tabItemClasses = []
+		}: TabConfig) => {
+			const currentTabIdx = tabConfig.findIndex(({ key: k }) => key === k)
+
+			return (
+				<Tab
+					activeTabClasses={activeTabClasses}
+					dataTag={key}
+					disabled={disabled}
+					isActiveTab={currentTabIdx === activeIndex}
+					key={key}
+					label={label}
+					onClickTab={onClickTab}
+					onClose={onClose}
+					onCloseTooltipContent={onCloseTooltipContent}
+					onDelete={onDelete}
+					tabClasses={[...tabClasses, ...tabItemClasses]}
+					tabIndex={currentTabIdx}
+				/>
+			)
+		},
+		[
+			activeIndex,
+			activeTabClasses,
+			disabled,
+			onClickTab,
+			tabClasses,
+			tabConfig
+		]
+	)
 
 	const handleAddNewTab = useCallback(
 		() => onAddNewTab && onAddNewTab(tabConfig, tabsRef),
@@ -152,71 +209,51 @@ export const Tabs: FC<TabsProps> = ({
 				)
 			) : (
 				(customAddTabComponent ?? (
-					<IconButton icon={faPlus} onClick={handleAddNewTab} />
+					<IconButton
+						classes={[tabsClasses.defaultAddTabIcon]}
+						icon={faPlus}
+						onClick={handleAddNewTab}
+					/>
 				))
 			),
 		[
 			customAddTabComponent,
 			handleAddNewTab,
 			tabConfig.length,
+			tabsClasses.defaultAddTabIcon,
 			tabsLimitConfig
 		]
 	)
 
 	const renderTabItems = () => {
-		const partitionedTabs = partition(
+		const [pinnedTabConfig, restTabConfig] = partition(
 			tabConfig,
+			({ pinned }) => pinned
+		)
+
+		const pinnedTabs = pinnedTabConfig.map(getTabs)
+
+		const partitionedTabConfigs = partition(
+			restTabConfig,
 			({ splitRight }) => !splitRight
 		)
 
-		const [leftSideTabs, rightSideTabs] = partitionedTabs.map(
-			(partitionedTab, i) =>
-				partitionedTab.map(
-					(
-						{
-							onClose,
-							onCloseTooltipContent,
-							onDelete,
-							key,
-							label,
-							tabItemClasses = []
-						}: TabConfig,
-						j
-					) => {
-						const leftSideLength = partitionedTabs[0].length
-						const currentTabItemIndex =
-							i === 0 ? j : j + leftSideLength
-
-						return (
-							<Tab
-								activeTabClasses={activeTabClasses}
-								dataTag={key}
-								disabled={disabled}
-								isActiveTab={
-									currentTabItemIndex === activeIndex
-								}
-								key={key}
-								label={label}
-								onClickTab={onClickTab}
-								onClose={onClose}
-								onCloseTooltipContent={onCloseTooltipContent}
-								onDelete={onDelete}
-								tabClasses={[...tabClasses, ...tabItemClasses]}
-								tabIndex={currentTabItemIndex}
-							/>
-						)
-					}
-				)
+		const [leftSideTabs, rightSideTabs] = partitionedTabConfigs.map(
+			partitionedTabs => partitionedTabs.map(getTabs)
 		)
 
 		return (
 			<>
-				<div>
-					{leftSideTabs}
-					{(customAddTabComponent ?? onAddNewTab) &&
-						renderAddTabAction()}
+				{pinnedTabs.length > 0 && (
+					<div className={tabsClasses.pinnedTabs}>{pinnedTabs}</div>
+				)}
+
+				<div className={tabsClasses.leftSideTabs}>
+					<ScrollableTabs tabs={leftSideTabs} />
 				</div>
-				<div>{rightSideTabs}</div>
+				{(customAddTabComponent ?? onAddNewTab) && renderAddTabAction()}
+
+				<div className={tabsClasses.rightSideTabs}>{rightSideTabs}</div>
 			</>
 		)
 	}
