@@ -39,8 +39,6 @@ export const ScrollableTabs: FC<ScrollableTabsProps> = ({
 }: ScrollableTabsProps) => {
 	const scrollableContentRef = React.useRef<any>(null)
 
-	console.log({ tabs })
-
 	const [, setInitialScrollWidth] = useState(0)
 	const [isArrowsVisible, setIsArrowsVisible] = useState(false)
 	const [leftArrowEnabled, setLeftArrowEnabled] = useState(false)
