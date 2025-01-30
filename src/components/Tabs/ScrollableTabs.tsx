@@ -1,9 +1,10 @@
+import cn from 'classnames'
 import { createUseStyles } from 'react-jss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/pro-regular-svg-icons'
 import React, { type FC, useCallback, useEffect, useState } from 'react'
 
-const SCROLL_AMOUNT = 200
+const SCROLL_AMOUNT = 120
 
 enum ScrollDirection {
 	left = 'left',
@@ -12,6 +13,8 @@ enum ScrollDirection {
 
 interface StyleProps {
 	isArrowsVisible: boolean
+	leftArrowEnabled: boolean
+	rightArrowEnabled: boolean
 }
 
 const useStyles = createUseStyles({
@@ -22,6 +25,27 @@ const useStyles = createUseStyles({
 		justifyContent: 'center',
 		padding: 8,
 		width: 60
+	},
+	container: {
+		display: 'flex'
+	},
+	leftArrow: {
+		boxShadow: ({ leftArrowEnabled }: StyleProps) =>
+			leftArrowEnabled ? '-8px 4px 8px 12px rgba(0, 0, 0, 0.2)' : 'none',
+		clipPath: 'inset(0% -50% 0 4px)',
+		cursor: ({ leftArrowEnabled }: StyleProps) =>
+			leftArrowEnabled ? 'pointer' : 'not-allowed',
+		opacity: ({ leftArrowEnabled }: StyleProps) =>
+			leftArrowEnabled ? 1 : 0.2
+	},
+	rightArrow: {
+		boxShadow: ({ rightArrowEnabled }: StyleProps) =>
+			rightArrowEnabled ? '8px 4px 8px 12px rgba(0, 0, 0, 0.2)' : 'none',
+		clipPath: 'inset(0% 4px 0% -50%)',
+		cursor: ({ rightArrowEnabled }: StyleProps) =>
+			rightArrowEnabled ? 'pointer' : 'not-allowed',
+		opacity: ({ rightArrowEnabled }: StyleProps) =>
+			rightArrowEnabled ? 1 : 0.2
 	},
 	scrollableContainer: {
 		display: 'flex',
@@ -40,11 +64,23 @@ export const ScrollableTabs: FC<ScrollableTabsProps> = ({
 	const scrollableContentRef = React.useRef<any>(null)
 
 	const [, setInitialScrollWidth] = useState(0)
+
+	// The ResizeObserver detects if there is enough space for the entire scroll
+	// content. The left and right arrows will only be shown if there is not
+	// enough space to fit all of the scrollable content.
+	//
+	// In this initial implementation we're expecting the scroll position to start
+	// from 0 (the very left), so left arrow will be DISABLED and right arrow will
+	// be ENABLED by default.
 	const [isArrowsVisible, setIsArrowsVisible] = useState(false)
 	const [leftArrowEnabled, setLeftArrowEnabled] = useState(false)
 	const [rightArrowEnabled, setRightArrowEnabled] = useState(true)
 
-	const classes = useStyles({ isArrowsVisible })
+	const classes = useStyles({
+		isArrowsVisible,
+		leftArrowEnabled,
+		rightArrowEnabled
+	})
 
 	const handleScroll = useCallback((direction?: ScrollDirection) => {
 		const scrollableContent = scrollableContentRef.current
@@ -98,18 +134,10 @@ export const ScrollableTabs: FC<ScrollableTabsProps> = ({
 	}, [])
 
 	return (
-		<div style={{ display: 'flex' }}>
+		<div className={classes.container}>
 			<div
-				className={classes.arrow}
+				className={cn([classes.arrow, classes.leftArrow])}
 				onClick={() => handleScroll(ScrollDirection.left)}
-				style={{
-					boxShadow: leftArrowEnabled
-						? '-8px 4px 8px 12px rgba(0, 0, 0, 0.2)'
-						: 'none',
-					clipPath: 'inset(0% -50% 0 4px)',
-					cursor: leftArrowEnabled ? 'pointer' : 'not-allowed',
-					opacity: leftArrowEnabled ? 1 : 0.2
-				}}
 			>
 				<FontAwesomeIcon icon={faAngleLeft} size='sm' />
 			</div>
@@ -123,16 +151,8 @@ export const ScrollableTabs: FC<ScrollableTabsProps> = ({
 			</div>
 
 			<div
-				className={classes.arrow}
+				className={cn([classes.arrow, classes.rightArrow])}
 				onClick={() => handleScroll(ScrollDirection.right)}
-				style={{
-					boxShadow: rightArrowEnabled
-						? '8px 4px 8px 12px rgba(0, 0, 0, 0.2)'
-						: 'none',
-					clipPath: 'inset(0% 4px 0% -50%)',
-					cursor: rightArrowEnabled ? 'pointer' : 'not-allowed',
-					opacity: rightArrowEnabled ? 1 : 0.2
-				}}
 			>
 				<FontAwesomeIcon icon={faAngleRight} size='sm' />
 			</div>
