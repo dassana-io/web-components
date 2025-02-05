@@ -12,6 +12,7 @@ export interface SliderProps {
 	alwaysShowTooltip?: boolean
 	defaultValue?: number
 	disabled?: boolean
+	highlightGreaterValues?: boolean
 	min?: number
 	max?: number
 	onAfterChange: (value: number) => void
@@ -27,6 +28,7 @@ export const Slider: FC<SliderProps> = ({
 	alwaysShowTooltip = false,
 	defaultValue = 0,
 	disabled = false,
+	highlightGreaterValues = false,
 	min = 0,
 	max = 100,
 	onAfterChange,
@@ -37,7 +39,7 @@ export const Slider: FC<SliderProps> = ({
 	ticks,
 	tooltipPlacement
 }: SliderProps) => {
-	const classes = useSliderStyles()
+	const classes = useSliderStyles({ highlightGreaterValues })
 
 	const [isHovered, setIsHovered] = useState(false)
 
