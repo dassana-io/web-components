@@ -23,6 +23,10 @@ const sliderPalette = {
 	}
 }
 
+interface StyleProps {
+	highlightGreaterValues?: boolean
+}
+
 export const useSliderStyles = createUseStyles({
 	minMaxLabel: {
 		...font.body,
@@ -46,13 +50,21 @@ export const useSliderStyles = createUseStyles({
 			top: spacing['s+'],
 			whiteSpace: 'nowrap'
 		},
-		'& .ant-slider-rail': {
-			...commonSliderStyles
-		},
-		'& .ant-slider-track': {
-			...commonSliderStyles
-		},
 		'&.ant-slider': {
+			'& .ant-slider-rail': {
+				...commonSliderStyles,
+				backgroundColor: ({ highlightGreaterValues }: StyleProps) =>
+					sliderPalette[dark][
+						highlightGreaterValues ? 'trackColor' : 'railColor'
+					]
+			},
+			'& .ant-slider-track': {
+				...commonSliderStyles,
+				backgroundColor: ({ highlightGreaterValues }: StyleProps) =>
+					sliderPalette[dark][
+						highlightGreaterValues ? 'railColor' : 'trackColor'
+					]
+			},
 			padding: '2px 0'
 		}
 	},
@@ -68,12 +80,6 @@ export const useSliderStyles = createUseStyles({
 				},
 				'& .ant-slider-mark-text': {
 					color: sliderPalette[dark].railColor
-				},
-				'& .ant-slider-rail': {
-					backgroundColor: sliderPalette[dark].railColor
-				},
-				'& .ant-slider-track': {
-					backgroundColor: sliderPalette[dark].trackColor
 				}
 			}
 		}
