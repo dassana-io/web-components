@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
 		width: 100
 	},
 	loader: {
-		width: 100
+		width: 72
 	}
 })
 
