@@ -38,7 +38,7 @@ const baseColors = {
 	[blue]: '#2F54EB',
 	[cyan]: '#13C2C2',
 	[gray]: '#EAEAEB',
-	[green]: '#59C93D',
+	[green]: '#00CC66',
 	[magenta]: '#EB2F96',
 	[orange]: '#EE9747',
 	[purple]: '#722ED1',
