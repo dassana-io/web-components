@@ -20,7 +20,7 @@ const DraggableItem: FC<DraggableItemProps> = ({
 		useSortable({ disabled: disableDrag, id })
 
 	const style = {
-		cursor: isDragging ? 'grabbing' : 'grab',
+		cursor: isDragging ? 'grabbing' : disableDrag ? 'default' : 'grab',
 		transform: CSS.Transform.toString(transform) ?? ''
 	}
 
